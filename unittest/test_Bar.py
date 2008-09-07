@@ -60,6 +60,19 @@ class test_Bar(unittest.TestCase):
 		self.assertEqual(self.c.key, Note("E"))
 
 
+	def test_transpose(self):
+		b = Bar()
+		c= Bar()
+		b + ["C", "E", "G"]
+		c + ["E", "G#", "B"]
+		b + ["F", "A", "C"]
+		c + ["A", "C#", "E"]
+		b.transpose("3", True)
+		self.assertEqual(b, c)
+		b.transpose("3", False)
+		b.transpose("3")
+		self.assertEqual(b, c)
+
 def suite():
 	return unittest.TestLoader().loadTestsFromTestCase(test_Bar)
 

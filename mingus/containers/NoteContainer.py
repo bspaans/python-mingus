@@ -42,13 +42,21 @@ required for working with [refMingusContainersBar Bars]."""
 		"""Empties the container."""
 		self.notes = []
 
-	def add_note(self, note, octave = 4, dynamics = {}):
+	def add_note(self, note, octave = None, dynamics = {}):
 		"""Adds a note to the container and sorts the notes from low \
 to high. The note can either be a string, in which case you could \
 also use the octave and dynamics arguments, or a Note object."""
 
 		if type(note) == str:
-			note = Note(note, octave, dynamics)
+			if octave != None:
+				note = Note(note, octave, dynamics)
+			elif len(self.notes) == 0:
+				note = Note(note, 4, dynamics)
+			else:
+				if Note(note, self.notes[-1].octave) < self.notes[-1]:
+					note = Note(note, self.notes[-1].octave + 1, dynamics)
+				else:
+					note = Note(note, self.notes[-1].octave, dynamics)
 
 		if not ( hasattr ( note, "name")):
 			raise UnexpectedObjectError,\

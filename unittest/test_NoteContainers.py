@@ -25,7 +25,7 @@ class test_NoteContainers(unittest.TestCase):
 	def test_add_notes(self):
 		self.assertEqual(self.n3, self.n1.add_notes(["A", "C", "E"]))
 		self.n1.empty()
-		self.assertEqual(self.n3, self.n1.add_notes([["A", 4], ["C", 4], ["E", 4]]))
+		self.assertEqual(self.n3, self.n1.add_notes([["A", 4], ["C", 5], ["E", 5]]))
 		self.n1.empty()
 		self.assertEqual(self.n2, self.n1.add_notes(Note("A")))
 		self.n1.empty()
@@ -33,7 +33,7 @@ class test_NoteContainers(unittest.TestCase):
 		self.n1.empty()
 		self.assertEqual(self.n2, self.n1.add_notes("A"))
 		self.n1.empty()
-		self.assertEqual(self.n3, self.n2 + NoteContainer(["C", "E"]))
+		self.assertEqual(self.n3, self.n2 + NoteContainer([["C", 5], ["E", 5]]))
 		self.n2 = NoteContainer("A")
 
 	def test_remove_note(self):
@@ -55,15 +55,15 @@ class test_NoteContainers(unittest.TestCase):
 		n1.sort()
 		n2.sort()
 
-		self.assertEqual(Note("C"), n1[0])
-		self.assertEqual(Note("Cb"), n2[0])
+		self.assertEqual(Note("Eb"), n1[0])
+		self.assertEqual(Note("Gb"), n2[1])
 
 	def test_getitem(self):
 		self.assertEqual(self.n2[0], Note("A"))
-		self.assertEqual(self.n3[0], Note("C"))
-		self.assertEqual(self.n4[0], Note("C"))
-		self.assertEqual(self.n4[1], Note("E"))
-		self.assertEqual(self.n4[2], Note("F"))
+		self.assertEqual(self.n3[0], Note("A"))
+		self.assertEqual(self.n4[0], Note("A"))
+		self.assertEqual(self.n4[1], Note("C", 5))
+		self.assertEqual(self.n4[2], Note("E", 5))
 
 	def test_transpose(self):
 		n = NoteContainer(["C", "E", "G"])

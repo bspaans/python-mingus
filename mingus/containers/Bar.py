@@ -155,6 +155,10 @@ in the Bar"""
 					max = note
 		return (min, max)
 
+	def transpose(self, interval, up = True):
+		"""Transposes the notes in the bar up or down the interval."""
+		for cont in self.bar:
+			cont[2].transpose(interval, up)
 
 	def __add__(self, note_container):
 		"""Enables the '+' operator on Bars"""
