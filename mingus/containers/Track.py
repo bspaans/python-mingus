@@ -74,7 +74,11 @@ but the note turns out not to be within the range of the \
 			self.bars.append(Bar(last_bar.key, last_bar.meter))
 
 		return self.bars[-1].place_notes(note, duration)
-		
+	
+	def transpose(self, interval, up = True):
+		"""Transposes all the notes in the track up or down the interval. Calls transpose() on every [refMingusContainersBar Bar]."""
+		for bar in self.bars:
+			bar.transpose(interval, up)
 
 	def __add__(self, value):
 		"""Overloads the + operator for Tracks. Accepts \
@@ -94,6 +98,13 @@ but the note turns out not to be within the range of the \
 contained in this track are full."""
 		for b in self.bars[:-1]:
 			if not ( b.is_full() ):
+				return False
+		return True
+
+	def __eq__(self, other):
+		"""Overloads the == operator for tracks."""
+		for x in range(0, len(self.bars) - 1):
+			if self.bars[x] != other.bars[x]:
 				return False
 		return True
 

@@ -17,6 +17,16 @@ class test_Track(unittest.TestCase):
 	def test_add(self):
 		pass
 
+	def test_transpose(self):
+		t = Track()
+		t + "C"
+		t + "E"
+		t.transpose("3")
+		s = Track()
+		s + "E"
+		s + "G#"
+		self.assertEqual(s, t)
+
 def suite():
 	return unittest.TestLoader().loadTestsFromTestCase(test_Track)
 

@@ -1,7 +1,7 @@
 from distutils.core import setup
 
 setup(name= "mingus",
-	  version = "0.2.6.3",
+	  version = "0.3",
 	  description = "mingus is an advanced music theory and notation package",
 	  long_description = "mingus is an advanced music theory and notation package "\
 			"for Python. It can be used to play around with music theory, to build "\

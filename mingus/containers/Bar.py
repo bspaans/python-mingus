@@ -156,7 +156,7 @@ in the Bar"""
 		return (min, max)
 
 	def transpose(self, interval, up = True):
-		"""Transposes the notes in the bar up or down the interval."""
+		"""Transposes the notes in the bar up or down the interval. Calls transpose() on all [refMingusContainersNotecontainer NoteContainers] in the bar."""
 		for cont in self.bar:
 			cont[2].transpose(interval, up)
 
