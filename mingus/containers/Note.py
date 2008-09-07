@@ -127,12 +127,13 @@ Doesn't change the octave."""
 'A-4'
 }}}"""
 		old = self.name
+		self.name = intervals.from_shorthand(self.name, interval, up)
 		if up:
-			self.name = intervals.from_shorthand(self.name, interval)
 			if self < Note(old):
 				self.octave += 1
 		else:
-			pass
+			if self > Note(old):
+				self.octave -= 1
 
 
 	def to_hertz(self, standard_pitch = 440):

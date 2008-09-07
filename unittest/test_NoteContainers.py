@@ -65,6 +65,11 @@ class test_NoteContainers(unittest.TestCase):
 		self.assertEqual(self.n4[1], Note("E"))
 		self.assertEqual(self.n4[2], Note("F"))
 
+	def test_transpose(self):
+		n = NoteContainer(["C", "E", "G"])
+		n.transpose("3")
+		self.assertEqual(NoteContainer(["E", "G#", "B"]), n)
+
 def suite():
 	return unittest.TestLoader().loadTestsFromTestCase(test_NoteContainers)
 

@@ -172,6 +172,11 @@ the container"""
 				note_list.append(n.name)
 		return chords.determine(note_list, shorthand)
 
+	def transpose(self, interval, up = True):
+		"""Transposes all the notes in the container up or down the given interval."""
+		for n in self.notes:
+			n.transpose(interval, up)
+
 	def __repr__(self):
 		"""A nice and clean string representation of the note container"""
 		return str(self.notes)

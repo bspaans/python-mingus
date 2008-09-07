@@ -410,17 +410,19 @@ def from_shorthand(note, interval, up = True):
 'C'
 >>> from_shorthand("D", "2")
 'E'
+>>> from_shorthand("E", "2", False)
+'D'
 }}}"""
 
 	# [shorthand, interval function up, interval function down]
 	shorthand_lookup = [
 		["1", major_unison, major_unison],
-		["2", major_second, major_seventh],
+		["2", major_second, minor_seventh],
 		["3", major_third, minor_sixth],
 		["4", major_fourth, major_fifth],
 		["5", major_fifth, major_fourth],
-		["6", major_sixth, major_third],
-		["7", major_seventh, major_second]
+		["6", major_sixth, minor_third],
+		["7", major_seventh, minor_second]
 					]
 
 	# Looking up last character in interval in shorthand_lookup
