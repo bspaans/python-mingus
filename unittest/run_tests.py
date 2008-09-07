@@ -53,6 +53,7 @@ import test_Suite
 
 # mingus.extras Tests - added for 0.4 release
 import test_LilyPond
+import test_ALSAInstrument
 
 
 # Add new suites here...
@@ -73,12 +74,13 @@ suite106 = test_Composition.suite()
 suite107 = test_Suite.suite()
 
 suite201 = test_LilyPond.suite()
+suite202 = test_ALSAInstrument.suite()
 
 # ...and here
 suite = unittest.TestSuite(\
 		[suite001, suite002, suite003, suite004, suite005, suite006, suite007,\
  		 suite101, suite102, suite103, suite104, suite105, suite106, suite107,\
-		 suite201
+		 suite201, suite202,
 		 ])
 
 unittest.TextTestRunner(verbosity=2).run(suite)
