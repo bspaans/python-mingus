@@ -80,6 +80,26 @@ but the note turns out not to be within the range of the \
 		for bar in self.bars:
 			bar.transpose(interval, up)
 
+	def to_minor(self):
+		"""Calls to_minor on all the bars in the Track."""
+		for bar in self.bars:
+			bar.to_minor()
+
+	def to_major(self):
+		"""Calls to_major on all the bars in the Track."""
+		for bar in self.bars:
+			bar.to_major()
+
+	def augment(self):
+		"""Calls augment on all the bars in the Track."""
+		for bar in self.bars:
+			bar.augment()
+
+	def diminish(self):
+		"""Calls diminish on all the bars in the Track."""
+		for bar in self.bars:
+			bar.diminish()
+
 	def __add__(self, value):
 		"""Overloads the + operator for Tracks. Accepts \
 [refMingusContainersNote Notes], notes as string, \
