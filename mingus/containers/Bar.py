@@ -155,6 +155,26 @@ in the Bar"""
 					max = note
 		return (min, max)
 
+	def augment(self):
+		"""Calls augment on the NoteContainers in Bar."""
+		for cont in self.bar:
+			cont[2].augment()
+
+	def diminish(self):
+		"""Calls diminish on the NoteContainers in Bar."""
+		for cont in self.bar:
+			cont[2].diminish()
+
+	def to_minor(self):
+		"""Calls to_minor on the NoteContainers in Bar."""
+		for cont in self.bar:
+			cont[2].to_minor()
+
+	def to_major(self):
+		"""Calls to_major on the NoteContainers in Bar."""
+	 	for cont in self.bar:
+			cont[2].to_major()
+
 	def transpose(self, interval, up = True):
 		"""Transposes the notes in the bar up or down the interval. Calls transpose() on all [refMingusContainersNotecontainer NoteContainers] in the bar."""
 		for cont in self.bar:

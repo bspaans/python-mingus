@@ -73,6 +73,44 @@ class test_Bar(unittest.TestCase):
 		b.transpose("3")
 		self.assertEqual(b, c)
 
+	def test_augment(self):
+		b = Bar()
+		c = Bar()
+		d = Bar()
+		b + "A"
+		c + "A#"
+		d + "A##"
+		b.augment()
+		self.assertEqual(b, c)
+		b.augment()
+		self.assertEqual(b, d)
+		c.augment()
+		self.assertEqual(c, d)
+
+	def test_diminish(self):
+		b = Bar()
+		c = Bar()
+		b + "A"
+		c + "Ab"
+		b.diminish()
+		self.assertEqual(b, c)
+
+	def test_to_minor(self):
+		b = Bar()
+		c = Bar()
+		b + "C"
+		c + "A"
+		b.to_minor()
+		self.assertEqual(b, c)
+
+	def test_to_major(self):
+		b = Bar()
+		c = Bar()
+		b + "C"
+		c + "A"
+		c.to_major()
+		self.assertEqual(b, c)
+
 def suite():
 	return unittest.TestLoader().loadTestsFromTestCase(test_Bar)
 
