@@ -111,6 +111,24 @@ class test_Bar(unittest.TestCase):
 		c.to_major()
 		self.assertEqual(b, c)
 
+	def test_get_note_names(self):
+		b = Bar()
+		b + "C"
+		b + "A"
+		self.assertEqual(["C", "A"], b.get_note_names())
+
+	def test_determine_chords(self):
+		b = Bar()
+		b + ["C", "E", "G"]
+		b + ["F", "A", "C"]
+		self.assertEqual([[0.0, ["C major triad"]], [0.25, ["F major triad"]]], b.determine_chords())
+
+	def test_determine_progression(self):
+		b = Bar()
+		b + ["C", "E", "G"]
+		b + ["F", "A", "C"]
+		self.assertEqual([[0.0, ["I"]], [0.25, ["IV"]]], b.determine_progression(True))
+
 def suite():
 	return unittest.TestLoader().loadTestsFromTestCase(test_Bar)
 

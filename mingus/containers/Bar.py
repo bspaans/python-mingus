@@ -23,6 +23,7 @@
 """
 
 from mingus.core import meter as _meter
+from mingus.core import scales, progressions
 from NoteContainer import NoteContainer
 from Note import Note
 from mt_exceptions import MeterFormatError
@@ -179,6 +180,32 @@ in the Bar"""
 		"""Transposes the notes in the bar up or down the interval. Calls transpose() on all [refMingusContainersNotecontainer NoteContainers] in the bar."""
 		for cont in self.bar:
 			cont[2].transpose(interval, up)
+
+	def determine_chords(self, shorthand = False):
+		"""Returns a list of lists [place_in_beat, possible_chords]."""
+
+		chords = []
+		for x in self.bar:
+			chords.append([x[0], x[2].determine(shorthand)])
+		return chords
+
+	def determine_progression(self, shorthand = False):
+		"""Returns a list of lists [place_in_beat, possible_progressions]."""
+		res = []
+		for x in self.bar:
+			res.append([x[0], progressions.determine(x[2].get_note_names(), self.key.name, shorthand)])
+		return res
+
+			
+
+	def get_note_names(self):
+		"""Returns a list of unique note names in the Bar."""
+		res = []
+		for cont in self.bar:
+			for x in cont[2].get_note_names():
+				if x not in res:
+					res.append(x)
+		return res
 
 	def __add__(self, note_container):
 		"""Enables the '+' operator on Bars"""

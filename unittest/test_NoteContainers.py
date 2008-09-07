@@ -44,7 +44,12 @@ class test_NoteContainers(unittest.TestCase):
 		self.assertEqual(NoteContainer(["G"]), n)
 		n.remove_note("G")
 		self.assertEqual(NoteContainer([]), n)
-		
+
+	def test_determine(self):
+		n = NoteContainer(["C", "E", "G"])
+		self.assertEqual(["C major triad"], n.determine())	
+		n.transpose("3")
+		self.assertEqual(["E major triad"], n.determine())
 
 	def test_remove_notes(self):
 		pass
@@ -69,6 +74,9 @@ class test_NoteContainers(unittest.TestCase):
 		n = NoteContainer(["C", "E", "G"])
 		n.transpose("3")
 		self.assertEqual(NoteContainer(["E", "G#", "B"]), n)
+
+	def test_get_note_names(self):
+		self.assertEqual(['A', 'C', 'E'], self.n3.get_note_names())
 
 def suite():
 	return unittest.TestLoader().loadTestsFromTestCase(test_NoteContainers)

@@ -174,16 +174,20 @@ equivalent."""
 	def determine(self, shorthand = False):
 		"""Determines the type of chord or interval currently in \
 the container"""
-		note_list = []
-		for n in self.notes:
-			if n.name not in note_list:
-				note_list.append(n.name)
-		return chords.determine(note_list, shorthand)
+		return chords.determine(self.get_note_names(), shorthand)
 
 	def transpose(self, interval, up = True):
 		"""Transposes all the notes in the container up or down the given interval."""
 		for n in self.notes:
 			n.transpose(interval, up)
+
+	def get_note_names(self):
+		"""Returns a list with all the note names in the current container. Every name will only be mentioned once."""
+		res = []
+		for n in self.notes:
+			if n.name not in res:
+				res.append(n.name)
+		return res
 
 	def __repr__(self):
 		"""A nice and clean string representation of the note container"""
@@ -195,7 +199,7 @@ the container"""
 {{{
 >>> n = NoteContainer(["C", "E", "G"])
 >>> n[0]
-'C-5' 
+'C-4' 
 }}}
 		"""
 		return self.notes[item]
@@ -223,7 +227,7 @@ function accepts Notes and notes as string.
 {{{
 >>> n = NoteContainer(["C", "E", "G"])
 >>> n + "B"
-["C-5", "E-5", "G-5", "B-5"] 
+["C-4", "E-4", "G-4", "B-4"] 
 }}}"""
 		self.add_notes(notes)
 		return self.notes
@@ -234,7 +238,7 @@ function accepts Notes and notes as string.
 {{{
 >>> n = NoteContainer(["C", "E", "G"])
 >>> n - "E"
-["C-5", "G-5"]
+["C-4", "G-4"]
 }}}"""
 		self.remove_notes(notes)
 		return self.notes

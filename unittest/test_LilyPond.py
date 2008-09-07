@@ -69,9 +69,9 @@ class test_LilyPond(unittest.TestCase):
 
 	def test_from_Composition(self):
 		self.assertEqual(LilyPond.from_Composition(self.composition1),\
-			"\\version 2.10.33 \\header { title = \"Untitled\" composer = \"\" opus = \"\" } { { c'4 e'4 g'4 b'4 } }")
+			"\\header { title = \"Untitled\" composer = \"\" opus = \"\" } { { c'4 e'4 g'4 b'4 } }")
 		self.assertEqual(LilyPond.from_Composition(self.composition2),\
-			"\\version 2.10.33 \\header { title = \"Untitled\" composer = \"\" opus = \"\" } { { c'4 e'4 g'4 b'4 } } { { c'4 e'4 g'4 b'4 } { \\key e \\major c'4 e'4 g'4 b'4 } }")
+			"\\header { title = \"Untitled\" composer = \"\" opus = \"\" } { { c'4 e'4 g'4 b'4 } } { { c'4 e'4 g'4 b'4 } { \\key e \\major c'4 e'4 g'4 b'4 } }")
 
 	def test_from_Suite(self):
 		LilyPond.from_Suite(None)
