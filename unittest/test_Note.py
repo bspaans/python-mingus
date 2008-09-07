@@ -66,6 +66,17 @@ class test_Note(unittest.TestCase):
 		a.from_hertz(1760)
 		self.assertEqual(a, Note("A", 6))
 
+	def test_transpose(self):
+		a = Note("C")
+		a.transpose("3")
+		self.assertEqual(Note("E"), a)
+		a.transpose("b2")
+		self.assertEqual(Note("F"), a)
+		a.transpose("5")
+		self.assertEqual(Note("C", 5), a)
+		a.transpose("5", False)
+		self.assertEqual(Note("F"), a)
+
 def suite():
 	return unittest.TestLoader().loadTestsFromTestCase(test_Note)
 	

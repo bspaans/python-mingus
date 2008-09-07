@@ -290,8 +290,11 @@ class test_intervals(unittest.TestCase):
 
 	def test_from_shorthand(self):
 		self.assertEqual('C', intervals.from_shorthand('A', 'b3'))
+		self.assertEqual('A', intervals.from_shorthand('C', 'b3', False))
+		self.assertEqual('A', intervals.from_shorthand('C#', '3', False))
 		self.assertEqual('Cb', intervals.from_shorthand('A', 'bb3'))
 		self.assertEqual('Cbb', intervals.from_shorthand('A', 'bbb3'))
+		self.assertEqual('F###', intervals.from_shorthand('A', 'bbb3', False))
 		self.assertEqual('C#', intervals.from_shorthand('A', '3'))
 		self.assertEqual('C##', intervals.from_shorthand('A', '#3'))
 		self.assertEqual('C###', intervals.from_shorthand('A', '##3'))

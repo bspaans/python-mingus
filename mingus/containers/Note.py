@@ -24,6 +24,7 @@
 from mingus.core import notes
 from mt_exceptions import NoteFormatError
 from math import log
+from mingus.core import intervals
 
 
 class Note:
@@ -113,6 +114,26 @@ Doesn't change the octave."""
 	def remove_redundant_accidentals(self):
 		"""Calls notes.remove_redundant_accidentals on this note's name."""
 		self.name = notes.remove_redundant_accidentals(self.name)
+
+	def transpose(self, interval, up = True):
+		"""Transposes the note up or down the interval. 
+{{{
+>>> a = Note("A")
+>>> a.transpose("3")
+>>> a
+'C#-5'
+>>> a.transpose("3", False)
+>>> a
+'A-4'
+}}}"""
+		old = self.name
+		if up:
+			self.name = intervals.from_shorthand(self.name, interval)
+			if self < Note(old):
+				self.octave += 1
+		else:
+			pass
+
 
 	def to_hertz(self, standard_pitch = 440):
 		"""Returns the Note in Hz. The `standard_pitch` argument can be used \

@@ -402,8 +402,8 @@ for 'major' fifths and fourths:
 		return "b" * (maj - half_notes) + current[1]
 
 
-def from_shorthand(note, interval):
-	"""Returns the note on interval.
+def from_shorthand(note, interval, up = True):
+	"""Returns the note on interval up or down.
 	Example:
 {{{
 >>> from_shorthand("A", "b3")
@@ -411,14 +411,16 @@ def from_shorthand(note, interval):
 >>> from_shorthand("D", "2")
 'E'
 }}}"""
+
+	# [shorthand, interval function up, interval function down]
 	shorthand_lookup = [
-		["1", major_unison],
-		["2", major_second],
-		["3", major_third],
-		["4", major_fourth],
-		["5", major_fifth],
-		["6", major_sixth],
-		["7", major_seventh]
+		["1", major_unison, major_unison],
+		["2", major_second, major_seventh],
+		["3", major_third, minor_sixth],
+		["4", major_fourth, major_fifth],
+		["5", major_fifth, major_fourth],
+		["6", major_sixth, major_third],
+		["7", major_seventh, major_second]
 					]
 
 	# Looking up last character in interval in shorthand_lookup
@@ -426,7 +428,10 @@ def from_shorthand(note, interval):
 	val = False
 	for shorthand in shorthand_lookup:
 		if shorthand[0] == interval[-1]:
-			val = shorthand[1](note)
+			if up:
+				val = shorthand[1](note)
+			else:
+				val = shorthand[2](note)
 	
 	#warning Last character in interval should be 1-7
 	if val == False:
@@ -435,9 +440,15 @@ def from_shorthand(note, interval):
 	# Collect accidentals
 	for x in interval:
 		if x == "#":
-			val = notes.augment(val)
+			if up:
+				val = notes.augment(val)
+			else:
+				val = notes.diminish(val)
 		elif x == "b":
-			val = notes.diminish(val)
+			if up:
+				val = notes.diminish(val)
+			else:
+				val = notes.augment(val)
 		else:
 			return val
 
