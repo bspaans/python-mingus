@@ -21,13 +21,12 @@
 ================================================================================
 
    fluidsynth is a software MIDI synthesizer. To work with this module, you'll 
-   need fluidsynth and a nice instrument collection (look here: *lookup url*).
+   need fluidsynth and a nice instrument collection (look here: http://www.hammersound.net, go to Sounds -> Soundfont Library -> Collections).
    mingus uses the fluidsynth server to send the MIDI signals. To start a server
    instance of fluidsynth, use a command like this: 
    
    	fluidsynth -m alsa_seq ./nameofinstrbank.sf2 -i -s
 
-   ** This module is in an experimental stage **
 
 ================================================================================
 
@@ -85,6 +84,7 @@ def play_Track(track, channel = 1):
 	return midi.play_Track(track, channel)
 
 def play_Tracks(tracks, channels):
+	"""Plays a list of Tracks on the given list of channels."""
 	return midi.play_Tracks(tracks, channels)
 
 def play_Composition(composition, channels = None):

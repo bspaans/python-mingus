@@ -20,8 +20,8 @@
 
 ================================================================================
 
-   This module provides an object which can turn your container objects
-   into MIDI messages. 
+   This module provides a MidiSequencer which will take the objects from 
+   mingus.containers and turn them into MIDI messages.
 
 ================================================================================
 
@@ -31,11 +31,14 @@ from datetime import datetime
 from mingus.containers.Instrument import MidiInstrument
 
 class MidiSequencer:
+	"""Simple MidiSequencer; supports `note on`, `note off` and `select`"""
 
 	output = None
 
 
 	def __init__(self, output_function = None):
+		"""The output_function can be set to redirect the generated messages. \
+For an example see the source mingus.extra.fluidsynth.py"""
 
 		self.output = output_function
 
@@ -208,6 +211,7 @@ which will determine if the tracks should keep playing after each played bar."""
 			
 
 	def play_Composition(self, composition, channels = None, keep_playing_func = True):
+		"""Plays a Composition object."""
 
 		if channels == None:
 			channels = map(lambda x: x + 1, range(len(composition.tracks)))
