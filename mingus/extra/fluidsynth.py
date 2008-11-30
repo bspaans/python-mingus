@@ -76,6 +76,9 @@ def play_Bar(bar, duration = 2000, channel = 1):
 The default is set to 2000 ms which is good for 120bpm when playing 4/4 bars."""
 	return midi.play_Bar(bar, channel, duration)
 
+def play_Bars(bars):
+	return midi.play_Bars(bars, [1, 2])
+
 def play_Track(track, channel = 1):
 	"""Plays a Track object."""
 	return midi.play_Track(track, channel)

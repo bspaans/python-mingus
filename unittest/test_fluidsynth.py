@@ -34,6 +34,17 @@ class test_fluidsynth(unittest.TestCase):
 		b + Note("G")
 		self.assert_(fluidsynth.play_Bar(b))
 
+	def test_playbars(self):
+		b = Bar()
+		b + Note("C")
+		b + Note("E")
+		b + Note("G")
+		c = Bar()
+		c + Note("E")
+		c + "G"
+		c + "B"
+		self.assert_(fluidsynth.play_Bars([b, c]))
+
 	def test_track(self):
 		b = Bar()
 		b + Note("C")

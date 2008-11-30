@@ -84,6 +84,9 @@ class MIDI:
 
 
 	def play_Bar(self, bar, channel = 1, duration = 2000):
+		"""Plays a Bar object. The duration is the duration of the \
+whole bar in milliseconds. The default is set to 2000 ms which is good for \
+120 bpm when playing bars in 4/4."""
 		for nc in bar:
 			n = datetime.now()
 
@@ -97,6 +100,50 @@ class MIDI:
 			self.stop_NoteContainer(nc[2], channel)
 
 		return True
+
+
+	def play_Bars(self, bars, channels, duration = 2000):
+		"""Plays several bars at the same time."""
+		tick = 0.0
+		cur = []
+		playing = []
+
+		for x in bars:
+			cur.append(0)
+
+		n = datetime.now()
+		a = datetime.now()
+		
+		while tick < bars[0].length:
+			for x in range(len(bars)):
+				bar = bars[x]
+				current_nc = bar[cur[x]]
+				if current_nc[0] <= tick and \
+					current_nc[0] + \
+					(1.0 / current_nc[1]) >= tick \
+					and current_nc not in playing:
+
+					print "play", current_nc, tick
+					self.play_NoteContainer(current_nc[2])
+					playing.append(current_nc)
+					if cur[x] != len(bar) - 1:
+						cur[x] += 1
+
+			for p in playing:
+				if p[0] + (1.0 / p[1]) <= tick:
+					print "stop", p, tick
+					self.stop_NoteContainer(p[2])
+					playing.remove(p)
+
+			a = datetime.now()
+
+			millis = (a - n).microseconds / 1000.0 + (a - n).seconds * 1000.0
+			tick = (millis / duration) * bars[0].length
+			
+
+		return True
+
+
 
 
 
