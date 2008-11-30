@@ -53,7 +53,7 @@ import test_Suite
 
 # mingus.extras Tests - added for 0.4 release
 import test_LilyPond
-import test_ALSAInstrument
+import test_fluidsynth
 
 
 # Add new suites here...
@@ -74,7 +74,7 @@ suite106 = test_Composition.suite()
 suite107 = test_Suite.suite()
 
 suite201 = test_LilyPond.suite()
-suite202 = test_ALSAInstrument.suite()
+suite202 = test_fluidsynth.suite()
 
 # ...and here
 suite = unittest.TestSuite(\
