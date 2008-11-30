@@ -34,59 +34,52 @@
 """
 
 from telnetlib import Telnet
+from datetime import datetime
+from midi import MIDI
 
 
 fluid = None
+midi = None
+
 
 def init_fluidsynth(server="localhost", port=9800):
 	"""Initializes a connection to the fluidsynth server."""
-	global fluid
+	global fluid, midi
 	try:
 		fluid = Telnet(server, port)
+		midi = MIDI(fluid.write)
 		return True
 	except:
 		return False
 
 
-def play_Note(note, duration = 100, channel = 1):
+def play_Note(note, velocity = 100, channel = 1):
 	"""Sends a Note object as midi signal to the fluidsynth server."""
-	try:
-		fluid.write("noteon %d %d %d\n" % (channel, int(note), duration))
-		return True
-	except:
-		return False
+	return midi.play_Note(note, channel, velocity)
 
 
 def stop_Note(note, channel = 1):
 	"""Stops the Note playing at channel."""
-	try:
-		fluid.write("noteoff %d %d\n" % (channel, int(note)))
-		return True
-	except:
-		return False
+	return midi.stop_Note(note, channel)
 
-def play_NoteContainer(nc, duration = 100, channel = 1):
+
+def play_NoteContainer(nc, velocity = 100, channel = 1):
 	"""Plays the Notes in the NoteContainer nc."""
-	for note in nc:
-		if not play_Note(note, duration, channel):
-			return False
-	return True
+	return midi.play_NoteContainer(nc, channel, velocity)
 
 def stop_NoteContainer(nc, channel = 1):
 	"""Stops playing the notes in NoteContainer nc."""
-	for note in nc:
-		if not stop_Note(note, channel):
-			return False
-	return True
+	return midi.stop_NoteContainer(nc, channel)
 
-def play_Bar(bar):
-	"""Not implemented yet."""
-	pass
+def play_Bar(bar, duration = 2000, channel = 1):
+	"""Plays a Bar object. The duration is the duration of the whole bar in milliseconds.\
+The default is set to 2000 ms which is good for 120bpm when playing 4/4 bars."""
+	return midi.play_Bar(bar, channel, duration)
 
-def play_Track(track):
-	"""Not implemented yet."""
-	pass
+def play_Track(track, channel = 1):
+	"""Plays a Track object."""
+	return midi.play_Track(track, channel)
 
-def play_Song(song):
-	"""Not implemented yet."""
+def play_Composition(song):
+	"""Plays a composition."""
 	pass
