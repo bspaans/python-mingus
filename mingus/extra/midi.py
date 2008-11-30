@@ -154,6 +154,10 @@ channels should also be provided."""
 			# Calculate new tick
 			tick = (millis / duration) * bars[0].length
 			
+		# Stop all the notes that are still playing
+		for p in playing:
+			self.stop_NoteContainer(p[2], p[3])
+			playing.remove(p)
 
 		return True
 
@@ -166,7 +170,20 @@ channels should also be provided."""
 				return False
 		return True
 
-	def play_Tracks(self, tracks, channels):
-		"""Plays a list of Tracks."""
-		for tr in tracks:
+	def play_Tracks(self, tracks, channels, keep_playing_func = True):
+		"""Plays a list of Tracks. keep_playing_func can be used to pass a function, \
+which will determine if the tracks should keep playing after each played bar."""
+
+		current_bar = 0
+		max_bar = len(tracks[0])
+
+		while keep_playing_func and current_bar < max_bar:
 			bars = []
+			for tr in tracks:
+				bars.append(tr[current_bar])
+			if not self.play_Bars(bars, channels):
+				return False
+			current_bar += 1
+
+		return True
+			

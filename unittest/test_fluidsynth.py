@@ -44,7 +44,7 @@ class test_fluidsynth(unittest.TestCase):
 		c + "Gb"
 		c + "B"
 		c + Note("C", 5)
-		self.assert_(fluidsynth.play_Bars([b, c]))
+		self.assert_(fluidsynth.play_Bars([b, c], [1, 2]))
 
 	def test_track(self):
 		b = Bar()
@@ -77,7 +77,7 @@ class test_fluidsynth(unittest.TestCase):
 		t2 = Track()
 		t2 + b
 		t2 + b
-		self.assert_(fluidsynth.play_Tracks([t, t2])
+		self.assert_(fluidsynth.play_Tracks([t, t2], [0, 1]))
 
 
 def suite():
