@@ -414,6 +414,10 @@ def from_shorthand(note, interval, up = True):
 'D'
 }}}"""
 
+	#warning should be a valid note.
+	if not notes.is_valid_note(note):
+		return False
+
 	# [shorthand, interval function up, interval function down]
 	shorthand_lookup = [
 		["1", major_unison, major_unison],

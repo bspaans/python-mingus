@@ -108,7 +108,7 @@ class Documize():
 		if type(evaled) in [types.FunctionType, types.MethodType]:
 			self.functions.append(self.generate_function_wikidocs(element_string, evaled))
 		elif type(evaled) == types.ClassType:
-			self.functions.append(self.generate_function_wikidocs(element_string, evaled))
+			print "CLASS"
 		else:
 			#print "Unknown callable object %s " % element_string
 			pass

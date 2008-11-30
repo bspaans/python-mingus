@@ -22,4 +22,8 @@
 
 """
 
-__all__ = ['LilyPond', 'midi', 'fluidsynth']
+import LilyPond
+from midi import MidiSequencer
+import fluidsynth
+
+
