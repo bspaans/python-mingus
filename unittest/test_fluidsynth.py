@@ -80,6 +80,8 @@ class test_fluidsynth(unittest.TestCase):
 		self.assert_(fluidsynth.play_Tracks([t, t2], [0, 1]))
 
 	def test_composition(self):
+		m = MidiInstrument("Vibraphone")
+
 		b = Bar()
 		b + Note("C")
 		b + Note("E")
@@ -98,6 +100,8 @@ class test_fluidsynth(unittest.TestCase):
 		t2 = Track()
 		t2 + b
 		t2 + b
+
+		t2.instrument = m
 
 		c = Composition()
 		c+ t

@@ -35,7 +35,7 @@
 
 from telnetlib import Telnet
 from datetime import datetime
-from midi import MIDI
+from midi import MidiSequencer
 
 
 fluid = None
@@ -47,7 +47,7 @@ def init_fluidsynth(server="localhost", port=9800):
 	global fluid, midi
 	try:
 		fluid = Telnet(server, port)
-		midi = MIDI(fluid.write)
+		midi = MidiSequencer(fluid.write)
 		return True
 	except:
 		return False

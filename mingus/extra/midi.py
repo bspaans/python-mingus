@@ -28,8 +28,9 @@
 """
 
 from datetime import datetime
+from mingus.containers.Instrument import MidiInstrument
 
-class MIDI:
+class MidiSequencer:
 
 	output = None
 
@@ -173,15 +174,24 @@ channels should also be provided."""
 	def play_Tracks(self, tracks, channels, keep_playing_func = True):
 		"""Plays a list of Tracks. keep_playing_func can be used to pass a function, \
 which will determine if the tracks should keep playing after each played bar."""
+		
+		for x in range(len(tracks)):
+			instr = tracks[x].instrument
+			if isinstance(instr, MidiInstrument):
+				self.write("select %d 1 0 %d\n", channels[x], \
+						instr.names.index(instr.name))
 
+
+		
 		current_bar = 0
 		max_bar = len(tracks[0])
 
+
 		while keep_playing_func and current_bar < max_bar:
-			bars = []
+			playbars = []
 			for tr in tracks:
-				bars.append(tr[current_bar])
-			if not self.play_Bars(bars, channels):
+				playbars.append(tr[current_bar])
+			if not self.play_Bars(playbars, channels):
 				return False
 			current_bar += 1
 

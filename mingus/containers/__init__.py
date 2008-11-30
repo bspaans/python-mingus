@@ -31,5 +31,5 @@ from Bar import Bar
 from Track import Track
 from Composition import Composition
 from Suite import Suite
-from Instrument import Instrument, Piano, Guitar
+from Instrument import Instrument, Piano, Guitar, MidiInstrument
 
