@@ -88,9 +88,9 @@ class test_fluidsynth(unittest.TestCase):
 		b + Note("A")
 		b + "E"
 		c = Bar()
-		c + Note("Eb")
-		c + "Gb"
-		c + "B"
+		c + Note("G")
+		c + "C"
+		c + "E"
 		c + Note("C", 5)
 
 		t = Track()

@@ -22,4 +22,4 @@
 
 """
 
-__all__ = ['LilyPond']
+__all__ = ['LilyPond', 'midi', 'fluidsynth']
