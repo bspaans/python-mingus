@@ -79,6 +79,29 @@ class test_fluidsynth(unittest.TestCase):
 		t2 + b
 		self.assert_(fluidsynth.play_Tracks([t, t2], [0, 1]))
 
+	def test_composition(self):
+		b = Bar()
+		b + Note("C")
+		b + Note("E")
+		b + Note("A")
+		b + "E"
+		c = Bar()
+		c + Note("Eb")
+		c + "Gb"
+		c + "B"
+		c + Note("C", 5)
 
+		t = Track()
+		t + b
+		t + c
+
+		t2 = Track()
+		t2 + b
+		t2 + b
+
+		c = Composition()
+		c+ t
+		c+ t2
+		self.assert_(fluidsynth.play_Composition(c))
 def suite():
 	return unittest.TestLoader().loadTestsFromTestCase(test_fluidsynth)

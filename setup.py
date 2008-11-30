@@ -1,13 +1,13 @@
 from distutils.core import setup
 
 setup(name= "mingus",
-	  version = "0.3.0.5",
+	  version = "0.3.1.0",
 	  description = "mingus is an advanced music theory and notation package",
 	  long_description = "mingus is an advanced music theory and notation package "\
 			"for Python. It can be used to play around with music theory, to build "\
 			"editors, educational tools and other applications that need to process "\
-			"music. It can also be used to create sheet music with LilyPond and do "\
-			"automated musicological analysis.",
+			"and/or play music. It can also be used to create sheet music with LilyPond "\
+			"and do automated musicological analysis.",
 	  author = "Bart Spaans",
 	  author_email = "onderstekop@gmail.com",
 	  url = "http://mingus.googlecode.com/",

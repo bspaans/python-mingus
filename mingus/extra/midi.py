@@ -187,3 +187,9 @@ which will determine if the tracks should keep playing after each played bar."""
 
 		return True
 			
+
+	def play_Composition(self, composition, channels = None, keep_playing_func = True):
+
+		if channels == None:
+			channels = map(lambda x: x + 1, range(len(composition.tracks)))
+		return self.play_Tracks(composition.tracks, channels, keep_playing_func)

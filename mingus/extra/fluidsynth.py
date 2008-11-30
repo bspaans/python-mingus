@@ -87,6 +87,6 @@ def play_Track(track, channel = 1):
 def play_Tracks(tracks, channels):
 	return midi.play_Tracks(tracks, channels)
 
-def play_Composition(song):
+def play_Composition(composition, channels = None):
 	"""Plays a composition."""
-	pass
+	return midi.play_Composition(composition, channels)
