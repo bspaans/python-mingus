@@ -40,21 +40,45 @@ class test_fluidsynth(unittest.TestCase):
 		b + Note("E")
 		b + Note("G")
 		c = Bar()
-		c + Note("E")
-		c + "G"
+		c + Note("Eb")
+		c + "Gb"
 		c + "B"
+		c + Note("C", 5)
 		self.assert_(fluidsynth.play_Bars([b, c]))
 
 	def test_track(self):
 		b = Bar()
 		b + Note("C")
 		b + Note("E")
-		b + Note("G")
+		b + Note("A")
+		b + "E"
 
 		t = Track()
 		t + b
 		t + b
 		self.assert_(fluidsynth.play_Track(t))
+
+	def test_tracks(self):
+		b = Bar()
+		b + Note("C")
+		b + Note("E")
+		b + Note("A")
+		b + "E"
+		c = Bar()
+		c + Note("Eb")
+		c + "Gb"
+		c + "B"
+		c + Note("C", 5)
+
+		t = Track()
+		t + b
+		t + c
+
+		t2 = Track()
+		t2 + b
+		t2 + b
+		self.assert_(fluidsynth.play_Tracks([t, t2])
+
 
 def suite():
 	return unittest.TestLoader().loadTestsFromTestCase(test_fluidsynth)

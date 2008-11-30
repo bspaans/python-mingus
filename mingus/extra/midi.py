@@ -32,18 +32,18 @@ from datetime import datetime
 class MIDI:
 
 	output = None
-	bpm = 120  # beats per minute
-	tick = 500 # ms
-	play = False
 
 
-	def __init__(self, output_function):
+	def __init__(self, output_function = None):
 
 		self.output = output_function
 
 
 	def write(self, msg):
 		"""Writes a message to the output function."""
+		if self.output == None:
+			print msg
+			return True
 		try:
 			self.output(msg)
 			return True
@@ -103,48 +103,59 @@ whole bar in milliseconds. The default is set to 2000 ms which is good for \
 
 
 	def play_Bars(self, bars, channels, duration = 2000):
-		"""Plays several bars at the same time."""
-		tick = 0.0
-		cur = []
-		playing = []
+		"""Plays several bars (a list of Bar objects) at the same time. A list of \
+channels should also be provided."""
 
+
+		tick = 0.0  # place in beat from 0.0 to bar.length
+		cur = []    # keeps the index of the note needing investigation in each of bars
+		playing = [] # keeps track of the notecontainers being played right now.
+
+
+		# Prepare cur list
 		for x in bars:
 			cur.append(0)
 
 		n = datetime.now()
-		a = datetime.now()
 		
 		while tick < bars[0].length:
+
+			# Check each bar in bars and investigate index in cur.
 			for x in range(len(bars)):
+
 				bar = bars[x]
 				current_nc = bar[cur[x]]
+
+				# Should note be played?
 				if current_nc[0] <= tick and \
 					current_nc[0] + \
 					(1.0 / current_nc[1]) >= tick \
-					and current_nc not in playing:
+					and [current_nc[0], current_nc[1], current_nc[2],\
+						channels[x]] not in playing:
 
-					print "play", current_nc, tick
-					self.play_NoteContainer(current_nc[2])
-					playing.append(current_nc)
+					self.play_NoteContainer(current_nc[2], channels[x])
+					playing.append([current_nc[0], current_nc[1],\
+							current_nc[2], channels[x]])
 					if cur[x] != len(bar) - 1:
 						cur[x] += 1
 
+			# Should any notes stop playing?
 			for p in playing:
 				if p[0] + (1.0 / p[1]) <= tick:
-					print "stop", p, tick
-					self.stop_NoteContainer(p[2])
+					self.stop_NoteContainer(p[2], p[3])
 					playing.remove(p)
 
-			a = datetime.now()
+			
 
+			# Milliseconds so far
+			a = datetime.now()
 			millis = (a - n).microseconds / 1000.0 + (a - n).seconds * 1000.0
+
+			# Calculate new tick
 			tick = (millis / duration) * bars[0].length
 			
 
 		return True
-
-
-
 
 
 	def play_Track(self, track, channel = 1):
@@ -154,3 +165,8 @@ whole bar in milliseconds. The default is set to 2000 ms which is good for \
 			if not self.play_Bar(bar, channel, 2000):
 				return False
 		return True
+
+	def play_Tracks(self, tracks, channels):
+		"""Plays a list of Tracks."""
+		for tr in tracks:
+			bars = []
