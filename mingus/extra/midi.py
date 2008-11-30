@@ -52,6 +52,10 @@ class MidiSequencer:
 			return False
 
 
+	def set_instrument(self, channel, instr):
+		"""Sets the channel to the instrument _instr_."""
+		return self.write("select %d 1 0 %d" % (channel, instr))
+
 
 	def play_Note(self, note, channel = 1, velocity = 100):
 		"""Plays a Note object on a channel[1-16] with a velocity[0-127]."""
@@ -175,18 +179,23 @@ channels should also be provided."""
 		"""Plays a list of Tracks. keep_playing_func can be used to pass a function, \
 which will determine if the tracks should keep playing after each played bar."""
 		
+		# Set the right instruments
 		for x in range(len(tracks)):
 			instr = tracks[x].instrument
 			if isinstance(instr, MidiInstrument):
-				self.write("select %d 1 0 %d\n", channels[x], \
-						instr.names.index(instr.name))
-
+				try: 
+					i = instr.names.index(instr.name)
+				except:
+					i = 1
+				self.set_instrument(channels[x], i)
+			else:
+				self.set_instrument(channels[x], 1)
 
 		
 		current_bar = 0
 		max_bar = len(tracks[0])
 
-
+		# Play the bars
 		while keep_playing_func and current_bar < max_bar:
 			playbars = []
 			for tr in tracks:
