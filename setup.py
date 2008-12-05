@@ -12,7 +12,7 @@ setup(name= "mingus",
 	  author = "Bart Spaans",
 	  author_email = "onderstekop@gmail.com",
 	  url = "http://mingus.googlecode.com/",
-	  packages = ['mingus', 'mingus.core', 'mingus.containers', 'mingus.extra', 'mingus_examples'],
+	  packages = ['mingus', 'mingus.core', 'mingus.containers', 'mingus.extra'],
 	  classifiers = [
 			'Intended Audience :: Developers',
 			'Intended Audience :: Science/Research',
