@@ -1148,7 +1148,7 @@ Examples:
 			if intval2 == "minor seventh":
 				add_result("7")
 			elif intval2 == "major seventh":
-				add_result("maj7")
+				add_result("M7")
 			elif intval2 == "major sixth":
 				add_result("M6")
 		elif intval1 == "perfect fifth":
