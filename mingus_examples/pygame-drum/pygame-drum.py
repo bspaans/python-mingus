@@ -107,7 +107,7 @@ def play_note(note):
 	elif note == Note("G#", 2):
 		index = 8
 
-	if index != None:
+	if index != None and status == "record":
 		playing.append([index, tick])
 		recorded.append([index, tick, note])
 		recorded_buffer.append([index, tick])
@@ -186,28 +186,29 @@ while not quit:
 		if event.type == QUIT:
 			quit = True
 		if event.type == KEYDOWN:
-			if status == "record":
-				if event.key == K_KP0:
-					play_note(Note("E", 2)) # snare
-				elif event.key == K_KP1:		
-					play_note(Note("C", 2))	# bass
-				elif event.key == K_KP_ENTER:
-					play_note(Note("B", 2)) # high tom
-				elif event.key == K_KP2:		
-					play_note(Note("A", 2))	# middle tom
-				elif event.key == K_KP3:		
-					play_note(Note("G", 2))	# low tom
-				elif event.key == K_KP4:
-					play_note(Note("A", 3)) # crash
-				elif event.key == K_KP5:
-					play_note(Note("G#", 2)) # hihat closed
-				elif event.key == K_KP6:
-					play_note(Note("A#", 2)) # hihat opened
-				elif event.key == K_KP9:
-					play_note(Note("B", 3)) # ride
-				elif event.key == K_p:
+			if event.key == K_KP0:
+				play_note(Note("E", 2)) # snare
+			elif event.key == K_KP1 or event.key == K_SPACE:		
+				play_note(Note("C", 2))	# bass
+			elif event.key == K_KP_ENTER:
+				play_note(Note("B", 2)) # high tom
+			elif event.key == K_KP2:		
+				play_note(Note("A", 2))	# middle tom
+			elif event.key == K_KP3:		
+				play_note(Note("G", 2))	# low tom
+			elif event.key == K_KP4:
+				play_note(Note("A", 3)) # crash
+			elif event.key == K_KP5:
+				play_note(Note("G#", 2)) # hihat closed
+			elif event.key == K_KP6:
+				play_note(Note("A#", 2)) # hihat opened
+			elif event.key == K_KP9:
+				play_note(Note("B", 3)) # ride
 
-					# Starts playing mode, which a lot of variables have to be adjusted
+			if status == "record":
+				if event.key == K_p:
+
+					# Starts playing mode, which a lot of variables have to be adjusted for
 					status= "play"
 					tick = 0.0
 					low_barrier= 0.0
@@ -224,7 +225,7 @@ while not quit:
 							buffered += 1
 						else:
 							break
-			elif status == "play" or status == "stopped":
+			elif status == "stopped":
 				if event.key == K_r:
 					status = "record"
 
