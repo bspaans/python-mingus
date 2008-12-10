@@ -168,7 +168,7 @@ while not quit:
 	pygame.draw.line(track_c, (0, 255,0), (x, 0), (x, 50), 2)
 
 	# Blit all the notes in recorded_buffer onto the track surface as little squeares or
-	# remove the note if its outside the viewing window
+	# remove the note if it's outside the viewing window
 	for r in recorded_buffer:
 		if r[1] < low_barrier:
 			recorded_buffer.remove(r)
