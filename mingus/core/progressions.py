@@ -37,8 +37,10 @@ standard_blues = ["I", "I", "I", "I",\
 				  "V7", "V7", "IV", "IV"]
 
 def to_chords(progression, key = 'C'):
-	"""Converts a list of chord functions (eg `['I', 'V7']`) to \
-a list of chords."""
+	"""Converts a list of chord functions (eg `['I', 'V7']`) or \
+a simple string (eg. 'I7') to a list of chords."""
+	if type(progression) == str:
+		progression = [progression]
 	return map(lambda x: chords.__dict__[x](key), progression)
 
 def determine(chord, key, shorthand = False):
