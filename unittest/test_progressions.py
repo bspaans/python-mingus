@@ -14,6 +14,8 @@ class test_progressions(unittest.TestCase):
 				progressions.to_chords(["I", "V"], 'C'))
 		self.assertEqual([["C", "E", "G"], ["G", "B", "D", "F"]], \
 				progressions.to_chords(["I", "V7"], 'C'))
+		self.assertEqual([["C#", "E#", "G#"], ["D#", "F#", "A#"]],\
+				progressions.to_chords(["#I", "#ii"]))
 
 	def test_determine(self):
 		self.assertEqual(['tonic'], progressions.determine(["C", "E", "G"], 'C'))
