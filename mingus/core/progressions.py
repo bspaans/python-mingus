@@ -20,8 +20,15 @@
 
 ================================================================================
 
-	The progressions module is here to easily indentify and generate
-	chords from progressions and vice versa.
+	In music and music theory you often deal with sequences 
+	of chords. These chord sequences are called progressions and are
+	often written down using roman numerals. In this system the 'I' 
+	refers to the first natural triad in a key, the II to the second,
+	etc. We can add prefixes and suffixes to denote more complex 
+	progressions, like: #V7, bIIdim7, etc.
+
+	This module provides methods which can convert progressions 
+	to chords and vice versa.
 
 ================================================================================
 
@@ -31,17 +38,21 @@ import notes
 import chords
 import intervals
 
-jazz = ["ii7", "V7", "I7"]
-
-standard_blues = ["I", "I", "I", "I",\
-		  "IV", "IV", "I", "I",\
-		  "V7", "V7", "IV", "IV"]
 
 def to_chords(progression, key = 'C'):
 	"""Converts a list of chord functions (eg `['I', 'V7']`) or \
-a simple string (eg. 'I7') to a list of chords. \
-Any number of accidentals can be used as prefix; \
-for example: bIV or #I."""
+a string (eg. 'I7') to a list of chords. \
+Any number of accidentals can be used as prefix to augment or diminish; \
+for example: bIV or #I. All the chord abbreviations in the chord module \
+can be used as suffixes; for example: Im7, IVdim7, etc. \
+You can combine prefixes and suffixes to manage complex progressions: \
+#vii7, #iidim7, iii7, etc. \
+Using 7 as suffix is ambiguous, since it is classicly used to denote \
+the seventh chord when talking about progressions instead of _just_ the \
+dominanth seventh chord. We have taken the classic route; I7 \
+will get you a major seventh chord. If you specifically want a dominanth \
+seventh, use Idom7."""
+
 	if type(progression) == str:
 		progression = [progression]
 
@@ -76,7 +87,6 @@ for example: bIV or #I."""
 		# These suffixes don't need any post processing
 		if suffix == '7' or suffix == '':
 			roman_numeral += suffix
-			suffix = ''
 
 			# ahh Python. Everything is a dict.
 			r = chords.__dict__[roman_numeral](key)

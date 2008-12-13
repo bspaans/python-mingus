@@ -1527,6 +1527,7 @@ chord_shorthand = {
 		"m7" : minor_seventh,
 		"M7" : major_seventh,
 		"7" : dominant_seventh,
+		"dom7" : dominant_seventh,
 		"m7b5" : minor_seventh_flat_five,
 		"dim7" : diminished_seventh,
 		"m/M7" : minor_major_seventh,
