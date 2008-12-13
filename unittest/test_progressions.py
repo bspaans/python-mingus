@@ -19,6 +19,10 @@ class test_progressions(unittest.TestCase):
 		self.assertEqual([["C#", "E#", "G#"], ["D#", "F#", "A#"]],\
 				progressions.to_chords(["#I", "#II"]))
 
+	def test_to_chords_suffixes(self):
+		self.assertEqual(progressions.to_chords(["I7", "Im7", "Idim7"]),\
+				[["C", "E", "G", "B"], ["C", "Eb", "G", "Bb"], ["C", "Eb", "Gb", "Bbb"]])
+
 	def test_determine(self):
 		self.assertEqual(['tonic'], progressions.determine(["C", "E", "G"], 'C'))
 		self.assertEqual(['tonic seventh'], progressions.determine(["C", "E", "G", "B"], 'C'))

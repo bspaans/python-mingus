@@ -21,7 +21,8 @@
 
 ================================================================================
 
-	Separated fluidsynth tests.
+	Separated fluidsynth tests. Remember: you need a running fluidsynth 
+	server process listening at port 9800 to pass this test.
 
 ================================================================================
 

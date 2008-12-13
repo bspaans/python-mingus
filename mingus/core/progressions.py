@@ -50,16 +50,42 @@ for example: bIV or #I."""
 		
 		# strip preceding accidentals from the string
 		acc = 0
-		lookup = ""
+		roman_numeral = ""
+		suffix = ""
+		i =0 
+
 		for c in chord:
 			if c == '#':
 				acc += 1
 			elif c == 'b':
 				acc -= 1
+			elif c.upper() == 'I' or c.upper() == 'V':
+				roman_numeral += c.upper()
 			else:
-				lookup += c
+				break
+			i += 1
+		suffix = chord[i:]
 
-		r = chords.__dict__[lookup](key)
+		# There is no roman numeral parsing, just a simple check.
+		# Sorry to disappoint.
+		#warning Should throw exception
+		if roman_numeral not in ['I', 'II', 'III', 'IV',\
+					'V', 'VI', 'VII']:
+			return []
+
+		# These suffixes don't need any post processing
+		if suffix == '7' or suffix == '':
+			roman_numeral += suffix
+			suffix = ''
+
+			# ahh Python. Everything is a dict.
+			r = chords.__dict__[roman_numeral](key)
+		else:
+			r = chords.__dict__[roman_numeral](key)
+			r = chords.chord_shorthand[suffix](r[0])
+
+
+		# Let the accidentals do their work
 		while acc < 0:
 			r = map(notes.diminish, r)
 			acc += 1
