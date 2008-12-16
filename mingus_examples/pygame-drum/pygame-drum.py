@@ -7,7 +7,7 @@
 
 	The drum computer is completely controlled by the keyboard, no MIDI
 	hardware is required. Make sure you have a fluidsynth server 
-	listing at port 9800 for this example to work.
+	listening at port 9800 for this example to work.
 
 
 *** Keys *** 

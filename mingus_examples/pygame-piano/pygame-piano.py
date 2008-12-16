@@ -185,6 +185,7 @@ while not quit:
 		# If a is past its prime, remove it, otherwise blit the pressed surface
 		# with a 'cool' fading effect.
 		if diff > FADEOUT:
+			fluidsynth.stop_Note(note[2], channel)
 			playing_w.remove(note)
 		else:
 			pressed.fill((0, (FADEOUT - diff) / FADEOUT * 255, 124))
@@ -197,6 +198,7 @@ while not quit:
 
 		# Instead of SUB we ADD this time, and change the coloration
 		if diff > FADEOUT:
+			fluidsynth.stop_Note(note[2], channel)
 			playing_b.remove(note)
 		else:
 			pressed.fill(((FADEOUT - diff) / FADEOUT * 125, 0 ,125 ))
