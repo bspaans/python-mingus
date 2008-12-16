@@ -53,7 +53,7 @@ while 1:
 			fluidsynth.play_Note(p)
 		time.sleep(0.50)
 		
-		# 50% chance 
+		# 50% chance on a ninth
 		if random() > 0.5:
 			l = Note(intervals.second(c[0].name, key))
 			l.octave_up()
