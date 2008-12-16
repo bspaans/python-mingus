@@ -1,0 +1,2 @@
+recursive-include mingus *.py
+recursive-include mingus_examples *.py *.png
