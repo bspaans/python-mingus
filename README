@@ -2,10 +2,12 @@
                             m   i   n   g   u   s
 ================================================================================
     
-    mingus is an advanced music theory and notation package for python. 
-    It can be used to play around with music theory, to build editors, 
-    educational tools and other applications that need to process music.
-    It can also be used to create sheet music with LilyPond.
+    mingus is an advanced music theory and notation package for Python
+    with MIDI playback support. It can be used to play around with music 
+    theory, to build editors, educational tools and other applications 
+    that need to process and/or play music. It can also be used to create
+    sheet music with LilyPond and do automated musicological analysis on 
+    chords, scales and harmonic progressions.
 
 ================================================================================
     I  N  S  T  A  L  L
@@ -17,7 +19,8 @@
 
     Optional:
     4. Install LilyPond if you want to make use of the `mingus.extra.LilyPond`
-       module.
+       module that creates sheet music from mingus objects.
+    5. Install fluidsynth for MIDI playback support.
 
 ================================================================================
     R  E  S  O  U  R  C  E  S
@@ -32,21 +35,29 @@
     [2] LilyPond's home.
         http://www.lilypond.org/
 
+    [3] FluidSynth's home.
+	http://www.fluidsynth.org/
+
 ================================================================================
     D  E  V  E  L  O  P  M  E  N  T
 ================================================================================
 
-    mingus is currently developed and maintained by Bart Spaans. 
+    An up to date subversion repository of the source and a bug tracker 
+    can be found at the the google code page:
+
+	    http://mingus.googlecode.com/
+
     If you'd like to get in touch to ask a question or submit a patch,
-    you could try mingus' google code page or you could send me an e-mail:
-	onderstekop@gmail.com
+    you should contact the mingus' google group at
+
+	    http://groups.google.com/group/mingus-python
 
 ================================================================================
     L  I  C  E  N  S  E
 ================================================================================
 
     mingus - Music theory Python package, 
-    Copyright (C) 2008, Bart Spaans
+    Copyright (C) 2008, Bart Spaans <onderstekop@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
