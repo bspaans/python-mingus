@@ -135,15 +135,15 @@ chord_shorthand_meaning = {
 		"sus47" :" suspended seventh",
 		"sus4" :" suspended fourth triad",
 		"sus2" :" suspended second triad",
-		"sus" :" suspended triad",
+		"sus" :" suspended fourth triad",
 		"11" :" eleventh",
-		"sus" :" eleventh",
 		"sus4b9" :" suspended fourth ninth",
 		"susb9" :" suspended fourth ninth",
 
 		# Sevenths
 		"m7" :" minor seventh",
 		"M7" :" major seventh",
+		"dom7" :" dominant seventh",
 		"7" :" dominant seventh",
 		"m7b5" :" half diminished seventh",
 		"dim7" :" diminished seventh",
@@ -1519,7 +1519,6 @@ chord_shorthand = {
 		"sus2" : suspended_second_triad,
 		"sus" : suspended_triad,
 		"11" : eleventh,
-		"sus" : eleventh,
 		"sus4b9" : suspended_fourth_ninth,
 		"susb9" : suspended_fourth_ninth,
 

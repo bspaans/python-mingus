@@ -20,8 +20,9 @@ from mingus.extra import fluidsynth
 import time, sys
 from random import random, choice, randrange
 
-progression = ["I", "vi", "ii", "iii7",
-               "I7", "viidom7", "iii7", "V7"]
+progression = ["I", "bVdim7"]
+#progression = ["I", "vi", "ii", "iii7",
+#               "I7", "viidom7", "iii7", "V7"]
 
 key = 'C'
 
@@ -40,15 +41,15 @@ play_drums = True
 play_bass = True
 play_chords = True
 
-bar_length = 2.0
-song_end = 1000
+bar_length = 1.75
+song_end = 28
 
 # Control beginning of solos and chords
-solo_start = 0
-solo_end = song_end
+solo_start = 8
+solo_end = 20
 
-chord_start = 0
-chord_end = song_end
+chord_start = 16
+chord_end = 24
 
 # Channels
 chord_channel = 1

@@ -291,7 +291,7 @@ class test_chords(unittest.TestCase):
 			"Asus4" : ["A", "D", "E"],
 			"Asus47" : ["A", "D", "E", "G"],
 			"A11" : ["A", "E", "G", "D"],
-			"Asus" : ["A", "E", "G", "D"],
+			"Asus" : ["A", "D", "E"],
 			"Asus4b9" : ["A", "D", "E", "Bb"],
 			"Asusb9" : ["A", "D", "E", "Bb"],
 
