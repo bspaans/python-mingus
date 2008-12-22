@@ -95,11 +95,10 @@ seventh, use Idom7."""
 
 
 def determine(chord, key, shorthand = False):
-	"""Determines the harmonic function of chord in key. This function can \
-also deal with lists of chords.
-{{{
->>> determine(["C", "E", "G"], "C")
-['tonic']
+	"""Determines the harmonic function of chord in key. This function can also deal with lists of chords. 
+{{{ 
+>>> determine(["C", "E", "G"], "C") 
+['tonic'] 
 >>> determine(["G", "B", "D"], "C")
 ['dominant']
 >>> determine(["G", "B", "D", "F"], "C", True)
@@ -212,11 +211,13 @@ also deal with lists of chords.
 	return result
 
 def parse_string(progression):
-	"""Returns a tuple (roman numeral, accidentals, chord suffix).
+	"""Returns a tuple (roman numeral, accidentals, chord suffix). 
+{{{
 >>> progressions.parse_string("I")
 ('I', 0, '')
 >>> progressions.parse_string("bIM7")
-('I', -1, 'M7')"""
+('I', -1, 'M7')
+}}}"""
 	acc = 0
 	roman_numeral = ""
 	suffix = ""
@@ -253,8 +254,8 @@ def tuple_to_string(prog_tuple):
 
 	
 def substitute(progression, substitute_index, depth = 0):
-	"""Gives a list of possible substitution for 
-progression[substitute_index]. If depth > 0 the substitutions 
+	"""Gives a list of possible substitution for \
+progression[substitute_index]. If depth > 0 the substitutions \
 of each result will be recursively added as well.
 {{{
 >>> progressions.substitue(["I", "IV", "V", "I"], 0)
@@ -342,8 +343,8 @@ of each result will be recursively added as well.
 	return res + res2
 
 def interval_diff(progression1, progression2, interval):
-	"""Returns the number of half steps progression2 needs to be 
-diminished or augmented until the interval between `progression1` 
+	"""Returns the number of half steps progression2 needs to be \
+diminished or augmented until the interval between `progression1` \
 and `progression2` is `interval`"""
 	i = numeral_intervals[numerals.index(progression1)]
 	j = numeral_intervals[numerals.index(progression2)]
@@ -360,13 +361,15 @@ and `progression2` is `interval`"""
 	
 
 def skip(roman_numeral, skip = 1):
-	"""Skips places to the next roman numeral.
+	"""Skips places to the next roman numeral. 
+{{{
 >>> progressions.next("I")
 'II'
 >>> progressions.next("VII")
 'I'
 >>> progressions.next("I", 2)
-'III'"""
+'III'
+}}}"""
 	i = numerals.index(roman_numeral) + skip
 	return numerals[i % 7]
 
