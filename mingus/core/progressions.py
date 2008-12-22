@@ -60,22 +60,7 @@ seventh, use Idom7."""
 	for chord in progression:
 		
 		# strip preceding accidentals from the string
-		acc = 0
-		roman_numeral = ""
-		suffix = ""
-		i =0 
-
-		for c in chord:
-			if c == '#':
-				acc += 1
-			elif c == 'b':
-				acc -= 1
-			elif c.upper() == 'I' or c.upper() == 'V':
-				roman_numeral += c.upper()
-			else:
-				break
-			i += 1
-		suffix = chord[i:]
+		roman_numeral, acc, suffix = parse_string(chord)
 
 		# There is no roman numeral parsing, just a simple check.
 		# Sorry to disappoint.
@@ -225,5 +210,51 @@ also deal with lists of chords.
 
 	return result
 
+def parse_string(progression):
+	"""Returns a tuple (roman numeral, accidentals, chord suffix).
+>>> progressions.parse_string("I")
+('I', 0, '')
+>>> progressions.parse_string("bIM7")
+('I', -1, 'M7')"""
+	acc = 0
+	roman_numeral = ""
+	suffix = ""
+	i =0 
+
+	for c in progression:
+		if c == '#':
+			acc += 1
+		elif c == 'b':
+			acc -= 1
+		elif c.upper() == 'I' or c.upper() == 'V':
+			roman_numeral += c.upper()
+		else:
+			break
+		i += 1
+	suffix = progression[i:]
+	return (roman_numeral, acc, suffix)
+
 	
 
+
+	
+def substitute(progression, substitute_index):
+	"""Gives a list of possible substitution for 
+progression[substitute_index].
+>>> progressions.substitue(["I", "IV", "V", "I"], 0)
+["III", "VI"]"""
+	res = []
+
+	substitutions = [
+			("I", "iii"),
+			("I", "vi"),
+			("IV", "vi"),
+			("V", "V7")
+			]
+
+
+	p = progressions["substitute_index"]
+
+
+
+	return res

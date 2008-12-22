@@ -23,6 +23,12 @@ class test_progressions(unittest.TestCase):
 		self.assertEqual(progressions.to_chords(["I7", "Im7", "Idim7"]),\
 				[["C", "E", "G", "B"], ["C", "Eb", "G", "Bb"], ["C", "Eb", "Gb", "Bbb"]])
 
+	def test_parse_string(self):
+		self.assertEqual(progressions.parse_string("I"), ("I", 0, ''))
+		self.assertEqual(progressions.parse_string("bbbIM7"), ("I", -3, 'M7'))
+		self.assertEqual(progressions.parse_string("#b#Im/M7"), ("I", 1, 'm/M7'))
+		self.assertEqual(progressions.parse_string("#####bbVIIM"), ("VII", 3, 'M'))
+
 	def test_determine(self):
 		self.assertEqual(['tonic'], progressions.determine(["C", "E", "G"], 'C'))
 		self.assertEqual(['tonic seventh'], progressions.determine(["C", "E", "G", "B"], 'C'))
