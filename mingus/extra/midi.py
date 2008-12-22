@@ -66,6 +66,11 @@ For an example see the source mingus.extra.fluidsynth.py"""
 
 
 
+	def stop_everything(self):
+		for x in range(118):
+			for c in range(16):
+				self.stop_Note(x, c)
+
 	def stop_Note(self, note, channel = 1):
 		"""Stops a note on a channel."""
 		return self.write("noteoff %d %d\n" % (channel, int(note) + 12))
