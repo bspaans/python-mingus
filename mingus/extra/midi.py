@@ -57,7 +57,7 @@ For an example see the source mingus.extra.fluidsynth.py"""
 
 	def set_instrument(self, channel, instr):
 		"""Sets the channel to the instrument _instr_."""
-		return self.write("select %d 1 0 %d" % (channel, instr))
+		return self.write("select %d 1 0 %d\n" % (channel, instr))
 
 
 	def play_Note(self, note, channel = 1, velocity = 100):
