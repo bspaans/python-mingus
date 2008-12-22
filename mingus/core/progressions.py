@@ -254,9 +254,12 @@ def tuple_to_string(prog_tuple):
 	
 def substitute(progression, substitute_index, depth = 0):
 	"""Gives a list of possible substitution for 
-progression[substitute_index].
+progression[substitute_index]. If depth > 0 the substitutions 
+of each result will be recursively added as well.
+{{{
 >>> progressions.substitue(["I", "IV", "V", "I"], 0)
-["III", "VI"]"""
+["III", "VI", etc.
+}}}"""
 	res = []
 
 	simple_substitutions = [
@@ -295,9 +298,21 @@ progression[substitute_index].
 	if suff == '' or suff == 'M' or suff == 'm':
 		res.append(tuple_to_string((roman, acc, suff + '7')))
 
-	# Minor - Major substitution
+
+	# Minor to major substitution
 	if suff == 'm' or suff == 'm7':
-		pass
+		n = skip(roman, 2)
+		a = interval_diff(roman, n, 4)
+		res.append(tuple_to_string((n, a, 'M')))
+		res.append(tuple_to_string((n, a, 'M7')))
+
+	# Major to minor substitution
+	if suff == 'M' or suff == 'M7':
+		n = skip(roman, 6)
+		a = interval_diff(roman, n, 9)
+		res.append(tuple_to_string((n, a, 'm')))
+		res.append(tuple_to_string((n, a, 'm7')))
+
 	
 	# Diminished progressions
 	if suff == 'dim7' or suff == 'dim':
@@ -324,7 +339,6 @@ progression[substitute_index].
 			new_progr = progression
 			new_progr[substitute_index] = x
 			res2 += substitute(new_progr, substitute_index, depth - 1)
-	print res
 	return res + res2
 
 def interval_diff(progression1, progression2, interval):

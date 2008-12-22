@@ -39,6 +39,8 @@ class test_progressions(unittest.TestCase):
 		self.assert_("IIdim7" in progressions.substitute(["V7"], 0))
 		self.assert_("IIdim7" in progressions.substitute(["VIIdim7"], 0))
 		self.assert_("bIIdim7" in progressions.substitute(["bVIIdim7"], 0))
+		self.assert_("I" in progressions.substitute(["VI"], 0))
+		self.assert_("#IIM" in progressions.substitute(["VIIm"], 0))
 
 
 	def test_skip(self):
