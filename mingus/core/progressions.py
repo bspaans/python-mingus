@@ -38,6 +38,8 @@ import notes
 import chords
 import intervals
 
+numerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII' ]
+numeral_intervals = [0, 2, 4, 5, 7, 9, 11]
 
 def to_chords(progression, key = 'C'):
 	"""Converts a list of chord functions (eg `['I', 'V7']`) or \
@@ -65,8 +67,7 @@ seventh, use Idom7."""
 		# There is no roman numeral parsing, just a simple check.
 		# Sorry to disappoint.
 		#warning Should throw exception
-		if roman_numeral not in ['I', 'II', 'III', 'IV',\
-					'V', 'VI', 'VII']:
+		if roman_numeral not in numerals:
 			return []
 
 		# These suffixes don't need any post processing
@@ -234,27 +235,124 @@ def parse_string(progression):
 	suffix = progression[i:]
 	return (roman_numeral, acc, suffix)
 
+def tuple_to_string(prog_tuple):
+	"""Creates a string from tuples returned by parse_string"""
+	roman, acc, suff = prog_tuple
+	if acc > 6:
+		acc = 0 - (acc % 6)
+	elif acc < -6:
+		acc = (acc % 6)
+	while acc < 0:
+		roman = 'b' + roman
+		acc += 1
+	while acc > 0:
+		roman = '#' + roman
+		acc -= 1
+	return roman + suff
 	
 
-
 	
-def substitute(progression, substitute_index):
+def substitute(progression, substitute_index, depth = 0):
 	"""Gives a list of possible substitution for 
 progression[substitute_index].
 >>> progressions.substitue(["I", "IV", "V", "I"], 0)
 ["III", "VI"]"""
 	res = []
 
-	substitutions = [
-			("I", "iii"),
-			("I", "vi"),
-			("IV", "vi"),
-			("V", "V7")
+	simple_substitutions = [
+			("I", "III"),
+			("I", "VI"),
+			("IV", "II"),
+			("IV", "VI"),
+			("V", "VII"),
+			("V", "VIIdim7"),
+			("V", "IIdim7"),
+			("V", "IVdim7"),
+			("V", "bVIIdim7"),
 			]
 
+	p = progression[substitute_index]
+	roman, acc, suff = parse_string(p)
+	
+	# Do the simple harmonic substitutions
+	if suff == '' or suff == '7':
+		for subs in simple_substitutions:
+			r = None
+			if roman == subs[0]:
+				r = subs[1]
+			elif roman == subs[1]:
+				r = subs[0]
+			if r != None:
+				res.append(tuple_to_string((r, acc, '')))
+				# Add seventh or triad depending on r
+				if r[-1] != "7":
+					res.append(tuple_to_string((r, acc, '7')))
+				else:
+					res.append(tuple_to_string((r[:-1], acc, '')))
 
-	p = progressions["substitute_index"]
+
+	# Add natural seventh
+	if suff == '' or suff == 'M' or suff == 'm':
+		res.append(tuple_to_string((roman, acc, suff + '7')))
+
+	# Minor - Major substitution
+	if suff == 'm' or suff == 'm7':
+		pass
+	
+	# Diminished progressions
+	if suff == 'dim7' or suff == 'dim':
+		
+		# Add the corresponding dominant seventh
+		res.append(tuple_to_string((skip(roman, 5), acc, 'dom7')))
 
 
+		# Add chromatic dominant seventh
+		n = skip(roman, 1)
+		res.append(tuple_to_string((n, acc + interval_diff(roman, n, 1), 'dom7')))
 
-	return res
+		# Add diminished chord
+		last = roman
+		for x in range(4):
+			next = skip(last, 2)
+			acc += interval_diff(last, next, 3)
+			res.append(tuple_to_string((next , acc, suff)))
+			last = next
+
+	res2 = []
+	if depth > 0:
+		for x in res:
+			new_progr = progression
+			new_progr[substitute_index] = x
+			res2 += substitute(new_progr, substitute_index, depth - 1)
+	print res
+	return res + res2
+
+def interval_diff(progression1, progression2, interval):
+	"""Returns the number of half steps progression2 needs to be 
+diminished or augmented until the interval between `progression1` 
+and `progression2` is `interval`"""
+	i = numeral_intervals[numerals.index(progression1)]
+	j = numeral_intervals[numerals.index(progression2)]
+	acc = 0
+	if j < i:
+		j += 12
+	while j - i > interval:
+		acc -= 1
+		j -= 1
+	while j - i < interval:
+		acc += 1
+		j += 1
+	return acc
+	
+
+def skip(roman_numeral, skip = 1):
+	"""Skips places to the next roman numeral.
+>>> progressions.next("I")
+'II'
+>>> progressions.next("VII")
+'I'
+>>> progressions.next("I", 2)
+'III'"""
+	i = numerals.index(roman_numeral) + skip
+	return numerals[i % 7]
+

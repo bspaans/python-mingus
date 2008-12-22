@@ -29,6 +29,24 @@ class test_progressions(unittest.TestCase):
 		self.assertEqual(progressions.parse_string("#b#Im/M7"), ("I", 1, 'm/M7'))
 		self.assertEqual(progressions.parse_string("#####bbVIIM"), ("VII", 3, 'M'))
 
+	def test_substitute(self):
+		self.assert_("III" in progressions.substitute(["I"], 0))
+		self.assert_("VI" in progressions.substitute(["I"], 0))
+		self.assert_("V" in progressions.substitute(["VII"], 0))
+		self.assert_("V7" in progressions.substitute(["VII"], 0))
+		self.assert_("VII" in progressions.substitute(["V7"], 0))
+		self.assert_("VIIdim7" in progressions.substitute(["V7"], 0))
+		self.assert_("IIdim7" in progressions.substitute(["V7"], 0))
+		self.assert_("IIdim7" in progressions.substitute(["VIIdim7"], 0))
+		self.assert_("bIIdim7" in progressions.substitute(["bVIIdim7"], 0))
+
+
+	def test_skip(self):
+		self.assertEqual(progressions.skip("I"), "II")
+		self.assertEqual(progressions.skip("VII"), "I")
+		self.assertEqual(progressions.skip("VII", 2), "II")
+		self.assertEqual(progressions.skip("VII", 9), "II")
+
 	def test_determine(self):
 		self.assertEqual(['tonic'], progressions.determine(["C", "E", "G"], 'C'))
 		self.assertEqual(['tonic seventh'], progressions.determine(["C", "E", "G", "B"], 'C'))
