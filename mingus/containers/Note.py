@@ -175,6 +175,8 @@ True
 >>> Note("C", 4) > Note("B", 4)
 False
 }}}"""
+		if other == None:
+			return 1
 		s = int(self)
 		o = int(other)
 
