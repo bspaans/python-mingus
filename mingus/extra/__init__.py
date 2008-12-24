@@ -23,7 +23,6 @@
 """
 
 import LilyPond
-from midi import MidiSequencer
 import fluidsynth
 
 

@@ -34,7 +34,7 @@
 
 from telnetlib import Telnet
 from datetime import datetime
-from midi import MidiSequencer
+from mingus.midi.MidiSequencer import MidiSequencer
 
 
 fluid = None
