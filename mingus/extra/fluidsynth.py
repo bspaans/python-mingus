@@ -90,3 +90,11 @@ def play_Tracks(tracks, channels):
 def play_Composition(composition, channels = None):
 	"""Plays a composition."""
 	return midi.play_Composition(composition, channels)
+
+def set_instrument(channel, midi_instr):
+	"""Sets the midi instrument on channel."""
+	return midi.set_instrument(channel, midi_instr)
+
+def stop_everything():
+	"""Stops all the playing notes on all channels"""
+	return midi.stop_everything()
