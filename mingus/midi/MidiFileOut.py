@@ -3,7 +3,7 @@ from binascii import a2b_hex
 class MidiFileOut:
 
 	tracks = []
-	time_division = "\x00\x02"
+	time_division = "\x00\x48"
 
 	def __init__(self):
 		pass
@@ -21,6 +21,12 @@ class MidiTrack:
 
 	track_data = ''
 	delta_time = '\x00'
+	bpm = 120
+
+	def __init__(self, start_bpm = 120):
+		self.bpm = start_bpm
+		self.track_data = self.set_tempo_event(120)
+
 
 	def end_of_track(self):
 		"""End of track meta event."""
@@ -70,6 +76,14 @@ class MidiTrack:
 	def set_deltatime(self, delta_time):
 		self.delta_time = delta_time
 
+	def set_tempo_event(self, bpm):
+		"""Calculates the microseconds per quarter note """
+		"""and returns tempo event."""
+		ms_per_min = 60000000
+		mpqn = a2b_hex("%06x" % (ms_per_min / bpm))
+		return self.delta_time + "\xff\x51\x03" + mpqn
+		
+
 
 if __name__ == '__main__':
 	m = MidiFileOut()
@@ -78,7 +92,7 @@ if __name__ == '__main__':
 	t.play_Note(1, 60)
 	t.play_Note(1, 64)
 	t.play_Note(1, 67)
-	t.set_deltatime("\x01")
+	t.set_deltatime("\x48")
 	t.stop_Note(1, 60)
 	t.stop_Note(1, 64)
 	t.stop_Note(1, 67)
