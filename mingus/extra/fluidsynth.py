@@ -91,6 +91,11 @@ def play_Composition(composition, channels = None):
 	"""Plays a composition."""
 	return midi.play_Composition(composition, channels)
 
+def control_change(channel, control, value):
+	"""Sends a control change event on channel."""
+	return midi.control_change(channel, control, value)
+
+
 def set_instrument(channel, midi_instr):
 	"""Sets the midi instrument on channel."""
 	return midi.set_instrument(channel, midi_instr)

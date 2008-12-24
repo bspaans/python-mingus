@@ -64,6 +64,9 @@ For an example see the source mingus.extra.fluidsynth.py"""
 		"""Plays a Note object on a channel[1-16] with a velocity[0-127]."""
 		return self.write("noteon %d %d %d\n" % (channel, int(note) + 12, velocity))
 
+	def control_change(self, channel, control, value):
+		return self.write("cc %d %d %d\n" % (channel, control, value)
+
 
 
 	def stop_everything(self):
