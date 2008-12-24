@@ -1,14 +1,47 @@
+"""
+
+================================================================================
+
+	mingus - Music theory Python package, MIDI File Out
+	Copyright (C) 2008, Bart Spaans
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+================================================================================
+
+   MidiFileOut contains two classes and some methods that can generate 
+   MIDI files from the objects in mingus.containers.
+
+================================================================================
+
+"""
 from binascii import a2b_hex
 
 class MidiFileOut:
+	"""This class generates midi files from MidiTracks. """
 
 	tracks = []
 	time_division = "\x00\x48"
 
-	def __init__(self):
-		pass
+	def __init__(self, tracks):
+		self.tracks = tracks
+
+	def add_track(self, track):
+		self.tracks.append(track)
 
 	def get_midi_data(self):
+		"""Returns the raw, binary MIDI data."""
 		tracks = [ t.get_midi_data() for t in self.tracks ]
 		return self.header() + "".join(tracks)
 
@@ -16,6 +49,27 @@ class MidiFileOut:
 		"""Returns a header for type 1 midi file"""
 		tracks = a2b_hex("%04x" % len(self.tracks))
 		return "MThd\x00\x00\x00\x06\x00\x01" + tracks + self.time_division
+
+	def reset(self):
+		"""Resets every track."""
+		[ t.reset() for t in self.tracks ]
+
+	def write_file(file):
+		"""Gets the data from get_midi_data and writes to file. """
+		"""Returns True on success. False on failure."""
+		data = self.get_midi_data()
+		try:
+			f = open(file, "wb")
+		except:
+			print "Couldn't open '%s' for writing." % file
+			return False
+		try:
+			f.write(data)
+		except:
+			print "An error occured while writing data to %s." % file
+			return False
+		f.close()
+		return True
 
 class MidiTrack:
 
@@ -34,11 +88,12 @@ class MidiTrack:
 
 	def play_Note(self, channel, note, velocity = 64):
 		self.track_data += self.note_on(channel, int(note), velocity)
-		print len(self.track_data)
 
 	def play_NoteContainer(self, channel, notecontainer, velocity = 64):
 		[self.play_Note(channel, x, velocity) for x in notecontainer]
 
+	def stop_NoteContainer(self, channel, notecontainer, velocity = 64):
+		[self.stop_Note(channel, x, velocity) for x in notecontainer]
 
 	def stop_Note(self, channel, note, velocity = 64):
 		self.track_data += self.note_off(channel, int(note), velocity)
@@ -84,33 +139,30 @@ class MidiTrack:
 		return self.delta_time + "\xff\x51\x03" + mpqn
 		
 
-def _write_file(file, data):
-	try:
-		f = open(file, "wb")
-	except:
-		print "Couldn't open '%s' for writing." % file
-		return False
-	try:
-		f.write(data)
-	except:
-		print "An error occured while writing data to %s." % file
-		return False
-	f.close()
-	return True
 
-
-def write_Note(file, channel, note, velocity, repeat = 0):
-	m = MidiFileOut()
-	t = MidiTrack(120)
-	m.tracks = [t]
+def write_Note(file, channel, note, velocity, repeat = 0, bpm = 120):
+	"""Expects a Note object from mingus.containers and \
+saves it into a midi file, specified in file."""
+	m = MidiFileOut([MidiTrack(bpm)])
 	while repeat >= 0:
+		t.set_deltatime("\x00")
 		t.play_Note(channel, note, velocity)
 		t.set_deltatime("\x48")
 		t.stop_Note(channel, note, velocity)
 		repeat -= 1
-	return _write_file(file, m.get_midi_data())
+	return m.write_file(file)
 
-
+def write_NoteContainer(file, channel, notecontainer, 
+		velocity, repeat = 0, bpm = 120):
+	"""Writes a mingus.NoteContainer to a midi file."""
+	m = MidiFileOut([MidiTrack(bpm)])
+	while repeat >= 0:
+		t.set_deltatime("\x00")
+		t.play_NoteContainer(channel, notecontainer, velocity)
+		t.set_deltatime("\x48")
+		t.stop_NoteContainer(channel, notecontainer, velocity)
+		repeat -= 1
+	return m.write_file(file)
 
 if __name__ == '__main__':
-	write_Note("testmingus.mid", 9, 50, 100, 10)
+	write_NoteContainer("testmingus.mid", 1, [50, 54, 57], 100, 10)
