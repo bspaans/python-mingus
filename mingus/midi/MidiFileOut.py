@@ -84,20 +84,33 @@ class MidiTrack:
 		return self.delta_time + "\xff\x51\x03" + mpqn
 		
 
+def _write_file(file, data):
+	try:
+		f = open(file, "wb")
+	except:
+		print "Couldn't open '%s' for writing." % file
+		return False
+	try:
+		f.write(data)
+	except:
+		print "An error occured while writing data to %s." % file
+		return False
+	f.close()
+	return True
+
+
+def write_Note(file, channel, note, velocity, repeat = 0):
+	m = MidiFileOut()
+	t = MidiTrack(120)
+	m.tracks = [t]
+	while repeat >= 0:
+		t.play_Note(channel, note, velocity)
+		t.set_deltatime("\x48")
+		t.stop_Note(channel, note, velocity)
+		repeat -= 1
+	return _write_file(file, m.get_midi_data())
+
+
 
 if __name__ == '__main__':
-	m = MidiFileOut()
-	t = MidiTrack()
-	m.tracks = [t]
-	t.play_Note(1, 60)
-	t.play_Note(1, 64)
-	t.play_Note(1, 67)
-	t.set_deltatime("\x48")
-	t.stop_Note(1, 60)
-	t.stop_Note(1, 64)
-	t.stop_Note(1, 67)
-	t.play_NoteContainer(1, [60, 65, 68])
-	f = open("mingustest.mid", "wb")
-	f.write(m.get_midi_data())
-	print "Wrote to mingustest.mid"
-	f.close()
+	write_Note("testmingus.mid", 9, 50, 100, 10)
