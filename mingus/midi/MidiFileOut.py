@@ -36,6 +36,7 @@ class MidiFileOut:
 	time_division = "\x00\x48"
 
 	def __init__(self, tracks = []):
+		self.reset()
 		self.tracks = tracks
 
 	def add_track(self, track):
@@ -70,6 +71,7 @@ class MidiFileOut:
 			print "An error occured while writing data to %s." % file
 			return False
 		f.close()
+		print "Written %d bytes to %s." % (len(data), file)
 		return True
 
 class MidiTrack:
@@ -87,29 +89,43 @@ class MidiTrack:
 		"""End of track meta event."""
 		return "\x00\xff\x2f\x00"
 
-	def play_Note(self, channel, note, velocity = 64):
+	def play_Note(self, channel, note):
+		"""Play a Note object."""
+		velocity = 100
+		if hasattr(note, "dynamics"):
+			if 'velocity' in note.dynamics:
+				velocity = note.dynamics["velocity"]
+
 		self.track_data += self.note_on(channel, int(note), velocity)
 
-	def play_NoteContainer(self, channel, notecontainer, velocity = 64):
-		[self.play_Note(channel, x, velocity) for x in notecontainer]
+	def play_NoteContainer(self, channel, notecontainer):
+		"""Play a mingus.containers.NoteContainer."""
+		[self.play_Note(channel, x) for x in notecontainer]
 
-	def stop_NoteContainer(self, channel, notecontainer, velocity = 64):
-		[self.stop_Note(channel, x, velocity) for x in notecontainer]
+	def stop_NoteContainer(self, channel, notecontainer):
+		"""Stop playing the notes in the NoteContainer"""
+		[self.stop_Note(channel, x) for x in notecontainer]
 
-	def play_Bar(self, channel, bar, velocity = 64):
-
+	def play_Bar(self, channel, bar):
+		"""Plays a Bar on channel"""
 		for x in bar:
 			self.set_deltatime('\x00')
-			self.play_NoteContainer(channel, x[2], velocity)
+			self.play_NoteContainer(channel, x[2])
 			tick = int(round((1.0 / x[1] * 288)))
 			self.set_deltatime(self.writeVar(tick))
-			self.stop_NoteContainer(channel, x[2], velocity)
+			self.stop_NoteContainer(channel, x[2])
+
+	def play_Track(self, channel, track):
+		"""Plays a Track on channel"""
+		instr = track.instrument
+		for bar in track:
+			self.play_Bar(channel, bar)
+
 
 	def stop_Note(self, channel, note, velocity = 64):
 		self.track_data += self.note_off(channel, int(note), velocity)
 
 	def header(self):
-		print len(self.track_data), "%08x" % (len(self.track_data))
 		chunk_size = a2b_hex("%08x" % (len(self.track_data) +\
 				len(self.end_of_track())))
 		return "MTrk" + chunk_size
@@ -179,38 +195,39 @@ class MidiTrack:
 			return ''
 		return pack('%sB' % len(value), *value)
 
-def write_Note(file, channel, note, velocity, repeat = 0, bpm = 120):
+def write_Note(file, channel, note, bpm = 120, repeat = 0):
 	"""Expects a Note object from mingus.containers and \
 saves it into a midi file, specified in file."""
 	m = MidiFileOut()
 	t = MidiTrack(bpm)
+	m.reset()
 	m.add_track(t)
 	while repeat >= 0:
 		t.set_deltatime("\x00")
-		t.play_Note(channel, note, velocity)
+		t.play_Note(channel, note)
 		t.set_deltatime("\x48")
-		t.stop_Note(channel, note, velocity)
+		t.stop_Note(channel, note)
 		repeat -= 1
 	return m.write_file(file)
 
-def write_NoteContainer(file, channel, notecontainer, 
-		velocity, repeat = 0, bpm = 120):
+def write_NoteContainer(file, channel, notecontainer, bpm = 120, repeat = 0):
 	"""Writes a mingus.NoteContainer to a midi file."""
 	m = MidiFileOut()
-	m.reset()
 	t = MidiTrack(bpm)
+	m.reset()
 	m.add_track(t)
 	while repeat >= 0:
 		t.set_deltatime("\x00")
-		t.play_NoteContainer(channel, notecontainer, velocity)
+		t.play_NoteContainer(channel, notecontainer)
 		t.set_deltatime("\x48")
-		t.stop_NoteContainer(channel, notecontainer, velocity)
+		t.stop_NoteContainer(channel, notecontainer)
 		repeat -= 1
 	return m.write_file(file)
 
-def write_Bar(file, channel, bar, repeat = 0, bpm = 120):
+def write_Bar(file, channel, bar, bpm = 120, repeat = 0):
 	"""Writes a mingus.Bar to a midi file."""
 	m = MidiFileOut()
+	m.reset()
 	t = MidiTrack(bpm)
 	m.add_track(t)
 	while repeat >= 0:
@@ -218,13 +235,38 @@ def write_Bar(file, channel, bar, repeat = 0, bpm = 120):
 		repeat -= 1
 	return m.write_file(file)
 
+def write_Track(file, channel, track, bpm = 120, repeat = 0):
+	"""Writes a mingus.Track to a midi file."""
+	m = MidiFileOut()
+	m.reset()
+	t = MidiTrack(bpm)
+	m.add_track(t)
+	while repeat >= 0:
+		t.play_Track(channel, track)
+		repeat -= 1
+	return m.write_file(file)
+
 if __name__ == '__main__':
 	from mingus.containers.Bar import Bar
+	from mingus.containers.Track import Track
 	b = Bar()
+	c = Bar()
+	d = Bar()
+
 	b + 'C'
 	b + 'E'
 	b + 'G'
-	b + 'B'
-	print b
-	write_Bar("testmingus.mid", 1, b, 0, 120)
-	write_NoteContainer("testmingus2.mid", 1, [50, 54, 57], 100, 0, 150)
+	b + ['B', 'F']
+
+	c + 'Bb'
+	c + 'F#'
+	c + 'G#'
+	c + 'Db'
+
+
+	t = Track()
+	t + b
+	t + c
+	write_Bar("testmingus.mid", 1, b, 120, 10)
+	write_NoteContainer("testmingus2.mid", 1, [50, 54, 57], 150, 0)
+	write_Track("testmingus3.mid", 1, t, 120, 0)
