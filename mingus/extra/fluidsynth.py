@@ -103,3 +103,18 @@ def set_instrument(channel, midi_instr):
 def stop_everything():
 	"""Stops all the playing notes on all channels"""
 	return midi.stop_everything()
+
+def modulation(channel, value):
+	return midi.modulation(channel, value)
+
+def pan(channel, value):
+	return midi.pan(channel, value)
+
+def main_volume(channel, value):
+	return midi.main_volume(channel, value)
+
+def enable_reverb():
+	return midi.write("reverb on\nrev_setroomsize 1\n")
+
+def disable_reverb():
+	return midi.write("reverb off\n")

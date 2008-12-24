@@ -11,10 +11,24 @@ class test_fluidsynth(unittest.TestCase):
 	def setUp(self):
 		fluidsynth.init_fluidsynth()
 
+	def test_reverb(self):
+		fluidsynth.enable_reverb()
+		fluidsynth.play_NoteContainer(NoteContainer(["C", "E", "G"]), 100,1)
+		time.sleep(0.5)
+		fluidsynth.disable_reverb()
+		fluidsynth.play_NoteContainer(NoteContainer(["C", "E", "G"]), 100,1)
+		time.sleep(0.5)
+
 	def test_main_volume(self):
 		for x in range(0, 128, 20):
 			fluidsynth.midi.main_volume(1, x)
 			fluidsynth.midi.main_volume(2, x)
+			fluidsynth.play_NoteContainer(NoteContainer(["C", "E", "G"]), 100,1)
+			time.sleep(0.25)
+
+	def test_control_change(self):
+		for x in range(0, 128, 20):
+			fluidsynth.midi.control_change(1, 13,x)
 			fluidsynth.play_NoteContainer(NoteContainer(["C", "E", "G"]), 100,1)
 			time.sleep(0.25)
 

@@ -231,6 +231,17 @@ which will determine if the tracks should keep playing after each played bar."""
 			channels = map(lambda x: x + 1, range(len(composition.tracks)))
 		return self.play_Tracks(composition.tracks, channels, keep_playing_func)
 
+
+	## MIDI CONTROLLER TYPE 'SHORTCUTS'
+
+	def modulation(self, channel, value):
+		"""Sets the modulation"""
+		return self.control_change(channel, 1, value)
+
 	def main_volume(self, channel, value):
 		"""Sets the main volume."""
 		return self.control_change(channel, 7, value)
+
+	def pan(self, channel, value):
+		"""Sets the panning."""
+		return self.control_change(channel, 10, value)
