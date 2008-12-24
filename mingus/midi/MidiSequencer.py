@@ -20,7 +20,7 @@
 
 ================================================================================
 
-   This module provides a MidiSequencer which will take the objects from 
+   This module provides a [refMingusExtraMidisequencer MidiSequencer] which will take the objects from 
    mingus.containers and turn them into MIDI messages.
 
 ================================================================================

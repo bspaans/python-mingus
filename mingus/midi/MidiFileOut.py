@@ -27,6 +27,7 @@
 
 """
 from binascii import a2b_hex
+from struct import pack, unpack
 
 class MidiFileOut:
 	"""This class generates midi files from MidiTracks. """
@@ -34,7 +35,7 @@ class MidiFileOut:
 	tracks = []
 	time_division = "\x00\x48"
 
-	def __init__(self, tracks):
+	def __init__(self, tracks = []):
 		self.tracks = tracks
 
 	def add_track(self, track):
@@ -54,8 +55,8 @@ class MidiFileOut:
 		"""Resets every track."""
 		[ t.reset() for t in self.tracks ]
 
-	def write_file(file):
-		"""Gets the data from get_midi_data and writes to file. """
+	def write_file(self, file):
+		"""Collects the data from get_midi_data and writes to file. """
 		"""Returns True on success. False on failure."""
 		data = self.get_midi_data()
 		try:
@@ -94,6 +95,15 @@ class MidiTrack:
 
 	def stop_NoteContainer(self, channel, notecontainer, velocity = 64):
 		[self.stop_Note(channel, x, velocity) for x in notecontainer]
+
+	def play_Bar(self, channel, bar, velocity = 64):
+
+		for x in bar:
+			self.set_deltatime('\x00')
+			self.play_NoteContainer(channel, x[2], velocity)
+			tick = int(round((1.0 / x[1] * 288)))
+			self.set_deltatime(self.writeVar(tick))
+			self.stop_NoteContainer(channel, x[2], velocity)
 
 	def stop_Note(self, channel, note, velocity = 64):
 		self.track_data += self.note_off(channel, int(note), velocity)
@@ -138,12 +148,43 @@ class MidiTrack:
 		mpqn = a2b_hex("%06x" % (ms_per_min / bpm))
 		return self.delta_time + "\xff\x51\x03" + mpqn
 		
+	def writeVar(self, value):
+		"""A lot of parameters can be of variable length.
+		This writes a value in that format"""
+		sevens = self.to_n_bits(value, self.varLen(value))
+		for i in range(len(sevens)-1):
+			sevens[i] = sevens[i] | 0x80
+		return self.fromBytes(sevens)
 
+	def to_n_bits(self, value, length=1, nbits=7):
+		"""returns the integer value as a sequence of nbits bytes"""
+		bytes = [(value >> (i*nbits)) & 0x7F for i in range(length)]
+		bytes.reverse()
+		return bytes
+
+	def varLen(self, value):
+		"""Returns the the number of bytes an integer will be when
+		converted to varlength"""
+		if value <= 127:
+			return 1
+		elif value <= 16383:
+			return 2
+		elif value <= 2097151:
+			return 3
+		else:
+		       return 4
+	def fromBytes(self, value):
+		"Turns a list of bytes into a string"
+		if not value:
+			return ''
+		return pack('%sB' % len(value), *value)
 
 def write_Note(file, channel, note, velocity, repeat = 0, bpm = 120):
 	"""Expects a Note object from mingus.containers and \
 saves it into a midi file, specified in file."""
-	m = MidiFileOut([MidiTrack(bpm)])
+	m = MidiFileOut()
+	t = MidiTrack(bpm)
+	m.add_track(t)
 	while repeat >= 0:
 		t.set_deltatime("\x00")
 		t.play_Note(channel, note, velocity)
@@ -155,7 +196,10 @@ saves it into a midi file, specified in file."""
 def write_NoteContainer(file, channel, notecontainer, 
 		velocity, repeat = 0, bpm = 120):
 	"""Writes a mingus.NoteContainer to a midi file."""
-	m = MidiFileOut([MidiTrack(bpm)])
+	m = MidiFileOut()
+	m.reset()
+	t = MidiTrack(bpm)
+	m.add_track(t)
 	while repeat >= 0:
 		t.set_deltatime("\x00")
 		t.play_NoteContainer(channel, notecontainer, velocity)
@@ -164,5 +208,23 @@ def write_NoteContainer(file, channel, notecontainer,
 		repeat -= 1
 	return m.write_file(file)
 
+def write_Bar(file, channel, bar, repeat = 0, bpm = 120):
+	"""Writes a mingus.Bar to a midi file."""
+	m = MidiFileOut()
+	t = MidiTrack(bpm)
+	m.add_track(t)
+	while repeat >= 0:
+		t.play_Bar(channel, bar)
+		repeat -= 1
+	return m.write_file(file)
+
 if __name__ == '__main__':
-	write_NoteContainer("testmingus.mid", 1, [50, 54, 57], 100, 10)
+	from mingus.containers.Bar import Bar
+	b = Bar()
+	b + 'C'
+	b + 'E'
+	b + 'G'
+	b + 'B'
+	print b
+	write_Bar("testmingus.mid", 1, b, 0, 120)
+	write_NoteContainer("testmingus2.mid", 1, [50, 54, 57], 100, 0, 150)
