@@ -65,7 +65,12 @@ For an example see the source mingus.extra.fluidsynth.py"""
 		return self.write("noteon %d %d %d\n" % (channel, int(note) + 12, velocity))
 
 	def control_change(self, channel, control, value):
-		return self.write("cc %d %d %d\n" % (channel, control, value)
+		#warning should throw exception
+		if control < 0 or control > 128:
+			return False
+		if value < 0 or value > 128:
+			return False
+		return self.write("cc %d %d %d\n" % (channel, control, value))
 
 
 
@@ -225,3 +230,7 @@ which will determine if the tracks should keep playing after each played bar."""
 		if channels == None:
 			channels = map(lambda x: x + 1, range(len(composition.tracks)))
 		return self.play_Tracks(composition.tracks, channels, keep_playing_func)
+
+	def main_volume(self, channel, value):
+		"""Sets the main volume."""
+		return self.control_change(channel, 7, value)

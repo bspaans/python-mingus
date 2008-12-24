@@ -11,19 +11,26 @@ class test_fluidsynth(unittest.TestCase):
 	def setUp(self):
 		fluidsynth.init_fluidsynth()
 
+	def test_main_volume(self):
+		for x in range(0, 128, 20):
+			fluidsynth.midi.main_volume(1, x)
+			fluidsynth.midi.main_volume(2, x)
+			fluidsynth.play_NoteContainer(NoteContainer(["C", "E", "G"]), 100,1)
+			time.sleep(0.25)
+
 	def test_playnote(self):
 		self.assert_(fluidsynth.play_Note(Note("C")))
-		time.sleep(1)
+		time.sleep(0.25)
 		fluidsynth.stop_Note(Note("C"))
 
 	def test_playnotecontainer(self):
 		self.assert_(fluidsynth.play_NoteContainer(NoteContainer(["C", "E", "G"])))
-		time.sleep(1)
+		time.sleep(0.25)
 		fluidsynth.stop_NoteContainer(NoteContainer(["C", "E", "G"]))
 
 
 		self.assert_(fluidsynth.play_NoteContainer(NoteContainer(["E", "G", Note("C", 6)])))
-		time.sleep(1)
+		time.sleep(0.25)
 		fluidsynth.stop_NoteContainer(NoteContainer(["E", "G", Note("C", 6)]))
 
 
