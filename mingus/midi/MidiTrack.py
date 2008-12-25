@@ -20,7 +20,11 @@
 
 ================================================================================
 
-	The [refMingusMidiMiditrack MidiTrack] class is kept in this module and provides methods for working with MIDI data as bytes.
+	The [refMingusMidiMiditrack MidiTrack] class is kept in this module 
+	and provides methods for working with MIDI data as bytes.
+
+	The MIDI file format specification I used can be found here:
+	http://www.sonicspot.com/guide/midifiles.html
 
 ================================================================================
 
@@ -160,17 +164,16 @@ variable length byte."""
 	def int_to_varbyte(self, value):
 		"""A lot of MIDI variables can be of variable length. \
 This method converts an integer into a variable length byte. \
-How it works: the bytes are stored in big-endian (significant bit first),\ the highest bit of the byte (mask 0x80) is set when there are more \
+How it works: the bytes are stored in big-endian (significant bit first), \
+the highest bit of the byte (mask 0x80) is set when there are more \
 bytes following. The remaining 7 bits (mask 0x7F) are used to store the \
 value."""
+		# Warning: bit kung-fu ahead.
 		# The length of the integer in bytes
-		if value == 0:
-			length = 1
-		else:
-			length = int(log(value, 128)) + 1
+		length = int(log(max(value, 1), 128)) + 1
 	
-		# Move the bits seven steps to the right and remove
-		# the highest bit.
+		# Remove the highest bit and move the bits to the right
+		# if length > 1
 		bytes = [(value >> (i*7)) & 0x7F for i in range(length)]
 		bytes.reverse()
 
