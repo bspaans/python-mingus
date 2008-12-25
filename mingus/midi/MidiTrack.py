@@ -40,12 +40,13 @@ class MidiTrack():
 
 	track_data = ''
 	delta_time = '\x00'
+	delay = 0
 	bpm = 120
 
 	def __init__(self, start_bpm = 120):
 		self.track_data =''
 		self.bpm = start_bpm
-		self.track_data = self.set_tempo_event(120)
+		self.track_data = self.set_tempo_event(self.bpm)
 
 
 	def end_of_track(self):
@@ -61,27 +62,39 @@ speed with which the note should be hit [0-128]."""
 			if 'velocity' in note.dynamics:
 				velocity = note.dynamics["velocity"]
 
-		self.track_data += self.note_on(channel, int(note), velocity)
+		self.track_data += self.note_on(channel, int(note) + 12, velocity)
 
 	def play_NoteContainer(self, channel, notecontainer):
 		"""Converts a mingus.containers.NoteContainer to the \
 equivalent midi events and adds it to the track_data."""
-		[self.play_Note(channel, x) for x in notecontainer]
+		if len(notecontainer) <= 1:
+			[self.play_Note(channel, x) for x in notecontainer]
+		else:
+			self.play_Note(channel, notecontainer[0])
+			self.set_deltatime(0)
+			[self.play_Note(channel, x) for x in notecontainer[1:]]
+
 
 
 	def play_Bar(self, channel, bar):
 		"""Converts a Bar object to MIDI events and writes them \
 to the track_data."""
 		for x in bar:
-			self.set_deltatime(0)
-			self.play_NoteContainer(channel, x[2])
 			tick = int(round((1.0 / x[1] * 288)))
-			self.set_deltatime(self.int_to_varbyte(tick))
-			self.stop_NoteContainer(channel, x[2])
+			if x[2] is None or len(x[2]) == 0:
+				self.delay += tick
+			else:
+				self.set_deltatime(self.delay)
+				self.delay = 0
+				self.play_NoteContainer(channel, x[2])
+
+				self.set_deltatime(self.int_to_varbyte(tick))
+				self.stop_NoteContainer(channel, x[2])
 
 	def play_Track(self, channel, track):
 		"""Converts a Track object to MIDI events and writes \
 them to the track_data."""
+		self.delay = 0
 		instr = track.instrument
 		for bar in track:
 			self.play_Bar(channel, bar)
@@ -89,7 +102,8 @@ them to the track_data."""
 
 	def stop_Note(self, channel, note, velocity = 64):
 		"""Adds a note_off event for note to event_track"""
-		self.track_data += self.note_off(channel, int(note), velocity)
+		self.track_data += self.note_off(channel, int(note) + 12,
+					velocity)
 
 
 	def stop_NoteContainer(self, channel, notecontainer):
@@ -160,6 +174,7 @@ variable length byte."""
 		"""and returns tempo event."""
 		ms_per_min = 60000000
 		mpqn = a2b_hex("%06x" % (ms_per_min / bpm))
+		print bpm, mpqn
 		return self.delta_time + "\xff\x51\x03" + mpqn
 		
 	def int_to_varbyte(self, value):
@@ -183,4 +198,5 @@ value."""
 			bytes[i] = bytes[i] | 0x80
 
 		return pack('%sB' % len(bytes), *bytes)
+
 

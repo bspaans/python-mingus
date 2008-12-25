@@ -25,5 +25,7 @@
 from MidiSequencer import MidiSequencer
 from MidiFile import MidiFile
 from MidiTrack import MidiTrack
+import MidiFileOut
+import fluidsynth
 
-__all__ = ["MidiSequencer", "MidiFile", "MidiFileOut", "MidiTrack"]
+__all__ = ["MidiSequencer", "MidiFile", "MidiFileOut", "MidiTrack", "fluidsynth"]

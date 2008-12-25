@@ -32,6 +32,7 @@ import mingus.core
 from mingus.core import *
 from mingus.containers import *
 from mingus.extra import *
+from mingus.midi import *
 import types
 import inspect
 
@@ -197,6 +198,6 @@ print "software and you are welcome to redistribute it under"
 print "certain conditions."
 
 generate_package_wikidocs("mingus.core", "ref", ".wiki")
+generate_package_wikidocs("mingus.midi", "ref", ".wiki")
 generate_package_wikidocs("mingus.containers", "ref", ".wiki")
 generate_package_wikidocs("mingus.extra", "ref", ".wiki")
-generate_package_wikidocs("mingus.midi", "ref", ".wiki")

@@ -3,6 +3,9 @@ CHANGELOG
 Kept since version 0.3.5.0
 ================================================================================
 
+0.3.5.2
+	Added fixes for rests, tempo and NoteContainers in MidiTrack.
+
 0.3.5.1
 	Removed print statements used for debugging in MidiFileOut
 	Removed debugging spaghetti code when run as script from MidiFileOut

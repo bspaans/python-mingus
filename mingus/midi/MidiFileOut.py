@@ -92,3 +92,16 @@ def write_Composition(file, channels, composition, bpm = 120, repeat = 0):
 			m.tracks[i].play_Track(channels[i], composition.tracks[i])
 		repeat -= 1
 	return m.write_file(file)
+
+if __name__ == "__main__":
+	from mingus.containers.NoteContainer import NoteContainer
+	from mingus.containers.Bar import Bar
+	b = Bar()
+	n = NoteContainer(["A", "C", "E"])
+	b + n
+	b + []
+	b + n
+	b + n
+	write_NoteContainer("test.mid", 1, n)
+	write_Bar("test2.mid", 2, b)
+	write_Bar("test3.mid", 2, b, 200)
