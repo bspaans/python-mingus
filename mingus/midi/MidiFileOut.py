@@ -47,7 +47,6 @@ saves it into a midi file, specified in file."""
 def write_NoteContainer(file, channel, notecontainer, bpm = 120, repeat = 0):
 	"""Writes a mingus.NoteContainer to a midi file."""
 	m = MidiFile()
-	print m
 	t = MidiTrack(bpm)
 	m.tracks = [t]
 	while repeat >= 0:
@@ -61,7 +60,6 @@ def write_NoteContainer(file, channel, notecontainer, bpm = 120, repeat = 0):
 def write_Bar(file, channel, bar, bpm = 120, repeat = 0):
 	"""Writes a mingus.Bar to a midi file."""
 	m = MidiFile()
-	print m
 	t = MidiTrack(bpm)
 	m.tracks = [t]
 	while repeat >= 0:
@@ -72,7 +70,6 @@ def write_Bar(file, channel, bar, bpm = 120, repeat = 0):
 def write_Track(file, channel, track, bpm = 120, repeat = 0):
 	"""Writes a mingus.Track to a midi file."""
 	m = MidiFile()
-	print m
 	t = MidiTrack(bpm)
 	m.tracks = [t]
 	while repeat >= 0:
@@ -95,39 +92,3 @@ def write_Composition(file, channels, composition, bpm = 120, repeat = 0):
 			m.tracks[i].play_Track(channels[i], composition.tracks[i])
 		repeat -= 1
 	return m.write_file(file)
-
-
-if __name__ == '__main__':
-	from mingus.containers.Bar import Bar
-	from mingus.containers.Track import Track
-	from mingus.containers.Composition import Composition
-
-	b = Bar()
-	c = Bar()
-
-	b + 'C'
-	b + 'E'
-	b + 'G'
-	b + ['B', 'F']
-
-	c + 'Bb'
-	c + 'F#'
-	c + 'G#'
-	c + 'Db'
-
-
-	t = Track()
-	s = Track()
-	t + b
-	t + c
-	s + c
-	s + b
-
-	a = Composition()
-	a + t
-	a + s
-	write_Bar("testmingus.mid", 1, b, 120, 10)
-	write_NoteContainer("testmingus2.mid", 1, [50, 54, 57], 120, 0)
-	write_Track("testmingus3.mid", 1, t, 120, 0)
-	write_Composition("testmingus4.mid", [1, 2], a, 120, 0)
-

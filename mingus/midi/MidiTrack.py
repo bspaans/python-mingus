@@ -54,7 +54,8 @@ class MidiTrack():
 
 	def play_Note(self, channel, note):
 		"""Converts a Note object to a midi event and adds it \
-to the track_data."""
+to the track_data. You can set Note.parameters["velocity"] to adjust the \
+speed with which the note should be hit [0-128]."""
 		velocity = 100
 		if hasattr(note, "dynamics"):
 			if 'velocity' in note.dynamics:
@@ -97,7 +98,7 @@ NoteContainer to the track_data."""
 
 		# if there is more than one note in the container, 
 		# the deltatime should be set back to zero after the 
-		# first one.
+		# first one has been stopped
 		if len(notecontainer) <= 1:
 			[self.stop_Note(channel, x) for x in notecontainer]
 		else:

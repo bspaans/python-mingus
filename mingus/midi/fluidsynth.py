@@ -20,13 +20,13 @@
 
 ================================================================================
 
-   fluidsynth is a software MIDI synthesizer. To work with this module, you'll 
+   fluidsynth is a software MIDI synthesizer which allows you to play the containers 
+   in mingus.containers real-time. To work with this module, you'll 
    need fluidsynth and a nice instrument collection (look here: http://www.hammersound.net, go to Sounds -> Soundfont Library -> Collections).
    mingus uses the fluidsynth server to send the MIDI signals. To start a server
    instance of fluidsynth, use a command like this: 
    
-   	fluidsynth -m alsa_seq ./nameofinstrbank.sf2 -i -s
-
+   	fluidsynth -is -m alsa_seq ./nameofinstrbank.sf2
 
 ================================================================================
 
@@ -34,15 +34,16 @@
 
 from telnetlib import Telnet
 from datetime import datetime
-from mingus.midi.MidiSequencer import MidiSequencer
+from MidiSequencer import MidiSequencer
 
 
 fluid = None
 midi = None
 
 
-def init_fluidsynth(server="localhost", port=9800):
-	"""Initializes a connection to the fluidsynth server."""
+def init(server="localhost", port=9800):
+	"""Initializes a connection to the fluidsynth server. 
+	You have to call this function when you want the rest to work."""
 	global fluid, midi
 	try:
 		fluid = Telnet(server, port)
@@ -50,6 +51,11 @@ def init_fluidsynth(server="localhost", port=9800):
 		return True
 	except:
 		return False
+
+
+def init_fluidsynth(server="localhost", port=9800):
+	"""Same as init(). Held for bugwards compatibility."""
+	return init(server, port)
 
 
 def play_Note(note, velocity = 100, channel = 1):

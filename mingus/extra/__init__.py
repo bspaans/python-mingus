@@ -23,6 +23,6 @@
 """
 
 import LilyPond
-import fluidsynth
 
+__all__ = ["LilyPond"]
 

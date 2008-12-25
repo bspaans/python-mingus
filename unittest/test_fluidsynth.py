@@ -1,7 +1,7 @@
 import sys
 sys.path += ["../"]
 
-from mingus.extra import fluidsynth
+from mingus.midi import fluidsynth
 from mingus.containers import *
 import unittest
 import time

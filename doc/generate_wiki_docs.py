@@ -199,3 +199,4 @@ print "certain conditions."
 generate_package_wikidocs("mingus.core", "ref", ".wiki")
 generate_package_wikidocs("mingus.containers", "ref", ".wiki")
 generate_package_wikidocs("mingus.extra", "ref", ".wiki")
+generate_package_wikidocs("mingus.midi", "ref", ".wiki")
