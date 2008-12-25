@@ -113,8 +113,9 @@ class Guitar(Instrument):
 
 class MidiInstrument(Instrument):
 
-	name = ''
 	range = (Note('C', 0), Note('B', 8))
+	instrument_nr = 1
+	name = ''
 	names = [
 				"Acoustic Grand Piano", 
 				"Bright Acoustic Piano", 

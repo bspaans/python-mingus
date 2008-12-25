@@ -96,12 +96,21 @@ def write_Composition(file, channels, composition, bpm = 120, repeat = 0):
 if __name__ == "__main__":
 	from mingus.containers.NoteContainer import NoteContainer
 	from mingus.containers.Bar import Bar
+	from mingus.containers.Track import Track
+	from mingus.containers.Instrument import MidiInstrument
 	b = Bar()
 	n = NoteContainer(["A", "C", "E"])
+	t = Track()
 	b + n
 	b + []
 	b + n
 	b + n
+	t + b
+	t + b
+	m = MidiInstrument()
+	m.instrument_nr = 13
+	t.instrument = m
 	write_NoteContainer("test.mid", 1, n)
 	write_Bar("test2.mid", 2, b)
 	write_Bar("test3.mid", 2, b, 200)
+	write_Track("test4.mid", 1, t, 120)

@@ -3,6 +3,10 @@ CHANGELOG
 Kept since version 0.3.5.0
 ================================================================================
 
+0.3.5.3
+	Added controller events to MidiTrack. Changing of the instrument is now
+	possible.
+
 0.3.5.2
 	Added fixes for rests, tempo and NoteContainers in MidiTrack.
 

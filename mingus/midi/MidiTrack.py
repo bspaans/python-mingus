@@ -45,8 +45,7 @@ class MidiTrack():
 
 	def __init__(self, start_bpm = 120):
 		self.track_data =''
-		self.bpm = start_bpm
-		self.track_data = self.set_tempo_event(self.bpm)
+		self.set_tempo(start_bpm)
 
 
 	def end_of_track(self):
@@ -96,6 +95,8 @@ to the track_data."""
 them to the track_data."""
 		self.delay = 0
 		instr = track.instrument
+		if hasattr(instr, "instrument_nr"):
+			self.set_instrument(channel, instr.instrument_nr)
 		for bar in track:
 			self.play_Bar(channel, bar)
 
@@ -121,6 +122,12 @@ NoteContainer to the track_data."""
 			[self.stop_Note(channel, x) for x in notecontainer[1:]]
 
 
+	def set_instrument(self, channel, instr, bank = 1):
+		"""Adds an program change and bank select event \
+to the track_data"""
+		self.track_data += self.select_bank(channel, bank)
+		self.track_data += self.program_change_event(channel, instr)
+
 	def header(self):
 		"""Returns the bytes for the header of track. NB. \
 The header contains the length of the track_data, so \
@@ -136,7 +143,7 @@ Includes header, track_data and the end of track \
 meta event."""
 		return self.header() + self.track_data + self.end_of_track()
 
-	def midi_event(self, event_type, channel, param1, param2):
+	def midi_event(self, event_type, channel, param1, param2 = None):
 		"""Converts and returns the paraters as a MIDI event in bytes."""
 		"""Parameters should be given as integers."""
 		"""event_type and channel: 4 bits."""
@@ -144,9 +151,13 @@ meta event."""
 		assert event_type < 128 and event_type >= 0
 		assert channel < 16 and channel >= 0
 		tc = a2b_hex("%x%x" % (event_type, channel))
-		params = a2b_hex("%02x%02x" % (param1, param2))
 
+		if param2 is None:
+			params = a2b_hex("%02x" % (param1))
+		else:
+			params = a2b_hex("%02x%02x" % (param1, param2))
 		return self.delta_time + tc + params
+
 
 	def note_off(self, channel, note, velocity):
 		"""Returns bytes for a `note off` event."""
@@ -155,6 +166,10 @@ meta event."""
 	def note_on(self, channel, note, velocity):
 		"""Returns bytes for a `note_on` event."""
 		return self.midi_event(9, channel, note, velocity)
+
+	def controller_event(self, channel, contr_nr, contr_val):
+		"""Returns the bytes for a MIDI controller event."""
+		return self.midi_event(11, channel, contr_nr, contr_val)
 
 	def reset(self):
 		"""Resets track_data and delta_time."""
@@ -169,12 +184,28 @@ variable length byte."""
 
 		self.delta_time = delta_time
 
+	def select_bank(self, channel, bank):
+		"""Returns the MIDI event for a select bank \
+controller event."""
+		return self.controller_event(1, channel, bank)
+
+
+	def program_change_event(self, channel, instr):
+		"""Returns the bytes for a program change \
+controller event."""
+		return self.midi_event(12, channel, instr)
+
+	def set_tempo(self, bpm):
+		"""Converts the bpm to a midi event and writes it to the track_data"""
+		self.bpm = bpm
+		self.track_data += self.set_tempo_event(self.bpm)
+
+
 	def set_tempo_event(self, bpm):
 		"""Calculates the microseconds per quarter note """
 		"""and returns tempo event."""
 		ms_per_min = 60000000
 		mpqn = a2b_hex("%06x" % (ms_per_min / bpm))
-		print bpm, mpqn
 		return self.delta_time + "\xff\x51\x03" + mpqn
 		
 	def int_to_varbyte(self, value):
