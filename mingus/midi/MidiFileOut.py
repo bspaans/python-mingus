@@ -20,7 +20,7 @@
 
 ================================================================================
 
-   MidiFile contains methods that can generate MIDI files from the 
+   MidiFileOut contains methods that can generate MIDI files from the 
    objects in mingus.containers.
 
 ================================================================================
