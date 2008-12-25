@@ -20,8 +20,8 @@
 
 ================================================================================
 
-   MidiFile contains two classes and some methods that can generate 
-   MIDI files from the objects in mingus.containers.
+   MidiFile contains methods that can generate MIDI files from the 
+   objects in mingus.containers.
 
 ================================================================================
 
