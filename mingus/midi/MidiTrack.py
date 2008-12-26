@@ -103,7 +103,6 @@ to the track_data."""
 		"""Converts a Track object to MIDI events and writes \
 them to the track_data."""
 		if hasattr(track, "name"):
-			print "Name is ", track.name
 			self.set_track_name(track.name)
 		self.delay = 0
 		instr = track.instrument
