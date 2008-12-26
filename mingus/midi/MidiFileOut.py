@@ -108,7 +108,7 @@ if __name__ == "__main__":
 	b + n
 	b2 + n
 	b2 + n
-	b2 + n
+	b2 + []
 	t + b
 	t + b
 	m = MidiInstrument()

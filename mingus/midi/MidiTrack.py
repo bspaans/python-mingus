@@ -81,7 +81,11 @@ equivalent midi events and adds it to the track_data."""
 	def play_Bar(self, channel, bar):
 		"""Converts a Bar object to MIDI events and writes them \
 to the track_data."""
+		self.set_deltatime(self.delay)
+		self.delay = 0
+
 		self.set_meter(bar.meter)
+		self.set_deltatime(0)
 		self.set_key(bar.key)
 		for x in bar:
 			tick = int(round((1.0 / x[1] * 288)))
