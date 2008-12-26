@@ -102,6 +102,9 @@ to the track_data."""
 	def play_Track(self, channel, track):
 		"""Converts a Track object to MIDI events and writes \
 them to the track_data."""
+		if hasattr(track, "name"):
+			print "Name is ", track.name
+			self.set_track_name(track.name)
 		self.delay = 0
 		instr = track.instrument
 		if hasattr(instr, "instrument_nr"):
@@ -249,6 +252,16 @@ controller event."""
 		return self.delta_time + META_EVENT + KEY_SIGNATURE + \
 				"\x02" + key + "\x00"
 		
+	def set_track_name(self, name):
+		"""Adds a meta event for the track."""
+		self.track_data += self.track_name_event(name)
+	
+	def track_name_event(self, name):
+		"""Returns the bytes for a track name meta event."""
+		l = self.int_to_varbyte(len(name))
+		return "\x00" + META_EVENT + TRACK_NAME + l + name
+
+
 
 	def int_to_varbyte(self, value):
 		"""A lot of MIDI variables can be of variable length. \

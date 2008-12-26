@@ -33,6 +33,7 @@ Tracks can be stored together in [refMingusContainersComposition Compositions]""
 
 	bars = []
 	instrument = None
+	name = "Untitled" # Will be looked for when saving a MIDI file.
 
 	def __init__(self, instrument = None):
 		self.bars = []

@@ -114,6 +114,7 @@ if __name__ == "__main__":
 	m = MidiInstrument()
 	m.instrument_nr = 13
 	t.instrument = m
+	t.name = "Track Name Test"
 	write_NoteContainer("test.mid", 1, n)
 	write_Bar("test2.mid", 2, b)
 	write_Bar("test3.mid", 2, b, 200)

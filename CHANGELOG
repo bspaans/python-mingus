@@ -1,11 +1,11 @@
 ================================================================================
 CHANGELOG
-Kept since version 0.3.5.0
 ================================================================================
 
 0.3.5.5
 	* Killed bug in MidiTrack.play_Bar. Meters other than 4/4 will now also 
 	get saved correctly
+	* Added set_track_name and track_name_event to MidiTrack
 	
 
 0.3.5.4
