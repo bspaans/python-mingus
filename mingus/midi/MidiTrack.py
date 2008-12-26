@@ -34,6 +34,8 @@ from binascii import a2b_hex
 from struct import pack, unpack
 from math import log
 from MidiEvents import *
+from mingus.core.diatonic import basic_keys
+from mingus.containers.Note import Note
 
 class MidiTrack():
 	"""This class is used to generate MIDI events from the
@@ -79,6 +81,8 @@ equivalent midi events and adds it to the track_data."""
 	def play_Bar(self, channel, bar):
 		"""Converts a Bar object to MIDI events and writes them \
 to the track_data."""
+		self.set_meter(bar.meter)
+		self.set_key(bar.key)
 		for x in bar:
 			tick = int(round((1.0 / x[1] * 288)))
 			if x[2] is None or len(x[2]) == 0:
@@ -212,8 +216,36 @@ controller event."""
 		"""and returns tempo event."""
 		ms_per_min = 60000000
 		mpqn = a2b_hex("%06x" % (ms_per_min / bpm))
-		return self.delta_time + "\xff\x51\x03" + mpqn
+		return self.delta_time + META_EVENT + SET_TEMPO + \
+				"\x03" + mpqn
+	def set_meter(self, meter = (4,4)):
+		"""Adds a time signature event for meter to track_data"""
+		self.track_data += self.time_signature_event(meter)
+
+	def time_signature_event(self, meter = (4,4)):
+		"""Returns a time signature event for meter."""
+		numer = a2b_hex("%02x" % meter[0])
+		denom = a2b_hex("%02x" % int(log(meter[1], 2)))
+		return self.delta_time + META_EVENT + TIME_SIGNATURE + \
+				"\x04" + numer + denom + "\x18\x08" 
+
+	def set_key(self, key = 'C'):
+		"""Adds a key signature event to the track_data """
+		if isinstance(key, Note):
+			key = key.name
+		self.track_data += self.key_signature_event(key)
+
+	def key_signature_event(self, key = 'C'):
+		"""Returns the bytes for a key signature event."""
+		val = basic_keys.index(key) - 6
+		if val < 0:
+			val = 256 + val
+
+		key = a2b_hex("%02x" % val)
+		return self.delta_time + META_EVENT + KEY_SIGNATURE + \
+				"\x02" + key + "\x00"
 		
+
 	def int_to_varbyte(self, value):
 		"""A lot of MIDI variables can be of variable length. \
 This method converts an integer into a variable length byte. \

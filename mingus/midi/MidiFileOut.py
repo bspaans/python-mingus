@@ -99,12 +99,16 @@ if __name__ == "__main__":
 	from mingus.containers.Track import Track
 	from mingus.containers.Instrument import MidiInstrument
 	b = Bar()
+	b2 = Bar('Ab', (3,4))
 	n = NoteContainer(["A", "C", "E"])
 	t = Track()
 	b + n
 	b + []
 	b + n
 	b + n
+	b2 + n
+	b2 + n
+	b2 + n
 	t + b
 	t + b
 	m = MidiInstrument()
@@ -113,4 +117,5 @@ if __name__ == "__main__":
 	write_NoteContainer("test.mid", 1, n)
 	write_Bar("test2.mid", 2, b)
 	write_Bar("test3.mid", 2, b, 200)
-	write_Track("test4.mid", 1, t, 120)
+	write_Bar("test4.mid", 2, b2, 200, 2)
+	write_Track("test5.mid", 1, t, 120)

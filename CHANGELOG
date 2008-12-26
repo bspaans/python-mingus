@@ -3,14 +3,19 @@ CHANGELOG
 Kept since version 0.3.5.0
 ================================================================================
 
+0.3.5.4
+	* Added MidiEvents for better readability in MidiTrack.
+	* Added support for different time signatures (set_meter and time_signature_event)
+	* Support for key signatures meta events (set_key and key_signature_event)
+
 0.3.5.3
-	Added controller events to MidiTrack. Changing of the instrument is now
+	* Added controller events to MidiTrack. Changing of the instrument is now
 	possible.
 
 0.3.5.2
-	Added fixes for rests, tempo and NoteContainers in MidiTrack.
+	* Added fixes for rests, tempo and NoteContainers in MidiTrack.
 
 0.3.5.1
-	Removed print statements used for debugging in MidiFileOut
-	Removed debugging spaghetti code when run as script from MidiFileOut
-	Moved the fluidsynth module to the midi package where it belongs.
+	* Removed print statements used for debugging in MidiFileOut
+	* Removed debugging spaghetti code when run as script from MidiFileOut
+	* Moved the fluidsynth module to the midi package where it belongs.
