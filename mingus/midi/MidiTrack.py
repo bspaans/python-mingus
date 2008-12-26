@@ -33,6 +33,7 @@
 from binascii import a2b_hex
 from struct import pack, unpack
 from math import log
+from MidiEvents import *
 
 class MidiTrack():
 	"""This class is used to generate MIDI events from the
@@ -56,7 +57,7 @@ class MidiTrack():
 		"""Converts a Note object to a midi event and adds it \
 to the track_data. You can set Note.parameters["velocity"] to adjust the \
 speed with which the note should be hit [0-128]."""
-		velocity = 100
+		velocity = 64
 		if hasattr(note, "dynamics"):
 			if 'velocity' in note.dynamics:
 				velocity = note.dynamics["velocity"]
@@ -101,8 +102,13 @@ them to the track_data."""
 			self.play_Bar(channel, bar)
 
 
-	def stop_Note(self, channel, note, velocity = 64):
+	def stop_Note(self, channel, note):
 		"""Adds a note_off event for note to event_track"""
+		velocity = 64
+		if hasattr(note, "dynamics"):
+			if 'velocity' in note.dynamics:
+				velocity = note.dynamics["velocity"]
+
 		self.track_data += self.note_off(channel, int(note) + 12,
 					velocity)
 
@@ -135,7 +141,7 @@ you'll have to call this function when you're done \
 adding data (when you're not using get_midi_data)."""
 		chunk_size = a2b_hex("%08x" % (len(self.track_data) +\
 				len(self.end_of_track())))
-		return "MTrk" + chunk_size
+		return TRACK_HEADER + chunk_size
 
 	def get_midi_data(self):
 		"""Returns the MIDI data in bytes for this track. \
@@ -161,15 +167,15 @@ meta event."""
 
 	def note_off(self, channel, note, velocity):
 		"""Returns bytes for a `note off` event."""
-		return self.midi_event(8, channel, note, velocity)
+		return self.midi_event(NOTE_OFF, channel, note, velocity)
 
 	def note_on(self, channel, note, velocity):
 		"""Returns bytes for a `note_on` event."""
-		return self.midi_event(9, channel, note, velocity)
+		return self.midi_event(NOTE_ON, channel, note, velocity)
 
 	def controller_event(self, channel, contr_nr, contr_val):
 		"""Returns the bytes for a MIDI controller event."""
-		return self.midi_event(11, channel, contr_nr, contr_val)
+		return self.midi_event(CONTROLLER, channel, contr_nr, contr_val)
 
 	def reset(self):
 		"""Resets track_data and delta_time."""
@@ -187,13 +193,13 @@ variable length byte."""
 	def select_bank(self, channel, bank):
 		"""Returns the MIDI event for a select bank \
 controller event."""
-		return self.controller_event(1, channel, bank)
+		return self.controller_event(BANK_SELECT, channel, bank)
 
 
 	def program_change_event(self, channel, instr):
 		"""Returns the bytes for a program change \
 controller event."""
-		return self.midi_event(12, channel, instr)
+		return self.midi_event(PROGRAM_CHANGE, channel, instr)
 
 	def set_tempo(self, bpm):
 		"""Converts the bpm to a midi event and writes it to the track_data"""
