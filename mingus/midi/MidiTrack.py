@@ -59,8 +59,8 @@ class MidiTrack():
 
 	def play_Note(self, note):
 		"""Converts a Note object to a midi event and adds it \
-to the track_data. You can set Note.parameters["velocity"] to adjust the \
-speed with which the note should be hit [0-128]."""
+to the track_data. To set the channel on which to play this note, set \
+Note.channel, the same goes for Note.velocity."""
 		velocity = 64
 		channel = 1
 		if hasattr(note, "dynamics"):
@@ -68,6 +68,10 @@ speed with which the note should be hit [0-128]."""
 				velocity = note.dynamics["velocity"]
 			if 'channel' in note.dynamics:
 				channel = note.dynamics["channel"]
+		if hasattr(note, "channel"):
+			channel = note.channel
+		if hasattr(note, "velocity"):
+			velocity = note.velocity
 
 		if self.change_instrument:
 			self.set_instrument(channel, self.instrument)
@@ -77,7 +81,8 @@ speed with which the note should be hit [0-128]."""
 
 	def play_NoteContainer(self, notecontainer):
 		"""Converts a mingus.containers.NoteContainer to the \
-equivalent midi events and adds it to the track_data."""
+equivalent midi events and adds it to the track_data. Note.channel \
+and Note.velocity can be set as well."""
 		if len(notecontainer) <= 1:
 			[self.play_Note(x) for x in notecontainer]
 		else:
@@ -131,6 +136,11 @@ them to the track_data."""
 				velocity = note.dynamics["velocity"]
 			if 'channel' in note.dynamics:
 				channel = note.dynamics["channel"]
+		if hasattr(note, "channel"):
+			channel = note.channel
+		if hasattr(note, "velocity"):
+			velocity = note.velocity
+
 
 		self.track_data += self.note_off(channel, int(note) + 12,
 					velocity)

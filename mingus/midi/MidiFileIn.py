@@ -27,7 +27,12 @@
 
 """
 
-from mingus.containers import *
+import mingus.containers.Note as Note
+import mingus.containers.NoteContainer as NoteContainer
+import mingus.containers.Bar as Bar
+import mingus.containers.Track as Track
+import mingus.containers.Composition as Composition
+from mingus.containers.Instrument import MidiInstrument
 import mingus.core.notes as notes
 import binascii
 
@@ -60,14 +65,12 @@ class MidiFile():
 			print "Don't know how to parse this yet"
 			return c
 
-		print header
+		ticks_per_beat = header[2]["ticks_per_beat"]
 		for track in track_data:
 			t = Track()
-			i = MidiInstrument()
 			b = Bar()
 			metronome = 1 # Tick once every quarter note
 			thirtyseconds = 8 # 8 thirtyseconds in a quarter note
-			ticks_per_beat = header[2]["ticks_per_beat"]
 			meter = (4,4)
 			key = 'C'
 
@@ -78,14 +81,13 @@ class MidiFile():
 				duration =  float(deltatime) / (ticks_per_beat * 4.0)
 				if duration != 0.0:
 					duration = 1.0 / duration
-				print duration
 
 				if deltatime != 0:
 					if not b.place_notes(NoteContainer(), duration):
 						t + b
 						b = Bar(key, meter)
 						b.place_notes(NoteContainer(), duration)
-					
+						
 
 				# note off
 				if event["event"] == 8:
@@ -95,14 +97,26 @@ class MidiFile():
 				# note on 
 				elif event["event"] == 9:
 					n = Note(notes.int_to_note(event["param1"] % 12), 
-						event["param1"] / 12)
-					n.dynamics["velocity"] = event["param2"]
-					n.dynamics["channel"] = event["channel"]
+						event["param1"] / 12 - 1)
+					n.channel = event["channel"]
+					n.velocity = event["param2"]
 
 					if len(b.bar) > 0:
 						b.bar[-1][2] + n
 					else:
 						b + n
+
+				# note aftertouch
+				elif event["event"] == 10:
+					pass
+				# controller select
+				elif event["event"] == 11:
+					pass
+				# program change
+				elif event["event"] == 12:
+					i = MidiInstrument()
+					i.instrument_nr = event["param1"]
+					t.instrument = i
 
 				# meta event
 				elif event["event"] == 15:
@@ -127,6 +141,7 @@ class MidiFile():
 					elif event["meta_event"] == 81:
 						mpqn = self.bytes_to_int(event["data"])
 						bpm = 60000000 / mpqn
+						print "NB. Only the last change in BPM will get saved, currently."
 
 					# Time Signature
 					elif event["meta_event"] == 88:
@@ -142,10 +157,16 @@ class MidiFile():
 					elif event["meta_event"] == 89:
 						pass
 
-			t.instrument = i
+					else:
+						print "Unsupported META event", event["meta_event"]
+
+				else:
+					print "Unsupported MIDI event", event["event"]
+
 			t + b
-			c + t
-		return c
+			c.tracks.append(t)
+		
+		return c, bpm
 
 
 
@@ -335,6 +356,5 @@ if __name__ == "__main__":
 	import fluidsynth
 	import MidiFileOut
 	fluidsynth.init()
-	m = MIDI_to_Composition(argv[1])
-	print m
-	MidiFileOut.write_Composition("test.mid", m)
+	m, bpm = MIDI_to_Composition(argv[1])
+	MidiFileOut.write_Composition("test.mid", m, bpm)

@@ -2,6 +2,11 @@
 CHANGELOG
 ================================================================================
 
+0.3.6.4
+	* Instruments get succesfully set when loading a midi file.
+	* To set the channel and the velocity off a Note. Use Note.channel and 
+	Note.velocity instead of the dynamics dictionary.
+
 0.3.6.3
 	* Removed channel parameters from the MidiFileOut and MidiTrack functions.
 	The channel a note should be played on can now be set in Note.dynamics["channel"]
