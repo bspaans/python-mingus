@@ -23,9 +23,9 @@
 """
 
 from MidiSequencer import MidiSequencer
-from MidiFile import MidiFile
 from MidiTrack import MidiTrack
 import MidiFileOut
+import MidiFileIn
 import fluidsynth
 
-__all__ = ["MidiSequencer", "MidiFile", "MidiFileOut", "MidiTrack", "fluidsynth"]
+__all__ = ["MidiSequencer", "MidiFileIn", "MidiFileOut", "MidiTrack", "fluidsynth"]
