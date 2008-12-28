@@ -2,6 +2,11 @@
 CHANGELOG
 ================================================================================
 
+0.3.6.5
+	* Fixed bug in parse_midi_event. Program change and channel aftertouch 
+	MIDI events only have one parameter instead of two. 
+	* Added an exception for illegal events.
+
 0.3.6.4
 	* Instruments get succesfully set when loading a midi file.
 	* Last set tempo will get returned as well, until we have a better solution

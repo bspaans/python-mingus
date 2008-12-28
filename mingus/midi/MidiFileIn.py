@@ -163,7 +163,7 @@ class MidiFile():
 						print "Unsupported META event", event["meta_event"]
 
 				else:
-					print "Unsupported MIDI event", event["event"]
+					print "Unsupported MIDI event", event
 
 			t + b
 			c.tracks.append(t)
@@ -270,6 +270,9 @@ a list of events and the number of bytes that were read."""
 		event_type = (ec & 0xf0) >> 4
 		channel = ec & 0x0f
 
+		if event_type < 8:
+			raise FormatError, "Unknown event type %d" % event_type
+
 		# Meta events can have strings of variable length
 		if event_type == 15:
 			try:
@@ -281,7 +284,19 @@ a list of events and the number of bytes that were read."""
 				raise IOError, "Couldn't read meta event from file."
 			return {"event": event_type, "meta_event": meta_event,
 					"data": data}, chunk_size
-		else: 
+
+		# Program change and Channel aftertouch events only have one parameter
+		elif event_type in [12, 13]: 
+			try:
+				param1 = self.bytes_to_int(fp.read(1))
+				chunk_size += 1
+			except:
+				raise IOError, "Couldn't read MIDI event parameters from file."
+
+			
+			return {"event": event_type, "channel": channel, 
+				"param1": param1},  chunk_size
+		else:
 			try:
 				param1 = self.bytes_to_int(fp.read(1))
 				param2 = self.bytes_to_int(fp.read(1))
@@ -292,6 +307,7 @@ a list of events and the number of bytes that were read."""
 			
 			return {"event": event_type, "channel": channel, 
 				"param1": param1, "param2": param2},  chunk_size
+
 
 
 
