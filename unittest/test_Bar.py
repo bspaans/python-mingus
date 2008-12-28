@@ -14,15 +14,6 @@ class test_Bar(unittest.TestCase):
 		self.c = Bar('E', (2, 2))
 		self.meterless = Bar('C', (0, 0))
 
-	def test_place_notes_invalid_durations(self):
-		for x in filter(lambda x: x % 2 == 1, range(2, 100)):
-			self.assertRaises(MeterFormatError, self.b.place_notes, Note("C"), x)
-
-	def test_place_notes_valid_durations(self):
-		for x in map(lambda x: 2 ** x, range(1,16)):
-			self.assertEqual(True, self.meterless.place_notes(Note("C"), x),\
-			"The beat duration %d should result in a valid beat" % x)
-		self.meterless.empty()
 	
 	def test_place_notes_types(self):
 		self.assertEqual(True, self.meterless + NoteContainer(["A", "C"]))

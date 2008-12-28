@@ -92,15 +92,12 @@ hasn't got enough room for a note of that duration.)"""
 		elif type(notes) == list:
 			notes = NoteContainer(notes)
 
-		if _meter.valid_beat_duration(duration):
-			if self.current_beat + 1.0 / duration <= self.length or self.length == 0.0:
-				self.bar.append([self.current_beat, duration, notes])
-				self.current_beat += 1.0 / duration
-				return True
-			else:
-				return False
+		if self.current_beat + 1.0 / duration <= self.length or self.length == 0.0:
+			self.bar.append([self.current_beat, duration, notes])
+			self.current_beat += 1.0 / duration
+			return True
 		else:
-			raise MeterFormatError, "Not a valid duration '%d'" % duration
+			return False
 
 	def place_notes_at(self, notes, at):
 		"""Places notes at the index `at`"""

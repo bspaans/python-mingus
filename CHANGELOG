@@ -2,6 +2,18 @@
 CHANGELOG
 ================================================================================
 
+0.3.6.1
+	* Parsing of a Midi file works in some cases. Still very bugy.
+	* Remove is_valid_duration from Bar, because it prevents using floating 
+	point numbers, which you need when representing complex durations.
+
+0.3.6.0
+	* Initial check in of MidiFileIn
+
+0.3.5.6
+	* Moved the MidiFile class to MidiFileOut
+	* Added more documentation to the MidiFileOut functions.
+
 0.3.5.5
 	* Killed bug in MidiTrack.play_Bar. Meters other than 4/4 will now also 
 	get saved correctly

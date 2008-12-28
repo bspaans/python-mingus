@@ -77,7 +77,7 @@ class MidiFile():
 def write_Note(file, channel, note, bpm = 120, repeat = 0):
 	"""Expects a Note object from mingus.containers and \
 saves it into a midi file, specified in file. You can set the 
-velocity in Note.parameters."""
+velocity in Note.dynamics."""
 	m = MidiFile()
 	t = MidiTrack(bpm)
 	m.tracks = [t]

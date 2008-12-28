@@ -28,12 +28,17 @@
 """
 
 from mingus.containers import *
+import mingus.core.notes as notes
 from sys import argv
 import binascii
 
 
-def get_composition_from_MIDI_file(file):
-	pass
+def MIDI_to_Composition(file):
+	"""Converts a MIDI file to a mingus.containers.Composition. \
+This function can raise all kinds of exceptions (IOError, HeaderError, \
+TimeDivisionError, FormatError), so be sure to try and catch."""
+	m = MidiFile()
+	return m.MIDI_to_Composition(file)
 
 class HeaderError(Exception):
 	pass
@@ -42,10 +47,106 @@ class TimeDivisionError(Exception):
 class FormatError(Exception):
 	pass
 
+
 class MidiFile():
 	"""This class parses a MIDI file."""
 	bpm = 120
 	meter = (4,4)
+
+	def MIDI_to_Composition(self, file):
+		header, track_data, bytes = self.parse_midi_file(file)
+
+		c = Composition()
+		if header[2]["fps"]:
+			print "Don't know how to parse this yet"
+			return c
+
+		print header
+		for track in track_data:
+			t = Track()
+			i = MidiInstrument()
+			b = Bar()
+			metronome = 1 # Tick once every quarter note
+			thirtyseconds = 8 # 8 thirtyseconds in a quarter note
+			ticks_per_beat = header[2]["ticks_per_beat"]
+			meter = (4,4)
+
+
+			for e in track:
+
+				deltatime, event = e
+				duration =  float(deltatime) / (ticks_per_beat * 4.0)
+				if duration != 0.0:
+					duration = 1.0 / duration
+				print duration
+
+				if deltatime != 0:
+					if not b.place_notes(NoteContainer(), duration):
+						t + b
+						b = Bar()
+						b.set_meter(meter)
+						b.place_notes(NoteContainer(), duration)
+					
+
+				# note off
+				if event["event"] == 8:
+					if deltatime == 0:
+						pass
+
+				# note on 
+				elif event["event"] == 9:
+					n = Note(notes.int_to_note(event["param1"] % 12), 
+						event["param1"] / 12)
+					n.dynamics["velocity"] = event["param2"]
+
+					if len(b.bar) > 0:
+						b.bar[-1][2] + n
+					else:
+						b + n
+
+				# meta event
+				elif event["event"] == 15:
+
+					# Track name
+					if event["meta_event"] == 3:
+						t.name = event["data"]
+					
+					# Marker 
+					elif event["meta_event"] == 6:
+						pass
+
+					# Cue Point
+					elif event["meta_event"] == 7:
+						pass
+
+					# End of Track
+					elif event["meta_event"] == 47:
+						pass
+
+					# Set tempo
+					elif event["meta_event"] == 81:
+						mpqn = self.bytes_to_int(event["data"])
+						bpm = 60000000 / mpqn
+
+					# Time Signature
+					elif event["meta_event"] == 88:
+						d = event["data"]
+						thirtyseconds = self.bytes_to_int(d[3])
+						metronome = self.bytes_to_int(d[2]) / 24.0
+						denom = 2 ** self.bytes_to_int(d[1])
+						numer = self.bytes_to_int(d[0])
+						meter = (numer, denom)
+						b.set_meter(meter)
+
+					# Key Signature
+					elif event["meta_event"] == 89:
+						pass
+
+			t.instrument = i
+			t + b
+			c + t
+		return c
+
 
 
 	def parse_midi_file_header(self, fp):
@@ -149,13 +250,12 @@ a list of events and the number of bytes that were read."""
 		# Meta events can have strings of variable length
 		if event_type == 15:
 			try:
-				meta_event = fp.read(1)
+				meta_event = self.bytes_to_int(fp.read(1))
 				length,chunk_delta = self.parse_varbyte_as_int(fp)
 				data = fp.read(length)
 				chunk_size += 1 + chunk_delta + length
 			except:
 				raise IOError, "Couldn't read meta event from file."
-			
 			return {"event": event_type, "meta_event": meta_event,
 					"data": data}, chunk_size
 		else: 
@@ -231,5 +331,4 @@ the MIDI format, the number of tracks and the time division-, the parsed track d
 			return (result, bytes_read)
 	
 if __name__ == "__main__":
-	m = MidiFile()
-	print m.parse_midi_file(argv[1])
+	print MIDI_to_Composition(argv[1])
