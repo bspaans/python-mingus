@@ -2,6 +2,9 @@
 CHANGELOG
 ================================================================================
 
+0.3.7.0 
+	* Updated examples to use mingus.midi instead of mingus.extra
+
 0.3.6.5
 	* Fixed bug in parse_midi_event. Program change and channel aftertouch 
 	MIDI events only have one parameter instead of two. 

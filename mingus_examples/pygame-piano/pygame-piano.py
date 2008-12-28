@@ -43,7 +43,7 @@ import pygame
 from pygame.locals import *
 from mingus.core import notes, chords
 from mingus.containers import *
-from mingus.extra import fluidsynth
+from mingus.midi import fluidsynth
 from os import sys
 
 OCTAVES = 5 	# number of octaves to show

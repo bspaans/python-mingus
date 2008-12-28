@@ -14,7 +14,7 @@
 from mingus.core import progressions, intervals
 from mingus.core import chords as ch
 from mingus.containers import NoteContainer, Note
-from mingus.extra import fluidsynth
+from mingus.midi import fluidsynth
 import time, sys
 from random import random
 

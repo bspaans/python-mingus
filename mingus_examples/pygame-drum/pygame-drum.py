@@ -35,7 +35,7 @@
 import pygame
 from pygame.locals import *
 from mingus.containers import *
-from mingus.extra import fluidsynth
+from mingus.midi import fluidsynth
 from os import sys
 
 
