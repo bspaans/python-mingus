@@ -42,7 +42,8 @@ to group Notes together in intervals and chords."""
 	name = 'C'
 	octave = 4
 	dynamics = { 
-			"velocity" : 64 # Used when saving as midi [ 0-127 ]
+			"velocity" : 64, # Used when saving as midi [ 0-127 ]
+			"channel" : 1, # Used when saving as midi [0-16]
 		}
 
 	def __init__(self, name = 'C', octave = 4, dynamics = {}):

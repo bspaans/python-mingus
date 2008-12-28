@@ -29,7 +29,6 @@
 
 from mingus.containers import *
 import mingus.core.notes as notes
-from sys import argv
 import binascii
 
 
@@ -70,6 +69,7 @@ class MidiFile():
 			thirtyseconds = 8 # 8 thirtyseconds in a quarter note
 			ticks_per_beat = header[2]["ticks_per_beat"]
 			meter = (4,4)
+			key = 'C'
 
 
 			for e in track:
@@ -83,8 +83,7 @@ class MidiFile():
 				if deltatime != 0:
 					if not b.place_notes(NoteContainer(), duration):
 						t + b
-						b = Bar()
-						b.set_meter(meter)
+						b = Bar(key, meter)
 						b.place_notes(NoteContainer(), duration)
 					
 
@@ -98,6 +97,7 @@ class MidiFile():
 					n = Note(notes.int_to_note(event["param1"] % 12), 
 						event["param1"] / 12)
 					n.dynamics["velocity"] = event["param2"]
+					n.dynamics["channel"] = event["channel"]
 
 					if len(b.bar) > 0:
 						b.bar[-1][2] + n
@@ -331,9 +331,10 @@ the MIDI format, the number of tracks and the time division-, the parsed track d
 			return (result, bytes_read)
 	
 if __name__ == "__main__":
+	from sys import argv
 	import fluidsynth
 	import MidiFileOut
 	fluidsynth.init()
 	m = MIDI_to_Composition(argv[1])
 	print m
-	MidiFileOut.write_Composition("test.mid", range(len(m.tracks)), m)
+	MidiFileOut.write_Composition("test.mid", m)

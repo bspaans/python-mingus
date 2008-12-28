@@ -45,6 +45,8 @@ class MidiTrack():
 	delta_time = '\x00'
 	delay = 0
 	bpm = 120
+	change_instrument = False
+	instrument = 1
 
 	def __init__(self, start_bpm = 120):
 		self.track_data =''
@@ -55,30 +57,37 @@ class MidiTrack():
 		"""Returns the bytes for an end of track meta event."""
 		return "\x00\xff\x2f\x00"
 
-	def play_Note(self, channel, note):
+	def play_Note(self, note):
 		"""Converts a Note object to a midi event and adds it \
 to the track_data. You can set Note.parameters["velocity"] to adjust the \
 speed with which the note should be hit [0-128]."""
 		velocity = 64
+		channel = 1
 		if hasattr(note, "dynamics"):
 			if 'velocity' in note.dynamics:
 				velocity = note.dynamics["velocity"]
+			if 'channel' in note.dynamics:
+				channel = note.dynamics["channel"]
+
+		if self.change_instrument:
+			self.set_instrument(channel, self.instrument)
+			self.change_instrument = False
 
 		self.track_data += self.note_on(channel, int(note) + 12, velocity)
 
-	def play_NoteContainer(self, channel, notecontainer):
+	def play_NoteContainer(self, notecontainer):
 		"""Converts a mingus.containers.NoteContainer to the \
 equivalent midi events and adds it to the track_data."""
 		if len(notecontainer) <= 1:
-			[self.play_Note(channel, x) for x in notecontainer]
+			[self.play_Note(x) for x in notecontainer]
 		else:
-			self.play_Note(channel, notecontainer[0])
+			self.play_Note(notecontainer[0])
 			self.set_deltatime(0)
-			[self.play_Note(channel, x) for x in notecontainer[1:]]
+			[self.play_Note(x) for x in notecontainer[1:]]
 
 
 
-	def play_Bar(self, channel, bar):
+	def play_Bar(self, bar):
 		"""Converts a Bar object to MIDI events and writes them \
 to the track_data."""
 		self.set_deltatime(self.delay)
@@ -94,12 +103,12 @@ to the track_data."""
 			else:
 				self.set_deltatime(self.delay)
 				self.delay = 0
-				self.play_NoteContainer(channel, x[2])
+				self.play_NoteContainer(x[2])
 
 				self.set_deltatime(self.int_to_varbyte(tick))
-				self.stop_NoteContainer(channel, x[2])
+				self.stop_NoteContainer(x[2])
 
-	def play_Track(self, channel, track):
+	def play_Track(self, track):
 		"""Converts a Track object to MIDI events and writes \
 them to the track_data."""
 		if hasattr(track, "name"):
@@ -107,23 +116,27 @@ them to the track_data."""
 		self.delay = 0
 		instr = track.instrument
 		if hasattr(instr, "instrument_nr"):
-			self.set_instrument(channel, instr.instrument_nr)
+			self.change_instrument = True
+			self.instrument = instr.instrument_nr
 		for bar in track:
-			self.play_Bar(channel, bar)
+			self.play_Bar(bar)
 
 
-	def stop_Note(self, channel, note):
+	def stop_Note(self, note):
 		"""Adds a note_off event for note to event_track"""
 		velocity = 64
+		channel = 1
 		if hasattr(note, "dynamics"):
 			if 'velocity' in note.dynamics:
 				velocity = note.dynamics["velocity"]
+			if 'channel' in note.dynamics:
+				channel = note.dynamics["channel"]
 
 		self.track_data += self.note_off(channel, int(note) + 12,
 					velocity)
 
 
-	def stop_NoteContainer(self, channel, notecontainer):
+	def stop_NoteContainer(self, notecontainer):
 		"""Adds note_off events for each note in the \
 NoteContainer to the track_data."""
 
@@ -131,11 +144,11 @@ NoteContainer to the track_data."""
 		# the deltatime should be set back to zero after the 
 		# first one has been stopped
 		if len(notecontainer) <= 1:
-			[self.stop_Note(channel, x) for x in notecontainer]
+			[self.stop_Note(x) for x in notecontainer]
 		else:
-			self.stop_Note(channel, notecontainer[0])
+			self.stop_Note(notecontainer[0])
 			self.set_deltatime(0)
-			[self.stop_Note(channel, x) for x in notecontainer[1:]]
+			[self.stop_Note(x) for x in notecontainer[1:]]
 
 
 	def set_instrument(self, channel, instr, bank = 1):

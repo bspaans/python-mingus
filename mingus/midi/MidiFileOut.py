@@ -74,46 +74,46 @@ class MidiFile():
 		print "Written %d bytes to %s." % (len(dat), file)
 		return True
 
-def write_Note(file, channel, note, bpm = 120, repeat = 0):
+def write_Note(file, note, bpm = 120, repeat = 0):
 	"""Expects a Note object from mingus.containers and \
-saves it into a midi file, specified in file. You can set the 
-velocity in Note.dynamics."""
+saves it into a midi file, specified in file. You can set the \
+velocity and channel in Note.dynamics."""
 	m = MidiFile()
 	t = MidiTrack(bpm)
 	m.tracks = [t]
 	while repeat >= 0:
 		t.set_deltatime("\x00")
-		t.play_Note(channel, note)
+		t.play_Note(note)
 		t.set_deltatime("\x48")
-		t.stop_Note(channel, note)
+		t.stop_Note(note)
 		repeat -= 1
 	return m.write_file(file)
 
-def write_NoteContainer(file, channel, notecontainer, bpm = 120, repeat = 0):
+def write_NoteContainer(file, notecontainer, bpm = 120, repeat = 0):
 	"""Writes a mingus.NoteContainer to a midi file."""
 	m = MidiFile()
 	t = MidiTrack(bpm)
 	m.tracks = [t]
 	while repeat >= 0:
 		t.set_deltatime("\x00")
-		t.play_NoteContainer(channel, notecontainer)
+		t.play_NoteContainer(notecontainer)
 		t.set_deltatime("\x48")
-		t.stop_NoteContainer(channel, notecontainer)
+		t.stop_NoteContainer(notecontainer)
 		repeat -= 1
 	return m.write_file(file)
 
-def write_Bar(file, channel, bar, bpm = 120, repeat = 0):
+def write_Bar(file, bar, bpm = 120, repeat = 0):
 	"""Writes a mingus.Bar to a midi file. Both the key and the \
 meter are written to the file as well."""
 	m = MidiFile()
 	t = MidiTrack(bpm)
 	m.tracks = [t]
 	while repeat >= 0:
-		t.play_Bar(channel, bar)
+		t.play_Bar(bar)
 		repeat -= 1
 	return m.write_file(file)
 
-def write_Track(file, channel, track, bpm = 120, repeat = 0):
+def write_Track(file, track, bpm = 120, repeat = 0):
 	"""Writes a mingus.Track to a midi file. Writes the name to \
 the file and sets the instrument if the instrument has the attribute \
 instrument_nr, which represents the MIDI instrument number. The class \
@@ -123,23 +123,21 @@ default."""
 	t = MidiTrack(bpm)
 	m.tracks = [t]
 	while repeat >= 0:
-		t.play_Track(channel, track)
+		t.play_Track(track)
 		repeat -= 1
 	return m.write_file(file)
 
-def write_Composition(file, channels, composition, bpm = 120, repeat = 0):
+def write_Composition(file, composition, bpm = 120, repeat = 0):
 	"""Writes a mingus.Composition to a midi file."""
 	m = MidiFile()
 	t=[]
 	for x in range(len(composition.tracks)):
 		t += [MidiTrack(bpm)]
 	m.tracks = t
-	assert len(channels) >= len(composition.tracks)
-	assert len(m.tracks) == len(channels)
 
 	while repeat >= 0:
 		for i in range(len(composition.tracks)):
-			m.tracks[i].play_Track(channels[i], composition.tracks[i])
+			m.tracks[i].play_Track(composition.tracks[i])
 		repeat -= 1
 	return m.write_file(file)
 
@@ -165,8 +163,8 @@ if __name__ == "__main__":
 	m.instrument_nr = 13
 	t.instrument = m
 	t.name = "Track Name Test"
-	write_NoteContainer("test.mid", 1, n)
-	write_Bar("test2.mid", 2, b)
-	write_Bar("test3.mid", 2, b, 200)
-	write_Bar("test4.mid", 2, b2, 200, 2)
-	write_Track("test5.mid", 1, t, 120)
+	write_NoteContainer("test.mid", n)
+	write_Bar("test2.mid", b)
+	write_Bar("test3.mid", b, 200)
+	write_Bar("test4.mid", b2, 200, 2)
+	write_Track("test5.mid", t, 120)

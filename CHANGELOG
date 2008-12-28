@@ -2,6 +2,10 @@
 CHANGELOG
 ================================================================================
 
+0.3.6.3
+	* Removed channel parameters from the MidiFileOut and MidiTrack functions.
+	The channel a note should be played on can now be set in Note.dynamics["channel"]
+
 0.3.6.2
 	* Enhanced MIDI file parsing.
 
