@@ -331,4 +331,9 @@ the MIDI format, the number of tracks and the time division-, the parsed track d
 			return (result, bytes_read)
 	
 if __name__ == "__main__":
-	print MIDI_to_Composition(argv[1])
+	import fluidsynth
+	import MidiFileOut
+	fluidsynth.init()
+	m = MIDI_to_Composition(argv[1])
+	print m
+	MidiFileOut.write_Composition("test.mid", range(len(m.tracks)), m)
