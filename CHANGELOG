@@ -4,6 +4,7 @@ CHANGELOG
 
 0.3.7.1
 	* Added from_int to Note
+	* Added self.bytes_read to the MidiFile parser to get better debugging.
 
 0.3.7.0 
 	* Updated examples to use mingus.midi instead of mingus.extra

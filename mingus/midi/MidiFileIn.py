@@ -58,6 +58,7 @@ class MidiFile():
 	"""This class parses a MIDI file."""
 	bpm = 120
 	meter = (4,4)
+	bytes_read = 0
 
 	def MIDI_to_Composition(self, file):
 		header, track_data, bytes = self.parse_midi_file(file)
@@ -179,15 +180,17 @@ the format type, number of tracks and parsed time division information"""
 		# Check header
 		try:
 			if fp.read(4) != "MThd":
-				raise HeaderError, "Not a valid MIDI file header"
+				raise HeaderError, "Not a valid MIDI file header. Byte %d." % self.bytes_read
+			self.bytes_read += 4
 		except:
 			raise IOError, "Couldn't read from file."
 
 		# Parse chunk size
 		try:
 			chunk_size = self.bytes_to_int(fp.read(4))
+			self.bytes_read += 4
 		except:
-			raise IOError, "Couldn't read chunk size from file."
+			raise IOError, "Couldn't read chunk size from file. Byte %d." % self.bytes_read
 		
 		# Expect chunk size to be at least 6
 		if chunk_size < 6:
@@ -195,6 +198,7 @@ the format type, number of tracks and parsed time division information"""
 
 		try:
 			format_type = self.bytes_to_int(fp.read(2))
+			self.bytes_read += 2
 			if format_type not in [0, 1, 2]:
 				raise FormatError, "%d is not a valid MIDI format." % format_type
 		except:
@@ -203,6 +207,7 @@ the format type, number of tracks and parsed time division information"""
 		try:
 			number_of_tracks = self.bytes_to_int(fp.read(2))
 			time_division = self.parse_time_division(fp.read(2))
+			self.bytes_read += 4
 		except:
 			raise IOError, "Couldn't read number of tracks and/or time division from tracks."
 
@@ -212,6 +217,7 @@ the format type, number of tracks and parsed time division information"""
 		if chunk_size % 2 == 1:
 			raise FormatError, "Won't parse this."
 		fp.read(chunk_size / 2)
+		self.bytes_read += chunk_size / 2
 
 		return (format_type, number_of_tracks, time_division)
 
@@ -263,6 +269,7 @@ a list of events and the number of bytes that were read."""
 		try:
 			ec = self.bytes_to_int(fp.read(1))
 			chunk_size += 1
+			self.bytes_read += 1
 		except:
 			raise IOError, "Couldn't read event type and channel data from file."
 
@@ -271,7 +278,7 @@ a list of events and the number of bytes that were read."""
 		channel = ec & 0x0f
 
 		if event_type < 8:
-			raise FormatError, "Unknown event type %d" % event_type
+			raise FormatError, "Unknown event type %d. Byte %d." % (event_type, self.bytes_read)
 
 		# Meta events can have strings of variable length
 		if event_type == 15:
@@ -279,7 +286,9 @@ a list of events and the number of bytes that were read."""
 				meta_event = self.bytes_to_int(fp.read(1))
 				length,chunk_delta = self.parse_varbyte_as_int(fp)
 				data = fp.read(length)
+				print length,data
 				chunk_size += 1 + chunk_delta + length
+				self.bytes_read += 1 + length
 			except:
 				raise IOError, "Couldn't read meta event from file."
 			return {"event": event_type, "meta_event": meta_event,
@@ -290,23 +299,25 @@ a list of events and the number of bytes that were read."""
 			try:
 				param1 = self.bytes_to_int(fp.read(1))
 				chunk_size += 1
+				self.bytes_read += 1
 			except:
 				raise IOError, "Couldn't read MIDI event parameters from file."
 
 			
 			return {"event": event_type, "channel": channel, 
-				"param1": param1},  chunk_size
+				"param1": param1}, chunk_size
 		else:
 			try:
 				param1 = self.bytes_to_int(fp.read(1))
 				param2 = self.bytes_to_int(fp.read(1))
 				chunk_size += 2
+				self.bytes_read += 2
 			except:
 				raise IOError, "Couldn't read MIDI event parameters from file."
 
 			
 			return {"event": event_type, "channel": channel, 
-				"param1": param1, "param2": param2},  chunk_size
+				"param1": param1, "param2": param2}, chunk_size
 
 
 
@@ -316,11 +327,13 @@ a list of events and the number of bytes that were read."""
 		try:
 			if fp.read(4) != "MTrk":
 				raise HeaderError, "Not a valid Track header."""
+			self.bytes_read += 4
 		except:
 			raise IOError, "Couldn't read track header from file."""
 
 		try:
 			chunk_size = self.bytes_to_int(fp.read(4))
+			self.bytes_read += 4
 		except:
 			raise IOError, "Couldn't read track chunk size from file."""
 		return chunk_size
@@ -334,19 +347,18 @@ the MIDI format, the number of tracks and the time division-, the parsed track d
 		except:
 			raise IOError, "File not found"
 		
+		self.bytes_read = 0
 		header = self.parse_midi_file_header(f)
 		tracks = header[1]
-		bytes_read = 0
 		result = []
 
 		while tracks > 0:
-			events, bytes = self.parse_track(f)
-			bytes_read += bytes
+			events = self.parse_track(f)
 			result.append(events)
 			tracks -= 1
 		
 		f.close()
-		return header, result, bytes_read
+		return header, result
 
 	def parse_varbyte_as_int(self, fp, return_bytes_read = True):
 		"""Reads a variable length byte from the file and returns the corresponding integer."""
@@ -356,6 +368,7 @@ the MIDI format, the number of tracks and the time division-, the parsed track d
 		while r & 0x80:
 			try:
 				r = self.bytes_to_int(fp.read(1))
+				self.bytes_read += 1
 			except:
 				IOError, "Couldn't read variable length byte from file."
 			if r & 0x80:
