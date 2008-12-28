@@ -286,7 +286,6 @@ a list of events and the number of bytes that were read."""
 				meta_event = self.bytes_to_int(fp.read(1))
 				length,chunk_delta = self.parse_varbyte_as_int(fp)
 				data = fp.read(length)
-				print length,data
 				chunk_size += 1 + chunk_delta + length
 				self.bytes_read += 1 + length
 			except:
