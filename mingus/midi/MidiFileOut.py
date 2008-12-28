@@ -20,7 +20,7 @@
 
 ================================================================================
 
-   MidiFileOut contains methods that can generate MIDI files from the 
+   MidiFileOut contains functions that can generate MIDI files from the 
    objects in mingus.containers.
 
 ================================================================================
@@ -76,7 +76,8 @@ class MidiFile():
 
 def write_Note(file, channel, note, bpm = 120, repeat = 0):
 	"""Expects a Note object from mingus.containers and \
-saves it into a midi file, specified in file."""
+saves it into a midi file, specified in file. You can set the 
+velocity in Note.parameters."""
 	m = MidiFile()
 	t = MidiTrack(bpm)
 	m.tracks = [t]
@@ -102,7 +103,8 @@ def write_NoteContainer(file, channel, notecontainer, bpm = 120, repeat = 0):
 	return m.write_file(file)
 
 def write_Bar(file, channel, bar, bpm = 120, repeat = 0):
-	"""Writes a mingus.Bar to a midi file."""
+	"""Writes a mingus.Bar to a midi file. Both the key and the \
+meter are written to the file as well."""
 	m = MidiFile()
 	t = MidiTrack(bpm)
 	m.tracks = [t]
@@ -112,7 +114,11 @@ def write_Bar(file, channel, bar, bpm = 120, repeat = 0):
 	return m.write_file(file)
 
 def write_Track(file, channel, track, bpm = 120, repeat = 0):
-	"""Writes a mingus.Track to a midi file."""
+	"""Writes a mingus.Track to a midi file. Writes the name to \
+the file and sets the instrument if the instrument has the attribute \
+instrument_nr, which represents the MIDI instrument number. The class \
+MidiInstrument in mingus.containers.Instrument has this attribute by \
+default."""
 	m = MidiFile()
 	t = MidiTrack(bpm)
 	m.tracks = [t]
