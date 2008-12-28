@@ -38,9 +38,11 @@ import binascii
 
 
 def MIDI_to_Composition(file):
-	"""Converts a MIDI file to a mingus.containers.Composition. \
-This function can raise all kinds of exceptions (IOError, HeaderError, \
-TimeDivisionError, FormatError), so be sure to try and catch."""
+	"""Converts a MIDI file to a mingus.containers.Composition and \
+returns it in a tuple with the last used tempo in beats per minute (this \
+will change in the future). This function can raise all kinds of exceptions \
+(IOError, HeaderError, TimeDivisionError, FormatError), so be sure to try \
+and catch. """
 	m = MidiFile()
 	return m.MIDI_to_Composition(file)
 
@@ -137,11 +139,11 @@ class MidiFile():
 					elif event["meta_event"] == 47:
 						pass
 
-					# Set tempo
+					# Set tempo 
+					#warning Only the last change in bpm will get saved currently
 					elif event["meta_event"] == 81:
 						mpqn = self.bytes_to_int(event["data"])
 						bpm = 60000000 / mpqn
-						print "NB. Only the last change in BPM will get saved, currently."
 
 					# Time Signature
 					elif event["meta_event"] == 88:

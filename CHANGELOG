@@ -4,6 +4,8 @@ CHANGELOG
 
 0.3.6.4
 	* Instruments get succesfully set when loading a midi file.
+	* Last set tempo will get returned as well, until we have a better solution
+	(eg. a track containing only tempo changes)
 	* To set the channel and the velocity off a Note. Use Note.channel and 
 	Note.velocity instead of the dynamics dictionary.
 
