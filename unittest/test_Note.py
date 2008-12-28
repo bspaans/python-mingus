@@ -1,7 +1,7 @@
 import sys
 sys.path += ["../"]
 
-import mingus.containers.Note as Note
+from mingus.containers.Note import Note
 import unittest
 from mingus.containers.mt_exceptions import NoteFormatError
 
@@ -76,6 +76,11 @@ class test_Note(unittest.TestCase):
 		self.assertEqual(Note("C", 5), a)
 		a.transpose("5", False)
 		self.assertEqual(Note("F"), a)
+
+	def test_from_int(self):
+
+		self.assertEqual(Note("C", 0), Note().from_int(0))
+		self.assertEqual(Note("C", 1), Note().from_int(12))
 
 def suite():
 	return unittest.TestLoader().loadTestsFromTestCase(test_Note)

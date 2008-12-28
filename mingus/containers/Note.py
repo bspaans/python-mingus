@@ -21,10 +21,10 @@
 
 """
 
-from mingus.core import notes
+from mingus.core import notes, intervals
 from mt_exceptions import NoteFormatError
 from math import log
-from mingus.core import intervals
+
 
 
 class Note:
@@ -138,6 +138,19 @@ Doesn't change the octave."""
 			if self > Note(old):
 				self.octave -= 1
 
+
+	def from_int(self, integer):
+		"""Sets the Note corresponding to the integer. 0 is a C on octave 0, \
+12 is a C on octave 1, etc. 
+{{{
+>>> c = Note()
+>>> c.from_int(12)
+>>> c
+'C-1'
+}}}"""
+		self.name = notes.int_to_note(integer % 12)
+		self.octave = integer / 12
+		return self
 
 	def to_hertz(self, standard_pitch = 440):
 		"""Returns the Note in Hz. The `standard_pitch` argument can be used \

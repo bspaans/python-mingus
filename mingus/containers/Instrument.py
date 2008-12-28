@@ -22,7 +22,7 @@
 
 """
 
-from Note import Note
+from mingus.containers.Note import Note
 from mt_exceptions import UnexpectedObjectError
 
 class Instrument:

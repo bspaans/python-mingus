@@ -2,6 +2,9 @@
 CHANGELOG
 ================================================================================
 
+0.3.7.1
+	* Added from_int to Note
+
 0.3.7.0 
 	* Updated examples to use mingus.midi instead of mingus.extra
 
