@@ -68,6 +68,7 @@ class MidiFile():
 			print "Don't know how to parse this yet"
 			return c
 
+		print header
 		ticks_per_beat = header[2]["ticks_per_beat"]
 		for track in track_data:
 			t = Track()

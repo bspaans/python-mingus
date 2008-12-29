@@ -2,6 +2,11 @@
 CHANGELOG
 ================================================================================
 
+0.3.7.2
+	* Started on MusicXML implementation
+	* Fixed bug in setup script found and reported by namin:
+	http://groups.google.com/group/mingus-python/t/ace3be8d50061df0
+
 0.3.7.1
 	* Added from_int to Note
 	* Added self.bytes_read to the MidiFile parser to get better debugging.

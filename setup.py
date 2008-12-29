@@ -1,7 +1,7 @@
 from distutils.core import setup
 
 setup(name= "mingus",
-	  version = "0.3.7.1",
+	  version = "0.3.7.2",
 	  description = "mingus is an advanced music theory and notation package",
 	  long_description = "mingus is an advanced music theory and notation package "\
 			"for Python with MIDI playback support. It can be used to play "\
@@ -14,9 +14,9 @@ setup(name= "mingus",
 	  author_email = "onderstekop@gmail.com",
 	  url = "http://mingus.googlecode.com/",
 	  packages = ['mingus', 'mingus.core', 'mingus.containers', 'mingus.extra', 'mingus.midi'],
-	  data_files = [('mingus_examples/pygame-drum/', ['mingus_examples/pygame-drum/pad.png',\
+	  data_files = [('mingus_examples/pygame-drum', ['mingus_examples/pygame-drum/pad.png',\
 			  		     'mingus_examples/pygame-drum/pygame-drum.py']),\
-			('mingus_examples/pygame-piano/', ['mingus_examples/pygame-piano/pygame-piano.py',
+			('mingus_examples/pygame-piano', ['mingus_examples/pygame-piano/pygame-piano.py',
 				 			   'mingus_examples/pygame-piano/keys.png'])],
 	  classifiers = [
 			'Intended Audience :: Developers',
