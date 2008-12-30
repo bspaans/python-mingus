@@ -68,7 +68,6 @@ class MidiFile():
 			print "Don't know how to parse this yet"
 			return c
 
-		print header
 		ticks_per_beat = header[2]["ticks_per_beat"]
 		for track in track_data:
 			t = Track()
@@ -247,7 +246,6 @@ clock_ticks will also be set. If fps is False, ticks_per_beat will hold the valu
 		"""Parses a MIDI track from its header to its events. And returns \
 a list of events and the number of bytes that were read."""
 
-		print "track %x" % self.bytes_read
 		events = []
 		chunk_size = self.parse_track_header(fp)
 		bytes = chunk_size
@@ -283,8 +281,8 @@ a list of events and the number of bytes that were read."""
 
 		# I don't know what these events are supposed to do, but I keep finding them.
 		# The parser ignores them.
-		#if event_type < 8:
-		#	raise FormatError, "Unknown event type %d. Byte %d." % (event_type, self.bytes_read)
+		if event_type < 8:
+			raise FormatError, "Unknown event type %d. Byte %d." % (event_type, self.bytes_read)
 
 		# Meta events can have strings of variable length
 		if event_type == 15:

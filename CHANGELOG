@@ -2,6 +2,14 @@
 CHANGELOG
 ================================================================================
 
+0.3.7.3
+	* Replaced fluidsynth.py and MidiSequencer.py by the new FluidSynth 
+	module which makes use of the pyFluidSynth bindings. This means that you
+	don't have to start a server by hand anymore and that you can have more 
+	control over the audio and soundfonts, since fluidsynth gets loaded 
+	dynamically. A general purpose sequencer will be added later.
+
+
 0.3.7.2
 	* Started on MusicXML implementation
 	* Fixed bug in setup script found and reported by namin:
