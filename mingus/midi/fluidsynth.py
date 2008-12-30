@@ -68,9 +68,9 @@ sf2 file. Retuns True on success, False on failure."""
 		return True
 
 
-	def set_instrument(self, channel, instr):
+	def set_instrument(self, channel, instr, bank = 0):
 		"""Sets the channel to the instrument _instr_."""
-		self.fs.program_select(channel, self.sfid, 0, instr)
+		self.fs.program_select(channel, self.sfid, bank, instr)
 		return True
 
 	def control_change(self, channel, control, value):
@@ -275,7 +275,9 @@ audio. The sf2 argument should be the location of a valid soundfont
 file. Returns True on success, False on failure."""
 	global midi
 	midi.start_audio_output()
-	return midi.load_sound_font(sf2)
+	midi.load_sound_font(sf2)
+	midi.fs.program_reset()
+	return True
 
 
 def play_Note(note, channel = 1, velocity = 100):
@@ -347,5 +349,5 @@ def pan(channel, value):
 def main_volume(channel, value):
 	return midi.main_volume(channel, value)
 
-def set_instrument(channel, instr):
-	return midi.set_instrument(channel, instr)
+def set_instrument(channel, instr, bank = 0):
+	return midi.set_instrument(channel, instr, bank)

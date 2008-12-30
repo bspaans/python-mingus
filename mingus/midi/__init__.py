@@ -22,7 +22,6 @@
 
 """
 
-from MidiSequencer import MidiSequencer
 from MidiTrack import MidiTrack
 import MidiFileOut
 import MidiFileIn

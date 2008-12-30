@@ -2,6 +2,10 @@
 CHANGELOG
 ================================================================================
 
+0.3.7.6
+	* Added bank parameter to fluidsynth.set_instrument
+	* Added program_reset call to get drums back.
+
 0.3.7.5
 	* Updated example applications to use new fluidsynth module.
 
