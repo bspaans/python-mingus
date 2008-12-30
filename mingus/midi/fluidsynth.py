@@ -28,6 +28,9 @@
    
    	fluidsynth -is -m alsa_seq ./nameofinstrbank.sf2
 
+   NB. Because fluidsynth uses unix style sockets, this doesn't work on Windows.
+   We are looking for a solution to make mingus truely cross-platform.
+
 ================================================================================
 
 """
