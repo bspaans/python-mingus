@@ -6,8 +6,7 @@
 	Converts a progression to chords, orchestrates them and plays 
 	them using fluidsynth.
 
-	Make sure you have a fluidsynth server listening at port 9800
-	for this example to work.
+	Make sure to set SF2 to a valid soundfont file.
 	
 	Based on play_progression.py
 
@@ -19,6 +18,8 @@ from mingus.containers import NoteContainer, Note
 from mingus.midi import fluidsynth
 import time, sys
 from random import random, choice, randrange
+
+SF2 = "soundfont.sf2"
 
 progression = ["I", "bVdim7"]
 #progression = ["I", "vi", "ii", "iii7",
@@ -60,8 +61,8 @@ solo_channel = 13
 
 random_solo_channel = False
 
-if not fluidsynth.init_fluidsynth():
-	print "Couldn't connect to FluidSynth server at port 9800."
+if not fluidsynth.init(SF2):
+	print "Couldn't load soundfont", SF2
 	sys.exit(1)
 
 chords = progressions.to_chords(progression, key)
@@ -84,14 +85,14 @@ while loop < song_end:
 
 		# Play chord
 		if not swing and play_chords and loop > chord_start and loop < chord_end:
-			fluidsynth.play_NoteContainer(c, randrange(50,75), chord_channel)
+			fluidsynth.play_NoteContainer(c, chord_channel, randrange(50,75))
 
 		if play_chords and loop > chord_start and loop < chord_end:
 			if orchestrate_second:
 				if loop % 2 == 0:
-					fluidsynth.play_NoteContainer(c, randrange(50,75), chord_channel2)
+					fluidsynth.play_NoteContainer(c, chord_channel2, randrange(50,75))
 			else:
-				fluidsynth.play_NoteContainer(c, randrange(50,75), chord_channel2)
+				fluidsynth.play_NoteContainer(c, chord_channel2, randrange(50,75))
 
 
 		# Create random solo over chord
@@ -119,48 +120,48 @@ while loop < song_end:
 					if t > 0 and t < len(beats) - 1:
 						if beats[t-1] and not beats[t+1]:
 							n = Note(choice(c).name)
-				fluidsynth.play_Note(n, randrange(80, 110), solo_channel)
+				fluidsynth.play_Note(n, solo_channel, randrange(80, 110))
 				print n
 
 			# Repeat chord on half of the bar
 			if play_chords and t != 0 and loop > chord_start and loop < chord_end:
 				if swing and random() > 0.95:
-					fluidsynth.play_NoteContainer(c, randrange(20, 75), chord_channel3)
+					fluidsynth.play_NoteContainer(c, chord_channel3, randrange(20, 75))
 				elif t % (len(beats) / 2) == 0 and t != 0:
-					fluidsynth.play_NoteContainer(c, randrange(20, 75), chord_channel3)
+					fluidsynth.play_NoteContainer(c, chord_channel3, randrange(20, 75))
 
 			# Play bass note
 			if play_bass and t % 4 == 0 and t != 0:
 				l = Note(choice(c).name)
 				l.octave_down()
 				l.octave_down()
-				fluidsynth.play_Note(l, randrange(50,75), bass_channel)
+				fluidsynth.play_Note(l, bass_channel,  randrange(50,75))
 			elif play_bass and t == 0:
-				fluidsynth.play_Note(l, randrange(50,75), bass_channel)
+				fluidsynth.play_Note(l, bass_channel, randrange(50,75))
 
 			# Drums
 			if play_drums and loop > 0:
 				if t % (len(beats) / 2) == 0 and t != 0:
-					fluidsynth.play_Note(Note("E", 2), randrange(50,100), 9) # snare
+					fluidsynth.play_Note(Note("E", 2), 9, randrange(50,100)) # snare
 				else:
 					if random() > 0.8 or t == 0:
-						fluidsynth.play_Note(Note("C", 2), randrange(20,100), 9) # bass
+						fluidsynth.play_Note(Note("C", 2), 9, randrange(20,100)) # bass
 
 				if t == 0 and random() > 0.75:
-					fluidsynth.play_Note(Note("C#", 3), randrange(60,100), 9) # crash
+					fluidsynth.play_Note(Note("C#", 3), 9, randrange(60,100)) # crash
 
 				if swing:
 					if random() > 0.9:
-						fluidsynth.play_Note(Note("A#", 2), randrange(50,100), 9) # hihat open
+						fluidsynth.play_Note(Note("A#", 2), 9, randrange(50,100)) # hihat open
 					elif random() > 0.6:
-						fluidsynth.play_Note(Note("G#", 2), randrange(100,120), 9) # hihat closed
+						fluidsynth.play_Note(Note("G#", 2), 9, randrange(100,120)) # hihat closed
 					if random() > 0.95:
-						fluidsynth.play_Note(Note("E", 2), 100, 9) # snare
+						fluidsynth.play_Note(Note("E", 2), 9,  100) # snare
 				elif t % 2 == 0: 
-					fluidsynth.play_Note(Note("A#", 2), 100, 9) # hihat open
+					fluidsynth.play_Note(Note("A#", 2), 9, 100) # hihat open
 				else:
 					if random() > 0.9:
-						fluidsynth.play_Note(Note("E", 2), 100, 9) # snare
+						fluidsynth.play_Note(Note("E", 2), 9,  100) # snare
 	
 			if swing:
 				if t % 2 == 0:

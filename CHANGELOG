@@ -2,6 +2,9 @@
 CHANGELOG
 ================================================================================
 
+0.3.7.5
+	* Updated example applications to use new fluidsynth module.
+
 0.3.7.4
 	* Moved FluidSynth.py back to fluidsynth.py
 	* Added pyFluidSynth module to mingus, which was written by 

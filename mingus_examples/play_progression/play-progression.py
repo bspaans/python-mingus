@@ -5,9 +5,7 @@
 
 	Converts a progression to chords and plays them using fluidsynth.
 
-	Make sure you have a fluidsynth server listening at port 9800
-	for this example to work.
-
+	You should specify the SF2 soundfont file.
 
 """
 
@@ -19,14 +17,16 @@ import time, sys
 from random import random
 
 
+SF2 = "soundfont_example.sf2"
+
 progression = ["I", "vi", "ii", "iii7",
 	       "I7", "viidom7", "iii7", "V7"]
 key = 'C'
 
 chords = progressions.to_chords(progression, key)
 
-if not fluidsynth.init_fluidsynth():
-	print "Couldn't connect to FluidSynth server at port 9800."
+if not fluidsynth.init(SF2):
+	print "Couldn't load soundfont", SF2
 	sys.exit(1)
 
 while 1:

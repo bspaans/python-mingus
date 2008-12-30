@@ -7,8 +7,7 @@
 
 
 	This piano is completely controlled by the keyboard, no MIDI hardware is
-	required. Make sure you have a fluidsynth server listening at port 9800 for this 
-	example.
+	required. You only have to set the SF2 variable to a valid soundfont file.
 
 
 *** Keys ****
@@ -46,6 +45,8 @@ from mingus.containers import *
 from mingus.midi import fluidsynth
 from os import sys
 
+SF2 = "soundfont.sf2"
+
 OCTAVES = 5 	# number of octaves to show
 LOWEST = 2 	# lowest octave to show
 FADEOUT = 0.25 	# coloration fadeout time (1 tick = 0.001)
@@ -73,8 +74,8 @@ def load_img(name):
 		raise SystemExit, message
 	return image, image.get_rect()
 
-if not fluidsynth.init_fluidsynth():
-	print "Couldn't connect to the fluidsynth server. Are you sure it is running?"
+if not fluidsynth.init(SF2):
+	print "Couldn't load soundfont", SF2
 	sys.exit(1)
 
 
@@ -166,7 +167,7 @@ def play_note(note):
 	text.blit(t, (0,0))
 
 	# Play the note
-	fluidsynth.play_Note(note, 100, channel)
+	fluidsynth.play_Note(note, channel, 100)
 
 
 while not quit:

@@ -6,8 +6,7 @@
 	A pygame drum computer with recording and playback functionality.
 
 	The drum computer is completely controlled by the keyboard, no MIDI
-	hardware is required. Make sure you have a fluidsynth server 
-	listening at port 9800 for this example to work.
+	hardware is required. You only have to specify an sf2 file.
 
 
 *** Keys *** 
@@ -38,6 +37,8 @@ from mingus.containers import *
 from mingus.midi import fluidsynth
 from os import sys
 
+SF2 = "soundfont.sf2"
+
 
 # The 'pads' represent places you can hit. These are the topleft coordinates
 PAD_PLACEMENT = [(190, 20), (330, 20), (470, 20), (330, 160), # high, mid, low, snare
@@ -59,8 +60,8 @@ def load_img(name):
 		raise SystemExit, message
 	return image, image.get_rect()
 
-if not fluidsynth.init_fluidsynth():
-	print "Couldn't connect to the fluidsynth server. Are you sure it is running?"
+if not fluidsynth.init(SF2):
+	print "Couldn't load soundfont", SF2
 	sys.exit(1)
 
 
@@ -111,7 +112,7 @@ def play_note(note):
 		playing.append([index, tick])
 		recorded.append([index, tick, note])
 		recorded_buffer.append([index, tick])
-	fluidsynth.play_Note(note, 100, 9)
+	fluidsynth.play_Note(note, 9, 100)
 
 
 tick = 0.0
@@ -238,7 +239,7 @@ while not quit:
 		try: 
 			while recorded[played][1] <= tick:
 				playing.append([recorded[played][0],recorded[played][1]])
-				fluidsynth.play_Note(recorded[played][2], 100, 9)
+				fluidsynth.play_Note(recorded[played][2],  9, 100)
 				played += 1
 				if played == len(recorded) - 1:
 					status = "stopped"
