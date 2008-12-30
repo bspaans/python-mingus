@@ -1,43 +1,45 @@
 import sys
 sys.path += ["../"]
 
-from mingus.midi import FluidSynth
+from mingus.midi import fluidsynth
 from mingus.containers import *
 import unittest
 import time
 
-class test_FluidSynth(unittest.TestCase):
+class test_fluidsynth(unittest.TestCase):
 	
 	def setUp(self):
-		FluidSynth.init("example.sf2")
+		fluidsynth.init("example.sf2")
+		fluidsynth.set_instrument(0,0)
+
 
 	def test_main_volume(self):
 		for x in range(0, 128, 20):
-			FluidSynth.midi.main_volume(1, x)
-			FluidSynth.midi.main_volume(2, x)
-			FluidSynth.play_NoteContainer(NoteContainer(["C", "E", "G"]), 100,1)
+			fluidsynth.midi.main_volume(1, x)
+			fluidsynth.midi.main_volume(2, x)
+			fluidsynth.play_NoteContainer(NoteContainer(["C", "E", "G"]), 0)
 			time.sleep(0.25)
 
 	def test_control_change(self):
 		for x in range(0, 128, 20):
-			FluidSynth.midi.control_change(1, 13,x)
-			FluidSynth.play_NoteContainer(NoteContainer(["C", "E", "G"]), 100,1)
+			fluidsynth.midi.control_change(1, 13,x)
+			fluidsynth.play_NoteContainer(NoteContainer(["C", "E", "G"]), 0)
 			time.sleep(0.25)
 
 	def test_playnote(self):
-		self.assert_(FluidSynth.play_Note(Note("C")))
+		self.assert_(fluidsynth.play_Note(Note("C")))
 		time.sleep(0.25)
-		FluidSynth.stop_Note(Note("C"))
+		fluidsynth.stop_Note(Note("C"))
 
 	def test_playnotecontainer(self):
-		self.assert_(FluidSynth.play_NoteContainer(NoteContainer(["C", "E", "G"])))
+		self.assert_(fluidsynth.play_NoteContainer(NoteContainer(["C", "E", "G"]), 0))
 		time.sleep(0.25)
-		FluidSynth.stop_NoteContainer(NoteContainer(["C", "E", "G"]))
+		fluidsynth.stop_NoteContainer(NoteContainer(["C", "E", "G"]), 0)
 
 
-		self.assert_(FluidSynth.play_NoteContainer(NoteContainer(["E", "G", Note("C", 6)])))
+		self.assert_(fluidsynth.play_NoteContainer(NoteContainer(["E", "G", Note("C", 6)]), 0))
 		time.sleep(0.25)
-		FluidSynth.stop_NoteContainer(NoteContainer(["E", "G", Note("C", 6)]))
+		fluidsynth.stop_NoteContainer(NoteContainer(["E", "G", Note("C", 6)]), 0)
 
 
 	def test_playbar(self):
@@ -45,7 +47,7 @@ class test_FluidSynth(unittest.TestCase):
 		b + Note("C")
 		b + Note("E")
 		b + Note("G")
-		self.assert_(FluidSynth.play_Bar(b))
+		self.assert_(fluidsynth.play_Bar(b), 0)
 
 	def test_playbars(self):
 		b = Bar()
@@ -57,7 +59,7 @@ class test_FluidSynth(unittest.TestCase):
 		c + "Gb"
 		c + "B"
 		c + Note("C", 5)
-		self.assert_(FluidSynth.play_Bars([b, c], [1, 2]))
+		self.assert_(fluidsynth.play_Bars([b, c], [1, 2]), 0)
 
 	def test_track(self):
 		b = Bar()
@@ -69,7 +71,7 @@ class test_FluidSynth(unittest.TestCase):
 		t = Track()
 		t + b
 		t + b
-		self.assert_(FluidSynth.play_Track(t))
+		self.assert_(fluidsynth.play_Track(t), 0)
 
 	def test_tracks(self):
 		b = Bar()
@@ -90,7 +92,7 @@ class test_FluidSynth(unittest.TestCase):
 		t2 = Track()
 		t2 + b
 		t2 + b
-		self.assert_(FluidSynth.play_Tracks([t, t2], [0, 1]))
+		self.assert_(fluidsynth.play_Tracks([t, t2], [0, 1]))
 
 	def test_composition(self):
 		m = MidiInstrument("Vibraphone")
@@ -119,6 +121,6 @@ class test_FluidSynth(unittest.TestCase):
 		c = Composition()
 		c+ t
 		c+ t2
-		self.assert_(FluidSynth.play_Composition(c))
+		self.assert_(fluidsynth.play_Composition(c))
 def suite():
-	return unittest.TestLoader().loadTestsFromTestCase(test_FluidSynth)
+	return unittest.TestLoader().loadTestsFromTestCase(test_fluidsynth)

@@ -2,7 +2,7 @@
 
 ================================================================================
 
-	mingus - Music theory Python package, MIDI sequencer
+	mingus - Music theory Python package, FluidSynth support
 	Copyright (C) 2008, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
@@ -20,8 +20,19 @@
 
 ================================================================================
 
-   This module provides a [refMingusExtraMidisequencer MidiSequencer] which will take the objects from 
-   mingus.containers and turn them into MIDI messages.
+   This module provides FluidSynth support for mingus. FluidSynth is a software 
+   MIDI synthesizer which allows you to play the containers in mingus.containers 
+   real-time. To work with this module, you'll need fluidsynth and a nice 
+   instrument collection (look here: http://www.hammersound.net, go to Sounds -> 
+   Soundfont Library -> Collections).
+
+   To start using FluidSynth with mingus, do:
+{{{
+   	>>> from mingus.midi import fluidsynth
+	>>> fluidsynth.init("soundfontlocation.sf2")
+}}}
+
+   Now you are ready to play Notes, NoteContainers, etc.
 
 ================================================================================
 
@@ -80,7 +91,7 @@ attributes, which will take presedence over the function arguments."""
 			velocity = note.velocity
 		if hasattr(note, 'channel'):
 			channel = note.channel
-		self.fs.noteon(channel, int(note) + 12, velocity)
+		self.fs.noteon(int(channel), int(note) + 12, int(velocity))
 		return True
 
 	def stop_Note(self, note, channel = 1):
@@ -283,7 +294,7 @@ arguments.
 
 def stop_Note(note, channel = 1, velocity = 100):
 	"""Stops the Note playing at channel."""
-	return midi.stop_Note(note, channel)
+	return midi.stop_Note(note, channel, velocity)
 
 
 def play_NoteContainer(nc, channel = 1, velocity = 100):
@@ -296,11 +307,11 @@ def stop_NoteContainer(nc, channel = 1):
 
 def play_Bar(bar, channel = 1, bpm = 120):
 	"""Plays a Bar object."""
-	return midi.play_Bar(bar, channel, duration)
+	return midi.play_Bar(bar, channel, bpm)
 
 def play_Bars(bars, channels, bpm = 120):
 	"""Plays a list of bars on the given list of channels."""
-	return midi.play_Bars(bars, channels)
+	return midi.play_Bars(bars, channels, bpm)
 
 def play_Track(track, channel = 1):
 	"""Plays a Track object."""

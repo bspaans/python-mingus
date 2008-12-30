@@ -4,7 +4,9 @@ CHANGELOG
 
 0.3.7.4
 	* Moved FluidSynth.py back to fluidsynth.py
-	* Added pyFluidSynth module to mingus.
+	* Added pyFluidSynth module to mingus, which was written by 
+	Nathan Whitehead and available as separate package here: 
+	http://code.google.com/p/pygalaxy/wiki/pyFluidSynth
 	* Removed enable_reverb and disable_reverb from fluidsynth.
 	* Updated FluidSynth unittests.
 
@@ -14,6 +16,7 @@ CHANGELOG
 	don't have to start a server by hand anymore and that you can have more 
 	control over the audio and soundfonts, since fluidsynth gets loaded 
 	dynamically. A general purpose sequencer will be added later.
+	* Rearranged some of the illogical function arguments.
 
 
 0.3.7.2
