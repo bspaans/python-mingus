@@ -29,7 +29,7 @@
 
 from datetime import datetime
 from mingus.containers.Instrument import MidiInstrument
-import fluidsynth as fs
+import pyFluidSynth as fs
 from time import sleep
 
 class MidiSequencer:
@@ -335,12 +335,6 @@ def pan(channel, value):
 
 def main_volume(channel, value):
 	return midi.main_volume(channel, value)
-
-def enable_reverb():
-	return midi.write("reverb on\nrev_setroomsize 1\n")
-
-def disable_reverb():
-	return midi.write("reverb off\n")
 
 def set_instrument(channel, instr):
 	return midi.set_instrument(channel, instr)

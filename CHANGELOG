@@ -2,6 +2,12 @@
 CHANGELOG
 ================================================================================
 
+0.3.7.4
+	* Moved FluidSynth.py back to fluidsynth.py
+	* Added pyFluidSynth module to mingus.
+	* Removed enable_reverb and disable_reverb from fluidsynth.
+	* Updated FluidSynth unittests.
+
 0.3.7.3
 	* Replaced fluidsynth.py and MidiSequencer.py by the new FluidSynth 
 	module which makes use of the pyFluidSynth bindings. This means that you
