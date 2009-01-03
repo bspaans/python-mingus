@@ -2,6 +2,9 @@
 CHANGELOG
 ================================================================================
 
+0.3.7.8
+	* Another tiny fix in stop_Note.
+
 0.3.7.7
 	* Bugfix in fluidsynth.stop_Note and fluidsynth.MidiSequencer.stop_Note:
 	removed the velocity argument and overwrites channel if Note.channel is 

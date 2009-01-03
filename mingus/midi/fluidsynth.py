@@ -99,7 +99,8 @@ attributes, which will take presedence over the function arguments."""
 will take presedence over the channel argument given here."""
 		if hasattr(note, 'channel'):
 			channel = note.channel
-		return self.fs.noteoff(channel, int(note) + 12)
+		self.fs.noteoff(channel, int(note) + 12)
+		return True
 
 
 
