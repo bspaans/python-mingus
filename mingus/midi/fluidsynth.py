@@ -95,7 +95,10 @@ attributes, which will take presedence over the function arguments."""
 		return True
 
 	def stop_Note(self, note, channel = 1):
-		"""Stops a note on a channel."""
+		"""Stops a note on a channel. If Note.channel is set, it \
+will take presedence over the channel argument given here."""
+		if hasattr(note, 'channel'):
+			channel = note.channel
 		return self.fs.noteoff(channel, int(note) + 12)
 
 
@@ -268,15 +271,20 @@ which will determine if the tracks should keep playing after each played bar."""
 
 
 midi = MidiSequencer()
+initialized = False
 
 def init(sf2):
 	"""This function needs to be called before you can have any \
 audio. The sf2 argument should be the location of a valid soundfont 
 file. Returns True on success, False on failure."""
-	global midi
-	midi.start_audio_output()
-	midi.load_sound_font(sf2)
-	midi.fs.program_reset()
+	global midi, initialized
+
+	if not initialized:
+		midi.start_audio_output()
+		if not midi.load_sound_font(sf2):
+			return False
+		midi.fs.program_reset()
+		initialized = True
 	return True
 
 
@@ -294,9 +302,9 @@ arguments.
 	return midi.play_Note(note, channel, velocity)
 
 
-def stop_Note(note, channel = 1, velocity = 100):
+def stop_Note(note, channel = 1):
 	"""Stops the Note playing at channel."""
-	return midi.stop_Note(note, channel, velocity)
+	return midi.stop_Note(note, channel)
 
 
 def play_NoteContainer(nc, channel = 1, velocity = 100):

@@ -160,7 +160,7 @@ def fluid_synth_write_s16_stereo(synth, len):
 
 class Synth:
     """Synth represents a FluidSynth synthesizer"""
-    def __init__(self, gain=0.2, samplerate=44100):
+    def __init__(self, gain=0.1, samplerate=44100):
         """Create new synthesizer object to control sound generation
 
         Optional keyword arguments:
@@ -173,7 +173,7 @@ class Synth:
         fluid_settings_setnum(st, 'synth.gain', gain)
         fluid_settings_setnum(st, 'synth.sample-rate', samplerate)
         # No reason to limit ourselves to 16 channels
-        fluid_settings_setint(st, 'synth.midi-channels', 256)
+        fluid_settings_setint(st, 'synth.midi-channels', 16)
         self.settings = st
         self.synth = new_fluid_synth(st)
         self.audio_driver = None

@@ -2,6 +2,13 @@
 CHANGELOG
 ================================================================================
 
+0.3.7.7
+	* Bugfix in fluidsynth.stop_Note and fluidsynth.MidiSequencer.stop_Note:
+	removed the velocity argument and overwrites channel if Note.channel is 
+	set. (http://groups.google.com/group/mingus-python/t/177d0e7e83b5eaec)
+	* Added fluidsynth.initialized to prevent initializing fluidsynth twice.
+	(http://groups.google.com/group/mingus-python/t/e2b813d16c5e3b4b)
+
 0.3.7.6
 	* Added bank parameter to fluidsynth.set_instrument
 	* Added program_reset call to get drums back.
