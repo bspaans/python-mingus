@@ -2,6 +2,9 @@
 CHANGELOG
 ================================================================================
 
+0.3.7.9
+	* midi.__init__.py: Disabled fluidsynth import
+
 0.3.7.8
 	* Another tiny fix in stop_Note.
 
