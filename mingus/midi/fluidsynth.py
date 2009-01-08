@@ -277,7 +277,7 @@ initialized = False
 def init(sf2, driver = None):
 	"""This function needs to be called before you can have any \
 audio. The sf2 argument should be the location of a valid soundfont \
-file. The optional driver argument can be any of 'also', 'oss', 'jack', 'portaudio', \
+file. The optional driver argument can be any of 'alsa', 'oss', 'jack', 'portaudio', \
 'sndmgr', 'coreaudio' or 'Direct Sound'. Returns True on success, False on failure."""
 	global midi, initialized
 
