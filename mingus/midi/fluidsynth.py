@@ -274,14 +274,15 @@ which will determine if the tracks should keep playing after each played bar."""
 midi = MidiSequencer()
 initialized = False
 
-def init(sf2):
+def init(sf2, driver = None):
 	"""This function needs to be called before you can have any \
-audio. The sf2 argument should be the location of a valid soundfont 
-file. Returns True on success, False on failure."""
+audio. The sf2 argument should be the location of a valid soundfont \
+file. The optional driver argument can be any of 'also', 'oss', 'jack', 'portaudio', \
+'sndmgr', 'coreaudio' or 'Direct Sound'. Returns True on success, False on failure."""
 	global midi, initialized
 
 	if not initialized:
-		midi.start_audio_output()
+		midi.start_audio_output(driver)
 		if not midi.load_sound_font(sf2):
 			return False
 		midi.fs.program_reset()

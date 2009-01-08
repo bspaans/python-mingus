@@ -2,6 +2,9 @@
 CHANGELOG
 ================================================================================
 
+0.3.7.10
+	* midi.fluidsynth.py: Added optional driver argument to init.
+
 0.3.7.9
 	* midi.__init__.py: Disabled fluidsynth import
 
