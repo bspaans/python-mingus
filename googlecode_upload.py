@@ -72,7 +72,7 @@ def get_svn_auth(project_name, config_dir):
   f = open("/home/bspaans/.googlecode", 'r')
   usr_data = f.read().split(":")
   f.close()
-  return (usr_data[0], usr_data[1])
+  return (usr_data[0], usr_data[1][:-1])
 
 
 def upload(file, project_name, user_name, password, summary, labels=None):

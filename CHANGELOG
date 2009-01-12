@@ -2,6 +2,10 @@
 CHANGELOG
 ================================================================================
 
+0.3.8.3
+	* build.sh: Updated build script.
+	* core/value.py: Fix in docstring.
+
 0.3.8.2
 	* core/value.py: Finished value module for now by adding determine function
 

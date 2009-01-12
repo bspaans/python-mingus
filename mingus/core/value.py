@@ -26,7 +26,7 @@
 	because it stands for 1/8, a sixteenth note is 16, etc.
 	These are all pretty straight forward, but how do you define a sixteenth 
 	triplet? Well, sixteenth triplets are made by taking an eight note 
-	and deviding it in 3 equal parts. 1/8 * 1/3 = 1/24; so 24 is the number 
+	and deviding it in 3 equal parts. 1/8 times 1/3 = 1/24; so 24 is the number 
 	we want. How about a dotted eight note? A dotted eight note has the length
 	of an eight note plus half an eight note. 1/8 + 1/16 = 3/16 = 1 / 16 / 3.
 	So 16/3 is the number we are looking for. 
@@ -79,7 +79,7 @@ def add(value1, value2):
 
 def subtract(value1, value2):
 	"""Returns the note value for value1 minus value2. \
-There are no exceptions for producing negative values, 
+There are no exceptions for producing negative values, \
 which can be useful for taking differences.
 {{{
 >>> value.substract(value.quarter, value.eight)
@@ -93,11 +93,11 @@ A second dot adds half of what was added before, etc. So a dotted eight note has
 length of three sixteenth notes. An eight note with two dots has the length of five \
 thirty second notes.
 {{{
->>> value.dot(value.eight)
+>>> value.dots(value.eight)
 5.3333333333333333
->>> value.dot(value.eight, 2)
+>>> value.dots(value.eight, 2)
 4.5714285714285712
->>> value.dot(4)
+>>> value.dots(value.quarter)
 2.6666666666666665
 }}}"""
 	d = 0.0
@@ -159,14 +159,15 @@ def determine(value):
 	"""Analyses the value and returns a tuple containing the parts it's made of. \
 The tuple respectively consists of the base note value, the number of dots, and the ratio \
 (see `tuplet`). For example:
+{{{
 >>> value.determine(8)
 (8, 0, 1, 1)
 >>> value.determine(12)
 (8, 0, 3, 2)
 >>> value.determine(14)
 (8, 0, 7, 4)
-}}}.
-This function recognizes all the base values, triplets, quintuplets, septuplets and up to 
+}}}
+This function recognizes all the base values, triplets, quintuplets, septuplets and up to \
 four dots. The values are matched on range."""
 
 	i = -2
