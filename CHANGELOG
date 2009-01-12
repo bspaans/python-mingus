@@ -2,11 +2,16 @@
 CHANGELOG
 ================================================================================
 
+0.3.8.0
+	* core/value.py: New module that will deal with all things concerning
+	note value (duration). Currently the functions add, substract, dots
+	and triplet are available as are the most used used constants. 
+
 0.3.7.10
-	* midi.fluidsynth.py: Added optional driver argument to init.
+	* midi/fluidsynth.py: Added optional driver argument to init.
 
 0.3.7.9
-	* midi.__init__.py: Disabled fluidsynth import
+	* midi/__init__.py: Disabled fluidsynth import
 
 0.3.7.8
 	* Another tiny fix in stop_Note.

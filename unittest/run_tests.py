@@ -33,7 +33,7 @@
 import unittest
 
 
-# mingus.core Tests - added for 0.1 release
+# mingus.core Tests
 import test_notes
 import test_diatonic
 import test_intervals
@@ -41,8 +41,9 @@ import test_chords
 import test_scales
 import test_meter
 import test_progressions
+import test_value
 
-# mingus.containers Tests - added for 0.2 release
+# mingus.containers Tests
 import test_Note
 import test_NoteContainers
 import test_Instrument
@@ -51,7 +52,10 @@ import test_Track
 import test_Composition
 import test_Suite
 
-# mingus.extras Tests - added for 0.4 release
+# MIDI TESTS HERE
+# ...
+
+# mingus.extras Tests
 import test_LilyPond
 
 # See run_fluidsynth_tests.py for audio tests that will otherwise
@@ -65,6 +69,7 @@ suite004 = test_chords.suite()
 suite005 = test_scales.suite()
 suite006 = test_meter.suite()
 suite007 = test_progressions.suite()
+suite008 = test_value.suite()
 
 suite101 = test_Note.suite()
 suite102 = test_NoteContainers.suite()
@@ -78,7 +83,7 @@ suite201 = test_LilyPond.suite()
 
 # ...and here
 suite = unittest.TestSuite(\
-		[suite001, suite002, suite003, suite004, suite005, suite006, suite007,\
+		[suite001, suite002, suite003, suite004, suite005, suite006, suite007, suite008,\
  		 suite101, suite102, suite103, suite104, suite105, suite106, suite107,\
 		 suite201, 
 		 ])

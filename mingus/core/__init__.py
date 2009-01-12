@@ -24,4 +24,4 @@
 """
 
 __all__ = ["notes", "diatonic", "intervals", "chords", "scales",\
-			"meter", "progressions", "mt_exceptions"]
+		"meter", "progressions", "mt_exceptions", "value"]
