@@ -63,8 +63,9 @@ sixty_fourth = 64
 hundred_twenty_eight = 128
 
 
-base_values   = [ 0.25, 0.5,  1,   2, 4, 8,  16, 32, 64, 128]
-base_triplets = [0.375, 0.75, 1.5, 3, 6, 12, 24, 48, 96, 192]
+base_values      = [  0.25,   0.5,    1,   2, 4, 8,  16, 32, 64, 128]
+base_quintuplets = [0.3125, 0.625, 1.25, 2.5, 5, 10, 20, 40, 80, 160]
+base_triplets    = [ 0.375,  0.75,  1.5,   3, 6, 12, 24, 48, 96, 192]
 
 
 def add(value1, value2):
@@ -105,15 +106,53 @@ thirty second notes.
 	return value / d
 
 def triplet(value):
-	"""Returns the triplet note value.
+	"""Returns the triplet note value. A triplet divides the base value above into \
+three parts. So a triplet eight note is a third of a quarter note.
 {{{
 >>> value.triplet(value.eight)
 12
 >>> value.triplet(4)
 6
 }}}"""
-	return 3 * (value / 2.0)
+	return tuplet(value, 3, 2) 
 
+def quintuplet(value):
+	"""Returns the quintuplet note value. A quintuplet divides the base value _two_ \
+above into five parts. So a quintuplet eight note is a fifth of a half note.
+{{{
+>>> value.quintuplet(8)
+10
+>>> value.quintuplet(4)
+5
+}}}"""
+	return tuplet(value, 5, 4)
+
+def septuplet(value, in_fourths = True):
+	"""Returns the septuplet note value. The usage of a septuplet is ambigious: \
+seven notes can be played either in the duration of four or eight notes. If in_fourths \
+is set to True, this function will use 4, otherwise 8 notes. So a septuplet eight note \
+is respectively either 14 or 7. 
+{{{
+>>> value.septuplet(8)
+14
+>>> value.septuplet(8, True)
+7
+}}}"""
+	if in_fourths:
+		return tuplet(value, 7, 4)
+	else:
+		return tuplet(value, 7, 8)
+
+def tuplet(value, rat1, rat2):
+	"""A tuplet can be written as a ratio. For example: 5:4 means that you play 5 \
+notes in the duration of 4 (a quintuplet), 3:2 means that you play 3 notes in the duration \
+of 2 (a triplet), etc.
+{{{
+>>> value.tuplet(8, 3, 2)
+12
+}}}"""
+	return rat1 * value / float(rat2)
+	
 
 def determine(value):
 	pass

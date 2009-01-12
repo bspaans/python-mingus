@@ -2,6 +2,9 @@
 CHANGELOG
 ================================================================================
 
+0.3.8.1
+	* core/value.py: Added functions: quintuplet, septuplet and tuplet.
+
 0.3.8.0
 	* core/value.py: New module that will deal with all things concerning
 	note value (duration). Currently the functions add, substract, dots
