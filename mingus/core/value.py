@@ -63,9 +63,10 @@ sixty_fourth = 64
 hundred_twenty_eight = 128
 
 
-base_values      = [  0.25,   0.5,    1,   2, 4, 8,  16, 32, 64, 128]
-base_quintuplets = [0.3125, 0.625, 1.25, 2.5, 5, 10, 20, 40, 80, 160]
-base_triplets    = [ 0.375,  0.75,  1.5,   3, 6, 12, 24, 48, 96, 192]
+base_values      = [  0.25,   0.5,    1,   2, 4, 8,  16, 32,  64, 128]
+base_quintuplets = [0.3125, 0.625, 1.25, 2.5, 5, 10, 20, 40,  80, 160]
+base_triplets    = [ 0.375,  0.75,  1.5,   3, 6, 12, 24, 48,  96, 192]
+base_septuplets  = [0.4375, 0.875, 1.75, 3.5, 7, 14, 28, 56, 112, 224]
 
 
 def add(value1, value2):
@@ -131,11 +132,11 @@ def septuplet(value, in_fourths = True):
 	"""Returns the septuplet note value. The usage of a septuplet is ambigious: \
 seven notes can be played either in the duration of four or eight notes. If in_fourths \
 is set to True, this function will use 4, otherwise 8 notes. So a septuplet eight note \
-is respectively either 14 or 7. 
+is respectively either 14 or 7. Notice how `value.septuplet(8, False) == value.septuplet(4, True)`.
 {{{
 >>> value.septuplet(8)
 14
->>> value.septuplet(8, True)
+>>> value.septuplet(8, False)
 7
 }}}"""
 	if in_fourths:
@@ -146,7 +147,7 @@ is respectively either 14 or 7.
 def tuplet(value, rat1, rat2):
 	"""A tuplet can be written as a ratio. For example: 5:4 means that you play 5 \
 notes in the duration of 4 (a quintuplet), 3:2 means that you play 3 notes in the duration \
-of 2 (a triplet), etc.
+of 2 (a triplet), etc. This function calculates the note value when playing in rat1:rat2.
 {{{
 >>> value.tuplet(8, 3, 2)
 12
@@ -155,4 +156,45 @@ of 2 (a triplet), etc.
 	
 
 def determine(value):
-	pass
+	"""Analyses the value and returns a tuple containing the parts it's made of. \
+The tuple respectively consists of the base note value, the number of dots, and the ratio \
+(see `tuplet`). For example:
+>>> value.determine(8)
+(8, 0, 1, 1)
+>>> value.determine(12)
+(8, 0, 3, 2)
+>>> value.determine(14)
+(8, 0, 7, 4)
+}}}.
+This function recognizes all the base values, triplets, quintuplets, septuplets and up to 
+four dots. The values are matched on range."""
+
+	i = -2
+	for v in base_values:
+		if value == v:
+			return (value, 0, 1, 1)
+		if value < v:
+			break
+		i += 1
+	
+	scaled = float(value) / 2 ** i 
+	if scaled >= 0.9375: # base value
+		return (base_values[i], 0, 1, 1)
+	elif scaled >= 0.8125: # septuplet: scaled = 0.875
+		return (base_values[i + 1], 0, 7, 4)
+	elif scaled >= 17/24.0: # triplet: scaled = 0.75
+		return (base_values[i + 1], 0, 3, 2)
+	elif scaled >= 31/48.0: # dotted note (one dot): scaled = 2/3.0
+		return (v, 1, 1, 1)
+	elif scaled >= 67/112.0:  # quintuplet: scaled = 0.625
+		return (base_values[i + 1], 0, 5, 4)
+
+	d = 3
+	for x in range(2, 5):
+		d += 2 ** x
+		if scaled == 2.0 ** x / d:
+			return (v, x, 1, 1)
+
+	return (base_values[i + 1], 0, 1, 1)
+
+

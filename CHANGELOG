@@ -2,6 +2,9 @@
 CHANGELOG
 ================================================================================
 
+0.3.8.2
+	* core/value.py: Finished value module for now by adding determine function
+
 0.3.8.1
 	* core/value.py: Added functions: quintuplet, septuplet and tuplet.
 
