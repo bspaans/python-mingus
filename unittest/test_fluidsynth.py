@@ -61,6 +61,17 @@ class test_fluidsynth(unittest.TestCase):
 		c + Note("C", 5)
 		self.assert_(fluidsynth.play_Bars([b, c], [1, 2]), 0)
 
+	def test_changing_bpm_bar(self):
+		b = Bar()
+		n = NoteContainer(["C", "E", "G"])
+		n.bpm = 150
+		b + NoteContainer(["A", "C", "E"])
+		b + Note("E")
+		b + n
+		b + Note("Eb")
+		self.assert_(fluidsynth.play_Bar(b), 0, 120)
+
+
 	def test_track(self):
 		b = Bar()
 		b + Note("C")
@@ -92,9 +103,8 @@ class test_fluidsynth(unittest.TestCase):
 		t2 = Track()
 		t2 + b
 		t2 + b
-		print t
-		print t2
 		self.assert_(fluidsynth.play_Tracks([t, t2], [0, 1]))
+
 
 	def test_composition(self):
 		m = MidiInstrument("Vibraphone")

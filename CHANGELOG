@@ -2,50 +2,94 @@
 CHANGELOG
 ================================================================================
 
-0.3.8.4
+	0.3.8.5 
+	Jan 16, 2009
+
+	* midi/fluidsynth.py: Fixed timing issue in MidiSequencer.play_Bars, so
+	play_Bars, play_Tracks and play_Composition work again. All fluidsynth 
+	test pass again. 
+
+================================================================================
+
+	0.3.8.4
+	Jan 16, 2009
+
 	* midi/fluidsynth.py: Fix in MidiSequencer.play_Track + added 
         default_bpm arguments
 	
+================================================================================
 
-0.3.8.3
+	0.3.8.3
+
 	* build.sh: Updated build script.
 	* core/value.py: Fix in docstring.
 
-0.3.8.2
+================================================================================
+
+	0.3.8.2
+
 	* core/value.py: Finished value module for now by adding determine function
 
-0.3.8.1
+================================================================================
+
+	0.3.8.1
+
 	* core/value.py: Added functions: quintuplet, septuplet and tuplet.
 
-0.3.8.0
+================================================================================
+
+	0.3.8.0
+
 	* core/value.py: New module that will deal with all things concerning
 	note value (duration). Currently the functions add, substract, dots
 	and triplet are available as are the most used used constants. 
 
-0.3.7.10
+================================================================================
+
+	0.3.7.10
+
 	* midi/fluidsynth.py: Added optional driver argument to init.
 
-0.3.7.9
+================================================================================
+
+	0.3.7.9
+
 	* midi/__init__.py: Disabled fluidsynth import
 
-0.3.7.8
+================================================================================
+
+	0.3.7.8
+
 	* Another tiny fix in stop_Note.
 
-0.3.7.7
+================================================================================
+
+	0.3.7.7
+
 	* Bugfix in fluidsynth.stop_Note and fluidsynth.MidiSequencer.stop_Note:
 	removed the velocity argument and overwrites channel if Note.channel is 
 	set. (http://groups.google.com/group/mingus-python/t/177d0e7e83b5eaec)
 	* Added fluidsynth.initialized to prevent initializing fluidsynth twice.
 	(http://groups.google.com/group/mingus-python/t/e2b813d16c5e3b4b)
 
-0.3.7.6
+
+================================================================================
+
+	0.3.7.6
+
 	* Added bank parameter to fluidsynth.set_instrument
 	* Added program_reset call to get drums back.
 
-0.3.7.5
+================================================================================
+
+	0.3.7.5
+
 	* Updated example applications to use new fluidsynth module.
 
-0.3.7.4
+================================================================================
+
+	0.3.7.4
+
 	* Moved FluidSynth.py back to fluidsynth.py
 	* Added pyFluidSynth module to mingus, which was written by 
 	Nathan Whitehead and available as separate package here: 
@@ -53,7 +97,10 @@ CHANGELOG
 	* Removed enable_reverb and disable_reverb from fluidsynth.
 	* Updated FluidSynth unittests.
 
-0.3.7.3
+================================================================================
+
+	0.3.7.3
+
 	* Replaced fluidsynth.py and MidiSequencer.py by the new FluidSynth 
 	module which makes use of the pyFluidSynth bindings. This means that you
 	don't have to start a server by hand anymore and that you can have more 
@@ -62,68 +109,112 @@ CHANGELOG
 	* Rearranged some of the illogical function arguments.
 
 
-0.3.7.2
+================================================================================
+
+	0.3.7.2
+
 	* Started on MusicXML implementation
 	* Fixed bug in setup script found and reported by namin:
 	http://groups.google.com/group/mingus-python/t/ace3be8d50061df0
 
-0.3.7.1
+================================================================================
+
+	0.3.7.1
+
 	* Added from_int to Note
 	* Added self.bytes_read to the MidiFile parser to get better debugging.
 
-0.3.7.0 
+================================================================================
+
+	0.3.7.0 
+
 	* Updated examples to use mingus.midi instead of mingus.extra
 
-0.3.6.5
+================================================================================
+
+	0.3.6.5
+
 	* Fixed bug in parse_midi_event. Program change and channel aftertouch 
 	MIDI events only have one parameter instead of two. 
 	* Added an exception for illegal events.
 
-0.3.6.4
+================================================================================
+
+	0.3.6.4
+
 	* Instruments get succesfully set when loading a midi file.
 	* Last set tempo will get returned as well, until we have a better solution
 	(eg. a track containing only tempo changes)
 	* To set the channel and the velocity off a Note. Use Note.channel and 
 	Note.velocity instead of the dynamics dictionary.
 
-0.3.6.3
+================================================================================
+
+	0.3.6.3
+
 	* Removed channel parameters from the MidiFileOut and MidiTrack functions.
 	The channel a note should be played on can now be set in Note.dynamics["channel"]
 
-0.3.6.2
+================================================================================
+
+	0.3.6.2
+
 	* Enhanced MIDI file parsing.
 
-0.3.6.1
+================================================================================
+
+	0.3.6.1
+
 	* Parsing of a Midi file works in some cases. Still very bugy.
 	* Remove is_valid_duration from Bar, because it prevents using floating 
 	point numbers, which you need when representing complex durations.
 
-0.3.6.0
+================================================================================
+
+	0.3.6.0
+
 	* Initial check in of MidiFileIn
 
-0.3.5.6
+================================================================================
+
+	0.3.5.6	
+
 	* Moved the MidiFile class to MidiFileOut
 	* Added more documentation to the MidiFileOut functions.
 
-0.3.5.5
+================================================================================
+
+	0.3.5.5
+
 	* Killed bug in MidiTrack.play_Bar. Meters other than 4/4 will now also 
 	get saved correctly
 	* Added set_track_name and track_name_event to MidiTrack
 	
+================================================================================
 
-0.3.5.4
+	0.3.5.4
+
 	* Added MidiEvents for better readability in MidiTrack.
 	* Added support for different time signatures (set_meter and time_signature_event)
 	* Support for key signatures meta events (set_key and key_signature_event)
 
-0.3.5.3
+================================================================================
+
+	0.3.5.3
+
 	* Added controller events to MidiTrack. Changing of the instrument is now
 	possible.
+================================================================================
 
-0.3.5.2
+	0.3.5.2
+
 	* Added fixes for rests, tempo and NoteContainers in MidiTrack.
+================================================================================
 
-0.3.5.1
+	0.3.5.1
+
 	* Removed print statements used for debugging in MidiFileOut
 	* Removed debugging spaghetti code when run as script from MidiFileOut
 	* Moved the fluidsynth module to the midi package where it belongs.
+
+================================================================================

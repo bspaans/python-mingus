@@ -152,7 +152,7 @@ add here."""
 		"""Plays several bars (a list of Bar objects) at the same time. A list of \
 channels should also be provided."""
 
-		duration = 60.0 / default_bpm * 4
+		duration = 240000.0 / default_bpm  # duration of a bar in milliseconds
 		tick = 0.0  # place in beat from 0.0 to bar.length
 		cur = []    # keeps the index of the note needing investigation in each of bars
 		playing = [] # keeps track of the notecontainers being played right now.
@@ -167,15 +167,13 @@ channels should also be provided."""
 		while tick < bars[0].length:
 
 			# Check each bar in bars and investigate index in cur.
-			for x in range(len(bars)):
+			for x, bar in enumerate(bars):
 
-				bar = bars[x]
 				current_nc = bar[cur[x]]
 
 				# Should note be played?
 				if current_nc[0] <= tick and \
-					current_nc[0] + \
-					(1.0 / current_nc[1]) >= tick \
+					current_nc[0] + (1.0 / current_nc[1]) >= tick \
 					and [current_nc[0], current_nc[1], current_nc[2],\
 						channels[x]] not in playing:
 
