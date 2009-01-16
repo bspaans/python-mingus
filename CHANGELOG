@@ -2,6 +2,16 @@
 CHANGELOG
 ================================================================================
 
+	0.3.8.7
+	Jan 16, 2009
+
+	* midi/MidiTrack.py: Added support for bpm attribute in play_Bar. This 
+	means that tempo changes can now be saved as well. It is advised to have 
+	only one track containing tempo changes. 
+
+
+================================================================================
+
 	0.3.8.6
 	Jan 16, 2009
 

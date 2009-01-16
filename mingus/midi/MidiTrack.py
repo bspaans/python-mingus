@@ -108,6 +108,9 @@ to the track_data."""
 			else:
 				self.set_deltatime(self.delay)
 				self.delay = 0
+				if hasattr(x[2], "bpm"):
+					self.set_deltatime(0)
+					self.set_tempo(x[2].bpm)
 				self.play_NoteContainer(x[2])
 
 				self.set_deltatime(self.int_to_varbyte(tick))
