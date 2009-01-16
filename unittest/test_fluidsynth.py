@@ -69,7 +69,31 @@ class test_fluidsynth(unittest.TestCase):
 		b + Note("E")
 		b + n
 		b + Note("Eb")
-		self.assert_(fluidsynth.play_Bar(b), 0, 120)
+		self.assert_(fluidsynth.play_Bar(b, 0, 120))
+
+	def test_changing_bpm_bars(self):
+		b = Bar()
+		n = NoteContainer(["C", "E", "G"])
+		n.bpm = 150
+		b + NoteContainer(["A", "C", "E"])
+		b + Note("E")
+		b + n
+		b + Note("Eb")
+		self.assert_(fluidsynth.play_Bars([b, b], [1, 2], 120))
+
+	def test_changing_bpm_track(self):
+		b = Bar()
+		n = NoteContainer(["C", "E", "G"])
+		n.bpm = 150
+		b + NoteContainer(["A", "C", "E"])
+		b + Note("E")
+		b + n
+		b + Note("Eb")
+
+		t = Track()
+		t + b
+		t + b
+		self.assert_(fluidsynth.play_Track(t), 0)
 
 
 	def test_track(self):

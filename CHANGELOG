@@ -2,6 +2,19 @@
 CHANGELOG
 ================================================================================
 
+	0.3.8.6
+	Jan 16, 2009
+
+	* midi/fluidsynth.py: play_Bar and play_Bars (and consequently all the
+	other play_ functions) will now change the tempo if the bpm attribute
+	on a NoteContainer is set. I also rewrote play_Bars from scratch to be able to 
+	incorparate changing tempos. The method is a lot nicer now. (The younger 
+	me thought it was a good idea to use datetime functions instead of 
+	sleep.. -- coincidentally I probably needed a lot of sleep myself that time, 
+	so I missed out twice)
+
+================================================================================
+
 	0.3.8.5 
 	Jan 16, 2009
 

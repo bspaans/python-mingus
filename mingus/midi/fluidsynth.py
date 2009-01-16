@@ -131,88 +131,120 @@ will take presedence over the channel argument given here."""
 
 
 	def play_Bar(self, bar, channel = 1, default_bpm = 120):
-		"""Plays a Bar object. If the channel attribute on a Note\in the Bar has been set it will take presedence over the one you can \
-add here."""
+		"""Plays a Bar object. The tempo can be changed by setting \
+the bpm attribute on a NoteContainer. Returns a dictionary with \
+the bpm lemma set on success, an empty dict on some kind of failure. """
 
 		# length of a quarter note
-		qn_length = 60.0 / default_bpm
+		bpm = default_bpm
+		qn_length = 60.0 / bpm
 
 		for nc in bar:
 
 			if not self.play_NoteContainer(nc[2], channel, 100):
-				return False
+				return {}
+
+			# Change the quarter note length if the NoteContainer has a bpm attribute
+			if hasattr(nc[2], "bpm"):
+				bpm = nc[2].bpm
+				qn_length = 60.0 / bpm
 			
 			sleep(qn_length * (4.0 / nc[1]))
 			self.stop_NoteContainer(nc[2], channel)
 
-		return True
+		return {"bpm": bpm}
 
 
 	def play_Bars(self, bars, channels, default_bpm = 120):
 		"""Plays several bars (a list of Bar objects) at the same time. A list of \
-channels should also be provided."""
+channels should also be provided. The tempo can be changed by providing one or more of \
+the NoteContainers with a bpm argument."""
 
-		duration = 240000.0 / default_bpm  # duration of a bar in milliseconds
-		tick = 0.0  # place in beat from 0.0 to bar.length
-		cur = []    # keeps the index of the note needing investigation in each of bars
-		playing = [] # keeps track of the notecontainers being played right now.
+		bpm = default_bpm
+		qn_length = 60.0 / bpm  # length of a quarter note
+		tick = 0.0              # place in beat from 0.0 to bar.length
+		cur = [0] * len(bars)   # keeps the index of the NoteContainer under investigation in each of the bars
+		playing = []            # The NoteContainers being played.
 
 
-		# Prepare cur list
-		for x in bars:
-			cur.append(0)
-
-		n = datetime.now()
-		
+		# The following sequencer is pretty complicated, but that's because we're playing
+		# multiple bars at the same time, which in turn can consist of different note values.
+		# Getting the timing right is the crucial task and most of the code here is
+		# for finding out how long we should sleep between notes. 
 		while tick < bars[0].length:
 
-			# Check each bar in bars and investigate index in cur.
-			for x, bar in enumerate(bars):
+			# Prepare a and play a list of NoteContainers that are ready for it.
+			# The list `playing_new` holds both the duration and the NoteContainer.
+			playing_new = []
+			for n, x in enumerate(cur):
+				start_tick, note_length, nc = bars[n][x]
+				if start_tick <= tick:
+					self.play_NoteContainer(nc, channels[n])
+					playing_new.append([note_length, n])
+					playing.append([note_length, nc, channels[n], n])
 
-				current_nc = bar[cur[x]]
+					# Change the length of a quarter note if the NoteContainer has a bpm attribute
+					if hasattr(nc, "bpm"):
+						bpm = nc.bpm
+						qn_length = 60.0 / bpm
 
-				# Should note be played?
-				if current_nc[0] <= tick and \
-					current_nc[0] + (1.0 / current_nc[1]) >= tick \
-					and [current_nc[0], current_nc[1], current_nc[2],\
-						channels[x]] not in playing:
+			# Sort the list and sleep for the shortest duration
+			if len(playing_new) != 0:
+				playing_new.sort()
+				shortest = playing_new[-1][0]
+				sleep(qn_length * (4.0 / shortest))
 
-					self.play_NoteContainer(current_nc[2], channels[x])
-					playing.append([current_nc[0], current_nc[1],\
-							current_nc[2], channels[x]])
-					if cur[x] != len(bar) - 1:
-						cur[x] += 1
+			# If somehow, playing_new doesn't contain any notes
+			# (something that shouldn't happen when the bar was filled
+			# properly), we make sure that at least the notes that are 
+			# still playing get handled correctly. 
+			else:
+				if len(playing) != 0:
+					playing.sort()
+					shortest = playing[-1][0]
+					sleep(qn_length * (4.0 / shortest))
+				else:
+					#warning: this could lead to some strange behaviour.
+					# OTOH. Leaving gaps is not the way Bar works.
+					# should we do an integrity check on bars first?
+					return {}
 
-			# Should any notes stop playing?
-			for p in playing:
-				if p[0] + (1.0 / p[1]) <= tick:
-					self.stop_NoteContainer(p[2], p[3])
-					playing.remove(p)
+			# Add shortest interval to tick
+			tick += 1.0 / shortest
 
-			
+			# This final piece adjusts the duration in `playing` and
+			# checks if a NoteContainer should be stopped.
+			new_playing = []
+			for length, nc, chan, n in playing:
+				duration = 1.0 / length - 1.0 / shortest
+				if duration >= 0.00001:
+					new_playing.append([1.0 / duration, nc, chan, n])
+				else:
+					self.stop_NoteContainer(nc, chan)
+					if cur[n] < len(bars[n]) - 1:
+						cur[n] += 1
+			playing = new_playing
 
-			# Milliseconds so far
-			a = datetime.now()
-			millis = (a - n).microseconds / 1000.0 + (a - n).seconds * 1000.0
-
-			# Calculate new tick
-			tick = (millis / duration) * bars[0].length
 			
 		# Stop all the notes that are still playing
 		for p in playing:
-			self.stop_NoteContainer(p[2], p[3])
+			self.stop_NoteContainer(p[1], p[2])
 			playing.remove(p)
 
-		return True
+		return {"bpm": bpm}
 
 
 	def play_Track(self, track, channel = 1, default_bpm = 120):
 		"""Plays a Track object."""
+		bpm = default_bpm
 		for bar in track:
-			# bpm attribute needed? Or just another argument?
-			if not self.play_Bar(bar, channel, default_bpm):
-				return False
-		return True
+
+			res = self.play_Bar(bar, channel, bpm)
+			if res != {}:
+				bpm = res["bpm"]
+			else:
+				return {}
+		return {"bpm": bpm}
 
 	def play_Tracks(self, tracks, channels, default_bpm =120):
 		"""Plays a list of Tracks. """
@@ -232,17 +264,21 @@ channels should also be provided."""
 		
 		current_bar = 0
 		max_bar = len(tracks[0])
+		bpm = default_bpm
 
 		# Play the bars
 		while current_bar < max_bar:
 			playbars = []
 			for tr in tracks:
 				playbars.append(tr[current_bar])
-			if not self.play_Bars(playbars, channels, default_bpm):
-				return False
+			res = self.play_Bars(playbars, channels, bpm)
+			if res != {}:
+				bpm = res["bpm"]
+			else:
+				return {}
 			current_bar += 1
 
-		return True
+		return {"bpm":bpm}
 			
 
 	def play_Composition(self, composition, channels = None, default_bpm = 120):
