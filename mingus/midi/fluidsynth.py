@@ -338,32 +338,35 @@ arguments.
 
 
 def stop_Note(note, channel = 1):
-	"""Stops the Note playing at channel."""
+	"""Stops the Note playing at channel. If a channel attribute is set on the note, \
+it will take presedence."""
 	return midi.stop_Note(note, channel)
 
 
 def play_NoteContainer(nc, channel = 1, velocity = 100):
-	"""Plays the Notes in the NoteContainer nc."""
+	"""Uses play_Note to play the Notes in the NoteContainer nc."""
 	return midi.play_NoteContainer(nc, channel, velocity)
 
 def stop_NoteContainer(nc, channel = 1):
-	"""Stops playing the notes in NoteContainer nc."""
+	"""Uses stop_Note to stop the notes in NoteContainer nc."""
 	return midi.stop_NoteContainer(nc, channel)
 
 def play_Bar(bar, channel = 1, default_bpm = 120):
-	"""Plays a Bar object."""
+	"""Plays a Bar object using play_NoteContainer and stop_NoteContainer. \
+Set a bpm attribute on a NoteContainer to change the tempo."""
 	return midi.play_Bar(bar, channel, default_bpm)
 
 def play_Bars(bars, channels, default_bpm = 120):
-	"""Plays a list of bars on the given list of channels."""
+	"""Plays a list of bars on the given list of channels. Set a bpm attribute \
+on a NoteContainer to change the tempo."""
 	return midi.play_Bars(bars, channels, default_bpm)
 
 def play_Track(track, channel = 1, default_bpm = 120):
-	"""Plays a Track object."""
+	"""Uses play_Bar to play a Track object."""
 	return midi.play_Track(track, channel, default_bpm)
 
 def play_Tracks(tracks, channels, default_bpm = 120):
-	"""Plays a list of Tracks on the given list of channels."""
+	"""Uses play_Bars to play a list of Tracks on the given list of channels."""
 	return midi.play_Tracks(tracks, channels, default_bpm)
 
 def play_Composition(composition, channels = None, default_bpm = 120):
