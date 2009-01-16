@@ -2,6 +2,11 @@
 CHANGELOG
 ================================================================================
 
+0.3.8.4
+	* midi/fluidsynth.py: Fix in MidiSequencer.play_Track + added 
+        default_bpm arguments
+	
+
 0.3.8.3
 	* build.sh: Updated build script.
 	* core/value.py: Fix in docstring.

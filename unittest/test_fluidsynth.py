@@ -9,7 +9,7 @@ import time
 class test_fluidsynth(unittest.TestCase):
 	
 	def setUp(self):
-		fluidsynth.init("example.sf2")
+		fluidsynth.init("/home/bspaans/workspace/fluidsynth/ChoriumRevA.SF2")
 		fluidsynth.set_instrument(0,0)
 
 
@@ -92,6 +92,8 @@ class test_fluidsynth(unittest.TestCase):
 		t2 = Track()
 		t2 + b
 		t2 + b
+		print t
+		print t2
 		self.assert_(fluidsynth.play_Tracks([t, t2], [0, 1]))
 
 	def test_composition(self):

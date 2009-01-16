@@ -130,12 +130,12 @@ will take presedence over the channel argument given here."""
 
 
 
-	def play_Bar(self, bar, channel = 1, bpm = 120):
+	def play_Bar(self, bar, channel = 1, default_bpm = 120):
 		"""Plays a Bar object. If the channel attribute on a Note\in the Bar has been set it will take presedence over the one you can \
 add here."""
 
 		# length of a quarter note
-		qn_length = 60.0 / bpm
+		qn_length = 60.0 / default_bpm
 
 		for nc in bar:
 
@@ -148,11 +148,11 @@ add here."""
 		return True
 
 
-	def play_Bars(self, bars, channels, bpm = 120):
+	def play_Bars(self, bars, channels, default_bpm = 120):
 		"""Plays several bars (a list of Bar objects) at the same time. A list of \
 channels should also be provided."""
 
-		duration = 60.0 / bpm * 4
+		duration = 60.0 / default_bpm * 4
 		tick = 0.0  # place in beat from 0.0 to bar.length
 		cur = []    # keeps the index of the note needing investigation in each of bars
 		playing = [] # keeps track of the notecontainers being played right now.
@@ -208,17 +208,16 @@ channels should also be provided."""
 		return True
 
 
-	def play_Track(self, track, channel = 1):
+	def play_Track(self, track, channel = 1, default_bpm = 120):
 		"""Plays a Track object."""
 		for bar in track:
 			# bpm attribute needed? Or just another argument?
-			if not self.play_Bar(bar, channel, 2000):
+			if not self.play_Bar(bar, channel, default_bpm):
 				return False
 		return True
 
-	def play_Tracks(self, tracks, channels, keep_playing_func = True):
-		"""Plays a list of Tracks. keep_playing_func can be used to pass a function, \
-which will determine if the tracks should keep playing after each played bar."""
+	def play_Tracks(self, tracks, channels, default_bpm =120):
+		"""Plays a list of Tracks. """
 		
 		# Set the right instruments
 		for x in range(len(tracks)):
@@ -237,23 +236,23 @@ which will determine if the tracks should keep playing after each played bar."""
 		max_bar = len(tracks[0])
 
 		# Play the bars
-		while keep_playing_func and current_bar < max_bar:
+		while current_bar < max_bar:
 			playbars = []
 			for tr in tracks:
 				playbars.append(tr[current_bar])
-			if not self.play_Bars(playbars, channels):
+			if not self.play_Bars(playbars, channels, default_bpm):
 				return False
 			current_bar += 1
 
 		return True
 			
 
-	def play_Composition(self, composition, channels = None, keep_playing_func = True):
+	def play_Composition(self, composition, channels = None, default_bpm = 120):
 		"""Plays a Composition object."""
 
 		if channels == None:
 			channels = map(lambda x: x + 1, range(len(composition.tracks)))
-		return self.play_Tracks(composition.tracks, channels, keep_playing_func)
+		return self.play_Tracks(composition.tracks, channels, default_bpm)
 
 
 	## MIDI CONTROLLER TYPE 'SHORTCUTS'
@@ -317,25 +316,25 @@ def stop_NoteContainer(nc, channel = 1):
 	"""Stops playing the notes in NoteContainer nc."""
 	return midi.stop_NoteContainer(nc, channel)
 
-def play_Bar(bar, channel = 1, bpm = 120):
+def play_Bar(bar, channel = 1, default_bpm = 120):
 	"""Plays a Bar object."""
-	return midi.play_Bar(bar, channel, bpm)
+	return midi.play_Bar(bar, channel, default_bpm)
 
-def play_Bars(bars, channels, bpm = 120):
+def play_Bars(bars, channels, default_bpm = 120):
 	"""Plays a list of bars on the given list of channels."""
-	return midi.play_Bars(bars, channels, bpm)
+	return midi.play_Bars(bars, channels, default_bpm)
 
-def play_Track(track, channel = 1):
+def play_Track(track, channel = 1, default_bpm = 120):
 	"""Plays a Track object."""
-	return midi.play_Track(track, channel)
+	return midi.play_Track(track, channel, default_bpm)
 
-def play_Tracks(tracks, channels):
+def play_Tracks(tracks, channels, default_bpm = 120):
 	"""Plays a list of Tracks on the given list of channels."""
-	return midi.play_Tracks(tracks, channels)
+	return midi.play_Tracks(tracks, channels, default_bpm)
 
-def play_Composition(composition, channels = None):
+def play_Composition(composition, channels = None, default_bpm = 120):
 	"""Plays a composition."""
-	return midi.play_Composition(composition, channels)
+	return midi.play_Composition(composition, channels, default_bpm)
 
 def control_change(channel, control, value):
 	"""Sends a control change event on channel."""
