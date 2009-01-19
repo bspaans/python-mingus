@@ -7,6 +7,8 @@ CHANGELOG
 	
 	* midi/fluidsynth.py: Renamed default_bpm function argument to bpm.
 	(http://groups.google.com/group/mingus-python/t/cb8784584330d42d)
+	* containers/Note.py: Removed velocity and channel from dynamics.
+	* core/progressions.py: Added substitute_harmonic.
 
 ================================================================================
 

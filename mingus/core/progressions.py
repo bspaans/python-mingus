@@ -252,10 +252,42 @@ def tuple_to_string(prog_tuple):
 	return roman + suff
 	
 
+def substitute_harmonic(progression, substitute_index, ignore_suffix = False):
+	"""Does simple harmonic substitutions. Returns a \
+list of possible substitions for `progression[substitute_index]`. \
+Uses the following table to convert progressions:
+| I | III |
+| I | VI |
+| IV | II |
+| IV | VI |
+| V | VII |
+If `ignore_suffix` is set to True the suffix of the chord being substituted \
+will be ignored. Otherwise only progressions without a suffix, or with suffix '7' \
+will be substituted."""
+
+	simple_substitutions = [
+			("I", "III"),
+			("I", "VI"),
+			("IV", "II"),
+			("IV", "VI"),
+			("V", "VII"),
+			]
+	res = []
+	roman, acc, suff = parse_string(progression[substitute_index])
+	if suff == '' or suff == '7' or ignore_suffix:
+		for subs in simple_substitutions:
+			r = subs[1] if roman == subs[0] else None
+			if r == None:
+				r = subs[0] if roman == subs[1] else None
+			if r != None:
+				suff = suff if suff == '7' else ''
+				res.append(tuple_to_string((r, acc, suff)))
+	return res
+
 	
 def substitute(progression, substitute_index, depth = 0):
 	"""Gives a list of possible substitution for \
-progression[substitute_index]. If depth > 0 the substitutions \
+`progression[substitute_index]`. If depth > 0 the substitutions \
 of each result will be recursively added as well.
 {{{
 >>> progressions.substitue(["I", "IV", "V", "I"], 0)
@@ -274,6 +306,7 @@ of each result will be recursively added as well.
 			("V", "IVdim7"),
 			("V", "bVIIdim7"),
 			]
+
 
 	p = progression[substitute_index]
 	roman, acc, suff = parse_string(p)

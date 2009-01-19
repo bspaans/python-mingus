@@ -42,6 +42,10 @@ class test_progressions(unittest.TestCase):
 		self.assert_("I" in progressions.substitute(["VI"], 0))
 		self.assert_("#IIM" in progressions.substitute(["VIIm"], 0))
 
+	def test_substitute_harmonic(self):
+		self.assert_("III" in progressions.substitute_harmonic(["I"], 0))
+		self.assert_([] == progressions.substitute_harmonic(["IM"], 0))
+		self.assert_('III' in progressions.substitute_harmonic(["IM"], 0, True))
 
 	def test_skip(self):
 		self.assertEqual(progressions.skip("I"), "II")
