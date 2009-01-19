@@ -255,15 +255,14 @@ def tuple_to_string(prog_tuple):
 def substitute_harmonic(progression, substitute_index, ignore_suffix = False):
 	"""Does simple harmonic substitutions. Returns a \
 list of possible substitions for `progression[substitute_index]`. \
-Uses the following table to convert progressions:
+If `ignore_suffix` is set to True the suffix of the chord being substituted \
+will be ignored. Otherwise only progressions without a suffix, or with suffix '7' \
+will be substituted. The following table is used to convert progressions: \
 || I || III ||
 || I || VI ||
 || IV || II ||
 || IV || VI ||
-|| V || VII ||
-If `ignore_suffix` is set to True the suffix of the chord being substituted \
-will be ignored. Otherwise only progressions without a suffix, or with suffix '7' \
-will be substituted."""
+|| V || VII ||"""
 
 	simple_substitutions = [
 			("I", "III"),
