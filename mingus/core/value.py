@@ -90,7 +90,7 @@ which can be useful for taking differences.
 def dots(value, nr = 1):
 	"""Returns the dotted note value. A dot adds half the duration of the note. \
 A second dot adds half of what was added before, etc. So a dotted eight note has the \
-length of three sixteenth notes. An eight note with two dots has the length of five \
+length of three sixteenth notes. An eight note with two dots has the length of seven \
 thirty second notes.
 {{{
 >>> value.dots(value.eight)

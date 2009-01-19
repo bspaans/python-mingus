@@ -12,6 +12,22 @@ class test_fluidsynth(unittest.TestCase):
 		fluidsynth.init("/home/bspaans/workspace/fluidsynth/ChoriumRevA.SF2")
 		fluidsynth.set_instrument(0,0)
 
+	def test_bar_velocity(self):
+		b = Bar()
+		n = Note("C")
+		n.velocity = 0
+		m = Note("C")
+		m.velocity = 40
+		o = Note("C")
+		o.velocity = 80
+		p = Note("C")
+		p.velocity = 120
+		b + n
+		b + m
+		b + o
+		b + p
+		self.assert_(fluidsynth.play_Bar(b), 0)
+
 
 	def test_main_volume(self):
 		for x in range(0, 128, 20):
