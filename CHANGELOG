@@ -2,6 +2,14 @@
 CHANGELOG
 ================================================================================
 
+	0.3.8.8
+	Jan 19, 2009
+	
+	* midi/fluidsynth.py: Renamed default_bpm function argument to bpm.
+	(http://groups.google.com/group/mingus-python/t/cb8784584330d42d)
+
+================================================================================
+
 	0.3.8.7
 	Jan 16, 2009
 
