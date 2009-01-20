@@ -7,6 +7,8 @@ CHANGELOG
 
 	* containers/Note.py: Fix in transpose function.
 	(http://groups.google.com/group/mingus-python/t/60cd407eeadc0b3e)
+	* containers/NoteContainer.py: Return self after using the + and - 
+	operators.
 
 
 ================================================================================

@@ -180,6 +180,7 @@ the container"""
 		"""Transposes all the notes in the container up or down the given interval."""
 		for n in self.notes:
 			n.transpose(interval, up)
+		return self
 
 	def get_note_names(self):
 		"""Returns a list with all the note names in the current container. Every name will only be mentioned once."""
@@ -230,7 +231,7 @@ function accepts Notes and notes as string.
 ["C-4", "E-4", "G-4", "B-4"] 
 }}}"""
 		self.add_notes(notes)
-		return self.notes
+		return self
 
 	def __sub__(self, notes):
 		"""This method allows you to use the '-' operator on !NoteContainers.
@@ -241,7 +242,7 @@ function accepts Notes and notes as string.
 ["C-4", "G-4"]
 }}}"""
 		self.remove_notes(notes)
-		return self.notes
+		return self
 
 	def __len__(self):
 		"""Returns the number of notes in the container"""

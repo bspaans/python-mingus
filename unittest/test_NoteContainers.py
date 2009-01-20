@@ -12,14 +12,14 @@ class test_NoteContainers(unittest.TestCase):
 		self.n2 = NoteContainer("A")
 		self.n3 = NoteContainer(["A", "C", "E"])
 		self.n4 = NoteContainer(["A", "C", "E", "F", "G"])
+		self.n5 = NoteContainer(["A", "C", "E", "F", "G", "A"])
 
 	def test_add_note(self):
 		self.assertEqual(self.n2 , self.n2.add_note("A"))
 		self.assertEqual(NoteContainer("A"), self.n1.add_note("A"))
 		self.n1 - "A"
 		self.assertEqual(self.n3 + ["F", "G"], self.n4)
-		self.n3 - ["F", "G"]
-		self.assertEqual(self.n2 + ["C", "E"], self.n3)
+		self.assertEqual(self.n2 + ["C", "E"], self.n3 - ["F", "G"])
 		self.n2 - ["C", "E"]
 
 	def test_add_notes(self):
@@ -72,11 +72,14 @@ class test_NoteContainers(unittest.TestCase):
 
 	def test_transpose(self):
 		n = NoteContainer(["C", "E", "G"])
-		n.transpose("3")
-		self.assertEqual(NoteContainer(["E", "G#", "B"]), n)
+		self.assertEqual(NoteContainer(["E", "G#", "B"]), n.transpose("3"))
+		n = NoteContainer(["C-6", "E-4", "G-2"])
+		self.assertEqual(NoteContainer(["E-6", "G#-4", "B-2"]), n.transpose("3"))
 
 	def test_get_note_names(self):
 		self.assertEqual(['A', 'C', 'E'], self.n3.get_note_names())
+		self.assertEqual(['A', 'C', 'E', 'F', 'G'], self.n4.get_note_names())
+		self.assertEqual(['A', 'C', 'E', 'F', 'G'], self.n5.get_note_names())
 
 def suite():
 	return unittest.TestLoader().loadTestsFromTestCase(test_NoteContainers)
