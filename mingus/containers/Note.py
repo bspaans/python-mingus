@@ -126,13 +126,13 @@ Doesn't change the octave."""
 >>> a
 'A-4'
 }}}"""
-		old = self.name
+		old, o_octave = self.name, self.octave
 		self.name = intervals.from_shorthand(self.name, interval, up)
 		if up:
-			if self < Note(old):
+			if self < Note(old, o_octave):
 				self.octave += 1
 		else:
-			if self > Note(old):
+			if self > Note(old, o_octave):
 				self.octave -= 1
 
 

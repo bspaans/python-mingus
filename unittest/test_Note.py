@@ -77,6 +77,14 @@ class test_Note(unittest.TestCase):
 		a.transpose("5", False)
 		self.assertEqual(Note("F"), a)
 
+		a = Note("G-5")
+		a.transpose("5")
+		self.assertEqual(Note("D-6"), a)
+		a.transpose("5", False)
+		self.assertEqual(Note("G-5"), a)
+		a.transpose("5", False)
+		self.assertEqual(Note("C-5"), a)
+
 	def test_from_int(self):
 
 		self.assertEqual(Note("C", 0), Note().from_int(0))
