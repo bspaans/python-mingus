@@ -3,6 +3,7 @@ sys.path += ["../"]
 
 import unittest
 import mingus.extra.LilyPond as LilyPond
+import mingus.core.value as value
 
 from mingus.containers.Note import Note
 from mingus.containers.NoteContainer import NoteContainer
@@ -16,9 +17,14 @@ class test_LilyPond(unittest.TestCase):
 		self.commonbar = Bar()
 		self.ebar = Bar('E', (4,4))
 		self.fbar = Bar('F', (6,8))
+		self.tbar = Bar('C', (4,4))
+		self.mbar = Bar('C', (4,4))
 
 		for y in [self.commonbar, self.ebar, self.fbar]:
 			map(lambda x: y + x, ["C", "E", "G", "B"])
+		map(lambda x: self.tbar.place_notes(NoteContainer(x), 6), ["C", "E", "G", "B", "C", "E"])
+		map(lambda x: self.mbar.place_notes(NoteContainer(x), 4), ["C", "E"])
+		map(lambda x: self.mbar.place_notes(NoteContainer(x), 6), ["G", "B", "C"])
 
 		self.track1 = Track()
 		self.track1 + self.commonbar
@@ -75,6 +81,15 @@ class test_LilyPond(unittest.TestCase):
 
 	def test_from_Suite(self):
 		LilyPond.from_Suite(None)
+
+	def test_dotted_notes(self):
+		self.assertEqual(LilyPond.from_NoteContainer(NoteContainer("C"), value.dots(8)), "c'8.")
+		self.assertEqual(LilyPond.from_NoteContainer(NoteContainer("C"), value.dots(4, 2)), "c'4..")
+
+	def test_to_pdf(self):
+		self.assert_(LilyPond.to_pdf("{ %s }" % LilyPond.from_NoteContainer(NoteContainer("C"), value.dots(8)), "pdftest1"))
+		self.assert_(LilyPond.to_pdf(LilyPond.from_Bar(self.tbar), "pdftest2"))
+		self.assert_(LilyPond.to_pdf(LilyPond.from_Bar(self.mbar), "pdftest3"))
 
 def suite():
 	return unittest.TestLoader().loadTestsFromTestCase(test_LilyPond)

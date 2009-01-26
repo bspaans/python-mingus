@@ -29,6 +29,7 @@
 
 from mingus.containers.Note import Note
 from mingus.containers.mt_exceptions import NoteFormatError, UnexpectedObjectError
+import mingus.core.value as value
 import os
 
 def from_Note(note, process_octaves = True):
@@ -88,9 +89,11 @@ determining the duration of the NoteContainer is optional."""
 
 	# Add the duration
 	if duration != None:
-		return result + str(duration)
-	else:
-		return result
+		parsed_value = value.determine(duration)
+		result += str(parsed_value[0])
+		for i in range(parsed_value[1]):
+			result += "."
+	return result
 
 def from_Bar(bar, showkey = True, showtime = True):
 	"""Expects a [refMingusContainersBar Bar] object and returns the \
@@ -108,8 +111,22 @@ determine whether the key and the time should be shown."""
 		result = ""
 
 	# Handle the NoteContainers
+	latest_ratio = (1, 1)
+	ratio_has_changed = False
 	for bar_entry in bar.bar:
-		result += from_NoteContainer(bar_entry[2], bar_entry[1]) + " "
+		parsed_value = value.determine(bar_entry[1])
+		ratio = parsed_value[2:]
+		if ratio == latest_ratio:
+			result += from_NoteContainer(bar_entry[2], bar_entry[1]) + " "
+		else:
+			if ratio_has_changed:
+				result += "}"
+			result += "\\times %d/%d {" % (ratio[1], ratio[0])
+			result += from_NoteContainer(bar_entry[2], bar_entry[1]) + " "
+			latest_ratio = ratio
+			ratio_has_changed = True
+	if ratio_has_changed:
+		result += "}"
 
 	# Process the time
 	if showtime:
@@ -178,6 +195,8 @@ $PATH."""
 def save_string_and_execute_LilyPond(ly_string, filename, command):
 	"""A helper function for to_png and to_pdf. Should not be used directly"""
 	ly_string = "\\version \"2.10.33\"\n" + ly_string
+	if filename[-4] in [".pdf" or ".png"]:
+		filename = filename[:-4]
 	try:
 		f = open(filename + ".ly", 'w')
 		f.write(ly_string)
