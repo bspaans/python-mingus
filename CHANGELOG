@@ -2,11 +2,19 @@
 CHANGELOG
 ================================================================================
 
+	0.3.9.1
+	Feb 16, 2009
+
+	* MANIFEST.in: Now includes the CHANGELOG in the source distribution 
+        as suggested by Stefan Huchler.
+
+================================================================================
+
 	0.3.9.0
 	Jan 26, 2009
 
 	* extra/LilyPond.py: Using the new note value module to correctly 
-	print tuplets and dotted notes.
+	print tuplets and dotted notes (issue #28).
 
 ================================================================================
 
