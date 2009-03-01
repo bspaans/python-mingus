@@ -283,7 +283,113 @@ will be substituted. The following table is used to convert progressions:
 				res.append(tuple_to_string((r, acc, suff)))
 	return res
 
+
+
+def substitute_minor_for_major(progression, substitute_index, ignore_suffix = False):
+	"""Substitutes minor chords for its major equivalent. Recognizes 'm' and 'm7' suffixes \
+and ['II', 'III', 'VI'] if there is no suffix.
+{{{
+>>> progressions.substitute_minor_for_major(["VI"], 0)
+["I"]
+>>> progressions.substitute_minor_for_major(["Vm"], 0)
+["bVIIM"]
+>>> progressions.substitute_minor_for_major(["VIm7"], 0)
+["IM7"]
+}}}"""
+	roman, acc, suff = parse_string(progression[substitute_index])
+	res = []
+
+	# Minor to major substitution
+	if suff == 'm' or suff == 'm7' or (suff == '' and roman in ["II", "III", "VI"]) or ignore_suffix:
+		n = skip(roman, 2)
+		a = interval_diff(roman, n, 3) + acc
+		if suff == 'm' or ignore_suffix:
+			res.append(tuple_to_string((n, a, 'M')))
+		elif suff == 'm7' or ignore_suffix:
+			res.append(tuple_to_string((n, a, 'M7')))
+		elif suff == '' or ignore_suffix:
+			res.append(tuple_to_string((n, a, '')))
+	return res
+
+
+
+
+def substitute_major_for_minor(progression, substitute_index, ignore_suffix = False):
+	"""Substitutes major chords for their minor equivalent. Recognizes 'M' and 'M7' suffixes \
+and ['I', 'IV', 'V'] if there is no suffix.
+{{{
+>>> progressions.substitute_major_for_minor(["I"], 0)
+["VI"]
+>>> progressions.substitute_major_for_minor(["VM7"], 0)
+["IIIm7"]
+}}}"""
+	roman, acc, suff = parse_string(progression[substitute_index])
+	res = []
+
+	# Major to minor substitution
+	if suff == 'M' or suff == 'M7' or (suff == '' and roman in ["I", "IV", "V"]) or ignore_suffix:
+		n = skip(roman, 5)
+		a = interval_diff(roman, n, 9) + acc
+		if suff == 'M' or ignore_suffix:
+			res.append(tuple_to_string((n, a, 'm')))
+		elif suff == 'M7' or ignore_suffix:
+			res.append(tuple_to_string((n, a, 'm7')))
+		elif suff == '' or ignore_suffix:
+			res.append(tuple_to_string((n, a, '')))
+	return res
+
+
+
+def substitute_diminished_for_diminished(progression, substitute_index, ignore_suffix = False):
+	"""Substitutes a diminished chord for another diminished chord. Recognizes the 'dim' and 'dim7' \
+suffix and "VI" if there is no suffix.
+{{{
+>>> progressions.substitute_diminished_for_diminished(["VII"], 0)
+["IIdim", "bIVdim", "bbVIdim"]
+}}}"""
+	roman, acc, suff = parse_string(progression[substitute_index])
+	res = []
+
+	# Diminished progressions
+	if suff == 'dim7' or suff == 'dim' or (suff == '' and roman in ["VII"]) or ignore_suffix:
 	
+		if suff == '': suff = 'dim'
+
+		# Add diminished chord
+		last = roman
+		for x in range(3):
+
+			next = skip(last, 2)
+			acc += interval_diff(last, next, 3)
+			res.append(tuple_to_string((next , acc, suff)))
+			last = next
+	return res
+
+
+
+def substitute_diminished_for_dominant(progression, substitute_index, ignore_suffix = False):
+	roman, acc, suff = parse_string(progression[substitute_index])
+	res = []
+
+	# Diminished progressions
+	if suff == 'dim7' or suff == 'dim' or (suff == '' and roman in ["VII"]) or ignore_suffix:
+	
+		if suff == '': suff = 'dim'
+
+		# Add diminished chord
+		last = roman
+		for x in range(4):
+
+			next = skip(last, 2)
+			dom = skip(last, 5)
+			a = interval_diff(last, dom, 8) + acc
+			res.append(tuple_to_string((dom, a, 'dom7')))
+			last = next
+	return res
+
+
+
+
 def substitute(progression, substitute_index, depth = 0):
 	"""Gives a list of possible substitution for \
 `progression[substitute_index]`. If depth > 0 the substitutions \
@@ -335,14 +441,14 @@ of each result will be recursively added as well.
 	# Minor to major substitution
 	if suff == 'm' or suff == 'm7':
 		n = skip(roman, 2)
-		a = interval_diff(roman, n, 4)
+		a = interval_diff(roman, n, 3) + acc
 		res.append(tuple_to_string((n, a, 'M')))
 		res.append(tuple_to_string((n, a, 'M7')))
 
 	# Major to minor substitution
 	if suff == 'M' or suff == 'M7':
-		n = skip(roman, 6)
-		a = interval_diff(roman, n, 9)
+		n = skip(roman, 5)
+		a = interval_diff(roman, n, 9) + acc
 		res.append(tuple_to_string((n, a, 'm')))
 		res.append(tuple_to_string((n, a, 'm7')))
 
