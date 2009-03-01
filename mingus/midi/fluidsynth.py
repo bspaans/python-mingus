@@ -320,7 +320,7 @@ file. The optional driver argument can be any of 'alsa', 'oss', 'jack', 'portaud
 
 
 def play_Note(note, channel = 1, velocity = 100):
-	"""Sends a Note object as midi signal to the fluidsynth server. \
+	"""Converts a Note object to a `midi on` command. \
 The channel and velocity can be set as Note attributes as well. If that's \
 the case those values take presedence over the ones given here as function \
 arguments.
