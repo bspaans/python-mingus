@@ -49,9 +49,7 @@ def valid_beat_duration(duration):
 def is_valid(meter):
 	"""Returns True if meter is a valid tuple representation of \
 a meter. Examples for meters are (3,4) for 3/4, (4,4) for 4/4, etc."""
-	if meter[0] > 0 and valid_beat_duration(meter[1]):
-		return True
-	return False
+	return meter[0] > 0 and valid_beat_duration(meter[1])
 
 def is_compound(meter):
 	"""Returns True if meter is a compound meter, False otherwise.
@@ -62,10 +60,7 @@ True
 >>> is_compound((4,4))
 False
 }}}"""
-	if is_valid(meter) and meter[0] % 3 == 0:
-		return True
-	else:
-		return False
+	return is_valid(meter) and meter[0] % 3 == 0
 
 def is_simple(meter):
 	"""Returns True if meter is a simple meter, False otherwise.
@@ -87,7 +82,4 @@ True
 >>> is_asymmetrical((4,4))
 False
 }}}"""
-	if is_valid(meter) and meter[0] % 2 == 1:
-		return True
-	else:
-		return False
+	return is_valid(meter) and meter[0] % 2 == 1

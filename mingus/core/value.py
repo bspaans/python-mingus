@@ -100,11 +100,8 @@ thirty second notes.
 >>> value.dots(value.quarter)
 2.6666666666666665
 }}}"""
-	d = 0.0
-	while nr >= 0:
-		d += 1.0 / (2 ** nr)
-		nr -= 1
-	return value / d
+	return 0.5 * value / (1.0 - 0.5 ** (nr + 1))
+
 
 def triplet(value):
 	"""Returns the triplet note value. A triplet divides the base value above into \
