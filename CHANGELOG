@@ -2,11 +2,31 @@
 CHANGELOG
 ================================================================================
 
+	0.4
+	Mar 1, 2009
+
+	* Gone through and updated all the documentation and added tutorials
+        for every finished module. Closed issue #22.
+
+================================================================================
+
+	0.3.9.2
+	Mar 1, 2009
+
+	* core/progressions.py: Factored out and added fixes for substitutions.
+	Closed #21.
+	* extra/LilyPond.py: Closed #34 and #35. Added fix for saving filenames
+	with spaces in them, and converting octaves. 
+	Thanks to Stefan Huchler for reporting these.
+
+
+================================================================================
+
 	0.3.9.1
 	Feb 16, 2009
 
-	* MANIFEST.in: Now includes the CHANGELOG in the source distribution 
-        as suggested by Stefan Huchler.
+	* MANIFEST.in: Now includes the CHANGELOG in the source distribution as 
+	suggested by Stefan Huchler.
 
 ================================================================================
 

@@ -391,11 +391,11 @@ def substitute_diminished_for_dominant(progression, substitute_index, ignore_suf
 
 
 def substitute(progression, substitute_index, depth = 0):
-	"""Gives a list of possible substitution for \
+	"""Gives a list of possible substitutions for \
 `progression[substitute_index]`. If depth > 0 the substitutions \
 of each result will be recursively added as well.
 {{{
->>> progressions.substitue(["I", "IV", "V", "I"], 0)
+>>> progressions.substitute(["I", "IV", "V", "I"], 0)
 ["III", "VI", etc.
 }}}"""
 	res = []
