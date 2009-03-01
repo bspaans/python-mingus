@@ -44,13 +44,14 @@ class test_LilyPond(unittest.TestCase):
 		self.assertEqual(LilyPond.from_Note(Note('C##')),"cisis'")
 		self.assertEqual(LilyPond.from_Note(Note('Cb')),"ces'")
 		self.assertEqual(LilyPond.from_Note(Note('Cbb')),"ceses'")
+		self.assertEqual(LilyPond.from_Note(Note('C', 0)),"c,,,")
+		self.assertEqual(LilyPond.from_Note(Note('C', 1)),"c,,")
+		self.assertEqual(LilyPond.from_Note(Note('C', 2)),"c,")
+		self.assertEqual(LilyPond.from_Note(Note('C', 3)),"c")
+		self.assertEqual(LilyPond.from_Note(Note('C', 4)),"c'")
 		self.assertEqual(LilyPond.from_Note(Note('C', 5)),"c''")
 		self.assertEqual(LilyPond.from_Note(Note('C', 6)), "c'''")
 		self.assertEqual(LilyPond.from_Note(Note('C', 7)), "c''''")
-		self.assertEqual(LilyPond.from_Note(Note('C', 3)), "c,")
-		self.assertEqual(LilyPond.from_Note(Note('C', 2)), "c,,")
-		self.assertEqual(LilyPond.from_Note(Note('C', 1)), "c,,,")
-		self.assertEqual(LilyPond.from_Note(Note('C', 0)), "c,,,,")
 
 
 	def test_from_NoteContainer(self):
@@ -87,7 +88,7 @@ class test_LilyPond(unittest.TestCase):
 		self.assertEqual(LilyPond.from_NoteContainer(NoteContainer("C"), value.dots(4, 2)), "c'4..")
 
 	def test_to_pdf(self):
-		self.assert_(LilyPond.to_pdf("{ %s }" % LilyPond.from_NoteContainer(NoteContainer("C"), value.dots(8)), "pdftest1"))
+		self.assert_(LilyPond.to_pdf("{ %s }" % LilyPond.from_NoteContainer(NoteContainer("C"), value.dots(8)), "pdftest first test"))
 		self.assert_(LilyPond.to_pdf(LilyPond.from_Bar(self.tbar), "pdftest2"))
 		self.assert_(LilyPond.to_pdf(LilyPond.from_Bar(self.mbar), "pdftest3"))
 

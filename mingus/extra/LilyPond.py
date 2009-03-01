@@ -31,6 +31,7 @@ from mingus.containers.Note import Note
 from mingus.containers.mt_exceptions import NoteFormatError, UnexpectedObjectError
 import mingus.core.value as value
 import os
+import subprocess
 
 def from_Note(note, process_octaves = True):
 	"""Expects a [refMingusContainersNote Note] object and returns \
@@ -57,8 +58,8 @@ all data regarding octaves will be ignored."""
 			while (oct > 3):
 				result += "'"
 				oct -= 1
-		else:
-			while (oct < 4):
+		elif oct < 3:
+			while (oct < 3):
 				result += ","
 				oct += 1
 	return result
@@ -203,9 +204,10 @@ def save_string_and_execute_LilyPond(ly_string, filename, command):
 		f.close()
 	except:
 		return False
-	command = "lilypond " + command + " -o " + filename + " " + filename + ".ly"
+	command ="lilypond %s -o \"%s\" \"%s.ly\"" % (command, filename, filename)
 	print "Executing: %s" % command
-	os.system(command)
+	p = subprocess.Popen(command, shell=True)
+	sts = os.waitpid(p.pid, 0)
 	os.remove(filename + ".ly")
 	return True
 
