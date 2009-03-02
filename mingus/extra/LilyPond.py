@@ -95,9 +95,9 @@ determining the duration of the NoteContainer is optional."""
 		# Special case: check for longa and breve in the duration
 		dur = parsed_value[0]
 		if dur == value.longa:
-			result += "\longa"
+			result += "\\longa"
 		elif dur == value.breve:
-			result += "\breve"
+			result += "\\breve"
 		else:
 			result += str(int(parsed_value[0]))
 		for i in range(parsed_value[1]):

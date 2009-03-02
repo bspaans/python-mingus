@@ -60,6 +60,14 @@ class test_LilyPond(unittest.TestCase):
 		self.assertEqual(LilyPond.from_NoteContainer(NoteContainer(["C", "E"])), "<c' e'>")
 		self.assertEqual(LilyPond.from_NoteContainer(NoteContainer(["C", "E"]), 4), "<c' e'>4")
 
+		# issue #37
+		self.assertEqual(LilyPond.from_NoteContainer(NoteContainer("C"), 16), "c'16")
+		self.assertEqual(LilyPond.from_NoteContainer(NoteContainer("C"), 16.0), "c'16")
+		self.assertEqual(LilyPond.from_NoteContainer(NoteContainer("C"), value.dots(16)), "c'16.")
+
+		self.assertEqual(LilyPond.from_NoteContainer(NoteContainer("C"), 0.25), "c'\\longa")
+		self.assertEqual(LilyPond.from_NoteContainer(NoteContainer("C"), 0.5), "c'\\breve")
+
 	def test_from_Bar(self):
 		self.assertEqual(LilyPond.from_Bar(self.commonbar),\
 			"{ \\time 4/4 \\key c \\major c'4 e'4 g'4 b'4 }")
