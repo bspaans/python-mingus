@@ -70,11 +70,11 @@ and returns the !LilyPond equivalent in a string. The second argument \
 determining the duration of the NoteContainer is optional."""
 
 	# Throw exception
-	if not ( hasattr ( nc, "notes" ) ):
+	if (nc is not None) and (not ( hasattr ( nc, "notes" ) )):
 		return False
 
 	# Return rests for None or empty lists
-	if len(nc.notes) == 0 or len(nc.notes) == 0:
+	if nc is None or len(nc.notes) == 0:
 		result = "r"
 	# Return a single note if the list contains only 
 	# one note
@@ -91,7 +91,7 @@ determining the duration of the NoteContainer is optional."""
 	# Add the duration
 	if duration != None:
 		parsed_value = value.determine(duration)
-		result += str(parsed_value[0])
+		result += str(int(parsed_value[0]))
 		for i in range(parsed_value[1]):
 			result += "."
 	return result
