@@ -499,13 +499,13 @@ and `progression2` is `interval`"""
 	
 
 def skip(roman_numeral, skip = 1):
-	"""Skips places to the next roman numeral. 
+	"""Skips `skip` places to the next roman numeral. 
 {{{
->>> progressions.next("I")
+>>> progressions.skip("I")
 'II'
->>> progressions.next("VII")
+>>> progressions.skip("VII")
 'I'
->>> progressions.next("I", 2)
+>>> progressions.skip("I", 2)
 'III'
 }}}"""
 	i = numerals.index(roman_numeral) + skip
