@@ -5,8 +5,12 @@ CHANGELOG
 	0.4.0.1
 	Mar 2, 2009
 
-	* Fixed bug in converting the duration in LilyPond.from_NoteContainer. 
-	Closed #37.
+	* extra/LilyPond.py: Fixed bug in converting the duration to a valid 
+	LilyPond string in from_NoteContainer. Also added support for longa 
+	and breve along the way. Closed #37.
+	* midi/pyFluidSynth.py: merged in pyFluidSynth 1.2.4
+	* midi/fluidsynth.py: Added destructor to MidiSequencer object to
+	prevent errors when exiting.
 
 ================================================================================
 

@@ -92,7 +92,7 @@ determining the duration of the NoteContainer is optional."""
 	if duration != None:
 		parsed_value = value.determine(duration)
 
-		# Special case: check for longa and breve in the duration
+		# Special case: check for longa and breve in the duration (issue #37)
 		dur = parsed_value[0]
 		if dur == value.longa:
 			result += "\\longa"

@@ -52,6 +52,9 @@ class MidiSequencer:
 	def __init__(self):
 		self.fs = fs.Synth()
 
+	def __del__(self):
+		self.fs.delete()
+
 	def start_audio_output(self, driver=None):
 		"""The optional driver argument can be any of 'alsa', \
 'oss', 'jack', 'portaudio', 'sndmgr', 'coreaudio', 'Direct Sound'. \
