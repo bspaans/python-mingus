@@ -1112,54 +1112,33 @@ Examples:
 		"""Recursive helper function that runs tries every inversion
 		and saves the result."""
 
-		intval1 = intervals.determine(triad[0], triad[1])
-		intval2 = intervals.determine(triad[0], triad[2])
-		inttype1 = intval1.split(" ")[1]
+		intval1 = intervals.determine(triad[0], triad[1], True)
+		intval2 = intervals.determine(triad[0], triad[2], True)
 
 		def add_result(short):
 			result.append((short, tries, triad[0]))
 
-		if intval2 == "perfect fifth":
-			if intval1 == "major third":
-				add_result("M")
-			elif intval1 == "minor third":
-				add_result("m")
-			elif inttype1 == "fourth":
-				add_result("sus4")
-			elif inttype1 == "second":
-				add_result("sus2")
-		elif intval2 == "minor fifth":
-			if intval1 == "minor third":
-				add_result("dim")
-			elif intval1 == "major third":
-				add_result("7b5")
-		elif intval2 == "augmented fifth":
-			if intval1 == "major third":
-				add_result("aug")
+		intval = intval1 + intval2
+		if intval == "25": add_result("sus2")
 
-		if intval1 == "minor third":
-			if intval2 == "minor seventh":
-				add_result("m7")
-			elif intval2 == "major seventh":
-				add_result("m/M7")
-			elif intval2 == "major sixth":
-				add_result("m6")
-		elif intval1 == "major third":
-			if intval2 == "minor seventh":
-				add_result("7")
-			elif intval2 == "major seventh":
-				add_result("M7")
-			elif intval2 == "major sixth":
-				add_result("M6")
-		elif intval1 == "perfect fifth":
-			if intval2 == "minor seventh":
-				add_result("m7")
-			elif intval2 == "major seventh":
-				add_result("M7")
-			
+		elif intval == "3b7": add_result("dom7") # changed from just '7'
+		elif intval == "3b5": add_result("7b5") # why not b5?
+		elif intval == "35": add_result("M")
+		elif intval == "3#5": add_result("aug")
+		elif intval == "36": add_result("M6")
+		elif intval == "37": add_result("M7")
 
-		# Python: The following line is pure South American, 
-		# double negative poetry.
+		elif intval == "b3b5": add_result("dim")
+		elif intval == "b35": add_result("m")
+		elif intval == "b36": add_result("m6")
+		elif intval == "b3b7": add_result("m7")
+		elif intval == "b37": add_result("m/M7")
+
+		elif intval == "45": add_result("sus4")
+
+		elif intval == "5b7": add_result("m7")
+		elif intval == "57": add_result("M7")
+
 		if tries != 3 and not no_inversions:
 			return inversion_exhauster([triad[-1]] + triad[:-1], shorthand,\
 					tries + 1, result)
