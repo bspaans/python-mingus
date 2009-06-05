@@ -103,9 +103,11 @@ and thus creates theoretically correct notes. Will throw a \
 		return known_notes[known_intervals.index(note_int)]	
 	else:
 		if note_int - 1 in known_intervals:
-			return known_notes[known_intervals.index(note_int - 1)] + "#"
+			return notes.remove_redundant_accidentals(\
+                                  known_notes[known_intervals.index(note_int - 1)] + "#")
 		elif note_int + 1 in known_intervals:
-			return known_notes[known_intervals.index(note_int + 1)] + "b"
+			return notes.remove_redundant_accidentals(\
+                                  known_notes[known_intervals.index(note_int + 1)] + "b")
 
 def interval(key, start_note, interval):
 	"""Returns the note found at the interval starting from start_note \

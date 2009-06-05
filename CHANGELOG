@@ -2,13 +2,23 @@
 CHANGELOG
 ================================================================================
 
+	0.4.0.2 
+	Jun 5, 2009
+
+	* core/chords.py: Faster and short pattern matching functions in 
+	determine_triad. The rest should follow.
+        * core/value.py: Changed instances of eight to eighth (closes #39)
+	* core/diatonic.py: Fixed bug in diatonic.int_to_note (closes #40)
+
+================================================================================
+
 	0.4.0.1
 	Mar 2, 2009
 
 	* extra/LilyPond.py: Fixed bug in converting the duration to a valid 
 	LilyPond string in from_NoteContainer. Also added support for longa 
 	and breve along the way. Closed #37.
-	* midi/pyFluidSynth.py: merged in pyFluidSynth 1.2.4
+	* midi/pyFluidSynth.py: merged in pyFluidSynth 1.2.4 (closed #38)
 	* midi/fluidsynth.py: Added destructor to MidiSequencer object to
 	prevent errors when exiting.
 

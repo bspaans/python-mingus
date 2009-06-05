@@ -40,6 +40,7 @@ class test_diatonic(unittest.TestCase):
 		self.assertEqual("Bb", diatonic.int_to_note(10, "F"))
 		self.assertEqual("A#", diatonic.int_to_note(10, "C"))
 		self.assertEqual("Bbb", diatonic.int_to_note(9, "Fb"))
+                self.assertEqual("C", diatonic.int_to_note(0, "D"))
 
 def suite():
 	return unittest.TestLoader().loadTestsFromTestCase(test_diatonic)
