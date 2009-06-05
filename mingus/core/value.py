@@ -22,13 +22,13 @@
 
 	A note value indicates the relative duration of a note. In mingus,
 	note values are represented by floating point numbers. 
-	A quarter note is 4, because it stands for 1/4 note, an eight note is 8
+	A quarter note is 4, because it stands for 1/4 note, an eighth note is 8
 	because it stands for 1/8, a sixteenth note is 16, etc.
 	These are all pretty straight forward, but how do you define a sixteenth 
-	triplet? Well, sixteenth triplets are made by taking an eight note 
+	triplet? Well, sixteenth triplets are made by taking an eighth note 
 	and deviding it in 3 equal parts. 1/8 times 1/3 = 1/24; so 24 is the number 
-	we want. How about a dotted eight note? A dotted eight note has the length
-	of an eight note plus half an eight note. 1/8 + 1/16 = 3/16 = 1 / 16 / 3.
+	we want. How about a dotted eighth note? A dotted eighth note has the length
+	of an eighth note plus half an eighth note. 1/8 + 1/16 = 3/16 = 1 / 16 / 3.
 	So 16/3 is the number we are looking for. 
 
 	As you can see these calculations can be quite tiresome and can clutter 
@@ -56,11 +56,11 @@ semihemidemisemiquaver = 128
 whole = 1
 half = 2
 quarter = 4
-eight = 8
+eighth = 8
 sixteenth = 16
 thirty_second = 32
 sixty_fourth = 64
-hundred_twenty_eight = 128
+hundred_twenty_eighth = 128
 
 
 base_values      = [  0.25,   0.5,    1,   2, 4, 8,  16, 32,  64, 128]
@@ -72,7 +72,7 @@ base_septuplets  = [0.4375, 0.875, 1.75, 3.5, 7, 14, 28, 56, 112, 224]
 def add(value1, value2):
 	"""Returns the value of the two combined.
 {{{
->>> value.add(value.eight, value.quarter)
+>>> value.add(value.eighth, value.quarter)
 2.6666666666666665
 }}}"""
 	return 1 / (1.0 / value1 + 1.0 / value2)
@@ -82,20 +82,20 @@ def subtract(value1, value2):
 There are no exceptions for producing negative values, \
 which can be useful for taking differences.
 {{{
->>> value.substract(value.quarter, value.eight)
+>>> value.substract(value.quarter, value.eighth)
 8.0
 }}}"""
 	return 1 / (1.0 / value1 - 1.0 / value2)
 
 def dots(value, nr = 1):
 	"""Returns the dotted note value. A dot adds half the duration of the note. \
-A second dot adds half of what was added before, etc. So a dotted eight note has the \
-length of three sixteenth notes. An eight note with two dots has the length of seven \
+A second dot adds half of what was added before, etc. So a dotted eighth note has the \
+length of three sixteenth notes. An eighth note with two dots has the length of seven \
 thirty second notes.
 {{{
->>> value.dots(value.eight)
+>>> value.dots(value.eighth)
 5.3333333333333333
->>> value.dots(value.eight, 2)
+>>> value.dots(value.eighth, 2)
 4.5714285714285712
 >>> value.dots(value.quarter)
 2.6666666666666665
@@ -105,9 +105,9 @@ thirty second notes.
 
 def triplet(value):
 	"""Returns the triplet note value. A triplet divides the base value above into \
-three parts. So a triplet eight note is a third of a quarter note.
+three parts. So a triplet eighth note is a third of a quarter note.
 {{{
->>> value.triplet(value.eight)
+>>> value.triplet(value.eighth)
 12
 >>> value.triplet(4)
 6
@@ -116,7 +116,7 @@ three parts. So a triplet eight note is a third of a quarter note.
 
 def quintuplet(value):
 	"""Returns the quintuplet note value. A quintuplet divides the base value _two_ \
-above into five parts. So a quintuplet eight note is a fifth of a half note.
+above into five parts. So a quintuplet eighth note is a fifth of a half note.
 {{{
 >>> value.quintuplet(8)
 10
@@ -127,8 +127,8 @@ above into five parts. So a quintuplet eight note is a fifth of a half note.
 
 def septuplet(value, in_fourths = True):
 	"""Returns the septuplet note value. The usage of a septuplet is ambigious: \
-seven notes can be played either in the duration of four or eight notes. If in_fourths \
-is set to True, this function will use 4, otherwise 8 notes. So a septuplet eight note \
+seven notes can be played either in the duration of four or eighth notes. If in_fourths \
+is set to True, this function will use 4, otherwise 8 notes. So a septuplet eighth note \
 is respectively either 14 or 7. Notice how `value.septuplet(8, False) == value.septuplet(4, True)`.
 {{{
 >>> value.septuplet(8)
