@@ -22,4 +22,4 @@
 
 """
 
-__all__ = ["MidiSequencer", "MidiFileIn", "MidiFileOut", "MidiTrack", "fluidsynth"]
+__all__ = ["MidiFileIn", "MidiFileOut", "MidiTrack", "fluidsynth"]
