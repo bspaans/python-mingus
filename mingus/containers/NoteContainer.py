@@ -117,6 +117,30 @@ See mingus.core.chords.from_shorthand for an up to date list of recognized forma
                 self.add_notes(chords.from_shorthand(shorthand))
                 return self
 
+        def from_interval(self, startnote, shorthand, up = True):
+                """Shortcut to from_interval_shorthand."""
+                return self.from_interval_shorthand(startnote, shorthand, up)
+
+        def from_interval_shorthand(self, startnote, shorthand, up = True):
+                """Empties the container and adds the note described in the startnote and shorthand. \
+See core.intervals for the recognized format.
+{{{
+>>> nc = NoteContainer()
+>>> nc.from_interval_shorthand("C", "5")
+['C-4', 'G-4']
+>>> nc.from_interval_shorthand(("C", "5", False)
+['F-3', 'C-4']
+}}}"""
+                self.empty()
+                if type(startnote) == str:
+                        startnote = Note(startnote)
+
+                n = Note(startnote.name, startnote.octave, startnote.dynamics)
+                n.transpose(shorthand, up)
+                self.add_notes([startnote, n])
+                return self
+
+
         def from_progression(self, shorthand, key = 'C'):
                 """Shortcut to from_progression_shorthand."""
                 return self.from_progression_shorthand(shorthand, key)

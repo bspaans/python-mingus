@@ -87,6 +87,10 @@ class test_NoteContainers(unittest.TestCase):
         def test_from_progression_shorthand(self):
                 self.assertEqual(self.n3, NoteContainer().from_progression_shorthand("VI"))
 
+        def test_from_interval_shorthand(self):
+                self.assertEqual(NoteContainer(['C-4', 'G-4']), NoteContainer().from_interval_shorthand("C", "5"))
+                self.assertEqual(NoteContainer(['F-3', 'C-4']), NoteContainer().from_interval_shorthand("C", "5", False))
+
 def suite():
 	return unittest.TestLoader().loadTestsFromTestCase(test_NoteContainers)
 

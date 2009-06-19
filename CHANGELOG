@@ -8,8 +8,9 @@ CHANGELOG
 	* core/intervals.py: Added new functions `is_consonant`, 
 	`is_perfect_consonant`, `is_imperfect_consonant`, `is_dissonant` and
 	documentation + unit tests. (closes issue #33).
-	* containers/NoteContainer.py: Added from_progression_shorthand and
-	from_chord_shorthand to simplify a lot of use cases. (issue #29)
+	* containers/NoteContainer.py: Added from_progression_shorthand, 
+	from_interval_shorthand, from_chord_shorthand and some shortcuts
+	to simplify a lot of use cases. (closes issue #29)
 
 
 ================================================================================
