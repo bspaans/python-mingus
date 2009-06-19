@@ -30,7 +30,7 @@
 	'Ab' while major_third("F") returns 'A'.
 
 	This modules also contains other useful helper functions like 
-	measure, determine and invert.
+	measure, determine, invert, is_consonant and is_dissonant.
 
 ================================================================================
 """
