@@ -462,33 +462,33 @@ def from_shorthand(note, interval, up = True):
 
 
 def is_consonant(note1, note2, include_fourths = True):
-        """A consonance is a harmony, chord, or interval considered stable, 
-as opposed to a dissonance (see `is_dissonant`). This function tests
-whether the given interval is consonant. This basically means that it 
-checks whether the interval is (or sounds like) a unison, third, sixth, 
-perfect fourth or perfect fifth. In classical music the fourth is 
-considered dissonant when used contrapuntal, which is why you can choose 
+        """A consonance is a harmony, chord, or interval considered stable, \
+as opposed to a dissonance (see `is_dissonant`). This function tests \
+whether the given interval is consonant. This basically means that it \
+checks whether the interval is (or sounds like) a unison, third, sixth, \
+perfect fourth or perfect fifth. In classical music the fourth is \
+considered dissonant when used contrapuntal, which is why you can choose \
 to exclude it."""
         return is_perfect_consonant(note1, note2, include_fourths) or \
                 is_imperfect_consonant(note1, note2)
 
 def is_perfect_consonant(note1, note2, include_fourths = True):
-        """Perfect consonances are either unisons, perfect fourths or fifths, 
-or octaves (which is the same as a unison in this model; see the 
-`container.Note` class for more). Perfect fourths are usually included
-as well, but are considered dissonant when used contrapuntal, which is why
+        """Perfect consonances are either unisons, perfect fourths or fifths, \
+or octaves (which is the same as a unison in this model; see the \
+`container.Note` class for more). Perfect fourths are usually included \
+as well, but are considered dissonant when used contrapuntal, which is why \
 you can exclude them."""
         dhalf = measure(note1, note2)
         return dhalf in [0, 7] or (include_fourths and dhalf == 5)
 
 def is_imperfect_consonant(note1, note2):
-        """Imperfect consonances are either minor or major thirds or minor 
+        """Imperfect consonances are either minor or major thirds or minor \
 or major sixths."""
         return measure(note1, note2) in [3, 4, 8, 9]
 
 
 def is_dissonant(note1, note2, include_fourths = False):
-        """Tests whether an interval is considered unstable, dissonant. 
-In the default case perfect fourths are considered consonant, but this can
+        """Tests whether an interval is considered unstable, dissonant. \
+In the default case perfect fourths are considered consonant, but this can \
 be changed with the `exclude_fourths` flag."""
         return not is_consonant(note1, note2, not include_fourths)
