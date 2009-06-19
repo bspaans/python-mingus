@@ -304,6 +304,40 @@ class test_intervals(unittest.TestCase):
         def test_invert(self):
                 self.assertEqual(['C', 'E'], intervals.invert(['E', 'C']))
 
+        def test_is_consonant(self):
+                self.assert_(intervals.is_consonant('C', 'Eb'))
+                self.assert_(intervals.is_consonant('C', 'E'))
+                self.assert_(intervals.is_consonant('C', 'F'))
+                self.assert_(intervals.is_consonant('C', 'G'))
+                self.assert_(intervals.is_consonant('C', 'Ab'))
+                self.assert_(intervals.is_consonant('C', 'A'))
+                self.assert_(intervals.is_consonant('C', 'C'))
+                self.assert_(not intervals.is_consonant('C', 'Db'))
+                self.assert_(not intervals.is_consonant('C', 'D'))
+                self.assert_(not intervals.is_consonant('C', 'F#'))
+                self.assert_(not intervals.is_consonant('C', 'Bb'))
+                self.assert_(not intervals.is_consonant('C', 'B'))
+
+        def test_is_perfect_consonant(self):
+                self.assert_(intervals.is_perfect_consonant('C', 'F'))
+                self.assert_(not intervals.is_perfect_consonant('C', 'F', False))
+
+        def test_is_dissonant(self):
+                self.assert_(not intervals.is_dissonant('C', 'Eb'))
+                self.assert_(not intervals.is_dissonant('C', 'E'))
+                self.assert_(not intervals.is_dissonant('C', 'F'))
+                self.assert_(not intervals.is_dissonant('C', 'G'))
+                self.assert_(not intervals.is_dissonant('C', 'Ab'))
+                self.assert_(not intervals.is_dissonant('C', 'A'))
+                self.assert_(not intervals.is_dissonant('C', 'C'))
+                self.assert_(intervals.is_dissonant('C', 'Db'))
+                self.assert_(intervals.is_dissonant('C', 'D'))
+                self.assert_(intervals.is_dissonant('C', 'F#'))
+                self.assert_(intervals.is_dissonant('C', 'Bb'))
+                self.assert_(intervals.is_dissonant('C', 'B'))
+
+
+                
 
 def suite():
 	return unittest.TestLoader().loadTestsFromTestCase(test_intervals)
