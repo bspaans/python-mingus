@@ -81,6 +81,12 @@ class test_NoteContainers(unittest.TestCase):
 		self.assertEqual(['A', 'C', 'E', 'F', 'G'], self.n4.get_note_names())
 		self.assertEqual(['A', 'C', 'E', 'F', 'G'], self.n5.get_note_names())
 
+        def test_from_chord_shorthand(self):
+                self.assertEqual(self.n3, NoteContainer().from_chord_shorthand("Am"))
+
+        def test_from_progression_shorthand(self):
+                self.assertEqual(self.n3, NoteContainer().from_progression_shorthand("VI"))
+
 def suite():
 	return unittest.TestLoader().loadTestsFromTestCase(test_NoteContainers)
 

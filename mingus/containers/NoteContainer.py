@@ -23,7 +23,7 @@
 """
 
 from Note import Note
-from mingus.core import intervals, chords
+from mingus.core import intervals, chords, progressions
 from mt_exceptions import UnexpectedObjectError
 
 class NoteContainer:
@@ -100,6 +100,47 @@ notes = [["C", 5, {"volume" : 20}], ["E", 6, {"volume":20}]]
 			else:
 				self.add_note(x)
 		return self.notes
+
+        def from_chord(self, shorthand):
+                """Shortcut to from_chord_shorthand."""
+                return self.from_chord_shorthand(shorthand)
+
+        def from_chord_shorthand(self, shorthand):
+                """Empties the container and adds the notes in the shorthand. \
+See mingus.core.chords.from_shorthand for an up to date list of recognized format. 
+{{{
+>>> nc = NoteContainer()
+>>> nc.from_chord_shorthand("Am")
+['A-4', 'C-5', 'E-5']
+}}}"""
+                self.empty()
+                self.add_notes(chords.from_shorthand(shorthand))
+                return self
+
+        def from_progression(self, shorthand, key = 'C'):
+                """Shortcut to from_progression_shorthand."""
+                return self.from_progression_shorthand(shorthand, key)
+
+        def from_progression_shorthand(self, shorthand, key = 'C'):
+                """Empties the container and adds the notes described in the \
+progressions shorthand (eg. 'IIm6', 'V7', etc). See mingus.core.progressions \
+for all the recognized format.
+{{{
+>>> nc = NoteContainer()
+>>> nc.from_progression_shorthand("VI")
+['A-4', 'C-5', 'E-5']
+}}}"""
+                self.empty()
+                chords = progressions.to_chords(shorthand, key)
+
+                #warning Throw error, not a valid shorthand
+                if chords == []: 
+                        return False
+
+                notes = chords[0]
+                self.add_notes(notes)
+                return self
+
 
 	def remove_note(self, note, octave = -1):
 		"""Removes note from container. The note can either be a \
