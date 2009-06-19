@@ -301,6 +301,10 @@ class test_intervals(unittest.TestCase):
 		self.assertEqual('E', intervals.from_shorthand('D', '2'))
 		self.assertEqual('F#', intervals.from_shorthand('D', '3'))
 
+        def test_invert(self):
+                self.assertEqual(['C', 'E'], intervals.invert(['E', 'C']))
+
+
 def suite():
 	return unittest.TestLoader().loadTestsFromTestCase(test_intervals)
 

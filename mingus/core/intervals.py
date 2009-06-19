@@ -283,7 +283,7 @@ def invert(interval):
 ["E", "C"]
 }}}	"""
 	interval.reverse()
-	res = interval
+	res = list(interval)
 	interval.reverse()
 	return res
 

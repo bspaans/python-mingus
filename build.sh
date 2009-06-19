@@ -33,6 +33,7 @@ echo "              Uploading source and windows installer to Google Code"
 echo
 echo "*******************************************************************************"
 echo "Uploading windows installer"
+mv /home/bspaans/mingus/dist/mingus-$VERSION.linux-x86_64.exe /home/bspaans/mingus/dist/mingus-$VERSION.win32.exe
 python googlecode_upload.py -p mingus -s "mingus-$VERSION - windows installer" -u rhijnauwen -l Featured,OpSys-Windows,Type-Installer /home/bspaans/mingus/dist/mingus-$VERSION.win32.exe
 
 echo
