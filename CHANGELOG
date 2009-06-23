@@ -1,6 +1,17 @@
 ================================================================================
 CHANGELOG
 ================================================================================
+	
+	0.4.0.4
+
+	* midi/Sequencer.py: Added an easily extendable general purpose 
+	sequencer that can play all the objects in mingus.containers 
+	(closes issue #27).
+	# midi/fluidsynth.py: Made the fluidsynth sequencer use the new 
+	Sequencer module. (closes issue #43)
+
+
+================================================================================
 
 	0.4.0.3
 
