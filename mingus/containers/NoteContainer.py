@@ -165,6 +165,43 @@ for all the recognized format.
                 self.add_notes(notes)
                 return self
 
+        def _consonance_test(self, testfunc, param = None):
+                """Private function used for testing consonance/dissonance."""
+                n = list(self.notes)
+
+                while len(n) > 1:
+                        first = n[0]
+
+                        for second in n[1:]:
+                                if param is None:
+                                        if not testfunc(first.name, second.name):
+                                                return False
+                                else:
+                                        if not testfunc(first.name, second.name, param):
+                                                return False
+                        n = n[1:]
+                return True
+
+        def is_consonant(self, include_fourths = True):
+                """Tests whether the notes are consonants. \
+See the core.intervals module for a longer description on consonance."""
+                return self._consonance_test(intervals.is_consonant, include_fourths)
+
+        def is_perfect_consonant(self, include_fourths = True):
+                """Tests whether the notes are perfect consonants. \
+See the core.intervals module for a longer description on consonance."""
+                return self._consonance_test(intervals.is_perfect_consonant, include_fourths)
+
+        def is_imperfect_consonant(self):
+                """Tests whether the notes are imperfect consonants. \
+See the core.intervals module for a longer description on consonance."""
+                return self._consonance_test(intervals.is_imperfect_consonant)
+
+        def is_dissonant(self, include_fourths = False):
+                """Tests whether the notes are dissonants. \
+See the core.intervals module for a longer description."""
+                return not self.is_consonant(not include_fourths)
+
 
 	def remove_note(self, note, octave = -1):
 		"""Removes note from container. The note can either be a \
