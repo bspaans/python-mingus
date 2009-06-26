@@ -35,7 +35,8 @@ import operator
 
 # Making a frequency-amplitude table 
 #
-# Source: http://xoomer.virgilio.it/sam_psy/psych/sound_proc/sound_proc_python.html
+# Adapted some ideas and source from:
+# http://xoomer.virgilio.it/sam_psy/psych/sound_proc/sound_proc_python.html
 
 
 # The log function turns out to be really, really slow, which adds up quickly. 
