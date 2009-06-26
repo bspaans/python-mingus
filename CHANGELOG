@@ -3,7 +3,7 @@ CHANGELOG
 ================================================================================
 
 	0.4.1
-	Jun 23, 2009
+	Jun 26, 2009
 
 	* midi/Sequencer.py: Added an easily extendable general purpose 
 	sequencer that can play all the objects in mingus.containers 
@@ -12,6 +12,8 @@ CHANGELOG
 	Sequencer module. (closes issue #43)
 	* containers/NoteContainer.py: Added consonance and dissonance tests 
 	as methods. (closes issue #41)
+	* extra/fft.py: A whole new module which can be used to find the 
+	frequencies and Notes of raw audio data. (closes issue #42)
 
 
 ================================================================================
