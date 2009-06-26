@@ -55,11 +55,9 @@ import test_Suite
 # MIDI TESTS HERE
 # ...
 
-# mingus.extras Tests
-import test_LilyPond
 
-# See run_fluidsynth_tests.py for audio tests that will otherwise
-# slowdown the development cycle when included in this suite.
+# See run_fluidsynth_tests.py for FluidSynth audio tests 
+# See run_lilypond_tests.py to generate some pdf's
 
 # Add new suites here...
 suite001 = test_notes.suite()
@@ -79,13 +77,11 @@ suite105 = test_Track.suite()
 suite106 = test_Composition.suite()
 suite107 = test_Suite.suite()
 
-suite201 = test_LilyPond.suite()
 
 # ...and here
 suite = unittest.TestSuite(\
 		[suite001, suite002, suite003, suite004, suite005, suite006, suite007, suite008,\
  		 suite101, suite102, suite103, suite104, suite105, suite106, suite107,\
-		 suite201, 
 		 ])
 
 unittest.TextTestRunner(verbosity=2).run(suite)
