@@ -102,6 +102,9 @@ recurse.
 [[(0, 7), (1, 7)], [(1, 0), (0, 14)]]
 }}}"""
 
+                if notes is None:
+                        return []
+
                 if len(notes) == 0:
                         return []
 

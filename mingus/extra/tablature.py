@@ -97,12 +97,16 @@ def from_Bar(bar, width = 40, tuning = None):
                 beat, duration, notes = entry
                 base, dots, rat1, rat2 = value.determine(duration)
                 fingering = tuning.find_fingering(notes)
-                if fingering != []:
+                if fingering != [] or notes is None:
                         # Do an attribute check
                         
                         # Otherwise
-                        f = fingering[0]
                         maxlen = 0
+                        if notes is None:
+                                f = []
+                                maxlen = 1
+                        else:
+                                f = fingering[0]
                         d = {}
                         for string, fret in f:
                                 d[string] = str(fret)
