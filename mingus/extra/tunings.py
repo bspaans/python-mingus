@@ -89,6 +89,49 @@ highest fret that can be played. `note` should either be a string or a Note obje
                                 result.append(None)
                 return result
 
+        def find_fingering(self, notes, max_distance = 4, not_strings = []):
+                """Returns a list [(string, fret)] of possible fingerings for `notes`. `notes` should be \
+a list of strings or a !NoteContainer. `max_distance` denotes the maximum distance between \
+frets. `not_strings` can be used to disclude certain strings and is used internally to \
+recurse.
+{{{
+>>> t = tunings.StringTuning("test", "test", ["A-3", "E-4", "A-5"])
+>>> t.find_fingering(['E-4', 'B-4'])
+[[(0, 7), (1, 7)], [(1, 0), (0, 14)]]
+}}}"""
+
+                if len(notes) == 0:
+                        return []
+
+                first = notes[0]
+                notes = notes[1:]
+                frets = self.find_frets(first)
+
+                result = []
+                for string, fret in enumerate(frets):
+                        if fret is not None and string not in not_strings:
+                                if len(notes) > 0:
+                                        # recursively find fingerings for remaining notes
+                                        r = self.find_fingering(notes, max_distance, not_strings + [string])
+                                        if r != []:
+                                                for f in r:
+                                                        result.append([(string, fret)] + f)
+                                else:
+                                        result.append([(string, fret)])
+
+                # filter impossible fingerings
+                res = []
+                for r in result:
+                        min, max = 1000, -1
+                        for string, fret in r:
+                                if fret > max:
+                                        max = fret
+                                if fret < min and fret != 0:
+                                        min = fret
+                        if 0 <= max - min < max_distance or min == 1000 or max == -1:
+                                res.append(r)
+                return res
+
 # The index
 _known = {}
 

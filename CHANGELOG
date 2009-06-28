@@ -2,12 +2,21 @@
 CHANGELOG
 ================================================================================
 
+	0.4.1.2
+
+	* extra/tunings.py: Added find_fingering method to StringTuning class.
+	Function returns a list of possible fingerings for NoteContainers.
+	(Closes issue #48)
+
+================================================================================
+
 	0.4.1.1
+	Jun 28, 2009
 
 	* containers/Note.py: Added `measure` helper function to find out the 
 	difference in semitones between two Notes.
 	* extra/tunings.py: New module that contains dozens of string tunings, 
-	a StringTuner class and some functions to search through them.
+	a StringTuning class and some functions to search through them.
 
 ================================================================================
 
