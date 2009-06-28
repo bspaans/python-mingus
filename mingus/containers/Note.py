@@ -44,7 +44,20 @@ to group Notes together in intervals and chords."""
 	dynamics = {}
 
 	def __init__(self, name = 'C', octave = 4, dynamics = {}):
-		self.set_note(name, octave, dynamics)
+                if type(name) == str:
+        		self.set_note(name, octave, dynamics)
+
+                # Hardcopy Note object
+                elif hasattr(name, "name"):
+                        self.set_note(name.name, name.octave, name.dynamics)
+
+                # Convert from integer
+                elif type(name) == int:
+                        self.from_int(int)
+
+                else:
+                        #warning unknown object
+                        pass
 
 	def set_note(self, name = 'C', octave = 4, dynamics = {}):
 		"""Sets the note to `name` in `octave` with `dynamics` if \

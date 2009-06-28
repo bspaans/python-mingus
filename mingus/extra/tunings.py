@@ -38,6 +38,7 @@ See tunings.add_tuning for examples."""
                 self.instrument = instrument
                 self.tuning = []
 
+                # convert to Note
                 for x in tuning:
                         if type(x) == list:
                                 self.tuning += [Note(n) for n in x]
