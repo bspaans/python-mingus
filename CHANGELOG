@@ -2,13 +2,20 @@
 CHANGELOG
 ================================================================================
 
+	0.4.1.1
+
+	* containers/Note.py: Added `measure` helper function to find out the 
+	difference in semitones between two Notes.
+
+================================================================================
+
 	0.4.1
 	Jun 26, 2009
 
 	* midi/Sequencer.py: Added an easily extendable general purpose 
 	sequencer that can play all the objects in mingus.containers 
 	(closes issue #27).
-	# midi/fluidsynth.py: Made the fluidsynth sequencer use the new 
+	* midi/fluidsynth.py: Made the fluidsynth sequencer use the new 
 	Sequencer module. (closes issue #43)
 	* containers/NoteContainer.py: Added consonance and dissonance tests 
 	as methods. (closes issue #41)

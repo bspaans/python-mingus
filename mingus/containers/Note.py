@@ -149,6 +149,16 @@ Doesn't change the octave."""
 		self.octave = integer / 12
 		return self
 
+        def measure(self, other):
+                """Returns the number of semitones between this Note and the other.
+{{{
+>>> Note("C").measure(Note("D"))
+2
+>>> Note("D").measure(Note("C"))
+-2
+}}}"""
+                return int(other) - int(self)
+
 	def to_hertz(self, standard_pitch = 440):
 		"""Returns the Note in Hz. The `standard_pitch` argument can be used \
 to set the pitch of A-4, from which the rest is calculated."""

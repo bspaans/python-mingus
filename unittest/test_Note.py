@@ -90,6 +90,10 @@ class test_Note(unittest.TestCase):
 		self.assertEqual(Note("C", 0), Note().from_int(0))
 		self.assertEqual(Note("C", 1), Note().from_int(12))
 
+        def test_measure(self):
+                self.assert_(Note("C").measure(Note("D")) == 2)
+                self.assert_(Note("D").measure(Note("C")) == -2)
+
 def suite():
 	return unittest.TestLoader().loadTestsFromTestCase(test_Note)
 	
