@@ -55,11 +55,17 @@ def from_NoteContainer(notes, tuning = None):
 
         result = begin_track(tuning)
         
+
         fingerings = tuning.find_fingering(notes)
 
         if fingerings != []:
                 res = {}
+
+                # Do an attribute check
+
+                # otherwise
                 f = fingerings[0]
+
                 for string, fret in f:
                         res[string] = str(fret)
                 maxfret = max(res.values())
@@ -92,6 +98,9 @@ def from_Bar(bar, tuning = None):
                 base, dots, rat1, rat2 = value.determine(duration)
                 fingering = tuning.find_fingering(notes)
                 if fingering != []:
+                        # Do an attribute check
+                        
+                        # Otherwise
                         f = fingering[0]
                         maxlen = 0
                         d = {}

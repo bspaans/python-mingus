@@ -121,18 +121,21 @@ recurse.
                                 else:
                                         result.append([(string, fret)])
 
-                # filter impossible fingerings
+                # filter impossible fingerings and sort
                 res = []
                 for r in result:
                         min, max = 1000, -1
+                        frets = 0
                         for string, fret in r:
                                 if fret > max:
                                         max = fret
                                 if fret < min and fret != 0:
                                         min = fret
+                                frets += fret
                         if 0 <= max - min < max_distance or min == 1000 or max == -1:
-                                res.append(r)
-                return res
+                                res.append((frets, r))
+
+                return [ r for _, r in sorted(res)]
 
 # The index
 _known = {}
