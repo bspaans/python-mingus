@@ -48,6 +48,7 @@ not a [refMingusContainersComposition Composition] object. """
 			"Object '%s' not expected. Expecting a "\
 			"mingus.containers.Composition object." % composition
 		self.compositions.append(composition)
+                return self
 
 	def set_author(self, author, email = ''):
 		"""Sets the author of the suite"""
@@ -74,3 +75,8 @@ not a [refMingusContainersComposition Composition] object. """
 			"Object '%s' is not expected. Expecting a "\
 			"mingus.containers.Composition object." % value
 		self.compositions[index] = value
+
+        def __add__(self, composition):
+                """Overloads the + operator for Compositions."""
+                return self.add_composition(composition)
+

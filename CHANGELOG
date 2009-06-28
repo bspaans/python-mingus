@@ -2,11 +2,20 @@
 CHANGELOG
 ================================================================================
 
+	0.4.1.5
+	Jun 28, 2009
+
+	* extra/tablature.py: Fixed bug in from_Suite.
+
+================================================================================
+
 	0.4.1.4
 	Jun 28, 2009
 
 	* extra/tablature.py: Added from_Track (closes issue #5), added 
-	get_qsize (closes issue #58) and from_Composition (closes issue #56)
+	get_qsize (closes issue #58), from_Composition (closes issue #56) 
+	and from_Suite (closes issue #57)
+	* containers/Suite.py: Overloaded the + operator
 	
 ================================================================================
 

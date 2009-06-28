@@ -190,7 +190,8 @@ def from_Suite(suite, maxwidth = 80):
         result = []
 
         for comp in suite:
-                result += comp + ["", "", ""]
+                c = from_Composition(comp, maxwidth)
+                result += c + ["", "", ""]
         return result
 
 def _get_qsize(tuning, width):
