@@ -30,6 +30,7 @@
 from mingus.containers.Note import Note
 
 class StringTuning:
+        """StringTuning can be used to store and work with tunings and fingerings."""
 
         def __init__(self, instrument, description, tuning):
                 """`instrument` and `description` should be strings. tuning should \
@@ -92,7 +93,7 @@ highest fret that can be played. `note` should either be a string or a Note obje
 
         def find_fingering(self, notes, max_distance = 4, not_strings = []):
                 """Returns a list [(string, fret)] of possible fingerings for `notes`. `notes` should be \
-a list of strings or a !NoteContainer. `max_distance` denotes the maximum distance between \
+a list of strings or Notes or a !NoteContainer. `max_distance` denotes the maximum distance between \
 frets. `not_strings` can be used to disclude certain strings and is used internally to \
 recurse.
 {{{

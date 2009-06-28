@@ -50,6 +50,11 @@ to group Notes together in intervals and chords."""
                 # Hardcopy Note object
                 elif hasattr(name, "name"):
                         self.set_note(name.name, name.octave, name.dynamics)
+                        if hasattr(name, "channel"):
+                                self.channel = name.channel
+                        if hasattr(name, "velocity"):
+                                self.velocity = name.velocity
+
 
                 # Convert from integer
                 elif type(name) == int:
