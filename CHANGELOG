@@ -1,12 +1,22 @@
 ================================================================================
 CHANGELOG
 ================================================================================
+
+	0.4.1.4
+	Jun 28, 2009
+
+	* extra/tablature.py: Added from_Track (issue #5), added get_qsize 
+	(closes issue #58)
 	
+================================================================================
+
 	0.4.1.3
 	Jun 28, 2009
 
 	* extra/tablature.py: Added tablature module that can convert 
 	some of the mingus.containers to pretty ascii tablature. (issue #5)
+	* extra/tunings.py: Sort and return fingerings on fitness. (Closes 
+	issue #53)
 
 ================================================================================
 
@@ -20,7 +30,7 @@ CHANGELOG
 	already existing Note object (hardcopy) or an integer (conversion). 
 	* containers/Note.py: Added from_shorthand and to_shorthand which 
 	converts from and to traditional Helmhotz pitch notation. (Closes 
-	issue #49
+	issue #49)
 
 
 ================================================================================

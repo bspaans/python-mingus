@@ -48,7 +48,7 @@ to high. The note can either be a string, in which case you could \
 also use the octave and dynamics arguments, or a Note object."""
 
 		if type(note) == str:
-			if octave != None:
+			if octave is not None:
 				note = Note(note, octave, dynamics)
 			elif len(self.notes) == 0:
 				note = Note(note, 4, dynamics)
