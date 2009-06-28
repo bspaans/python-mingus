@@ -160,7 +160,12 @@ def from_Bar(bar, width = 40, tuning = None):
                 result[i] += (width - l) * "-" + "|"
 
         result.reverse()
-        return result
+
+        print bar.meter
+        pad = (" " * int(1.0 / bar.meter[1] * qsize * 4 - 1))
+        r =  (" " * (result[0].find("||") + 2 + max(2, qsize /2 ))) + (("*" + pad ) * bar.meter[0])
+        r += " " * (len(result[0]) - len(r))
+        return [r] + result
 
 def from_Track(track, maxwidth = 80, tuning = None):
         result = []
@@ -169,7 +174,7 @@ def from_Track(track, maxwidth = 80, tuning = None):
         lastlen = 0
         for bar in track:
                 r = from_Bar(bar, width,  tuning)
-                barstart = r[0].find("||") + 2
+                barstart = r[1].find("||") + 2
 
                 if len(r[0]) + lastlen - barstart < maxwidth and result != []:
                         for i in range(1, len(r) + 1):
@@ -204,7 +209,10 @@ def from_Composition(composition, maxwidth = 80):
                                 if barindex + x < len(tracks):
                                         bar = tracks[barindex + x]
                                         r = from_Bar(bar, width, tuning)
-                                        barstart = r[0].find("||") + 2
+                                        barstart = r[1].find("||") + 2
+                                        if notfirst:
+                                                r[0] = r[0][:barstart - 2] + "||" +  r[0][barstart:]
+                                                print r[0]
                                         if ascii != []:
                                                 for i in range(1, len(r) + 1):
                                                         item = r[len(r) - i]
@@ -214,7 +222,8 @@ def from_Composition(composition, maxwidth = 80):
 
                         if notfirst:
                                 #warning should find proper width (spaces)
-                                result += ["    ||"]
+                                pad = ascii[-1].find("||")
+                                result += [" " * pad + "||"]
                         else:
                                 notfirst = True
                         result += ascii

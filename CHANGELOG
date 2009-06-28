@@ -6,7 +6,7 @@ CHANGELOG
 	Jun 28, 2009
 
 	* extra/tablature.py: Fixed bug in from_Suite, added add_headers (closes
-	issue #62)
+	issue #62), mark beats in from_Bar (closes issue #60)
 
 ================================================================================
 
