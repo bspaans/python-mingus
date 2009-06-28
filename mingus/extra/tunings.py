@@ -1,10 +1,40 @@
 # -*- coding: utf-8 -*-
+"""
+
+================================================================================
+
+	mingus - Music theory Python package, string tuning module
+	Copyright (C) 2009, Bart Spaans
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+================================================================================
+
+        The tunings module provides dozens of standard tunings, a StringTuning 
+        class and some functions to help you search through them. 
+
+================================================================================
+"""
 
 from mingus.containers.Note import Note
 
 class StringTuning:
 
-        def __init__(self, instrument, tuning, description):
+        def __init__(self, instrument, description, tuning):
+                """`instrument` and `description` should be strings. tuning should \
+be a list of strings or a list of lists of strings that denote courses. \
+See tunings.add_tuning for examples."""
                 self.instrument = instrument
                 self.tuning = []
 
@@ -17,9 +47,11 @@ class StringTuning:
                 self.description = description
 
         def count_strings(self):
+                """Returns the number of strings."""
                 return len(self.tuning)
 
         def count_courses(self):
+                """Returns the average number of courses per string,"""
                 c = 0
                 for x in self.tuning:
                         if type(x) == list:
@@ -29,7 +61,17 @@ class StringTuning:
                 return float(c) / len(self.tuning)
                
 
-        def find_frets(self, note):
+        def find_frets(self, note, maxfret = 24):
+                """Returns a list with for each string the fret on which the note \
+is played or None if it can't be played on that particular string. `maxfret` is the \
+highest fret that can be played. `note` should either be a string or a Note object. 
+{{{
+>>> t = tunings.StringTuning("test", "test", ["A-3", "E-4"])
+>>> t.find_frets(Note("C-4")
+[3, None]
+>>> t.find_frets(Note("A-4")
+[12, 5]
+}}}"""
                 result = []
 
                 if type(note) == str:
@@ -41,21 +83,35 @@ class StringTuning:
                         else:
                                 base = x
                         diff = base.measure(note)
-                        if 0 > diff > maxfret:
+                        if 0 <= diff <= maxfret:
                                 result.append(diff)
                         else:
                                 result.append(None)
+                return result
 
+# The index
 _known = {}
 
 def add_tuning(instrument, description, tuning):
-        t = StringTuning(instrument, tuning, description)
+        """Add a new tuning to the index. `instrument` and `description` should be strings; \
+`tuning` should be a list of strings or a list of lists to denote courses. For example: \
+{{{
+>>> tuning.add_tuning("Guitar", "standard", ['E-2', 'A-2', 'D-3', 'G-3', 'B-3', 'E-4'])
+>>> tuning.add_tuning("Guitar", "twelve string", [['E-2', 'E-3'], ['A-2', 'A-3'], ...etc.
+}}}"""
+        t = StringTuning(instrument, description, tuning)
         if _known.has_key(str.upper(instrument)):
                 _known[str.upper(instrument)][1][str.upper(description)] = t
         else:
                 _known[str.upper(instrument)] = (instrument, {str.upper(description): t})
 
 def get_tuning(instrument, description, nr_of_strings = None, nr_of_courses = None):
+        """Get the first tuning that satisfies the constraints. The `instrument` and `description` \
+arguments are treated like case-insensitive prefixes. So search for 'bass' is the same is 'Bass Guitar'.
+{{{
+>>> tunings.get_tuning("guitar", "standard")
+<tunings.StringTuning instance at 0x139ac20>
+}}}"""
         searchi = str.upper(instrument)
         searchd = str.upper(description)
 
@@ -79,7 +135,14 @@ def get_tuning(instrument, description, nr_of_strings = None, nr_of_courses = No
 
 
 def get_tunings(instrument = None, nr_of_strings = None, nr_of_courses = None):
-        """Allows you to search on instrument, strings, courses or a combination."""
+        """Allows you to search tunings on instrument, strings, courses or a combination. \
+The instrument is actually treated like a case-insensitive prefix. So asking \
+for 'bass' yields the same tunings as 'Bass Guitar'; the string 'ba' yields all the instruments \
+starting with 'ba'.
+{{{
+>>> tunings.get_tunings(nr_of_string = 4)
+>>> tunings.get_tunings("bass")
+}}}"""
 
         if instrument is not None:
                 search = str.upper(instrument)
@@ -104,7 +167,18 @@ def get_tunings(instrument = None, nr_of_strings = None, nr_of_courses = None):
         return result
 
 def get_instruments():
+        """Returns a sorted list of instruments that have string tunings defined for them."""
         return sorted([ _known[upname][0] for upname in _known ])
+
+
+
+
+
+
+# Tuning data
+#
+# Mined from: http://en.wikipedia.org/wiki/Stringed_instrument_tunings
+
 
 add_tuning("Baglamas (Greek)", "Modal D standard tuning", 
                    [['D-4', 'D-5'], ['A-4', 'A-4'], ['D-5', 'D-5']])
@@ -355,11 +429,3 @@ add_tuning("Walaycho", "G6 tuning",
                     ['E-5', 'E-5'], ['B-5', 'B-5']])
 
 
-
-
-
-
-
-
-
-print get_instruments()
