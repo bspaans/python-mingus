@@ -1,6 +1,9 @@
 import mingus.extra.tunings as tunings
 import mingus.core.value as value
 
+default_tuning = tunings.get_tuning("Guitar", "Standard", 6, 1)
+
+
 def begin_track(tuning, padding = 2):
         names = [ x.to_shorthand() for x in tuning.tuning ]
         basesize = len(max(names)) + 3
@@ -12,7 +15,8 @@ def begin_track(tuning, padding = 2):
                 res.append(r)
         return res
 
-def add_headers(width = 80, title = 'Untitled', subtitle = '', author = '', email = '', description = ''):
+def add_headers(width = 80, title = 'Untitled', subtitle = '', author = '', email = '', 
+                description = '', tunings = []):
         result = [""]
 
         title = str.upper(title)
@@ -45,14 +49,20 @@ def add_headers(width = 80, title = 'Untitled', subtitle = '', author = '', emai
                 for line in lines:
                         result += [str.center(" ".join(line), width)]
 
+        if tunings != []:
+                result += ["", "", str.center("Instruments", width)]
+                for i, tuning in enumerate(tunings):
+                        result += ["", str.center("%d. %s" % (i + 1, tuning.instrument), width),
+                                   str.center( tuning.description, width)]
+
+
         result += ["", ""]
         return result
 
 
 def from_Note(note, tuning = None):
         if tuning is None:
-                tuning = tunings.get_tuning("Guitar", "Standard")
-
+                tuning = default_tuning
         result = begin_track(tuning)
 
         # Do an attribute check
@@ -84,7 +94,7 @@ def from_Note(note, tuning = None):
 def from_NoteContainer(notes, tuning = None):
 
         if tuning is None:
-                tuning = tunings.get_tuning("Guitar", "Standard")
+                tuning = default_tuning
 
 
         result = begin_track(tuning)
@@ -121,7 +131,7 @@ def from_NoteContainer(notes, tuning = None):
 def from_Bar(bar, width = 40, tuning = None):
 
         if tuning is None:
-                tuning = tunings.get_tuning("Guitar", "Standard")
+                tuning = default_tuning
 
 
         qsize = _get_qsize(tuning, width)
@@ -185,12 +195,15 @@ def from_Track(track, maxwidth = 80, tuning = None):
                 lastlen = len(result[-1])
         return result
 
-def from_Composition(composition, maxwidth = 80):
+def from_Composition(composition, maxwidth = 80, description = ''):
         result = add_headers(maxwidth, 
                              composition.title,
                              composition.subtitle, 
                              composition.author,
-                             composition.email)
+                             composition.email,
+                             description,
+                             [default_tuning] * len(composition.tracks)
+                            )
         width = _get_width(maxwidth)
         barindex = 0
         bars = maxwidth / width
@@ -227,7 +240,7 @@ def from_Composition(composition, maxwidth = 80):
                         else:
                                 notfirst = True
                         result += ascii
-                result += [""]
+                result += ["", "" ]
                 barindex += bars
 
 

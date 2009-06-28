@@ -166,8 +166,10 @@ arguments are treated like case-insensitive prefixes. So search for 'bass' is th
         searchi = str.upper(instrument)
         searchd = str.upper(description)
 
-        for x in _known.iterkeys():
-                if x.find(searchi) == 0:
+        keys = _known.keys()
+        for x in keys:
+                if (searchi not in keys and x.find(searchi) == 0) or \
+                   (searchi in keys and x == searchi):
                         for desc, tun in _known[x][1].iteritems():
                                 if desc.find(searchd) == 0:
                                         if nr_of_strings is None and nr_of_courses is None:
@@ -199,8 +201,9 @@ starting with 'ba'.
                 search = str.upper(instrument)
 
         result = []
-        for x in _known.iterkeys():
-                if instrument is None or x.find(search) == 0:
+        keys = _known.iterkeys()
+        for x in keys:
+                if instrument is None or ((search not in keys and x.find(search) == 0) or (search in keys and search == x)):
 
                         if nr_of_strings is None and nr_of_courses is None:
                                 result += _known[x][1].values()
