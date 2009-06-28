@@ -56,8 +56,7 @@ to group Notes together in intervals and chords."""
                         self.from_int(int)
 
                 else:
-                        #warning unknown object
-                        pass
+                        raise NoteFormatError, "Don't know what to do with name object: '%s'" % name
 
 	def set_note(self, name = 'C', octave = 4, dynamics = {}):
 		"""Sets the note to `name` in `octave` with `dynamics` if \

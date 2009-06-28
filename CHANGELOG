@@ -7,6 +7,8 @@ CHANGELOG
 	* extra/tunings.py: Added find_fingering method to StringTuning class.
 	Function returns a list of possible fingerings for NoteContainers.
 	(Closes issue #48)
+	* containers/Note.py: Enhanced constructor. Can now be called with 
+	already existing Note object (hardcopy) or an integer (conversion). 
 
 ================================================================================
 
