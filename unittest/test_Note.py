@@ -94,6 +94,20 @@ class test_Note(unittest.TestCase):
                 self.assert_(Note("C").measure(Note("D")) == 2)
                 self.assert_(Note("D").measure(Note("C")) == -2)
 
+        def test_to_shorthand(self):
+                self.assert_(Note("C-0").to_shorthand() == "C,,")
+                self.assert_(Note("C-2").to_shorthand() == "C")
+                self.assert_(Note("C-3").to_shorthand() == "c")
+                self.assert_(Note("C-4").to_shorthand() == "c'")
+                self.assert_(Note("C-9").to_shorthand() == "c''''''")
+
+        def test_from_shorthand(self):
+                self.assert_(Note().from_shorthand("C,,") == Note("C-0"))
+                self.assert_(Note().from_shorthand("C") == Note("C-2"))
+                self.assert_(Note().from_shorthand("c") == Note("C-3"))
+                self.assert_(Note().from_shorthand("c'") == Note("C-4"))
+                self.assert_(Note().from_shorthand("c''''''") == Note("C-9"))
+
 def suite():
 	return unittest.TestLoader().loadTestsFromTestCase(test_Note)
 	

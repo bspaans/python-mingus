@@ -83,7 +83,7 @@ succeeded, raises an NoteFormatError otherwise."""
 				self.name = dash_index[0]
 				self.octave = int(dash_index[1])
 				self.dynamics = dynamics
-				return True
+				return self
 			else:
 				raise NoteFormatError,\
 					"The string '%s' is not a valid representation"\
@@ -192,6 +192,60 @@ which the rest is calculated."""
 		value = log(float(hertz) / standard_pitch, 2) * 12 + notes.note_to_int("A")
 		self.name = notes.int_to_note(int(value) % 12)
 		self.octave = int(value / 12) + 4
+
+        def to_shorthand(self):
+                """Gives the traditional Helmhotz pitch notation.\
+{{{
+>>> Note("C-4").to_shorthand()
+"c'"
+>>> Note("C-3").to_shorthand()
+'c'
+>>> Note("C-2").to_shorthand()
+'C'
+>>> Note("C-1").to_shorthand()
+'C,'
+}}}"""
+                if self.octave < 3:
+                        res = self.name
+                else:
+                        res = str.lower(self.name)
+
+                o = self.octave - 3
+                while o < -1:
+                        res += ","
+                        o += 1
+                while o > 0:
+                        res += "'"
+                        o -= 1
+                return res
+
+        def from_shorthand(self, shorthand):
+                """Convert from traditional Helmhotz pitch notation.\
+{{{
+>>> Note().from_shorthand("C,,")
+'C-0'
+>>> Note().from_shorthand("C")
+'C-2'
+>>> Note().from_shorthand("c'")
+'C-4'
+}}}"""
+                name = ""
+                octave = 0
+                for x in shorthand:
+                        if x in ['a', 'b', 'c', 'd', 'e', 'f', 'g']:
+                                name = str.upper(x)
+                                octave = 3
+                        elif x in ['A', 'B', 'C', 'D', 'E', 'F', 'G']:
+                                name = x
+                                octave = 2
+                        elif x in ["#", "b"]:
+                                name += x
+                        elif x == ',':
+                                octave -= 1
+                        elif x == "'":
+                                octave += 1
+                return self.set_note(name, octave, {})
+
 
 	def __int__(self):
 		"""Returns the current octave multiplied by twelve and adds \

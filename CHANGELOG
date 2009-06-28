@@ -9,6 +9,10 @@ CHANGELOG
 	(Closes issue #48)
 	* containers/Note.py: Enhanced constructor. Can now be called with 
 	already existing Note object (hardcopy) or an integer (conversion). 
+	* containers/Note.py: Added from_shorthand and to_shorthand which 
+	converts from and to traditional Helmhotz pitch notation. (Closes 
+	issue #49)
+
 
 ================================================================================
 
