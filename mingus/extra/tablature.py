@@ -12,7 +12,41 @@ def begin_track(tuning, padding = 2):
                 res.append(r)
         return res
 
+def add_headers(width = 80, title = 'Untitled', subtitle = '', author = '', email = '', description = ''):
+        result = [""]
 
+        title = str.upper(title)
+        result += [str.center("  ".join(title), width)]
+
+        if subtitle != "":
+                result += ["", str.center(str.title(subtitle), width)]
+        if author != "" or email != "":
+                result += ["", ""]
+                if email != "":
+                        result += [str.center("Written by: %s <%s>" % (author, email), width)]
+                else:
+                        result += [str.center("Written by: %s" % (author), width)]
+
+        if description != '':
+                result += ["", ""]
+                words = description.split()
+                lines = []
+                line = []
+                last = 0
+                for word in words:
+                        if len(word) + last < width - 10:
+                                line.append(word)
+                                last += len(word) + 1
+                        else:
+                                lines.append(line)
+                                line = [word]
+                                last = len(word) + 1
+                lines.append(line)
+                for line in lines:
+                        result += [str.center(" ".join(line), width)]
+
+        result += ["", ""]
+        return result
 
 
 def from_Note(note, tuning = None):
@@ -147,7 +181,11 @@ def from_Track(track, maxwidth = 80, tuning = None):
         return result
 
 def from_Composition(composition, maxwidth = 80):
-        result = []
+        result = add_headers(maxwidth, 
+                             composition.title,
+                             composition.subtitle, 
+                             composition.author,
+                             composition.email)
         width = _get_width(maxwidth)
         barindex = 0
         bars = maxwidth / width
@@ -163,15 +201,16 @@ def from_Composition(composition, maxwidth = 80):
 
                         ascii = []
                         for x in xrange(bars):
-                                bar = tracks[barindex + x]
-                                r = from_Bar(bar, width, tuning)
-                                barstart = r[0].find("||") + 2
-                                if ascii != []:
-                                        for i in range(1, len(r) + 1):
-                                                item = r[len(r) - i]
-                                                ascii[-i] += item[barstart:]
-                                else:
-                                        ascii += r
+                                if barindex + x < len(tracks):
+                                        bar = tracks[barindex + x]
+                                        r = from_Bar(bar, width, tuning)
+                                        barstart = r[0].find("||") + 2
+                                        if ascii != []:
+                                                for i in range(1, len(r) + 1):
+                                                        item = r[len(r) - i]
+                                                        ascii[-i] += item[barstart:]
+                                        else:
+                                                ascii += r
 
                         if notfirst:
                                 #warning should find proper width (spaces)
