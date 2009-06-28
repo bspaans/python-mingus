@@ -6,6 +6,8 @@ CHANGELOG
 
 	* containers/Note.py: Added `measure` helper function to find out the 
 	difference in semitones between two Notes.
+	* extra/tunings.py: New module that contains dozens of string tunings, 
+	a StringTuner class and some functions to search through them.
 
 ================================================================================
 
