@@ -185,6 +185,14 @@ def from_Composition(composition, maxwidth = 80):
 
         return result
 
+
+def from_Suite(suite, maxwidth = 80):
+        result = []
+
+        for comp in suite:
+                result += comp + ["", "", ""]
+        return result
+
 def _get_qsize(tuning, width):
         names = [ x.to_shorthand() for x in tuning.tuning ]
         basesize = len(max(names)) + 3
