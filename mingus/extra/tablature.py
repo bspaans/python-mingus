@@ -121,22 +121,16 @@ def from_Bar(bar, width = 40, tuning = None):
                 else:
                         #warning no fingerings
                         pass
-        
+        l = len(result[i]) + 1
         for i in range(len(result)):
-                result[i] += "--|"
+                result[i] += (width - l) * "-" + "|"
 
         result.reverse()
         return result
 
 def from_Track(track, maxwidth = 80, tuning = None):
         result = []
-
-        if maxwidth < 60:
-                width = maxwidth
-        elif 60 < maxwidth < 120:
-                width = maxwidth / 2
-        elif 120 < maxwidth:
-                width = maxwidth / 3
+        width = _get_width(maxwidth)
 
         lastlen = 0
         for bar in track:
@@ -152,6 +146,44 @@ def from_Track(track, maxwidth = 80, tuning = None):
                 lastlen = len(result[-1])
         return result
 
+def from_Composition(composition, maxwidth = 80):
+        result = []
+        width = _get_width(maxwidth)
+        barindex = 0
+        bars = maxwidth / width
+
+        lastlen = 0
+        maxlen = max( [ len(x) for x in composition.tracks ])
+        while barindex < maxlen:
+                notfirst = False
+                for tracks in composition:
+
+                        #warning check tuning attribute
+                        tuning = None 
+
+                        ascii = []
+                        for x in xrange(bars):
+                                bar = tracks[barindex + x]
+                                r = from_Bar(bar, width, tuning)
+                                barstart = r[0].find("||") + 2
+                                if ascii != []:
+                                        for i in range(1, len(r) + 1):
+                                                item = r[len(r) - i]
+                                                ascii[-i] += item[barstart:]
+                                else:
+                                        ascii += r
+
+                        if notfirst:
+                                #warning should find proper width (spaces)
+                                result += ["    ||"]
+                        else:
+                                notfirst = True
+                        result += ascii
+                result += [""]
+                barindex += bars
+
+
+        return result
 
 def _get_qsize(tuning, width):
         names = [ x.to_shorthand() for x in tuning.tuning ]
@@ -164,3 +196,12 @@ def _get_qsize(tuning, width):
         # x = barsize / 4.5
 
         return int(barsize / 4.5)
+
+def _get_width(maxwidth):
+        width = maxwidth / 3
+        if maxwidth <= 60:
+                width = maxwidth
+        elif 60 < maxwidth <= 120:
+                width = maxwidth / 2
+        return width
+

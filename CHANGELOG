@@ -5,8 +5,8 @@ CHANGELOG
 	0.4.1.4
 	Jun 28, 2009
 
-	* extra/tablature.py: Added from_Track (issue #5), added get_qsize 
-	(closes issue #58)
+	* extra/tablature.py: Added from_Track (closes issue #5), added 
+	get_qsize (closes issue #58) and from_Composition (closes issue #56)
 	
 ================================================================================
 
