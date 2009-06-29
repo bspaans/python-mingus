@@ -8,6 +8,8 @@ CHANGELOG
 	* extra/tablature.py: Added documentation and license (closes issue #59)
 	* extra/tunings.py: Added get_Note(string, fret) to StringTuning.
 	Closes issue #54.
+	* extra/tablature.py: Do `fret` and `string` attribute checks on 
+	Notes. Closes issue #64.
 
 ================================================================================
 

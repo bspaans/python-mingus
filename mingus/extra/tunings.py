@@ -154,7 +154,6 @@ recurse.
                                 s = self.tuning[string]
                                 if type(s) == list:
                                         s = s[0]
-                                print int(s) + fret
                                 return Note(int(s) + fret)
                         else:
                                 #warning fret out of range

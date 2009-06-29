@@ -107,21 +107,30 @@ for the default tuning."""
                 tuning = default_tuning
         result = begin_track(tuning)
 
-        # Do an attribute check
-
-
-        # otherwise:
         min = 1000
         s, f = -1, -1
-        for string, fret in enumerate(tuning.find_frets(note)):
-                if fret is not None:
-                        if fret < min:
-                                min = fret
-                                s, f = string, fret
+
+        # Do an attribute check
+        if hasattr(note, "string") and hasattr(note, "fret"):
+                n = tuning.get_Note(note.string, note.fret)
+                if n is not None and int(n) == int(note):
+                        s, f = note.string, note.fret
+                        min = 0
+
+
+        # Find smallest fret (or use the attributes)
+        if min == 1000:
+                for string, fret in enumerate(tuning.find_frets(note)):
+                        if fret is not None:
+                                if fret < min:
+                                        min = fret
+                                        s, f = string, fret
+
 
         l = len(result[0])
         w = max(4, (width - l - 1))
 
+        # Build ASCII
         if min != 1000:
                 fret = str(f)
                 for i in range(len(result)):
@@ -159,17 +168,44 @@ should be a StringTuning object or None for the default tuning."""
         fingerings = tuning.find_fingering(notes)
 
         if fingerings != []:
-                res = {}
 
                 # Do an attribute check
+                f = []
+                attr = []
 
-                # otherwise
-                f = fingerings[0]
+                for note in notes:
+                        if hasattr(note, "string") and hasattr(note, "fret"):
+                                n = tuning.get_Note(note.string, note.fret)
+                                if n is not None and int(n) == int(note):
+                                        f += ((note.string, note.fret))
+                                        attr.append(int(note))
 
+                # See if there are any possible fingerings with the 
+                # attributes that are set.
+                fres = []
+                if f != []:
+                        for x in fingerings:
+                                found = True
+                                for pos in f:
+                                        if pos not in x:
+                                                found = False
+                                if found:
+                                        fres.append(x)
+                # Use best fingering.
+                if fres != []:
+                        f = fres[0]
+
+                # Use default fingering if attributes don't make sense
+                else:
+                        f = fingerings[0]
+
+                # Build {string: fret} result
+                res = {}
                 for string, fret in f:
                         res[string] = str(fret)
                 maxfret = max(res.values())
 
+                # Produce ASCII
                 for i in range(len(result)):
                         if i not in res.keys():
                                 result[i] += "-" * w + "|"
@@ -208,17 +244,44 @@ lines will be concatenated with a newline symbol."""
                 beat, duration, notes = entry
                 fingering = tuning.find_fingering(notes)
                 if fingering != [] or notes is None:
-                        # Do an attribute check
-                        
-                        # Otherwise
-                        maxlen = 0
-                        if notes is None:
-                                f = []
-                                maxlen = 1
-                        else:
-                                f = fingering[0]
 
-                        # Make string: fret dictionary and find highest fret
+                        # Do an attribute check
+                        f = []
+                        attr = []
+
+                        for note in notes:
+                                if hasattr(note, "string") and hasattr(note, "fret"):
+                                        n = tuning.get_Note(note.string, note.fret)
+                                        if n is not None and int(n) == int(note):
+                                                f.append((note.string, note.fret))
+                                                attr.append(int(note))
+
+                        # See if there are any possible fingerings with the 
+                        # attributes that are set.
+                        fres = []
+                        if f != []:
+                                for x in fingering:
+                                        found = True
+                                        for pos in f:
+                                                if pos not in x:
+                                                        found = False
+                                        if found:
+                                                fres.append(x)
+                        
+                        # Use best fingering.
+                        maxlen = 0
+                        if fres != []:
+                                f = fres[0]
+
+                        # Use default fingering if attributes don't make sense
+                        else:
+                                if notes is None:
+                                        f = []
+                                        maxlen = 1
+                                else:
+                                        f = fingering[0]
+
+                        # Make {string: fret} dictionary and find highest fret
                         d = {}
                         for string, fret in f:
                                 d[string] = str(fret)
