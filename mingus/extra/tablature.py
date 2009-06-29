@@ -27,6 +27,7 @@
 """
 
 import mingus.extra.tunings as tunings
+import os
 
 default_tuning = tunings.get_tuning("Guitar", "Standard", 6, 1)
 
@@ -135,7 +136,7 @@ for the default tuning."""
                 #warning no fret found
                 pass
         result.reverse()
-        return "\n".join(result)
+        return (os.linesep).join(result)
 
 
 def from_NoteContainer(notes, width = 80, tuning = None):
@@ -182,7 +183,7 @@ should be a StringTuning object or None for the default tuning."""
                 pass
 
         result.reverse()
-        return "\n".join(result)
+        return (os.linesep).join(result)
 
 
 def from_Bar(bar, width = 40, tuning = None, collapse = True):
@@ -247,7 +248,7 @@ lines will be concatenated with a newline symbol."""
         if not collapse:
                 return [r] + result
         else:
-                return "\n".join([r] + result)
+                return (os.linesep).join([r] + result)
 
 def from_Track(track, maxwidth = 80, tuning = None):
         """Converts a mingus.containers.Track object to an ASCII tablature string. \
@@ -268,7 +269,7 @@ def from_Track(track, maxwidth = 80, tuning = None):
                 else:
                         result += ["", ""] + r
                 lastlen = len(result[-1])
-        return "\n".join(result)
+        return (os.linesep).join(result)
 
 def from_Composition(composition, maxwidth = 80, description = ''):
         """Converts a mingus.containers.Composition to an ASCII tablature string, \
@@ -334,7 +335,7 @@ attributes. An extra description of the piece can also be given."""
                 result += ["", "", ""]
                 barindex += bars
 
-        return "\n".join(result)
+        return (os.linesep).join(result)
 
 
 def from_Suite(suite, maxwidth = 80, description = ''):
@@ -342,7 +343,7 @@ def from_Suite(suite, maxwidth = 80, description = ''):
 complete with headers. A description is optional."""
 
         subtitle = str(len(suite.compositions)) + " Compositions" if suite.subtitle == '' else suite.subtitle
-        result = "\n".join(add_headers(maxwidth, 
+        result =  (os.linesep).join(add_headers(maxwidth, 
                              suite.title,
                              subtitle,
                              suite.author,
@@ -350,11 +351,12 @@ complete with headers. A description is optional."""
                              description,
                             ))
         hr = maxwidth * "=" 
-        result = "\n" + hr + "\n" + result + "\n" + hr + "\n\n"
+        n = os.linesep
+        result = n + hr + n + result + n + hr + n + n
 
         for comp in suite:
                 c = from_Composition(comp, maxwidth)
-                result += c + "\n" + hr + "\n\n"
+                result += c + n + hr + n + n
         return result
 
 def _get_qsize(tuning, width):
