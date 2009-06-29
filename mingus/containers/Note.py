@@ -58,7 +58,7 @@ to group Notes together in intervals and chords."""
 
                 # Convert from integer
                 elif type(name) == int:
-                        self.from_int(int)
+                        self.from_int(name)
 
                 else:
                         raise NoteFormatError, "Don't know what to do with name object: '%s'" % name

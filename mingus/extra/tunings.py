@@ -140,6 +140,30 @@ recurse.
 
                 return [ r for _, r in sorted(res)]
 
+        def get_Note(self, string = 0, fret = 0):
+                """Returns the Note on `string`, `fret`.
+{{{
+>>> t = tunings.StringTuning("test", "test", ['A-3', 'A-4'])
+>>> t,get_Note(0, 0)
+'A-3'
+>>> t.get_Note(0, 1)
+'A#-3'
+}}}"""
+                if 0 <= string < self.count_strings():
+                        if 0 <= fret < 24:
+                                s = self.tuning[string]
+                                if type(s) == list:
+                                        s = s[0]
+                                print int(s) + fret
+                                return Note(int(s) + fret)
+                        else:
+                                #warning fret out of range
+                                return None
+
+                else:
+                        #warning string out of range
+                        return None
+
 # The index
 _known = {}
 

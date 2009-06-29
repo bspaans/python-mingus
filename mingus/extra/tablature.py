@@ -29,6 +29,7 @@
 import mingus.extra.tunings as tunings
 import os
 
+
 default_tuning = tunings.get_tuning("Guitar", "Standard", 6, 1)
 
 
@@ -47,6 +48,8 @@ def begin_track(tuning, padding = 2):
                 r += " " * spaces + "||" + "-" * padding
                 res.append(r)
         return res
+
+
 
 def add_headers(width = 80, title = 'Untitled', subtitle = '', author = '', email = '', 
                 description = '', tunings = []):

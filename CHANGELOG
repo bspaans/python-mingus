@@ -6,6 +6,8 @@ CHANGELOG
 	Jun 29, 2009
 
 	* extra/tablature.py: Added documentation and license (closes issue #59)
+	* extra/tunings.py: Added get_Note(string, fret) to StringTuning.
+	Closes issue #54.
 
 ================================================================================
 
