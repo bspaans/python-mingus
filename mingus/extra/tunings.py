@@ -28,6 +28,7 @@
 """
 
 from mingus.containers.Note import Note
+from mingus.core.mt_exceptions import RangeError
 
 class StringTuning:
         """StringTuning can be used to store and work with tunings and fingerings."""
@@ -42,7 +43,7 @@ See tunings.add_tuning for examples."""
                 # convert to Note
                 for x in tuning:
                         if type(x) == list:
-                                self.tuning += [Note(n) for n in x]
+                                self.tuning.append([Note(n) for n in x])
                         else:
                                 self.tuning.append(Note(x))
 
@@ -140,28 +141,31 @@ recurse.
 
                 return [ r for _, r in sorted(res)]
 
-        def get_Note(self, string = 0, fret = 0):
-                """Returns the Note on `string`, `fret`.
+
+
+        def get_Note(self, string = 0, fret = 0, maxfret = 24):
+                """Returns the Note on `string`, `fret`. Throws a RangeError if either the fret or string is \
+unplayable.
 {{{
 >>> t = tunings.StringTuning("test", "test", ['A-3', 'A-4'])
 >>> t,get_Note(0, 0)
 'A-3'
 >>> t.get_Note(0, 1)
 'A#-3'
+>>> t.get_Note(1, 0)
+'A-4'
 }}}"""
                 if 0 <= string < self.count_strings():
-                        if 0 <= fret < 24:
+                        if 0 <= fret <= maxfret:
                                 s = self.tuning[string]
                                 if type(s) == list:
                                         s = s[0]
                                 return Note(int(s) + fret)
                         else:
-                                #warning fret out of range
-                                return None
+                                raise RangeError, "Fret '%d' on string '%d' is out of range" % (string, fret)
 
                 else:
-                        #warning string out of range
-                        return None
+                        raise RangeError, "String '%d' out of range" % (string)
 
 # The index
 _known = {}
@@ -220,13 +224,15 @@ starting with 'ba'.
 >>> tunings.get_tunings("bass")
 }}}"""
 
+        search = ''
         if instrument is not None:
                 search = str.upper(instrument)
 
         result = []
-        keys = _known.iterkeys()
+        keys = _known.keys()
+        inkeys = search in keys
         for x in keys:
-                if instrument is None or ((search not in keys and x.find(search) == 0) or (search in keys and search == x)):
+                if instrument is None or ((not inkeys and x.find(search) == 0) or (inkeys and search == x)):
 
                         if nr_of_strings is None and nr_of_courses is None:
                                 result += _known[x][1].values()
@@ -272,11 +278,11 @@ add_tuning("Bandola Oriental", "Standard tuning.",
                    [['G-3', 'G-3'], ['D-4', 'D-4'], ['A-4', 'A-4'], 
                     ['E-5', 'E-5']])
 
-add_tuning("banjo (bass)", "A cello banjo is sometimes called a \"bass banjo\","\
+add_tuning("Banjo (bass)", "A cello banjo is sometimes called a \"bass banjo\","\
                    "but there are true bass banjos as well", 
                    ['E-1', 'A-1', 'D-2', 'G-2'])
 
-add_tuning("banjo (cello)", "Standard tuning. Same as cello and mandocello", 
+add_tuning("Banjo (cello)", "Standard tuning. Same as cello and mandocello", 
                    ['C-2', 'G-2', 'D-3', 'A-3'])
 
 add_tuning("Banjo (tenor)", "Standard tenor jazz tuning", 
