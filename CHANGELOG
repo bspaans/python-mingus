@@ -5,10 +5,13 @@ CHANGELOG
 	0.4.1.7
 	Jul 1, 2009
 
-	* extra/tablature.py: Raise the proper exceptions (closes issue #65)
-	and added minimal unit test (closes issue #66).
+	* extra/tablature.py: Raise the proper exceptions (closes issue #65), 
+	added minimal unit test (closes issue #66), added attribute checks 
+	(closes issue #51) and better docs.
 	* extra/tunings.py: Raising proper exceptions. Added unit tests 
 	(closes issue #52).
+	* containers/Track.py: Added tuning attribute and set_tuning and 
+	get_tuning method (closes issue #51).
 
 ================================================================================
 

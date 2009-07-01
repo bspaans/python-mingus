@@ -110,8 +110,11 @@ that has been filled in. All arguments except `width` and `tunings` should be st
 def from_Note(note, width = 80, tuning = None):
         """Returns a string made out of ascii tablature representing a \
 Note object or note string. `tuning` should be a StringTuning object or None \
-for the default tuning. Throws a !RangeError if a suitable fret can't be found."""
-        if tuning is None:
+for the default tuning. Throws a !RangeError if a suitable fret can't be found. \
+To force a certain fingering you can use a `string` and `fret` attribute on the \
+Note. If the fingering is valid, it will get used instead of the default one."""
+
+if tuning is None:
                 tuning = default_tuning
         result = begin_track(tuning)
 
@@ -164,7 +167,9 @@ def from_NoteContainer(notes, width = 80, tuning = None):
         """Returns a string made out of ASCII tablature representing a \
 NoteContainer object or list of note strings / Note objects. `tuning` \
 should be a StringTuning object or None for the default tuning. \
-Throws a !FingerError if no playable fingering can be found."""
+Throws a !FingerError if no playable fingering can be found. \
+To force a certain fingering you can use a `string` and `fret` attribute on one \
+or more of the Notes. If the fingering is valid, it will get used instead of the default one."""
 
         if tuning is None:
                 tuning = default_tuning
@@ -239,9 +244,10 @@ Throws a !FingerError if no playable fingering can be found."""
 def from_Bar(bar, width = 40, tuning = None, collapse = True):
         """Converts a mingus.containers.Bar object to ASCII tablature. \
 `tuning` should be a StringTuning object or None for the default tuning. \
-If `collapse` is False this will return a list of lines, if its True all \
+If `collapse` is False this will return a list of lines, if it's True all \
 lines will be concatenated with a newline symbol. \
-Throws a !FingerError if no playable fingering can be found."""
+Throws a !FingerError if no playable fingering can be found. \
+Use `string` and `fret` attributes on Notes to force certain fingerings."""
 
         if tuning is None:
                 tuning = default_tuning
@@ -332,10 +338,15 @@ Throws a !FingerError if no playable fingering can be found."""
 
 def from_Track(track, maxwidth = 80, tuning = None):
         """Converts a mingus.containers.Track object to an ASCII tablature string. \
-`tuning` should be set to a StringTuning object or None to use the default."""
+`tuning` should be set to a StringTuning object or to None to use the Track's tuning (or \
+alternatively the default if the Track hasn't got its own tuning). `string` and `fret` attributes \
+on Notes are taken into account."""
 
         result = []
         width = _get_width(maxwidth)
+
+        if not tuning:
+                tuning = track.get_tuning()
 
         lastlen = 0
         for bar in track:
@@ -355,26 +366,35 @@ def from_Track(track, maxwidth = 80, tuning = None):
 
 
 
-def from_Composition(composition, maxwidth = 80, description = ''):
+def from_Composition(composition, width = 80, description = ''):
         """Converts a mingus.containers.Composition to an ASCII tablature string, \
 and automatically adds an header based on the title, subtitle, author and e-mail \
-attributes. An extra description of the piece can also be given."""
+attributes. An extra description of the piece can also be given. Tunings can be set \
+by using the `Track.instrument.tuning` or `Track.tuning` attribute. """
 
-
-        result = add_headers(maxwidth, 
+        # Collect tunings
+        instr_tunings = []
+        for track in composition:
+                tun =  track.get_tuning()
+                if tun:
+                        instr_tunings.append(tun)
+                else:
+                        instr_tunings.append(default_tuning)
+                                           
+                
+        result = add_headers(width, 
                              composition.title,
                              composition.subtitle, 
                              composition.author,
                              composition.email,
                              description,
-                             #warning check instrument/track attributes for tunings
-                             [default_tuning] * len(composition.tracks)
+                             instr_tunings,
                             )
 
         # Some variables
-        width = _get_width(maxwidth)
+        w = _get_width(width)
         barindex = 0
-        bars = maxwidth / width
+        bars = width / w
         lastlen = 0
         maxlen = max( [ len(x) for x in composition.tracks ])
 
@@ -384,15 +404,14 @@ attributes. An extra description of the piece can also be given."""
                 notfirst = False
                 for tracks in composition:
 
-                        #warning check tuning attribute
-                        tuning = None 
+                        tuning = tracks.get_tuning()
 
                         ascii = []
                         for x in xrange(bars):
                                 if barindex + x < len(tracks):
 
                                         bar = tracks[barindex + x]
-                                        r = from_Bar(bar, width, tuning, collapse = False)
+                                        r = from_Bar(bar, w, tuning, collapse = False)
                                         barstart = r[1].find("||") + 2
 
                                         # Add extra '||' to quarter note marks to connect tracks.
@@ -408,9 +427,9 @@ attributes. An extra description of the piece can also be given."""
                                                 ascii += r
 
                         # Add extra '||' to connect tracks
-                        if notfirst:
-                                pad = ascii[-1].find("||")
-                                result += [" " * pad + "||", " " * pad + "||"]
+                        if notfirst and ascii != []:
+                                        pad = ascii[-1].find("||")
+                                        result += [" " * pad + "||", " " * pad + "||"]
                         else:
                                 notfirst = True
 
@@ -460,7 +479,7 @@ for `tuning` and `width`."""
         # 4.5x = barsize
         # x = barsize / 4.5
 
-        return max(0, int((width +barsize) / 4.5))
+        return max(0, int(barsize / 4.5))
 
 
 
