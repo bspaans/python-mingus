@@ -56,35 +56,21 @@ import test_Suite
 # ...
 
 import test_fft
+import test_tablature
+import test_tunings
 
 # See run_fluidsynth_tests.py for FluidSynth audio tests 
 # See run_lilypond_tests.py to generate some pdf's
 
 # Add new suites here...
-suite001 = test_notes.suite()
-suite002 = test_diatonic.suite()
-suite003 = test_intervals.suite()
-suite004 = test_chords.suite()
-suite005 = test_scales.suite()
-suite006 = test_meter.suite()
-suite007 = test_progressions.suite()
-suite008 = test_value.suite()
+core = [test_notes, test_diatonic, test_intervals, test_chords, 
+        test_scales, test_meter, test_progressions, test_value]
 
-suite101 = test_Note.suite()
-suite102 = test_NoteContainers.suite()
-suite103 = test_Instrument.suite()
-suite104 = test_Bar.suite()
-suite105 = test_Track.suite()
-suite106 = test_Composition.suite()
-suite107 = test_Suite.suite()
+containers = [test_Note, test_NoteContainers, test_Instrument,
+              test_Bar, test_Track, test_Composition, test_Suite]
 
-suite201 = test_fft.suite()
+extra = [test_fft, test_tunings, test_tablature]
 
-# ...and here
-suite = unittest.TestSuite(\
-		[suite001, suite002, suite003, suite004, suite005, suite006, suite007, suite008,\
- 		 suite101, suite102, suite103, suite104, suite105, suite106, suite107,\
-                 suite201,
-		 ])
-
+# Run all tests
+suite = unittest.TestSuite([ x.suite() for x in core + containers + extra ])
 unittest.TextTestRunner(verbosity=2).run(suite)
