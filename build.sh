@@ -29,6 +29,12 @@ echo "**************************************************************************
 sudo python setup.py sdist bdist_wininst upload
 echo "*******************************************************************************"
 echo
+echo "              Tagging release"
+echo
+echo "*******************************************************************************"
+svn copy http://mingus.googlecode.com/svn/trunk/ http://mingus.googlecode.com/svn/tags/mingus-$VERSION -m "Tagging release"
+echo "*******************************************************************************"
+echo
 echo "              Uploading source and windows installer to Google Code"
 echo
 echo "*******************************************************************************"
