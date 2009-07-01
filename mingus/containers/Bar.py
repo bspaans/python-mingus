@@ -125,7 +125,7 @@ in the Bar"""
 	
 		if len(self.bar) == 0:
 			return False
-		if self.current_beat + 1.0 / self.bar[-1][1] == self.length:
+		if self.current_beat >= self.length - 0.001:
 			return True
 
 		return False

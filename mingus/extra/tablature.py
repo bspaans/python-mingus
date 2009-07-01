@@ -114,7 +114,7 @@ for the default tuning. Throws a !RangeError if a suitable fret can't be found. 
 To force a certain fingering you can use a `string` and `fret` attribute on the \
 Note. If the fingering is valid, it will get used instead of the default one."""
 
-if tuning is None:
+        if tuning is None:
                 tuning = default_tuning
         result = begin_track(tuning)
 
