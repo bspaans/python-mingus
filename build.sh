@@ -32,7 +32,7 @@ echo
 echo "              Tagging release"
 echo
 echo "*******************************************************************************"
-svn copy http://mingus.googlecode.com/svn/trunk/ http://mingus.googlecode.com/svn/tags/mingus-$VERSION -m "Tagging release"
+svn copy https://mingus.googlecode.com/svn/trunk/ https://mingus.googlecode.com/svn/tags/mingus-$VERSION -m "Tagging release" --username Rhijnauwen
 echo "*******************************************************************************"
 echo
 echo "              Uploading source and windows installer to Google Code"
