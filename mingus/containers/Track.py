@@ -79,12 +79,14 @@ but the note turns out not to be within the range of the \
 	
         def get_tuning(self):
                 """Returns a StringTuning object. If an instrument is set and has a \
-tuning attribute, that one will be returned. Otherwise the track's one will be used."""
+tuning it will be returned. Otherwise the track's one will be used."""
                 if self.instrument and self.instrument.tuning:
                         return self.instrument.tuning
                 return self.tuning
 
         def set_tuning(self, tuning):
+                """Sets the tuning attribute on both the Track and its instrument (when available). \
+Tuning should be a !StringTuning or derivative object."""
                 if self.instrument:
                         self.instrument.tuning = tuning
                 self.tuning = tuning
