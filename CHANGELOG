@@ -5,7 +5,8 @@ CHANGELOG
 	0.4.1.7
 	Jul 1, 2009
 
-	* extra/tablature.py: Raise the proper exceptions (closes issue #65).
+	* extra/tablature.py: Raise the proper exceptions (closes issue #65)
+	and added minimal unit test (closes issue #66).
 	* extra/tunings.py: Raising proper exceptions. Added unit tests 
 	(closes issue #52).
 

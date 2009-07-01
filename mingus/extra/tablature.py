@@ -460,7 +460,7 @@ for `tuning` and `width`."""
         # 4.5x = barsize
         # x = barsize / 4.5
 
-        return int(barsize / 4.5)
+        return max(0, int((width +barsize) / 4.5))
 
 
 

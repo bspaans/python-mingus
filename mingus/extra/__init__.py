@@ -24,5 +24,5 @@
 
 import LilyPond
 
-__all__ = ["LilyPond", "fft", "MusicXML"]
+__all__ = ["LilyPond", "fft", "MusicXML", "tunings", "tablature"]
 
