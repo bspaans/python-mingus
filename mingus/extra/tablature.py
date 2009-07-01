@@ -27,10 +27,14 @@
 """
 
 import mingus.extra.tunings as tunings
+from mingus.core.mt_exceptions import RangeError, FingerError
 import os
 
 
+
 default_tuning = tunings.get_tuning("Guitar", "Standard", 6, 1)
+
+
 
 
 def begin_track(tuning, padding = 2):
@@ -48,6 +52,8 @@ def begin_track(tuning, padding = 2):
                 r += " " * spaces + "||" + "-" * padding
                 res.append(r)
         return res
+
+
 
 
 
@@ -99,10 +105,12 @@ that has been filled in. All arguments except `width` and `tunings` should be st
         return result
 
 
+
+
 def from_Note(note, width = 80, tuning = None):
         """Returns a string made out of ascii tablature representing a \
 Note object or note string. `tuning` should be a StringTuning object or None \
-for the default tuning."""
+for the default tuning. Throws a !RangeError if a suitable fret can't be found."""
         if tuning is None:
                 tuning = default_tuning
         result = begin_track(tuning)
@@ -145,16 +153,18 @@ for the default tuning."""
                                 result[i] += "-" * d + "|"
                                 
         else:
-                #warning no fret found
-                pass
+                raise RangeError, "No fret found that could play note '%s'. Note out of range." % note
         result.reverse()
         return (os.linesep).join(result)
+
+
 
 
 def from_NoteContainer(notes, width = 80, tuning = None):
         """Returns a string made out of ASCII tablature representing a \
 NoteContainer object or list of note strings / Note objects. `tuning` \
-should be a StringTuning object or None for the default tuning."""
+should be a StringTuning object or None for the default tuning. \
+Throws a !FingerError if no playable fingering can be found."""
 
         if tuning is None:
                 tuning = default_tuning
@@ -218,18 +228,20 @@ should be a StringTuning object or None for the default tuning."""
 
 
         else:
-                #warning no fingerings
-                pass
+                raise FingerError, "No playable fingering found for: %s" % notes
 
         result.reverse()
         return (os.linesep).join(result)
+
+
 
 
 def from_Bar(bar, width = 40, tuning = None, collapse = True):
         """Converts a mingus.containers.Bar object to ASCII tablature. \
 `tuning` should be a StringTuning object or None for the default tuning. \
 If `collapse` is False this will return a list of lines, if its True all \
-lines will be concatenated with a newline symbol."""
+lines will be concatenated with a newline symbol. \
+Throws a !FingerError if no playable fingering can be found."""
 
         if tuning is None:
                 tuning = default_tuning
@@ -296,8 +308,7 @@ lines will be concatenated with a newline symbol."""
                                 else:
                                         result[i] += ("%" + str(maxlen) + "s") % d[i] + "-" * dur
                 else:
-                        #warning no fingerings
-                        pass
+                        raise FingerError, "No playable fingering found for: %s" % notes
 
         # Padding at the end
         l = len(result[i]) + 1
@@ -315,6 +326,9 @@ lines will be concatenated with a newline symbol."""
                 return [r] + result
         else:
                 return (os.linesep).join([r] + result)
+
+
+
 
 def from_Track(track, maxwidth = 80, tuning = None):
         """Converts a mingus.containers.Track object to an ASCII tablature string. \
@@ -336,6 +350,10 @@ def from_Track(track, maxwidth = 80, tuning = None):
                         result += ["", ""] + r
                 lastlen = len(result[-1])
         return (os.linesep).join(result)
+
+
+
+
 
 def from_Composition(composition, maxwidth = 80, description = ''):
         """Converts a mingus.containers.Composition to an ASCII tablature string, \
@@ -404,6 +422,9 @@ attributes. An extra description of the piece can also be given."""
         return (os.linesep).join(result)
 
 
+
+
+
 def from_Suite(suite, maxwidth = 80, description = ''):
         """Converts a mingus.containers.Suite to an ASCII tablature string, \
 complete with headers. A description is optional."""
@@ -425,6 +446,9 @@ complete with headers. A description is optional."""
                 result += c + n + hr + n + n
         return result
 
+
+
+
 def _get_qsize(tuning, width):
         """Helper function that returns a reasonable quarter note size \
 for `tuning` and `width`."""
@@ -437,6 +461,10 @@ for `tuning` and `width`."""
         # x = barsize / 4.5
 
         return int(barsize / 4.5)
+
+
+
+
 
 def _get_width(maxwidth):
         """Helper function that returns the width of a single bar, when \

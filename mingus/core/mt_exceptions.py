@@ -32,3 +32,7 @@ class KeyError(Error):
 
 class RangeError(Error):
 	pass
+
+class FingerError(Error):
+        pass
+
