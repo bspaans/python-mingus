@@ -153,6 +153,14 @@ in the Bar"""
 					max = note
 		return (min, max)
 
+        def space_left(self):
+                """Returns the space left on the Bar."""
+                return self.length  - self.current_beat
+
+        def value_left(self):
+                """Returns the value left on the Bar."""
+                return 1.0 / self.space_left()
+
 	def augment(self):
 		"""Calls augment on the NoteContainers in Bar."""
 		for cont in self.bar:

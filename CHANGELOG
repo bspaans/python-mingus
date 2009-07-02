@@ -11,6 +11,7 @@ CHANGELOG
 	(closes issue #70).
 	* core/chords.py: Raise FormatError in from_shorthand if shorthand is 
 	invalid.
+	* containers/Track.py: Added from_chords (started issue #74).
 
 ================================================================================
 

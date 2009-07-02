@@ -146,7 +146,7 @@ recurse.
 
 
 
-        def find_chord_fingering(self, notes, max_distance = 4, maxfret = 18):
+        def find_chord_fingering(self, notes, max_distance = 4, maxfret = 18, return_best_as_NoteContainer = False):
                 """Returns a list of fret lists that are considered possible fingerings. This function only \
 looks at and matches on the note _names_ so it does more than `find_fingering`. For example: \
 {{{
@@ -162,13 +162,15 @@ looks at and matches on the note _names_ so it does more than `find_fingering`. 
                                 return [[(next, name)]]
 
                         result = []
-                        for y in res[string][next][1]:
-                                for sub in follow(string + 1, y[0], y[1]):
-                                        if prev < 0:
-                                                result.append([(next, name)] +  sub)
-                                        else:
-                                                if sub[0][0] == 0 or abs(sub[0][0] - prev) < max_distance:
+                        cur = res[string][next]
+                        if cur != []:
+                                for y in cur[1]:
+                                        for sub in follow(string + 1, y[0], y[1]):
+                                                if prev < 0:
                                                         result.append([(next, name)] +  sub)
+                                                else:
+                                                        if sub[0][0] == 0 or abs(sub[0][0] - prev) < max_distance:
+                                                                result.append([(next, name)] +  sub)
 
                         for s in follow(string + 1, maxfret + 1, None, next):
                                 result.append([(next, name)] +  s)
@@ -178,9 +180,6 @@ looks at and matches on the note _names_ so it does more than `find_fingering`. 
                 def make_lookup_table():
                         """Prepare the lookup table. table[string][fret] = (name, dest_frets)"""
                         res = [ [ [] for x in xrange(maxfret + 2) ] for x in xrange(len(self.tuning) - 1)] 
-                        fretdict = []
-                        for x in xrange(0, len(self.tuning)):
-                                fretdict.append(self.find_note_names(notes, x, maxfret))
 
                         for x in xrange(0, len(self.tuning) - 1):
                                 addedNone = -1
@@ -210,6 +209,10 @@ looks at and matches on the note _names_ so it does more than `find_fingering`. 
                 if len(notenames) == 0 or len(notenames) > len(self.tuning):
                         return []
 
+                # Make string-fret dictionary
+                fretdict = []
+                for x in xrange(0, len(self.tuning)):
+                        fretdict.append(self.find_note_names(notes, x, maxfret))
 
                 # Build table
                 res = make_lookup_table()                         
@@ -236,7 +239,6 @@ looks at and matches on the note _names_ so it does more than `find_fingering`. 
                                                                         mi = f
                                                                 if f != 0 and f >= ma:
                                                                         ma = f
-                                                                print n
                                                                 names.append(n)
                                                                 
                                                 # Enforce boundaries
@@ -251,9 +253,26 @@ looks at and matches on the note _names_ so it does more than `find_fingering`. 
                                                         if covered and names != []:
                                                                 result.append( [ y[0] if y[1] is not None else y[1] for y in subresult ])
                 # Return semi-sorted list       
-                return sorted(result, key = lambda x: sum([ (t if t is not None else 1000) for i,t in enumerate(x)]))
+                s = sorted(result, key = lambda x: sum([ (t if t is not None else 1000) for i,t in enumerate(x)]))
+                if not return_best_as_NoteContainer:
+                        return s
 
+                else:
+                        rnotes = self.frets_to_NoteContainer(s[0])
+                        for i, x in enumerate(rnotes):
+                                if x.string < len(self.tuning) - 1:
+                                        if res[x.string][x.fret] != []:
+                                                rnotes[i].name = res[x.string][x.fret][0]
+                        return rnotes
 
+        def frets_to_NoteContainer(self, fingering):
+                """Converts a list such as returned by find_fret to a NoteContainer."""
+                res = []
+
+                for string, fret in enumerate(fingering):
+                        if fret is not None:
+                                res.append(self.get_Note(string, fret))
+                return NoteContainer(res)
 
         def find_note_names(self, notelist, string = 0, maxfret = 24):
                 """Returns a list [(fret, notename)] in ascending order.
@@ -299,7 +318,10 @@ unplayable.
                                 s = self.tuning[string]
                                 if type(s) == list:
                                         s = s[0]
-                                return Note(int(s) + fret)
+                                n =  Note(int(s) + fret)
+                                n.string = string
+                                n.fret = fret
+                                return n
                         else:
                                 raise RangeError, "Fret '%d' on string '%d' is out of range" % (string, fret)
 

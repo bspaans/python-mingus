@@ -23,7 +23,9 @@
 """
 
 from mt_exceptions import InstrumentRangeError
+from mingus.containers.NoteContainer import NoteContainer
 from mingus.containers.Bar import Bar
+import mingus.core.value as value
 
 class Track:
 	"""The Track class can be used to store [refMingusContainersBar Bars] \
@@ -75,20 +77,32 @@ but the note turns out not to be within the range of the \
 		if last_bar.is_full():
 			self.bars.append(Bar(last_bar.key, last_bar.meter))
 
+                #warning should hold note if it doesn't fit
 		return self.bars[-1].place_notes(note, duration)
 	
         def from_chords(self, chords, duration = 1):
+                """Adds chords to the Track. `chords` should be a list of shorthand strings or
+list of list of shorthand strings, etc. Each sublist divides the value by 2. If a tuning is set,
+chords will be expanded so they have a proper fingering.
+{{{
+>>> t = Track().from_chords(["C", ["Am", "Dm"], "G7", "C#"], 1)
+}}}"""
                 tun = self.get_tuning()
 
                 def add_chord(chord, duration):
                         if type(chord) == list:
                                 for c in chord:
-                                        add_chord(c, duration / 2)
+                                        add_chord(c, duration * 2)
                         else:
+                                chord = NoteContainer().from_chord(chord)
                                 if tun:
-                                        pass
-                                else:
-                                        self.add_notes(NoteContainer().from_chord(c), duration)
+                                        chord = tun.find_chord_fingering(chord, return_best_as_NoteContainer = True)
+                                       
+                                if not self.add_notes(chord, duration):
+                                        dur = self.bars[-1].value_left()
+                                        self.add_notes(chord, dur)
+                                        #warning should hold note
+                                        self.add_notes(chord, value.subtract(duration, dur))
                 
                 for c in chords:
                         add_chord(c, duration)
