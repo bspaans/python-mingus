@@ -172,7 +172,7 @@ _known = {}
 
 def add_tuning(instrument, description, tuning):
         """Add a new tuning to the index. `instrument` and `description` should be strings; \
-`tuning` should be a list of strings or a list of lists to denote courses. For example: \
+`tuning` should be a list of strings or a list of lists to denote courses. For example: 
 {{{
 >>> tuning.add_tuning("Guitar", "standard", ['E-2', 'A-2', 'D-3', 'G-3', 'B-3', 'E-4'])
 >>> tuning.add_tuning("Guitar", "twelve string", [['E-2', 'E-3'], ['A-2', 'A-3'], ...etc.

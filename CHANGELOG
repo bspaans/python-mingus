@@ -3,9 +3,10 @@ CHANGELOG
 ================================================================================
 
 	0.4.2.1
+	Jul 2, 2009
 
 	* midi/SequencerObserver.py: A new easy to extend base class that 
-	can be used to observe Sequencer objects. Closes issue #46.
+	can be used to observe Sequencer objects (closes issue #46).
 
 ================================================================================
 

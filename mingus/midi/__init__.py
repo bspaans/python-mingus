@@ -21,5 +21,7 @@
 ================================================================================
 
 """
+from Sequencer import Sequencer
+from SequencerObserver import SequencerObserver
 
 __all__ = ["Sequencer", "SequencerObserver", "MidiFileIn", "MidiFileOut", "MidiTrack", "fluidsynth"]

@@ -23,6 +23,7 @@
 """
 
 import LilyPond
+from tunings import StringTuning
 
-__all__ = ["LilyPond", "fft", "MusicXML", "tunings", "tablature"]
 
+__all__ = ['LilyPond', 'fft', 'MusicXML', 'tunings', 'tablature', 'StringTuning']

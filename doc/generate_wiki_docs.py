@@ -192,7 +192,7 @@ def generate_package_wikidocs(package_string, file_prefix = 'ref', file_suffix =
 				except:
 					print "ERROR. Couldn't open file for writing."
 
-print "mingus version 0.3, Copyright (C) 2008, Bart Spaans\n"
+print "mingus version 0.4, Copyright (C) 2008-2009, Bart Spaans\n"
 print "mingus comes with ABSOLUTELY NO WARRANTY. This is free"
 print "software and you are welcome to redistribute it under"
 print "certain conditions."

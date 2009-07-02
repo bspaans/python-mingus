@@ -30,7 +30,7 @@ import wave
 import struct
 import numpy
 from mingus.containers.Note import Note
-from numpy.fft import fft
+from numpy.fft import fft as _fft
 import operator
 
 # Making a frequency-amplitude table 
@@ -94,7 +94,7 @@ Returns a list of tuples (frequency, amplitude). Data should only contain one ch
 
     # Fast fourier transform
     n = len(data)
-    p = fft(data)
+    p = _fft(data)
     uniquePts = numpy.ceil((n + 1) / 2.0)
 
     # Scale by the length (n) and square the value to get the amplitude
