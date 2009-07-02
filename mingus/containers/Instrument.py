@@ -39,6 +39,7 @@ for examples)."""
 	name = 'Instrument'
 	range = (Note('C', 0),  Note('C', 8))
 	clef = 'bass and treble'
+        tuning = None # optional StringTuning object
 
 	def __init__(self):
 		pass
