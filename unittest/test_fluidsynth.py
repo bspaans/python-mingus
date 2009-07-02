@@ -5,12 +5,15 @@ from mingus.midi import fluidsynth
 from mingus.containers import *
 import unittest
 import time
+from mingus.midi.SequencerObserver import SequencerObserver
 
 class test_fluidsynth(unittest.TestCase):
 	
 	def setUp(self):
 		fluidsynth.init("/home/bspaans/workspace/fluidsynth/ChoriumRevA.SF2")
 		fluidsynth.set_instrument(0,0)
+                s = SequencerObserver()
+                fluidsynth.midi.attach(s)
 
 	def test_bar_velocity(self):
 		b = Bar()

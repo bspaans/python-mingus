@@ -73,10 +73,10 @@ sf2 file. Retuns True on success, False on failure."""
 
         # Implement Sequencer's interface
 
-        def play_event(self, channel, note, velocity):
+        def play_event(self, note, channel, velocity):
 		self.fs.noteon(channel, note, velocity)
 
-        def stop_event(self, channel, note):
+        def stop_event(self, note, channel):
 		self.fs.noteoff(channel, note)
 
         def cc_event(self, channel, control, value):

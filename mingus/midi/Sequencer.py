@@ -3,7 +3,7 @@
 ================================================================================
 
         mingus - Music theory Python package, general purpose sequencer
-	Copyright (C) 2008, Bart Spaans
+	Copyright (C) 2008-2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -42,11 +42,22 @@ class Sequencer:
 
 	output = None
 
-        # Messages
-        MSG_PLAY = 0
-        MSG_STOP = 1
+        # Low level messages
+        MSG_PLAY_INT = 0
+        MSG_STOP_INT = 1
         MSG_CC = 2
         MSG_INSTR = 3
+
+        # High level messages
+        MSG_PLAY_NOTE = 4
+        MSG_STOP_NOTE = 5
+        MSG_PLAY_NC = 6
+        MSG_STOP_NC = 7
+        MSG_PLAY_BAR = 8
+        MSG_PLAY_BARS = 9
+        MSG_PLAY_TRACK = 10
+        MSG_PLAY_TRACKS = 11
+        MSG_PLAY_COMPOSITION = 12
 
         def __init__(self):
                 self.listeners = []
@@ -58,7 +69,7 @@ class Sequencer:
         def init(self):
                 pass
 
-        def play_event(self, channel, note, velocity):
+        def play_event(self, note, channel,  velocity):
                 pass
 
         def stop_event(self, channel, note):
@@ -75,13 +86,13 @@ class Sequencer:
         # Observer pattern
         # Attach any object that has a notify function
 
-        def attach_listener(self, listener):
+        def attach(self, listener):
                 """Attach an object that should be notified of events. \
 The object should have a notify(msg_type, param_dict) function."""
                 if listener not in self.listeners:
                         self.listeners.append(listener)
 
-        def detach_listener(self, listener):
+        def detach(self, listener):
                 """Detach a listening object so that it won't receive any \
 events anymore."""
                 if listener in self.listeners:
@@ -124,9 +135,12 @@ attributes, which will take presedence over the function arguments."""
 			velocity = note.velocity
 		if hasattr(note, 'channel'):
 			channel = note.channel
-                self.play_event(int(channel), int(note) + 12, int(velocity))
-                self.notify_listeners(self.MSG_PLAY, {'channel': int(channel), 
+                self.play_event(int(note) + 12, int(channel), int(velocity))
+                self.notify_listeners(self.MSG_PLAY_INT, {'channel': int(channel), 
                                             'note': int(note) + 12, 
+                                            'velocity': int(velocity)} )
+                self.notify_listeners(self.MSG_PLAY_NOTE, {'channel': int(channel), 
+                                            'note': note, 
                                             'velocity': int(velocity)} )
 		return True
 
@@ -136,9 +150,11 @@ will take presedence over the channel argument given here."""
 		if hasattr(note, 'channel'):
 			channel = note.channel
 
-                self.stop_event(int(channel), int(note) + 12)
-                self.notify_listeners(self.MSG_STOP, {'channel': int(channel),
+                self.stop_event(int(note) + 12, int(channel))
+                self.notify_listeners(self.MSG_STOP_INT, {'channel': int(channel),
                                             'note': int(note) + 12})
+                self.notify_listeners(self.MSG_STOP_NOTE, {'channel': int(channel),
+                                            'note': note})
 		return True
 
 	def stop_everything(self):
@@ -150,6 +166,8 @@ will take presedence over the channel argument given here."""
 
 	def play_NoteContainer(self, nc, channel = 1, velocity = 100):
 		"""Plays the Notes in the NoteContainer nc."""
+                self.notify_listeners(self.MSG_PLAY_NC, {'notes': nc, 'channel': channel,
+                                                         'velocity': velocity})
 		for note in nc:
 			if not self.play_Note(note, channel, velocity):
 				return False
@@ -159,6 +177,7 @@ will take presedence over the channel argument given here."""
 
 	def stop_NoteContainer(self, nc, channel = 1):
 		"""Stops playing the notes in NoteContainer nc."""
+                self.notify_listeners(self.MSG_PLAY_NC, {'notes': nc, 'channel': channel})
 		for note in nc:
 			if not self.stop_Note(note, channel):
 				return False
@@ -171,6 +190,8 @@ will take presedence over the channel argument given here."""
 the bpm attribute on a NoteContainer. Returns a dictionary with \
 the bpm lemma set on success, an empty dict on some kind of failure. """
 
+                self.notify_listeners(self.MSG_PLAY_BAR, {'bar': bar, 'channel': channel,
+                                                          'bpm': bpm})
 		# length of a quarter note
 		qn_length = 60.0 / bpm
 
@@ -194,6 +215,9 @@ the bpm lemma set on success, an empty dict on some kind of failure. """
 		"""Plays several bars (a list of Bar objects) at the same time. A list of \
 channels should also be provided. The tempo can be changed by providing one or more of \
 the NoteContainers with a bpm argument."""
+
+                self.notify_listeners(self.MSG_PLAY_BARS, {'bars': bars, 'channels': channels,
+                                                          'bpm': bpm})
 
 		qn_length = 60.0 / bpm  # length of a quarter note
 		tick = 0.0              # place in beat from 0.0 to bar.length
@@ -270,6 +294,8 @@ the NoteContainers with a bpm argument."""
 
 	def play_Track(self, track, channel = 1, bpm = 120):
 		"""Plays a Track object."""
+                self.notify_listeners(self.MSG_PLAY_TRACK, {'track': track, 'channel': channel,
+                                                          'bpm': bpm})
 		for bar in track:
 
 			res = self.play_Bar(bar, channel, bpm)
@@ -283,6 +309,8 @@ the NoteContainers with a bpm argument."""
 		"""Plays a list of Tracks. If an instance of MidiInstrument is used \
 then the instrument will be set automatically."""
 		
+                self.notify_listeners(self.MSG_PLAY_TRACKS, {'tracks': tracks, 'channels': channels,
+                                                          'bpm': bpm})
 		# Set the right instruments
 		for x in range(len(tracks)):
 			instr = tracks[x].instrument
@@ -316,6 +344,8 @@ then the instrument will be set automatically."""
 
 	def play_Composition(self, composition, channels = None, bpm = 120):
 		"""Plays a Composition object."""
+                self.notify_listeners(self.MSG_PLAY_COMPOSITION, {'composition': composition, 
+                                                                  'channels': channels, 'bpm': bpm})
 
 		if channels == None:
 			channels = map(lambda x: x + 1, range(len(composition.tracks)))
