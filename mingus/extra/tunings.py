@@ -28,7 +28,10 @@
 """
 
 from mingus.containers.Note import Note
+from mingus.containers.NoteContainer import NoteContainer
 from mingus.core.mt_exceptions import RangeError
+import mingus.core.notes as notes
+
 
 class StringTuning:
         """StringTuning can be used to store and work with tunings and fingerings."""
@@ -140,6 +143,142 @@ recurse.
                                 res.append((frets, r))
 
                 return [ r for _, r in sorted(res)]
+
+
+
+        def find_chord_fingering(self, notes, max_distance = 4, maxfret = 18):
+                """Returns a list of fret lists that are considered possible fingerings. This function only \
+looks at and matches on the note _names_ so it does more than `find_fingering`. For example: \
+{{{
+>>> t = tunings.get_tuning("guitar", "standard", 6, 1)
+>>> t.find_chord_fingering(NoteContainer().from_chord("Am"))
+[[0, 0, 2, 2, 1, 0],
+ [0, 3, 2, 2, 1, 0], ......]
+}}}"""
+
+                def follow(string, next, name, prev = -1):
+                        """Follow the fret `next` on `string`. And build result on the way."""
+                        if string >= len(self.tuning) - 1:
+                                return [[(next, name)]]
+
+                        result = []
+                        for y in res[string][next][1]:
+                                for sub in follow(string + 1, y[0], y[1]):
+                                        if prev < 0:
+                                                result.append([(next, name)] +  sub)
+                                        else:
+                                                if sub[0][0] == 0 or abs(sub[0][0] - prev) < max_distance:
+                                                        result.append([(next, name)] +  sub)
+
+                        for s in follow(string + 1, maxfret + 1, None, next):
+                                result.append([(next, name)] +  s)
+
+                        return [[(next, name)]] if result == [] else result
+
+                def make_lookup_table():
+                        """Prepare the lookup table. table[string][fret] = (name, dest_frets)"""
+                        res = [ [ [] for x in xrange(maxfret + 2) ] for x in xrange(len(self.tuning) - 1)] 
+                        fretdict = []
+                        for x in xrange(0, len(self.tuning)):
+                                fretdict.append(self.find_note_names(notes, x, maxfret))
+
+                        for x in xrange(0, len(self.tuning) - 1):
+                                addedNone = -1
+                                next = fretdict[x + 1]
+                                for fret, name in fretdict[x]:
+                                        for f2, n2 in next:
+                                                if n2 != name and (f2 == 0 or abs(fret - f2) < max_distance):
+                                                        if res[x][fret] != []:
+                                                                res[x][fret][1].append( (f2, n2) )
+                                                        else:
+                                                                res[x][fret] = name, [(f2, n2)]
+                                                if addedNone < x:
+                                                        if res[x][maxfret + 1] != []:
+                                                                res[x][maxfret + 1][1].append( (f2, n2) )
+                                                        else:
+                                                                res[x][maxfret + 1] = None, [(f2, n2)]
+                                        addedNone = x
+                        return res
+
+                # Convert to NoteContainer if necessary
+                n = notes
+                if notes != [] and type(notes) == list and type(notes[0]) == str:
+                        n = NoteContainer(notes)
+
+                # Check number of note names.
+                notenames = [ x.name for x in n ]
+                if len(notenames) == 0 or len(notenames) > len(self.tuning):
+                        return []
+
+
+                # Build table
+                res = make_lookup_table()                         
+
+                # Build result using table
+                result = [] 
+
+                # For each fret on the first string
+                for i, y in enumerate(res[0]):
+                        if y != []:
+                                yname, next = y[0], y[1]
+                                # For each destination fret in y
+                                for fret, name in next:
+
+                                        # For each followed result
+                                        for s in follow(1, fret, name):
+                                                subresult = [(i, yname)] + s
+
+                                                # Get boundaries
+                                                mi, ma, names = 1000, -1000, []
+                                                for f, n in subresult:
+                                                        if n is not None:
+                                                                if f != 0 and f <= mi:
+                                                                        mi = f
+                                                                if f != 0 and f >= ma:
+                                                                        ma = f
+                                                                print n
+                                                                names.append(n)
+                                                                
+                                                # Enforce boundaries
+                                                if abs(ma - mi) < max_distance:
+
+                                                        # Check if all note names are present
+                                                        covered = True
+                                                        for n in notenames:
+                                                                if n not in names:
+                                                                        covered = False
+                                                        # Add to result
+                                                        if covered and names != []:
+                                                                result.append( [ y[0] if y[1] is not None else y[1] for y in subresult ])
+                # Return semi-sorted list       
+                return sorted(result, key = lambda x: sum([ (t if t is not None else 1000) for i,t in enumerate(x)]))
+
+
+
+        def find_note_names(self, notelist, string = 0, maxfret = 24):
+                """Returns a list [(fret, notename)] in ascending order.
+Notelist should be a list of Notes, note-strings or a NoteContainer.
+{{{
+>>> t = tunings.StringTuning("test", "test", ['A-3', 'A-4'])
+>>> t.find_note_names(["A", "C", "E"], 0, 12)
+[(0, 'E'), (5, 'A'), (8, 'C'), (12, 'E')]
+}}}"""
+
+                n = notelist
+                if notelist != [] and type(notelist[0]) == str:
+                        n = NoteContainer(notelist)
+
+                result = []
+                names = [ x.name for x in n ]
+                int_notes = [ notes.note_to_int(x) for x in names ]
+
+                # Base of the string
+                s = int(self.tuning[string]) % 12
+
+                for x in xrange(0, maxfret + 1):
+                        if (s + x) % 12 in int_notes:
+                                result.append((x, names[int_notes.index((s + x)%12)]))
+                return result
 
 
 

@@ -7,6 +7,8 @@ CHANGELOG
 
 	* midi/SequencerObserver.py: A new easy to extend base class that 
 	can be used to observe Sequencer objects (closes issue #46).
+	* midi/tunings.py: Added find_chord_fingering to StringTuning.
+	(closes issue #70).
 
 ================================================================================
 
