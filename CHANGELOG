@@ -9,6 +9,8 @@ CHANGELOG
 	can be used to observe Sequencer objects (closes issue #46).
 	* midi/tunings.py: Added find_chord_fingering to StringTuning.
 	(closes issue #70).
+	* core/chords.py: Raise FormatError in from_shorthand if shorthand is 
+	invalid.
 
 ================================================================================
 

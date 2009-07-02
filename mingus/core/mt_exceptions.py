@@ -24,6 +24,9 @@
 class Error(Exception):
 	pass
 
+class FormatError(Error):
+        pass
+
 class NoteFormatError(Error):
 	pass
 

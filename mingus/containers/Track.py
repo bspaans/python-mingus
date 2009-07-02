@@ -77,6 +77,23 @@ but the note turns out not to be within the range of the \
 
 		return self.bars[-1].place_notes(note, duration)
 	
+        def from_chords(self, chords, duration = 1):
+                tun = self.get_tuning()
+
+                def add_chord(chord, duration):
+                        if type(chord) == list:
+                                for c in chord:
+                                        add_chord(c, duration / 2)
+                        else:
+                                if tun:
+                                        pass
+                                else:
+                                        self.add_notes(NoteContainer().from_chord(c), duration)
+                
+                for c in chords:
+                        add_chord(c, duration)
+
+
         def get_tuning(self):
                 """Returns a StringTuning object. If an instrument is set and has a \
 tuning it will be returned. Otherwise the track's one will be used."""

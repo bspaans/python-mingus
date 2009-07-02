@@ -101,7 +101,7 @@
 import intervals
 import notes
 import diatonic
-from mt_exceptions import NoteFormatError
+from mt_exceptions import NoteFormatError, FormatError
 
 
 
@@ -1055,8 +1055,7 @@ can always be substituted by respectively `min`, `mi` or `-` and `maj` or `ma` (
 		return res
 		
 	else:
-		#warning raise exception: shorthand not known
-		return False
+                raise FormatError, "Unknown shorthand: %s" % shorthand_string
 
 
 

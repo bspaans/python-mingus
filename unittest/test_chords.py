@@ -2,7 +2,7 @@ import sys
 sys.path = ["../"] + sys.path
 
 import mingus.core.chords as chords
-from mingus.core.mt_exceptions import RangeError
+from mingus.core.mt_exceptions import RangeError, FormatError, NoteFormatError
 import unittest
 
 class test_chords(unittest.TestCase):
@@ -335,6 +335,11 @@ class test_chords(unittest.TestCase):
 		map(lambda x: self.assertEqual(answers[x], chords.from_shorthand(x),\
 			"The shorthand of %s is not %s, expecting %s" % (x, chords.from_shorthand(x), answers[x])),\
 			answers.keys())
+
+        def test_malformed_from_shorthand(self):
+                for x in ["Bollocks", "Asd", "Bbasd@#45"]:
+                        self.assertRaises(FormatError, chords.from_shorthand, x)
+                        self.assertRaises(NoteFormatError, chords.from_shorthand, x[1:])
 			
 	def test_determine(self):
 		map(lambda x: self.assertEqual(True, \
