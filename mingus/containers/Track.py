@@ -100,13 +100,17 @@ chords will be expanded so they have a proper fingering.
                                         chord = tun.find_chord_fingering(chord, return_best_as_NoteContainer = True)
                                        
                                 if not self.add_notes(chord, duration):
+                                        # This should be the standard behaviour of add_notes
                                         dur = self.bars[-1].value_left()
                                         self.add_notes(chord, dur)
                                         #warning should hold note
                                         self.add_notes(chord, value.subtract(duration, dur))
                 
                 for c in chords:
-                        add_chord(c, duration)
+                        if c is not None:
+                                add_chord(c, duration)
+                        else:
+                                self.add_notes(None, duration)
 
                 return self
 
