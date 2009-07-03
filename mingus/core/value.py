@@ -62,6 +62,18 @@ thirty_second = 32
 sixty_fourth = 64
 hundred_twenty_eighth = 128
 
+#MusicXML conversion table
+musicxml = {
+1  : "whole",
+2  : "half",
+4  : "quarter",
+8  : "eighth",
+16 : "16th",
+32 : "32th",
+64 : "64th",
+128: "128th"
+}
+
 
 base_values      = [  0.25,   0.5,    1,   2, 4, 8,  16, 32,  64, 128]
 base_quintuplets = [0.3125, 0.625, 1.25, 2.5, 5, 10, 20, 40,  80, 160]
