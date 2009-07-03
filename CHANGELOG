@@ -7,6 +7,10 @@ CHANGELOG
 
 	* extra/MusicXML.py: MusicXML exporting functions by Javier Palanca. 
 	(started issue #63). 
+	* containers/Track.py: Added `return self` to methods in Track.
+	Check for None in chords, in method from_chords. 
+	* midi/Sequencer.py: Fixed bug. Added support for rests in 
+	play_NoteContainer and stop_NoteContainer.
 
 ================================================================================
 

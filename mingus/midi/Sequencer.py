@@ -175,6 +175,9 @@ will take presedence over the channel argument given here."""
 		"""Plays the Notes in the NoteContainer nc."""
                 self.notify_listeners(self.MSG_PLAY_NC, {'notes': nc, 'channel': channel,
                                                          'velocity': velocity})
+                if nc is None:
+                        return True
+
 		for note in nc:
 			if not self.play_Note(note, channel, velocity):
 				return False
@@ -185,6 +188,10 @@ will take presedence over the channel argument given here."""
 	def stop_NoteContainer(self, nc, channel = 1):
 		"""Stops playing the notes in NoteContainer nc."""
                 self.notify_listeners(self.MSG_PLAY_NC, {'notes': nc, 'channel': channel})
+
+                if nc is None:
+                        return True
+                
 		for note in nc:
 			if not self.stop_Note(note, channel):
 				return False
