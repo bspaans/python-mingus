@@ -45,6 +45,7 @@ Tracks can be stored together in [refMingusContainersComposition Compositions]""
 	def add_bar(self, bar):
 		"""Adds a [refMingusContainersBar Bar] to the current track"""
 		self.bars.append(bar)
+                return self
 
 
 	def add_notes(self, note, duration = None):
@@ -107,6 +108,7 @@ chords will be expanded so they have a proper fingering.
                 for c in chords:
                         add_chord(c, duration)
 
+                return self
 
         def get_tuning(self):
                 """Returns a StringTuning object. If an instrument is set and has a \
@@ -127,26 +129,31 @@ Tuning should be a !StringTuning or derivative object."""
 		"""Transposes all the notes in the track up or down the interval. Calls transpose() on every [refMingusContainersBar Bar]."""
 		for bar in self.bars:
 			bar.transpose(interval, up)
+                return self
 
 	def to_minor(self):
 		"""Calls to_minor on all the bars in the Track."""
 		for bar in self.bars:
 			bar.to_minor()
+                return self
 
 	def to_major(self):
 		"""Calls to_major on all the bars in the Track."""
 		for bar in self.bars:
 			bar.to_major()
+                return self
 
 	def augment(self):
 		"""Calls augment on all the bars in the Track."""
 		for bar in self.bars:
 			bar.augment()
+                return self
 
 	def diminish(self):
 		"""Calls diminish on all the bars in the Track."""
 		for bar in self.bars:
 			bar.diminish()
+                return self
 
 	def __add__(self, value):
 		"""Overloads the + operator for Tracks. Accepts \
