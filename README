@@ -1,13 +1,10 @@
 ================================================================================
                             m   i   n   g   u   s
 ================================================================================
-    
-    mingus is an advanced music theory and notation package for Python
-    with MIDI playback support. It can be used to play around with music 
-    theory, to build editors, educational tools and other applications 
-    that need to process and/or play music. It can also be used to create
-    sheet music with LilyPond and do automated musicological analysis on 
-    chords, scales and harmonic progressions.
+
+    mingus is a package for Python used by programmers, musicians, composers 
+    and researchers to make and investigate music. 
+
 
 ================================================================================
     I  N  S  T  A  L  L
@@ -21,6 +18,7 @@
     4. Install LilyPond if you want to make use of the `mingus.extra.LilyPond`
        module that creates sheet music from mingus objects.
     5. Install fluidsynth for MIDI playback support.
+
 
 ================================================================================
     R  E  S  O  U  R  C  E  S
@@ -38,6 +36,7 @@
     [3] FluidSynth's home.
 	http://www.fluidsynth.org/
 
+
 ================================================================================
     D  E  V  E  L  O  P  M  E  N  T
 ================================================================================
@@ -47,8 +46,12 @@
 
 	    http://mingus.googlecode.com/
 
+    And all commits and issue changes will automatically be posted here:
+
+            http://groups.google.com/group/mingus-devel
+
     If you'd like to get in touch to ask a question or submit a patch,
-    you should contact the mingus' google group at
+    you should contact mingus' google group at
 
 	    http://groups.google.com/group/mingus-python
 
@@ -57,7 +60,7 @@
 ================================================================================
 
     mingus - Music theory Python package, 
-    Copyright (C) 2008, Bart Spaans <onderstekop@gmail.com>
+    Copyright (C) 2008-2009, Bart Spaans <onderstekop@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -71,5 +74,6 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 
 ================================================================================
