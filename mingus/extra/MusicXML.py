@@ -45,6 +45,21 @@ from mingus.core import value
 
 import datetime
 
+def _gcd(a=None,b=None, terms=None):
+   """Return greatest common divisor using Euclid's Algorithm."""
+   if terms:
+   	return reduce(lambda a,b: _gcd(a,b), terms)
+   else:
+	while b:
+		a, b = b, a % b
+	return a
+
+def _lcm(a=None,b=None, terms=None):
+   """Return lowest common multiple."""
+   if terms: return reduce(lambda a,b: _lcm(a,b), terms)
+   else: return (a*b)/_gcd(a,b)
+
+
 def _note2musicxml(note):
     doc = Document()
     note_node = doc.createElement("note")
@@ -80,8 +95,14 @@ def _bar2musicxml(bar):
     bar_node = doc.createElement("measure")
     #bar attributes
     attributes = doc.createElement("attributes")
+    #calculate divisions by using the LCM
+    l=list()
+    for nc in bar:
+	l.append(int(value.determine(nc[1])[0]))
+    lcm = _lcm(terms=l)*4
+
     divisions  = doc.createElement("divisions")
-    divisions.appendChild(doc.createTextNode("480")) #why this value. is it arbitrary?
+    divisions.appendChild(doc.createTextNode(str(lcm))) 
     attributes.appendChild(divisions)
     if bar.key.name in basic_keys:
         key = doc.createElement("key")
@@ -107,6 +128,7 @@ def _bar2musicxml(bar):
     bar_node.appendChild(attributes)
     
     chord=doc.createElement("chord")
+
     for nc in bar:
         time  = value.determine(nc[1])
 	beat = time[0]
@@ -122,7 +144,7 @@ def _bar2musicxml(bar):
                 note.appendChild(chord)
             #convert the duration of the note
             duration = doc.createElement("duration")
-            duration.appendChild(doc.createTextNode(str(int(480.0*(4.0/float(nc[1])))))) #there's something wrong here :-/
+            duration.appendChild(doc.createTextNode(str(int(lcm*(4.0/beat))))) 
             note.appendChild(duration)
 	    #check for dots
 	    dot = doc.createElement("dot")

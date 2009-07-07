@@ -158,6 +158,7 @@ looks at and matches on the note _names_ so it does more than `find_fingering`. 
 
                 def follow(string, next, name, prev = -1):
                         """Follow the fret `next` on `string`. And build result on the way."""
+
                         if string >= len(self.tuning) - 1:
                                 return [[(next, name)]]
 
