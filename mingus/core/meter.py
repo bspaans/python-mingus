@@ -3,7 +3,7 @@
 ================================================================================
 
 	Music theory Python package, meter module
-	Copyright (C) 2008, Bart Spaans
+	Copyright (C) 2008-2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
