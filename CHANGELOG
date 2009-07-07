@@ -2,6 +2,13 @@
 CHANGELOG
 ================================================================================
 
+	0.4.2.3
+
+	* extra/MusicXML.py: Applied Javier's patch fixing beat divisions. 
+	* Added a copy of the full GPL v3 license. (closes issue #81)
+
+================================================================================
+
 	0.4.2.2
 	Jul 3, 2009
 
