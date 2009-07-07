@@ -5,6 +5,7 @@ CHANGELOG
 	0.4.2.3
 
 	* extra/MusicXML.py: Applied Javier's patch fixing beat divisions. 
+	* Almost every file: Updated copyright information. Closes issue #78.
 	* Added something resembling an AUTHORS file. With only two main 
 	developers this doesn't make much sense, but, err, at least we are 
 	prepared for a glorious future! Closes issue #79.

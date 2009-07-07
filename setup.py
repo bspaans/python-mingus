@@ -1,15 +1,24 @@
 from distutils.core import setup
 
 setup(name= "mingus",
-	  version = "0.4.2.2",
-	  description = "mingus is an advanced music theory and notation package",
-	  long_description = "mingus is an advanced music theory and notation package "\
-			"for Python with MIDI playback support. It can be used to play "\
-			"around with music theory, to build editors, educational tools and "\
-			"other applications that need to process and/or play music. "\
-			"It can also be used to create sheet music with LilyPond "\
-			"and do automated musicological analysis on chords, scales and "\
-			"harmonic progressions.",
+	  version = "0.4.2.3",
+	  description = "mingus is a music package for Python",
+
+          long_description = 
+"""mingus is a package for Python used by programmers, musicians, \
+composers and researchers to make and investigate music. At the core of mingus is music theory, \
+which includes topics like intervals, chords, scales and progressions. These components are 
+rigurously tested and can be used to generate and recognize musical elements using convenient 
+shorthand where possible (for example some acceptable chords are: CM7, Am6, Ab7, G7).
+
+On top of that are several packages that deal  with classical notation, MIDI (sequencing, \
+loading and saving), MusicXML, ASCII tablature, and many other useful and plain cool things \
+like LilyPond and FluidSynth support. Everything is fully documentated, put into simple \
+APIs and has a tutorial making it easy to jump straight in.
+
+http://mingus.googlecode.com
+""",
+
 	  author = "Bart Spaans",
 	  author_email = "onderstekop@gmail.com",
 	  url = "http://mingus.googlecode.com/",
@@ -18,6 +27,7 @@ setup(name= "mingus",
 			  		     'mingus_examples/pygame-drum/pygame-drum.py']),\
 			('mingus_examples/pygame-piano', ['mingus_examples/pygame-piano/pygame-piano.py',
 				 			   'mingus_examples/pygame-piano/keys.png'])],
+          license="GPLv3",
 	  classifiers = [
 			'Intended Audience :: Developers',
 			'Intended Audience :: Science/Research',
