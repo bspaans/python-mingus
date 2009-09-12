@@ -33,10 +33,12 @@ import mingus.core.value as value
 import os
 import subprocess
 
-def from_Note(note, process_octaves = True):
+def from_Note(note, process_octaves = True, standalone = True):
 	"""Expects a [refMingusContainersNote Note] object and returns \
 the !LilyPond equivalent in a string. If process_octaves is set to False, \
-all data regarding octaves will be ignored."""
+all data regarding octaves will be ignored. If standalone is True, the result \
+can be used by functions like to_png and will produce a valid output. The \
+argument is mostly here to let from_NoteContainer make use of this function."""
 	# Throw exception
 	if not( hasattr(note, "name")):
 		return False
@@ -62,12 +64,17 @@ all data regarding octaves will be ignored."""
 			while (oct < 3):
 				result += ","
 				oct += 1
-	return result
+        if standalone:
+                return "{ %s }" % result
+        else:
+                return result
 
-def from_NoteContainer(nc, duration = None):
+def from_NoteContainer(nc, duration = None, standalone = True):
 	"""Expects a [refMingusContainersNotecontainer NoteContainer] object \
 and returns the !LilyPond equivalent in a string. The second argument \
-determining the duration of the NoteContainer is optional."""
+determining the duration of the NoteContainer is optional. When the standalone \
+argument is True the result of this function can be used directly by functions like \
+to_png. It is mostly here to be used by from_Bar."""
 
 	# Throw exception
 	if (nc is not None) and (not ( hasattr ( nc, "notes" ) )):
@@ -79,13 +86,13 @@ determining the duration of the NoteContainer is optional."""
 	# Return a single note if the list contains only 
 	# one note
 	elif len(nc.notes) == 1:
-		result = from_Note(nc.notes[0])
+		result = from_Note(nc.notes[0], standalone = False)
 
 	# Return the notes grouped in '<' and '>'
 	else:
 		result = "<"
 		for notes in nc.notes:
-			result += from_Note(notes) + " "
+			result += from_Note(notes, standalone = False) + " "
 		result = result[:-1] + ">"
 
 	# Add the duration
@@ -102,7 +109,10 @@ determining the duration of the NoteContainer is optional."""
 			result += str(int(parsed_value[0]))
 		for i in range(parsed_value[1]):
 			result += "."
-	return result
+        if not standalone:
+                return result
+        else:
+                return "{ %s }" % result
 
 def from_Bar(bar, showkey = True, showtime = True):
 	"""Expects a [refMingusContainersBar Bar] object and returns the \
@@ -114,7 +124,7 @@ determine whether the key and the time should be shown."""
 
 	# Process the key
 	if showkey:
-		key = "\\key %s \\major " %  from_Note(bar.key, False)
+		key = "\\key %s \\major " %  from_Note(bar.key, False, standalone = False)
 		result = key
 	else:
 		result = ""
@@ -126,12 +136,12 @@ determine whether the key and the time should be shown."""
 		parsed_value = value.determine(bar_entry[1])
 		ratio = parsed_value[2:]
 		if ratio == latest_ratio:
-			result += from_NoteContainer(bar_entry[2], bar_entry[1]) + " "
+			result += from_NoteContainer(bar_entry[2], bar_entry[1], standalone = False) + " "
 		else:
 			if ratio_has_changed:
 				result += "}"
 			result += "\\times %d/%d {" % (ratio[1], ratio[0])
-			result += from_NoteContainer(bar_entry[2], bar_entry[1]) + " "
+			result += from_NoteContainer(bar_entry[2], bar_entry[1], standalone = False) + " "
 			latest_ratio = ratio
 			ratio_has_changed = True
 	if ratio_has_changed:
@@ -214,8 +224,7 @@ def save_string_and_execute_LilyPond(ly_string, filename, command):
 		return False
 	command ="lilypond %s -o \"%s\" \"%s.ly\"" % (command, filename, filename)
 	print "Executing: %s" % command
-	p = subprocess.Popen(command, shell=True)
-	sts = os.waitpid(p.pid, 0)
+	p = subprocess.Popen(command, shell=True).wait()
 	os.remove(filename + ".ly")
 	return True
 
