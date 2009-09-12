@@ -188,10 +188,10 @@ to set the pitch of A-4, from which the rest is calculated."""
 		"""Sets the Note name and pitch, calculated from the `hertz` value. \
 The `standard_pitch` argument can be used to set the pitch of A-4, from \
 which the rest is calculated."""
-
-		value = log(float(hertz) / standard_pitch, 2) * 12 + notes.note_to_int("A")
-		self.name = notes.int_to_note(int(value) % 12)
-		self.octave = int(value / 12) + 4
+                value = (log(float(hertz)*1024 / standard_pitch, 2)+1.0/24) * 12 + 9#notes.note_to_int("A")
+                self.name = notes.int_to_note(int(value) % 12)
+                self.octave = int(value / 12) - 6
+                return self
 
         def to_shorthand(self):
                 """Gives the traditional Helmhotz pitch notation.\

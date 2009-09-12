@@ -59,6 +59,8 @@ class test_Note(unittest.TestCase):
 
 	def test_from_hertz(self):
 		a = Note()
+                self.assertEqual(a.from_hertz(55.5), Note("A", 1))
+                self.assertEqual(a.from_hertz(110), Note("A", 2))
                 a.from_hertz(220)
                 self.assertEqual(a, Note("A", 3))
 		a.from_hertz(440)
