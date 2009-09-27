@@ -93,7 +93,7 @@ sf2 file. Retuns True on success, False on failure."""
 
     def sleep(self, seconds):
         if hasattr(self, "wav"):
-            samples = pyFluidSynth.raw_audio_string(self.fs.get_samples(int(seconds * 44100)))
+            samples = fs.raw_audio_string(self.fs.get_samples(int(seconds * 44100)))
             self.wav.writeframes("".join(samples))
         else:
             time.sleep(seconds)
