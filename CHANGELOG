@@ -9,6 +9,8 @@ CHANGELOG
 	from_Note and from_NoteContainer to make them usuable on their own and 
 	not just in from_Bar. The default behaviour of the functions has also 
 	been changed to return the stand-alone one. (closes issue #87).
+	* containers/Note.py: Checked in Gabriels fix for from_hertz. (closes 
+	issue #82)
 
 ================================================================================
 

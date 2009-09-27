@@ -33,10 +33,7 @@
 """
 
 
-from datetime import datetime
 from mingus.containers.Instrument import MidiInstrument
-import pyFluidSynth as fs
-from time import sleep
 
 class Sequencer:
 	"""A general purpose sequencer for the objects in mingus.containers. You \
@@ -54,17 +51,18 @@ can be attached to the Sequencer."""
         MSG_STOP_INT = 1
         MSG_CC = 2
         MSG_INSTR = 3
+        MSG_SLEEP = 4
 
         # High level messages
-        MSG_PLAY_NOTE = 4
-        MSG_STOP_NOTE = 5
-        MSG_PLAY_NC = 6
-        MSG_STOP_NC = 7
-        MSG_PLAY_BAR = 8
-        MSG_PLAY_BARS = 9
-        MSG_PLAY_TRACK = 10
-        MSG_PLAY_TRACKS = 11
-        MSG_PLAY_COMPOSITION = 12
+        MSG_PLAY_NOTE = 5
+        MSG_STOP_NOTE = 6
+        MSG_PLAY_NC = 7
+        MSG_STOP_NC = 8
+        MSG_PLAY_BAR = 9
+        MSG_PLAY_BARS = 10 
+        MSG_PLAY_TRACK = 11
+        MSG_PLAY_TRACKS = 12
+        MSG_PLAY_COMPOSITION = 13
 
         def __init__(self):
                 self.listeners = []
@@ -88,6 +86,8 @@ can be attached to the Sequencer."""
         def instr_event(self, channel, instr, bank):
                 pass
 
+        def sleep(self, seconds):
+                pass
 
 
         # Observer pattern
@@ -219,7 +219,9 @@ the bpm lemma set on success, an empty dict on some kind of failure. """
 				bpm = nc[2].bpm
 				qn_length = 60.0 / bpm
 			
-			sleep(qn_length * (4.0 / nc[1]))
+                        ms = qn_length * (4.0 / nc[1])
+			self.sleep(ms)
+                        self.notify_listeners(self.MSG_SLEEP, {'s': ms})
 			self.stop_NoteContainer(nc[2], channel)
 
 		return {"bpm": bpm}
@@ -264,7 +266,9 @@ the NoteContainers with a bpm argument."""
 			if len(playing_new) != 0:
 				playing_new.sort()
 				shortest = playing_new[-1][0]
-				sleep(qn_length * (4.0 / shortest))
+                                ms = qn_length * (4.0 / shortest)
+			        self.sleep(ms)
+                                self.notify_listeners(self.MSG_SLEEP, {'s': ms})
 
 			# If somehow, playing_new doesn't contain any notes
 			# (something that shouldn't happen when the bar was filled
@@ -274,7 +278,9 @@ the NoteContainers with a bpm argument."""
 				if len(playing) != 0:
 					playing.sort()
 					shortest = playing[-1][0]
-					sleep(qn_length * (4.0 / shortest))
+                                        ms = qn_length * (4.0 / shortest)
+					self.sleep(ms)
+                                        self.notify_listeners(self.MSG_SLEEP, {'s': ms})
 				else:
 					#warning: this could lead to some strange behaviour.
 					# OTOH. Leaving gaps is not the way Bar works.
