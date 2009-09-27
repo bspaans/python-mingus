@@ -11,6 +11,9 @@ CHANGELOG
 	been changed to return the stand-alone one. (closes issue #87).
 	* containers/Note.py: Checked in Gabriels fix for from_hertz. (closes 
 	issue #82)
+	* midi/Sequencer.py, midi/SequencerObserver.py: Added sleep message, 
+	to be able to switch out time.sleep with something else
+	* midi/fluidsynth.py: Added simple API to record a wave file.
 
 ================================================================================
 
