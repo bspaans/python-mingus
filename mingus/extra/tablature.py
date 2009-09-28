@@ -267,12 +267,13 @@ Use `string` and `fret` attributes on Notes to force certain fingerings."""
                         f = []
                         attr = []
 
-                        for note in notes:
-                                if hasattr(note, "string") and hasattr(note, "fret"):
-                                        n = tuning.get_Note(note.string, note.fret)
-                                        if n is not None and int(n) == int(note):
-                                                f.append((note.string, note.fret))
-                                                attr.append(int(note))
+                        if notes is not None:
+                                for note in notes:
+                                        if hasattr(note, "string") and hasattr(note, "fret"):
+                                                n = tuning.get_Note(note.string, note.fret)
+                                                if n is not None and int(n) == int(note):
+                                                        f.append((note.string, note.fret))
+                                                        attr.append(int(note))
 
                         # See if there are any possible fingerings with the 
                         # attributes that are set.
