@@ -367,11 +367,11 @@ on Notes are taken into account."""
 
 
 
-def from_Composition(composition, width = 80, description = ''):
+def from_Composition(composition, width = 80):
         """Converts a mingus.containers.Composition to an ASCII tablature string, \
-and automatically adds an header based on the title, subtitle, author and e-mail \
-attributes. An extra description of the piece can also be given. Tunings can be set \
-by using the `Track.instrument.tuning` or `Track.tuning` attribute. """
+and automatically adds an header based on the title, subtitle, author, e-mail and \
+description attributes. An extra description of the piece can also be given. Tunings \
+can be set by using the `Track.instrument.tuning` or `Track.tuning` attribute. """
 
         # Collect tunings
         instr_tunings = []
@@ -388,7 +388,7 @@ by using the `Track.instrument.tuning` or `Track.tuning` attribute. """
                              composition.subtitle, 
                              composition.author,
                              composition.email,
-                             description,
+                             composition.description,
                              instr_tunings,
                             )
 
@@ -445,9 +445,10 @@ by using the `Track.instrument.tuning` or `Track.tuning` attribute. """
 
 
 
-def from_Suite(suite, maxwidth = 80, description = ''):
+def from_Suite(suite, maxwidth = 80):
         """Converts a mingus.containers.Suite to an ASCII tablature string, \
-complete with headers. A description is optional."""
+complete with headers. This function makes use of the Suite's title, subtitle, \
+author, email and description attributes."""
 
         subtitle = str(len(suite.compositions)) + " Compositions" if suite.subtitle == '' else suite.subtitle
         result =  (os.linesep).join(add_headers(maxwidth, 
@@ -455,7 +456,7 @@ complete with headers. A description is optional."""
                              subtitle,
                              suite.author,
                              suite.email,
-                             description,
+                             suite.description,
                             ))
         hr = maxwidth * "=" 
         n = os.linesep

@@ -29,7 +29,7 @@ from mt_exceptions import UnexpectedObjectError
 class NoteContainer:
 	"""The !NoteContainer provides a container for the \
 [refMingusContainersNote mingus.containers.Note] objects. \
-It can be used to store single and multiple notes in and is \
+It can be used to store single and multiple notes and is \
 required for working with [refMingusContainersBar Bars]."""
 
 	notes = []

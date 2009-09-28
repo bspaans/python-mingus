@@ -33,6 +33,7 @@ class Suite:
 	subtitle = ''
 	author = ''
 	email = ''
+        description = ''
 	compositions = []
 
 	def __init__(self):

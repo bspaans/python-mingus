@@ -14,6 +14,11 @@ CHANGELOG
 	* midi/Sequencer.py, midi/SequencerObserver.py: Added sleep message, 
 	to be able to switch out time.sleep with something else
 	* midi/fluidsynth.py: Added simple API to record a wave file.
+	* containers/Composition.py, containers/Suite.py: Added description 
+	attribute
+	* extra/tablature.py: Fixed rest bug in from_Bar. Removed 'description'
+	arguments from from_Composition and from_Suite and use the new
+	attribute instead.
 
 ================================================================================
 

@@ -35,6 +35,7 @@ in [refMingusContainersSuite Suites]."""
 	subtitle = ''
 	author = ''
 	email = ''
+        description = ''
 	tracks = []
 	selected_tracks = []
 
