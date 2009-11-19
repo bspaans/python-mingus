@@ -128,7 +128,7 @@ class MidiFile():
 						pass
 
 					# Track name
-					if event["meta_event"] == 3:
+					elif event["meta_event"] == 3:
 						t.name = event["data"]
 					
 					# Marker 
