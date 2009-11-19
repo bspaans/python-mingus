@@ -19,6 +19,8 @@ CHANGELOG
 	* extra/tablature.py: Fixed rest bug in from_Bar. Removed 'description'
 	arguments from from_Composition and from_Suite and use the new
 	attribute instead.
+	* midi/MidiFileIn.py: Added key support to Midi file parser. Thanks to 
+	arunchaganty. (Closes issue #90).
 
 ================================================================================
 
