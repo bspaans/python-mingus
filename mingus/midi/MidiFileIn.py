@@ -34,6 +34,7 @@ import mingus.containers.Track as Track
 import mingus.containers.Composition as Composition
 from mingus.containers.Instrument import MidiInstrument
 import mingus.core.notes as notes
+import mingus.core.intervals as intervals
 import binascii
 
 
@@ -122,6 +123,9 @@ class MidiFile():
 
 				# meta event
 				elif event["event"] == 15:
+					# Text
+					if event["meta_event"] == 1:
+						pass
 
 					# Track name
 					if event["meta_event"] == 3:
@@ -157,7 +161,19 @@ class MidiFile():
 
 					# Key Signature
 					elif event["meta_event"] == 89:
-						pass
+						d = event["data"]
+						sharps = self.bytes_to_int(d[0])
+						minor = self.bytes_to_int(d[0])
+						if minor:
+							key = 'A'
+						else:
+							key = 'C'
+						for i in xrange(abs(sharps)):
+						    if sharps < 0:
+								key = intervals.major_fourth(key)
+						    else:
+								key = intervals.major_fifth(key)
+						b.key = Note(key)
 
 					else:
 						print "Unsupported META event", event["meta_event"]
