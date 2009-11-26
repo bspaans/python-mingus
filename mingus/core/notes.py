@@ -120,6 +120,18 @@ not recognised."""
             val += 1
     return val % 12
 
+def reduce_accidentals(note):
+    """Reduces any extra accidentals to proper notes so that C#### E"""
+    val = note_to_int(note[0])
+    for token in note[1:]:
+        if token == 'b':
+            val -= 1 
+        elif token == '#':
+            val += 1 
+        else:
+            raise NoteFormatError, "Unknown note format '%s'" % note
+    val = val % 12
+    return int_to_note(val)
 
 def remove_redundant_accidentals(note):
     """Removes redundant #'s and b's from the given note. For example: C##b becomes \
