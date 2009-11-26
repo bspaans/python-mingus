@@ -56,7 +56,7 @@ import test_Suite
 import test_fft
 import test_tablature
 import test_tunings
-#import test_MusicXML
+import test_MusicXML
 
 # See run_fluidsynth_tests.py for FluidSynth audio tests See
 # run_lilypond_tests.py to generate some pdf's
@@ -86,7 +86,7 @@ extra = [
         test_fft, 
         test_tunings, 
         test_tablature, 
-        #test_MusicXML
+        test_MusicXML
         ]
 
 # Run all tests
