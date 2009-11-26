@@ -1,9 +1,10 @@
+#!/usr/bin/python
 """
 
 ================================================================================
 
-	mingus - Music theory Python package
-	Copyright (C) 2008-2009, Bart Spaans
+    mingus - Music theory Python package
+    Copyright (C) 2008-2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,9 +21,9 @@
 
 ================================================================================
 
-	[README]
+    [README]
 
 ================================================================================
-
-"""
+"""  # # -*- coding: utf-8
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             # -*-
 

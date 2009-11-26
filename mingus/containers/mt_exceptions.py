@@ -1,9 +1,11 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 """
 
 ================================================================================
 
-	mingus - Music theory Python package, container exceptions
-	Copyright (C) 2008-2009, Bart Spaans
+    mingus - Music theory Python package, container exceptions
+    Copyright (C) 2008-2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,17 +21,26 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ================================================================================
-
 """
 
+
 class NoteFormatError(Exception):
-	pass
+
+    pass
+
 
 class UnexpectedObjectError(Exception):
-	pass
+
+    pass
+
 
 class MeterFormatError(Exception):
-	pass
+
+    pass
+
 
 class InstrumentRangeError(Exception):
-	pass
+
+    pass
+
+

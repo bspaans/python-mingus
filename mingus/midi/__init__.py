@@ -1,9 +1,11 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 """
 
 ================================================================================
 
-	mingus - Music theory Python package, midi package
-	Copyright (C) 2008-2009, Bart Spaans
+    mingus - Music theory Python package, midi package
+    Copyright (C) 2008-2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,9 +21,15 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ================================================================================
-
 """
+
 from Sequencer import Sequencer
 from SequencerObserver import SequencerObserver
-
-__all__ = ["Sequencer", "SequencerObserver", "MidiFileIn", "MidiFileOut", "MidiTrack", "fluidsynth"]
+__all__ = [
+    'Sequencer',
+    'SequencerObserver',
+    'MidiFileIn',
+    'MidiFileOut',
+    'MidiTrack',
+    'fluidsynth',
+    ]

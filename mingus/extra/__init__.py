@@ -1,9 +1,11 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 """
 
 ================================================================================
 
-	mingus - Music theory Python package, extra package
-	Copyright (C) 2008-2009, Bart Spaans
+    mingus - Music theory Python package, extra package
+    Copyright (C) 2008-2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,11 +21,15 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ================================================================================
-
 """
 
 import LilyPond
 from tunings import StringTuning
-
-
-__all__ = ['LilyPond', 'fft', 'MusicXML', 'tunings', 'tablature', 'StringTuning']
+__all__ = [
+    'LilyPond',
+    'fft',
+    'MusicXML',
+    'tunings',
+    'tablature',
+    'StringTuning',
+    ]

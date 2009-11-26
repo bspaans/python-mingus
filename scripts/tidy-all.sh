@@ -1,6 +1,7 @@
 #!/bin/bash
 # This script goes through all the python files and tidies them
 
+cd ../;
 for dir in doc mingus mingus_examples unittest; do
     for file in `find ${dir} -iname "*.py"`; do
         echo $file;
