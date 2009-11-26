@@ -85,6 +85,12 @@ the note turns out not to be within the range of the \
 
         return self.bars[-1].place_notes(note, duration)
 
+    def get_notes(self):
+        """Returns an iterator that iterates through every bar in the this track"""
+        for bar in self.bar:
+            for beat, duration, notes in bar:
+                yield beat, duration, notes 
+
     def from_chords(self, chords, duration=1):
         """Adds chords to the Track. `chords` should be a list of shorthand strings \
 or
