@@ -20,7 +20,15 @@ CHANGELOG
 	arguments from from_Composition and from_Suite and use the new
 	attribute instead.
 	* midi/MidiFileIn.py: Added key support to Midi file parser. Thanks to 
-	arunchaganty. (Closes issue #90).
+	Arun Chaganty. (Closes issue #90).
+	* core/notes.py: New reduce_accidentals function by Arun Chaganty. 
+	* containers/Track.py: Added get_notes generator by Arun Chaganty 
+	(Closes issue #92).
+	* All Python files: All files were reformatted to comply to PEP-8. All 
+	tabs have been removed. (Closes issue #91).
+	* scripts/: Scripts that have done the aforementioned formatting for us.
+	Modified (by us) version of PythonTidy by Charles Curtis Rhodes.
+	
 
 ================================================================================
 
