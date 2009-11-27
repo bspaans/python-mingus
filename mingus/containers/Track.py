@@ -87,7 +87,7 @@ the note turns out not to be within the range of the \
 
     def get_notes(self):
         """Returns an iterator that iterates through every bar in the this track"""
-        for bar in self.bar:
+        for bar in self.bars:
             for beat, duration, notes in bar:
                 yield beat, duration, notes 
 
