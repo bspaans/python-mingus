@@ -62,7 +62,7 @@ class MidiFile:
 
         [t.reset() for t in self.tracks]
 
-    def write_file(self, file):
+    def write_file(self, file, verbose=False):
         """Collects the data from get_midi_data and writes to file."""
 
         dat = self.get_midi_data()
@@ -77,7 +77,8 @@ class MidiFile:
             print 'An error occured while writing data to %s.' % file
             return False
         f.close()
-        print 'Written %d bytes to %s.' % (len(dat), file)
+        if verbose:
+            print 'Written %d bytes to %s.' % (len(dat), file)
         return True
 
 
@@ -86,6 +87,7 @@ def write_Note(
     note,
     bpm=120,
     repeat=0,
+    verbose=False,
     ):
     """Expects a Note object from mingus.containers and saves it into a midi file, \
 specified in file. You can set the velocity and channel in Note.velocity and \
@@ -100,7 +102,7 @@ Note.channel."""
         t.set_deltatime("\x48")
         t.stop_Note(note)
         repeat -= 1
-    return m.write_file(file)
+    return m.write_file(file, verbose)
 
 
 def write_NoteContainer(
@@ -108,6 +110,7 @@ def write_NoteContainer(
     notecontainer,
     bpm=120,
     repeat=0,
+    verbose=False,
     ):
     """Writes a mingus.NoteContainer to a midi file."""
 
@@ -120,7 +123,7 @@ def write_NoteContainer(
         t.set_deltatime("\x48")
         t.stop_NoteContainer(notecontainer)
         repeat -= 1
-    return m.write_file(file)
+    return m.write_file(file, verbose)
 
 
 def write_Bar(
@@ -128,6 +131,7 @@ def write_Bar(
     bar,
     bpm=120,
     repeat=0,
+    verbose=False,
     ):
     """Writes a mingus.Bar to a midi file. Both the key and the meter are written \
 to the file as well."""
@@ -138,7 +142,7 @@ to the file as well."""
     while repeat >= 0:
         t.play_Bar(bar)
         repeat -= 1
-    return m.write_file(file)
+    return m.write_file(file, verbose)
 
 
 def write_Track(
@@ -146,6 +150,7 @@ def write_Track(
     track,
     bpm=120,
     repeat=0,
+    verbose=False,
     ):
     """Writes a mingus.Track to a midi file. Writes the name to the file and sets \
 the instrument if the instrument has the attribute instrument_nr, which \
@@ -158,7 +163,7 @@ mingus.containers.Instrument has this attribute by default."""
     while repeat >= 0:
         t.play_Track(track)
         repeat -= 1
-    return m.write_file(file)
+    return m.write_file(file, verbose)
 
 
 def write_Composition(
@@ -166,6 +171,7 @@ def write_Composition(
     composition,
     bpm=120,
     repeat=0,
+    verbose=False,
     ):
     """Writes a mingus.Composition to a midi file."""
 
@@ -178,7 +184,7 @@ def write_Composition(
         for i in range(len(composition.tracks)):
             m.tracks[i].play_Track(composition.tracks[i])
         repeat -= 1
-    return m.write_file(file)
+    return m.write_file(file, verbose)
 
 
 if __name__ == '__main__':
