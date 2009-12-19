@@ -23,14 +23,14 @@ echo
 echo =====================Adding .wiki files to the repository======================
 echo
 
-svn add ref*.wiki &&
+hg add ref*.wiki &&
 
 echo
 echo =============================Commit Changes====================================
 echo
 
-svn status -q &&
-svn ci -m "Automated upload of reference docs"
+hg status -q &&
+hg ci -m "Automated upload of reference docs"
 
 echo
 echo Done
