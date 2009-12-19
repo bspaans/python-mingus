@@ -38,14 +38,14 @@ echo
 echo =============================Commit Changes====================================
 echo
 
-hg status && hg ci -m "Generated wiki reference documentation"
+hg status && hg ci -m "Generated wiki reference documentation" 
 
 echo
 echo ==============================Push to Wiki====================================
 echo
 
 cp ../doc/wiki/*.wiki "$1" && cd "$1" && hg add *.wiki && hg status &&
-hg ci -m "Updated wiki"
+hg ci -m "Updated wiki" && hg push
 
 
 echo
