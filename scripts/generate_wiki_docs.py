@@ -5,7 +5,7 @@
 ================================================================================
 
     Music theory Python package
-    Copyright (C) 2008, Bart Spaans
+    Copyright (C) 2008, 2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -35,6 +35,8 @@ from mingus.extra import *
 from mingus.midi import *
 import types
 import inspect
+import sys
+import os
 
 
 class Documize:
@@ -219,7 +221,7 @@ Generating documentation for package %s''' % package_string
                 print 'Writing %s...' % wikiname,
                 result = d.output_wiki()
                 try:
-                    f = open('/home/bspaans/mingus/doc/' + wikiname, 'w')
+                    f = open(sys.argv[1] + wikiname, 'w')
                     try:
                         f.write(result)
                         print 'OK'
@@ -234,6 +236,12 @@ print 'mingus version 0.4, Copyright (C) 2008-2009, Bart Spaans\n'
 print 'mingus comes with ABSOLUTELY NO WARRANTY. This is free'
 print 'software and you are welcome to redistribute it under'
 print 'certain conditions.'
+if len(sys.argv) == 1:
+    print '\n\nUsage:', sys.argv[0], 'OUTPUT-DIRECTORY'
+    sys.exit(1)
+elif not os.path.isdir(sys.argv[1]):
+    print '\n\nError: not a valid directory:', sys.argv[1]
+    sys.exit(1)
 generate_package_wikidocs('mingus.core', 'ref', '.wiki')
 generate_package_wikidocs('mingus.midi', 'ref', '.wiki')
 generate_package_wikidocs('mingus.containers', 'ref', '.wiki')
