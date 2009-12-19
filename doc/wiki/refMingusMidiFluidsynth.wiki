@@ -34,7 +34,7 @@
 === `midi` ===
 
   * *Type*: instance
-  * *Value*: <mingus.midi.fluidsynth.FluidSynthSequencer instance at 0x201a908>
+  * *Value*: <mingus.midi.fluidsynth.FluidSynthSequencer instance at 0x290e908>
 
 ----
 
