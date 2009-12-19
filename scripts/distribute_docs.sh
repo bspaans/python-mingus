@@ -22,7 +22,7 @@ echo
 echo =============================Commit Changes====================================
 echo
 
-hg status && hg ci -m "Automated upload of reference docs"
+hg status && hg ci -m "Generated wiki reference documentation"
 
 echo
 echo Done
