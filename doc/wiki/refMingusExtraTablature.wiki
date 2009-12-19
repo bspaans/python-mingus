@@ -18,7 +18,7 @@
 === `default_tuning` ===
 
   * *Type*: instance
-  * *Value*: <mingus.extra.tunings.StringTuning instance at 0x28af830>
+  * *Value*: <mingus.extra.tunings.StringTuning instance at 0xb07830>
 
 ----
 
