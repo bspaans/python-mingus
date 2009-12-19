@@ -15,6 +15,7 @@ if [[ "$1" ]] ; then
 else
     echo "Usage: $0 WIKIREPO"
     echo "   Where WIKIREPO is a directory "
+    exit 1
 fi
 
 
