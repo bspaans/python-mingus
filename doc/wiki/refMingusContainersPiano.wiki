@@ -1,0 +1,61 @@
+#summary Reference documentation for `mingus.containers.Piano`.
+
+----
+
+= mingus.containers.Piano =
+
+None
+
+----
+
+== Attributes ==
+
+=== `clef` ===
+
+  * *Type*: str
+  * *Value*: 'bass and treble'
+
+=== `name` ===
+
+  * *Type*: str
+  * *Value*: 'Piano'
+
+=== `range` ===
+
+  * *Type*: tuple
+  * *Value*: ('F-0', 'B-8')
+
+=== `tuning` ===
+
+  * *Type*: NoneType
+  * *Value*: None
+
+----
+
+== Functions ==
+
+=== `__init__(self)` ===
+
+=== `__repr__(self)` ===
+
+  * A string representation of the object
+
+=== `can_play_notes(self, notes)` ===
+
+  * Will test if the notes lie within the range of the instrument. Returns `True` if so, `False` otherwise.
+
+=== `note_in_range(self, note)` ===
+
+  * Tests whether note is in the range of this Instrument. Returns `True` if so, `False` otherwise
+
+=== `notes_in_range(self, notes)` ===
+
+  * An alias for can_play_notes
+
+=== `set_range(self, range)` ===
+
+  * Sets the range of the instrument. A range is a tuple of two [refMingusContainersNote Notes] or note strings.
+
+----
+
+[mingusIndex Back to Index]

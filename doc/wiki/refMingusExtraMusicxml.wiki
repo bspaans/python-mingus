@@ -1,0 +1,66 @@
+#summary Reference documentation for `mingus.extra.MusicXML`.
+
+----
+
+= mingus.extra.MusicXML =
+
+
+
+	This module can convert mingus.containers to MusicXML files. 
+	The MusicXML format represents common Western musical notation from 
+	the 17th century onwards. It lets you distribute interactive sheet 
+	music online, and to use sheet music files with a wide variety of 
+	musical applications. The MusicXML format is open for use by anyone 
+	under a royalty-free license, and is supported by over 100 applications.
+
+	http://www.musicxml.org/xml.html
+
+
+
+----
+
+== Attributes ==
+
+=== `basic_keys` ===
+
+  * *Type*: list
+  * *Value*: ['Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#', 'G#', 'D#', 'A#']
+
+----
+
+== Functions ==
+
+=== `_bar2musicxml(bar)` ===
+
+=== `_composition2musicxml(comp)` ===
+
+=== `_gcd(a, b, terms)` ===
+
+  * *Default values*: a = None, b = None, terms = None
+  * Return greatest common divisor using Euclid's Algorithm.
+
+=== `_lcm(a, b, terms)` ===
+
+  * *Default values*: a = None, b = None, terms = None
+  * Return lowest common multiple.
+
+=== `_note2musicxml(note)` ===
+
+=== `_track2musicxml(track)` ===
+
+=== `from_Bar(bar)` ===
+
+=== `from_Composition(comp)` ===
+
+=== `from_Note(note)` ===
+
+=== `from_Track(track)` ===
+
+=== `write_Composition(composition, filename, zip)` ===
+
+  * *Default values*: zip = False
+  * Creates an xml file (or mxl if compressed) for a given composition
+
+----
+
+[mingusIndex Back to Index]

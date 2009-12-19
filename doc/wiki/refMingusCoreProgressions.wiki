@@ -1,0 +1,147 @@
+#summary Reference documentation for `mingus.core.progressions`.
+
+----
+
+= mingus.core.progressions =
+
+
+
+	In music and music theory you often deal with sequences 
+	of chords. These chord sequences are called progressions and are
+	often written down using roman numerals. In this system the 'I' 
+	refers to the first natural triad in a key, the II to the second,
+	etc. We can add prefixes and suffixes to denote more complex 
+	progressions, like: #V7, bIIdim7, etc.
+
+	This module provides methods which can convert progressions 
+	to chords and vice versa.
+
+
+
+----
+
+== Attributes ==
+
+=== `numeral_intervals` ===
+
+  * *Type*: list
+  * *Value*: [0, 2, 4, 5, 7, 9, 11]
+
+=== `numerals` ===
+
+  * *Type*: list
+  * *Value*: ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']
+
+----
+
+== Functions ==
+
+=== `determine(chord, key, shorthand)` ===
+
+  * *Default values*: shorthand = False
+  * Determines the harmonic function of chord in key. This function can also deal with lists of chords. 
+{{{ 
+>>> determine(["C", "E", "G"], "C") 
+['tonic'] 
+>>> determine(["G", "B", "D"], "C")
+['dominant']
+>>> determine(["G", "B", "D", "F"], "C", True)
+['V7']
+>>> determine([["C", "E", "G"], ["G", "B", "D"]], "C", True)
+[['I'], ['V']]
+}}}
+
+=== `interval_diff(progression1, progression2, interval)` ===
+
+  * Returns the number of half steps progression2 needs to be diminished or augmented until the interval between `progression1` and `progression2` is `interval`
+
+=== `parse_string(progression)` ===
+
+  * Returns a tuple (roman numeral, accidentals, chord suffix). 
+{{{
+>>> progressions.parse_string("I")
+('I', 0, '')
+>>> progressions.parse_string("bIM7")
+('I', -1, 'M7')
+}}}
+
+=== `skip(roman_numeral, skip)` ===
+
+  * *Default values*: skip = 1
+  * Skips `skip` places to the next roman numeral. 
+{{{
+>>> progressions.skip("I")
+'II'
+>>> progressions.skip("VII")
+'I'
+>>> progressions.skip("I", 2)
+'III'
+}}}
+
+=== `substitute(progression, substitute_index, depth)` ===
+
+  * *Default values*: depth = 0
+  * Gives a list of possible substitutions for `progression[substitute_index]`. If depth > 0 the substitutions of each result will be recursively added as well.
+{{{
+>>> progressions.substitute(["I", "IV", "V", "I"], 0)
+["III", "VI", etc.
+}}}
+
+=== `substitute_diminished_for_diminished(progression, substitute_index, ignore_suffix)` ===
+
+  * *Default values*: ignore_suffix = False
+  * Substitutes a diminished chord for another diminished chord. Recognizes the 'dim' and 'dim7' suffix and "VI" if there is no suffix.
+{{{
+>>> progressions.substitute_diminished_for_diminished(["VII"], 0)
+["IIdim", "bIVdim", "bbVIdim"]
+}}}
+
+=== `substitute_diminished_for_dominant(progression, substitute_index, ignore_suffix)` ===
+
+  * *Default values*: ignore_suffix = False
+=== `substitute_harmonic(progression, substitute_index, ignore_suffix)` ===
+
+  * *Default values*: ignore_suffix = False
+  * Does simple harmonic substitutions. Returns a list of possible substitions for `progression[substitute_index]`. If `ignore_suffix` is set to True the suffix of the chord being substituted will be ignored. Otherwise only progressions without a suffix, or with suffix '7' will be substituted. The following table is used to convert progressions: 
+|| I || III || 
+|| I || VI || 
+|| IV || II || 
+|| IV || VI || 
+|| V || VII ||
+
+=== `substitute_major_for_minor(progression, substitute_index, ignore_suffix)` ===
+
+  * *Default values*: ignore_suffix = False
+  * Substitutes major chords for their minor equivalent. Recognizes 'M' and 'M7' suffixes and ['I', 'IV', 'V'] if there is no suffix.
+{{{
+>>> progressions.substitute_major_for_minor(["I"], 0)
+["VI"]
+>>> progressions.substitute_major_for_minor(["VM7"], 0)
+["IIIm7"]
+}}}
+
+=== `substitute_minor_for_major(progression, substitute_index, ignore_suffix)` ===
+
+  * *Default values*: ignore_suffix = False
+  * Substitutes minor chords for its major equivalent. Recognizes 'm' and 'm7' suffixes and ['II', 'III', 'VI'] if there is no suffix.
+{{{
+>>> progressions.substitute_minor_for_major(["VI"], 0)
+["I"]
+>>> progressions.substitute_minor_for_major(["Vm"], 0)
+["bVIIM"]
+>>> progressions.substitute_minor_for_major(["VIm7"], 0)
+["IM7"]
+}}}
+
+=== `to_chords(progression, key)` ===
+
+  * *Default values*: key = 'C'
+  * Converts a list of chord functions (eg `['I', 'V7']`) or a string (eg. 'I7') to a list of chords. Any number of accidentals can be used as prefix to augment or diminish; for example: bIV or #I. All the chord abbreviations in the chord module can be used as suffixes; for example: Im7, IVdim7, etc. You can combine prefixes and suffixes to manage complex progressions: #vii7, #iidim7, iii7, etc. Using 7 as suffix is ambiguous, since it is classicly used to denote the seventh chord when talking about progressions instead of _just_ the dominanth seventh chord. We have taken the classic route; I7 will get you a major seventh chord. If you specifically want a dominanth seventh, use Idom7.
+
+=== `tuple_to_string(prog_tuple)` ===
+
+  * Creates a string from tuples returned by parse_string
+
+----
+
+[mingusIndex Back to Index]

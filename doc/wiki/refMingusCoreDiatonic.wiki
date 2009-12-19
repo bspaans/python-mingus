@@ -1,0 +1,42 @@
+#summary Reference documentation for `mingus.core.diatonic`.
+
+----
+
+= mingus.core.diatonic =
+
+
+
+	The diatonic module provides a simple interface for dealing with diatonic
+	keys. The function get_notes(key) for instance returns the notes in a 
+	given key; even for extremely exotic notations ("C#####" or "Gbbbb").
+
+
+
+----
+
+== Attributes ==
+
+=== `basic_keys` ===
+
+  * *Type*: list
+  * *Value*: ['Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#', 'G#', 'D#', 'A#']
+
+----
+
+== Functions ==
+
+=== `get_notes(key)` ===
+
+  * Returns an ordered list of the notes in this key. For example: if the key is set to 'F', this function will return `['F', 'G', 'A', 'Bb', 'C', 'D', 'E']`. Exotic or ridiculous keys like 'C####' or even 'Gbb##bb#b##' will work; Note however that the latter example will also get cleaned up to 'G'. This function will raise an !NoteFormatError if the key isn't recognised
+
+=== `int_to_note(note_int, key)` ===
+
+  * A better implementation of int_to_note found in the [refMingusCoreNotes notes] module. This version bears the key in mind and thus creates theoretically correct notes. Will throw a !RangeError if `note_int` is not in range(0,12)
+
+=== `interval(key, start_note, interval)` ===
+
+  * Returns the note found at the interval starting from start_note in the given key. For example interval('C', 'D', 1) will return 'E'. Will raise a !KeyError if the start_note is not a valid note.
+
+----
+
+[mingusIndex Back to Index]

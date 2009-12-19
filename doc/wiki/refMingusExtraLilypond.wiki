@@ -1,0 +1,57 @@
+#summary Reference documentation for `mingus.extra.LilyPond`.
+
+----
+
+= mingus.extra.LilyPond =
+
+
+
+	The !LilyPond module provides some methods to help you generate files
+	in the !LilyPond format. This allows you to create sheet music from some of the objects in mingus.containers
+
+
+
+----
+
+== Functions ==
+
+=== `from_Bar(bar, showkey, showtime)` ===
+
+  * *Default values*: showkey = True, showtime = True
+  * Expects a [refMingusContainersBar Bar] object and returns the !LilyPond equivalent in a string. showkey and showtime can be set to determine whether the key and the time should be shown.
+
+=== `from_Composition(composition)` ===
+
+  * Returns the !LilyPond equivalent of a [refMingusContainersComposition Composition] in a string
+
+=== `from_Note(note, process_octaves, standalone)` ===
+
+  * *Default values*: process_octaves = True, standalone = True
+  * Expects a [refMingusContainersNote Note] object and returns the !LilyPond equivalent in a string. If process_octaves is set to False, all data regarding octaves will be ignored. If standalone is True, the result can be used by functions like to_png and will produce a valid output. The argument is mostly here to let from_NoteContainer make use of this function.
+
+=== `from_NoteContainer(nc, duration, standalone)` ===
+
+  * *Default values*: duration = None, standalone = True
+  * Expects a [refMingusContainersNotecontainer NoteContainer] object and returns the !LilyPond equivalent in a string. The second argument determining the duration of the NoteContainer is optional. When the standalone argument is True the result of this function can be used directly by functions like to_png. It is mostly here to be used by from_Bar.
+
+=== `from_Suite(suite)` ===
+
+=== `from_Track(track)` ===
+
+  * Processes a [refMingusContainersTrack Track] object and returns the Lilypond equivalent in a string.
+
+=== `save_string_and_execute_LilyPond(ly_string, filename, command)` ===
+
+  * A helper function for to_png and to_pdf. Should not be used directly
+
+=== `to_pdf(ly_string, filename)` ===
+
+  * Saves a string in LilyPonds format to a PDF. Needs LilyPond in the $PATH.
+
+=== `to_png(ly_string, filename)` ===
+
+  * Saves a string in LilyPonds format to a PNG. Needs LilyPond in the $PATH.
+
+----
+
+[mingusIndex Back to Index]

@@ -1,0 +1,59 @@
+#summary Reference documentation for `mingus.containers.Guitar`.
+
+----
+
+= mingus.containers.Guitar =
+
+None
+
+----
+
+== Attributes ==
+
+=== `clef` ===
+
+  * *Type*: str
+  * *Value*: 'Treble'
+
+=== `name` ===
+
+  * *Type*: str
+  * *Value*: 'Guitar'
+
+=== `range` ===
+
+  * *Type*: tuple
+  * *Value*: ('E-3', 'E-7')
+
+=== `tuning` ===
+
+  * *Type*: NoneType
+  * *Value*: None
+
+----
+
+== Functions ==
+
+=== `__init__(self)` ===
+
+=== `__repr__(self)` ===
+
+  * A string representation of the object
+
+=== `can_play_notes(self, notes)` ===
+
+=== `note_in_range(self, note)` ===
+
+  * Tests whether note is in the range of this Instrument. Returns `True` if so, `False` otherwise
+
+=== `notes_in_range(self, notes)` ===
+
+  * An alias for can_play_notes
+
+=== `set_range(self, range)` ===
+
+  * Sets the range of the instrument. A range is a tuple of two [refMingusContainersNote Notes] or note strings.
+
+----
+
+[mingusIndex Back to Index]

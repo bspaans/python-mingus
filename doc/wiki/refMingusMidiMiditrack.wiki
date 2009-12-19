@@ -1,0 +1,208 @@
+#summary Reference documentation for `mingus.midi.MidiTrack`.
+
+----
+
+= mingus.midi.MidiTrack =
+
+
+
+	The [refMingusMidiMiditrack MidiTrack] class is kept in this module 
+	and provides methods for working with MIDI data as bytes.
+
+	The MIDI file format specification I used can be found here:
+	http://www.sonicspot.com/guide/midifiles.html
+
+
+
+----
+
+== Attributes ==
+
+=== `BALANCE` ===
+
+  * *Type*: int
+  * *Value*: 8
+
+=== `BANK_SELECT` ===
+
+  * *Type*: int
+  * *Value*: 0
+
+=== `BREATH_CONTROLLER` ===
+
+  * *Type*: int
+  * *Value*: 2
+
+=== `CHANNEL_AFTERTOUCH` ===
+
+  * *Type*: int
+  * *Value*: 13
+
+=== `CONTROLLER` ===
+
+  * *Type*: int
+  * *Value*: 11
+
+=== `COPYRIGHT_NOTICE` ===
+
+  * *Type*: str
+  * *Value*: '\x02'
+
+=== `CUE_POINT` ===
+
+  * *Type*: str
+  * *Value*: '\x07'
+
+=== `DATA_ENTRY_MSB` ===
+
+  * *Type*: int
+  * *Value*: 6
+
+=== `EFFECT_CONTROL_1` ===
+
+  * *Type*: int
+  * *Value*: 12
+
+=== `EFFECT_CONTROL_2` ===
+
+  * *Type*: int
+  * *Value*: 13
+
+=== `END_OF_TRACK` ===
+
+  * *Type*: str
+  * *Value*: '/'
+
+=== `EXPRESSION_CONTROLLER` ===
+
+  * *Type*: int
+  * *Value*: 11
+
+=== `FILE_HEADER` ===
+
+  * *Type*: str
+  * *Value*: 'MThd'
+
+=== `FOOT_CONTROLLER` ===
+
+  * *Type*: int
+  * *Value*: 4
+
+=== `INSTRUMENT_NAME` ===
+
+  * *Type*: str
+  * *Value*: '\x04'
+
+=== `KEY_SIGNATURE` ===
+
+  * *Type*: str
+  * *Value*: 'Y'
+
+=== `LYRICS` ===
+
+  * *Type*: str
+  * *Value*: '\x05'
+
+=== `MAIN_VOLUME` ===
+
+  * *Type*: int
+  * *Value*: 7
+
+=== `MARKER` ===
+
+  * *Type*: str
+  * *Value*: '\x06'
+
+=== `META_EVENT` ===
+
+  * *Type*: str
+  * *Value*: '\xff'
+
+=== `MIDI_CHANNEL_PREFIX` ===
+
+  * *Type*: str
+  * *Value*: ' '
+
+=== `MODULATION` ===
+
+  * *Type*: int
+  * *Value*: 1
+
+=== `NOTE_AFTERTOUCH` ===
+
+  * *Type*: int
+  * *Value*: 10
+
+=== `NOTE_OFF` ===
+
+  * *Type*: int
+  * *Value*: 8
+
+=== `NOTE_ON` ===
+
+  * *Type*: int
+  * *Value*: 9
+
+=== `PAN` ===
+
+  * *Type*: int
+  * *Value*: 10
+
+=== `PITCH_BEND` ===
+
+  * *Type*: int
+  * *Value*: 14
+
+=== `PORTAMENTO_TIME` ===
+
+  * *Type*: int
+  * *Value*: 5
+
+=== `PROGRAM_CHANGE` ===
+
+  * *Type*: int
+  * *Value*: 12
+
+=== `SEQUENCE_NUMBER` ===
+
+  * *Type*: str
+  * *Value*: '\x00'
+
+=== `SET_TEMPO` ===
+
+  * *Type*: str
+  * *Value*: 'Q'
+
+=== `SMPTE_OFFSET` ===
+
+  * *Type*: str
+  * *Value*: 'T'
+
+=== `TEXT_EVENT` ===
+
+  * *Type*: str
+  * *Value*: '\x01'
+
+=== `TIME_SIGNATURE` ===
+
+  * *Type*: str
+  * *Value*: 'X'
+
+=== `TRACK_HEADER` ===
+
+  * *Type*: str
+  * *Value*: 'MTrk'
+
+=== `TRACK_NAME` ===
+
+  * *Type*: str
+  * *Value*: '\x03'
+
+=== `basic_keys` ===
+
+  * *Type*: list
+  * *Value*: ['Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#', 'G#', 'D#', 'A#']
+
+----
+
+[mingusIndex Back to Index]

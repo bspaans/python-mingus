@@ -221,7 +221,7 @@ Generating documentation for package %s''' % package_string
                 print 'Writing %s...' % wikiname,
                 result = d.output_wiki()
                 try:
-                    f = open(sys.argv[1] + wikiname, 'w')
+                    f = open(os.path.join(sys.argv[1], wikiname), 'w')
                     try:
                         f.write(result)
                         print 'OK'

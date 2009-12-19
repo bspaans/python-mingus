@@ -1,0 +1,45 @@
+#summary Reference documentation for `mingus.midi.SequencerObserver`.
+
+----
+
+= mingus.midi.SequencerObserver =
+
+ Provides an easy to extend base class that can be used to observe a Sequencer. Each time a Sequencer starts playing a new Note, Bar, w/e, an event is fired; this SequencerObserver intercepts the event messages and calls the proper function so you only have to implement the functions for the events you need to see.
+
+----
+
+== Functions ==
+
+=== `cc_event(self, channel, control, value)` ===
+
+=== `instr_event(self, channel, instr, bank)` ===
+
+=== `notify(self, msg_type, params)` ===
+
+=== `play_Bar(self, bar, channel, bpm)` ===
+
+=== `play_Bars(self, bars, channels, bpm)` ===
+
+=== `play_Composition(self, composition, channels, bpm)` ===
+
+=== `play_Note(self, note, channel, velocity)` ===
+
+=== `play_NoteContainer(self, notes, channel)` ===
+
+=== `play_Track(self, track, channel, bpm)` ===
+
+=== `play_Tracks(self, tracks, channels, bpm)` ===
+
+=== `play_int_note_event(self, int_note, channel, velocity)` ===
+
+=== `sleep(self, seconds)` ===
+
+=== `stop_Note(self, note, channel)` ===
+
+=== `stop_NoteContainer(self, notes, channel)` ===
+
+=== `stop_int_note_event(self, int_note, channel)` ===
+
+----
+
+[mingusIndex Back to Index]

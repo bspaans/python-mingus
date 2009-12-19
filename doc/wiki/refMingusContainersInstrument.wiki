@@ -1,0 +1,63 @@
+#summary Reference documentation for `mingus.containers.Instrument`.
+
+----
+
+= mingus.containers.Instrument =
+
+The Instrument class is pretty self explanatory. Instruments can be used with [refMingusContainersTrack Tracks] to define which instrument plays what, with the added bonus of checking whether the entered notes are in the range of the instrument.
+
+It's probably easiest to subclass your own Instruments (see [refMingusContainersPiano Piano] and [refMingusContainersGuitar Guitar] for examples).
+
+----
+
+== Attributes ==
+
+=== `clef` ===
+
+  * *Type*: str
+  * *Value*: 'bass and treble'
+
+=== `name` ===
+
+  * *Type*: str
+  * *Value*: 'Instrument'
+
+=== `range` ===
+
+  * *Type*: tuple
+  * *Value*: ('C-0', 'C-8')
+
+=== `tuning` ===
+
+  * *Type*: NoneType
+  * *Value*: None
+
+----
+
+== Functions ==
+
+=== `__init__(self)` ===
+
+=== `__repr__(self)` ===
+
+  * A string representation of the object
+
+=== `can_play_notes(self, notes)` ===
+
+  * Will test if the notes lie within the range of the instrument. Returns `True` if so, `False` otherwise.
+
+=== `note_in_range(self, note)` ===
+
+  * Tests whether note is in the range of this Instrument. Returns `True` if so, `False` otherwise
+
+=== `notes_in_range(self, notes)` ===
+
+  * An alias for can_play_notes
+
+=== `set_range(self, range)` ===
+
+  * Sets the range of the instrument. A range is a tuple of two [refMingusContainersNote Notes] or note strings.
+
+----
+
+[mingusIndex Back to Index]

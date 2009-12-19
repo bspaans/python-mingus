@@ -1,0 +1,45 @@
+#summary Reference documentation for `mingus.midi.MidiFileOut`.
+
+----
+
+= mingus.midi.MidiFileOut =
+
+
+
+   MidiFileOut contains functions that can generate MIDI files from the 
+   objects in mingus.containers.
+
+
+
+----
+
+== Functions ==
+
+=== `write_Bar(file, bar, bpm, repeat)` ===
+
+  * *Default values*: bpm = 120, repeat = 0
+  * Writes a mingus.Bar to a midi file. Both the key and the meter are written to the file as well.
+
+=== `write_Composition(file, composition, bpm, repeat)` ===
+
+  * *Default values*: bpm = 120, repeat = 0
+  * Writes a mingus.Composition to a midi file.
+
+=== `write_Note(file, note, bpm, repeat)` ===
+
+  * *Default values*: bpm = 120, repeat = 0
+  * Expects a Note object from mingus.containers and saves it into a midi file, specified in file. You can set the velocity and channel in Note.velocity and Note.channel.
+
+=== `write_NoteContainer(file, notecontainer, bpm, repeat)` ===
+
+  * *Default values*: bpm = 120, repeat = 0
+  * Writes a mingus.NoteContainer to a midi file.
+
+=== `write_Track(file, track, bpm, repeat)` ===
+
+  * *Default values*: bpm = 120, repeat = 0
+  * Writes a mingus.Track to a midi file. Writes the name to the file and sets the instrument if the instrument has the attribute instrument_nr, which represents the MIDI instrument number. The class MidiInstrument in mingus.containers.Instrument has this attribute by default.
+
+----
+
+[mingusIndex Back to Index]

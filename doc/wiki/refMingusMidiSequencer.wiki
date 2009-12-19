@@ -1,0 +1,190 @@
+#summary Reference documentation for `mingus.midi.Sequencer`.
+
+----
+
+= mingus.midi.Sequencer =
+
+A general purpose sequencer for the objects in mingus.containers. You can use the Sequencer object either by creating a subclass and implementing some of the events (`init`, `play_event`, `stop_event`, `cc_event`, `instr_event`) or by attaching observer objects via `attach` and catching the messages in the notify(msg_type, param_dict) function of your object. See SequencerObserver for a pre made, easy to extend base class that can be attached to the Sequencer.
+
+----
+
+== Attributes ==
+
+=== `MSG_CC` ===
+
+  * *Type*: int
+  * *Value*: 2
+
+=== `MSG_INSTR` ===
+
+  * *Type*: int
+  * *Value*: 3
+
+=== `MSG_PLAY_BARS` ===
+
+  * *Type*: int
+  * *Value*: 10
+
+=== `MSG_PLAY_BAR` ===
+
+  * *Type*: int
+  * *Value*: 9
+
+=== `MSG_PLAY_COMPOSITION` ===
+
+  * *Type*: int
+  * *Value*: 13
+
+=== `MSG_PLAY_INT` ===
+
+  * *Type*: int
+  * *Value*: 0
+
+=== `MSG_PLAY_NC` ===
+
+  * *Type*: int
+  * *Value*: 7
+
+=== `MSG_PLAY_NOTE` ===
+
+  * *Type*: int
+  * *Value*: 5
+
+=== `MSG_PLAY_TRACKS` ===
+
+  * *Type*: int
+  * *Value*: 12
+
+=== `MSG_PLAY_TRACK` ===
+
+  * *Type*: int
+  * *Value*: 11
+
+=== `MSG_SLEEP` ===
+
+  * *Type*: int
+  * *Value*: 4
+
+=== `MSG_STOP_INT` ===
+
+  * *Type*: int
+  * *Value*: 1
+
+=== `MSG_STOP_NC` ===
+
+  * *Type*: int
+  * *Value*: 8
+
+=== `MSG_STOP_NOTE` ===
+
+  * *Type*: int
+  * *Value*: 6
+
+=== `output` ===
+
+  * *Type*: NoneType
+  * *Value*: None
+
+----
+
+== Functions ==
+
+=== `__init__(self)` ===
+
+=== `attach(self, listener)` ===
+
+  * Attach an object that should be notified of events. The object should have a notify(msg_type, param_dict) function.
+
+=== `cc_event(self, channel, control, value)` ===
+
+=== `control_change(self, channel, control, value)` ===
+
+  * Sends a control change message. See the MIDI specification for more information.
+
+=== `detach(self, listener)` ===
+
+  * Detach a listening object so that it won't receive any events anymore.
+
+=== `init(self)` ===
+
+=== `instr_event(self, channel, instr, bank)` ===
+
+=== `main_volume(self, channel, value)` ===
+
+  * Sets the main volume.
+
+=== `modulation(self, channel, value)` ===
+
+  * Sets the modulation
+
+=== `notify_listeners(self, msg_type, params)` ===
+
+  * Send a message to all the observers.
+
+=== `pan(self, channel, value)` ===
+
+  * Sets the panning.
+
+=== `play_Bar(self, bar, channel, bpm)` ===
+
+  * *Default values*: channel = 1, bpm = 120
+  * Plays a Bar object. The tempo can be changed by setting the bpm attribute on a NoteContainer. Returns a dictionary with the bpm lemma set on success, an empty dict on some kind of failure. 
+
+=== `play_Bars(self, bars, channels, bpm)` ===
+
+  * *Default values*: bpm = 120
+  * Plays several bars (a list of Bar objects) at the same time. A list of channels should also be provided. The tempo can be changed by providing one or more of the NoteContainers with a bpm argument.
+
+=== `play_Composition(self, composition, channels, bpm)` ===
+
+  * *Default values*: channels = None, bpm = 120
+  * Plays a Composition object.
+
+=== `play_Note(self, note, channel, velocity)` ===
+
+  * *Default values*: channel = 1, velocity = 100
+  * Plays a Note object on a channel with a velocity[0-127]. You can either specify the velocity and channel here as arguments or you can set the Note.velocity and Note.channel attributes, which will take presedence over the function arguments.
+
+=== `play_NoteContainer(self, nc, channel, velocity)` ===
+
+  * *Default values*: channel = 1, velocity = 100
+  * Plays the Notes in the NoteContainer nc.
+
+=== `play_Track(self, track, channel, bpm)` ===
+
+  * *Default values*: channel = 1, bpm = 120
+  * Plays a Track object.
+
+=== `play_Tracks(self, tracks, channels, bpm)` ===
+
+  * *Default values*: bpm = 120
+  * Plays a list of Tracks. If an instance of MidiInstrument is used then the instrument will be set automatically.
+
+=== `play_event(self, note, channel, velocity)` ===
+
+=== `set_instrument(self, channel, instr, bank)` ===
+
+  * *Default values*: bank = 0
+  * Sets the channel to the instrument _instr_.
+
+=== `sleep(self, seconds)` ===
+
+=== `stop_Note(self, note, channel)` ===
+
+  * *Default values*: channel = 1
+  * Stops a note on a channel. If Note.channel is set, it will take presedence over the channel argument given here.
+
+=== `stop_NoteContainer(self, nc, channel)` ===
+
+  * *Default values*: channel = 1
+  * Stops playing the notes in NoteContainer nc.
+
+=== `stop_event(self, channel, note)` ===
+
+=== `stop_everything(self)` ===
+
+  * Stops all the notes on all channels.
+
+----
+
+[mingusIndex Back to Index]

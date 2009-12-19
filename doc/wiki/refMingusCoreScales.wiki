@@ -1,0 +1,173 @@
+#summary Reference documentation for `mingus.core.scales`.
+
+----
+
+= mingus.core.scales =
+
+
+
+	The scales module allows you to create a plethora of scales. Here's a
+	little overview:
+
+	=== The diatonic scale and its modes ===
+	* diatonic(note)
+	* ionian(note)
+	* dorian(note)
+	* phrygian(note)
+	* lydian(note)
+	* mixolydian(note)
+	* aeolian(note)
+	* locrian(note)
+
+	=== The minor scales ===
+	* natural_minor(note)
+	* harmonic_minor(note)
+	* melodic_minor(note)
+
+	=== Other scales ===
+	* chromatic(note)
+	* whole_note(note)
+	* diminished(note)
+
+
+
+
+----
+
+== Functions ==
+
+=== `aeolian(note)` ===
+
+  * Returns the aeolian mode scale starting on note.
+	Example:
+{{{
+>>> aeolian("A")
+["A", "B", "C", "D", "E", "F", "G"]
+}}}
+
+=== `chromatic(note)` ===
+
+=== `determine(scale)` ===
+
+  * Determines the kind of scale. Can recognize all the diatonic modes and the minor scales.
+	Example:
+{{{
+>>> determine(["C", "D", "E", "F", "G", "A", "B"])
+'C ionian'
+}}}
+
+=== `diatonic(note)` ===
+
+  * Returns the diatonic scale starting on note.
+	Example:
+{{{
+>>> diatonic("C")
+["C", "D", "E", "F", "G", "A", "B"]
+}}}
+
+=== `diminished(note)` ===
+
+  * Returns the diminshed scale on note.
+	Example:
+{{{
+>>> diminished("C")
+['C', 'D', 'Eb', 'F', 'Gb', 'Ab', 'A', 'B']
+}}}
+
+=== `dorian(note)` ===
+
+  * Returns the dorian mode scale starting on note.
+	Example:
+{{{
+>>> dorian("D") 
+["D", "E", "F", "G", "A", "B", "C"]
+}}}
+
+=== `get_notes(key)` ===
+
+  * Returns an ordered list of the notes in this key. For example: if the key is set to 'F', this function will return `['F', 'G', 'A', 'Bb', 'C', 'D', 'E']`. Exotic or ridiculous keys like 'C####' or even 'Gbb##bb#b##' will work; Note however that the latter example will also get cleaned up to 'G'. This function will raise an !NoteFormatError if the key isn't recognised
+
+=== `harmonic_minor(note)` ===
+
+  * Returns the harmonic minor scale starting on note.
+	Example:
+{{{
+>>> harmonic_minor("A")
+"A", "B", "C", "D", "E", "F", "G#"]
+}}}
+
+=== `ionian(note)` ===
+
+  * Returns the ionian mode scale starting on note.
+	Example:
+{{{
+>>> ionian("C")
+["C", "D", "E", "F", "G", "A", "B"]
+}}}
+
+=== `locrian(note)` ===
+
+  * Returns the locrian mode scale starting on note.
+	Example:
+{{{
+>>> locrian("B")
+["B", "C", "D", "E", "F", "G", "A"]
+}}}
+
+=== `lydian(note)` ===
+
+  * Returns the lydian mode scale starting on note.
+	Example:
+{{{
+>>> lydian("F") 
+["F", "G", "A", B", "C", "D", "E"]
+}}} 
+
+=== `melodic_minor(note)` ===
+
+  * Returns the melodic minor scale starting on note.
+	Example:
+{{{
+>>> melodic_minor("A")
+["A", "B", "C", "D", "E", "F#", "G#"]
+}}}
+
+=== `mixolydian(note)` ===
+
+  * Returns the mixolydian mode scale starting on note.
+	Example:
+{{{
+>>> mixolydian("G")
+["G", "A", "B", "C", "D", "E", "F"]
+}}}
+
+=== `natural_minor(note)` ===
+
+  * Returns the natural minor scale starting on note.
+	Example:
+{{{
+>>> natural_minor("A")
+["A", "B", "C", "D", "E", "F", "G"]
+}}}
+
+=== `phrygian(note)` ===
+
+  * Returns the phrygian mode scale starting on note.
+	Example:
+{{{
+>>> phrygian("E") 
+["E", "F", "G", "A", "B", "C", "D"]
+}}} 
+
+=== `whole_note(note)` ===
+
+  * Returns the whole note scale starting on note.
+	Example:
+{{{
+>>> whole_note("C")
+["C", "D", "E", "F#", "G#", "A#"]
+}}}
+
+----
+
+[mingusIndex Back to Index]
