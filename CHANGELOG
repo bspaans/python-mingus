@@ -2,506 +2,510 @@
 CHANGELOG
 ================================================================================
 
-	0.4.3.0
-	Unreleased
+    0.4.3.0
+    Unreleased
 
-	* extra/LilyPond.py: Fixed a Windows platform bug and added arguments to
-	from_Note and from_NoteContainer to make them usuable on their own and 
-	not just in from_Bar. The default behaviour of the functions has also 
-	been changed to return the stand-alone one. (closes issue #87).
-	* containers/Note.py: Checked in Gabriels fix for from_hertz. (closes 
-	issue #82)
-	* midi/Sequencer.py, midi/SequencerObserver.py: Added sleep message, 
-	to be able to switch out time.sleep with something else
-	* midi/fluidsynth.py: Added simple API to record a wave file.
-	* containers/Composition.py, containers/Suite.py: Added description 
-	attribute
-	* extra/tablature.py: Fixed rest bug in from_Bar. Removed 'description'
-	arguments from from_Composition and from_Suite and use the new
-	attribute instead.
-	* midi/MidiFileIn.py: Added key support to Midi file parser. Thanks to 
-	Arun Chaganty. (Closes issue #90).
-	* core/notes.py: New reduce_accidentals function by Arun Chaganty. 
-	* containers/Track.py: Added get_notes generator by Arun Chaganty 
-	(Closes issue #92).
-	* All Python files: All files were reformatted to comply to PEP-8. All 
-	tabs have been removed. (Closes issue #91).
-	* scripts/: Scripts that have done the aforementioned formatting for us.
-	Modified (by us) version of PythonTidy by Charles Curtis Rhodes.
-	
-
-================================================================================
-
-	0.4.2.3
-	Jul 7, 2009
-
-	* extra/MusicXML.py: Applied Javier's patch fixing beat divisions. 
-	* Almost every file: Updated copyright information. Closes issue #78.
-	* Added something resembling an AUTHORS file. With only two main 
-	developers this doesn't make much sense, but, err, at least we are 
-	prepared for a glorious future! Closes issue #79.
-	* Added a THANKS file and went through past issues and mails to gather
-	full names and addresses. If you have been left out or don't want to 
-	be listed; let me know. (closes issue #80).
-	* Added a copy of the full GPL v3 license. (closes issue #81)
+    * extra/LilyPond.py: Fixed a Windows platform bug and added arguments to
+    from_Note and from_NoteContainer to make them usuable on their own and 
+    not just in from_Bar. The default behaviour of the functions has also 
+    been changed to return the stand-alone one. (closes issue #87).
+    * containers/Note.py: Checked in Gabriels fix for from_hertz. (closes 
+    issue #82)
+    * midi/Sequencer.py, midi/SequencerObserver.py: Added sleep message, 
+    to be able to switch out time.sleep with something else
+    * midi/fluidsynth.py: Added simple API to record a wave file.
+    * containers/Composition.py, containers/Suite.py: Added description 
+    attribute
+    * extra/tablature.py: Fixed rest bug in from_Bar. Removed 'description'
+    arguments from from_Composition and from_Suite and use the new
+    attribute instead.
+    * midi/MidiFileIn.py: Added key support to Midi file parser. Thanks to 
+    Arun Chaganty. (Closes issue #90).
+    * core/notes.py: New reduce_accidentals function by Arun Chaganty. 
+    * containers/Track.py: Added get_notes generator by Arun Chaganty 
+    (Closes issue #92).
+    * All Python files: All files were reformatted to comply to PEP-8. All 
+    tabs have been removed. (Closes issue #91).
+    * scripts/: Scripts that have done the aforementioned formatting for us.
+    Modified (by us) version of PythonTidy by Charles Curtis Rhodes.
+    * midi/win32midi.py, midi/win32midisequencer.py: Added Windows MIDI 
+    sequencer written by Ben Fisher. This allows Windows users to make use 
+    of the default MIDI interface in Windows, without having to go through 
+    FluidSynth. (Closes issue #102)
+    
 
 ================================================================================
 
-	0.4.2.2
-	Jul 3, 2009
+    0.4.2.3
+    Jul 7, 2009
 
-	* extra/MusicXML.py: MusicXML exporting functions by Javier Palanca. 
-	(started issue #63). 
-	* containers/Track.py: Added `return self` to methods in Track.
-	Check for None in chords, in method from_chords. 
-	* midi/Sequencer.py: Fixed bug. Added support for rests in 
-	play_NoteContainer and stop_NoteContainer.
-
-================================================================================
-
-	0.4.2.1
-	Jul 2, 2009
-
-	* midi/SequencerObserver.py: A new easy to extend base class that 
-	can be used to observe Sequencer objects (closes issue #46).
-	* midi/tunings.py: Added find_chord_fingering to StringTuning.
-	(closes issue #70).
-	* core/chords.py: Raise FormatError in from_shorthand if shorthand is 
-	invalid.
-	* containers/Track.py: Added from_chords (started issue #74).
+    * extra/MusicXML.py: Applied Javier's patch fixing beat divisions. 
+    * Almost every file: Updated copyright information. Closes issue #78.
+    * Added something resembling an AUTHORS file. With only two main 
+    developers this doesn't make much sense, but, err, at least we are 
+    prepared for a glorious future! Closes issue #79.
+    * Added a THANKS file and went through past issues and mails to gather
+    full names and addresses. If you have been left out or don't want to 
+    be listed; let me know. (closes issue #80).
+    * Added a copy of the full GPL v3 license. (closes issue #81)
 
 ================================================================================
 
-	0.4.2.0
-	Jul 2, 2009
-	
-	* extra/tablature.py: New tablature module is complete (closes issue #5)
+    0.4.2.2
+    Jul 3, 2009
+
+    * extra/MusicXML.py: MusicXML exporting functions by Javier Palanca. 
+    (started issue #63). 
+    * containers/Track.py: Added `return self` to methods in Track.
+    Check for None in chords, in method from_chords. 
+    * midi/Sequencer.py: Fixed bug. Added support for rests in 
+    play_NoteContainer and stop_NoteContainer.
 
 ================================================================================
 
-	0.4.1.7
-	Jul 1, 2009
+    0.4.2.1
+    Jul 2, 2009
 
-	* extra/tablature.py: Raise the proper exceptions (closes issue #65), 
-	added minimal unit test (closes issue #66), added attribute checks 
-	(closes issue #51) and better docs.
-	* extra/tunings.py: Raising proper exceptions. Added unit tests 
-	(closes issue #52).
-	* containers/Track.py: Added tuning attribute and set_tuning and 
-	get_tuning method (closes issue #51).
-
-================================================================================
-
-	0.4.1.6
-	Jun 29, 2009
-
-	* extra/tablature.py: Added documentation and license (closes issue #59)
-	* extra/tunings.py: Added get_Note(string, fret) to StringTuning.
-	Closes issue #54.
-	* extra/tablature.py: Do `fret` and `string` attribute checks on 
-	Notes. Closes issue #64.
+    * midi/SequencerObserver.py: A new easy to extend base class that 
+    can be used to observe Sequencer objects (closes issue #46).
+    * midi/tunings.py: Added find_chord_fingering to StringTuning.
+    (closes issue #70).
+    * core/chords.py: Raise FormatError in from_shorthand if shorthand is 
+    invalid.
+    * containers/Track.py: Added from_chords (started issue #74).
 
 ================================================================================
 
-	0.4.1.5
-	Jun 28, 2009
-
-	* extra/tablature.py: Fixed bug in from_Suite, added add_headers (closes
-	issue #62), mark beats in from_Bar (closes issue #60), added 
-	instrument and tuning description (closes issue #61).
+    0.4.2.0
+    Jul 2, 2009
+    
+    * extra/tablature.py: New tablature module is complete (closes issue #5)
 
 ================================================================================
 
-	0.4.1.4
-	Jun 28, 2009
+    0.4.1.7
+    Jul 1, 2009
 
-	* extra/tablature.py: Added from_Track (closes issue #5), added 
-	get_qsize (closes issue #58), from_Composition (closes issue #56) 
-	and from_Suite (closes issue #57)
-	* containers/Suite.py: Overloaded the + operator
-	
-================================================================================
-
-	0.4.1.3
-	Jun 28, 2009
-
-	* extra/tablature.py: Added tablature module that can convert 
-	some of the mingus.containers to pretty ascii tablature. (issue #5)
-	* extra/tunings.py: Sort and return fingerings on fitness. (Closes 
-	issue #53)
+    * extra/tablature.py: Raise the proper exceptions (closes issue #65), 
+    added minimal unit test (closes issue #66), added attribute checks 
+    (closes issue #51) and better docs.
+    * extra/tunings.py: Raising proper exceptions. Added unit tests 
+    (closes issue #52).
+    * containers/Track.py: Added tuning attribute and set_tuning and 
+    get_tuning method (closes issue #51).
 
 ================================================================================
 
-	0.4.1.2
-	Jun 28, 2009
+    0.4.1.6
+    Jun 29, 2009
 
-	* extra/tunings.py: Added find_fingering method to StringTuning class.
-	Function returns a list of possible fingerings for NoteContainers.
-	(Closes issue #48)
-	* containers/Note.py: Enhanced constructor. Can now be called with 
-	already existing Note object (hardcopy) or an integer (conversion). 
-	* containers/Note.py: Added from_shorthand and to_shorthand which 
-	converts from and to traditional Helmhotz pitch notation. (Closes 
-	issue #49)
-
+    * extra/tablature.py: Added documentation and license (closes issue #59)
+    * extra/tunings.py: Added get_Note(string, fret) to StringTuning.
+    Closes issue #54.
+    * extra/tablature.py: Do `fret` and `string` attribute checks on 
+    Notes. Closes issue #64.
 
 ================================================================================
 
-	0.4.1.1
-	Jun 28, 2009
+    0.4.1.5
+    Jun 28, 2009
 
-	* containers/Note.py: Added `measure` helper function to find out the 
-	difference in semitones between two Notes.
-	* extra/tunings.py: New module that contains dozens of string tunings, 
-	a StringTuning class and some functions to search through them.
+    * extra/tablature.py: Fixed bug in from_Suite, added add_headers (closes
+    issue #62), mark beats in from_Bar (closes issue #60), added 
+    instrument and tuning description (closes issue #61).
 
 ================================================================================
 
-	0.4.1
-	Jun 26, 2009
+    0.4.1.4
+    Jun 28, 2009
 
-	* midi/Sequencer.py: Added an easily extendable general purpose 
-	sequencer that can play all the objects in mingus.containers 
-	(closes issue #27).
-	* midi/fluidsynth.py: Made the fluidsynth sequencer use the new 
-	Sequencer module. (closes issue #43)
-	* containers/NoteContainer.py: Added consonance and dissonance tests 
-	as methods. (closes issue #41)
-	* extra/fft.py: A whole new module which can be used to find the 
-	frequencies and Notes of raw audio data. (closes issue #42)
+    * extra/tablature.py: Added from_Track (closes issue #5), added 
+    get_qsize (closes issue #58), from_Composition (closes issue #56) 
+    and from_Suite (closes issue #57)
+    * containers/Suite.py: Overloaded the + operator
+    
+================================================================================
+
+    0.4.1.3
+    Jun 28, 2009
+
+    * extra/tablature.py: Added tablature module that can convert 
+    some of the mingus.containers to pretty ascii tablature. (issue #5)
+    * extra/tunings.py: Sort and return fingerings on fitness. (Closes 
+    issue #53)
+
+================================================================================
+
+    0.4.1.2
+    Jun 28, 2009
+
+    * extra/tunings.py: Added find_fingering method to StringTuning class.
+    Function returns a list of possible fingerings for NoteContainers.
+    (Closes issue #48)
+    * containers/Note.py: Enhanced constructor. Can now be called with 
+    already existing Note object (hardcopy) or an integer (conversion). 
+    * containers/Note.py: Added from_shorthand and to_shorthand which 
+    converts from and to traditional Helmhotz pitch notation. (Closes 
+    issue #49)
 
 
 ================================================================================
 
-	0.4.0.3
-	Jun 20, 2009
+    0.4.1.1
+    Jun 28, 2009
 
-	* core/intervals.py: Fixed bug in invert.
-	* core/intervals.py: Added new functions `is_consonant`, 
-	`is_perfect_consonant`, `is_imperfect_consonant`, `is_dissonant` and
-	documentation + unit tests. (closes issue #33).
-	* containers/NoteContainer.py: Added from_progression_shorthand, 
-	from_interval_shorthand, from_chord_shorthand and some shortcuts
-	to simplify a lot of use cases. (closes issue #29)
+    * containers/Note.py: Added `measure` helper function to find out the 
+    difference in semitones between two Notes.
+    * extra/tunings.py: New module that contains dozens of string tunings, 
+    a StringTuning class and some functions to search through them.
+
+================================================================================
+
+    0.4.1
+    Jun 26, 2009
+
+    * midi/Sequencer.py: Added an easily extendable general purpose 
+    sequencer that can play all the objects in mingus.containers 
+    (closes issue #27).
+    * midi/fluidsynth.py: Made the fluidsynth sequencer use the new 
+    Sequencer module. (closes issue #43)
+    * containers/NoteContainer.py: Added consonance and dissonance tests 
+    as methods. (closes issue #41)
+    * extra/fft.py: A whole new module which can be used to find the 
+    frequencies and Notes of raw audio data. (closes issue #42)
 
 
 ================================================================================
 
-	0.4.0.2 
-	Jun 5, 2009
+    0.4.0.3
+    Jun 20, 2009
 
-	* core/chords.py: Faster and short pattern matching functions in 
-	determine_triad. The rest should follow.
+    * core/intervals.py: Fixed bug in invert.
+    * core/intervals.py: Added new functions `is_consonant`, 
+    `is_perfect_consonant`, `is_imperfect_consonant`, `is_dissonant` and
+    documentation + unit tests. (closes issue #33).
+    * containers/NoteContainer.py: Added from_progression_shorthand, 
+    from_interval_shorthand, from_chord_shorthand and some shortcuts
+    to simplify a lot of use cases. (closes issue #29)
+
+
+================================================================================
+
+    0.4.0.2 
+    Jun 5, 2009
+
+    * core/chords.py: Faster and short pattern matching functions in 
+    determine_triad. The rest should follow.
         * core/value.py: Changed instances of eight to eighth (closes #39)
-	* core/diatonic.py: Fixed bug in diatonic.int_to_note (closes #40)
+    * core/diatonic.py: Fixed bug in diatonic.int_to_note (closes #40)
 
 ================================================================================
 
-	0.4.0.1
-	Mar 2, 2009
+    0.4.0.1
+    Mar 2, 2009
 
-	* extra/LilyPond.py: Fixed bug in converting the duration to a valid 
-	LilyPond string in from_NoteContainer. Also added support for longa 
-	and breve along the way. Closed #37.
-	* midi/pyFluidSynth.py: merged in pyFluidSynth 1.2.4 (closed #38)
-	* midi/fluidsynth.py: Added destructor to MidiSequencer object to
-	prevent errors when exiting.
+    * extra/LilyPond.py: Fixed bug in converting the duration to a valid 
+    LilyPond string in from_NoteContainer. Also added support for longa 
+    and breve along the way. Closed #37.
+    * midi/pyFluidSynth.py: merged in pyFluidSynth 1.2.4 (closed #38)
+    * midi/fluidsynth.py: Added destructor to MidiSequencer object to
+    prevent errors when exiting.
 
 ================================================================================
 
-	0.4
-	Mar 1, 2009
+    0.4
+    Mar 1, 2009
 
-	* Gone through and updated all the documentation and added tutorials
+    * Gone through and updated all the documentation and added tutorials
         for every finished module. Closed issue #22.
 
 ================================================================================
 
-	0.3.9.2
-	Mar 1, 2009
+    0.3.9.2
+    Mar 1, 2009
 
-	* core/progressions.py: Factored out and added fixes for substitutions.
-	Closed #21.
-	* extra/LilyPond.py: Closed #34 and #35. Added fix for saving filenames
-	with spaces in them, and converting octaves. 
-	Thanks to Stefan Huchler for reporting these.
-
-
-================================================================================
-
-	0.3.9.1
-	Feb 16, 2009
-
-	* MANIFEST.in: Now includes the CHANGELOG in the source distribution as 
-	suggested by Stefan Huchler.
-
-================================================================================
-
-	0.3.9.0
-	Jan 26, 2009
-
-	* extra/LilyPond.py: Using the new note value module to correctly 
-	print tuplets and dotted notes (issue #28).
-
-================================================================================
-
-	0.3.8.9
-	Jan 20, 2009
-
-	* containers/Note.py: Fix in transpose function.
-	(http://groups.google.com/group/mingus-python/t/60cd407eeadc0b3e)
-	* containers/NoteContainer.py: Return self after using the + and - 
-	operators.
+    * core/progressions.py: Factored out and added fixes for substitutions.
+    Closed #21.
+    * extra/LilyPond.py: Closed #34 and #35. Added fix for saving filenames
+    with spaces in them, and converting octaves. 
+    Thanks to Stefan Huchler for reporting these.
 
 
 ================================================================================
 
-	0.3.8.8
-	Jan 19, 2009
-	
-	* midi/fluidsynth.py: Renamed default_bpm function argument to bpm.
-	(http://groups.google.com/group/mingus-python/t/cb8784584330d42d)
-	* containers/Note.py: Removed velocity and channel from dynamics.
-	* core/progressions.py: Added substitute_harmonic.
+    0.3.9.1
+    Feb 16, 2009
+
+    * MANIFEST.in: Now includes the CHANGELOG in the source distribution as 
+    suggested by Stefan Huchler.
 
 ================================================================================
 
-	0.3.8.7
-	Jan 16, 2009
+    0.3.9.0
+    Jan 26, 2009
 
-	* midi/MidiTrack.py: Added support for bpm attribute in play_Bar. This 
-	means that tempo changes can now be saved as well. It is advised to have 
-	only one track containing tempo changes. 
+    * extra/LilyPond.py: Using the new note value module to correctly 
+    print tuplets and dotted notes (issue #28).
+
+================================================================================
+
+    0.3.8.9
+    Jan 20, 2009
+
+    * containers/Note.py: Fix in transpose function.
+    (http://groups.google.com/group/mingus-python/t/60cd407eeadc0b3e)
+    * containers/NoteContainer.py: Return self after using the + and - 
+    operators.
 
 
 ================================================================================
 
-	0.3.8.6
-	Jan 16, 2009
-
-	* midi/fluidsynth.py: play_Bar and play_Bars (and consequently all the
-	other play_ functions) will now change the tempo if the bpm attribute
-	on a NoteContainer is set. I also rewrote play_Bars from scratch to be able to 
-	incorparate changing tempos. The method is a lot nicer now. (The younger 
-	me thought it was a good idea to use datetime functions instead of 
-	sleep.. -- coincidentally I probably needed a lot of sleep myself that time, 
-	so I missed out twice)
+    0.3.8.8
+    Jan 19, 2009
+    
+    * midi/fluidsynth.py: Renamed default_bpm function argument to bpm.
+    (http://groups.google.com/group/mingus-python/t/cb8784584330d42d)
+    * containers/Note.py: Removed velocity and channel from dynamics.
+    * core/progressions.py: Added substitute_harmonic.
 
 ================================================================================
 
-	0.3.8.5 
-	Jan 16, 2009
+    0.3.8.7
+    Jan 16, 2009
 
-	* midi/fluidsynth.py: Fixed timing issue in MidiSequencer.play_Bars, so
-	play_Bars, play_Tracks and play_Composition work again. All fluidsynth 
-	test pass again. 
+    * midi/MidiTrack.py: Added support for bpm attribute in play_Bar. This 
+    means that tempo changes can now be saved as well. It is advised to have 
+    only one track containing tempo changes. 
+
 
 ================================================================================
 
-	0.3.8.4
-	Jan 16, 2009
+    0.3.8.6
+    Jan 16, 2009
 
-	* midi/fluidsynth.py: Fix in MidiSequencer.play_Track + added 
+    * midi/fluidsynth.py: play_Bar and play_Bars (and consequently all the
+    other play_ functions) will now change the tempo if the bpm attribute
+    on a NoteContainer is set. I also rewrote play_Bars from scratch to be able to 
+    incorparate changing tempos. The method is a lot nicer now. (The younger 
+    me thought it was a good idea to use datetime functions instead of 
+    sleep.. -- coincidentally I probably needed a lot of sleep myself that time, 
+    so I missed out twice)
+
+================================================================================
+
+    0.3.8.5 
+    Jan 16, 2009
+
+    * midi/fluidsynth.py: Fixed timing issue in MidiSequencer.play_Bars, so
+    play_Bars, play_Tracks and play_Composition work again. All fluidsynth 
+    test pass again. 
+
+================================================================================
+
+    0.3.8.4
+    Jan 16, 2009
+
+    * midi/fluidsynth.py: Fix in MidiSequencer.play_Track + added 
         default_bpm arguments
-	
+    
 ================================================================================
 
-	0.3.8.3
+    0.3.8.3
 
-	* build.sh: Updated build script.
-	* core/value.py: Fix in docstring.
-
-================================================================================
-
-	0.3.8.2
-
-	* core/value.py: Finished value module for now by adding determine function
+    * build.sh: Updated build script.
+    * core/value.py: Fix in docstring.
 
 ================================================================================
 
-	0.3.8.1
+    0.3.8.2
 
-	* core/value.py: Added functions: quintuplet, septuplet and tuplet.
-
-================================================================================
-
-	0.3.8.0
-
-	* core/value.py: New module that will deal with all things concerning
-	note value (duration). Currently the functions add, substract, dots
-	and triplet are available as are the most used used constants. 
+    * core/value.py: Finished value module for now by adding determine function
 
 ================================================================================
 
-	0.3.7.10
+    0.3.8.1
 
-	* midi/fluidsynth.py: Added optional driver argument to init.
-
-================================================================================
-
-	0.3.7.9
-
-	* midi/__init__.py: Disabled fluidsynth import
+    * core/value.py: Added functions: quintuplet, septuplet and tuplet.
 
 ================================================================================
 
-	0.3.7.8
+    0.3.8.0
 
-	* Another tiny fix in stop_Note.
-
-================================================================================
-
-	0.3.7.7
-
-	* Bugfix in fluidsynth.stop_Note and fluidsynth.MidiSequencer.stop_Note:
-	removed the velocity argument and overwrites channel if Note.channel is 
-	set. (http://groups.google.com/group/mingus-python/t/177d0e7e83b5eaec)
-	* Added fluidsynth.initialized to prevent initializing fluidsynth twice.
-	(http://groups.google.com/group/mingus-python/t/e2b813d16c5e3b4b)
-
+    * core/value.py: New module that will deal with all things concerning
+    note value (duration). Currently the functions add, substract, dots
+    and triplet are available as are the most used used constants. 
 
 ================================================================================
 
-	0.3.7.6
+    0.3.7.10
 
-	* Added bank parameter to fluidsynth.set_instrument
-	* Added program_reset call to get drums back.
-
-================================================================================
-
-	0.3.7.5
-
-	* Updated example applications to use new fluidsynth module.
+    * midi/fluidsynth.py: Added optional driver argument to init.
 
 ================================================================================
 
-	0.3.7.4
+    0.3.7.9
 
-	* Moved FluidSynth.py back to fluidsynth.py
-	* Added pyFluidSynth module to mingus, which was written by 
-	Nathan Whitehead and available as separate package here: 
-	http://code.google.com/p/pygalaxy/wiki/pyFluidSynth
-	* Removed enable_reverb and disable_reverb from fluidsynth.
-	* Updated FluidSynth unittests.
+    * midi/__init__.py: Disabled fluidsynth import
 
 ================================================================================
 
-	0.3.7.3
+    0.3.7.8
 
-	* Replaced fluidsynth.py and MidiSequencer.py by the new FluidSynth 
-	module which makes use of the pyFluidSynth bindings. This means that you
-	don't have to start a server by hand anymore and that you can have more 
-	control over the audio and soundfonts, since fluidsynth gets loaded 
-	dynamically. A general purpose sequencer will be added later.
-	* Rearranged some of the illogical function arguments.
+    * Another tiny fix in stop_Note.
+
+================================================================================
+
+    0.3.7.7
+
+    * Bugfix in fluidsynth.stop_Note and fluidsynth.MidiSequencer.stop_Note:
+    removed the velocity argument and overwrites channel if Note.channel is 
+    set. (http://groups.google.com/group/mingus-python/t/177d0e7e83b5eaec)
+    * Added fluidsynth.initialized to prevent initializing fluidsynth twice.
+    (http://groups.google.com/group/mingus-python/t/e2b813d16c5e3b4b)
 
 
 ================================================================================
 
-	0.3.7.2
+    0.3.7.6
 
-	* Started on MusicXML implementation
-	* Fixed bug in setup script found and reported by namin:
-	http://groups.google.com/group/mingus-python/t/ace3be8d50061df0
-
-================================================================================
-
-	0.3.7.1
-
-	* Added from_int to Note
-	* Added self.bytes_read to the MidiFile parser to get better debugging.
+    * Added bank parameter to fluidsynth.set_instrument
+    * Added program_reset call to get drums back.
 
 ================================================================================
 
-	0.3.7.0 
+    0.3.7.5
 
-	* Updated examples to use mingus.midi instead of mingus.extra
-
-================================================================================
-
-	0.3.6.5
-
-	* Fixed bug in parse_midi_event. Program change and channel aftertouch 
-	MIDI events only have one parameter instead of two. 
-	* Added an exception for illegal events.
+    * Updated example applications to use new fluidsynth module.
 
 ================================================================================
 
-	0.3.6.4
+    0.3.7.4
 
-	* Instruments get succesfully set when loading a midi file.
-	* Last set tempo will get returned as well, until we have a better solution
-	(eg. a track containing only tempo changes)
-	* To set the channel and the velocity off a Note. Use Note.channel and 
-	Note.velocity instead of the dynamics dictionary.
-
-================================================================================
-
-	0.3.6.3
-
-	* Removed channel parameters from the MidiFileOut and MidiTrack functions.
-	The channel a note should be played on can now be set in Note.dynamics["channel"]
+    * Moved FluidSynth.py back to fluidsynth.py
+    * Added pyFluidSynth module to mingus, which was written by 
+    Nathan Whitehead and available as separate package here: 
+    http://code.google.com/p/pygalaxy/wiki/pyFluidSynth
+    * Removed enable_reverb and disable_reverb from fluidsynth.
+    * Updated FluidSynth unittests.
 
 ================================================================================
 
-	0.3.6.2
+    0.3.7.3
 
-	* Enhanced MIDI file parsing.
+    * Replaced fluidsynth.py and MidiSequencer.py by the new FluidSynth 
+    module which makes use of the pyFluidSynth bindings. This means that you
+    don't have to start a server by hand anymore and that you can have more 
+    control over the audio and soundfonts, since fluidsynth gets loaded 
+    dynamically. A general purpose sequencer will be added later.
+    * Rearranged some of the illogical function arguments.
 
-================================================================================
-
-	0.3.6.1
-
-	* Parsing of a Midi file works in some cases. Still very bugy.
-	* Remove is_valid_duration from Bar, because it prevents using floating 
-	point numbers, which you need when representing complex durations.
 
 ================================================================================
 
-	0.3.6.0
+    0.3.7.2
 
-	* Initial check in of MidiFileIn
-
-================================================================================
-
-	0.3.5.6	
-
-	* Moved the MidiFile class to MidiFileOut
-	* Added more documentation to the MidiFileOut functions.
+    * Started on MusicXML implementation
+    * Fixed bug in setup script found and reported by namin:
+    http://groups.google.com/group/mingus-python/t/ace3be8d50061df0
 
 ================================================================================
 
-	0.3.5.5
+    0.3.7.1
 
-	* Killed bug in MidiTrack.play_Bar. Meters other than 4/4 will now also 
-	get saved correctly
-	* Added set_track_name and track_name_event to MidiTrack
-	
-================================================================================
-
-	0.3.5.4
-
-	* Added MidiEvents for better readability in MidiTrack.
-	* Added support for different time signatures (set_meter and time_signature_event)
-	* Support for key signatures meta events (set_key and key_signature_event)
+    * Added from_int to Note
+    * Added self.bytes_read to the MidiFile parser to get better debugging.
 
 ================================================================================
 
-	0.3.5.3
+    0.3.7.0 
 
-	* Added controller events to MidiTrack. Changing of the instrument is now
-	possible.
+    * Updated examples to use mingus.midi instead of mingus.extra
+
 ================================================================================
 
-	0.3.5.2
+    0.3.6.5
 
-	* Added fixes for rests, tempo and NoteContainers in MidiTrack.
+    * Fixed bug in parse_midi_event. Program change and channel aftertouch 
+    MIDI events only have one parameter instead of two. 
+    * Added an exception for illegal events.
+
 ================================================================================
 
-	0.3.5.1
+    0.3.6.4
 
-	* Removed print statements used for debugging in MidiFileOut
-	* Removed debugging spaghetti code when run as script from MidiFileOut
-	* Moved the fluidsynth module to the midi package where it belongs.
+    * Instruments get succesfully set when loading a midi file.
+    * Last set tempo will get returned as well, until we have a better solution
+    (eg. a track containing only tempo changes)
+    * To set the channel and the velocity off a Note. Use Note.channel and 
+    Note.velocity instead of the dynamics dictionary.
+
+================================================================================
+
+    0.3.6.3
+
+    * Removed channel parameters from the MidiFileOut and MidiTrack functions.
+    The channel a note should be played on can now be set in Note.dynamics["channel"]
+
+================================================================================
+
+    0.3.6.2
+
+    * Enhanced MIDI file parsing.
+
+================================================================================
+
+    0.3.6.1
+
+    * Parsing of a Midi file works in some cases. Still very bugy.
+    * Remove is_valid_duration from Bar, because it prevents using floating 
+    point numbers, which you need when representing complex durations.
+
+================================================================================
+
+    0.3.6.0
+
+    * Initial check in of MidiFileIn
+
+================================================================================
+
+    0.3.5.6 
+
+    * Moved the MidiFile class to MidiFileOut
+    * Added more documentation to the MidiFileOut functions.
+
+================================================================================
+
+    0.3.5.5
+
+    * Killed bug in MidiTrack.play_Bar. Meters other than 4/4 will now also 
+    get saved correctly
+    * Added set_track_name and track_name_event to MidiTrack
+    
+================================================================================
+
+    0.3.5.4
+
+    * Added MidiEvents for better readability in MidiTrack.
+    * Added support for different time signatures (set_meter and time_signature_event)
+    * Support for key signatures meta events (set_key and key_signature_event)
+
+================================================================================
+
+    0.3.5.3
+
+    * Added controller events to MidiTrack. Changing of the instrument is now
+    possible.
+================================================================================
+
+    0.3.5.2
+
+    * Added fixes for rests, tempo and NoteContainers in MidiTrack.
+================================================================================
+
+    0.3.5.1
+
+    * Removed print statements used for debugging in MidiFileOut
+    * Removed debugging spaghetti code when run as script from MidiFileOut
+    * Moved the fluidsynth module to the midi package where it belongs.
 
 ================================================================================
