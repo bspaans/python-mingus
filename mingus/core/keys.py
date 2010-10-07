@@ -31,3 +31,8 @@
 #import intervals
 import notes
 
+def is_valid_key(key):
+    """Return true if key is in a recognized format. False if not."""
+
+    return notes.is_valid_note(key.upper())
+
