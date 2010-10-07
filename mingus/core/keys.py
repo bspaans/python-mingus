@@ -36,3 +36,25 @@ def is_valid_key(key):
 
     return notes.is_valid_note(key.upper())
 
+sharp_keys = [
+        ('C', 'a'),   # 0
+        ('G', 'e'),   # 1
+        ('D', 'b'),   # 2
+        ('A', 'f#'),  # 3
+        ('E', 'c#'),  # 4
+        ('B', 'g#'),  # 5
+        ('F#', 'd#'), # 6
+        ('C#', 'a#')  # 7
+        ]
+
+flat_keys = [
+        ('C', 'a'),   # 0
+        ('F', 'd'),   # 1
+        ('Bb', 'g'),  # 2
+        ('Eb', 'c'),  # 3
+        ('Ab', 'f'),  # 4
+        ('Db', 'bb'), # 5
+        ('Gb', 'eb'), # 6
+        ('Cb', 'ab')  # 7
+        ]
+
