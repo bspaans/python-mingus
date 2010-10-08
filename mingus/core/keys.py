@@ -28,7 +28,6 @@
 """
 
 from mt_exceptions import FormatError, RangeError
-#import intervals
 import notes
 
 def is_valid_key(key):
@@ -70,3 +69,15 @@ def get_key(number=0, token=''):
         raise FormatError, "'%s' unrecognized: only 'b' and '#' admitted"\
                 % token
     return keys[couple]
+
+def get_key_signature(key):
+    """Return the key signature (None for C or a)."""
+
+    for couple in keys:
+        if key in couple:
+            accidentals = keys.index(couple) - 7
+            if accidentals > 0:
+                return accidentals, '#'
+            elif accidentals < 0:
+                return -accidentals, 'b'
+
