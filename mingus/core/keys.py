@@ -27,13 +27,7 @@
 ================================================================================
 """
 
-from mt_exceptions import FormatError, RangeError
-import notes
-
-def is_valid_key(key):
-    """Return true if key is in a recognized format. False if not."""
-
-    return notes.is_valid_note(key.upper())
+from mt_exceptions import FormatError, NoteFormatError, RangeError
 
 keys = [
         ('Cb', 'ab'), #  7 b
@@ -52,6 +46,14 @@ keys = [
         ('F#', 'd#'), #  6 #
         ('C#', 'a#')  #  7 #
         ]
+
+def is_valid_key(key):
+    """Return true if key is in a recognized format. False if not."""
+
+    for couple in keys:
+        if key in couple:
+            return True
+    return False
 
 def get_key(number=0, token=''):
     """Return the tuple containing the major key corrensponding to the
@@ -72,6 +74,9 @@ def get_key(number=0, token=''):
 
 def get_key_signature(key):
     """Return the key signature (None for C or a)."""
+
+    if not is_valid_key(key):
+        raise NoteFormatError, "Unrecognized format for key '%s'" % key
 
     for couple in keys:
         if key in couple:
