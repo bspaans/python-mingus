@@ -28,6 +28,9 @@
 """
 
 from mt_exceptions import FormatError, NoteFormatError, RangeError
+import notes
+import operator
+import circularlist
 
 keys = [
         ('Cb', 'ab'), #  7 b
@@ -47,6 +50,10 @@ keys = [
         ('C#', 'a#')  #  7 #
         ]
 
+base_scale = circularlist.CircularList(['C', 'D', 'E', 'F', 'G', 'A', 'B'])
+
+_key_cache = {}
+
 def is_valid_key(key):
     """Return true if key is in a recognized format. False if not."""
 
@@ -55,21 +62,21 @@ def is_valid_key(key):
             return True
     return False
 
-def get_key(number=0, token=''):
+def get_key(number=0, symbol=''):
     """Return the tuple containing the major key corrensponding to the
     accidentals put as input, and his relative minor."""
 
     if number not in range(8):
         raise RangeError, 'Integer not in range 0-7.'
-    if token == 'b':
+    if symbol == 'b':
         couple = 7 - number
-    elif token == "#":
+    elif symbol == "#":
         couple = 7 + number
-    elif token == '' and number == 0:
+    elif symbol == '' and number == 0:
         couple = 7
     else:
         raise FormatError, "'%s' unrecognized: only 'b' and '#' admitted"\
-                % token
+                % symbol
     return keys[couple]
 
 def get_key_signature(key):
@@ -85,4 +92,51 @@ def get_key_signature(key):
                 return accidentals, '#'
             elif accidentals < 0:
                 return -accidentals, 'b'
+
+def get_key_signature_accidentals(key):
+    """Return the list of accidentals present into the key signature."""
+    accidentals = []
+    try:
+        number, symbol = get_key_signature(key)
+    except:
+        return accidentals
+    if symbol == 'b':
+        for i in range(number):
+            accidentals.append((notes.fifths[::-1][i], symbol))
+    elif symbol == '#':
+        for i in range(number):
+            accidentals.append((notes.fifths[i], symbol))
+    return accidentals
+
+def get_notes(key):
+    """Return an ordered list of the notes in this natural key.
+
+    For example: if the key is set to 'F', this function will return `['F',
+    'G', 'A', 'Bb', 'C', 'D', 'E']`; if the key is set to 'c', `['C', 'D',
+    'Eb', 'F', 'G', 'Ab', 'Bb']`.
+    """
+
+    if _key_cache.has_key(key):
+        return _key_cache[key]
+    if not is_valid_key(key):
+        raise NoteFormatError, "Unrecognized format for key '%s'" % key
+    result = []
+
+    # Calculate notes
+    accidentals = get_key_signature_accidentals(key)
+    altered_notes = map(operator.itemgetter(0), accidentals)
+    try:
+        symbol = accidentals[0][1]
+    except:
+        pass
+    raw_tonic_index = base_scale.index(key.upper()[0])
+    for note in base_scale[raw_tonic_index:raw_tonic_index+7]:
+        if note in altered_notes:
+            result.append('%s%s' % (note, symbol))
+        else:
+            result.append(note)
+    
+    # Save result to cache
+    _key_cache[key] = result
+    return result
 
