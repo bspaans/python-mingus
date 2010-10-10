@@ -46,7 +46,7 @@ _note_dict = {
     'F': 5,
     'G': 7,
     'A': 9,
-    'B': 11,
+    'B': 11
     }
 fifths = [
     'F',
@@ -55,7 +55,7 @@ fifths = [
     'D',
     'A',
     'E',
-    'B',
+    'B'
     ]
 
 
@@ -68,19 +68,19 @@ note_int is not in range(0,12)."""
     if note_int not in range(0, 12):
         raise RangeError, 'int out of bounds (0-11): %d ' % note_int
     n = [
-        'C',
-        'C#',
-        'D',
-        'D#',
-        'E',
-        'F',
-        'F#',
-        'G',
-        'G#',
-        'A',
-        'A#',
-        'B',
-        ]
+            'C',
+            'C#',
+            'D',
+            'D#',
+            'E',
+            'F',
+            'F#',
+            'G',
+            'G#',
+            'A',
+            'A#',
+            'B'
+            ]
     return n[note_int]
 
 
@@ -125,9 +125,9 @@ def reduce_accidentals(note):
     val = note_to_int(note[0])
     for token in note[1:]:
         if token == 'b':
-            val -= 1 
+            val -= 1
         elif token == '#':
-            val += 1 
+            val += 1
         else:
             raise NoteFormatError, "Unknown note format '%s'" % note
     val = val % 12
@@ -205,5 +205,4 @@ def to_minor(note):
 }}}"""
 
     return intervals.major_sixth(note)
-
 
