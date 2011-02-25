@@ -4,7 +4,7 @@
 ================================================================================
 
     mingus - Music theory Python package, keys module.
-    Copyright (C) 2010, Carlo Stemberger
+    Copyright (C) 2010-2011, Carlo Stemberger
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@
 from mt_exceptions import FormatError, NoteFormatError, RangeError
 import notes
 import operator
-import circularlist
+from itertools import cycle, islice
 
 keys = [
         ('Cb', 'ab'), #  7 b
@@ -50,7 +50,7 @@ keys = [
         ('C#', 'a#')  #  7 #
         ]
 
-base_scale = circularlist.CircularList(['C', 'D', 'E', 'F', 'G', 'A', 'B'])
+base_scale = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
 
 _key_cache = {}
 
@@ -130,7 +130,7 @@ def get_notes(key):
     except:
         pass
     raw_tonic_index = base_scale.index(key.upper()[0])
-    for note in base_scale[raw_tonic_index:raw_tonic_index+7]:
+    for note in islice(cycle(base_scale), raw_tonic_index, raw_tonic_index+7):
         if note in altered_notes:
             result.append('%s%s' % (note, symbol))
         else:
