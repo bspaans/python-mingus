@@ -22,7 +22,7 @@
 
 ================================================================================
 
-    This module [TODO].
+    This module provides a simple interface for dealing with keys.
 
 ================================================================================
 """
@@ -55,7 +55,7 @@ base_scale = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
 _key_cache = {}
 
 def is_valid_key(key):
-    """Return true if key is in a recognized format. False if not."""
+    """Return True if key is in a recognized format. False if not."""
 
     for couple in keys:
         if key in couple:
@@ -67,7 +67,7 @@ def get_key(number=0, symbol=''):
     accidentals put as input, and his relative minor."""
 
     if number not in range(8):
-        raise RangeError, 'Integer not in range 0-7.'
+        raise RangeError('Integer not in range 0-7.')
     if symbol == 'b':
         couple = 7 - number
     elif symbol == "#":
@@ -75,15 +75,15 @@ def get_key(number=0, symbol=''):
     elif symbol == '' and number == 0:
         couple = 7
     else:
-        raise FormatError, "'%s' unrecognized: only 'b' and '#' admitted"\
-                % symbol
+        raise FormatError("'%s' unrecognized: only 'b' and '#' admitted" %
+                symbol)
     return keys[couple]
 
 def get_key_signature(key):
     """Return the key signature (None for C or a)."""
 
     if not is_valid_key(key):
-        raise NoteFormatError, "Unrecognized format for key '%s'" % key
+        raise NoteFormatError("Unrecognized format for key '%s'" % key)
 
     for couple in keys:
         if key in couple:
@@ -119,7 +119,7 @@ def get_notes(key):
     if _key_cache.has_key(key):
         return _key_cache[key]
     if not is_valid_key(key):
-        raise NoteFormatError, "Unrecognized format for key '%s'" % key
+        raise NoteFormatError("Unrecognized format for key '%s'" % key)
     result = []
 
     # Calculate notes
