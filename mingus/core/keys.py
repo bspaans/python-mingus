@@ -157,3 +157,10 @@ class Key(object):
 
         self.signature = get_key_signature(self.key)
 
+    def __eq__(self, other):
+        if self.key == other.key:
+            return True
+        return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
