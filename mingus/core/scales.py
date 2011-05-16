@@ -113,6 +113,9 @@ class _Scale(object):
     def __ne__(self, other):
         return not self.__eq__(other)
 
+    def __len__(self):
+        return len(self.ascending())
+
     def ascending(self):
         """Return the list of ascending notes."""
         raise NotImplementedError
