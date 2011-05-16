@@ -143,3 +143,23 @@ def get_notes(key):
     _key_cache[key] = result
     return result
 
+class Key(object):
+    """A key object."""
+    def __init__(self, key='C'):
+        self.key = key
+
+        if self.key[0].islower():
+            self.mode = 'minor'
+        else:
+            self.mode = 'major'
+        
+        try:
+            symbol = self.key[1]
+            if symbol == '#':
+                symbol = 'sharp '
+            else:
+                symbol = 'flat '
+        except:
+            symbol = ''
+        self.name = '{0} {1}{2}'.format(self.key[0].upper(), symbol, self.mode)
+
