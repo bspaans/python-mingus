@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import sys
 sys.path += ['../']
+from mingus.core.keys import Key
 from mingus.containers.Bar import Bar
 from mingus.containers.Note import Note
 from mingus.containers.NoteContainer import NoteContainer
@@ -46,8 +47,8 @@ class test_Bar(unittest.TestCase):
         self.assertEqual(b, c)
 
     def test_key(self):
-        self.assertEqual(self.b.key, Note('C'))
-        self.assertEqual(self.c.key, Note('E'))
+        self.assertEqual(self.b.key, Key('C'))
+        self.assertEqual(self.c.key, Key('E'))
 
     def test_transpose(self):
         b = Bar()

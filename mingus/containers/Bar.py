@@ -1,10 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-
 ================================================================================
 
-    mingus - Music theory Python package, Bar class
+    mingus - Music theory Python package, Bar module.
     Copyright (C) 2008-2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
@@ -24,14 +23,12 @@
 """
 
 from mingus.core import meter as _meter
-from mingus.core import scales, progressions
+from mingus.core import progressions, keys
 from NoteContainer import NoteContainer
 from Note import Note
 from mt_exceptions import MeterFormatError
 
-
 class Bar:
-
     """A Bar is basically a container for [refMingusContainersNotecontainer \
 NoteContainers] (a !NoteContainerContainer if you will, but you shouldn't). \
 Bars can be stored together with [refMingusContainersInstrument Instruments] \
@@ -48,7 +45,7 @@ in [refMingusContainersTrack Tracks]."""
         # warning should check types
 
         if type(key) == str:
-            key = Note(key)
+            key = keys.Key(key)
         self.key = key
         self.set_meter(meter)
         self.empty()
@@ -220,7 +217,7 @@ the bar."""
         res = []
         for x in self.bar:
             res.append([x[0], progressions.determine(x[2].get_note_names(),
-                       self.key.name, shorthand)])
+                       self.key.key, shorthand)])
         return res
 
     def get_note_names(self):
