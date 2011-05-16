@@ -122,7 +122,7 @@ class _Scale(object):
 
     def descending(self):
         """Return the list of descending notes."""
-        return self.ascending()[::-1]
+        return list(reversed(self.ascending()))
 
     def degree(self, degree_number, direction='a'):
         """Return the asked scale degree. The direction of the scale is 'a' for ascending (default) and 'd' for descending."""
@@ -132,7 +132,7 @@ class _Scale(object):
             notes = self.ascending()[:-1]
             return notes[degree_number-1]
         elif direction == 'd':
-            notes = self.descending()[::-1][:-1]
+            notes = reversed(self.descending())[:-1]
             return notes[degree_number-1]
         else:
             raise FormatError("Unrecognised direction '%s'" % direction)
@@ -503,7 +503,7 @@ Descending: F E Eb D Db C B Bb A Ab G Gb F
 
     def descending(self):
         notes = [self.tonic]
-        for note in get_notes(self.key)[::-1]:
+        for note in reversed(get_notes(self.key)):
             if intervals.determine(note, notes[-1]) == ('major second'):
                 notes.append(reduce_accidentals(diminish(notes[-1])))
                 notes.append(note)
