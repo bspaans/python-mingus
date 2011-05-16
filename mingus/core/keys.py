@@ -155,3 +155,5 @@ class Key(object):
             symbol = ''
         self.name = '{0} {1}{2}'.format(self.key[0].upper(), symbol, self.mode)
 
+        self.signature = get_key_signature(self.key)
+
