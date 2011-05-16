@@ -65,25 +65,18 @@ def is_valid_key(key):
             return True
     return False
 
-def get_key(number=0, symbol=''):
+def get_key(accidentals=0):
     """Return the tuple containing the major key corrensponding to the
-    accidentals put as input, and his relative minor."""
+    accidentals put as input, and his relative minor; negative numbers for
+    flats, positive numbers for sharps."""
 
-    if number not in range(8):
-        raise RangeError('Integer not in range 0-7.')
-    if symbol == 'b':
-        couple = 7 - number
-    elif symbol == "#":
-        couple = 7 + number
-    elif symbol == '' and number == 0:
-        couple = 7
-    else:
-        raise FormatError("'%s' unrecognized: only 'b' and '#' admitted" %
-                symbol)
-    return keys[couple]
+    if accidentals not in range(-7, 8):
+        raise RangeError('Integer not in range (-7)-(+7).')
+    return keys[accidentals+7]
 
-def get_key_signature(key):
-    """Return the key signature (None for C or a)."""
+def get_key_signature(key='C'):
+    """Return the key signature: 0 for C or a, negative numbers for flat key
+    signatures, positive numbers for sharp key signatures."""
 
     if not is_valid_key(key):
         raise NoteFormatError("Unrecognized format for key '%s'" % key)
@@ -91,27 +84,23 @@ def get_key_signature(key):
     for couple in keys:
         if key in couple:
             accidentals = keys.index(couple) - 7
-            if accidentals > 0:
-                return accidentals, '#'
-            elif accidentals < 0:
-                return -accidentals, 'b'
+            return accidentals
 
-def get_key_signature_accidentals(key):
+def get_key_signature_accidentals(key='C'):
     """Return the list of accidentals present into the key signature."""
-    accidentals = []
-    try:
-        number, symbol = get_key_signature(key)
-    except:
-        return accidentals
-    if symbol == 'b':
-        for i in range(number):
-            accidentals.append((notes.fifths[::-1][i], symbol))
-    elif symbol == '#':
-        for i in range(number):
-            accidentals.append((notes.fifths[i], symbol))
-    return accidentals
 
-def get_notes(key):
+    accidentals = get_key_signature(key)
+    res = []
+
+    if accidentals < 0:
+        for i in range(-accidentals):
+            res.append('{0}{1}'.format(notes.fifths[::-1][i], 'b'))
+    elif accidentals > 0:
+        for i in range(accidentals):
+            res.append('{0}{1}'.format(notes.fifths[i], '#'))
+    return res
+
+def get_notes(key='C'):
     """Return an ordered list of the notes in this natural key.
 
     For example: if the key is set to 'F', this function will return `['F',
@@ -126,13 +115,16 @@ def get_notes(key):
     result = []
 
     # Calculate notes
-    accidentals = get_key_signature_accidentals(key)
-    altered_notes = map(operator.itemgetter(0), accidentals)
-    try:
-        symbol = accidentals[0][1]
-    except:
-        pass
+    altered_notes = map(operator.itemgetter(0),
+            get_key_signature_accidentals(key))
+
+    if get_key_signature(key) < 0:
+        symbol = 'b'
+    elif get_key_signature(key) > 0:
+        symbol = '#'
+
     raw_tonic_index = base_scale.index(key.upper()[0])
+
     for note in islice(cycle(base_scale), raw_tonic_index, raw_tonic_index+7):
         if note in altered_notes:
             result.append('%s%s' % (note, symbol))
