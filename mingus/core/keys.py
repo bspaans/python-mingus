@@ -50,6 +50,9 @@ keys = [
         ('C#', 'a#')  #  7 #
         ]
 
+major_keys = [couple[0] for couple in keys]
+minor_keys = [couple[1] for couple in keys]
+
 base_scale = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
 
 _key_cache = {}
