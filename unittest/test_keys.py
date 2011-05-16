@@ -39,5 +39,5 @@ class test_keys(unittest.TestCase):
 
 
 def suite():
-    return unittest.TestLoader().loadTestsFromTestCase(test_diatonic)
+    return unittest.TestLoader().loadTestsFromTestCase(test_keys)
 
