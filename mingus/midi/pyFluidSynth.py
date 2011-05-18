@@ -186,7 +186,8 @@ class Synth:
           driver : which audio driver to use for output
                    Possible choices:
                      'alsa', 'oss', 'jack', 'portaudio'
-                     'sndmgr', 'coreaudio', 'Direct Sound'
+                     'sndmgr', 'coreaudio', 'Direct Sound',
+                     'dsound', 'pulseaudio'
 
         Not all drivers will be available for every platform, it
         depends on which drivers were compiled into FluidSynth for
@@ -203,6 +204,8 @@ class Synth:
                 'sndmgr',
                 'coreaudio',
                 'Direct Sound',
+                'dsound',
+                'pulseaudio'
                 ]
             fluid_settings_setstr(self.settings, 'audio.driver', driver)
         self.audio_driver = new_fluid_audio_driver(self.settings, self.synth)

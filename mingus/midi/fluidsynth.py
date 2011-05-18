@@ -60,8 +60,8 @@ class FluidSynthSequencer(Sequencer):
 
     def start_audio_output(self, driver=None):
         """The optional driver argument can be any of 'alsa', 'oss', 'jack', \
-'portaudio', 'sndmgr', 'coreaudio', 'Direct Sound'. Not all drivers will \
-be available for every platform."""
+'portaudio', 'sndmgr', 'coreaudio', 'Direct Sound', 'dsound', 'pulseaudio'. Not \
+all drivers will be available for every platform."""
 
         self.fs.start(driver)
 
