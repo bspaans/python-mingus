@@ -127,10 +127,12 @@ chord_shorthand_meaning = {  # Triads Augmented chords Suspended chords Sevenths
     'm7+': ' augmented minor seventh',
     '7+': ' augmented major seventh',
     'sus47': ' suspended seventh',
+    '7sus4': ' suspended seventh',
     'sus4': ' suspended fourth triad',
     'sus2': ' suspended second triad',
     'sus': ' suspended fourth triad',
     '11': ' eleventh',
+    'add11': ' eleventh',
     'sus4b9': ' suspended fourth ninth',
     'susb9': ' suspended fourth ninth',
     'm7': ' minor seventh',
@@ -149,6 +151,7 @@ chord_shorthand_meaning = {  # Triads Augmented chords Suspended chords Sevenths
     '6/9': ' sixth ninth',
     '69': ' sixth ninth',
     '9': ' dominant ninth',
+    'add9': ' dominant ninth',
     '7b9': ' dominant flat ninth',
     '7#9': ' dominant sharp ninth',
     'M9': ' major ninth',
@@ -158,6 +161,7 @@ chord_shorthand_meaning = {  # Triads Augmented chords Suspended chords Sevenths
     'M13': ' major thirteenth',
     'm13': ' minor thirteenth',
     '13': ' dominant thirteenth',
+    'add13': ' dominant thirteenth',
     '7b5': ' dominant flat five',
     'hendrix': ' hendrix chord',
     '7b12': ' hendrix chord',
@@ -858,12 +862,12 @@ etc.).
 *'mM7'*
     * Augmented chords: *'aug'* or *'+'*, *'7#5'* or *'M7+5'*, *'M7+'*, \
 *'m7+'*, *'7+'*
-    * Suspended chords: *'sus4'*, *'sus2'*, *'sus47'*, *'sus'*, *'11'*, \
+    * Suspended chords: *'sus4'*, *'sus2'*, *'sus47'* or *'7sus4'*, *'sus'*, *'11'*, \
 *'sus4b9'* or *'susb9'*
     * Sixths: *'6'*, *'m6'*, *'M6'*, *'6/7'* or *'67'*, *6/9* or *69*
-    * Ninths: *'9'*, *'M9'*, *'m9'*, *'7b9'*, *'7#9'*
-    * Elevenths: *'11'*, *'7#11'*, *'m11'*
-    * Thirteenths: *'13'*, *'M13'*, *'m13'*
+    * Ninths: *'9'* or *'add9'*, *'M9'*, *'m9'*, *'7b9'*, *'7#9'*
+    * Elevenths: *'11'* or *'add11'*, *'7#11'*, *'m11'*
+    * Thirteenths: *'13'* or *'add13'*, *'M13'*, *'m13'*
     * Altered chords: *'7b5'*, *'7b9'*, *'7#9'*, *'67'* or *'6/7'*
     * Special: *'5'*, *'NC'*, *'hendrix'*
 """
