@@ -33,7 +33,7 @@ from mingus.core.mt_exceptions import RangeError
 import mingus.core.notes as notes
 
 
-class StringTuning:
+class StringTuning(object):
 
     """StringTuning can be used to store and work with tunings and fingerings."""
 

@@ -29,7 +29,7 @@ from mingus.containers.Bar import Bar
 import mingus.core.value as value
 
 
-class Track:
+class Track(object):
 
     """The Track class can be used to store [refMingusContainersBar Bars] and to \
 work on them. The class is also designed to be used with \

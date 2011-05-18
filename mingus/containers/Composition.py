@@ -27,7 +27,7 @@
 from mt_exceptions import UnexpectedObjectError
 
 
-class Composition:
+class Composition(object):
 
     """The Composition class is a datastructure for working with \
 [refMingusContainersTrack Tracks]. Composition can be stored together in \

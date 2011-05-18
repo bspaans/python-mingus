@@ -26,7 +26,7 @@
 from mt_exceptions import UnexpectedObjectError
 
 
-class Suite:
+class Suite(object):
 
     """The    Suite class is a datastructure that stores \
 [refMingusContainersComposition Composition] objects."""

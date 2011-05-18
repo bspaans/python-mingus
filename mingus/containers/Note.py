@@ -27,7 +27,7 @@ from mt_exceptions import NoteFormatError
 from math import log
 
 
-class Note:
+class Note(object):
 
     """In the mingus.core module, notes are generally represented by strings. Most \
 of the times, this is not enough. We want to set the octave and maybe the \

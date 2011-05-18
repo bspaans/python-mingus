@@ -28,7 +28,7 @@ from mingus.core import intervals, chords, progressions
 from mt_exceptions import UnexpectedObjectError
 
 
-class NoteContainer:
+class NoteContainer(object):
 
     """The !NoteContainer provides a container for the [refMingusContainersNote \
 mingus.containers.Note] objects. It can be used to store single and multiple \

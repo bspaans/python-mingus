@@ -27,7 +27,7 @@ from mingus.containers.Note import Note
 from mt_exceptions import UnexpectedObjectError
 
 
-class Instrument:
+class Instrument(object):
 
     """The Instrument class is pretty self explanatory. Instruments can be used \
 with [refMingusContainersTrack Tracks] to define which instrument plays \

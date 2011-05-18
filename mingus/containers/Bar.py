@@ -28,7 +28,7 @@ from NoteContainer import NoteContainer
 from Note import Note
 from mt_exceptions import MeterFormatError
 
-class Bar:
+class Bar(object):
     """A Bar is basically a container for [refMingusContainersNotecontainer \
 NoteContainers] (a !NoteContainerContainer if you will, but you shouldn't). \
 Bars can be stored together with [refMingusContainersInstrument Instruments] \
