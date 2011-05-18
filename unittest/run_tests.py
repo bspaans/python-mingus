@@ -1,11 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-
 """
-
 ================================================================================
 
-    Music theory Python package, test suite
+    mingus - Music theory Python package, test suite.
     Copyright (C) 2008, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
@@ -33,7 +31,7 @@
 import unittest
 
 import test_notes
-import test_diatonic
+import test_keys
 import test_intervals
 import test_chords
 import test_scales
@@ -65,7 +63,7 @@ import test_MusicXML
 
 core = [
     test_notes,
-    test_diatonic,
+    test_keys,
     test_intervals,
     test_chords,
     test_scales,

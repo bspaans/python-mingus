@@ -5,6 +5,7 @@
 
     mingus - Music theory Python package, notes module.
     Copyright (C) 2008-2009, Bart Spaans
+    Copyright (C) 2011, Carlo Stemberger
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -36,7 +37,7 @@
 ================================================================================
 """
 
-from mt_exceptions import NoteFormatError, RangeError
+from mt_exceptions import NoteFormatError, RangeError, FormatError
 import intervals
 
 _note_dict = {
@@ -46,52 +47,40 @@ _note_dict = {
     'F': 5,
     'G': 7,
     'A': 9,
-    'B': 11,
+    'B': 11
     }
-fifths = [
-    'F',
-    'C',
-    'G',
-    'D',
-    'A',
-    'E',
-    'B',
-    ]
+fifths = ['F', 'C', 'G', 'D', 'A', 'E', 'B']
 
+def int_to_note(note_int, accidentals='#'):
+    """Convert integers in the range of 0-11 to notes in the form of C or C# or Db. Throw a !RangeError exception if the note_int is not in the range 0-11. If not specified, sharps will be used.
+    Examples:
+{{{
+>>> int_to_note(0)
+'C'
+>>> int_to_note(3)
+'D#'
+>>> int_to_note(3, 'b')
+'Eb'
+}}}"""
 
-def int_to_note(note_int):
-    """Converts integers in the range of 0-11 to notes in the form of C or C# (no \
-Cb). You can use int_to_note in diatonic_key to do theoretically correct \
-conversions that bear the key in mind. Throws a !RangeError exception if the \
-note_int is not in range(0,12)."""
-
-    if note_int not in range(0, 12):
-        raise RangeError, 'int out of bounds (0-11): %d ' % note_int
-    n = [
-        'C',
-        'C#',
-        'D',
-        'D#',
-        'E',
-        'F',
-        'F#',
-        'G',
-        'G#',
-        'A',
-        'A#',
-        'B',
-        ]
-    return n[note_int]
-
+    if note_int not in range(12):
+        raise RangeError('int out of bounds (0-11): %d' % note_int)
+    ns = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+    nf = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
+    if accidentals == '#':
+        return ns[note_int]
+    elif accidentals == 'b':
+        return nf[note_int]
+    else:
+        raise FormatError("'%s' not valid as accidental" % accidentals)
 
 def is_enharmonic(note1, note2):
-    """Test whether note1 and note2 are enharmonic, ie. they sound the same"""
+    """Test whether note1 and note2 are enharmonic, i.e. they sound the same."""
 
     return note_to_int(note1) == note_to_int(note2)
 
-
 def is_valid_note(note):
-    """Returns true if note is in a recognised format. False if not"""
+    """Return True if note is in a recognised format. False if not."""
 
     if not _note_dict.has_key(note[0]):
         return False
@@ -100,19 +89,17 @@ def is_valid_note(note):
             return False
     return True
 
-
 def note_to_int(note):
-    """Converts notes in the form of C, C#, Cb, C##, etc. to an integer in the \
-range of 0-11. Throws an !NoteFormatError exception if the note format is \
+    """Convert notes in the form of C, C#, Cb, C##, etc. to an integer in the \
+range of 0-11. Throw an !NoteFormatError exception if the note format is \
 not recognised."""
 
     if is_valid_note(note):
         val = _note_dict[note[0]]
     else:
-        raise NoteFormatError, "Unknown note format '%s'" % note
+        raise NoteFormatError("Unknown note format '%s'" % note)
 
     # Check for '#' and 'b' postfixes
-
     for post in note[1:]:
         if post == 'b':
             val -= 1
@@ -121,21 +108,35 @@ not recognised."""
     return val % 12
 
 def reduce_accidentals(note):
-    """Reduces any extra accidentals to proper notes so that C#### E"""
+    """Reduce any extra accidentals to proper notes.
+    Examples:
+{{{
+>>> reduce_accidentals('C####')
+'E'
+}}}"""
+
     val = note_to_int(note[0])
     for token in note[1:]:
         if token == 'b':
-            val -= 1 
+            val -= 1
         elif token == '#':
-            val += 1 
+            val += 1
         else:
-            raise NoteFormatError, "Unknown note format '%s'" % note
-    val = val % 12
-    return int_to_note(val)
+            raise NoteFormatError("Unknown note format '%s'" % note)
+    if val >= note_to_int(note[0]):
+        return int_to_note(val%12)
+    else:
+        return int_to_note(val%12, 'b')
 
 def remove_redundant_accidentals(note):
-    """Removes redundant #'s and b's from the given note. For example: C##b becomes \
-C#, Eb##b becomes E, etc."""
+    """Remove redundant sharps and flats from the given note.
+    Examples:
+{{{
+>>> remove_redundant_accidentals('C##b')
+'C#'
+>>> remove_redundant_accidentals('Eb##b')
+'E'
+}}}"""
 
     val = 0
     for token in note[1:]:
@@ -152,14 +153,13 @@ C#, Eb##b becomes E, etc."""
         val += 1
     return result
 
-
 def augment(note):
-    """Augments a given note.
+    """Augment a given note.
     Examples:
 {{{
->>> augment(\"C\")
+>>> augment('C')
 'C#'
->>> augment(\"Cb\")
+>>> augment('Cb')
 'C'
 }}}"""
 
@@ -168,14 +168,13 @@ def augment(note):
     else:
         return note[:-1]
 
-
 def diminish(note):
-    """Diminishes a given note.
+    """Diminish a given note.
     Examples:
 {{{
->>> diminish(\"C\")
+>>> diminish('C')
 'Cb'
->>> diminish(\"C#\")
+>>> diminish('C#')
 'C'
 }}}"""
 
@@ -184,26 +183,23 @@ def diminish(note):
     else:
         return note[:-1]
 
-
 def to_major(note):
-    """Returns the major of `note`.
+    """Return the major of note.
     Example:
 {{{
->>> to_major(\"A\")
+>>> to_major('A')
 'C'
 }}}"""
 
     return intervals.minor_third(note)
 
-
 def to_minor(note):
-    """Returns the minor of note.
+    """Return the minor of note.
     Example:
 {{{
->>> to_minor(\"C\")
+>>> to_minor('C')
 'A'
 }}}"""
 
     return intervals.major_sixth(note)
-
 

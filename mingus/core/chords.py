@@ -103,7 +103,7 @@ from_shorthand (a lot) and their inversions.
 
 import intervals
 import notes
-import diatonic
+import keys
 from mt_exceptions import NoteFormatError, FormatError
 
 _triads_cache = {}
@@ -183,7 +183,7 @@ def triads(key):
 
     if _triads_cache.has_key(key):
         return _triads_cache[key]
-    res = map(lambda x: triad(x, key), diatonic.get_notes(key))
+    res = map(lambda x: triad(x, key), keys.get_notes(key))
     _triads_cache[key] = res
     return res
 
@@ -249,7 +249,7 @@ def sevenths(key):
 
     if _sevenths_cache.has_key(key):
         return _sevenths_cache[key]
-    res = map(lambda x: seventh(x, key), diatonic.get_notes(key))
+    res = map(lambda x: seventh(x, key), keys.get_notes(key))
     _sevenths_cache[key] = res
     return res
 

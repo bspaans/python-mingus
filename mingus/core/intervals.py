@@ -37,20 +37,36 @@
 ================================================================================"""
 
 import notes
-import diatonic
+import keys
 
+def interval(key, start_note, interval):
+    """Return the note found at the interval starting from start_note in the
+    given key.
+    
+    For example interval('C', 'D', 1) will return 'E'. Will raise a !KeyError
+    if the start_note is not a valid note.
+    """
+
+    if not notes.is_valid_note(start_note):
+        raise KeyError, "The start note '%s' is not a valid note" % start_note
+    notes_in_key = keys.get_notes(key)
+    for n in notes_in_key:
+        if n[0] == start_note[0]:
+            index = notes_in_key.index(n)
+    return notes_in_key[(index + interval) % 7]
 
 def unison(note, key=None):
-    """One of the most useless methods ever written, which returns the unison of \
-note. The key is not at all important, but is here for consistency reasons \
-only.
+    """Return the unison of note.
+    
+    The key is not at all important, but is here for consistency reasons only.
     Example:
 {{{
 >>> unison(\"C\")
 'C'
-}}}"""
+}}}
+    Raises a !KeyError if the `note` is not found in the `key`."""
 
-    return note
+    return interval(key, note, 0)
 
 
 def second(note, key):
@@ -64,7 +80,7 @@ def second(note, key):
 }}}
     Raises a !KeyError if the `note` is not found in the `key`."""
 
-    return diatonic.interval(key, note, 1)
+    return interval(key, note, 1)
 
 
 def third(note, key):
@@ -78,7 +94,7 @@ def third(note, key):
 }}}
     Raises a !KeyError if note is not found in key."""
 
-    return diatonic.interval(key, note, 2)
+    return interval(key, note, 2)
 
 
 def fourth(note, key):
@@ -92,7 +108,7 @@ def fourth(note, key):
 }}}
     Raises a !KeyError if note is not found in key."""
 
-    return diatonic.interval(key, note, 3)
+    return interval(key, note, 3)
 
 
 def fifth(note, key):
@@ -106,7 +122,7 @@ def fifth(note, key):
 }}}
     Raises a !KeyError if note is not found in key."""
 
-    return diatonic.interval(key, note, 4)
+    return interval(key, note, 4)
 
 
 def sixth(note, key):
@@ -120,7 +136,7 @@ def sixth(note, key):
 }}}
     Raises a !KeyError if note is not found in key."""
 
-    return diatonic.interval(key, note, 5)
+    return interval(key, note, 5)
 
 
 def seventh(note, key):
@@ -134,7 +150,7 @@ def seventh(note, key):
 }}}
     Raises a !KeyError if note is not found in key."""
 
-    return diatonic.interval(key, note, 6)
+    return interval(key, note, 6)
 
 
 def minor_unison(note):
@@ -231,7 +247,7 @@ and major functions to work around the corner cases."""
         9,
         11,
         ])
-    key_notes = diatonic.get_notes(key)
+    key_notes = keys.get_notes(key)
     for x in key_notes:
         if x[0] == note[0]:
             result = (intervals[key_notes.index(x)] + interval) % 12

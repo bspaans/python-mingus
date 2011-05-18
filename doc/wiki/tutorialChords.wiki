@@ -202,9 +202,8 @@ It's often easier to refer to harmonic functions using roman numbers.
 ["C", "E", "G"]
 >>> chords.IV("C")
 ["F", "A", "C"]
->>> chords.V7("C")
-["G", "B", "D", "A"] 
-
+>>> chords.V7('C')
+['G', 'B', 'D', 'F']
 }}}
 
 The functions I-VI and I7-VI7 may all be used. The numbers II, III, VI and their sevenths may also be refered to using lower-case numbers (ii, ii7, etc) to indicate that they are minor. See the progressions tutorial for more about harmonic sequences + an advanced to_chords function.

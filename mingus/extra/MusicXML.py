@@ -1,11 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-
 ================================================================================
 
-    mingus - Music theory Python package, MusicXML
+    mingus - Music theory Python package, MusicXML module.
     Copyright (C) 2008-2009, Bart Spaans, Javier Palanca
+    Copyright (C) 2011, Carlo Stemberger
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -37,13 +37,12 @@
 import xml
 from xml.dom.minidom import Document
 from mingus.core import notes
-from mingus.core.diatonic import basic_keys
+from mingus.core.keys import major_keys, minor_keys
 from mingus.containers.Instrument import MidiInstrument
 from mingus.containers.Composition import Composition
 from mingus.containers.Track import Track
 from mingus.core import value
 import datetime
-
 
 def _gcd(a=None, b=None, terms=None):
     """Return greatest common divisor using Euclid's Algorithm."""
@@ -55,7 +54,6 @@ def _gcd(a=None, b=None, terms=None):
             (a, b) = (b, a % b)
         return a
 
-
 def _lcm(a=None, b=None, terms=None):
     """Return lowest common multiple."""
 
@@ -64,20 +62,15 @@ def _lcm(a=None, b=None, terms=None):
     else:
         return (a * b) / _gcd(a, b)
 
-
 def _note2musicxml(note):
     doc = Document()
     note_node = doc.createElement('note')
     if note == None:
-
         # note is a rest
-
         rest = doc.createElement('rest')
         note_node.appendChild(rest)
     else:
-
         # add pitch info
-
         pitch = doc.createElement('pitch')
         step = doc.createElement('step')
         step.appendChild(doc.createTextNode(note.name[:1]))
@@ -87,7 +80,6 @@ def _note2musicxml(note):
         pitch.appendChild(octave)
 
         # check for alterations
-
         count = 0
         for i in note.name[1:]:
             if i == 'b':
@@ -101,37 +93,29 @@ def _note2musicxml(note):
         note_node.appendChild(pitch)
     return note_node
 
-
 def _bar2musicxml(bar):
     doc = Document()
     bar_node = doc.createElement('measure')
 
     # bar attributes
-
     attributes = doc.createElement('attributes')
 
     # calculate divisions by using the LCM
-
-    l = list()
+    l = []
     for nc in bar:
         l.append(int(value.determine(nc[1])[0]))
     lcm = _lcm(terms=l) * 4
     divisions = doc.createElement('divisions')
     divisions.appendChild(doc.createTextNode(str(lcm)))
     attributes.appendChild(divisions)
-    if bar.key.name in basic_keys:
+    if bar.key.key in major_keys or bar.key.key in minor_keys:
         key = doc.createElement('key')
         fifths = doc.createElement('fifths')
 
         # now we are going to guess which is the key of the bar
-
-        index = basic_keys.index(bar.key.name)
-        if index > 13:
-            index -= 12
-        fifths.appendChild(doc.createTextNode(str(index - 6)))
+        fifths.appendChild(doc.createTextNode(str(bar.key.signature)))
         mode = doc.createElement('mode')
-        mode.appendChild(doc.createTextNode('major'))  # does mingus support
-                                                       # more modes?
+        mode.appendChild(doc.createTextNode(bar.key.mode))
         key.appendChild(fifths)
         key.appendChild(mode)
         attributes.appendChild(key)
@@ -151,9 +135,7 @@ def _bar2musicxml(bar):
         note_cont = nc[2]
         is_chord = False
         if note_cont:
-
             # is a note_container with 2 or more notes a chord?
-
             if len(note_cont) > 1:
                 is_chord = True
         else:
@@ -164,14 +146,12 @@ def _bar2musicxml(bar):
                 note.appendChild(chord)
 
             # convert the duration of the note
-
             duration = doc.createElement('duration')
             duration.appendChild(doc.createTextNode(str(int(lcm * (4.0
                                   / beat)))))
             note.appendChild(duration)
 
-        # check for dots
-
+            # check for dots
             dot = doc.createElement('dot')
             for i in range(0, time[1]):
                 note.appendChild(dot)
@@ -180,8 +160,7 @@ def _bar2musicxml(bar):
                 type_node.appendChild(doc.createTextNode(value.musicxml[beat]))
                 note.appendChild(type_node)
 
-        # check for non-standard ratio
-
+            # check for non-standard ratio
             if time[2] != 1 and time[3] != 1:
                 modification = doc.createElement('time-modification')
                 actual = doc.createElement('actual-notes')
@@ -193,7 +172,6 @@ def _bar2musicxml(bar):
                 note.appendChild(modification)
             bar_node.appendChild(note)
     return bar_node
-
 
 def _track2musicxml(track):
     doc = Document()
@@ -238,14 +216,12 @@ def _track2musicxml(track):
         counter += 1
     return track_node
 
-
 def _composition2musicxml(comp):
     doc = Document()
     score = doc.createElement('score-partwise')
     score.setAttribute('version', '2.0')
 
     # set title information
-
     if comp.title:
         title = doc.createElement('movement-title')
         title.appendChild(doc.createTextNode(str(comp.title)))
@@ -253,7 +229,6 @@ def _composition2musicxml(comp):
     identification = doc.createElement('identification')
 
     # set author information
-
     if comp.author:
         author = doc.createElement('creator')
         author.setAttribute('type', 'composer')
@@ -261,7 +236,6 @@ def _composition2musicxml(comp):
         identification.appendChild(author)
 
     # set additional info
-
     encoding = doc.createElement('encoding')
     software = doc.createElement('software')
     software.appendChild(doc.createTextNode('mingus'))
@@ -273,7 +247,6 @@ def _composition2musicxml(comp):
     score.appendChild(identification)
 
     # add tracks
-
     part_list = doc.createElement('part-list')
     score.appendChild(part_list)
     for t in comp:
@@ -287,7 +260,6 @@ def _composition2musicxml(comp):
         if t.instrument:
 
             # add instrument info
-
             score_inst = doc.createElement('score-instrument')
             score_inst.setAttribute('id', str(id(t.instrument)))
             name = doc.createElement('instrument-name')
@@ -296,7 +268,6 @@ def _composition2musicxml(comp):
             score_part.appendChild(score_inst)
 
             # add midi instruments
-
             if isinstance(t.instrument, MidiInstrument):
                 midi = doc.createElement('midi-instrument')
                 midi.setAttribute('id', str(id(t.instrument)))
@@ -313,12 +284,10 @@ def _composition2musicxml(comp):
         score.appendChild(track)
     return score
 
-
 def from_Note(note):
     c = Composition()
     c.add_note(note)
     return _composition2musicxml(c).toprettyxml()
-
 
 def from_Bar(bar):
     c = Composition()
@@ -327,16 +296,13 @@ def from_Bar(bar):
     c.add_track(t)
     return _composition2musicxml(c).toprettyxml()
 
-
 def from_Track(track):
     c = Composition()
     c.add_track(track)
     return _composition2musicxml(c).toprettyxml()
 
-
 def from_Composition(comp):
     return _composition2musicxml(comp).toprettyxml()
-
 
 def write_Composition(composition, filename, zip=False):
     """Creates an xml file (or mxl if compressed) for a given composition"""
@@ -360,5 +326,4 @@ def write_Composition(composition, filename, zip=False):
         zi.external_attr = 0660 << 16L
         zf.writestr(zi, text)
         zf.close()
-
 
