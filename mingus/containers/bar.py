@@ -3,7 +3,7 @@
 """
 ================================================================================
 
-    mingus - Music theory Python package, Bar module.
+    mingus - Music theory Python package, bar module.
     Copyright (C) 2008-2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
@@ -24,8 +24,8 @@
 
 from mingus.core import meter as _meter
 from mingus.core import progressions, keys
-from NoteContainer import NoteContainer
-from Note import Note
+from note_container import NoteContainer
+from note import Note
 from mt_exceptions import MeterFormatError
 
 class Bar(object):

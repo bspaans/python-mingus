@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 import sys
 sys.path += ['../']
-from mingus.containers.NoteContainer import NoteContainer
-from mingus.containers.Note import Note
+from mingus.containers.note_container import NoteContainer
+from mingus.containers.note import Note
 import unittest
 
 

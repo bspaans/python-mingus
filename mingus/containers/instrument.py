@@ -1,10 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-
 ================================================================================
 
-    mingus - Music theory Python package, Instrument module
+    mingus - Music theory Python package, instrument module.
     Copyright (C) 2008-2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
@@ -23,7 +22,7 @@
 ================================================================================
 """
 
-from mingus.containers.Note import Note
+from mingus.containers.note import Note
 from mt_exceptions import UnexpectedObjectError
 
 

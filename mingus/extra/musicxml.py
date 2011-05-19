@@ -3,7 +3,7 @@
 """
 ================================================================================
 
-    mingus - Music theory Python package, MusicXML module.
+    mingus - Music theory Python package, musicxml module.
     Copyright (C) 2008-2009, Bart Spaans, Javier Palanca
     Copyright (C) 2011, Carlo Stemberger
 
@@ -38,9 +38,9 @@ import xml
 from xml.dom.minidom import Document
 from mingus.core import notes
 from mingus.core.keys import major_keys, minor_keys
-from mingus.containers.Instrument import MidiInstrument
-from mingus.containers.Composition import Composition
-from mingus.containers.Track import Track
+from mingus.containers.instrument import MidiInstrument
+from mingus.containers.composition import Composition
+from mingus.containers.track import Track
 from mingus.core import value
 import datetime
 

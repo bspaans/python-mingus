@@ -1,10 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-
 ================================================================================
 
-    mingus - Music theory Python package, Suite module
+    mingus - Music theory Python package, suite module.
     Copyright (C) 2008-2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify

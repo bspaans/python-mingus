@@ -1,10 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-
 ================================================================================
 
-    mingus - Music theory Python package, fft module
+    mingus - Music theory Python package, fft module.
     Copyright (C) 2008-2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
@@ -33,7 +32,7 @@ frequencies
 import wave
 import struct
 import numpy
-from mingus.containers.Note import Note
+from mingus.containers.note import Note
 from numpy.fft import fft as _fft
 import operator
 

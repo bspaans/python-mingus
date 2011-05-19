@@ -1,7 +1,7 @@
 import sys
 sys.path += ["../"]
 
-import mingus.extra.MusicXML as mxl
+import mingus.extra.musicxml as mxl
 import unittest
 
 class test_MusicXML(unittest.TestCase):

@@ -3,7 +3,7 @@
 """
 ================================================================================
 
-    mingus - Music theory Python package, Note class.
+    mingus - Music theory Python package, note module.
     Copyright (C) 2008-2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify

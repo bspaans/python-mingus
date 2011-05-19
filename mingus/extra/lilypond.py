@@ -1,10 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-
 ================================================================================
 
-    mingus - Music theory Python package, LilyPond module
+    mingus - Music theory Python package, lilypond module.
     Copyright (C) 2008-2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
@@ -22,14 +21,14 @@
 
 ================================================================================
 
-    The !LilyPond module provides some methods to help you generate files
+    The !lilypond module provides some methods to help you generate files
     in the !LilyPond format. This allows you to create sheet music from some of \
 the objects in mingus.containers
 
 ================================================================================
 """
 
-from mingus.containers.Note import Note
+from mingus.containers.note import Note
 from mingus.containers.mt_exceptions import NoteFormatError, \
     UnexpectedObjectError
 import mingus.core.value as value

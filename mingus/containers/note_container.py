@@ -1,10 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-
 ================================================================================
 
-    mingus - Music theory Python package, note containers.
+    mingus - Music theory Python package, note_container module.
     Copyright (C) 2008-2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
@@ -23,7 +22,7 @@
 ================================================================================
 """
 
-from Note import Note
+from note import Note
 from mingus.core import intervals, chords, progressions
 from mt_exceptions import UnexpectedObjectError
 

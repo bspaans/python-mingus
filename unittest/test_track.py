@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 import sys
 sys.path += ['../']
-from mingus.containers.Track import Track
-from mingus.containers.Bar import Bar
-from mingus.containers.Instrument import Instrument, Piano, Guitar
+from mingus.containers.track import Track
+from mingus.containers.bar import Bar
+from mingus.containers.instrument import Instrument, Piano, Guitar
 import unittest
 
 

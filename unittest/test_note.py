@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import sys
 sys.path += ['../']
-from mingus.containers.Note import Note
+from mingus.containers.note import Note
 import unittest
 from mingus.containers.mt_exceptions import NoteFormatError
 

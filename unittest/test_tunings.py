@@ -3,7 +3,7 @@
 import sys
 sys.path += ['../']
 import mingus.extra.tunings as tunings
-from mingus.containers.Note import Note
+from mingus.containers.note import Note
 from mingus.core.mt_exceptions import RangeError
 import unittest
 

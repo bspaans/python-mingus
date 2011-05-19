@@ -4,7 +4,7 @@
 
 ================================================================================
 
-    mingus - Music theory Python package, containers package
+    mingus - Music theory Python package, containers package.
     Copyright (C) 2008-2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
@@ -26,10 +26,10 @@
 ================================================================================
 """
 
-from Note import Note
-from NoteContainer import NoteContainer
-from Bar import Bar
-from Track import Track
-from Composition import Composition
-from Suite import Suite
-from Instrument import Instrument, Piano, Guitar, MidiInstrument
+from note import Note
+from note_container import NoteContainer
+from bar import Bar
+from track import Track
+from composition import Composition
+from suite import Suite
+from instrument import Instrument, Piano, Guitar, MidiInstrument
