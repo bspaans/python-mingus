@@ -1,10 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-
 ================================================================================
 
-    mingus - Music theory Python package, fft module
+    mingus - Music theory Python package, fft module.
     Copyright (C) 2008-2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
@@ -33,7 +32,7 @@ frequencies
 import wave
 import struct
 import numpy
-from mingus.containers.Note import Note
+from mingus.containers.note import Note
 from numpy.fft import fft as _fft
 import operator
 
@@ -79,7 +78,7 @@ Because we are dealing with ranges, this returns the nearest index."""
     # Binary search related algorithm to find the index
 
     while begin != end:
-        n = (begin + end) / 2
+        n = (begin + end) // 2
         c = _log_cache[n]
         cp = _log_cache[n - 1] if n != 0 else 0
         if cp < f <= c:

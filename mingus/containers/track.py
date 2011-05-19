@@ -1,10 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-
 ================================================================================
 
-    mingus - Music theory Python package, Track module
+    mingus - Music theory Python package, track module.
     Copyright (C) 2008-2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
@@ -24,12 +23,12 @@
 """
 
 from mt_exceptions import InstrumentRangeError
-from mingus.containers.NoteContainer import NoteContainer
-from mingus.containers.Bar import Bar
+from mingus.containers.note_container import NoteContainer
+from mingus.containers.bar import Bar
 import mingus.core.value as value
 
 
-class Track:
+class Track(object):
 
     """The Track class can be used to store [refMingusContainersBar Bars] and to \
 work on them. The class is also designed to be used with \

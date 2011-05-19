@@ -41,20 +41,20 @@ import test_value
 
 # mingus.containers Tests
 
-import test_Note
-import test_NoteContainers
-import test_Instrument
-import test_Bar
-import test_Track
-import test_Composition
-import test_Suite
+import test_note
+import test_note_containers
+import test_instrument
+import test_bar
+import test_track
+import test_composition
+import test_suite
 
 # MIDI TESTS HERE ...
 
 import test_fft
 import test_tablature
 import test_tunings
-import test_MusicXML
+import test_musicxml
 
 # See run_fluidsynth_tests.py for FluidSynth audio tests See
 # run_lilypond_tests.py to generate some pdf's
@@ -72,19 +72,19 @@ core = [
     test_value,
     ]
 containers = [
-    test_Note,
-    test_NoteContainers,
-    test_Instrument,
-    test_Bar,
-    test_Track,
-    test_Composition,
-    test_Suite,
+    test_note,
+    test_note_containers,
+    test_instrument,
+    test_bar,
+    test_track,
+    test_composition,
+    test_suite,
     ]
 extra = [
         test_fft, 
         test_tunings, 
         test_tablature, 
-        test_MusicXML
+        test_musicxml
         ]
 
 # Run all tests

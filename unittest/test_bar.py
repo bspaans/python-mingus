@@ -3,9 +3,9 @@
 import sys
 sys.path += ['../']
 from mingus.core.keys import Key
-from mingus.containers.Bar import Bar
-from mingus.containers.Note import Note
-from mingus.containers.NoteContainer import NoteContainer
+from mingus.containers.bar import Bar
+from mingus.containers.note import Note
+from mingus.containers.note_container import NoteContainer
 from mingus.containers.mt_exceptions import MeterFormatError
 import unittest
 

@@ -26,7 +26,7 @@
 
 __all__ = [
     'notes',
-    'diatonic',
+    'keys',
     'intervals',
     'chords',
     'scales',

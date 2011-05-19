@@ -1,10 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-
 ================================================================================
 
-    mingus - Music theory Python package, string tuning module
+    mingus - Music theory Python package, tunings module.
     Copyright (C) 2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
@@ -22,18 +21,18 @@
 
 ================================================================================
 
-        The tunings module provides dozens of standard tunings, a StringTuning
-        class and some functions to help you search through them.
+    This module provides dozens of standard tunings, a StringTuning
+    class and some functions to help you search through them.
 
 ================================================================================"""
 
-from mingus.containers.Note import Note
-from mingus.containers.NoteContainer import NoteContainer
+from mingus.containers.note import Note
+from mingus.containers.note_container import NoteContainer
 from mingus.core.mt_exceptions import RangeError
 import mingus.core.notes as notes
 
 
-class StringTuning:
+class StringTuning(object):
 
     """StringTuning can be used to store and work with tunings and fingerings."""
 

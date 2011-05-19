@@ -10,7 +10,8 @@
 
 
 import sys
-if sys.platform!='win32': raise 'Intended for use on win32 platform'
+if sys.platform != 'win32':
+    raise RuntimeError('Intended for use on win32 platform')
 import time
 import exceptions
 from ctypes import windll, c_buffer, c_void_p, c_int, byref

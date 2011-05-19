@@ -1,10 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-
 ================================================================================
 
-    mingus - Music theory Python package, composition module
+    mingus - Music theory Python package, composition module.
     Copyright (C) 2008-2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
@@ -27,7 +26,7 @@
 from mt_exceptions import UnexpectedObjectError
 
 
-class Composition:
+class Composition(object):
 
     """The Composition class is a datastructure for working with \
 [refMingusContainersTrack Tracks]. Composition can be stored together in \

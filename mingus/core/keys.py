@@ -94,7 +94,7 @@ def get_key_signature_accidentals(key='C'):
 
     if accidentals < 0:
         for i in range(-accidentals):
-            res.append('{0}{1}'.format(notes.fifths[::-1][i], 'b'))
+            res.append('{0}{1}'.format(list(reversed(notes.fifths))[i], 'b'))
     elif accidentals > 0:
         for i in range(accidentals):
             res.append('{0}{1}'.format(notes.fifths[i], '#'))
