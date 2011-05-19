@@ -49,7 +49,7 @@ tunings.add_tuning for examples."""
         self.instrument = instrument
         self.tuning = []
 
-                # convert to Note
+        # convert to Note
 
         for x in tuning:
             if type(x) == list:
@@ -131,8 +131,8 @@ recurse.
             if fret is not None and string not in not_strings:
                 if len(notes) > 0:
 
-                                        # recursively find fingerings for
-                                        # remaining notes
+                    # recursively find fingerings for
+                    # remaining notes
 
                     r = self.find_fingering(notes, max_distance, not_strings
                              + [string])
@@ -142,7 +142,7 @@ recurse.
                 else:
                     result.append([(string, fret)])
 
-                # filter impossible fingerings and sort
+        # filter impossible fingerings and sort
 
         res = []
         for r in result:
@@ -163,6 +163,7 @@ recurse.
         notes,
         max_distance=4,
         maxfret=18,
+        max_fingers=4,
         return_best_as_NoteContainer=False,
         ):
         """Returns a list of fret lists that are considered possible fingerings. \
@@ -223,48 +224,48 @@ more than `find_fingering`. For example: {{{
                     addedNone = x
             return res
 
-                # Convert to NoteContainer if necessary
+        # Convert to NoteContainer if necessary
 
         n = notes
         if notes != [] and type(notes) == list and type(notes[0]) == str:
             n = NoteContainer(notes)
 
-                # Check number of note names.
+        # Check number of note names.
 
         notenames = [x.name for x in n]
         if len(notenames) == 0 or len(notenames) > len(self.tuning):
             return []
 
-                # Make string-fret dictionary
+        # Make string-fret dictionary
 
         fretdict = []
         for x in xrange(0, len(self.tuning)):
             fretdict.append(self.find_note_names(notes, x, maxfret))
 
-                # Build table
+        # Build table
 
         res = make_lookup_table()
 
-                # Build result using table
+        # Build result using table
 
         result = []
 
-                # For each fret on the first string
+        # For each fret on the first string
 
         for (i, y) in enumerate(res[0]):
             if y != []:
                 (yname, next) = (y[0], y[1])
 
-                                # For each destination fret in y
+                # For each destination fret in y
 
                 for (fret, name) in next:
 
-                                        # For each followed result
+                    # For each followed result
 
                     for s in follow(1, fret, name):
                         subresult = [(i, yname)] + s
 
-                                                # Get boundaries
+                        # Get boundaries
 
                         (mi, ma, names) = (1000, -1000, [])
                         for (f, n) in subresult:
@@ -275,29 +276,30 @@ more than `find_fingering`. For example: {{{
                                     ma = f
                                 names.append(n)
 
-                                                # Enforce boundaries
+                        # Enforce boundaries
 
                         if abs(ma - mi) < max_distance:
 
-                                                        # Check if all note
-                                                        # names are present
+                            # Check if all note
+                            # names are present
 
                             covered = True
                             for n in notenames:
                                 if n not in names:
                                     covered = False
 
-                                                        # Add to result
+                            # Add to result
 
                             if covered and names != []:
                                 result.append([y[0] if y[1]
                                          is not None else y[1] for y in
                                         subresult])
 
-                # Return semi-sorted list
+        # Return semi-sorted list
 
         s = sorted(result, key=lambda x: sum([t if t is not None else 1000
                    for (i, t) in enumerate(x)]))
+        s = filter(lambda a: fingers_needed(a) <= max_fingers, s)
         if not return_best_as_NoteContainer:
             return s
         else:
@@ -338,7 +340,7 @@ Notelist should be a list of Notes, note-strings or a NoteContainer.
         names = [x.name for x in n]
         int_notes = [notes.note_to_int(x) for x in names]
 
-                # Base of the string
+        # Base of the string
 
         s = int(self.tuning[string]) % 12
         for x in xrange(0, maxfret + 1):
@@ -377,7 +379,28 @@ fret or string is unplayable.
                 raise RangeError, "Fret '%d' on string '%d' is out of range"\
                      % (string, fret)
         else:
-            raise RangeError, "String '%d' out of range" % string
+            raise RangeError, "String '%d' out of range" % string 
+
+
+
+def fingers_needed(fingering):
+    """Returns the number of fingers needed to play the given fingering. """
+    split = False # True if an open string must be played, thereby making any subsequent strings impossible to bar with the index finger
+    indexfinger = False # True if the index finger was already accounted for in the count
+    minimum = min(finger for finger in fingering if finger) # the index finger plays the lowest finger position
+    result = 0
+    for finger in reversed(fingering):
+        if finger == 0: # an open string is played
+            split = True # subsequent strings are impossible to bar with the index finger
+        else:
+            if not split and finger == minimum: # if an open string hasn't been played and this is a job for the index finger:
+                if not indexfinger: # if the index finger hasn't been accounted for:
+                    result += 1
+                    indexfinger = True # index finger has now been accounted for
+            else:
+                result += 1
+    return result
+
 
 
 # The index
