@@ -48,7 +48,8 @@ class Win32MidiSequencer(Sequencer):
     midplayer = None
 
     def init(self):
-        if sys.platform!='win32': raise 'Intended for use on win32 platform'
+        if sys.platform != 'win32':
+            raise RuntimeError('Intended for use on win32 platform')
         self.midplayer = win32midi.Win32MidiPlayer()
         self.midplayer.openDevice()
 

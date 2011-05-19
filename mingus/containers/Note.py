@@ -185,7 +185,7 @@ a C on octave 1, etc.
 }}}"""
 
         self.name = notes.int_to_note(integer % 12)
-        self.octave = integer / 12
+        self.octave = integer // 12
         return self
 
     def measure(self, other):
@@ -300,26 +300,37 @@ etc. This method allows you to use int() on Notes."""
                 res -= 1
         return res
 
-    def __cmp__(self, other):
-        """This method allows you to use the comparing operators on Notes (>, <, \
-==, !=, >= and <=). So we can sort() Intervals, etc.
+    def __lt__(self, other):
+        """This method, along with __eq__ and the other comparison methods \
+defined in terms of this one, allows you to use the comparing operators on \
+Notes (>, <, \ ==, !=, >= and <=). So we can sort() Intervals, etc.
 {{{
 >>> Note(\"C\", 4) < Note(\"B\", 4)
 True
 >>> Note(\"C\", 4) > Note(\"B\", 4)
 False
 }}}"""
+        if other is None:
+            return False
+        return int(self) < int(other)
 
-        if other == None:
-            return 1
-        s = int(self)
-        o = int(other)
-        if s < o:
-            return -1
-        elif s > o:
-            return 1
-        else:
-            return 0
+    def __eq__(self, other):
+        """Compares Notes for equality by comparing their note values."""
+        if other is None:
+            return False
+        return int(self) == int(other)
+
+    def __ne__(self, other):
+        return not self == other
+
+    def __gt__(self, other):
+        return not(self < other or self == other)
+
+    def __le__(self, other):
+        return self < other or self == other
+
+    def __ge__(self, other):
+        return not self < other
 
     def __repr__(self):
         """A helpful representation for printing Note classes"""

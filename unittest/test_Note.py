@@ -26,6 +26,13 @@ class test_Note(unittest.TestCase):
         self.assert_(self.c2 < self.b4)
         self.assert_(self.b4 < self.b5)
         self.assert_(Note('C') > Note('Cb'))
+        self.assert_(self.c > None)
+
+    def test_eq(self):
+        self.assert_(self.c != self.c1)
+        self.assert_(self.c == self.c)
+        self.assert_(Note('C') == Note('C'))
+        self.assert_(self.c != None)
 
     def test_to_int(self):
         self.assertEqual(48, Note('C', 4))

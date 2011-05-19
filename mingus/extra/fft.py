@@ -79,7 +79,7 @@ Because we are dealing with ranges, this returns the nearest index."""
     # Binary search related algorithm to find the index
 
     while begin != end:
-        n = (begin + end) / 2
+        n = (begin + end) // 2
         c = _log_cache[n]
         cp = _log_cache[n - 1] if n != 0 else 0
         if cp < f <= c:
