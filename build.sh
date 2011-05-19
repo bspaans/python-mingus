@@ -3,7 +3,7 @@
 #	mingus build script
 #	Builds mingus, registers at PyPi, generates documentation and uploads to Google code
 
-VERSION=`cat ~/mingus/setup.py | grep version | awk -F = '{print $2}' | awk -F \" '{print $2}'`
+VERSION=`grep version setup.py | awk -F = '{print $2}' | awk -F \" '{print $2}'`
 
 echo "*******************************************************************************"
 echo "*****                     mingus :: Automatic Build                       *****"                     
@@ -32,7 +32,8 @@ echo
 echo "              Tagging release"
 echo
 echo "*******************************************************************************"
-svn copy https://mingus.googlecode.com/svn/trunk/ https://mingus.googlecode.com/svn/tags/mingus-$VERSION -m "Tagging release" --username Rhijnauwen
+##svn copy https://mingus.googlecode.com/svn/trunk/ https://mingus.googlecode.com/svn/tags/mingus-$VERSION -m "Tagging release" --username Rhijnauwen
+echo "WARNING: the code hasn't been tagged yet. Do this manually."
 echo "*******************************************************************************"
 echo
 echo "              Uploading source and windows installer to Google Code"
@@ -45,3 +46,6 @@ python googlecode_upload.py -p mingus -s "mingus-$VERSION - windows installer" -
 echo
 echo "Uploading source distribution"
 python googlecode_upload.py -p mingus -s "mingus-$VERSION - source tarball" -u rhijnauwen -l Featured,OpSys-All,Type-Source /home/bspaans/mingus/dist/mingus-$VERSION.tar.gz
+
+
+echo "WARNING: the code hasn't been tagged yet. Do this manually."
