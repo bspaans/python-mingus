@@ -1,10 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-
 ================================================================================
 
-    mingus - Music theory Python package, MIDI File In
+    mingus - Music theory Python package, midi_file_in module.
     Copyright (C) 2008-2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
@@ -22,18 +21,18 @@
 
 ================================================================================
 
-   MidiFileIn is a module that can read a MIDI file and convert it into
+   This is a module that can read a MIDI file and convert it into
    mingus.containers objects.
 
 ================================================================================
 """
 
-import mingus.containers.Note as Note
-import mingus.containers.NoteContainer as NoteContainer
-import mingus.containers.Bar as Bar
-import mingus.containers.Track as Track
-import mingus.containers.Composition as Composition
-from mingus.containers.Instrument import MidiInstrument
+import mingus.containers.note as Note
+import mingus.containers.note_container as NoteContainer
+import mingus.containers.bar as Bar
+import mingus.containers.track as Track
+import mingus.containers.composition as Composition
+from mingus.containers.instrument import MidiInstrument
 import mingus.core.notes as notes
 import mingus.core.intervals as intervals
 import binascii

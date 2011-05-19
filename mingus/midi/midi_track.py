@@ -1,10 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-
 ================================================================================
 
-    mingus - Music theory Python package, MIDI Track
+    mingus - Music theory Python package, midi_track module.
     Copyright (C) 2008-2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
@@ -34,12 +33,12 @@
 from binascii import a2b_hex
 from struct import pack, unpack
 from math import log
-from MidiEvents import *
+from midi_events import *
 from mingus.core.diatonic import basic_keys
-from mingus.containers.Note import Note
+from mingus.containers.note import Note
 
 
-class MidiTrack:
+class MidiTrack(object):
 
     """This class is used to generate MIDI events from the
     objects in mingus.containers."""

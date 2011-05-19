@@ -1,10 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-
 ================================================================================
 
-        mingus - Music theory Python package, sequencer observer
+    mingus - Music theory Python package, sequencer_observer module.
     Copyright (C) 2008-2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
@@ -22,20 +21,20 @@
 
 ================================================================================
 
-        Provides an easy to extend base class that can be used to observe
-        a Sequencer. Each time a Sequencer starts playing a new Note, Bar, w/e,
-        an event is fired; this SequencerObserver intercepts the event messages
-        and calls the proper function so you only have to implement the \
+    Provides an easy to extend base class that can be used to observe
+    a Sequencer. Each time a Sequencer starts playing a new Note, Bar, w/e,
+    an event is fired; this SequencerObserver intercepts the event messages
+    and calls the proper function so you only have to implement the \
 functions
-        for the events you need to see.
+    for the events you need to see.
 
 ================================================================================
 """
 
-from mingus.midi.Sequencer import Sequencer
+from mingus.midi.sequencer import Sequencer
 
 
-class SequencerObserver:
+class SequencerObserver(object):
 
     """ Provides an easy to extend base class that can be used to observe a \
 Sequencer. Each time a Sequencer starts playing a new Note, Bar, w/e, an \

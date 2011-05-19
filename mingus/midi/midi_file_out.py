@@ -1,10 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-
 ================================================================================
 
-    mingus - Music theory Python package, MIDI File Out
+    mingus - Music theory Python package, midi_file_out module.
     Copyright (C) 2008-2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
@@ -22,17 +21,17 @@
 
 ================================================================================
 
-   MidiFileOut contains functions that can generate MIDI files from the
+   This module contains functions that can generate MIDI files from the
    objects in mingus.containers.
 
 ================================================================================
 """
 
-from MidiTrack import MidiTrack
+from midi_track import MidiTrack
 from binascii import a2b_hex
 
 
-class MidiFile:
+class MidiFile(object):
 
     """This class generates midi files from MidiTracks."""
 

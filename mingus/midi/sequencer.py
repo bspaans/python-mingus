@@ -1,10 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-
 ================================================================================
 
-        mingus - Music theory Python package, general purpose sequencer
+    mingus - Music theory Python package, sequencer module.
     Copyright (C) 2008-2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
@@ -34,10 +33,9 @@
 ================================================================================
 """
 
-from mingus.containers.Instrument import MidiInstrument
+from mingus.containers.instrument import MidiInstrument
 
-
-class Sequencer:
+class Sequencer(object):
 
     """A general purpose sequencer for the objects in mingus.containers. You can \
 use the Sequencer object either by creating a subclass and implementing some \

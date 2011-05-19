@@ -1,10 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-
 ================================================================================
 
-    mingus - Music theory Python package, midi package
+    mingus - Music theory Python package, midi package.
     Copyright (C) 2008-2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
@@ -23,13 +22,13 @@
 ================================================================================
 """
 
-from Sequencer import Sequencer
-from SequencerObserver import SequencerObserver
+from sequencer import Sequencer
+from sequencer_observer import SequencerObserver
 __all__ = [
     'Sequencer',
     'SequencerObserver',
-    'MidiFileIn',
-    'MidiFileOut',
-    'MidiTrack',
+    'midi_file_in',
+    'midi_file_out',
+    'midi_track',
     'fluidsynth',
     ]

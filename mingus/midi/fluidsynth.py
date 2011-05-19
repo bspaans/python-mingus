@@ -4,7 +4,7 @@
 
 ================================================================================
 
-    mingus - Music theory Python package, FluidSynth support
+    mingus - Music theory Python package, fluidsynth module.
     Copyright (C) 2008-2009, Bart Spaans
 
     This program is free software: you can redistribute it and/or modify
@@ -39,9 +39,9 @@
 ================================================================================
 """
 
-from mingus.midi.Sequencer import Sequencer
-from mingus.containers.Instrument import MidiInstrument
-import pyFluidSynth as fs
+from mingus.midi.sequencer import Sequencer
+from mingus.containers.instrument import MidiInstrument
+import pyfluidsynth as fs
 import time
 import wave
 

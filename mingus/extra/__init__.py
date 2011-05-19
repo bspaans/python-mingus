@@ -25,9 +25,9 @@
 import lilypond
 from tunings import StringTuning
 __all__ = [
-    'LilyPond',
+    'lilypond',
     'fft',
-    'MusicXML',
+    'musicxml',
     'tunings',
     'tablature',
     'StringTuning',
