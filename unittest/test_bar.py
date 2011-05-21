@@ -85,21 +85,21 @@ class test_Bar(unittest.TestCase):
         b.diminish()
         self.assertEqual(b, c)
 
-    def test_to_minor(self):
-        b = Bar()
-        c = Bar()
-        b + 'C'
-        c + 'A'
-        b.to_minor()
-        self.assertEqual(b, c)
-
-    def test_to_major(self):
-        b = Bar()
-        c = Bar()
-        b + 'C'
-        c + 'A'
-        c.to_major()
-        self.assertEqual(b, c)
+#    def test_to_minor(self):
+#        b = Bar()
+#        c = Bar()
+#        b + 'C'
+#        c + 'A'
+#        b.to_minor()
+#        self.assertEqual(b, c)
+#
+#    def test_to_major(self):
+#        b = Bar()
+#        c = Bar()
+#        b + 'C'
+#        c + 'A'
+#        c.to_major()
+#        self.assertEqual(b, c)
 
     def test_get_note_names(self):
         b = Bar()

@@ -183,17 +183,17 @@ Bar"""
         for cont in self.bar:
             cont[2].diminish()
 
-    def to_minor(self):
-        """Calls to_minor on the NoteContainers in Bar."""
-
-        for cont in self.bar:
-            cont[2].to_minor()
-
-    def to_major(self):
-        """Calls to_major on the NoteContainers in Bar."""
-
-        for cont in self.bar:
-            cont[2].to_major()
+#    def to_minor(self):
+#        """Calls to_minor on the NoteContainers in Bar."""
+#
+#        for cont in self.bar:
+#            cont[2].to_minor()
+#
+#    def to_major(self):
+#        """Calls to_major on the NoteContainers in Bar."""
+#
+#        for cont in self.bar:
+#            cont[2].to_major()
 
     def transpose(self, interval, up=True):
         """Transposes the notes in the bar up or down the interval. Calls \

@@ -6,9 +6,7 @@ import mingus.core.notes as notes
 from mingus.core.mt_exceptions import RangeError
 import unittest
 
-
 class test_notes(unittest.TestCase):
-
     def setUp(self):
         self.base_notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
         self.sharps = map(lambda x: x + '#', self.base_notes)
@@ -102,32 +100,6 @@ class test_notes(unittest.TestCase):
         map(lambda x: self.assertEqual(known[x], notes.diminish(x),
             'The diminished note of %s is not %s, expecting %s' % (x,
                 notes.diminish(x), known[x])), known.keys())
-
-    def test_to_major(self):
-        known = {
-                'C': 'Eb',
-                'A': 'C',
-                'E': 'G',
-                'F': 'Ab',
-                'D': 'F',
-                'B': 'D',
-                'B#': 'D#'
-                }
-        map(lambda x: self.assertEqual(known[x], notes.to_major(x),
-            'The major of %s is not %s, expecting %s' % (x, notes.to_major(x),
-                known[x])), known.keys())
-
-    def test_to_minor(self):
-        known = {
-                'C': 'A',
-                'E': 'C#',
-                'B': 'G#',
-                'G': 'E',
-                'F': 'D'
-                }
-        map(lambda x: self.assertEqual(known[x], notes.to_minor(x),
-            'The minor of %s is not %s, expecting %s' % (x, notes.to_minor(x),
-                known[x])), known.keys())
 
 
 def suite():

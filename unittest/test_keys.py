@@ -37,6 +37,33 @@ class test_keys(unittest.TestCase):
             self.assertEqual(self.scale[k], keys.get_notes(k),
             'Invalid notes for key %s' % self.scale[k])
 
+    def test_relative_major(self):
+        known = {
+                'c': 'Eb',
+                'a': 'C',
+                'e': 'G',
+                'f': 'Ab',
+                'd': 'F',
+                'b': 'D',
+                }
+        for k in known.keys():
+            self.assertEqual(known[k], keys.relative_major(k),
+                    'The major of %s is not %s, expecting %s' % (k,
+                        keys.relative_major(k), known[k]))
+
+    def test_relative_minor(self):
+        known = {
+                'C': 'a',
+                'E': 'c#',
+                'B': 'g#',
+                'G': 'e',
+                'F': 'd'
+                }
+        for k in known.keys():
+            self.assertEqual(known[k], keys.relative_minor(k),
+                    'The minor of %s is not %s, expecting %s' % (k,
+                        keys.relative_minor(k), known[k]))
+
 
 def suite():
     return unittest.TestLoader().loadTestsFromTestCase(test_keys)

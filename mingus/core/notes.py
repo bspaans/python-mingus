@@ -182,25 +182,3 @@ def diminish(note):
     else:
         return note[:-1]
 
-def to_major(note):
-    """Return the major of note.
-    Example:
-{{{
->>> to_major('A')
-'C'
-}}}"""
-    import intervals  # Circular import
-
-    return intervals.minor_third(note)
-
-def to_minor(note):
-    """Return the minor of note.
-    Example:
-{{{
->>> to_minor('C')
-'A'
-}}}"""
-    import intervals  # Circular import
-
-    return intervals.major_sixth(note)
-

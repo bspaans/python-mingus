@@ -71,7 +71,7 @@ def get_key(accidentals=0):
     flats, positive numbers for sharps."""
 
     if accidentals not in range(-7, 8):
-        raise RangeError('Integer not in range (-7)-(+7).')
+        raise RangeError('integer not in range (-7)-(+7).')
     return keys[accidentals+7]
 
 def get_key_signature(key='C'):
@@ -79,7 +79,7 @@ def get_key_signature(key='C'):
     signatures, positive numbers for sharp key signatures."""
 
     if not is_valid_key(key):
-        raise NoteFormatError("Unrecognized format for key '%s'" % key)
+        raise NoteFormatError("unrecognized format for key '%s'" % key)
 
     for couple in keys:
         if key in couple:
@@ -111,7 +111,7 @@ def get_notes(key='C'):
     if _key_cache.has_key(key):
         return _key_cache[key]
     if not is_valid_key(key):
-        raise NoteFormatError("Unrecognized format for key '%s'" % key)
+        raise NoteFormatError("unrecognized format for key '%s'" % key)
     result = []
 
     # Calculate notes
@@ -134,6 +134,30 @@ def get_notes(key='C'):
     # Save result to cache
     _key_cache[key] = result
     return result
+
+def relative_major(key):
+    """Return the relative major of a minor key.
+    Example:
+{{{
+>>> relative_major('a')
+'C'
+}}}"""
+    for couple in keys:
+        if key == couple[1]:
+            return couple[0]
+    raise NoteFormatError("'%s' is not a minor key" % key)
+
+def relative_minor(key):
+    """Return the relative minor of a major key.
+    Example:
+{{{
+>>> relative_minor('C')
+'a'
+}}}"""
+    for couple in keys:
+        if key == couple[0]:
+            return couple[1]
+    raise NoteFormatError("'%s' is not a major key" % key)
 
 class Key(object):
     """A key object."""
@@ -164,3 +188,4 @@ class Key(object):
 
     def __ne__(self, other):
         return not self.__eq__(other)
+
