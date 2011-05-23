@@ -33,7 +33,7 @@
 === `cdll` ===
 
   * *Type*: ctypes.LibraryLoader
-  * *Value*: <ctypes.LibraryLoader object at 0x904ab2c>
+  * *Value*: <ctypes.LibraryLoader object at 0xa1d0a8c>
 
 === `lib` ===
 
@@ -43,12 +43,12 @@
 === `pydll` ===
 
   * *Type*: ctypes.LibraryLoader
-  * *Value*: <ctypes.LibraryLoader object at 0x904ab4c>
+  * *Value*: <ctypes.LibraryLoader object at 0xa1d0aac>
 
 === `pythonapi` ===
 
   * *Type*: ctypes.PyDLL
-  * *Value*: <PyDLL 'None', handle b77c4908 at 904ab6c>
+  * *Value*: <PyDLL 'None', handle b77fc908 at a1d0acc>
 
 ----
 

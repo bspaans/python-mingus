@@ -198,10 +198,15 @@
   * *Type*: str
   * *Value*: '\x03'
 
-=== `basic_keys` ===
+=== `major_keys` ===
 
   * *Type*: list
-  * *Value*: ['Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#', 'G#', 'D#', 'A#']
+  * *Value*: ['Cb', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#']
+
+=== `minor_keys` ===
+
+  * *Type*: list
+  * *Value*: ['ab', 'eb', 'bb', 'f', 'c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#']
 
 ----
 
