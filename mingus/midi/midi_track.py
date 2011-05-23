@@ -5,6 +5,7 @@
 
     mingus - Music theory Python package, midi_track module.
     Copyright (C) 2008-2009, Bart Spaans
+    Copyright (C) 2011, Carlo Stemberger
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -292,14 +293,16 @@ track_data and the end of track meta event."""
         """Return the bytes for a key signature event."""
 
         if key[0].islower():
-            val = minor_keys.index(key) - 8
+            val = minor_keys.index(key) - 7
+            mode = '\x01'
         else:
-            val = major_keys.index(key) - 8
+            val = major_keys.index(key) - 7
+            mode = '\x00'
         if val < 0:
             val = 256 + val
         key = a2b_hex('%02x' % val)
-        return self.delta_time + META_EVENT + KEY_SIGNATURE + '\x02' + key\
-             + '\x00'
+        return '{0}{1}{2}\x02{3}{4}'.format(self.delta_time, META_EVENT,
+                KEY_SIGNATURE, key, mode)
 
     def set_track_name(self, name):
         """Adds a meta event for the track."""
