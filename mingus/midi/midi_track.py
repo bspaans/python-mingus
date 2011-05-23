@@ -34,7 +34,7 @@ from binascii import a2b_hex
 from struct import pack, unpack
 from math import log
 from midi_events import *
-from mingus.core.diatonic import basic_keys
+from mingus.core.keys import major_keys, minor_keys
 from mingus.containers.note import Note
 
 
@@ -289,9 +289,12 @@ track_data and the end of track meta event."""
         self.track_data += self.key_signature_event(key)
 
     def key_signature_event(self, key='C'):
-        """Returns the bytes for a key signature event."""
+        """Return the bytes for a key signature event."""
 
-        val = basic_keys.index(key) - 6
+        if key[0].islower():
+            val = minor_keys.index(key) - 8
+        else:
+            val = major_keys.index(key) - 8
         if val < 0:
             val = 256 + val
         key = a2b_hex('%02x' % val)
