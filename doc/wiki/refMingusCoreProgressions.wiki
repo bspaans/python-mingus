@@ -6,15 +6,15 @@
 
 
 
-	In music and music theory you often deal with sequences 
-	of chords. These chord sequences are called progressions and are
-	often written down using roman numerals. In this system the 'I' 
-	refers to the first natural triad in a key, the II to the second,
-	etc. We can add prefixes and suffixes to denote more complex 
-	progressions, like: #V7, bIIdim7, etc.
+    In music and music theory you often deal with sequences
+    of chords. These chord sequences are called progressions and are
+    often written down using roman numerals. In this system the 'I'
+    refers to the first natural triad in a key, the II to the second,
+    etc. We can add prefixes and suffixes to denote more complex
+    progressions, like: #V7, bIIdim7, etc.
 
-	This module provides methods which can convert progressions 
-	to chords and vice versa.
+    This module provides methods which can convert progressions
+    to chords and vice versa.
 
 
 
@@ -39,10 +39,10 @@
 === `determine(chord, key, shorthand)` ===
 
   * *Default values*: shorthand = False
-  * Determines the harmonic function of chord in key. This function can also deal with lists of chords. 
-{{{ 
->>> determine(["C", "E", "G"], "C") 
-['tonic'] 
+  * Determines the harmonic function of chord in key. This function can also deal with lists of chords.
+{{{
+>>> determine(["C", "E", "G"], "C")
+['tonic']
 >>> determine(["G", "B", "D"], "C")
 ['dominant']
 >>> determine(["G", "B", "D", "F"], "C", True)
@@ -57,7 +57,7 @@
 
 === `parse_string(progression)` ===
 
-  * Returns a tuple (roman numeral, accidentals, chord suffix). 
+  * Returns a tuple (roman numeral, accidentals, chord suffix).
 {{{
 >>> progressions.parse_string("I")
 ('I', 0, '')
@@ -68,7 +68,7 @@
 === `skip(roman_numeral, skip)` ===
 
   * *Default values*: skip = 1
-  * Skips `skip` places to the next roman numeral. 
+  * Skips `skip` places to the next roman numeral.
 {{{
 >>> progressions.skip("I")
 'II'
@@ -102,11 +102,11 @@
 === `substitute_harmonic(progression, substitute_index, ignore_suffix)` ===
 
   * *Default values*: ignore_suffix = False
-  * Does simple harmonic substitutions. Returns a list of possible substitions for `progression[substitute_index]`. If `ignore_suffix` is set to True the suffix of the chord being substituted will be ignored. Otherwise only progressions without a suffix, or with suffix '7' will be substituted. The following table is used to convert progressions: 
-|| I || III || 
-|| I || VI || 
-|| IV || II || 
-|| IV || VI || 
+  * Does simple harmonic substitutions. Returns a list of possible substitions for `progression[substitute_index]`. If `ignore_suffix` is set to True the suffix of the chord being substituted will be ignored. Otherwise only progressions without a suffix, or with suffix '7' will be substituted. The following table is used to convert progressions:
+|| I || III ||
+|| I || VI ||
+|| IV || II ||
+|| IV || VI ||
 || V || VII ||
 
 === `substitute_major_for_minor(progression, substitute_index, ignore_suffix)` ===

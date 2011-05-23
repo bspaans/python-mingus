@@ -6,17 +6,17 @@
 
 
 
-	The intervals module can be used to create intervals from notes.
-	When you are working in a key (for instance 'F'), you can use the
-	functions second ('G'), third ('A'), fourth ('Bb'), fifth ('C'), 
-	sixth ('D') and seventh ('E') to get to the respective natural 
-	intervals of that note.
-	When you want to get the absolute intervals you can use the
-	minor and major functions. For example: minor_third("F") returns
-	'Ab' while major_third("F") returns 'A'.
+    The intervals module can be used to create intervals from notes.
+    When you are working in a key (for instance 'F'), you can use the
+    functions second ('G'), third ('A'), fourth ('Bb'), fifth ('C'),
+    sixth ('D') and seventh ('E') to get to the respective natural
+    intervals of that note.
+    When you want to get the absolute intervals you can use the
+    minor and major functions. For example: minor_third("F") returns
+    'Ab' while major_third("F") returns 'A'.
 
-	This modules also contains other useful helper functions like 
-	measure, determine, invert, is_consonant and is_dissonant.
+    This modules also contains other useful helper functions like
+    measure, determine, invert, is_consonant and is_dissonant.
 
 
 
@@ -34,55 +34,55 @@
 
   * *Default values*: shorthand = False
   * Names the interval between note1 and note2.
-	Example:
+    Example:
 {{{
->>>	determine("C", "E") 
+>>>    determine("C", "E")
 'major third'
->>> determine("C", "Eb") 
+>>> determine("C", "Eb")
 'minor third'
->>> determine("C", "E#") 
+>>> determine("C", "E#")
 'augmented third'
->>> determine("C", "Ebb") 
+>>> determine("C", "Ebb")
 'diminished third'
 }}}
-	
-	This works for all intervals. Note that there are corner cases for 'major' fifths and fourths: 
+
+    This works for all intervals. Note that there are corner cases for 'major' fifths and fourths:
 {{{
->>> determine("C", "G") 
+>>> determine("C", "G")
 'perfect fifth'
->>> determine("C", "F") 
+>>> determine("C", "F")
 'perfect fourth'
 }}}
 
 === `fifth(note, key)` ===
 
   * Take the diatonic fifth of note in key.
-	Examples:
+    Examples:
 {{{
->>>	fifth("E", "C") 
+>>>    fifth("E", "C")
 'B'
->>>	fifth("E", "F") 
+>>>    fifth("E", "F")
 'Bb'
 }}}
-	Raises a !KeyError if note is not found in key.
+    Raises a !KeyError if note is not found in key.
 
 === `fourth(note, key)` ===
 
   * Take the diatonic fourth of note in key.
-	Examples:
+    Examples:
 {{{
->>>	fourth("E", "C") 
+>>>    fourth("E", "C")
 'A'
->>>	fourth("E", "B") 
+>>>    fourth("E", "B")
 'A#'
 }}}
-	Raises a !KeyError if note is not found in key.
+    Raises a !KeyError if note is not found in key.
 
 === `from_shorthand(note, interval, up)` ===
 
   * *Default values*: up = True
   * Returns the note on interval up or down.
-	Example:
+    Example:
 {{{
 >>> from_shorthand("A", "b3")
 'C'
@@ -97,14 +97,23 @@
   * *Default values*: key = 'C'
   * Gets the note an interval (in half notes) away from the given note. This will produce mostly theoretical sound results, but you should use the minor and major functions to work around the corner cases.
 
+=== `interval(key, start_note, interval)` ===
+
+  * Return the note found at the interval starting from start_note in the
+    given key.
+    
+    For example interval('C', 'D', 1) will return 'E'. Will raise a !KeyError
+    if the start_note is not a valid note.
+    
+
 === `invert(interval)` ===
 
   * Invert an interval represented as `[note1, note2]`.
-	For example:
+    For example:
 {{{
 >>> invert["C", "E"]
 ["E", "C"]
-}}}	
+}}}
 
 === `is_consonant(note1, note2, include_fourths)` ===
 
@@ -142,11 +151,11 @@
 === `measure(note1, note2)` ===
 
   * Returns an integer in the range of 0-11, determining the half note steps between note1 and note2.
-	Examples:
+    Examples:
 {{{
->>>	measure("C", "D")
+>>>    measure("C", "D")
 2
->>>	measure("D", "C") 
+>>>    measure("D", "C")
 10
 }}}
 
@@ -171,60 +180,63 @@
 === `second(note, key)` ===
 
   * Take the diatonic second of note in key.
-	Examples: 
+    Examples:
 {{{
->>>	second("E", "C") 
+>>>    second("E", "C")
 'F'
->>> second("E", "D") 
+>>> second("E", "D")
 'F#'
 }}}
-	Raises a !KeyError if the `note` is not found in the `key`.
+    Raises a !KeyError if the `note` is not found in the `key`.
 
 === `seventh(note, key)` ===
 
   * Take the diatonic seventh of note in key.
-	Examples:
+    Examples:
 {{{
->>> seventh("E", "C") 
+>>> seventh("E", "C")
 'D'
->>> seventh("E", "B") 
+>>> seventh("E", "B")
 'D#'
 }}}
-	Raises a !KeyError if note is not found in key.
+    Raises a !KeyError if note is not found in key.
 
 === `sixth(note, key)` ===
 
   * Take the diatonic sixth of note in key.
-	Examples:
+    Examples:
 {{{
->>>	sixth("E", "C") 
+>>>    sixth("E", "C")
 'C'
->>> sixth("E", "B") 
+>>> sixth("E", "B")
 'C#'
 }}}
-	Raises a !KeyError if note is not found in key.
+    Raises a !KeyError if note is not found in key.
 
 === `third(note, key)` ===
 
   * Take the diatonic third of note in key.
-	Examples:
+    Examples:
 {{{
->>>	third("E", "C") 
+>>>    third("E", "C")
 'G'
->>>	third("E", "E") 
+>>>    third("E", "E")
 'G#'
 }}}
-	Raises a !KeyError if note is not found in key.
+    Raises a !KeyError if note is not found in key.
 
 === `unison(note, key)` ===
 
   * *Default values*: key = None
-  * One of the most useless methods ever written, which returns the unison of note. The key is not at all important, but is here for consistency reasons only. 
-	Example: 
+  * Return the unison of note.
+    
+    The key is not at all important, but is here for consistency reasons only.
+    Example:
 {{{
 >>> unison("C")
 'C'
 }}}
+    Raises a !KeyError if the `note` is not found in the `key`.
 
 ----
 

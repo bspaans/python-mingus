@@ -1,16 +1,16 @@
-#summary Reference documentation for `mingus.midi.MidiTrack`.
+#summary Reference documentation for `mingus.midi.midi_track`.
 
 ----
 
-= mingus.midi.MidiTrack =
+= mingus.midi.midi_track =
 
 
 
-	The [refMingusMidiMiditrack MidiTrack] class is kept in this module 
-	and provides methods for working with MIDI data as bytes.
+    The [refMingusMidiMiditrack MidiTrack] class is kept in this module
+    and provides methods for working with MIDI data as bytes.
 
-	The MIDI file format specification I used can be found here:
-	http://www.sonicspot.com/guide/midifiles.html
+    The MIDI file format specification I used can be found here:
+    http://www.sonicspot.com/guide/midifiles.html
 
 
 

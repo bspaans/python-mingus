@@ -6,78 +6,78 @@
 
 
 
-	The chords module is a huge module that builds on the 	[refMingusCoreIntervals intervals] module. It can be used to generate and 	recognise a plethora of chords. The following overview groups some of the functions you are most likely to use together.  
+    The chords module is a huge module that builds on the [refMingusCoreIntervals intervals] module. It can be used to generate and recognise a plethora of chords. The following overview groups some of the functions you are most likely to use together.
 
-	== Generate Diatonic Chords ==
-	* Triads
-		* triad
-		* triads
-	* Sevenths
-		* seventh
-		* sevenths
+    == Generate Diatonic Chords ==
+    * Triads
+        * triad
+        * triads
+    * Sevenths
+        * seventh
+        * sevenths
 
-	== Generate Absolute Chords ==
-	* Triads
-		* minor_triad
-		* major_triad
-		* diminished_triad
-	* Sixths
-		* minor_sixth
-		* major_sixth
-	* Sevenths
-		* minor_seventh
-		* major_seventh
-		* dominant_seventh
-		* minor_major_seventh
-		* minor_seventh_flat_five
-		* diminished_seventh
-	* Ninths
-		* minor_ninth
-		* major_ninth
-		* dominant_ninth
-	* Elevenths
-		* minor_eleventh
-		* eleventh
-	* Thirteenths
-		* minor_thirteenth
-		* major_thirteenth
-		* dominant_thirteenth
-	* Augmented chords
-		* augmented_triad
-		* augmented_major_seventh
-		* augmented_minor_seventh
-	* Suspended chords
-		* suspended_second_triad
-		* suspended_fourth_triad
-		* suspended_seventh
-		* suspended_fourth_ninth
-		* suspended_ninth
-	* Altered chords
-		* dominant_flat_ninth
-		* dominant_sharp_ninth
-		* dominant_flat_five
-		* sixth_ninth
-		* hendrix_chord
+    == Generate Absolute Chords ==
+    * Triads
+        * minor_triad
+        * major_triad
+        * diminished_triad
+    * Sixths
+        * minor_sixth
+        * major_sixth
+    * Sevenths
+        * minor_seventh
+        * major_seventh
+        * dominant_seventh
+        * minor_major_seventh
+        * minor_seventh_flat_five
+        * diminished_seventh
+    * Ninths
+        * minor_ninth
+        * major_ninth
+        * dominant_ninth
+    * Elevenths
+        * minor_eleventh
+        * eleventh
+    * Thirteenths
+        * minor_thirteenth
+        * major_thirteenth
+        * dominant_thirteenth
+    * Augmented chords
+        * augmented_triad
+        * augmented_major_seventh
+        * augmented_minor_seventh
+    * Suspended chords
+        * suspended_second_triad
+        * suspended_fourth_triad
+        * suspended_seventh
+        * suspended_fourth_ninth
+        * suspended_ninth
+    * Altered chords
+        * dominant_flat_ninth
+        * dominant_sharp_ninth
+        * dominant_flat_five
+        * sixth_ninth
+        * hendrix_chord
 
-	== Get Chords by Function ==
+    == Get Chords by Function ==
 
-	* Function
-		* tonic and tonic7
-		* supertonic and supertonic7
-		* mediant and mediant7
-		* subdominant and subdominant7
-		* dominant and dominant7
-		* submediant and submediant7
-	* Aliases
-		* I, II, III, IV, V, VI
-		* ii, iii, vi, vii
-		* I7, II7, III7, IV7, V7, VI7
-		* ii7, iii7, vi7
+    * Function
+        * tonic and tonic7
+        * supertonic and supertonic7
+        * mediant and mediant7
+        * subdominant and subdominant7
+        * dominant and dominant7
+        * submediant and submediant7
+    * Aliases
+        * I, II, III, IV, V, VI
+        * ii, iii, vi, vii
+        * I7, II7, III7, IV7, V7, VI7
+        * ii7, iii7, vi7
 
-	== Useful Functions ==
+    == Useful Functions ==
 
-	* determine - Can recognize all the chords that can be generated with from_shorthand (a lot) and their inversions.
-	* from_shorthand - Generates chords from shorthand (eg. 'Cmin7')
+    * determine - Can recognize all the chords that can be generated with from_shorthand (a lot) and their inversions.
+    * from_shorthand - Generates chords from shorthand (eg. 'Cmin7')
 
 
 
@@ -89,12 +89,12 @@
 === `chord_shorthand_meaning` ===
 
   * *Type*: dict
-  * *Value*: {'': ' major triad', 'm11': ' minor eleventh', 'm13': ' minor thirteenth', '67': ' dominant sixth', '69': ' sixth ninth', '7b12': ' hendrix chord', 'hendrix': ' hendrix chord', 'aug': ' augmented triad', 'm7': ' minor seventh', 'm6': ' minor sixth', '6': ' major sixth', '5': ' perfect fifth', 'm9': ' minor ninth', 'm7+': ' augmented minor seventh', '6/7': ' dominant sixth', '7#11': ' lydian dominant seventh', '6/9': ' sixth ninth', '11': ' eleventh', 'dim': ' diminished triad', '13': ' dominant thirteenth', '7b5': ' dominant flat five', 'm7b5': ' half diminished seventh', 'susb9': ' suspended fourth ninth', 'mM7': ' minor/major seventh', '7b9': ' dominant flat ninth', 'M13': ' major thirteenth', 'sus47': ' suspended seventh', 'm': ' minor triad', 'sus4b9': ' suspended fourth ninth', 'M7': ' major seventh', 'M6': ' major sixth', 'dim7': ' diminished seventh', 'M7+': ' augmented major seventh', 'M9': ' major ninth', 'dom7': ' dominant seventh', 'M7+5': ' augmented minor seventh', '+': ' augmented triad', 'sus': ' suspended fourth triad', '7': ' dominant seventh', '9': ' dominant ninth', 'M': ' major triad', '7+': ' augmented major seventh', 'sus2': ' suspended second triad', 'sus4': ' suspended fourth triad', '7#5': ' augmented minor seventh', '7#9': ' dominant sharp ninth', 'm/M7': ' minor/major seventh'}
+  * *Value*: {'': ' major triad', 'm11': ' minor eleventh', 'add11': ' eleventh', '67': ' dominant sixth', '69': ' sixth ninth', '7b12': ' hendrix chord', 'hendrix': ' hendrix chord', 'aug': ' augmented triad', 'm7': ' minor seventh', 'm6': ' minor sixth', '6': ' major sixth', '5': ' perfect fifth', 'm9': ' minor ninth', 'm7+': ' augmented minor seventh', '6/7': ' dominant sixth', '7#11': ' lydian dominant seventh', '6/9': ' sixth ninth', '11': ' eleventh', 'dim': ' diminished triad', '13': ' dominant thirteenth', '7b5': ' dominant flat five', 'm7b5': ' half diminished seventh', 'susb9': ' suspended fourth ninth', 'mM7': ' minor/major seventh', 'm13': ' minor thirteenth', '7b9': ' dominant flat ninth', 'M13': ' major thirteenth', 'sus47': ' suspended seventh', 'm': ' minor triad', 'sus4b9': ' suspended fourth ninth', 'M7': ' major seventh', 'M6': ' major sixth', 'dim7': ' diminished seventh', 'M7+': ' augmented major seventh', 'M9': ' major ninth', 'add13': ' dominant thirteenth', 'dom7': ' dominant seventh', 'M7+5': ' augmented minor seventh', '+': ' augmented triad', 'sus': ' suspended fourth triad', '7': ' dominant seventh', '9': ' dominant ninth', 'M': ' major triad', '7+': ' augmented major seventh', 'sus2': ' suspended second triad', 'sus4': ' suspended fourth triad', '7#5': ' augmented minor seventh', '7#9': ' dominant sharp ninth', 'm/M7': ' minor/major seventh', 'add9': ' dominant ninth', '7sus4': ' suspended seventh'}
 
 === `chord_shorthand` ===
 
   * *Type*: dict
-  * *Value*: {'': <function major_triad at 0x7fce232fc320>, 'm11': <function minor_eleventh at 0x7fce232fcde8>, 'm13': <function minor_thirteenth at 0x7fce232fce60>, '67': <function dominant_sixth at 0x7fce232fca28>, '69': <function sixth_ninth at 0x7fce232fcaa0>, '7b12': <function hendrix_chord at 0x7fce232fd488>, 'hendrix': <function hendrix_chord at 0x7fce232fd488>, 'aug': <function augmented_triad at 0x7fce232fc488>, 'm7': <function minor_seventh at 0x7fce232fc668>, 'm6': <function minor_sixth at 0x7fce232fc938>, '6': <function major_sixth at 0x7fce232fc9b0>, '5': <function <lambda> at 0x7fce232fec80>, 'm9': <function minor_ninth at 0x7fce232fcb18>, 'm7+': <function augmented_minor_seventh at 0x7fce232fd320>, '6/7': <function dominant_sixth at 0x7fce232fca28>, '7#11': <function lydian_dominant_seventh at 0x7fce232fd410>, '6/9': <function sixth_ninth at 0x7fce232fcaa0>, '11': <function eleventh at 0x7fce232fcd70>, 'dim': <function diminished_triad at 0x7fce232fc410>, '13': <function dominant_thirteenth at 0x7fce232fcf50>, '7b5': <function dominant_flat_five at 0x7fce232fd398>, 'm7b5': <function minor_seventh_flat_five at 0x7fce232fc7d0>, 'susb9': <function suspended_fourth_ninth at 0x7fce232fd230>, 'mM7': <function minor_major_seventh at 0x7fce232fc8c0>, '7b9': <function dominant_flat_ninth at 0x7fce232fcc80>, 'M13': <function major_thirteenth at 0x7fce232fced8>, 'sus47': <function suspended_seventh at 0x7fce232fd1b8>, 'm': <function minor_triad at 0x7fce232fc398>, 'sus4b9': <function suspended_fourth_ninth at 0x7fce232fd230>, 'M7': <function major_seventh at 0x7fce232fc5f0>, 'M6': <function major_sixth at 0x7fce232fc9b0>, 'dim7': <function diminished_seventh at 0x7fce232fc848>, 'M7+': <function augmented_major_seventh at 0x7fce232fd2a8>, 'M9': <function major_ninth at 0x7fce232fcb90>, 'dom7': <function dominant_seventh at 0x7fce232fc6e0>, 'M7+5': <function augmented_minor_seventh at 0x7fce232fd320>, '+': <function augmented_triad at 0x7fce232fc488>, 'sus': <function suspended_triad at 0x7fce232fd050>, '7': <function dominant_seventh at 0x7fce232fc6e0>, '9': <function dominant_ninth at 0x7fce232fcc08>, 'M': <function major_triad at 0x7fce232fc320>, '7+': <function augmented_major_seventh at 0x7fce232fd2a8>, 'sus2': <function suspended_second_triad at 0x7fce232fd0c8>, 'sus4': <function suspended_fourth_triad at 0x7fce232fd140>, '7#5': <function augmented_minor_seventh at 0x7fce232fd320>, '7#9': <function dominant_sharp_ninth at 0x7fce232fccf8>, 'm/M7': <function minor_major_seventh at 0x7fce232fc8c0>}
+  * *Value*: {'': <function major_triad at 0x8e5a25c>, 'm11': <function minor_eleventh at 0x8e5a764>, 'm13': <function minor_thirteenth at 0x8e5a79c>, '67': <function dominant_sixth at 0x8e5a5a4>, '69': <function sixth_ninth at 0x8e5a5dc>, '7b12': <function hendrix_chord at 0x8e5aa3c>, 'hendrix': <function hendrix_chord at 0x8e5aa3c>, 'aug': <function augmented_triad at 0x8e5a304>, 'm7': <function minor_seventh at 0x8e5a3e4>, 'm6': <function minor_sixth at 0x8e5a534>, '6': <function major_sixth at 0x8e5a56c>, '5': <function <lambda> at 0x8e5d56c>, 'm9': <function minor_ninth at 0x8e5a614>, 'm7+': <function augmented_minor_seventh at 0x8e5a994>, '6/7': <function dominant_sixth at 0x8e5a5a4>, '7#11': <function lydian_dominant_seventh at 0x8e5aa04>, '6/9': <function sixth_ninth at 0x8e5a5dc>, '11': <function eleventh at 0x8e5a72c>, 'dim': <function diminished_triad at 0x8e5a2cc>, '13': <function dominant_thirteenth at 0x8e5a80c>, '7b5': <function dominant_flat_five at 0x8e5a9cc>, 'm7b5': <function minor_seventh_flat_five at 0x8e5a48c>, 'susb9': <function suspended_fourth_ninth at 0x8e5a924>, 'mM7': <function minor_major_seventh at 0x8e5a4fc>, '7b9': <function dominant_flat_ninth at 0x8e5a6bc>, 'M13': <function major_thirteenth at 0x8e5a7d4>, 'sus47': <function suspended_seventh at 0x8e5a8ec>, 'm': <function minor_triad at 0x8e5a294>, 'sus4b9': <function suspended_fourth_ninth at 0x8e5a924>, 'M7': <function major_seventh at 0x8e5a3ac>, 'M6': <function major_sixth at 0x8e5a56c>, 'dim7': <function diminished_seventh at 0x8e5a4c4>, 'M7+': <function augmented_major_seventh at 0x8e5a95c>, 'M9': <function major_ninth at 0x8e5a64c>, 'dom7': <function dominant_seventh at 0x8e5a41c>, 'M7+5': <function augmented_minor_seventh at 0x8e5a994>, '+': <function augmented_triad at 0x8e5a304>, 'sus': <function suspended_triad at 0x8e5a844>, '7': <function dominant_seventh at 0x8e5a41c>, '9': <function dominant_ninth at 0x8e5a684>, 'M': <function major_triad at 0x8e5a25c>, '7+': <function augmented_major_seventh at 0x8e5a95c>, 'sus2': <function suspended_second_triad at 0x8e5a87c>, 'sus4': <function suspended_fourth_triad at 0x8e5a8b4>, '7#5': <function augmented_minor_seventh at 0x8e5a994>, '7#9': <function dominant_sharp_ninth at 0x8e5a6f4>, 'm/M7': <function minor_major_seventh at 0x8e5a4fc>}
 
 ----
 
@@ -131,16 +131,16 @@
 === `augmented_major_seventh(note)` ===
 
   * Builds an augmented major seventh chord on note.
-	Example:
+    Example:
 {{{
->>> augmented_major_seventh("C") 
+>>> augmented_major_seventh("C")
 ["C", "E", "G#", "B"]
 }}}
 
 === `augmented_minor_seventh(note)` ===
 
   * Builds an augmented minor seventh chord on note.
-	Example:
+    Example:
 {{{
 >>> augmented_minor_seventh("C")
 ["C", "E", "G#", "Bb"]
@@ -149,7 +149,7 @@
 === `augmented_triad(note)` ===
 
   * Builds an augmented triad on note.
-	Example:
+    Example:
 {{{
 >>> augmented_triad("C")
 ["C", "E", "G#"]
@@ -184,7 +184,7 @@
 
   * *Default values*: shorthand = False, no_inversion = False, no_polychords = False
   * Determines the type of seventh chord. Returns the results in a lists, ordered on inversions. Expects `seventh` to be a list of 4 notes. If `shorthand` is set to True, results will be returned in chord shorthand ('Cmin7', etc.) - inversions will be dropped in that case.
-	Example:
+    Example:
 {{{
 >>> determine_seventh(['C', 'E', 'G', 'B'])
 ['C major seventh']
@@ -201,7 +201,7 @@ Examples:
 {{{
 >>> determine_triad(["A", "C", "E"])
 'A minor triad'
->>> determine_triad(["C", "E", "A"]) 
+>>> determine_triad(["C", "E", "A"])
 'A minor triad, first inversion'
 >>> determine_triad(["A", "C", "E"], True)
 'Am'
@@ -210,16 +210,16 @@ Examples:
 === `diminished_seventh(note)` ===
 
   * Builds a diminished seventh chord on note.
-	Example:
+    Example:
 {{{
->>> diminished_seventh("C") 
+>>> diminished_seventh("C")
 ["C", "Eb", "Gb", "Bbb"]
 }}}
 
 === `diminished_triad(note)` ===
 
   * Builds a diminished triad on note.
-	Example:
+    Example:
 {{{
 >>> diminished_triad("C")
 ["C", "Eb", "Gb"]
@@ -228,9 +228,9 @@ Examples:
 === `dominant(key)` ===
 
   * Returns the dominant chord in key.
-	Example:
+    Example:
 {{{
->>> dominant("C") 
+>>> dominant("C")
 ["G", "B", "D"]
 }}}
 
@@ -241,7 +241,7 @@ Examples:
 === `dominant_flat_five(note)` ===
 
   * Builds a dominant flat five chord on note.
-	Example:
+    Example:
 {{{
 >>> dominant_flat_five("C")
 ['C', 'E', 'Gb', 'Bb']
@@ -250,7 +250,7 @@ Examples:
 === `dominant_flat_ninth(note)` ===
 
   * Builds a dominant flat ninth chord on note.
-	Example:
+    Example:
 {{{
 >>> dominant_ninth("C")
 ['C', 'E', 'G', 'Bb', 'Db']
@@ -259,7 +259,7 @@ Examples:
 === `dominant_ninth(note)` ===
 
   * Builds a dominant ninth chord on note.
-	Example:
+    Example:
 {{{
 >>> dominant_ninth("C")
 ['C', 'E', 'G', 'Bb', 'D']
@@ -268,7 +268,7 @@ Examples:
 === `dominant_seventh(note)` ===
 
   * Builds a dominant seventh on note.
-	Example:
+    Example:
 {{{
 >>> dominant_seventh("C")
 ["C", "E", "G", "Bb"]
@@ -277,7 +277,7 @@ Examples:
 === `dominant_sharp_ninth(note)` ===
 
   * Builds a dominant sharp ninth chord on note.
-	Example:
+    Example:
 {{{
 >>> dominant_ninth("C")
 ['C', 'E', 'G', 'Bb', 'D#']
@@ -286,7 +286,7 @@ Examples:
 === `dominant_sixth(note)` ===
 
   * Builds the altered chord 6/7 on note.
-	Example:
+    Example:
 {{{
 >>> dominant_sixth("C")
 ['C', 'E', 'G', 'A', 'Bb']
@@ -295,7 +295,7 @@ Examples:
 === `dominant_thirteenth(note)` ===
 
   * Builds a dominant thirteenth chord on note.
-	Example:
+    Example:
 {{{
 >>> dominant_thirteenth('C')
 ['C', 'E', 'G', 'Bb', 'D', 'A']
@@ -304,7 +304,7 @@ Examples:
 === `eleventh(note)` ===
 
   * Builds an eleventh chord on note.
-	Example:
+    Example:
 {{{
 >>> eleventh("C")
 ['C', 'G', 'Bb', 'F']
@@ -318,7 +318,7 @@ Examples:
 
   * *Default values*: slash = None
   * Takes a chord written in shorthand and returns the notes in the chord. The function can recognize triads, sevenths, sixths, ninths, elevenths, thirteenths, slashed chords and a number of altered chords. The second argument should not be given and is only used for a recursive call when a slashed chord or polychord is found. See [http://en.wikibooks.org/wiki/Music_Theory/Complete_List_of_Chord_Patterns Wikibooks] for a nice overview of chord patterns.
-	Example:
+    Example:
 {{{
 >>> from_shorthand("Amin")
 ["A", "C", "E"]
@@ -332,23 +332,23 @@ Examples:
 ["G", "B", "D", "F", "A"]
 
 }}}
-	Recognised abbreviations: the letters `m` and `M` in the following abbreviations  can always be substituted by respectively `min`, `mi` or `-` and `maj` or `ma` (eg. `from_shorthand("Amin7") == from_shorthand("Am7")`, etc.).
-	* Triads: *'m'*, *'M'* or *''*, *'dim'*. 
-	* Sevenths: *'m7'*, *'M7'*, *'7'*, *'m7b5'*, *'dim7'*, *'m/M7'* or *'mM7'*
-	* Augmented chords: *'aug'* or *'+'*, *'7#5'* or *'M7+5'*, *'M7+'*, *'m7+'*, *'7+'*
-	* Suspended chords: *'sus4'*, *'sus2'*, *'sus47'*, *'sus'*, *'11'*, *'sus4b9'* or *'susb9'*
-	* Sixths: *'6'*, *'m6'*, *'M6'*, *'6/7'* or *'67'*, *6/9* or *69*
-	* Ninths: *'9'*, *'M9'*, *'m9'*, *'7b9'*, *'7#9'*
-	* Elevenths: *'11'*, *'7#11'*, *'m11'*
-	* Thirteenths: *'13'*, *'M13'*, *'m13'*
-	* Altered chords: *'7b5'*, *'7b9'*, *'7#9'*, *'67'* or *'6/7'*
-	* Special: *'5'*, *'NC'*, *'hendrix'*
-	
+    Recognised abbreviations: the letters `m` and `M` in the following abbreviations  can always be substituted by respectively `min`, `mi` or `-` and `maj` or `ma` (eg. `from_shorthand("Amin7") == from_shorthand("Am7")`, etc.).
+    * Triads: *'m'*, *'M'* or *''*, *'dim'*.
+    * Sevenths: *'m7'*, *'M7'*, *'7'*, *'m7b5'*, *'dim7'*, *'m/M7'* or *'mM7'*
+    * Augmented chords: *'aug'* or *'+'*, *'7#5'* or *'M7+5'*, *'M7+'*, *'m7+'*, *'7+'*
+    * Suspended chords: *'sus4'*, *'sus2'*, *'sus47'* or *'7sus4'*, *'sus'*, *'11'*, *'sus4b9'* or *'susb9'*
+    * Sixths: *'6'*, *'m6'*, *'M6'*, *'6/7'* or *'67'*, *6/9* or *69*
+    * Ninths: *'9'* or *'add9'*, *'M9'*, *'m9'*, *'7b9'*, *'7#9'*
+    * Elevenths: *'11'* or *'add11'*, *'7#11'*, *'m11'*
+    * Thirteenths: *'13'* or *'add13'*, *'M13'*, *'m13'*
+    * Altered chords: *'7b5'*, *'7b9'*, *'7#9'*, *'67'* or *'6/7'*
+    * Special: *'5'*, *'NC'*, *'hendrix'*
+
 
 === `half_diminished_seventh(note)` ===
 
   * Builds a half diminished seventh (=minor seventh flat five) chord on note.
-	Example:
+    Example:
 {{{
 >>> half_diminished_seventh("C")
 ["C", "Eb", "Gb", "Bb"]
@@ -357,7 +357,7 @@ Examples:
 === `hendrix_chord(note)` ===
 
   * Builds the famous Hendrix chord (7b12)
-	Example:
+    Example:
 {{{
 >>> hendrix_chord('C')
 ['C', 'E', 'G', 'Bb', 'Eb']
@@ -382,7 +382,7 @@ Examples:
 === `lydian_dominant_seventh(note)` ===
 
   * Builds the lydian dominant seventh (7#11) on note
-	Example:
+    Example:
 {{{
 >>> lydian_dominant_seventh('C')
 ['C', 'E', 'G', 'Bb', 'F#']
@@ -392,7 +392,7 @@ Examples:
 === `major_ninth(note)` ===
 
   * Builds a major ninth chord on note.
-	Example:
+    Example:
 {{{
 >>> major_ninth("C")
 ['C', 'E', 'G', 'B', 'D']
@@ -401,16 +401,16 @@ Examples:
 === `major_seventh(note)` ===
 
   * Builds a major seventh on note.
-	Example:
+    Example:
 {{{
->>> major_seventh("C") 
+>>> major_seventh("C")
 ["C", "E", "G", "B"]
 }}}
 
 === `major_sixth(note)` ===
 
   * Builds a major sixth chord on note.
-	Example:
+    Example:
 {{{
 >>> major_sixth("C")
 ['C', 'E', 'G', 'A']
@@ -419,7 +419,7 @@ Examples:
 === `major_thirteenth(note)` ===
 
   * Builds a major thirteenth chord on note.
-	Example:
+    Example:
 {{{
 >>> major_thirteenth('C')
 ['C', 'E', 'G', 'B', 'D', 'A']
@@ -428,7 +428,7 @@ Examples:
 === `major_triad(note)` ===
 
   * Builds a major triad on note.
-	Example:
+    Example:
 {{{
 >>> major_triad("C")
 ["C", "E", "G"]
@@ -437,9 +437,9 @@ Examples:
 === `mediant(key)` ===
 
   * Returns the mediant chord in key.
-	Example:
+    Example:
 {{{
->>> mediant("C") 
+>>> mediant("C")
 ["E", "G", "B"]
 }}}
 
@@ -450,7 +450,7 @@ Examples:
 === `minor_eleventh(note)` ===
 
   * Builds a minor eleventh chord on note.
-	Example:
+    Example:
 {{{
 >>> minor_eleventh("C")
 ['C', 'Eb', 'G', 'Bb', 'F']
@@ -459,7 +459,7 @@ Examples:
 === `minor_major_seventh(note)` ===
 
   * Builds a minor major seventh chord on note.
-	Example:
+    Example:
 {{{
 >>> minor_major_seventh("C")
 ["C", "Eb", "G", "B"]
@@ -468,7 +468,7 @@ Examples:
 === `minor_ninth(note)` ===
 
   * Builds a minor ninth chord on note.
-	Example:
+    Example:
 {{{
 >>> minor_ninth("C")
 ['C', 'Eb', 'G', 'Bb', 'D']
@@ -477,7 +477,7 @@ Examples:
 === `minor_seventh(note)` ===
 
   * Builds a minor seventh on note.
-	Example:
+    Example:
 {{{
 >>> minor_seventh("C")
 ["C", "Eb", "G", "Bb"]
@@ -490,7 +490,7 @@ Examples:
 === `minor_sixth(note)` ===
 
   * Builds a minor sixth chord on note.
-	Example:
+    Example:
 {{{
 >>> minor_sixth("C")
 ['C', 'Eb', 'G', 'A']
@@ -499,7 +499,7 @@ Examples:
 === `minor_thirteenth(note)` ===
 
   * Builds a minor thirteenth chord on note.
-	Example:
+    Example:
 {{{
 >>> minor_thirteenth('C')
 ['C', 'Eb', 'G', 'Bb', 'D', 'A']
@@ -508,7 +508,7 @@ Examples:
 === `minor_triad(note)` ===
 
   * Builds a minor triad on note.
-	Example:
+    Example:
 {{{
 >>> minor_triad("C")
 ["C", "Eb", "G"]
@@ -521,7 +521,7 @@ Examples:
 === `seventh(note, key)` ===
 
   * Returns the seventh chord on note in key.
-	Example:
+    Example:
 {{{
 >>> seventh("C", "C")
 ["C", "E", "G", "B"]
@@ -534,7 +534,7 @@ Examples:
 === `sixth_ninth(note)` ===
 
   * Builds the sixth/ninth chord on note.
-	Example:
+    Example:
 {{{
 >>> sixth_ninth('C')
 ['C', 'E', 'G', 'A', 'D']
@@ -543,9 +543,9 @@ Examples:
 === `subdominant(key)` ===
 
   * Returns the subdominant chord in key.
-	Example:
+    Example:
 {{{
->>> subdominant("C") 
+>>> subdominant("C")
 ["F", "A", "C"]
 }}}
 
@@ -556,9 +556,9 @@ Examples:
 === `submediant(key)` ===
 
   * Returns the submediant chord in key.
-	Example:
+    Example:
 {{{
->>> submediant("C") 
+>>> submediant("C")
 ["A", "C", "E"]
 }}}
 
@@ -569,7 +569,7 @@ Examples:
 === `subtonic(key)` ===
 
   * Returns the subtonic in key.
-	Example:
+    Example:
 {{{
 >>> subtonic("C")
 ['B', 'D', 'F']
@@ -582,7 +582,7 @@ Examples:
 === `supertonic(key)` ===
 
   * Returns the supertonic chord in key.
-	Example:
+    Example:
 {{{
 >>> supertonic("C")
 ["D", "F", "A"]
@@ -595,7 +595,7 @@ Examples:
 === `suspended_fourth_ninth(note)` ===
 
   * Builds a suspended fourth flat ninth chord on note.
-	Example:
+    Example:
 {{{
 >>> suspended_ninth("C")
 ['C', 'F', 'G', 'Db']
@@ -604,7 +604,7 @@ Examples:
 === `suspended_fourth_triad(note)` ===
 
   * Builds a suspended fourth triad on note.
-	Example:
+    Example:
 {{{
 >>> suspended_fourth_triad("C")
 ["C", "F", "G"]
@@ -613,7 +613,7 @@ Examples:
 === `suspended_second_triad(note)` ===
 
   * Builds a suspended second triad on note.
-	Example:
+    Example:
 {{{
 >>> suspended_second_triad("C")
 ["C", "D", "G"]
@@ -622,7 +622,7 @@ Examples:
 === `suspended_seventh(note)` ===
 
   * Builds a suspended (flat) seventh chord on note.
-	Example:
+    Example:
 {{{
 >>> suspended_seventh("C")
 ["C", "F", "G", "Bb"]
@@ -640,9 +640,9 @@ Examples:
 === `tonic(key)` ===
 
   * Returns the tonic chord in key.
-	Example:
+    Example:
 {{{
->>> tonic("C") 
+>>> tonic("C")
 ["C", "E", "G"]
 }}}
 
@@ -653,9 +653,9 @@ Examples:
 === `triad(note, key)` ===
 
   * Returns the triad on note in key as a list.
-	Example:
+    Example:
 {{{
->>> triad("E", "C") 
+>>> triad("E", "C")
 ["E", "G", "B"]
 >>> triad("E", "B")
 ["E", "G#", "B"]

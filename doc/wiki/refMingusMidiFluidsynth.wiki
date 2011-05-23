@@ -6,10 +6,10 @@
 
 
 
-   This module provides FluidSynth support for mingus. FluidSynth is a software 
-   MIDI synthesizer which allows you to play the containers in mingus.containers 
-   real-time. To work with this module, you'll need fluidsynth and a nice 
-   instrument collection (look here: http://www.hammersound.net, go to Sounds -> 
+   This module provides FluidSynth support for mingus. FluidSynth is a software
+   MIDI synthesizer which allows you to play the containers in mingus.containers
+   real-time. To work with this module, you'll need fluidsynth and a nice
+   instrument collection (look here: http://www.hammersound.net, go to Sounds ->
    Soundfont Library -> Collections).
 
    To start using FluidSynth with mingus, do:
@@ -33,8 +33,8 @@
 
 === `midi` ===
 
-  * *Type*: instance
-  * *Value*: <mingus.midi.fluidsynth.FluidSynthSequencer instance at 0x290e908>
+  * *Type*: mingus.midi.fluidsynth.FluidSynthSequencer
+  * *Value*: <mingus.midi.fluidsynth.FluidSynthSequencer object at 0x95b2f2c>
 
 ----
 

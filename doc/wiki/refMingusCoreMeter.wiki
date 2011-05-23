@@ -6,8 +6,8 @@
 
 
 
-	A meter is represented by a tuple. 4/4 time would look like (4,4),
-	3/4 like (3,4), etc.
+    A meter is represented by a tuple. 4/4 time would look like (4,4),
+    3/4 like (3,4), etc.
 
 
 
@@ -32,7 +32,7 @@
 === `is_asymmetrical(meter)` ===
 
   * Returns True if meter is an asymmetrical meter, False otherwise.
-	Examples
+    Examples
 {{{
 >>> is_asymmetrical((3,4))
 True
@@ -43,7 +43,7 @@ False
 === `is_compound(meter)` ===
 
   * Returns True if meter is a compound meter, False otherwise.
-	Examples:
+    Examples:
 {{{
 >>> is_compound((3,4))
 True
@@ -54,7 +54,7 @@ False
 === `is_simple(meter)` ===
 
   * Returns True if meter is a simple meter, False otherwise.
-	Examples:
+    Examples:
 {{{
 >>> is_simple((3,4))
 True

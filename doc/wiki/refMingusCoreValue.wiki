@@ -6,19 +6,19 @@
 
 
 
-	A note value indicates the relative duration of a note. In mingus,
-	note values are represented by floating point numbers. 
-	A quarter note is 4, because it stands for 1/4 note, an eighth note is 8
-	because it stands for 1/8, a sixteenth note is 16, etc.
-	These are all pretty straight forward, but how do you define a sixteenth 
-	triplet? Well, sixteenth triplets are made by taking an eighth note 
-	and deviding it in 3 equal parts. 1/8 times 1/3 = 1/24; so 24 is the number 
-	we want. How about a dotted eighth note? A dotted eighth note has the length
-	of an eighth note plus half an eighth note. 1/8 + 1/16 = 3/16 = 1 / 16 / 3.
-	So 16/3 is the number we are looking for. 
+    A note value indicates the relative duration of a note. In mingus,
+    note values are represented by floating point numbers.
+    A quarter note is 4, because it stands for 1/4 note, an eighth note is 8
+    because it stands for 1/8, a sixteenth note is 16, etc.
+    These are all pretty straight forward, but how do you define a sixteenth
+    triplet? Well, sixteenth triplets are made by taking an eighth note
+    and deviding it in 3 equal parts. 1/8 times 1/3 = 1/24; so 24 is the number
+    we want. How about a dotted eighth note? A dotted eighth note has the length
+    of an eighth note plus half an eighth note. 1/8 + 1/16 = 3/16 = 1 / 16 / 3.
+    So 16/3 is the number we are looking for.
 
-	As you can see these calculations can be quite tiresome and can clutter 
-	up your code. This module is here to help do the conversion.
+    As you can see these calculations can be quite tiresome and can clutter
+    up your code. This module is here to help do the conversion.
 
 
 

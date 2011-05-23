@@ -7,7 +7,7 @@
 
 
     The fft module can find the frequencies in raw audio data by using fast Fourier
-    transformations (supplied by numpy) and can also convert the found frequencies 
+    transformations (supplied by numpy) and can also convert the found frequencies
     to Note objects.
 
 
@@ -29,15 +29,16 @@
 
   * *Default values*: n = None, axis = -1
   * 
-    Compute the one-dimensional discrete Fourier Transform
+    Compute the one-dimensional discrete Fourier Transform.
 
     This function computes the one-dimensional *n*-point discrete Fourier
-    Transform (DFT) with the efficient Fast Fourier Transform (FFT) algorithm. [CT]
+    Transform (DFT) with the efficient Fast Fourier Transform (FFT)
+    algorithm [CT].
 
     Parameters
     ----------
     a : array_like
-        Input array, can be complex
+        Input array, can be complex.
     n : int, optional
         Length of the transformed axis of the output.
         If `n` is smaller than the length of the input, the input is cropped.
@@ -56,11 +57,11 @@
     Raises
     ------
     IndexError
-        if `axes` is larger than the last axis of `a`
+        if `axes` is larger than the last axis of `a`.
 
     See Also
     --------
-    numpy.fft : for definition of the DFT and conventions used
+    numpy.fft : for definition of the DFT and conventions used.
     ifft : The inverse of `fft`.
     fft2 : The two-dimensional FFT.
     fftn : The *n*-dimensional FFT.
@@ -69,7 +70,6 @@
 
     Notes
     -----
-
     FFT (Fast Fourier Transform) refers to a way the discrete Fourier
     Transform (DFT) can be calculated efficiently, by using symmetries in the
     calculated terms.  The symmetry is highest when `n` is a power of 2, and
@@ -86,10 +86,7 @@
 
     Examples
     --------
-
-    >>> from numpy import arange, pi, exp
-    >>> from numpy.fft import fft
-    >>> fft(exp(2j*pi*arange(8)/8))
+    >>> np.fft.fft(np.exp(2j * np.pi * np.arange(8) / 8))
     array([ -3.44505240e-16 +1.14383329e-17j,
              8.00000000e+00 -5.71092652e-15j,
              2.33482938e-16 +1.22460635e-16j,
@@ -99,13 +96,12 @@
              1.14383329e-17 +1.22460635e-16j,
              -1.64863782e-15 +1.77635684e-15j])
 
-
-    >>> from numpy.fft import fft, fftfreq
     >>> import matplotlib.pyplot as plt
     >>> t = np.arange(256)
-    >>> sp = fft(np.sin(t))
-    >>> freq = fftfreq(t.shape[-1])
+    >>> sp = np.fft.fft(np.sin(t))
+    >>> freq = np.fft.fftfreq(t.shape[-1])
     >>> plt.plot(freq, sp.real, freq, sp.imag)
+    [<matplotlib.lines.Line2D object at 0x...>, <matplotlib.lines.Line2D object at 0x...>]
     >>> plt.show()
 
     In this example, real input has an FFT which is Hermitian, i.e., symmetric
@@ -121,7 +117,7 @@
 === `analyze_chunks(data, freq, bits, chunksize)` ===
 
   * *Default values*: chunksize = 512
-  * Cuts the one channel data in chunks and analyzes them separately. Making the chunksize a power of two works fastest.  
+  * Cuts the one channel data in chunks and analyzes them separately. Making the chunksize a power of two works fastest.
 
 === `data_from_file(file)` ===
 

@@ -6,9 +6,9 @@
 
 
 
-	The diatonic module provides a simple interface for dealing with diatonic
-	keys. The function get_notes(key) for instance returns the notes in a 
-	given key; even for extremely exotic notations ("C#####" or "Gbbbb").
+    The diatonic module provides a simple interface for dealing with diatonic
+    keys. The function get_notes(key) for instance returns the notes in a
+    given key; even for extremely exotic notations ("C#####" or "Gbbbb").
 
 
 

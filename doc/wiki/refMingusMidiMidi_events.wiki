@@ -1,8 +1,8 @@
-#summary Reference documentation for `mingus.midi.MidiEvents`.
+#summary Reference documentation for `mingus.midi.midi_events`.
 
 ----
 
-= mingus.midi.MidiEvents =
+= mingus.midi.midi_events =
 
 None
 

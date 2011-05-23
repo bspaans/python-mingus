@@ -7,7 +7,7 @@
 
 
         The tablature module provides the necessary functions to convert
-        mingus.containers to pretty ASCII tablature. 
+        mingus.containers to pretty ASCII tablature.
 
 
 
@@ -17,8 +17,8 @@
 
 === `default_tuning` ===
 
-  * *Type*: instance
-  * *Value*: <mingus.extra.tunings.StringTuning instance at 0x2465830>
+  * *Type*: mingus.extra.tunings.StringTuning
+  * *Value*: <mingus.extra.tunings.StringTuning object at 0x8ee7ccc>
 
 ----
 
@@ -47,10 +47,10 @@
   * *Default values*: width = 40, tuning = None, collapse = True
   * Converts a mingus.containers.Bar object to ASCII tablature. `tuning` should be a StringTuning object or None for the default tuning. If `collapse` is False this will return a list of lines, if it's True all lines will be concatenated with a newline symbol. Throws a !FingerError if no playable fingering can be found. Use `string` and `fret` attributes on Notes to force certain fingerings.
 
-=== `from_Composition(composition, width, description)` ===
+=== `from_Composition(composition, width)` ===
 
-  * *Default values*: width = 80, description = ''
-  * Converts a mingus.containers.Composition to an ASCII tablature string, and automatically adds an header based on the title, subtitle, author and e-mail attributes. An extra description of the piece can also be given. Tunings can be set by using the `Track.instrument.tuning` or `Track.tuning` attribute. 
+  * *Default values*: width = 80
+  * Converts a mingus.containers.Composition to an ASCII tablature string, and automatically adds an header based on the title, subtitle, author, e-mail and description attributes. An extra description of the piece can also be given. Tunings can be set by using the `Track.instrument.tuning` or `Track.tuning` attribute.
 
 === `from_Note(note, width, tuning)` ===
 
@@ -62,10 +62,10 @@
   * *Default values*: width = 80, tuning = None
   * Returns a string made out of ASCII tablature representing a NoteContainer object or list of note strings / Note objects. `tuning` should be a StringTuning object or None for the default tuning. Throws a !FingerError if no playable fingering can be found. To force a certain fingering you can use a `string` and `fret` attribute on one or more of the Notes. If the fingering is valid, it will get used instead of the default one.
 
-=== `from_Suite(suite, maxwidth, description)` ===
+=== `from_Suite(suite, maxwidth)` ===
 
-  * *Default values*: maxwidth = 80, description = ''
-  * Converts a mingus.containers.Suite to an ASCII tablature string, complete with headers. A description is optional.
+  * *Default values*: maxwidth = 80
+  * Converts a mingus.containers.Suite to an ASCII tablature string, complete with headers. This function makes use of the Suite's title, subtitle, author, email and description attributes.
 
 === `from_Track(track, maxwidth, tuning)` ===
 

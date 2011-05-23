@@ -1,9 +1,8 @@
-#summary Reference documentation for `mingus.midi.pyFluidSynth`.
+#summary Reference documentation for `mingus.midi.pyfluidsynth`.
 
 ----
 
-= mingus.midi.pyFluidSynth =
-
+= mingus.midi.pyfluidsynth =
 
 
 
@@ -34,7 +33,7 @@
 === `cdll` ===
 
   * *Type*: ctypes.LibraryLoader
-  * *Value*: <ctypes.LibraryLoader object at 0x2726490>
+  * *Value*: <ctypes.LibraryLoader object at 0x904ab2c>
 
 === `lib` ===
 
@@ -44,12 +43,12 @@
 === `pydll` ===
 
   * *Type*: ctypes.LibraryLoader
-  * *Value*: <ctypes.LibraryLoader object at 0x27264d0>
+  * *Value*: <ctypes.LibraryLoader object at 0x904ab4c>
 
 === `pythonapi` ===
 
   * *Type*: ctypes.PyDLL
-  * *Value*: <PyDLL 'None', handle 7fce244c4000 at 2726510>
+  * *Value*: <PyDLL 'None', handle b77c4908 at 904ab6c>
 
 ----
 
@@ -109,10 +108,10 @@
 === `fluid_synth_write_s16_stereo(synth, len)` ===
 
   * Return generated samples in stereo 16-bit format
-    
+
     Return value is a Numpy array of samples.
-    
-    
+
+
 
 === `raw_audio_string(data)` ===
 
@@ -120,8 +119,8 @@
 
     Input is a numpy array of samples.  Default output format
     is 16-bit signed (other formats not currently supported).
-    
-    
+
+
 
 === `string_at(ptr, size)` ===
 

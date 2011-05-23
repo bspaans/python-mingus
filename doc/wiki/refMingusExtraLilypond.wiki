@@ -1,13 +1,13 @@
-#summary Reference documentation for `mingus.extra.LilyPond`.
+#summary Reference documentation for `mingus.extra.lilypond`.
 
 ----
 
-= mingus.extra.LilyPond =
+= mingus.extra.lilypond =
 
 
 
-	The !LilyPond module provides some methods to help you generate files
-	in the !LilyPond format. This allows you to create sheet music from some of the objects in mingus.containers
+    The !lilypond module provides some methods to help you generate files
+    in the !LilyPond format. This allows you to create sheet music from some of the objects in mingus.containers
 
 
 
