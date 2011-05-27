@@ -6,8 +6,7 @@ from mingus.midi import fluidsynth
 from mingus.containers import *
 import unittest
 import time
-from mingus.midi.SequencerObserver import SequencerObserver
-
+from mingus.midi.sequencer_observer import SequencerObserver
 
 class test_fluidsynth(unittest.TestCase):
 
@@ -172,5 +171,4 @@ class test_fluidsynth(unittest.TestCase):
 
 def suite():
     return unittest.TestLoader().loadTestsFromTestCase(test_fluidsynth)
-
 

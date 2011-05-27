@@ -1,39 +1,31 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-"""
-================================================================================
 
-    mingus - Music theory Python package, midi_file_out module.
-    Copyright (C) 2008-2009, Bart Spaans
+#    mingus - Music theory Python package, midi_file_out module.
+#    Copyright (C) 2008-2009, Bart Spaans
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-================================================================================
-
-   This module contains functions that can generate MIDI files from the
-   objects in mingus.containers.
-
-================================================================================
-"""
+"""Functions that can generate MIDI files from the objects in
+mingus.containers."""
 
 from midi_track import MidiTrack
 from binascii import a2b_hex
 
-
 class MidiFile(object):
 
-    """This class generates midi files from MidiTracks."""
+    """A class that generates MIDI files from MidiTracks."""
 
     tracks = []
     time_division = "\x00\x48"
@@ -43,27 +35,22 @@ class MidiFile(object):
         self.tracks = tracks
 
     def get_midi_data(self):
-        """Collects and returns the raw, binary MIDI data
-        from the tracks."""
-
+        """Collect and return the raw, binary MIDI data from the tracks."""
         tracks = [t.get_midi_data() for t in self.tracks if t.track_data != '']
         return self.header() + ''.join(tracks)
 
     def header(self):
-        """Returns a header for type 1 midi file"""
-
-        tracks = a2b_hex('%04x' % len([t for t in self.tracks if t.track_data
-                          != '']))
+        """Return a header for type 1 MIDI file."""
+        tracks = a2b_hex('%04x' % len([t for t in self.tracks if
+            t.track_data != '']))
         return 'MThd\x00\x00\x00\x06\x00\x01' + tracks + self.time_division
 
     def reset(self):
-        """Resets every track."""
-
+        """Reset every track."""
         [t.reset() for t in self.tracks]
 
     def write_file(self, file, verbose=False):
-        """Collects the data from get_midi_data and writes to file."""
-
+        """Collect the data from get_midi_data and write to file."""
         dat = self.get_midi_data()
         try:
             f = open(file, 'wb')
@@ -81,17 +68,12 @@ class MidiFile(object):
         return True
 
 
-def write_Note(
-    file,
-    note,
-    bpm=120,
-    repeat=0,
-    verbose=False,
-    ):
-    """Expects a Note object from mingus.containers and saves it into a midi file, \
-specified in file. You can set the velocity and channel in Note.velocity and \
-Note.channel."""
+def write_Note(file, note, bpm=120, repeat=0, verbose=False):
+    """Expect a Note object from mingus.containers and save it into a MIDI
+    file, specified in file.
 
+    You can set the velocity and channel in Note.velocity and Note.channel.
+    """
     m = MidiFile()
     t = MidiTrack(bpm)
     m.tracks = [t]
@@ -103,16 +85,8 @@ Note.channel."""
         repeat -= 1
     return m.write_file(file, verbose)
 
-
-def write_NoteContainer(
-    file,
-    notecontainer,
-    bpm=120,
-    repeat=0,
-    verbose=False,
-    ):
-    """Writes a mingus.NoteContainer to a midi file."""
-
+def write_NoteContainer(file, notecontainer, bpm=120, repeat=0, verbose=False):
+    """Write a mingus.NoteContainer to a MIDI file."""
     m = MidiFile()
     t = MidiTrack(bpm)
     m.tracks = [t]
@@ -124,17 +98,11 @@ def write_NoteContainer(
         repeat -= 1
     return m.write_file(file, verbose)
 
+def write_Bar(file, bar, bpm=120, repeat=0, verbose=False):
+    """Write a mingus.Bar to a MIDI file.
 
-def write_Bar(
-    file,
-    bar,
-    bpm=120,
-    repeat=0,
-    verbose=False,
-    ):
-    """Writes a mingus.Bar to a midi file. Both the key and the meter are written \
-to the file as well."""
-
+    Both the key and the meter are written to the file as well.
+    """
     m = MidiFile()
     t = MidiTrack(bpm)
     m.tracks = [t]
@@ -143,19 +111,14 @@ to the file as well."""
         repeat -= 1
     return m.write_file(file, verbose)
 
+def write_Track(file, track, bpm=120, repeat=0, verbose=False):
+    """Write a mingus.Track to a MIDI file.
 
-def write_Track(
-    file,
-    track,
-    bpm=120,
-    repeat=0,
-    verbose=False,
-    ):
-    """Writes a mingus.Track to a midi file. Writes the name to the file and sets \
-the instrument if the instrument has the attribute instrument_nr, which \
-represents the MIDI instrument number. The class MidiInstrument in \
-mingus.containers.Instrument has this attribute by default."""
-
+    Write the name to the file and set the instrument if the instrument has
+    the attribute instrument_nr, which represents the MIDI instrument
+    number. The class MidiInstrument in mingus.containers.Instrument has
+    this attribute by default.
+    """
     m = MidiFile()
     t = MidiTrack(bpm)
     m.tracks = [t]
@@ -164,16 +127,8 @@ mingus.containers.Instrument has this attribute by default."""
         repeat -= 1
     return m.write_file(file, verbose)
 
-
-def write_Composition(
-    file,
-    composition,
-    bpm=120,
-    repeat=0,
-    verbose=False,
-    ):
-    """Writes a mingus.Composition to a midi file."""
-
+def write_Composition(file, composition, bpm=120, repeat=0, verbose=False):
+    """Write a mingus.Composition to a MIDI file."""
     m = MidiFile()
     t = []
     for x in range(len(composition.tracks)):
@@ -184,7 +139,6 @@ def write_Composition(
             m.tracks[i].play_Track(composition.tracks[i])
         repeat -= 1
     return m.write_file(file, verbose)
-
 
 if __name__ == '__main__':
     from mingus.containers.NoteContainer import NoteContainer
@@ -213,3 +167,4 @@ if __name__ == '__main__':
     write_Bar('test3.mid', b, 200)
     write_Bar('test4.mid', b2, 200, 2)
     write_Track('test5.mid', t, 120)
+

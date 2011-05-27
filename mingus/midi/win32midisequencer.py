@@ -1,35 +1,27 @@
-"""
-================================================================================
+#    mingus - Music theory Python package, win32midisequencer module.
+#    Copyright (C) 2008-2010, Bart Spaans, Ben Fisher
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-    mingus - Music theory Python package, Win32 Sequencer
-    Copyright (C) 2008-2010, Bart Spaans, Ben Fisher
+"""MIDI playback support for mingus in MS Windows.
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+This module will use the default MIDI output device, which can be chosen in
+the control panel. No extra dlls or modules are needed; uses built-in ctypes
+module.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-================================================================================
-
-   Win32MidiSequencer, by Ben Fisher, 2009
-
-   This module provides midi playback support for mingus in Windows. 
-   It will use the default midi output device, which can be chosen in the 
-   control panel. No extra dlls or modules are needed; uses built-in ctypes 
-   module.
-   
-   Caution: this will throw Win32MidiException if there is no device, 
-   or device can't be opened
-
-================================================================================
+Caution: this will throw Win32MidiException if there is no device, or device
+can't be opened.
 """
 
 import sys
@@ -40,8 +32,8 @@ if sys.platform=='win32':
     from win32midi import Win32MidiException
     
 from datetime import datetime
-from mingus.midi.Sequencer import Sequencer
-from mingus.containers.Instrument import MidiInstrument
+from mingus.midi.sequencer import Sequencer
+from mingus.containers.instrument import MidiInstrument
 
 class Win32MidiSequencer(Sequencer):
     output = None
@@ -57,6 +49,7 @@ class Win32MidiSequencer(Sequencer):
         self.midplayer.closeDevice()
 
     # Implement Sequencer's interface
+
     def play_event(self, note, channel, velocity):
         self.midplayer.rawNoteOn(note, channel, velocity)
 

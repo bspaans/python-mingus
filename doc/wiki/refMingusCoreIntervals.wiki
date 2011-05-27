@@ -1,243 +1,254 @@
 #summary Reference documentation for `mingus.core.intervals`.
-
 ----
-
 = mingus.core.intervals =
+Module to create intervals from notes.
 
+When you are working in a key (for instance 'F'), you can use the functions
+second ('G'), third ('A'), fourth ('Bb'), fifth ('C'), sixth ('D') and
+seventh ('E') to get to the respective natural intervals of that note.
 
+When you want to get the absolute intervals you can use the minor and major
+functions. For example: minor_third('F') returns 'Ab' while major_third('F')
+returns 'A'.
 
-    The intervals module can be used to create intervals from notes.
-    When you are working in a key (for instance 'F'), you can use the
-    functions second ('G'), third ('A'), fourth ('Bb'), fifth ('C'),
-    sixth ('D') and seventh ('E') to get to the respective natural
-    intervals of that note.
-    When you want to get the absolute intervals you can use the
-    minor and major functions. For example: minor_third("F") returns
-    'Ab' while major_third("F") returns 'A'.
-
-    This modules also contains other useful helper functions like
-    measure, determine, invert, is_consonant and is_dissonant.
-
-
+This modules also contains other useful helper functions like measure,
+determine, invert, is_consonant and is_dissonant.
 
 ----
-
 == Functions ==
-
 === `augment_or_diminish_until_the_interval_is_right(note1, note2, interval)` ===
+A helper function for the minor and major functions.
 
-  * A helper function for the minor and major functions. You should probably not use this directly.
+You should probably not use this directly.
 
 === `augmented_unison(note)` ===
-
 === `determine(note1, note2, shorthand)` ===
-
   * *Default values*: shorthand = False
-  * Names the interval between note1 and note2.
-    Example:
+Name the interval between note1 and note2.
+
+Examples:
 {{{
->>>    determine("C", "E")
+>>> determine('C', 'E')
 'major third'
->>> determine("C", "Eb")
+>>> determine('C', 'Eb')
 'minor third'
->>> determine("C", "E#")
+>>> determine('C', 'E#')
 'augmented third'
->>> determine("C", "Ebb")
+>>> determine('C', 'Ebb')
 'diminished third'
 }}}
 
-    This works for all intervals. Note that there are corner cases for 'major' fifths and fourths:
+This works for all intervals. Note that there are corner cases for major
+fifths and fourths:
 {{{
->>> determine("C", "G")
+>>> determine('C', 'G')
 'perfect fifth'
->>> determine("C", "F")
+>>> determine('C', 'F')
 'perfect fourth'
 }}}
 
 === `fifth(note, key)` ===
+Take the diatonic fifth of note in key.
 
-  * Take the diatonic fifth of note in key.
-    Examples:
+Raise a KeyError exception if the note is not found in the given key.
+
+Examples:
 {{{
->>>    fifth("E", "C")
+>>> fifth('E', 'C')
 'B'
->>>    fifth("E", "F")
+>>> fifth('E', 'F')
 'Bb'
 }}}
-    Raises a !KeyError if note is not found in key.
 
 === `fourth(note, key)` ===
+Take the diatonic fourth of note in key.
 
-  * Take the diatonic fourth of note in key.
-    Examples:
+Raise a KeyError exception if the note is not found in the given key.
+
+Examples:
 {{{
->>>    fourth("E", "C")
+>>> fourth('E', 'C')
 'A'
->>>    fourth("E", "B")
+>>> fourth('E', 'B')
 'A#'
 }}}
-    Raises a !KeyError if note is not found in key.
 
 === `from_shorthand(note, interval, up)` ===
-
   * *Default values*: up = True
-  * Returns the note on interval up or down.
-    Example:
+Return the note on interval up or down.
+
+Examples:
 {{{
->>> from_shorthand("A", "b3")
+>>> from_shorthand('A', 'b3')
 'C'
->>> from_shorthand("D", "2")
+>>> from_shorthand('D', '2')
 'E'
->>> from_shorthand("E", "2", False)
+>>> from_shorthand('E', '2', False)
 'D'
 }}}
 
 === `get_interval(note, interval, key)` ===
-
   * *Default values*: key = 'C'
-  * Gets the note an interval (in half notes) away from the given note. This will produce mostly theoretical sound results, but you should use the minor and major functions to work around the corner cases.
+Return the note an interval (in half notes) away from the given note.
+
+This will produce mostly theoretical sound results, but you should use
+the minor and major functions to work around the corner cases.
 
 === `interval(key, start_note, interval)` ===
+Return the note found at the interval starting from start_note in the
+given key.
 
-  * Return the note found at the interval starting from start_note in the
-    given key.
-    
-    For example interval('C', 'D', 1) will return 'E'. Will raise a !KeyError
-    if the start_note is not a valid note.
-    
+Raise a KeyError exception if start_note is not a valid note.
+
+Example:
+{{{
+>>> interval('C', 'D', 1)
+'E'
+}}}
 
 === `invert(interval)` ===
+Invert an interval.
 
-  * Invert an interval represented as `[note1, note2]`.
-    For example:
+Example:
 {{{
->>> invert["C", "E"]
-["E", "C"]
+>>> invert(['C', 'E'])
+['E', 'C']
 }}}
 
 === `is_consonant(note1, note2, include_fourths)` ===
-
   * *Default values*: include_fourths = True
-  * A consonance is a harmony, chord, or interval considered stable, as opposed to a dissonance (see `is_dissonant`). This function tests whether the given interval is consonant. This basically means that it checks whether the interval is (or sounds like) a unison, third, sixth, perfect fourth or perfect fifth. In classical music the fourth is considered dissonant when used contrapuntal, which is why you can choose to exclude it.
+Return True if the interval is consonant.
+
+A consonance is a harmony, chord, or interval considered stable, as
+opposed to a dissonance.
+
+This function tests whether the given interval is consonant. This
+basically means that it checks whether the interval is (or sounds like)
+a unison, third, sixth, perfect fourth or perfect fifth.
+
+In classical music the fourth is considered dissonant when used
+contrapuntal, which is why you can choose to exclude it.
 
 === `is_dissonant(note1, note2, include_fourths)` ===
-
   * *Default values*: include_fourths = False
-  * Tests whether an interval is considered unstable, dissonant. In the default case perfect fourths are considered consonant, but this can be changed with the `exclude_fourths` flag.
+Return True if the insterval is dissonant.
+
+This function tests whether an interval is considered unstable,
+dissonant.
+
+In the default case perfect fourths are considered consonant, but this
+can be changed by setting exclude_fourths to True.
 
 === `is_imperfect_consonant(note1, note2)` ===
+Return True id the interval is an imperfect consonant one.
 
-  * Imperfect consonances are either minor or major thirds or minor or major sixths.
+Imperfect consonances are either minor or major thirds or minor or major
+sixths.
 
 === `is_perfect_consonant(note1, note2, include_fourths)` ===
-
   * *Default values*: include_fourths = True
-  * Perfect consonances are either unisons, perfect fourths or fifths, or octaves (which is the same as a unison in this model; see the `container.Note` class for more). Perfect fourths are usually included as well, but are considered dissonant when used contrapuntal, which is why you can exclude them.
+Return True if the interval is a perfect consonant one.
+
+Perfect consonances are either unisons, perfect fourths or fifths, or
+octaves (which is the same as a unison in this model).
+
+Perfect fourths are usually included as well, but are considered
+dissonant when used contrapuntal, which is why you can exclude them.
 
 === `major_fifth(note)` ===
-
 === `major_fourth(note)` ===
-
 === `major_second(note)` ===
-
 === `major_seventh(note)` ===
-
 === `major_sixth(note)` ===
-
 === `major_third(note)` ===
-
 === `major_unison(note)` ===
-
 === `measure(note1, note2)` ===
+Return an integer in the range of 0-11, determining the half note steps
+between note1 and note2.
 
-  * Returns an integer in the range of 0-11, determining the half note steps between note1 and note2.
-    Examples:
+Examples:
 {{{
->>>    measure("C", "D")
+>>> measure('C', 'D')
 2
->>>    measure("D", "C")
+>>> measure('D', 'C')
 10
 }}}
 
 === `minor_fifth(note)` ===
-
 === `minor_fourth(note)` ===
-
 === `minor_second(note)` ===
-
 === `minor_seventh(note)` ===
-
 === `minor_sixth(note)` ===
-
 === `minor_third(note)` ===
-
 === `minor_unison(note)` ===
-
 === `perfect_fifth(note)` ===
-
 === `perfect_fourth(note)` ===
-
 === `second(note, key)` ===
+Take the diatonic second of note in key.
 
-  * Take the diatonic second of note in key.
-    Examples:
+Raise a KeyError exception if the note is not found in the given key.
+
+Examples:
 {{{
->>>    second("E", "C")
+>>> second('E', 'C')
 'F'
->>> second("E", "D")
+>>> second('E', 'D')
 'F#'
 }}}
-    Raises a !KeyError if the `note` is not found in the `key`.
 
 === `seventh(note, key)` ===
+Take the diatonic seventh of note in key.
 
-  * Take the diatonic seventh of note in key.
-    Examples:
+Raise a KeyError exception if the note is not found in the given key.
+
+Examples:
 {{{
->>> seventh("E", "C")
+>>> seventh('E', 'C')
 'D'
->>> seventh("E", "B")
+>>> seventh('E', 'B')
 'D#'
 }}}
-    Raises a !KeyError if note is not found in key.
 
 === `sixth(note, key)` ===
+Take the diatonic sixth of note in key.
 
-  * Take the diatonic sixth of note in key.
-    Examples:
+Raise a KeyError exception if the note is not found in the given key.
+
+Examples:
 {{{
->>>    sixth("E", "C")
+>>> sixth('E', 'C')
 'C'
->>> sixth("E", "B")
+>>> sixth('E', 'B')
 'C#'
 }}}
-    Raises a !KeyError if note is not found in key.
 
 === `third(note, key)` ===
+Take the diatonic third of note in key.
 
-  * Take the diatonic third of note in key.
-    Examples:
+Raise a KeyError exception if the note is not found in the given key.
+
+Examples:
 {{{
->>>    third("E", "C")
+>>> third('E', 'C')
 'G'
->>>    third("E", "E")
+>>> third('E', 'E')
 'G#'
 }}}
-    Raises a !KeyError if note is not found in key.
 
 === `unison(note, key)` ===
-
   * *Default values*: key = None
-  * Return the unison of note.
-    
-    The key is not at all important, but is here for consistency reasons only.
-    Example:
+Return the unison of note.
+
+Raise a KeyError exception if the note is not found in the given key.
+
+The key is not at all important, but is here for consistency reasons
+only.
+
+Example:
 {{{
->>> unison("C")
+>>> unison('C')
 'C'
 }}}
-    Raises a !KeyError if the `note` is not found in the `key`.
 
 ----
-
 [mingusIndex Back to Index]

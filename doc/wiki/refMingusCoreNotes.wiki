@@ -1,41 +1,25 @@
 #summary Reference documentation for `mingus.core.notes`.
-
 ----
-
 = mingus.core.notes =
+Basic module for notes.
 
+This module is the foundation of the music theory package.
 
-
-    This module is the foundation of the music theory package.
-    It handles conversions from integers to notes and vice versa and thus
-    enables simple calculations. You should note however, that the
-    int_to_note conversion can't be correctly done without knowing
-    exactly what key we are in and what augmentations are being used.
-    The same function in other modules ([refMingusCoreDiatonic diatonics]
-    and [refMingusContainersNote container.Note]) will
-    do a better _theoretical_ job at int_to_note, but this one is
-    still usable for simple representations and trackers, etc. where
-    keys don't really matter.
-
-
+It handles conversions from integers to notes and vice versa and thus
+enables simple calculations.
 
 ----
-
 == Attributes ==
-
 === `fifths` ===
-
   * *Type*: list
-  * *Value*: ['F', 'C', 'G', 'D', 'A', 'E', 'B']
+  * *Value*: `['F', 'C', 'G', 'D', 'A', 'E', 'B']`
 
 ----
-
 == Functions ==
-
 === `augment(note)` ===
+Augment a given note.
 
-  * Augment a given note.
-    Examples:
+Examples:
 {{{
 >>> augment('C')
 'C#'
@@ -44,9 +28,9 @@
 }}}
 
 === `diminish(note)` ===
+Diminish a given note.
 
-  * Diminish a given note.
-    Examples:
+Examples:
 {{{
 >>> diminish('C')
 'Cb'
@@ -55,10 +39,15 @@
 }}}
 
 === `int_to_note(note_int, accidentals)` ===
-
   * *Default values*: accidentals = '#'
-  * Convert integers in the range of 0-11 to notes in the form of C or C# or Db. Throw a !RangeError exception if the note_int is not in the range 0-11. If not specified, sharps will be used.
-    Examples:
+Convert integers in the range of 0-11 to notes in the form of C or C#
+or Db.
+
+Throw a RangeError exception if the note_int is not in the range 0-11.
+
+If not specified, sharps will be used.
+
+Examples:
 {{{
 >>> int_to_note(0)
 'C'
@@ -69,30 +58,30 @@
 }}}
 
 === `is_enharmonic(note1, note2)` ===
-
-  * Test whether note1 and note2 are enharmonic, i.e. they sound the same.
+Test whether note1 and note2 are enharmonic, i.e. they sound the same.
 
 === `is_valid_note(note)` ===
-
-  * Return True if note is in a recognised format. False if not.
+Return True if note is in a recognised format. False if not.
 
 === `note_to_int(note)` ===
+Convert notes in the form of C, C#, Cb, C##, etc. to an integer in the
+range of 0-11.
 
-  * Convert notes in the form of C, C#, Cb, C##, etc. to an integer in the range of 0-11. Throw an !NoteFormatError exception if the note format is not recognised.
+Throw a NoteFormatError exception if the note format is not recognised.
 
 === `reduce_accidentals(note)` ===
+Reduce any extra accidentals to proper notes.
 
-  * Reduce any extra accidentals to proper notes.
-    Examples:
+Example:
 {{{
 >>> reduce_accidentals('C####')
 'E'
 }}}
 
 === `remove_redundant_accidentals(note)` ===
+Remove redundant sharps and flats from the given note.
 
-  * Remove redundant sharps and flats from the given note.
-    Examples:
+Examples:
 {{{
 >>> remove_redundant_accidentals('C##b')
 'C#'
@@ -101,5 +90,4 @@
 }}}
 
 ----
-
 [mingusIndex Back to Index]

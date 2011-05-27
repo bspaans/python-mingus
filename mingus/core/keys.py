@@ -1,30 +1,25 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-"""
-================================================================================
 
-    mingus - Music theory Python package, keys module.
-    Copyright (C) 2010-2011, Carlo Stemberger
+#    mingus - Music theory Python package, keys module.
+#    Copyright (C) 2010-2011, Carlo Stemberger
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+"""Module for dealing with keys.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
-================================================================================
-
-    This module provides a simple interface for dealing with keys.
-
-================================================================================
+This module provides a simple interface for dealing with keys.
 """
 
 from mt_exceptions import FormatError, NoteFormatError, RangeError
@@ -59,25 +54,28 @@ _key_cache = {}
 
 def is_valid_key(key):
     """Return True if key is in a recognized format. False if not."""
-
     for couple in keys:
         if key in couple:
             return True
     return False
 
 def get_key(accidentals=0):
-    """Return the tuple containing the major key corrensponding to the
-    accidentals put as input, and his relative minor; negative numbers for
-    flats, positive numbers for sharps."""
+    """Return the key corrisponding to accidentals.
 
+    Return the tuple containing the major key corrensponding to the
+    accidentals put as input, and his relative minor; negative numbers for
+    flats, positive numbers for sharps.
+    """
     if accidentals not in range(-7, 8):
         raise RangeError('integer not in range (-7)-(+7).')
     return keys[accidentals+7]
 
 def get_key_signature(key='C'):
-    """Return the key signature: 0 for C or a, negative numbers for flat key
-    signatures, positive numbers for sharp key signatures."""
+    """Return the key signature.
 
+    0 for C or a, negative numbers for flat key signatures, positive numbers
+    for sharp key signatures.
+    """
     if not is_valid_key(key):
         raise NoteFormatError("unrecognized format for key '%s'" % key)
 
@@ -88,7 +86,6 @@ def get_key_signature(key='C'):
 
 def get_key_signature_accidentals(key='C'):
     """Return the list of accidentals present into the key signature."""
-
     accidentals = get_key_signature(key)
     res = []
 
@@ -103,11 +100,12 @@ def get_key_signature_accidentals(key='C'):
 def get_notes(key='C'):
     """Return an ordered list of the notes in this natural key.
 
-    For example: if the key is set to 'F', this function will return `['F',
-    'G', 'A', 'Bb', 'C', 'D', 'E']`; if the key is set to 'c', `['C', 'D',
-    'Eb', 'F', 'G', 'Ab', 'Bb']`.
+    Examples:
+    >>> get_notes('F')
+    ['F', 'G', 'A', 'Bb', 'C', 'D', 'E']
+    >>> get_notes('c')
+    ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb']
     """
-
     if _key_cache.has_key(key):
         return _key_cache[key]
     if not is_valid_key(key):
@@ -137,11 +135,11 @@ def get_notes(key='C'):
 
 def relative_major(key):
     """Return the relative major of a minor key.
+
     Example:
-{{{
->>> relative_major('a')
-'C'
-}}}"""
+    >>> relative_major('a')
+    'C'
+    """
     for couple in keys:
         if key == couple[1]:
             return couple[0]
@@ -149,18 +147,20 @@ def relative_major(key):
 
 def relative_minor(key):
     """Return the relative minor of a major key.
+
     Example:
-{{{
->>> relative_minor('C')
-'a'
-}}}"""
+    >>> relative_minor('C')
+    'a'
+    """
     for couple in keys:
         if key == couple[0]:
             return couple[1]
     raise NoteFormatError("'%s' is not a major key" % key)
 
 class Key(object):
+
     """A key object."""
+
     def __init__(self, key='C'):
         self.key = key
 

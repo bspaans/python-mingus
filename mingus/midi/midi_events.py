@@ -1,12 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-# Headers
 
+# Headers
 FILE_HEADER = 'MThd'
 TRACK_HEADER = 'MTrk'
 
 # MIDI Channel Events
-
 NOTE_OFF = 0x08
 NOTE_ON = 0x09
 NOTE_AFTERTOUCH = 0x0A
@@ -17,7 +16,6 @@ PITCH_BEND = 0x0E
 META_EVENT = '\xff'
 
 # MIDI Controller Type
-
 BANK_SELECT = 0x00
 MODULATION = 0x01
 BREATH_CONTROLLER = 0x02
@@ -32,7 +30,6 @@ EFFECT_CONTROL_1 = 0x0C
 EFFECT_CONTROL_2 = 0x0D
 
 # Meta Events
-
 SEQUENCE_NUMBER = '\x00'
 TEXT_EVENT = '\x01'
 COPYRIGHT_NOTICE = '\x02'

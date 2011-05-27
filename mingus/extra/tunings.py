@@ -1,56 +1,47 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-"""
-================================================================================
 
-    mingus - Music theory Python package, tunings module.
-    Copyright (C) 2009, Bart Spaans
+#    mingus - Music theory Python package, tunings module.
+#    Copyright (C) 2009, Bart Spaans
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-================================================================================
-
-    This module provides dozens of standard tunings, a StringTuning
-    class and some functions to help you search through them.
-
-================================================================================"""
+"""Dozens of standard tunings, a StringTuning class and some functions to help
+you search through them."""
 
 from mingus.containers.note import Note
 from mingus.containers.note_container import NoteContainer
 from mingus.core.mt_exceptions import RangeError
 import mingus.core.notes as notes
 
-
 class StringTuning(object):
 
-    """StringTuning can be used to store and work with tunings and fingerings."""
+    """A class to store and work with tunings and fingerings."""
 
-    def __init__(
-        self,
-        instrument,
-        description,
-        tuning,
-        ):
-        """`instrument` and `description` should be strings. tuning should be a \
-list of strings or a list of lists of strings that denote courses. See \
-tunings.add_tuning for examples."""
+    def __init__(self, instrument, description, tuning):
+        """Create a new StringTuning instance.
 
+        The instrument and description parameters should be strings; tuning
+        should be a list of strings or a list of lists of strings that
+        denote courses.
+
+        See tunings.add_tuning for examples.
+        """
         self.instrument = instrument
         self.tuning = []
 
         # convert to Note
-
         for x in tuning:
             if type(x) == list:
                 self.tuning.append([Note(n) for n in x])
@@ -59,13 +50,11 @@ tunings.add_tuning for examples."""
         self.description = description
 
     def count_strings(self):
-        """Returns the number of strings."""
-
+        """Return the number of strings."""
         return len(self.tuning)
 
     def count_courses(self):
-        """Returns the average number of courses per string,"""
-
+        """Return the average number of courses per string."""
         c = 0
         for x in self.tuning:
             if type(x) == list:
@@ -75,18 +64,19 @@ tunings.add_tuning for examples."""
         return float(c) / len(self.tuning)
 
     def find_frets(self, note, maxfret=24):
-        """Returns a list with for each string the fret on which the note is played \
-or None if it can't be played on that particular string. `maxfret` is \
-the highest fret that can be played. `note` should either be a string or \
-a Note object.
-{{{
->>> t = tunings.StringTuning(\"test\", \"test\", [\"A-3\", \"E-4\"])
->>> t.find_frets(Note(\"C-4\")
-[3, None]
->>> t.find_frets(Note(\"A-4\")
-[12, 5]
-}}}"""
+        """Return a list with for each string the fret on which the note is
+        played or None if it can't be played on that particular string.
 
+        The maxfret parameter is the highest fret that can be played; note
+        should either be a string or a Note object.
+
+        Example:
+        >>> t = tunings.StringTuning('test', 'test', ['A-3', 'E-4'])
+        >>> t.find_frets(Note('C-4')
+        [3, None]
+        >>> t.find_frets(Note('A-4')
+        [12, 5]
+        """
         result = []
         if type(note) == str:
             note = Note(note)
@@ -102,23 +92,20 @@ a Note object.
                 result.append(None)
         return result
 
-    def find_fingering(
-        self,
-        notes,
-        max_distance=4,
-        not_strings=[],
-        ):
-        """Returns a list [(string, fret)] of possible fingerings for `notes`. \
-`notes` should be a list of strings or Notes or a !NoteContainer. \
-`max_distance` denotes the maximum distance between frets. `not_strings` \
-can be used to disclude certain strings and is used internally to \
-recurse.
-{{{
->>> t = tunings.StringTuning(\"test\", \"test\", [\"A-3\", \"E-4\", \"A-5\"])
->>> t.find_fingering(['E-4', 'B-4'])
-[[(0, 7), (1, 7)], [(1, 0), (0, 14)]]
-}}}"""
+    def find_fingering(self, notes, max_distance=4, not_strings=[]):
+        """Return a list [(string, fret)] of possible fingerings for
+        'notes'.
 
+        The notes parameter should be a list of strings or Notes or a
+        NoteContainer; max_distance denotes the maximum distance between
+        frets; not_strings can be used to disclude certain strings and is
+        used internally to recurse.
+
+        Example:
+        >>> t = tunings.StringTuning('test', 'test', ['A-3', 'E-4', 'A-5'])
+        >>> t.find_fingering(['E-4', 'B-4'])
+        [[(0, 7), (1, 7)], [(1, 0), (0, 14)]]
+        """
         if notes is None:
             return []
         if len(notes) == 0:
@@ -130,10 +117,8 @@ recurse.
         for (string, fret) in enumerate(frets):
             if fret is not None and string not in not_strings:
                 if len(notes) > 0:
-
                     # recursively find fingerings for
                     # remaining notes
-
                     r = self.find_fingering(notes, max_distance, not_strings
                              + [string])
                     if r != []:
@@ -143,7 +128,6 @@ recurse.
                     result.append([(string, fret)])
 
         # filter impossible fingerings and sort
-
         res = []
         for r in result:
             (min, max) = (1000, -1)
@@ -158,31 +142,20 @@ recurse.
                 res.append((frets, r))
         return [r for (_, r) in sorted(res)]
 
-    def find_chord_fingering(
-        self,
-        notes,
-        max_distance=4,
-        maxfret=18,
-        max_fingers=4,
-        return_best_as_NoteContainer=False,
-        ):
-        """Returns a list of fret lists that are considered possible fingerings. \
-This function only looks at and matches on the note _names_ so it does \
-more than `find_fingering`. For example: {{{
->>> t = tunings.get_tuning(\"guitar\", \"standard\", 6, 1)
->>> t.find_chord_fingering(NoteContainer().from_chord(\"Am\"))
-[[0, 0, 2, 2, 1, 0],
- [0, 3, 2, 2, 1, 0], ......]
-}}}"""
+    def find_chord_fingering(self, notes, max_distance=4, maxfret=18,
+            max_fingers=4, return_best_as_NoteContainer=False):
+        """Return a list of fret lists that are considered possible fingerings.
 
-        def follow(
-            string,
-            next,
-            name,
-            prev=-1,
-            ):
-            """Follow the fret `next` on `string`. And build result on the way."""
+        This function only looks at and matches on the note _names_ so it
+        does more than find_fingering.
 
+        Example:
+        >>> t = tunings.get_tuning('guitar', 'standard', 6, 1)
+        >>> t.find_chord_fingering(NoteContainer().from_chord('Am'))
+        [[0, 0, 2, 2, 1, 0], [0, 3, 2, 2, 1, 0], ......]
+        """
+        def follow(string, next, name, prev=-1):
+            """Follow the fret 'next' on 'string'; build result on the way."""
             if string >= len(self.tuning) - 1:
                 return [[(next, name)]]
             result = []
@@ -201,8 +174,10 @@ more than `find_fingering`. For example: {{{
             return [[(next, name)]] if result == [] else result
 
         def make_lookup_table():
-            """Prepare the lookup table. table[string][fret] = (name, dest_frets)"""
+            """Prepare the lookup table.
 
+            table[string][fret] = (name, dest_frets)
+            """
             res = [[[] for x in xrange(maxfret + 2)] for x in
                    xrange(len(self.tuning) - 1)]
             for x in xrange(0, len(self.tuning) - 1):
@@ -225,48 +200,39 @@ more than `find_fingering`. For example: {{{
             return res
 
         # Convert to NoteContainer if necessary
-
         n = notes
         if notes != [] and type(notes) == list and type(notes[0]) == str:
             n = NoteContainer(notes)
 
         # Check number of note names.
-
         notenames = [x.name for x in n]
         if len(notenames) == 0 or len(notenames) > len(self.tuning):
             return []
 
         # Make string-fret dictionary
-
         fretdict = []
         for x in xrange(0, len(self.tuning)):
             fretdict.append(self.find_note_names(notes, x, maxfret))
 
         # Build table
-
         res = make_lookup_table()
 
         # Build result using table
-
         result = []
 
         # For each fret on the first string
-
         for (i, y) in enumerate(res[0]):
             if y != []:
                 (yname, next) = (y[0], y[1])
 
                 # For each destination fret in y
-
                 for (fret, name) in next:
 
                     # For each followed result
-
                     for s in follow(1, fret, name):
                         subresult = [(i, yname)] + s
 
                         # Get boundaries
-
                         (mi, ma, names) = (1000, -1000, [])
                         for (f, n) in subresult:
                             if n is not None:
@@ -277,26 +243,21 @@ more than `find_fingering`. For example: {{{
                                 names.append(n)
 
                         # Enforce boundaries
-
                         if abs(ma - mi) < max_distance:
-
                             # Check if all note
                             # names are present
-
                             covered = True
                             for n in notenames:
                                 if n not in names:
                                     covered = False
 
                             # Add to result
-
                             if covered and names != []:
                                 result.append([y[0] if y[1]
                                          is not None else y[1] for y in
                                         subresult])
 
         # Return semi-sorted list
-
         s = sorted(result, key=lambda x: sum([t if t is not None else 1000
                    for (i, t) in enumerate(x)]))
         s = filter(lambda a: fingers_needed(a) <= max_fingers, s)
@@ -311,7 +272,7 @@ more than `find_fingering`. For example: {{{
             return rnotes
 
     def frets_to_NoteContainer(self, fingering):
-        """Converts a list such as returned by find_fret to a NoteContainer."""
+        """Convert a list such as returned by find_fret to a NoteContainer."""
 
         res = []
         for (string, fret) in enumerate(fingering):
@@ -319,20 +280,16 @@ more than `find_fingering`. For example: {{{
                 res.append(self.get_Note(string, fret))
         return NoteContainer(res)
 
-    def find_note_names(
-        self,
-        notelist,
-        string=0,
-        maxfret=24,
-        ):
-        """Returns a list [(fret, notename)] in ascending order.
-Notelist should be a list of Notes, note-strings or a NoteContainer.
-{{{
->>> t = tunings.StringTuning(\"test\", \"test\", ['A-3', 'A-4'])
->>> t.find_note_names([\"A\", \"C\", \"E\"], 0, 12)
-[(0, 'E'), (5, 'A'), (8, 'C'), (12, 'E')]
-}}}"""
+    def find_note_names(self, notelist, string=0, maxfret=24):
+        """Return a list [(fret, notename)] in ascending order.
 
+        Notelist should be a list of Notes, note-strings or a NoteContainer.
+
+        Example:
+        >>> t = tunings.StringTuning('test', 'test', ['A-3', 'A-4'])
+        >>> t.find_note_names(['A', 'C', 'E'], 0, 12)
+        [(0, 'E'), (5, 'A'), (8, 'C'), (12, 'E')]
+        """
         n = notelist
         if notelist != [] and type(notelist[0]) == str:
             n = NoteContainer(notelist)
@@ -341,31 +298,26 @@ Notelist should be a list of Notes, note-strings or a NoteContainer.
         int_notes = [notes.note_to_int(x) for x in names]
 
         # Base of the string
-
         s = int(self.tuning[string]) % 12
         for x in xrange(0, maxfret + 1):
             if (s + x) % 12 in int_notes:
                 result.append((x, names[int_notes.index((s + x) % 12)]))
         return result
 
-    def get_Note(
-        self,
-        string=0,
-        fret=0,
-        maxfret=24,
-        ):
-        """Returns the Note on `string`, `fret`. Throws a RangeError if either the \
-fret or string is unplayable.
-{{{
->>> t = tunings.StringTuning(\"test\", \"test\", ['A-3', 'A-4'])
->>> t,get_Note(0, 0)
-'A-3'
->>> t.get_Note(0, 1)
-'A#-3'
->>> t.get_Note(1, 0)
-'A-4'
-}}}"""
+    def get_Note(self, string=0, fret=0, maxfret=24):
+        """Return the Note on 'string', 'fret'.
 
+        Throw a RangeError if either the fret or string is unplayable.
+
+        Examples:
+        >>> t = tunings.StringTuning('test', 'test', ['A-3', 'A-4'])
+        >>> t,get_Note(0, 0)
+        'A-3'
+        >>> t.get_Note(0, 1)
+        'A#-3'
+        >>> t.get_Note(1, 0)
+        'A-4'
+        """
         if 0 <= string < self.count_strings():
             if 0 <= fret <= maxfret:
                 s = self.tuning[string]
@@ -376,49 +328,53 @@ fret or string is unplayable.
                 n.fret = fret
                 return n
             else:
-                raise RangeError, "Fret '%d' on string '%d' is out of range"\
-                     % (string, fret)
+                raise RangeError("Fret '%d' on string '%d' is out of range"
+                        % (string, fret))
         else:
-            raise RangeError, "String '%d' out of range" % string 
-
+            raise RangeError("String '%d' out of range" % string)
 
 
 def fingers_needed(fingering):
-    """Returns the number of fingers needed to play the given fingering. """
-    split = False # True if an open string must be played, thereby making any subsequent strings impossible to bar with the index finger
-    indexfinger = False # True if the index finger was already accounted for in the count
-    minimum = min(finger for finger in fingering if finger) # the index finger plays the lowest finger position
+    """Return the number of fingers needed to play the given fingering."""
+    split = False # True if an open string must be played, thereby making any
+                  # subsequent strings impossible to bar with the index finger
+    indexfinger = False # True if the index finger was already accounted for
+                        # in the count
+    minimum = min(finger for finger in fingering if finger) # the index finger
+                                                            # plays the lowest
+                                                            # finger position
     result = 0
     for finger in reversed(fingering):
         if finger == 0: # an open string is played
-            split = True # subsequent strings are impossible to bar with the index finger
+            split = True # subsequent strings are impossible to bar with the
+                         # index finger
         else:
-            if not split and finger == minimum: # if an open string hasn't been played and this is a job for the index finger:
-                if not indexfinger: # if the index finger hasn't been accounted for:
+            if not split and finger == minimum: # if an open string hasn't been
+                                                # played and this is a job for
+                                                # the index finger:
+                if not indexfinger: # if the index finger hasn't been accounted
+                                    # for:
                     result += 1
                     indexfinger = True # index finger has now been accounted for
             else:
                 result += 1
     return result
 
-
-
 # The index
-
 _known = {}
 
-
 def add_tuning(instrument, description, tuning):
-    """Add a new tuning to the index. `instrument` and `description` should be \
-strings; `tuning` should be a list of strings or a list of lists to denote \
-courses. For example:
-{{{
->>> tuning.add_tuning(\"Guitar\", \"standard\", ['E-2', 'A-2', 'D-3', 'G-3', \
-'B-3', 'E-4'])
->>> tuning.add_tuning(\"Guitar\", \"twelve string\", [['E-2', 'E-3'], ['A-2', \
-'A-3'], ...etc.
-}}}"""
+    """Add a new tuning to the index.
 
+    The instrument and description parameters should be strings; tuning
+    should be a list of strings or a list of lists to denote courses.
+
+    Example:
+    >>> std_strings = ['E-2', 'A-2', 'D-3', 'G-3', 'B-3', 'E-4']
+    >>> tuning.add_tuning('Guitar', 'standard', std_strings)
+    >>> tw_strings = [['E-2', 'E-3'], ['A-2', 'A-3'], ...........]
+    >>> tuning.add_tuning('Guitar', 'twelve string', tw_string)
+    """
     t = StringTuning(instrument, description, tuning)
     if _known.has_key(str.upper(instrument)):
         _known[str.upper(instrument)][1][str.upper(description)] = t
@@ -426,27 +382,23 @@ courses. For example:
         _known[str.upper(instrument)] = (instrument,
                 {str.upper(description): t})
 
+def get_tuning(instrument, description, nr_of_strings=None, nr_of_courses=None):
+    """Get the first tuning that satisfies the constraints.
 
-def get_tuning(
-    instrument,
-    description,
-    nr_of_strings=None,
-    nr_of_courses=None,
-    ):
-    """Get the first tuning that satisfies the constraints. The `instrument` and \
-`description` arguments are treated like case-insensitive prefixes. So \
-search for 'bass' is the same is 'Bass Guitar'.
-{{{
->>> tunings.get_tuning(\"guitar\", \"standard\")
-<tunings.StringTuning instance at 0x139ac20>
-}}}"""
+    The instrument and description arguments are treated like
+    case-insensitive prefixes. So search for 'bass' is the same is
+    'Bass Guitar'.
 
+    Example:
+    >>> tunings.get_tuning('guitar', 'standard')
+    <tunings.StringTuning instance at 0x139ac20>
+    """
     searchi = str.upper(instrument)
     searchd = str.upper(description)
     keys = _known.keys()
     for x in keys:
-        if searchi not in keys and x.find(searchi) == 0 or searchi in keys and x\
-             == searchi:
+        if (searchi not in keys and x.find(searchi) == 0 or searchi in keys and
+                x == searchi):
             for (desc, tun) in _known[x][1].iteritems():
                 if desc.find(searchd) == 0:
                     if nr_of_strings is None and nr_of_courses is None:
@@ -462,17 +414,17 @@ search for 'bass' is the same is 'Bass Guitar'.
                              and tun.count_strings() == nr_of_strings:
                             return tun
 
-
 def get_tunings(instrument=None, nr_of_strings=None, nr_of_courses=None):
-    """Allows you to search tunings on instrument, strings, courses or a \
-combination. The instrument is actually treated like a case-insensitive \
-prefix. So asking for 'bass' yields the same tunings as 'Bass Guitar'; the \
-string 'ba' yields all the instruments starting with 'ba'.
-{{{
->>> tunings.get_tunings(nr_of_string = 4)
->>> tunings.get_tunings(\"bass\")
-}}}"""
+    """Search tunings on instrument, strings, courses or a combination.
 
+    The instrument is actually treated like a case-insensitive prefix. So
+    asking for 'bass' yields the same tunings as 'Bass Guitar'; the string
+    'ba' yields all the instruments starting with 'ba'.
+
+    Example:
+    >>> tunings.get_tunings(nr_of_string = 4)
+    >>> tunings.get_tunings('bass')
+    """
     search = ''
     if instrument is not None:
         search = str.upper(instrument)
@@ -480,8 +432,8 @@ string 'ba' yields all the instruments starting with 'ba'.
     keys = _known.keys()
     inkeys = search in keys
     for x in keys:
-        if instrument is None or not inkeys and x.find(search) == 0 or inkeys\
-             and search == x:
+        if (instrument is None or not inkeys and x.find(search) == 0 or
+                inkeys and search == x):
             if nr_of_strings is None and nr_of_courses is None:
                 result += _known[x][1].values()
             elif nr_of_strings is not None and nr_of_courses is None:
@@ -496,13 +448,10 @@ string 'ba' yields all the instruments starting with 'ba'.
                             and y.count_courses() == nr_of_courses]
     return result
 
-
 def get_instruments():
-    """Returns a sorted list of instruments that have string tunings defined for \
-them."""
-
+    """Return a sorted list of instruments that have string tunings defined
+    for them."""
     return sorted([_known[upname][0] for upname in _known])
-
 
 add_tuning('Baglamas (Greek)', 'Modal D standard tuning', [['D-4', 'D-5'],
            ['A-4', 'A-4'], ['D-5', 'D-5']])

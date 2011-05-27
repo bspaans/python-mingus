@@ -1,26 +1,31 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
+#    pyFluidSynth
+#
+#    Python bindings for FluidSynth
+#
+#    Copyright 2008-2009, Nathan Whitehead <nwhitehe@gmail.com>
+#    Currently maintained by Bart Spaans <onderstekop@gmail.com>
+#    Released under the LGPL
+
+"""Python bindings for FluidSynth.
+
+FluidSynth is a software synthesizer for generating music.  It works like a
+MIDI synthesizer.
+
+You load patches, set parameters, then send NOTEON and NOTEOFF events to
+play notes.
+
+Instruments are defined in SoundFonts, generally files with the extension
+SF2.
+
+FluidSynth can either be used to play audio itself, or you can call a
+function that returns chunks of audio data and output the data to the
+soundcard yourself.
+
+FluidSynth works on all major platforms, so pyFluidSynth should also.
 """
-================================================================================
-
-    pyFluidSynth
-
-    Python bindings for FluidSynth
-
-    Copyright 2008-2009, Nathan Whitehead <nwhitehe@gmail.com>
-    Currently maintained by Bart Spaans <onderstekop@gmail.com>
-    Released under the LGPL
-
-    This module contains python bindings for FluidSynth.  FluidSynth is a
-    software synthesizer for generating music.  It works like a MIDI
-    synthesizer.  You load patches, set parameters, then send NOTEON and
-    NOTEOFF events to play notes.  Instruments are defined in SoundFonts,
-    generally files with the extension SF2.  FluidSynth can either be used
-    to play audio itself, or you can call a function that returns chunks
-    of audio data and output the data to the soundcard yourself.
-    FluidSynth works on all major platforms, so pyFluidSynth should also.
-
-================================================================================"""
 
 import time
 from ctypes import *
@@ -33,17 +38,14 @@ if lib is None:
 
 _fl = CDLL(lib)
 
-
 def cfunc(name, result, *args):
-    """Build and apply a ctypes prototype complete with parameter flags"""
-
+    """Build and apply a ctypes prototype complete with parameter flags."""
     atypes = []
     aflags = []
     for arg in args:
         atypes.append(arg[1])
         aflags.append((arg[2], arg[0]) + arg[3:])
     return CFUNCTYPE(result, *atypes)((name, _fl), tuple(aflags))
-
 
 api_version = '1.2'
 
@@ -127,86 +129,67 @@ fluid_synth_write_s16 = cfunc(
     ('rincr', c_int, 1),
     )
 
-
 def fluid_synth_write_s16_stereo(synth, len):
-    """Return generated samples in stereo 16-bit format
+    """Return generated samples in stereo 16-bit format.
 
     Return value is a Numpy array of samples.
-
-"""
-
+    """
     import numpy
     buf = create_string_buffer(len * 4)
-    fluid_synth_write_s16(
-        synth,
-        len,
-        buf,
-        0,
-        2,
-        buf,
-        1,
-        2,
-        )
+    fluid_synth_write_s16(synth, len, buf, 0, 2, buf, 1, 2)
     return numpy.fromstring(buf[:], dtype=numpy.int16)
-
 
 class Synth:
 
-    """Synth represents a FluidSynth synthesizer"""
+    """Synth represents a FluidSynth synthesizer."""
 
     def __init__(self, gain=0.2, samplerate=44100):
-        """Create new synthesizer object to control sound generation
+        """Create a new synthesizer object to control sound generation.
 
         Optional keyword arguments:
-          gain : scale factor for audio output, default is 0.2
-                 lower values are quieter, allow more simultaneous notes
-          samplerate : output samplerate in Hz, default is 44100 Hz
-
-"""
-
+          gain: scale factor for audio output, default is 0.2
+                lower values are quieter, allow more simultaneous notes
+          samplerate: output samplerate in Hz, default is 44100 Hz
+        """
         st = new_fluid_settings()
         fluid_settings_setnum(st, 'synth.gain', gain)
         fluid_settings_setnum(st, 'synth.sample-rate', samplerate)
 
         # No reason to limit ourselves to 16 channels
-
         fluid_settings_setint(st, 'synth.midi-channels', 256)
         self.settings = st
         self.synth = new_fluid_synth(st)
         self.audio_driver = None
 
     def start(self, driver=None):
-        """Start audio output driver in separate background thread
+        """Start audio output driver in separate background thread.
 
         Call this function any time after creating the Synth object.
         If you don't call this function, use get_samples() to generate
         samples.
 
         Optional keyword argument:
-          driver : which audio driver to use for output
-                   Possible choices:
-                     'alsa', 'oss', 'jack', 'portaudio'
-                     'sndmgr', 'coreaudio', 'Direct Sound',
-                     'dsound', 'pulseaudio'
+          driver: which audio driver to use for output
+                  Possible choices:
+                    'alsa', 'oss', 'jack', 'portaudio'
+                    'sndmgr', 'coreaudio', 'Direct Sound',
+                    'dsound', 'pulseaudio'
 
-        Not all drivers will be available for every platform, it
-        depends on which drivers were compiled into FluidSynth for
-        your platform.
-
-"""
-
+        Not all drivers will be available for every platform, it depends on
+        which drivers were compiled into FluidSynth for your platform.
+        """
         if driver is not None:
             assert driver in [
-                'alsa',
-                'oss',
-                'jack',
-                'portaudio',
-                'sndmgr',
-                'coreaudio',
-                'Direct Sound',
-                'dsound',
-                'pulseaudio'
-                ]
+                    'alsa',
+                    'oss',
+                    'jack',
+                    'portaudio',
+                    'sndmgr',
+                    'coreaudio',
+                    'Direct Sound',
+                    'dsound',
+                    'pulseaudio'
+                    ]
             fluid_settings_setstr(self.settings, 'audio.driver', driver)
         self.audio_driver = new_fluid_audio_driver(self.settings, self.synth)
 
@@ -217,34 +200,19 @@ class Synth:
         delete_fluid_settings(self.settings)
 
     def sfload(self, filename, update_midi_preset=0):
-        """Load SoundFont and return its ID"""
-
+        """Load SoundFont and return its IDi."""
         return fluid_synth_sfload(self.synth, filename, update_midi_preset)
 
     def sfunload(self, sfid, update_midi_preset=0):
-        """Unload a SoundFont and free memory it used"""
-
+        """Unload a SoundFont and free memory it used."""
         return fluid_synth_sfunload(self.synth, sfid, update_midi_preset)
 
-    def program_select(
-        self,
-        chan,
-        sfid,
-        bank,
-        preset,
-        ):
-        """Select a program"""
-
+    def program_select(self, chan, sfid, bank, preset):
+        """Select a program."""
         return fluid_synth_program_select(self.synth, chan, sfid, bank, preset)
 
-    def noteon(
-        self,
-        chan,
-        key,
-        vel,
-        ):
-        """Play a note"""
-
+    def noteon(self, chan, key, vel):
+        """Play a note."""
         if key < 0 or key > 128:
             return False
         if chan < 0:
@@ -254,8 +222,7 @@ class Synth:
         return fluid_synth_noteon(self.synth, chan, key, vel)
 
     def noteoff(self, chan, key):
-        """Stop a note"""
-
+        """Stop a note."""
         if key < 0 or key > 128:
             return False
         if chan < 0:
@@ -263,85 +230,67 @@ class Synth:
         return fluid_synth_noteoff(self.synth, chan, key)
 
     def pitch_bend(self, chan, val):
-        """Adjust pitch of a playing channel by small amounts
+        """Adjust pitch of a playing channel by small amounts.
 
         A pitch bend value of 0 is no pitch change from default.
         A value of -2048 is 1 semitone down.
         A value of 2048 is 1 semitone up.
         Maximum values are -8192 to +8192 (transposing by 4 semitones).
-
-"""
-
+        """
         return fluid_synth_pitch_bend(self.synth, chan, val + 8192)
 
-    def cc(
-        self,
-        chan,
-        ctrl,
-        val,
-        ):
-        """Send control change value
+    def cc(self, chan, ctrl, val):
+        """Send control change value.
 
         The controls that are recognized are dependent on the
         SoundFont.  Values are always 0 to 127.  Typical controls
         include:
-          1 : vibrato
-          7 : volume
-          10 : pan (left to right)
-          11 : expression (soft to loud)
-          64 : sustain
-          91 : reverb
-          93 : chorus
-"""
-
+          1: vibrato
+          7: volume
+          10: pan (left to right)
+          11: expression (soft to loud)
+          64: sustain
+          91: reverb
+          93: chorus
+        """
         return fluid_synth_cc(self.synth, chan, ctrl, val)
 
     def program_change(self, chan, prg):
-        """Change the program"""
-
+        """Change the program."""
         return fluid_synth_program_change(self.synth, chan, prg)
 
     def bank_select(self, chan, bank):
-        """Choose a bank"""
-
+        """Choose a bank."""
         return fluid_synth_bank_select(self.synth, chan, bank)
 
     def sfont_select(self, chan, sfid):
-        """Choose a SoundFont"""
-
+        """Choose a SoundFont."""
         return fluid_synth_sfont_select(self.synth, chan, sfid)
 
     def program_reset(self):
-        """Reset the programs on all channels"""
-
+        """Reset the programs on all channels."""
         return fluid_synth_program_reset(self.synth)
 
     def system_reset(self):
-        """Stop all notes and reset all programs"""
-
+        """Stop all notes and reset all programs."""
         return fluid_synth_system_reset(self.synth)
 
     def get_samples(self, len=1024):
-        """Generate audio samples
+        """Generate audio samples.
 
         The return value will be a NumPy array containing the given
         length of audio samples.  If the synth is set to stereo output
         (the default) the array will be size 2 * len.
-
-"""
-
+        """
         return fluid_synth_write_s16_stereo(self.synth, len)
 
 
 def raw_audio_string(data):
-    """Return a string of bytes to send to soundcard
+    """Return a string of bytes to send to soundcard.
 
-    Input is a numpy array of samples.  Default output format
-    is 16-bit signed (other formats not currently supported).
-
-"""
-
+    Input is a numpy array of samples. Default output format is 16-bit
+    signed (other formats not currently supported).
+    """
     import numpy
     return data.astype(numpy.int16).tostring()
-
 

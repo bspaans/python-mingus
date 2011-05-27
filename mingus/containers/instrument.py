@@ -1,41 +1,37 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-"""
-================================================================================
 
-    mingus - Music theory Python package, instrument module.
-    Copyright (C) 2008-2009, Bart Spaans
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-================================================================================
-"""
+#    mingus - Music theory Python package, instrument module.
+#    Copyright (C) 2008-2009, Bart Spaans
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from mingus.containers.note import Note
 from mt_exceptions import UnexpectedObjectError
 
-
 class Instrument(object):
 
-    """The Instrument class is pretty self explanatory. Instruments can be used \
-with [refMingusContainersTrack Tracks] to define which instrument plays \
-what, with the added bonus of checking whether the entered notes are in the \
-range of the instrument.
+    """An instrument object.
 
-It's probably easiest to subclass your own Instruments (see \
-[refMingusContainersPiano Piano] and [refMingusContainersGuitar Guitar] for \
-examples)."""
+    The Instrument class is pretty self explanatory. Instruments can be used
+    with Tracks to define which instrument plays what, with the added bonus
+    of checking whether the entered notes are in the range of the
+    instrument.
+
+    It's probably easiest to subclass your own Instruments (see Piano and
+    Guitar for examples).
+    """
 
     name = 'Instrument'
     range = (Note('C', 0), Note('C', 8))
@@ -46,41 +42,41 @@ examples)."""
         pass
 
     def set_range(self, range):
-        """Sets the range of the instrument. A range is a tuple of two \
-[refMingusContainersNote Notes] or note strings."""
+        """Set the range of the instrument.
 
+        A range is a tuple of two Notes or note strings.
+        """
         if type(range[0]) == str:
             range[0] = Note(range[0])
             range[1] = Note(range[1])
         if not hasattr(range[0], 'name'):
-            raise UnexpectedObjectError, \
-                "Unexpected object '%s'. Expecting a mingus.containers.Note object"\
-                 % range[0]
+            raise UnexpectedObjectError("Unexpected object '%s'. "
+                    "Expecting a mingus.containers.Note object" % range[0])
         self.range = range
 
     def note_in_range(self, note):
-        """Tests whether note is in the range of this Instrument. Returns `True` if \
-so, `False` otherwise"""
+        """Test whether note is in the range of this Instrument.
 
+        Return True if so, False otherwise.
+        """
         if type(note) == str:
             note = Note(note)
         if not hasattr(note, 'name'):
-            raise UnexpectedObjectError, \
-                "Unexpected object '%s'. Expecting a mingus.containers.Note object"\
-                 % note
+            raise UnexpectedObjectError("Unexpected object '%s'. "
+                    "Expecting a mingus.containers.Note object" % note)
         if note >= self.range[0] and note <= self.range[1]:
             return True
         return False
 
     def notes_in_range(self, notes):
-        """An alias for can_play_notes"""
-
+        """An alias for can_play_notes."""
         return can_play_notes(notes)
 
     def can_play_notes(self, notes):
-        """Will test if the notes lie within the range of the instrument. Returns \
-`True` if so, `False` otherwise."""
+        """Test if the notes lie within the range of the instrument.
 
+        Return True if so, False otherwise.
+        """
         if hasattr(notes, 'notes'):
             notes = notes.notes
         if type(notes) != list:
@@ -91,8 +87,7 @@ so, `False` otherwise"""
         return True
 
     def __repr__(self):
-        """A string representation of the object"""
-
+        """Return a string representing the object."""
         return '%s [%s - %s]' % (self.name, self.range[0], self.range[1])
 
 
@@ -258,5 +253,4 @@ class MidiInstrument(Instrument):
 
     def __init__(self, name=''):
         self.name = name
-
 

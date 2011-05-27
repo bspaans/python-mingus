@@ -3,14 +3,13 @@
 import sys
 sys.path += ['../']
 import unittest
-import mingus.extra.LilyPond as LilyPond
+import mingus.extra.lilypond as LilyPond
 import mingus.core.value as value
-from mingus.containers.Note import Note
-from mingus.containers.NoteContainer import NoteContainer
-from mingus.containers.Bar import Bar
-from mingus.containers.Track import Track
-from mingus.containers.Composition import Composition
-
+from mingus.containers.note import Note
+from mingus.containers.note_container import NoteContainer
+from mingus.containers.bar import Bar
+from mingus.containers.track import Track
+from mingus.containers.composition import Composition
 
 class test_LilyPond(unittest.TestCase):
 
@@ -136,5 +135,4 @@ class test_LilyPond(unittest.TestCase):
 
 def suite():
     return unittest.TestLoader().loadTestsFromTestCase(test_LilyPond)
-
 

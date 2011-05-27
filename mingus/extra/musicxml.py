@@ -1,37 +1,33 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-"""
-================================================================================
 
-    mingus - Music theory Python package, musicxml module.
-    Copyright (C) 2008-2009, Bart Spaans, Javier Palanca
-    Copyright (C) 2011, Carlo Stemberger
+#    mingus - Music theory Python package, musicxml module.
+#    Copyright (C) 2008-2009, Bart Spaans, Javier Palanca
+#    Copyright (C) 2011, Carlo Stemberger
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+"""Convert mingus.containers to MusicXML files.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+The MusicXML format represents common Western musical notation from the 17th
+century onwards. It lets you distribute interactive sheet music online, and
+use sheet music files with a wide variety of musical applications.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+The MusicXML format is open for use by anyone under a royalty-free license,
+and is supported by over 100 applications.
 
-================================================================================
-
-    This module can convert mingus.containers to MusicXML files.
-    The MusicXML format represents common Western musical notation from
-    the 17th century onwards. It lets you distribute interactive sheet
-    music online, and to use sheet music files with a wide variety of
-    musical applications. The MusicXML format is open for use by anyone
-    under a royalty-free license, and is supported by over 100 applications.
-
-    http://www.musicxml.org/xml.html
-
-================================================================================
+http://www.musicxml.org/xml.html
 """
 
 import xml
@@ -46,7 +42,6 @@ import datetime
 
 def _gcd(a=None, b=None, terms=None):
     """Return greatest common divisor using Euclid's Algorithm."""
-
     if terms:
         return reduce(lambda a, b: _gcd(a, b), terms)
     else:
@@ -56,7 +51,6 @@ def _gcd(a=None, b=None, terms=None):
 
 def _lcm(a=None, b=None, terms=None):
     """Return lowest common multiple."""
-
     if terms:
         return reduce(lambda a, b: _lcm(a, b), terms)
     else:
@@ -272,10 +266,12 @@ def _composition2musicxml(comp):
                 midi = doc.createElement('midi-instrument')
                 midi.setAttribute('id', str(id(t.instrument)))
                 channel = doc.createElement('midi-channel')
-                channel.appendChild(doc.createTextNode(str(1)))  # what about the midi
+                channel.appendChild(doc.createTextNode(str(1)))  # what about
+                                                                 # the MIDI
                                                                  # channels?
                 program = doc.createElement('midi-program')
-                program.appendChild(doc.createTextNode(str(t.instrument.instrument_nr)))
+                program.appendChild(doc.createTextNode(
+                    str(t.instrument.instrument_nr)))
                 midi.appendChild(channel)
                 midi.appendChild(program)
                 score_part.appendChild(midi)
@@ -305,8 +301,7 @@ def from_Composition(comp):
     return _composition2musicxml(comp).toprettyxml()
 
 def write_Composition(composition, filename, zip=False):
-    """Creates an xml file (or mxl if compressed) for a given composition"""
-
+    """Create an XML file (or MXL if compressed) for a given composition."""
     text = from_Composition(composition)
     if not zip:
         f = open(filename + '.xml', 'w')
@@ -320,8 +315,9 @@ def write_Composition(composition, filename, zip=False):
         zi = zipfile.ZipInfo('META-INF' + os.sep + 'container.xml')
         zi.external_attr = 0660 << 16L
         zf.writestr(zi,
-                    "<?xml version='1.0' encoding='UTF-8'?><container><rootfiles><rootfile full-path='"
-                     + filename + ".xml'/></rootfiles></container>")
+                    "<?xml version='1.0' encoding='UTF-8'?>"
+                    "<container><rootfiles><rootfile full-path='{0}.xml'/>"
+                    "</rootfiles></container>".format(filename))
         zi = zipfile.ZipInfo(filename + '.xml')
         zi.external_attr = 0660 << 16L
         zf.writestr(zi, text)

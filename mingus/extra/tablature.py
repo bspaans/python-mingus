@@ -1,31 +1,23 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-"""
 
-================================================================================
+#    mingus - Music theory Python package, tablature module.
+#    Copyright (C) 2009, Bart Spaans
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-    mingus - Music theory Python package, tablature module
-    Copyright (C) 2009, Bart Spaans
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-================================================================================
-
-        The tablature module provides the necessary functions to convert
-        mingus.containers to pretty ASCII tablature.
-
-================================================================================"""
+"""Functions to convert mingus.containers to pretty ASCII tablature."""
 
 import mingus.extra.tunings as tunings
 from mingus.core.mt_exceptions import RangeError, FingerError
@@ -33,17 +25,13 @@ import os
 
 default_tuning = tunings.get_tuning('Guitar', 'Standard', 6, 1)
 
-
 def begin_track(tuning, padding=2):
     """Helper function that builds the first few characters of every bar."""
-
-        # find longest shorthand tuning base
-
+    # find longest shorthand tuning base
     names = [x.to_shorthand() for x in tuning.tuning]
     basesize = len(max(names)) + 3
 
-        # Build result
-
+    # Build result
     res = []
     for x in names:
         r = ' %s' % x
@@ -53,20 +41,15 @@ def begin_track(tuning, padding=2):
     return res
 
 
-def add_headers(
-    width=80,
-    title='Untitled',
-    subtitle='',
-    author='',
-    email='',
-    description='',
-    tunings=[],
-    ):
-    """Creates a nice header in the form of a list of strings using the information \
-that has been filled in. All arguments except `width` and `tunings` should \
-be strings. `width` should be an integer and `tunings` a list of tunings \
-representing the instruments."""
+def add_headers(width=80, title='Untitled', subtitle='', author='', email='',
+        description='', tunings=[]):
+    """Create a nice header in the form of a list of strings using the
+    information that has been filled in.
 
+    All arguments except 'width' and 'tunings' should be strings. 'width'
+    should be an integer and 'tunings' a list of tunings representing the
+    instruments.
+    """
     result = ['']
     title = str.upper(title)
     result += [str.center('  '.join(title), width)]
@@ -104,23 +87,25 @@ representing the instruments."""
     result += ['', '']
     return result
 
-
 def from_Note(note, width=80, tuning=None):
-    """Returns a string made out of ascii tablature representing a Note object or \
-note string. `tuning` should be a StringTuning object or None for the \
-default tuning. Throws a !RangeError if a suitable fret can't be found. To \
-force a certain fingering you can use a `string` and `fret` attribute on the \
-Note. If the fingering is valid, it will get used instead of the default \
-one."""
+    """Return a string made out of ASCII tablature representing a Note object
+    or note string.
 
+    Throw a RangeError if a suitable fret can't be found.
+
+    'tuning' should be a StringTuning object or None for the default tuning.
+
+    To force a certain fingering you can use a 'string' and 'fret' attribute
+    on the Note. If the fingering is valid, it will get used instead of the
+    default one.
+    """
     if tuning is None:
         tuning = default_tuning
     result = begin_track(tuning)
     min = 1000
     (s, f) = (-1, -1)
 
-        # Do an attribute check
-
+    # Do an attribute check
     if hasattr(note, 'string') and hasattr(note, 'fret'):
         n = tuning.get_Note(note.string, note.fret)
         if n is not None and int(n) == int(note):
@@ -136,8 +121,7 @@ one."""
     l = len(result[0])
     w = max(4, (width - l) - 1)
 
-        # Build ASCII
-
+    # Build ASCII
     if min != 1000:
         fret = str(f)
         for i in range(len(result)):
@@ -150,20 +134,23 @@ one."""
                 d = (w - d / 2) - len(fret)
                 result[i] += '-' * d + '|'
     else:
-        raise RangeError, \
-            "No fret found that could play note '%s'. Note out of range." % note
+        raise RangeError("No fret found that could play note '%s'. "
+                "Note out of range." % note)
     result.reverse()
     return os.linesep.join(result)
 
-
 def from_NoteContainer(notes, width=80, tuning=None):
-    """Returns a string made out of ASCII tablature representing a NoteContainer \
-object or list of note strings / Note objects. `tuning` should be a \
-StringTuning object or None for the default tuning. Throws a !FingerError if \
-no playable fingering can be found. To force a certain fingering you can use \
-a `string` and `fret` attribute on one or more of the Notes. If the \
-fingering is valid, it will get used instead of the default one."""
+    """Return a string made out of ASCII tablature representing a
+    NoteContainer object or list of note strings / Note objects.
 
+    Throw a FingerError if no playable fingering can be found.
+
+    'tuning' should be a StringTuning object or None for the default tuning.
+
+    To force a certain fingering you can use a 'string' and 'fret' attribute
+    on one or more of the Notes. If the fingering is valid, it will get used
+    instead of the default one.
+    """
     if tuning is None:
         tuning = default_tuning
     result = begin_track(tuning)
@@ -171,9 +158,7 @@ fingering is valid, it will get used instead of the default one."""
     w = max(4, (width - l) - 1)
     fingerings = tuning.find_fingering(notes)
     if fingerings != []:
-
-                # Do an attribute check
-
+        # Do an attribute check
         f = []
         attr = []
         for note in notes:
@@ -183,9 +168,8 @@ fingering is valid, it will get used instead of the default one."""
                     f += (note.string, note.fret)
                     attr.append(int(note))
 
-                # See if there are any possible fingerings with the attributes
-                # that are set.
-
+        # See if there are any possible fingerings with the attributes
+        # that are set.
         fres = []
         if f != []:
             for x in fingerings:
@@ -196,25 +180,20 @@ fingering is valid, it will get used instead of the default one."""
                 if found:
                     fres.append(x)
 
-                # Use best fingering.
-
+        # Use best fingering.
         if fres != []:
             f = fres[0]
         else:
-
-                # Use default fingering if attributes don't make sense
-
+            # Use default fingering if attributes don't make sense
             f = fingerings[0]
 
-                # Build {string: fret} result
-
+        # Build {string: fret} result
         res = {}
         for (string, fret) in f:
             res[string] = str(fret)
         maxfret = max(res.values())
 
-                # Produce ASCII
-
+        # Produce ASCII
         for i in range(len(result)):
             if i not in res.keys():
                 result[i] += '-' * w + '|'
@@ -224,41 +203,35 @@ fingering is valid, it will get used instead of the default one."""
                 d = (w - d / 2) - len(res[i])
                 result[i] += '-' * d + '|'
     else:
-        raise FingerError, 'No playable fingering found for: %s' % notes
+        raise FingerError('No playable fingering found for: %s' % notes)
     result.reverse()
     return os.linesep.join(result)
 
+def from_Bar(bar, width=40, tuning=None, collapse=True):
+    """Convert a mingus.containers.Bar object to ASCII tablature.
 
-def from_Bar(
-    bar,
-    width=40,
-    tuning=None,
-    collapse=True,
-    ):
-    """Converts a mingus.containers.Bar object to ASCII tablature. `tuning` should \
-be a StringTuning object or None for the default tuning. If `collapse` is \
-False this will return a list of lines, if it's True all lines will be \
-concatenated with a newline symbol. Throws a !FingerError if no playable \
-fingering can be found. Use `string` and `fret` attributes on Notes to force \
-certain fingerings."""
+    Throw a FingerError if no playable fingering can be found.
 
+    'tuning' should be a StringTuning object or None for the default tuning.
+    If 'collapse' is False this will return a list of lines, if it's True
+    all lines will be concatenated with a newline symbol.
+
+    Use 'string' and 'fret' attributes on Notes to force certain fingerings.
+    """
     if tuning is None:
         tuning = default_tuning
 
-        # Size of a quarter note
-
+    # Size of a quarter note
     qsize = _get_qsize(tuning, width)
     result = begin_track(tuning, max(2, qsize / 2))
 
-        # Add bar
-
+    # Add bar
     for entry in bar.bar:
         (beat, duration, notes) = entry
         fingering = tuning.find_fingering(notes)
         if fingering != [] or notes is None:
 
-                        # Do an attribute check
-
+            # Do an attribute check
             f = []
             attr = []
             if notes is not None:
@@ -269,9 +242,8 @@ certain fingerings."""
                             f.append((note.string, note.fret))
                             attr.append(int(note))
 
-                        # See if there are any possible fingerings with the
-                        # attributes that are set.
-
+            # See if there are any possible fingerings with the attributes that
+            # are set.
             fres = []
             if f != []:
                 for x in fingering:
@@ -282,31 +254,26 @@ certain fingerings."""
                     if found:
                         fres.append(x)
 
-                        # Use best fingering.
-
+            # Use best fingering.
             maxlen = 0
             if fres != []:
                 f = fres[0]
             else:
-
-                        # Use default fingering if attributes don't make sense
-
+                # Use default fingering if attributes don't make sense
                 if notes is None:
                     f = []
                     maxlen = 1
                 else:
                     f = fingering[0]
 
-                        # Make {string: fret} dictionary and find highest fret
-
+            # Make {string: fret} dictionary and find highest fret
             d = {}
             for (string, fret) in f:
                 d[string] = str(fret)
                 if len(str(fret)) > maxlen:
                     maxlen = len(str(fret))
 
-                        # Add to result
-
+            # Add to result
             for i in range(len(result)):
                 dur = int(((1.0 / duration) * qsize) * 4) - maxlen
                 if i not in d.keys():
@@ -314,17 +281,15 @@ certain fingerings."""
                 else:
                     result[i] += ('%' + str(maxlen) + 's') % d[i] + '-' * dur
         else:
-            raise FingerError, 'No playable fingering found for: %s' % notes
+            raise FingerError('No playable fingering found for: %s' % notes)
 
-        # Padding at the end
-
+    # Padding at the end
     l = len(result[i]) + 1
     for i in range(len(result)):
         result[i] += (width - l) * '-' + '|'
     result.reverse()
 
-        # Mark quarter notes
-
+    # Mark quarter notes
     pad = ' ' * int(((1.0 / bar.meter[1]) * qsize) * 4 - 1)
     r = ' ' * (result[0].find('||') + 2 + max(2, qsize / 2)) + ('*' + pad)\
          * bar.meter[0]
@@ -334,13 +299,15 @@ certain fingerings."""
     else:
         return os.linesep.join([r] + result)
 
-
 def from_Track(track, maxwidth=80, tuning=None):
-    """Converts a mingus.containers.Track object to an ASCII tablature string. \
-`tuning` should be set to a StringTuning object or to None to use the \
-Track's tuning (or alternatively the default if the Track hasn't got its own \
-tuning). `string` and `fret` attributes on Notes are taken into account."""
+    """Convert a mingus.containers.Track object to an ASCII tablature string.
 
+    'tuning' should be set to a StringTuning object or to None to use the
+    Track's tuning (or alternatively the default if the Track hasn't got its
+    own tuning).
+
+    'string' and 'fret' attributes on Notes are taken into account.
+    """
     result = []
     width = _get_width(maxwidth)
     if not tuning:
@@ -358,16 +325,17 @@ tuning). `string` and `fret` attributes on Notes are taken into account."""
         lastlen = len(result[-1])
     return os.linesep.join(result)
 
-
 def from_Composition(composition, width=80):
-    """Converts a mingus.containers.Composition to an ASCII tablature string, and \
-automatically adds an header based on the title, subtitle, author, e-mail \
-and description attributes. An extra description of the piece can also be \
-given. Tunings can be set by using the `Track.instrument.tuning` or \
-`Track.tuning` attribute."""
+    """Convert a mingus.containers.Composition to an ASCII tablature string.
 
-        # Collect tunings
+    Automatically add an header based on the title, subtitle, author, e-mail
+    and description attributes. An extra description of the piece can also
+    be given.
 
+    Tunings can be set by using the Track.instrument.tuning or Track.tuning
+    attribute.
+    """
+    # Collect tunings
     instr_tunings = []
     for track in composition:
         tun = track.get_tuning()
@@ -385,8 +353,7 @@ given. Tunings can be set by using the `Track.instrument.tuning` or \
         instr_tunings,
         )
 
-        # Some variables
-
+    # Some variables
     w = _get_width(width)
     barindex = 0
     bars = width / w
@@ -404,14 +371,11 @@ given. Tunings can be set by using the `Track.instrument.tuning` or \
                     r = from_Bar(bar, w, tuning, collapse=False)
                     barstart = r[1].find('||') + 2
 
-                                        # Add extra '||' to quarter note marks
-                                        # to connect tracks.
-
+                    # Add extra '||' to quarter note marks to connect tracks.
                     if notfirst:
                         r[0] = (r[0])[:barstart - 2] + '||' + (r[0])[barstart:]
 
-                                        # Add bar to ascii
-
+                    # Add bar to ascii
                     if ascii != []:
                         for i in range(1, len(r) + 1):
                             item = r[len(r) - i]
@@ -419,27 +383,26 @@ given. Tunings can be set by using the `Track.instrument.tuning` or \
                     else:
                         ascii += r
 
-                        # Add extra '||' to connect tracks
-
+            # Add extra '||' to connect tracks
             if notfirst and ascii != []:
                 pad = ascii[-1].find('||')
                 result += [' ' * pad + '||', ' ' * pad + '||']
             else:
                 notfirst = True
 
-                        # Finally, add ascii to result
-
+            # Finally, add ascii to result
             result += ascii
         result += ['', '', '']
         barindex += bars
     return os.linesep.join(result)
 
-
 def from_Suite(suite, maxwidth=80):
-    """Converts a mingus.containers.Suite to an ASCII tablature string, complete \
-with headers. This function makes use of the Suite's title, subtitle, \
-author, email and description attributes."""
+    """Convert a mingus.containers.Suite to an ASCII tablature string, complete
+    with headers.
 
+    This function makes use of the Suite's title, subtitle, author, email
+    and description attributes.
+    """
     subtitle = str(len(suite.compositions)) + ' Compositions' if suite.subtitle\
          == '' else suite.subtitle
     result = os.linesep.join(add_headers(
@@ -458,29 +421,21 @@ author, email and description attributes."""
         result += c + n + hr + n + n
     return result
 
-
 def _get_qsize(tuning, width):
-    """Helper function that returns a reasonable quarter note size for `tuning` and \
-`width`."""
-
+    """Return a reasonable quarter note size for 'tuning' and 'width'."""
     names = [x.to_shorthand() for x in tuning.tuning]
     basesize = len(max(names)) + 3
     barsize = ((width - basesize) - 2) - 1
 
-        # x * 4 + 0.5x - barsize = 0 4.5x = barsize x = barsize / 4.5
-
+    # x * 4 + 0.5x - barsize = 0 4.5x = barsize x = barsize / 4.5
     return max(0, int(barsize / 4.5))
 
-
 def _get_width(maxwidth):
-    """Helper function that returns the width of a single bar, when width of the \
-page is given."""
-
+    """Return the width of a single bar, when width of the page is given."""
     width = maxwidth / 3
     if maxwidth <= 60:
         width = maxwidth
     elif 60 < maxwidth <= 120:
         width = maxwidth / 2
     return width
-
 
