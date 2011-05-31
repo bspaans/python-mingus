@@ -23,7 +23,7 @@ This allows you to create sheet music from some of the objects in
 mingus.containers.
 """
 
-from mingus.containers.note import Note
+from mingus.core.keys import Key
 from mingus.containers.mt_exceptions import (NoteFormatError,
         UnexpectedObjectError)
 import mingus.core.value as value
@@ -162,7 +162,7 @@ def from_Track(track):
     # Throw exception
     if not hasattr(track, 'bars'):
         return False
-    lastkey = Note('C')
+    lastkey = Key('C')
     lasttime = (4, 4)
 
     # Handle the Bars:
