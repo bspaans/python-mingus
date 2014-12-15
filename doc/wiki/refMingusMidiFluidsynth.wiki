@@ -22,7 +22,7 @@ Now you are ready to play Notes, NoteContainers, etc.
 
 === `midi` ===
   * *Type*: mingus.midi.fluidsynth.FluidSynthSequencer
-  * *Value*: `<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x8e8aaac>`
+  * *Value*: `<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x1009e52d0>`
 
 ----
 == Functions ==

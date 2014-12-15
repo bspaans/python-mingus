@@ -22,15 +22,15 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 == Attributes ==
 === `DEFAULT_MODE` ===
   * *Type*: int
-  * *Value*: `0`
+  * *Value*: `4`
 
 === `RTLD_GLOBAL` ===
   * *Type*: int
-  * *Value*: `256`
+  * *Value*: `8`
 
 === `RTLD_LOCAL` ===
   * *Type*: int
-  * *Value*: `0`
+  * *Value*: `4`
 
 === `api_version` ===
   * *Type*: str
@@ -38,19 +38,19 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 
 === `cdll` ===
   * *Type*: ctypes.LibraryLoader
-  * *Value*: `<ctypes.LibraryLoader object at 0x8e4b70c>`
+  * *Value*: `<ctypes.LibraryLoader object at 0x1008c48d0>`
 
 === `lib` ===
   * *Type*: str
-  * *Value*: `'libfluidsynth.so.1'`
+  * *Value*: `'/usr/local/lib/libfluidsynth.dylib'`
 
 === `pydll` ===
   * *Type*: ctypes.LibraryLoader
-  * *Value*: `<ctypes.LibraryLoader object at 0x8e4b72c>`
+  * *Value*: `<ctypes.LibraryLoader object at 0x1008c4910>`
 
 === `pythonapi` ===
   * *Type*: ctypes.PyDLL
-  * *Value*: `<PyDLL 'None', handle b78f7908 at 8e4b74c>`
+  * *Value*: `<PyDLL 'None', handle fffffffffffffffe at 1008c4950>`
 
 ----
 == Functions ==

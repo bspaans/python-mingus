@@ -6,7 +6,7 @@ Functions to convert mingus.containers to pretty ASCII tablature.
 == Attributes ==
 === `default_tuning` ===
   * *Type*: mingus.extra.tunings.StringTuning
-  * *Value*: `<mingus.extra.tunings.StringTuning object at 0x8ce68cc>`
+  * *Value*: `<mingus.extra.tunings.StringTuning object at 0x1003d0f10>`
 
 ----
 == Functions ==
