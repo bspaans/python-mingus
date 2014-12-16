@@ -75,7 +75,7 @@ class Sequencer(object):
     def play_event(self, note, channel, velocity):
         pass
 
-    def stop_event(self, channel, note):
+    def stop_event(self, note, channel):
         pass
 
     def cc_event(self, channel, control, value):
