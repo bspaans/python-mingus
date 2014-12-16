@@ -1,7 +1,7 @@
 from distutils.core import setup
 
 setup(name= "mingus",
-      version = "0.5.0",
+      version = "0.5.1",
       description = "mingus is a music package for Python",
 
       long_description = 
