@@ -41,12 +41,10 @@ def MIDI_to_Composition(file):
     return m.MIDI_to_Composition(file)
 
 class HeaderError(Exception):
-
     pass
 
 
 class TimeDivisionError(Exception):
-
     pass
 
 
@@ -82,7 +80,12 @@ class MidiFile:
                 duration = float(deltatime) / (ticks_per_beat * 4.0)
                 if duration != 0.0:
                     duration = 1.0 / duration
-                if deltatime != 0:
+                    if len(b.bar) > 0:
+                        current_length = b.bar[-1][1]
+                        b.bar[-1][1] = duration
+                        if current_length - duration != 0:
+                            b.current_beat -= 1.0 / current_length
+                            b.current_beat += 1.0 / duration
                     if not b.place_notes(NoteContainer(), duration):
                         t + b
                         b = Bar(key, meter)
