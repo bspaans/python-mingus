@@ -28,7 +28,7 @@ from binascii import a2b_hex
 from struct import pack, unpack
 from math import log
 from midi_events import *
-from mingus.core.keys import major_keys, minor_keys
+from mingus.core.keys import Key, major_keys, minor_keys
 from mingus.containers.note import Note
 
 class MidiTrack(object):
@@ -241,13 +241,13 @@ class MidiTrack(object):
 
     def set_key(self, key='C'):
         """Add a key signature event to the track_data."""
-        if isinstance(key, Note):
-            key = key.name
+        if isinstance(key, Key):
+            key = key.name[0]
         self.track_data += self.key_signature_event(key)
 
     def key_signature_event(self, key='C'):
         """Return the bytes for a key signature event."""
-        if key[0].islower():
+        if key.islower():
             val = minor_keys.index(key) - 7
             mode = '\x01'
         else:
