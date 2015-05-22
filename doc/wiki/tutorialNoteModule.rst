@@ -1,10 +1,5 @@
-﻿#summary The mingus.containers.Note module
-
-
-----
-
-
-= Tutorial 1 - The Note Class =
+﻿Tutorial 1 - The Note Class
+===========================
 
 `mingus.core.notes` provides a way to work with notes. However, what if we want to work with notes in different octaves? Or what if we want to set the amplitude or some effects on a note? This Note class solves those problems and also provides the cornerstone of the `mingus.containers` package.
 

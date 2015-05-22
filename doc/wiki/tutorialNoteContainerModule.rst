@@ -1,10 +1,5 @@
-﻿#summary The mingus.containers.NoteContainers module
-
-
-----
-
-
-= Tutorial 2 - !NoteContainers =
+﻿Tutorial 2 - !NoteContainers
+============================
 
 What if we want to store several Note objects at once (ie. intervals, chords)? We could use a simple list and be done with it, but we could 
 also use a !NoteContainer, which has some extra functionality and is used throughout this package. 

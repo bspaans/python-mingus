@@ -1,14 +1,14 @@
 ﻿mingus
 ======
 
-= Introduction =
-
 *mingus* is an advanced, cross-platform music theory and notation package for [http://www.python.org Python] with MIDI file and playback support. It can be used to play around with music theory, to build editors, educational tools and other applications that need to process and/or play music. It can also be used to create sheet music with [http://www.lilypond.org LilyPond].
 
+===============
+Getting Started
+===============
 
 .. toctree::
    :maxdepth: 1
-   :caption: Getting Started
    :name: mastertoc
 
    doc/wiki/mingusFeatures
@@ -17,8 +17,6 @@
    doc/wiki/mingusApplications
    doc/wiki/mingusContact
 
-
-----
 
 
 =========

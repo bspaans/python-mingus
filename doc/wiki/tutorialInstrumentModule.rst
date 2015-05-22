@@ -1,10 +1,5 @@
-﻿#summary The mingus.containers.Instrument module
-
-
-----
-
-
-= Tutorial 4 - Instruments =
+﻿Tutorial 4 - Instruments
+========================
 
 We have grouped Notes in !NoteContainers and !NoteContainers in Bars, but before we can add Bars to Tracks, we need an Instrument class.
 

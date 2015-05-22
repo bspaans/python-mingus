@@ -1,10 +1,5 @@
-﻿#summary Using mingus.midi.fluidsynth
-
-
-----
-
-
-= Tutorial 1 - Playing Containers with !FluidSynth = 
+﻿Tutorial 1 - Playing Containers with FluidSynth 
+===============================================
 
 `FluidSynth` is a MIDI synthesizer which uses !SoundFont (.SF2) files to generate audio. To work with this module, you'll need the !FluidSynth library (usually packaged with the stand-alone program) and a nice instrument collection (look here: http://www.hammersound.net, go to Sounds -> Soundfont Library -> Collections). 
 

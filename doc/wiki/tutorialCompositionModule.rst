@@ -1,10 +1,5 @@
-﻿#summary The mingus.containers.Composition module
-
-
-----
-
-
-= Tutorial 6 - Composition =
+﻿Tutorial 6 - Composition
+========================
 
 A Composition can be used to organize Tracks and to add some metadata such as `title`, `subtitle` and `author`.
 

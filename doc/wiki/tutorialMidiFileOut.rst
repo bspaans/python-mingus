@@ -1,10 +1,5 @@
-﻿#summary Using mingus.midi.MidiFileOut
-
-
-----
-
-
-= Tutorial 2 - Saving Containers as Midi Files = 
+﻿Tutorial 2 - Saving Containers as Midi Files
+============================================
 
 
 == Importing !MidiFileOut ==

@@ -1,10 +1,5 @@
-﻿#summary The mingus.containers.Suite module
-
-
-----
-
-
-= Tutorial 7 - Suite =
+﻿Tutorial 7 - Suite
+==================
 
 The Suite class can be used to store compositions together and will probably not be used as much (if you want to write a symphony, knock yourself out though).
 
