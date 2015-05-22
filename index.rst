@@ -24,11 +24,10 @@ Tutorials
 =========
 
 
-Exploring `mingus.core`
 
 .. toctree::
    :maxdepth: 2
-   :caption: Fundamentals
+   :caption: Fundamentals: Exploring `mingus.core`
    :name: minguscore
 
    doc/wiki/tutorialNote
@@ -40,11 +39,10 @@ Exploring `mingus.core`
    doc/wiki/tutorialProgressions
    doc/wiki/tutorialCore
 
-Exploring `mingus.containers`
 
 .. toctree::
    :maxdepth: 2
-   :caption: Grouping Notes
+   :caption: Grouping Notes: Exploring `mingus.containers`
 
    doc/wiki/tutorialNoteModule
    doc/wiki/tutorialNoteContainerModule
@@ -55,21 +53,19 @@ Exploring `mingus.containers`
    doc/wiki/tutorialSuiteModule
 
 
-Exploring `mingus.midi`
 
 .. toctree::
    :maxdepth: 2
-   :caption: Midi
+   :caption: Midi: Exploring `mingus.midi`
 
    doc/wiki/tutorialFluidsynth
    doc/wiki/tutorialMidiFileOut
 
 
-Exploring `mingus.extra`
 
 .. toctree::
    :maxdepth: 2
-   :caption: Extras
+   :caption: Extras: Exploring `mingus.extra`
 
    doc/wiki/tutorialExtraLilypond
 
