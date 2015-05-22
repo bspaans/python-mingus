@@ -11,11 +11,11 @@
    :caption: Getting Started
    :name: mastertoc
 
-   doc/wiki/mingusFeatures
-   doc/wiki/tutorialGettingmingus
-   doc/wiki/tutorialSetup
-   doc/wiki/mingusApplications
-   doc/wiki/mingusContact
+   mingusFeatures
+   tutorialGettingmingus
+   tutorialSetup
+   mingusApplications
+   mingusContact
 
 ----
 
@@ -29,14 +29,14 @@ Exploring `mingus.core`
    :caption: Fundamentals
    :name: minguscore
 
-   doc/wiki/tutorialNote
-   doc/wiki/tutorialDiatonic
-   doc/wiki/tutorialIntervals
-   doc/wiki/tutorialChords
-   doc/wiki/tutorialScales
-   doc/wiki/tutorialMeter
-   doc/wiki/tutorialProgressions
-   doc/wiki/tutorialCore
+   tutorialNote
+   tutorialDiatonic
+   tutorialIntervals
+   tutorialChords
+   tutorialScales
+   tutorialMeter
+   tutorialProgressions
+   tutorialCore
 
 Exploring `mingus.containers`
 
@@ -44,13 +44,13 @@ Exploring `mingus.containers`
    :maxdepth: 2
    :caption: Grouping Notes
 
-   doc/wiki/tutorialNoteModule
-   doc/wiki/tutorialNoteContainerModule
-   doc/wiki/tutorialBarModule
-   doc/wiki/tutorialInstrumentModule
-   doc/wiki/tutorialTrackModule
-   doc/wiki/tutorialCompositionModule
-   doc/wiki/tutorialSuiteModule
+   tutorialNoteModule
+   tutorialNoteContainerModule
+   tutorialBarModule
+   tutorialInstrumentModule
+   tutorialTrackModule
+   tutorialCompositionModule
+   tutorialSuiteModule
 
 
 Exploring `mingus.midi`
@@ -59,8 +59,8 @@ Exploring `mingus.midi`
    :maxdepth: 2
    :caption: Midi
 
-   doc/wiki/tutorialFluidsynth
-   doc/wiki/tutorialMidiFileOut
+   tutorialFluidsynth
+   tutorialMidiFileOut
 
 
 Exploring `mingus.extra`
@@ -69,7 +69,7 @@ Exploring `mingus.extra`
    :maxdepth: 2
    :caption: Extras
 
-   doc/wiki/tutorialExtraLilypond
+   tutorialExtraLilypond
 
 ----
 
