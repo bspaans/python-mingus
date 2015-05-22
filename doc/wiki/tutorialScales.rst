@@ -3,20 +3,17 @@
 
 This module isn't 100% complete yet, but might already be of use to you.
 
-== Importing the Module ==
-
 
 
 >>> import mingus.core.scales as scales
 
 
 
-
-
 ----
 
 
-== The Diatonic Scale and Its Modes == 
+The Diatonic Scale and Its Modes
+--------------------------------
 
 Throughout these tutorials we have been using a sequence of notes called the diatonic scale. You can already get it from the `diatonic` module, but it's also linked here for completeness:
 
@@ -49,13 +46,14 @@ Sometimes we want to refer to a particular mode of the diatonic scale. This mean
 
 
 
-For more on modes, see [http://en.wikipedia.org/wiki/Musical_mode wikipedia]
+For more on modes, see `wikipedia <http://en.wikipedia.org/wiki/Musical_mode>`_
 
 
 ----
 
 
-== The Minor Scales ==
+The Minor Scales 
+----------------
 
 The natural minor scale is the scale starting on the minor of a key and is thus the same as the aeolian mode:
 
@@ -88,9 +86,10 @@ The melodic minor also has a raised sixth to fill the gap, but 'officially' only
 ----
 
 
-== Other Scales ==
+Other Scales 
+------------
 
-Some other common scales are the chromatic and whole note ones. The chromatic scale basically consists of twelve notes each a minor second step apart (there are some notational differences ([http://en.wikipedia.org/wiki/Chromatic_scale source]), but they are not supported at this point). 
+Some other common scales are the chromatic and whole note ones. The chromatic scale basically consists of twelve notes each a minor second step apart (there are some notational differences (`source <http://en.wikipedia.org/wiki/Chromatic_scale>`_), but they are not supported at this point). 
 
 
 
@@ -116,15 +115,12 @@ As stated before, the scales module isn't 100% finished. There has been some wor
 
 ----
 
-
-= End of Tutorial 5 = 
-
 You can learn more about [refMingusCoreScales mingus.core.scales in the reference section].
 
-  * [tutorialNote Tutorial 1 - Working with Notes]
-  * [tutorialDiatonic Tutorial 2 - Keys and the Diatonic Scale]
-  * [tutorialIntervals Tutorial 3 - Intervals]
-  * [tutorialChords Tutorial 4 - Triads, Sevenths and Extended Chords]
+  * `Tutorial 1 - Working with Notes <tutorialNote>`_
+  * `Tutorial 2 - Keys and the Diatonic Scale <tutorialDiatonic>`_
+  * `Tutorial 3 - Intervals <tutorialIntervals>`_
+  * `Tutorial 4 - Triads, Sevenths and Extended Chords `<tutorialChords>`_
   * Tutorial 5 - Scales
-  * [tutorialMeter Tutorial 6 - Note Value and Meter]
-  * [mingusIndex Back to Index]
+  * `Tutorial 6 - Note Value and Meter <tutorialMeter>`_
+  * `Back to Index </index>`_

@@ -5,8 +5,6 @@ In music theory you often deal with sequences of chords. These chord sequences a
 
 The progressions module provides methods which can convert progressions into chords and vice versa. It can also give suggestions for chord-substitutions.
 
-== Importing the Module == 
-
 
 
 >>> import mingus.core.progressions as progressions
@@ -17,7 +15,8 @@ The progressions module provides methods which can convert progressions into cho
 ----
 
 
-== Functions to Chords ==
+Functions to Chords
+-------------------
 
 Remember the chord functions from [tutorialChords the chords tutorial]? As handy as they can be, they feel a bit clunky. For example: we want to take the I, IV and V7 chord in a couple of different keys:
 
@@ -55,7 +54,8 @@ Note: since the use of '7' as suffix classicly means that you want the natural s
 ----
 
 
-== Chords to Functions ==
+Chords to Functions 
+-------------------
 
 Now that we can convert progressions to chords, it would be nice if we could hand mingus some chords and get the progressions back. That's what `determine` is for. Here's an example that uses the chords from the previous example:
 
@@ -75,7 +75,8 @@ Now that we can convert progressions to chords, it would be nice if we could han
 ----
 
 
-== Substitutions ==
+Substitutions
+-------------
 
 `substitute(progression, index, depth = 0)` gives a list of possible substitutions for `progression[index]`. If depth > 0 the substitutions of each result will be recursively added as well.
 
@@ -90,16 +91,15 @@ Now that we can convert progressions to chords, it would be nice if we could han
 ----
 
 
-= End of Tutorial 7 =
 
-You can learn more about [refMingusCoreProgressions mingus.core.progressions] in the reference section.
+You can learn more about `mingus.core.progressions <refMingusCoreProgressions>`_ in the reference section.
 
-  * [tutorialNote Tutorial 1 - Working with Notes]
-  * [tutorialDiatonic Tutorial 2 - Keys and the Diatonic Scale]
-  * [tutorialIntervals Tutorial 3 - Intervals]
-  * [tutorialChords Tutorial 4 - Triads, Sevenths and Extended Chords]
-  * [tutorialScales Tutorial 5 - Scales]
-  * [tutorialMeter Tutorial 6 - Note Value and Meter]
+  * `Tutorial 1 - Working with Notes <tutorialNote>`_
+  * `Tutorial 2 - Keys and the Diatonic Scale <tutorialDiatonic>`_
+  * `Tutorial 3 - Intervals <tutorialIntervals>`_
+  * `Tutorial 4 - Triads, Sevenths and Extended Chords `<tutorialChords>`_
+  * `Tutorial 5 - Scales <tutorialScales>`_
+  * `Tutorial 6 - Note Value and Meter <tutorialMeter>`_
   * Tutorial 7 - Progressions
-  * [tutorialCore Tutorial 8 - Working with the Core]
-  * [mingusIndex Back to Index]
+  * `Tutorial 8 - Working the Core <tutorialCore>`_
+  * `Back to Index </index>`_

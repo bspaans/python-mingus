@@ -2,11 +2,6 @@
 =================================
 
 
-----
-
-
-== Importing the value Module ==
-
 
 
 >>> import mingus.core.value as value
@@ -18,11 +13,13 @@
 ----
 
 
-== Note Value ==
+Note Value
+----------
 
 A note value indicates the relative duration of a note. In mingus, note values are represented by floating point numbers. A quarter note is 4, because it stands for 1/4 note, an eighth note is 8 because it stands for 1/8, a sixteenth note is 16, etc. These are all pretty straight forward, but how do you define a sixteenth triplet? Well, sixteenth triplets are made by taking an eighth note and deviding it in 3 equal parts. 1/8 times 1/3 = 1/24; so 24 is the number we want. How about a dotted eighth note? A dotted eighth note has the length of an eighth note plus half an eighth note. 1/8 + 1/16 = 3/16 = 1 / 16 / 3. So 16/3 is the number we are looking for. As you can see these calculations can be quite tiresome and can clutter up your code. This module is here to help do the conversion. 
 
-=== English or Standard Notation ===
+English or Standard Notation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Let us start by looking at some constants.
 
@@ -54,7 +51,8 @@ Never again will you have to remember the difference between a semibreve and a s
 ----
 
 
-== Making Dotted Notes ==
+Making Dotted Notes
+-------------------
 
 A dot adds half the duration of the note. A second dot adds half of what was added before, etc. For example: a dotted eighth note has the length of three sixteenth notes and an eighth note with two dots has the length of seven thirty second notes. The function `dots(value, nr=1)` returns the dotted note value.
 
@@ -70,7 +68,8 @@ A dot adds half the duration of the note. A second dot adds half of what was add
 ----
 
 
-== Making Tuplets ==
+Making Tuplets
+--------------
 
 A tuplet can be written as a ratio. For example: 5:4 means that you play 5 notes in the duration of 4 (this is also called a quintuplet), 3:2 means that you play 3 notes in the duration of 2 (a triplet), etc. The tuplet function calculates the note value when playing in a certain ratio.
 
@@ -103,7 +102,8 @@ A septuplet function also exists and defaults to the ratio 7:4. When the second 
 ----
 
 
-== Adding and Subtracting Note Values ==
+Adding and Subtracting Note Values
+----------------------------------
 
 In the container modules we will see that it is often handy to have some simple functions for basic adding and subtracting available.
 
@@ -120,7 +120,8 @@ In the container modules we will see that it is often handy to have some simple 
 ----
 
 
-== Recognising Note Values ==
+Recognising Note Values
+-----------------------
 
 The floating point numbers are a fast and simple way to store the length of a note, but for some reasons (mainly notation related) it would be nice to know the basic note value, the number of dots and the ratio. Determine returns just that:
 
@@ -141,20 +142,15 @@ The floating point numbers are a fast and simple way to store the length of a no
 
 Now that we have seen how note values are handled, let's take a look at a slightly related and small module dealing with meter.
 
-== Importing meter Module ==
-
-
 
 >>> import mingus.core.meter as meter
-
-
-
 
 
 ----
 
 
-== Simple Meters ==
+Simple Meters
+-------------
 
 Meters in mingus are represented by a tuple consisting of respectively the nominator and the denominator. We can use is_valid to test whether an arbitrary tuple is a valid representation or not:
 
@@ -184,7 +180,8 @@ Some constants are also included:
 ----
 
 
-== Compound Meters ==
+Compound Meters
+---------------
 
 Compound meter is a meter in which each measure is divided into three or more or two uneven parts (as opposed to two even parts). To test whether a meter is compound or not, we can use `is_compound`:
 
@@ -203,7 +200,8 @@ False
 ----
 
 
-== Asymmetrical Meters ==
+Asymmetrical Meters
+-------------------
 
 Asymmetrical meters represent meters that can't be divided into parts of two. is_assymetrical test whether this is true or not.
 
@@ -227,16 +225,14 @@ False
 ----
 
 
-= End of Tutorial 6 =
+You can learn more about `mingus.core.value <refMingusCoreValue>`_ and `mingus.core.meter <refMingusCoreMeter>`_ in the reference section.
 
-You can learn more about [refMingusCoreValue mingus.core.value] and [refMingusCoreMeter mingus.core.meter] in the reference section.
-
-  * [tutorialNote Tutorial 1 - Working with Notes]
-  * [tutorialDiatonic Tutorial 2 - Keys and the Diatonic Scale]
-  * [tutorialIntervals Tutorial 3 - Intervals]
-  * [tutorialChords Tutorial 4 - Triads, Sevenths and Extended Chords]
-  * [tutorialScales Tutorial 5 - Scales]
+  * `Tutorial 1 - Working with Notes <tutorialNote>`_
+  * `Tutorial 2 - Keys and the Diatonic Scale <tutorialDiatonic>`_
+  * `Tutorial 3 - Intervals <tutorialIntervals>`_
+  * `Tutorial 4 - Triads, Sevenths and Extended Chords `<tutorialChords>`_
+  * `Tutorial 5 - Scales <tutorialScales>`_
   * Tutorial 6 - Note Value and Meter
-  * [tutorialProgressions Tutorial 7 - Progressions]
-  * [tutorialCore Tutorial 8 - ...And Now What?]
-  * [mingusIndex Back to Index]
+  * `Tutorial 7 - Progressions <tutorialProgressions>`_
+  * `Tutorial 8 - Working the Core <tutorialCore>`_
+  * `Back to Index </index>`_
