@@ -8,5 +8,6 @@ git checkout gh-pages
 ./build.sh
 git add .
 git commit -m "Scripted build"
+git push origin gh-pages
 git checkout "$CURRENT_BRANCH"
 
