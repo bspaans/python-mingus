@@ -3,7 +3,6 @@
 
 `mingus.core.notes` provides a way to work with notes. However, what if we want to work with notes in different octaves? Or what if we want to set the amplitude or some effects on a note? This Note class solves those problems and also provides the cornerstone of the `mingus.containers` package.
 
-== Importing the Note Class ==
 
 
 
@@ -15,7 +14,8 @@
 ----
 
 
-== Creating and Setting Notes ==
+Creating and Setting Notes
+--------------------------
 
 Defining and setting notes is pretty easy and can be done in a variety of ways.
 
@@ -36,7 +36,8 @@ Defining and setting notes is pretty easy and can be done in a variety of ways.
 
 
 
-== Note Attributes == 
+Note Attributes
+---------------
 
 The attributes `name`, `octave` and `dynamics` are always set and accessible from the outside:
 
@@ -62,7 +63,8 @@ The dynamics dictionary can be used to store additional information such as volu
 ----
 
 
-== A Better Note to Integer Converter ==
+A Better Note to Integer Converter
+----------------------------------
 
 A problem with `mingus.core.notes.note_to_int` is that it returns integers in the range 0-11. This would mean that 'Cb' and 'B' are both 11. This can be helpful, but when you are dealing with octaves you don't want this. The Note class fixes this and also overloads the int() function to make it simpler to use:
 
@@ -77,7 +79,8 @@ A problem with `mingus.core.notes.note_to_int` is that it returns integers in th
 
 
 
-== A Better Integer to Note Converter ==
+A Better Integer to Note Converter
+----------------------------------
 
 The opposite of the previous function is `from_int(integer)`, which sets the note to the corresponding integer where 0 is a C on octave 0, 12 is a C on octave 1, etc.
 
@@ -92,9 +95,11 @@ The opposite of the previous function is `from_int(integer)`, which sets the not
 ----
 
 
-== Methods on Notes ==
+Methods on Notes
+----------------
 
-=== Octaves ===
+Octaves
+^^^^^^^
 
 Changing the octave can be done by setting the octave attribute, but the following methods can also be used:
 
@@ -116,7 +121,8 @@ Changing the octave can be done by setting the octave attribute, but the followi
 
 
 
-=== Transposing ===
+Transposing
+^^^^^^^^^^^
 
 To move a Note an interval up or down, you can use the function `transpose(interval, up=True)`. The interval should be valid interval shorthand (see the [tutorialIntervals interval tutorial])
 
@@ -132,12 +138,14 @@ To move a Note an interval up or down, you can use the function `transpose(inter
 
 
 
-=== Hertz ===
+Hertz
+^^^^^
 
 Converting from and to hertz can be done using the `from_hertz(hertz, standard_pitch=440)` and `to_hertz(standard_pitch=440)` functions, where `standard_pitch` can be used to set the pitch of A-4, from which the rest is calculated.
 
 
-=== Migrated Methods ===
+Migrated Methods 
+^^^^^^^^^^^^^^^^
 
 Some of the functions in `mingus.core.notes` were added to the Note class as methods for convenience.
 
@@ -184,10 +192,8 @@ Some of the functions in `mingus.core.notes` were added to the Note class as met
 ----
 
 
-= End of Tutorial 1 =
-
-You can learn more about [refMingusContainersNote mingus.containers.Note] in the reference section
+You can learn more about `mingus.containers.Note <refMingusContainersNote>`_ in the reference section
 
   * Tutorial 1 - The Note Class
-  * [tutorialNoteContainerModule Tutorial 2 - NoteContainers]
-  * [mingusIndex Back to Index]
+  * `Tutorial 2 - NoteContainers <tutorialNoteContainerModule>`_
+  * `Back to Index </index>`_

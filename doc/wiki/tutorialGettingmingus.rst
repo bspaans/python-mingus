@@ -28,7 +28,7 @@ Another option is to let your platform's package manager handle the installation
   * [http://aur.archlinux.org/packages.php?ID=23101 Arch]
   * [http://trac.macports.org/browser/trunk/dports/python/py26-mingus Mac Ports]
   * [https://launchpad.net/~stefan-canta-game/+archive/ppa Ubuntu (PPA)]
-  * !SuSE
+  * SuSE
 
 
 Feel free to send a message to the google group if you have packaged mingus for another distribution.

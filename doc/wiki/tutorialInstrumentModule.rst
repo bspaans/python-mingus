@@ -1,9 +1,7 @@
 ﻿Tutorial 4 - Instruments
 ========================
 
-We have grouped Notes in !NoteContainers and !NoteContainers in Bars, but before we can add Bars to Tracks, we need an Instrument class.
-
-== Import the Instrument Class and Subclasses ==
+We have grouped Notes in NoteContainers and NoteContainers in Bars, but before we can add Bars to Tracks, we need an Instrument class.
 
 
 
@@ -15,7 +13,8 @@ We have grouped Notes in !NoteContainers and !NoteContainers in Bars, but before
 ----
 
 
-== Working with Instruments ==
+Working with Instruments
+------------------------
 
 The Instrument module is currently very basic (plans on expanding it exist), but it stores all the things the rest of mingus might need. 
 
@@ -46,7 +45,8 @@ The easiest way to use the Instrument class is probably to subclass it (see the 
 ----
 
 
-== Range Checking ==
+Range Checking
+--------------
 
 Because we have set a range, we can check whether or not a note is within the range of the instrument.
 
@@ -79,7 +79,8 @@ False
 ----
 
 
-== Midi Instruments ==
+Midi Instruments
+----------------
 
 Another, special subclass of Instrument is the MidiInstrument, which is used throughout the `mingus.midi` module. This instrument has an extra `midi_instr` attribute which you can set to an integer (0..127) to denote the MIDI instrument patch that should be used when playing notes. A list of instrument names is provided as `names` attribute.
 
@@ -96,13 +97,11 @@ Another, special subclass of Instrument is the MidiInstrument, which is used thr
 ----
 
 
-= End of Tutorial 4 = 
+You can learn more about `mingus.containers.Instrument <refMingusContainersInstrument>`_ in the reference section
 
-You can learn more about mingus.containers.Instrument in the reference section
-
-  * [tutorialNoteModule Tutorial 1 - The Note Class]
-  * [tutorialNoteContainerModule Tutorial 2 - NoteContainers]
-  * [tutorialBarModule Tutorial 3 - Bars]
+  * `Tutorial 1 - The Note Class <tutorialNoteModule>`_
+  * `Tutorial 2 - NoteContainers <tutorialNoteContainerModule>`_
+  * `Tutorial 3 - Bars <tutorialBarModule>`_
   * Tutorial 4 - Instruments
-  * [tutorialTrackModule Tutorial 5 - Tracks]
-  * [mingusIndex Back to Index]
+  * `Tutorial 5 - Tracks <tutorialTrackModule>`_
+  * `Back to Index </index>`_

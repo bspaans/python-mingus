@@ -22,7 +22,7 @@ mingus.containers
 
   * The Note class: can keep track of octaves, dynamics and effect and also allows you to compare Notes: eg. `Note("A") <= Note("B")` and convert to and from Hertz.
   * An Instrument class that can be subclassed. This can be used to work with the appropriate ranges, clefs, etc.
-  * Data structures that group notes together in blocks of notes (!NoteContainers), Bars, Tracks, Compositions and Suites.
+  * Data structures that group notes together in blocks of notes (NoteContainers), Bars, Tracks, Compositions and Suites.
   * Transpose functions on Notes, NoteContainers, Bars and Tracks.
 
 ===========

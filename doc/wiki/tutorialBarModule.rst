@@ -1,10 +1,7 @@
 ﻿Tutorial 3 - Bars
 =================
 
-Now that we can group notes vertically, we want to be able to group them horizontally. The Bar class (and later the Track class) can help us with that. A bar of music can be described as a collection of notes (!NoteContainers in our model) played in succession in a certain meter and key. This class tries to model that behaviour and provides ways to add and edit Notes and !NoteContainers.
-
-== Import the Bar Class ==
-
+Now that we can group notes vertically, we want to be able to group them horizontally. The Bar class (and later the Track class) can help us with that. A bar of music can be described as a collection of notes (NoteContainers in our model) played in succession in a certain meter and key. This class tries to model that behaviour and provides ways to add and edit Notes and NoteContainers.
 
 
 >>> from mingus.containers.Bar import Bar
@@ -15,7 +12,8 @@ Now that we can group notes vertically, we want to be able to group them horizon
 ----
 
 
-== Creating a New Bar ==
+Creating a New Bar
+------------------
 
 A Bar() accepts a key and a meter as its optional arguments; these arguments by default set the key to C and the meter to 4/4.
 
@@ -49,7 +47,8 @@ If you change the meter after its initial creation be sure to use the `set_meter
 ----
 
 
-== Adding Notes and !NoteContainers to a Bar ==
+Adding Notes and NoteContainers to a Bar
+-----------------------------------------
 
 The `place_notes(notes, duration)` function is used to add notes to a Bar. Notes can be written as strings, but Note and NoteContainer objects, and lists of strings and Note objects are also accepted. The duration is entered as a float which stands for the note value. 1 Represents a whole note, 2 a half note, 4 a quarter note, etc. See the [refMingusCoreValue core.value] module and its [tutorialMeter tutorial] for more sophisticated note values. This function returns True if there was room enough in the Bar to place the notes and False otherwise.
 
@@ -72,9 +71,10 @@ False
 As you can see, everything goes fine until we try to add another quarter note after we have already filled the Bar up.
 
 
-== Adding Rests ==
+Adding Rests
+------------
 
-Calling `place_rest(duration)` is the same as calling `place_notes(None, duration)` or adding an empty !NoteContainer.
+Calling `place_rest(duration)` is the same as calling `place_notes(None, duration)` or adding an empty NoteContainer.
 
 
 
@@ -86,7 +86,8 @@ True
 
 
 
-== The Overloaded '+' Operator ==
+The Overloaded '+' Operator
+---------------------------
 
 '+' can be used to add notes quickly. The downside is that you can't control the duration of the note which will default to the last item in the Bar.meter tuple (ie. 4 in (4, 4), 8 in (6, 8), etc.), but this shouldn't be a problem for simple uses. 
 
@@ -110,11 +111,13 @@ True
 ----
 
 
-== The Bar Internals Explained == 
+The Bar Internals Explained
+---------------------------
 
 As we have seen before, the Bar class has a couple of attributes from which `key` and `meter` are the ones that you should deal with yourself, directly or indirectly. To understand what goes on behind the scenes however, we should take a look at `length` and `current_beat`:
 
-=== The length attribute ===
+The length attribute
+^^^^^^^^^^^^^^^^^^^^
 
 The length attribute gets calculated each time you set a meter and is used throughout the class to check whether the Bar can contain any more notes, etc.
 
@@ -131,7 +134,8 @@ The length attribute gets calculated each time you set a meter and is used throu
 
 The length gets calculated as follows: `meter[0] * (1.0 / meter[1])`. This is the reason it's important to use the `set_meter` method instead of overwriting the `meter` attribute directly (as you can safely do with `key`).
 
-=== The current_beat attribute ===
+The current_beat attribute
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The `current_beat` attribute gets updated each time a note is added, removed or updated. It keeps track of the current place in the Bar.
 
@@ -154,7 +158,8 @@ True
 When a note gets added, `current_beat` gets incremented with `1 / duration`. This allows us to check in a fast way if a Bar is full or not (a common task) and how much space it has available.
 
 
-=== Printing a Bar === 
+Printing a Bar
+^^^^^^^^^^^^^^
 
 When you print a Bar, this is what happens:
 
@@ -178,7 +183,8 @@ As you might have noticed, the lists that get displayed when you print a Bar rep
 ----
 
 
-== Edit Bars ==
+Edit Bars
+---------
 
 Now that you know how a Bar works, you can use a couple of methods that can help reorganise a Bar. `place_notes_at(at, notes)` will add the notes to the NoteContainer at place `at` and  `change_note_duration(at, to)` will change the note duration at `at` to `to` (amazing sentence). 
 
@@ -186,7 +192,8 @@ Now that you know how a Bar works, you can use a couple of methods that can help
 ----
 
 
-== Using Bars as Lists ==
+Using Bars as Lists
+-------------------
 
 Just like NoteContainers, Bars can be used as lists, to some extent:
 
@@ -211,9 +218,10 @@ True
 ----
 
 
-== Other Methods ==
+Other Methods
+-------------
 
-It should come as no surprise that the methods available in Note and !NoteContainer -transpose, augment, diminish, to_major and to_minor- are also available for Bars. A call to one of these functions will result into a call to that function on every !NoteContainer, which in turn calls the function on every Note. 
+It should come as no surprise that the methods available in Note and NoteContainer -transpose, augment, diminish, to_major and to_minor- are also available for Bars. A call to one of these functions will result into a call to that function on every NoteContainer, which in turn calls the function on every Note. 
 
 Some other methods and more information can be found in the reference section.
 
@@ -221,12 +229,10 @@ Some other methods and more information can be found in the reference section.
 ----
 
 
-= End of Tutorial 3 = 
+You can learn more about `mingus.containers.Bar in the reference section <refMingusContainersBar>`_.
 
-You can learn more about [refMingusContainersBar mingus.containers.Bar in the reference section].
-
-  * [tutorialNoteModule Tutorial 1 - The Note Class]
-  * [tutorialNoteContainerModule Tutorial 2 - NoteContainers]
+  * `Tutorial 1 - The Note Class <tutorialNoteModule>`_
+  * `Tutorial 2 - NoteContainers <tutorialNoteContainerModule>`_
   * Tutorial 3 - Bars
-  * [tutorialInstrumentModule Tutorial 4 - Instruments]
-  * [mingusIndex Back to Index]
+  * `Tutorial 4 - Instruments <tutorialInstrumentModule>`_
+  * `Back to Index </index>`_
