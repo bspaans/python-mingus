@@ -1,7 +1,7 @@
 ﻿Tutorial 3 - Bars
 =================
 
-Now that we can group notes vertically, we want to be able to group them horizontally. The Bar class (and later the Track class) can help us with that. A bar of music can be described as a collection of notes (!NoteContainers in our model) played in succession in a certain meter and key. This class tries to model that behaviour and provides ways to add and edit Notes and !NoteContainers.
+Now that we can group notes vertically, we want to be able to group them horizontally. The Bar class (and later the Track class) can help us with that. A bar of music can be described as a collection of notes (NoteContainers in our model) played in succession in a certain meter and key. This class tries to model that behaviour and provides ways to add and edit Notes and NoteContainers.
 
 
 >>> from mingus.containers.Bar import Bar
@@ -47,7 +47,7 @@ If you change the meter after its initial creation be sure to use the `set_meter
 ----
 
 
-Adding Notes and !NoteContainers to a Bar
+Adding Notes and NoteContainers to a Bar
 -----------------------------------------
 
 The `place_notes(notes, duration)` function is used to add notes to a Bar. Notes can be written as strings, but Note and NoteContainer objects, and lists of strings and Note objects are also accepted. The duration is entered as a float which stands for the note value. 1 Represents a whole note, 2 a half note, 4 a quarter note, etc. See the [refMingusCoreValue core.value] module and its [tutorialMeter tutorial] for more sophisticated note values. This function returns True if there was room enough in the Bar to place the notes and False otherwise.
@@ -74,7 +74,7 @@ As you can see, everything goes fine until we try to add another quarter note af
 Adding Rests
 ------------
 
-Calling `place_rest(duration)` is the same as calling `place_notes(None, duration)` or adding an empty !NoteContainer.
+Calling `place_rest(duration)` is the same as calling `place_notes(None, duration)` or adding an empty NoteContainer.
 
 
 
@@ -221,7 +221,7 @@ True
 Other Methods
 -------------
 
-It should come as no surprise that the methods available in Note and !NoteContainer -transpose, augment, diminish, to_major and to_minor- are also available for Bars. A call to one of these functions will result into a call to that function on every !NoteContainer, which in turn calls the function on every Note. 
+It should come as no surprise that the methods available in Note and NoteContainer -transpose, augment, diminish, to_major and to_minor- are also available for Bars. A call to one of these functions will result into a call to that function on every NoteContainer, which in turn calls the function on every Note. 
 
 Some other methods and more information can be found in the reference section.
 

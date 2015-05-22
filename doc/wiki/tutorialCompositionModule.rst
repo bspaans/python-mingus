@@ -73,7 +73,7 @@ The note gets added to the tracks in `Composition.selected_tracks` which is auto
 The Overloaded '+' Operator
 ---------------------------
 
-This operator accepts Notes, note strings, !NoteContainers, Bars and Tracks.
+This operator accepts Notes, note strings, NoteContainers, Bars and Tracks.
 
 
 

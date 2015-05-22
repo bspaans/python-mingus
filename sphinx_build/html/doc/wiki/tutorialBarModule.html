@@ -55,7 +55,7 @@
             
   <div class="section" id="tutorial-3-bars">
 <h1>Tutorial 3 - Bars<a class="headerlink" href="#tutorial-3-bars" title="Permalink to this headline">¶</a></h1>
-<p>Now that we can group notes vertically, we want to be able to group them horizontally. The Bar class (and later the Track class) can help us with that. A bar of music can be described as a collection of notes (!NoteContainers in our model) played in succession in a certain meter and key. This class tries to model that behaviour and provides ways to add and edit Notes and !NoteContainers.</p>
+<p>Now that we can group notes vertically, we want to be able to group them horizontally. The Bar class (and later the Track class) can help us with that. A bar of music can be described as a collection of notes (NoteContainers in our model) played in succession in a certain meter and key. This class tries to model that behaviour and provides ways to add and edit Notes and NoteContainers.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mingus.containers.Bar</span> <span class="kn">import</span> <span class="n">Bar</span>
 </pre></div>
 </div>
@@ -84,7 +84,7 @@
 </div>
 <hr class="docutils" />
 <div class="section" id="adding-notes-and-notecontainers-to-a-bar">
-<h2>Adding Notes and !NoteContainers to a Bar<a class="headerlink" href="#adding-notes-and-notecontainers-to-a-bar" title="Permalink to this headline">¶</a></h2>
+<h2>Adding Notes and NoteContainers to a Bar<a class="headerlink" href="#adding-notes-and-notecontainers-to-a-bar" title="Permalink to this headline">¶</a></h2>
 <p>The <cite>place_notes(notes, duration)</cite> function is used to add notes to a Bar. Notes can be written as strings, but Note and NoteContainer objects, and lists of strings and Note objects are also accepted. The duration is entered as a float which stands for the note value. 1 Represents a whole note, 2 a half note, 4 a quarter note, etc. See the [refMingusCoreValue core.value] module and its [tutorialMeter tutorial] for more sophisticated note values. This function returns True if there was room enough in the Bar to place the notes and False otherwise.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">meter</span>
@@ -103,7 +103,7 @@
 </div>
 <div class="section" id="adding-rests">
 <h2>Adding Rests<a class="headerlink" href="#adding-rests" title="Permalink to this headline">¶</a></h2>
-<p>Calling <cite>place_rest(duration)</cite> is the same as calling <cite>place_notes(None, duration)</cite> or adding an empty !NoteContainer.</p>
+<p>Calling <cite>place_rest(duration)</cite> is the same as calling <cite>place_notes(None, duration)</cite> or adding an empty NoteContainer.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">place_rest</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 <span class="go">True</span>
@@ -206,7 +206,7 @@
 <hr class="docutils" />
 <div class="section" id="other-methods">
 <h2>Other Methods<a class="headerlink" href="#other-methods" title="Permalink to this headline">¶</a></h2>
-<p>It should come as no surprise that the methods available in Note and !NoteContainer -transpose, augment, diminish, to_major and to_minor- are also available for Bars. A call to one of these functions will result into a call to that function on every !NoteContainer, which in turn calls the function on every Note.</p>
+<p>It should come as no surprise that the methods available in Note and NoteContainer -transpose, augment, diminish, to_major and to_minor- are also available for Bars. A call to one of these functions will result into a call to that function on every NoteContainer, which in turn calls the function on every Note.</p>
 <p>Some other methods and more information can be found in the reference section.</p>
 <hr class="docutils" />
 <p>You can learn more about <a class="reference external" href="refMingusContainersBar">mingus.containers.Bar in the reference section</a>.</p>
@@ -232,7 +232,7 @@
   <ul>
 <li><a class="reference internal" href="#">Tutorial 3 - Bars</a><ul>
 <li><a class="reference internal" href="#creating-a-new-bar">Creating a New Bar</a></li>
-<li><a class="reference internal" href="#adding-notes-and-notecontainers-to-a-bar">Adding Notes and !NoteContainers to a Bar</a></li>
+<li><a class="reference internal" href="#adding-notes-and-notecontainers-to-a-bar">Adding Notes and NoteContainers to a Bar</a></li>
 <li><a class="reference internal" href="#adding-rests">Adding Rests</a></li>
 <li><a class="reference internal" href="#the-overloaded-operator">The Overloaded &#8216;+&#8217; Operator</a></li>
 <li><a class="reference internal" href="#the-bar-internals-explained">The Bar Internals Explained</a><ul>

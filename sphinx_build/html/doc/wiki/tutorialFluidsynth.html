@@ -55,14 +55,14 @@
             
   <div class="section" id="tutorial-1-playing-containers-with-fluidsynth">
 <h1>Tutorial 1 - Playing Containers with FluidSynth<a class="headerlink" href="#tutorial-1-playing-containers-with-fluidsynth" title="Permalink to this headline">¶</a></h1>
-<p><cite>FluidSynth</cite> is a MIDI synthesizer which uses !SoundFont (.SF2) files to generate audio. To work with this module, you&#8217;ll need the !FluidSynth library (usually packaged with the stand-alone program) and a nice instrument collection (look here: <a class="reference external" href="http://www.hammersound.net">http://www.hammersound.net</a>, go to Sounds -&gt; Soundfont Library -&gt; Collections).</p>
-<p>== Importing !FluidSynth ==</p>
+<p><cite>FluidSynth</cite> is a MIDI synthesizer which uses SoundFont (.SF2) files to generate audio. To work with this module, you&#8217;ll need the FluidSynth library (usually packaged with the stand-alone program) and a nice instrument collection (look here: <a class="reference external" href="http://www.hammersound.net">http://www.hammersound.net</a>, go to Sounds -&gt; Soundfont Library -&gt; Collections).</p>
+<p>== Importing FluidSynth ==</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mingus.midi</span> <span class="kn">import</span> <span class="n">fluidsynth</span>
 </pre></div>
 </div>
 <hr class="docutils" />
-<p>== Loading a !SoundFont ==</p>
-<p>To load the !SoundFont and initialize !FluidSynth we&#8217;ll only have to call <cite>init</cite>.</p>
+<p>== Loading a SoundFont ==</p>
+<p>To load the SoundFont and initialize FluidSynth we&#8217;ll only have to call <cite>init</cite>.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fluidsynth</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="s">&quot;soundfont.SF2&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -95,7 +95,7 @@
 </pre></div>
 </div>
 <p><em>Note</em> it doesn&#8217;t matter if the note is actually playing; ie. nothing will break when you try to stop a note that is already stopped.</p>
-<p>=== Playing and Stopping !NoteContainers ===</p>
+<p>=== Playing and Stopping NoteContainers ===</p>
 <p><cite>play_NoteContainer(notecontainer, channel = 1, velocity = 100)</cite> and stop_NoteContainer(notecontainer, channel = 1)` work the same as <cite>play_Note</cite> and <cite>stop_Note</cite>.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fluidsynth</span><span class="o">.</span><span class="n">play_NoteContainer</span><span class="p">(</span><span class="n">NoteContainer</span><span class="p">([</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">]))</span>
 <span class="go">True</span>
@@ -121,7 +121,7 @@
 </pre></div>
 </div>
 <p>=== Panning, Modulation and Other Control Change Commands ===</p>
-<p><cite>panning(channel, value)</cite> and <cite>modulation(channel, value)</cite> are shortcuts to the <cite>control_change(channel, control, value)</cite> function added for your convenience. There are more control change commands however. You can find tables by googling, but know that !FluidSynth ignores some of the commands.</p>
+<p><cite>panning(channel, value)</cite> and <cite>modulation(channel, value)</cite> are shortcuts to the <cite>control_change(channel, control, value)</cite> function added for your convenience. There are more control change commands however. You can find tables by googling, but know that FluidSynth ignores some of the commands.</p>
 <hr class="docutils" />
 <p>= End of Tutorial 1 =</p>
 <p>You can learn more about [refMingusMidiFluidsynth mingus.midi.fluidsynth] in the reference section.</p>

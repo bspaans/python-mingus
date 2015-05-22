@@ -1,9 +1,9 @@
 ﻿Tutorial 1 - Playing Containers with FluidSynth 
 ===============================================
 
-`FluidSynth` is a MIDI synthesizer which uses !SoundFont (.SF2) files to generate audio. To work with this module, you'll need the !FluidSynth library (usually packaged with the stand-alone program) and a nice instrument collection (look here: http://www.hammersound.net, go to Sounds -> Soundfont Library -> Collections). 
+`FluidSynth` is a MIDI synthesizer which uses SoundFont (.SF2) files to generate audio. To work with this module, you'll need the FluidSynth library (usually packaged with the stand-alone program) and a nice instrument collection (look here: http://www.hammersound.net, go to Sounds -> Soundfont Library -> Collections). 
 
-== Importing !FluidSynth ==
+== Importing FluidSynth ==
 
 
 
@@ -15,9 +15,9 @@
 ----
 
 
-== Loading a !SoundFont ==
+== Loading a SoundFont ==
 
-To load the !SoundFont and initialize !FluidSynth we'll only have to call `init`.
+To load the SoundFont and initialize FluidSynth we'll only have to call `init`.
 
 
 >>> fluidsynth.init("soundfont.SF2")
@@ -67,7 +67,7 @@ True
 
 *Note* it doesn't matter if the note is actually playing; ie. nothing will break when you try to stop a note that is already stopped.
 
-=== Playing and Stopping !NoteContainers ===
+=== Playing and Stopping NoteContainers ===
 
 `play_NoteContainer(notecontainer, channel = 1, velocity = 100)` and stop_NoteContainer(notecontainer, channel = 1)` work the same as `play_Note` and `stop_Note`.
 
@@ -108,7 +108,7 @@ True
 
 === Panning, Modulation and Other Control Change Commands ===
 
-`panning(channel, value)` and `modulation(channel, value)` are shortcuts to the `control_change(channel, control, value)` function added for your convenience. There are more control change commands however. You can find tables by googling, but know that !FluidSynth ignores some of the commands.
+`panning(channel, value)` and `modulation(channel, value)` are shortcuts to the `control_change(channel, control, value)` function added for your convenience. There are more control change commands however. You can find tables by googling, but know that FluidSynth ignores some of the commands.
 
 
 ----

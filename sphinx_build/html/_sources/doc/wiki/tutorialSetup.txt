@@ -21,13 +21,13 @@ mingus might be packaged for your distribution's package manager. See [tutorialG
 == Recommended Programs == 
 
   # You may also want to install !LilyPond to generate sheet music: http://www.lilypond.org/
-  # Additionally, you can install !FluidSynth for realtime MIDI playback support: http://fluidsynth.resonance.org/trac
+  # Additionally, you can install FluidSynth for realtime MIDI playback support: http://fluidsynth.resonance.org/trac
 
-=== Installing !FluidSynth on Windows ===
+=== Installing FluidSynth on Windows ===
 
-Installing !FluidSynth on Linux and Mac shouldn't be a problem, doing it on Windows is a little bit more complex:
+Installing FluidSynth on Linux and Mac shouldn't be a problem, doing it on Windows is a little bit more complex:
 
-  # Download and install QSynth (http://qsynth.sourceforge.net) which contains a patched version of !FluidSynth which works on Windows.
+  # Download and install QSynth (http://qsynth.sourceforge.net) which contains a patched version of FluidSynth which works on Windows.
   # Add the QSynth directory to your PATH.
   # In the QSynth directory, copy libfluidsynth-1.dll to libfluidsynth.dll
 

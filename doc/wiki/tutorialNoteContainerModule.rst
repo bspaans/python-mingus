@@ -172,7 +172,8 @@ The '+' operator is overloaded for NoteContainer objects. This means that you ca
 
 
 
-== The Overloaded '-' Operator ==
+The Overloaded '-' Operator
+---------------------------
 
 The '-' operator is overloaded as well and redirects calls to `remove_notes`. It can be used like this:
 
