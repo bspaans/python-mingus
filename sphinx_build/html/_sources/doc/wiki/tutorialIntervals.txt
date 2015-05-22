@@ -1,6 +1,8 @@
 ﻿#summary Exploring `mingus.core.intervals`
 
+
 ----
+
 
 = Tutorial 3 - Intervals =
 
@@ -17,7 +19,9 @@ The same as before. A python shell and a simple import is all we need to get sta
 
 }}}
 
+
 ----
+
 
 == Natural Diatonic Intervals ==
 
@@ -50,7 +54,9 @@ For people who are uncertain about what's going on here, take a look at the note
 If we want the natural second, starting on C in the key of C, we move one step to the right and get D. If we start on the E, we get an F, etc.
 Now, if we want to get the third we move two steps to the right, for the fourth, three steps, etc. If we reach the end, we start back at the beginning. For instance, the natural fourth of A in the key of C is D.
 
+
 ----
+
 
 == Absolute Intervals ==
 
@@ -71,7 +77,9 @@ The theory behind this is a bit harder, though. If we look at the notes in the k
 
 *Note* `major_fifth` and `major_fourth` are better known as `perfect_fifth` and `perfect_fourth`. Both functions may be used.
 
+
 ----
+
 
 === Interval Shorthand ===
 
@@ -127,7 +135,9 @@ The determine function can also output the result in shorthand, which can be fed
 
 }}}
 
+
 ----
+
 
 === Measuring ===
 
@@ -142,14 +152,18 @@ Sometimes it's just more convenient to work with integers than with shorthand. F
 
 }}}
 
+
 ----
+
 
 == Exercises ==
 
   # Take the minor and major thirds and fourths of the note C. Output the note and the note as integer to the screen. Do you notice something?
   # Create a program where a user can input a key and a note and gets the note + the natural third + the natural fifth back. This is a called a natural triad (= chord made out of three notes).
 
+
 ----
+
 
 = End of Tutorial 3 = 
 

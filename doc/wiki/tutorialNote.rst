@@ -1,6 +1,8 @@
 ﻿#summary A tutorial for working with mingus.core.notes
 
+
 ----
+
 
 = Tutorial 1 - Working with notes=
 
@@ -18,7 +20,9 @@ To start this tutorial, open up a python shell and enter:
 
 Now we are ready to work with notes.
 
+
 ----
+
 
 ==Notes as strings==
 
@@ -75,7 +79,9 @@ As you can see, mingus can handle any number of accidentals, whether it is the s
 
 }}}
 
+
 ----
+
 
 ==Notes as Integers==
 
@@ -118,7 +124,9 @@ Anyway, if you don't care about theoretically sound conversions or don't need to
 "E"
 }}}
 
+
 ----
+
 
 ==Helper Functions==
 
@@ -186,7 +194,9 @@ Major:
 "B"
 }}}
 
+
 ----
+
 
 == Exercises ==
 
@@ -194,7 +204,9 @@ Major:
   # Get the minor equivalent of a valid note and diminish it.
   # Generate the first thousand fibonacci numbers and use a modulo 12 operation (eg. `n % 12`) to convert each value to a note. 
 
+
 ----
+
 
 = End of Tutorial 1 =
 

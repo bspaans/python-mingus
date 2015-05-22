@@ -1,18 +1,24 @@
 #summary Reference documentation for `mingus.extra.fft`.
+
 ----
+
 = mingus.extra.fft =
 Find the frequencies in raw audio data by using fast Fourier transformations
 (supplied by numpy).
 
 This module can also convert the found frequencies to Note objects.
 
+
 ----
+
 == Attributes ==
 === `x` ===
   * *Type*: int
   * *Value*: `128`
 
+
 ----
+
 == Functions ==
 === `_fft(a, n, axis)` ===
   * *Default values*: n = None, axis = -1
@@ -23,7 +29,11 @@ Transform (DFT) with the efficient Fast Fourier Transform (FFT)
 algorithm [CT].
 
 Parameters
-----------
+
+----
+
+----
+--
 a : array_like
     Input array, can be complex.
 n : int, optional
@@ -36,18 +46,26 @@ axis : int, optional
     used.
 
 Returns
--------
+
+----
+---
 out : complex ndarray
     The truncated or zero-padded input, transformed along the axis
     indicated by `axis`, or the last one if `axis` is not specified.
 
 Raises
-------
+
+----
+--
 IndexError
     if `axes` is larger than the last axis of `a`.
 
 See Also
---------
+
+----
+
+----
+
 numpy.fft : for definition of the DFT and conventions used.
 ifft : The inverse of `fft`.
 fft2 : The two-dimensional FFT.
@@ -56,7 +74,9 @@ rfftn : The *n*-dimensional FFT of real input.
 fftfreq : Frequency bins for given FFT parameters.
 
 Notes
------
+
+----
+-
 FFT (Fast Fourier Transform) refers to a way the discrete Fourier
 Transform (DFT) can be calculated efficiently, by using symmetries in the
 calculated terms.  The symmetry is highest when `n` is a power of 2, and
@@ -66,13 +86,21 @@ The DFT is defined, with the conventions used in this implementation, in
 the documentation for the `numpy.fft` module.
 
 References
-----------
+
+----
+
+----
+--
 .. [CT] Cooley, James W., and John W. Tukey, 1965, "An algorithm for the
         machine calculation of complex Fourier series," *Math. Comput.*
         19: 297-301.
 
 Examples
---------
+
+----
+
+----
+
 {{{
 >>> np.fft.fft(np.exp(2j * np.pi * np.arange(8) / 8))
 array([ -3.44505240e-16 +1.14383329e-17j,
@@ -143,5 +171,7 @@ This is an experimental function.
   * *Default values*: maxNote = 100
 Convert the (frequencies, amplitude) list to a (Note, amplitude) list.
 
+
 ----
+
 [mingusIndex Back to Index]

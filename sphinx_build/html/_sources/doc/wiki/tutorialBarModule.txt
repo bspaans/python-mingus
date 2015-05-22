@@ -1,6 +1,8 @@
 ﻿#summary The mingus.containers.Bar module
 
+
 ----
+
 
 = Tutorial 3 - Bars =
 
@@ -14,7 +16,9 @@ Now that we can group notes vertically, we want to be able to group them horizon
 
 }}}
 
+
 ----
+
 
 == Creating a New Bar ==
 
@@ -46,7 +50,9 @@ If you change the meter after its initial creation be sure to use the `set_meter
 }}}
 
 
+
 ----
+
 
 == Adding Notes and !NoteContainers to a Bar ==
 
@@ -105,7 +111,9 @@ True
 
 
 
+
 ----
+
 
 == The Bar Internals Explained == 
 
@@ -171,13 +179,17 @@ True
 
 As you might have noticed, the lists that get displayed when you print a Bar represent respectively the `current_beat` on which the NoteContainer is placed, the duration and the string representation of the NoteContainer itself. This can be handy when debugging.
 
+
 ----
+
 
 == Edit Bars ==
 
 Now that you know how a Bar works, you can use a couple of methods that can help reorganise a Bar. `place_notes_at(at, notes)` will add the notes to the NoteContainer at place `at` and  `change_note_duration(at, to)` will change the note duration at `at` to `to` (amazing sentence). 
 
+
 ----
+
 
 == Using Bars as Lists ==
 
@@ -200,7 +212,9 @@ True
 
 }}}
 
+
 ----
+
 
 == Other Methods ==
 
@@ -208,7 +222,9 @@ It should come as no surprise that the methods available in Note and !NoteContai
 
 Some other methods and more information can be found in the reference section.
 
+
 ----
+
 
 = End of Tutorial 3 = 
 

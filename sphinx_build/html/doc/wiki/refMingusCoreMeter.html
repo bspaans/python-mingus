@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>#summary Reference documentation for mingus.core.meter. &mdash; mingus 0.5.1 documentation</title>
+    <title>&lt;no title&gt; &mdash; mingus 0.5.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -45,12 +45,15 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="summary-reference-documentation-for-mingus-core-meter">
-<h1>#summary Reference documentation for <cite>mingus.core.meter</cite>.<a class="headerlink" href="#summary-reference-documentation-for-mingus-core-meter" title="Permalink to this headline">¶</a></h1>
+  <p>#summary Reference documentation for <cite>mingus.core.meter</cite>.</p>
+<hr class="docutils" />
 <p>= mingus.core.meter =
 Module for dealing with meters.</p>
 <p>A meter is represented by a tuple. 4/4 time would look like (4,4), 3/4 like
 (3,4), etc.</p>
+<hr class="docutils" />
+<p>== Attributes ==
+=== <cite>common_time</cite> ===</p>
 <blockquote>
 <div><ul class="simple">
 <li><em>Type</em>: tuple</li>
@@ -65,7 +68,10 @@ Module for dealing with meters.</p>
 </ul>
 </dd>
 </dl>
-<p>Return True if meter is an asymmetrical meter, False otherwise.</p>
+<hr class="docutils" />
+<p>== Functions ==
+=== <cite>is_asymmetrical(meter)</cite> ===
+Return True if meter is an asymmetrical meter, False otherwise.</p>
 <p>Examples:
 {{{
 &gt;&gt;&gt; is_asymmetrical((3,4))
@@ -96,7 +102,8 @@ Return True if meter is a valid tuple representation of a meter.</p>
 <p>Examples for meters are (3,4) for 3/4, (4,4) for 4/4, etc.</p>
 <p>=== <cite>valid_beat_duration(duration)</cite> ===
 Return True when log2(duration) is an integer.</p>
-</div>
+<hr class="docutils" />
+<p>[mingusIndex Back to Index]</p>
 
 
           </div>

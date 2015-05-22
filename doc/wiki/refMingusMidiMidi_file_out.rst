@@ -1,9 +1,13 @@
 #summary Reference documentation for `mingus.midi.midi_file_out`.
+
 ----
+
 = mingus.midi.midi_file_out =
 Functions that can generate MIDI files from the objects in
 mingus.containers.
+
 ----
+
 == Functions ==
 === `write_Bar(file, bar, bpm, repeat, verbose)` ===
   * *Default values*: bpm = 120, repeat = 0, verbose = False
@@ -35,5 +39,7 @@ the attribute instrument_nr, which represents the MIDI instrument
 number. The class MidiInstrument in mingus.containers.Instrument has
 this attribute by default.
 
+
 ----
+
 [mingusIndex Back to Index]

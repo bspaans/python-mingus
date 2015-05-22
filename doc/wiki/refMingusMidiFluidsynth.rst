@@ -1,5 +1,7 @@
 #summary Reference documentation for `mingus.midi.fluidsynth`.
+
 ----
+
 = mingus.midi.fluidsynth =
 FluidSynth support for mingus.
 
@@ -14,7 +16,9 @@ To start using FluidSynth with mingus, do:
 
 Now you are ready to play Notes, NoteContainers, etc.
 
+
 ----
+
 == Attributes ==
 === `initialized` ===
   * *Type*: bool
@@ -24,7 +28,9 @@ Now you are ready to play Notes, NoteContainers, etc.
   * *Type*: mingus.midi.fluidsynth.FluidSynthSequencer
   * *Value*: `<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x1009e52d0>`
 
+
 ----
+
 == Functions ==
 === `control_change(channel, control, value)` ===
 Send a control change event on channel.
@@ -107,5 +113,7 @@ Use stop_Note to stop the notes in NoteContainer nc.
 === `stop_everything()` ===
 Stop all the playing notes on all channels.
 
+
 ----
+
 [mingusIndex Back to Index]

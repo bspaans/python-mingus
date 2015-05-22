@@ -1,6 +1,8 @@
 ﻿#summary The mingus.containers.Note module
 
+
 ----
+
 
 = Tutorial 1 - The Note Class =
 
@@ -14,7 +16,9 @@
 
 }}}
 
+
 ----
+
 
 == Creating and Setting Notes ==
 
@@ -59,7 +63,9 @@ The dynamics dictionary can be used to store additional information such as volu
 
 *NB* If you are using the mingus.midi package: setting the `velocity`, `channel` and `bpm` attribute will have an effect on the output. 
 
+
 ----
+
 
 == A Better Note to Integer Converter ==
 
@@ -87,7 +93,9 @@ The opposite of the previous function is `from_int(integer)`, which sets the not
 
 }}}
 
+
 ----
+
 
 == Methods on Notes ==
 
@@ -177,7 +185,9 @@ Some of the functions in `mingus.core.notes` were added to the Note class as met
 'A-4'
 }}}
 
+
 ----
+
 
 = End of Tutorial 1 =
 

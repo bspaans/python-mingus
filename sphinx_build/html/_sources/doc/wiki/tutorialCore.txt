@@ -1,6 +1,8 @@
 ﻿#summary What to do with the mingus.core toolbox?
 
+
 ----
+
 
 = Tutorial 8 - Working with the Core = 
 
@@ -16,13 +18,17 @@
 
 This will import the modules discussed in the previous tutorials in the current namespace. So `notes`, `diatonic`, `intervals`, `chords`, `scales`, `value`, `meter` and `progressions` are all directly accessible.
 
+
 ----
+
 
 == Module Dependencies ==
 
 http://www.onderstekop.nl/dump/core.1.png
 
+
 ----
+
 
 
 = End of Tutorial 8 = 

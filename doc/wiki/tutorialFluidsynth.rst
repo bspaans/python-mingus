@@ -1,6 +1,8 @@
 ﻿#summary Using mingus.midi.fluidsynth
 
+
 ----
+
 
 = Tutorial 1 - Playing Containers with !FluidSynth = 
 
@@ -14,7 +16,9 @@
 
 }}}
 
+
 ----
+
 
 == Loading a !SoundFont ==
 
@@ -30,7 +34,9 @@ You can give an optional second argument to specify a driver (one of 'alsa', 'os
 >>> fluidsynth.init("soundfont.SF2", "alsa")
 }}}
 
+
 ----
+
 
 == Playing mingus.containers Objects ==
 
@@ -91,7 +97,9 @@ True
 
 *Note* You can set a `bpm` attribute on a NoteContainer to change the tempo. Furthermore, you can set a Track's `instrument` attribute to a MidiInstrument object so that play_Track and play_Composition know which instrument to use.
 
+
 ----
+
 
 == Misc. MIDI Commands ==
 
@@ -107,7 +115,9 @@ True
 
 `panning(channel, value)` and `modulation(channel, value)` are shortcuts to the `control_change(channel, control, value)` function added for your convenience. There are more control change commands however. You can find tables by googling, but know that !FluidSynth ignores some of the commands.
 
+
 ----
+
 
 = End of Tutorial 1 = 
 

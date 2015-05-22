@@ -1,11 +1,15 @@
 #summary Reference documentation for `mingus.core.keys`.
+
 ----
+
 = mingus.core.keys =
 Module for dealing with keys.
 
 This module provides a simple interface for dealing with keys.
 
+
 ----
+
 == Attributes ==
 === `base_scale` ===
   * *Type*: list
@@ -27,7 +31,9 @@ This module provides a simple interface for dealing with keys.
   * *Type*: list
   * *Value*: `['ab', 'eb', 'bb', 'f', 'c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#']`
 
+
 ----
+
 == Functions ==
 === `get_key(accidentals)` ===
   * *Default values*: accidentals = 0
@@ -81,5 +87,7 @@ Example:
 'a'
 }}}
 
+
 ----
+
 [mingusIndex Back to Index]

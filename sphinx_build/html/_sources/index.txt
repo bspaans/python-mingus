@@ -17,7 +17,9 @@
    mingusApplications
    mingusContact
 
+
 ----
+
 
 =========
 Tutorials
@@ -73,7 +75,9 @@ Exploring `mingus.extra`
 
    tutorialExtraLilypond
 
+
 ----
+
 
 =========
 Reference

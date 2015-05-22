@@ -1,6 +1,8 @@
 ﻿#summary The mingus.extra.LilyPond module
 
+
 ----
+
 
 = Tutorial 1 - Generating Sheet Music with LilyPond = 
 
@@ -14,7 +16,9 @@ The LilyPond module provides some methods to help you generate files in the Lily
 
 }}}
 
+
 ----
+
 
 == Generate LilyPond Strings ==
 
@@ -31,7 +35,9 @@ LilyPond creates sheet music from files formatted in the LilyPond format. This m
 "{ \\time 4/4 \\key c \\major c'4 e'4 g'4 b'4 }"
 
 }}}
+
 ----
+
 
 == Generating Files from LilyPond Strings ==
 
@@ -51,7 +57,9 @@ To do something useful with the strings generated in the previous section, we ca
 
 http://www.onderstekop.nl/dump/lpexample.png
 
+
 ----
+
 
 = End of Tutorial 1 =
 

@@ -34,7 +34,9 @@ Another option is to let your platform's package manager handle the installation
 Feel free to send a message to the google group if you have packaged mingus for another distribution.
 
 
+
 ----
+
 
   * [tutorialSetup Setup]
   * [mingusIndex Back to Index]

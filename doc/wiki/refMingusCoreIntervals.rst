@@ -1,5 +1,7 @@
 #summary Reference documentation for `mingus.core.intervals`.
+
 ----
+
 = mingus.core.intervals =
 Module to create intervals from notes.
 
@@ -14,7 +16,9 @@ returns 'A'.
 This modules also contains other useful helper functions like measure,
 determine, invert, is_consonant and is_dissonant.
 
+
 ----
+
 == Functions ==
 === `augment_or_diminish_until_the_interval_is_right(note1, note2, interval)` ===
 A helper function for the minor and major functions.
@@ -250,5 +254,7 @@ Example:
 'C'
 }}}
 
+
 ----
+
 [mingusIndex Back to Index]

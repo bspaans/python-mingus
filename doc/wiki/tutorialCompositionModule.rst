@@ -1,6 +1,8 @@
 ﻿#summary The mingus.containers.Composition module
 
+
 ----
+
 
 = Tutorial 6 - Composition =
 
@@ -14,7 +16,9 @@ A Composition can be used to organize Tracks and to add some metadata such as `t
 
 }}}
 
+
 ----
+
 
 == Creating Compositions ==
 
@@ -40,7 +44,9 @@ The `author`, `email`, `title` and `subtitle` attributes can be easily handled w
 }}}
 
 
+
 ----
+
 
 This should sound pretty familiar by now:
 
@@ -88,7 +94,9 @@ This operator accepts Notes, note strings, !NoteContainers, Bars and Tracks.
 >>> c[0] = Track
 }}}
 
+
 ----
+
 
 = End of Tutorial 6 = 
 

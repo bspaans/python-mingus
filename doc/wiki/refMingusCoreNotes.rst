@@ -1,5 +1,7 @@
 #summary Reference documentation for `mingus.core.notes`.
+
 ----
+
 = mingus.core.notes =
 Basic module for notes.
 
@@ -8,13 +10,17 @@ This module is the foundation of the music theory package.
 It handles conversions from integers to notes and vice versa and thus
 enables simple calculations.
 
+
 ----
+
 == Attributes ==
 === `fifths` ===
   * *Type*: list
   * *Value*: `['F', 'C', 'G', 'D', 'A', 'E', 'B']`
 
+
 ----
+
 == Functions ==
 === `augment(note)` ===
 Augment a given note.
@@ -89,5 +95,7 @@ Examples:
 'E'
 }}}
 
+
 ----
+
 [mingusIndex Back to Index]

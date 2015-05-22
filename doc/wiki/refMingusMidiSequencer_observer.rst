@@ -1,5 +1,7 @@
 #summary Reference documentation for `mingus.midi.sequencer_observer`.
+
 ----
+
 = mingus.midi.sequencer_observer =
 Provides an easy to extend base class that can be used to observe a
 Sequencer.
@@ -9,5 +11,7 @@ fired; this SequencerObserver intercepts the event messages and calls the
 proper function so you only have to implement the functions for the events
 you need to see.
 
+
 ----
+
 [mingusIndex Back to Index]

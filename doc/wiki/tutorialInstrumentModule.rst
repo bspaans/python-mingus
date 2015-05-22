@@ -1,6 +1,8 @@
 ﻿#summary The mingus.containers.Instrument module
 
+
 ----
+
 
 = Tutorial 4 - Instruments =
 
@@ -14,7 +16,9 @@ We have grouped Notes in !NoteContainers and !NoteContainers in Bars, but before
 
 }}}
 
+
 ----
+
 
 == Working with Instruments ==
 
@@ -43,7 +47,9 @@ The easiest way to use the Instrument class is probably to subclass it (see the 
 
 }}}
 
+
 ----
+
 
 == Range Checking ==
 
@@ -74,7 +80,9 @@ False
 
 }}}
 
+
 ----
+
 
 == Midi Instruments ==
 
@@ -89,7 +97,9 @@ Another, special subclass of Instrument is the MidiInstrument, which is used thr
 }}}
 
 
+
 ----
+
 
 = End of Tutorial 4 = 
 

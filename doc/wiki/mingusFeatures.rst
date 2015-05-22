@@ -40,7 +40,9 @@ mingus.extra
 
   * Create png's and pdf's from Bars, Tracks, Compositions and Suites using !LilyPond.
 
+
 ----
+
 
 =============
 Documentation
@@ -48,6 +50,8 @@ Documentation
 
 All functions and classes are appropriately documented  and most modules have special tutorials that walk you through their usage. Reference documentation and tutorials are accessible through the [mingusIndex wiki].
 
+
 ----
+
 
   * [mingusIndex Back to Index]

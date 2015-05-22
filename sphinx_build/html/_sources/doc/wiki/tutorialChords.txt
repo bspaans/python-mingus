@@ -1,6 +1,8 @@
 ﻿#summary Working through the various aspects of mingus.core.chords
 
+
 ----
+
 
 = Tutorial 4 - Triads, Sevenths and Extended Chords =
 
@@ -16,7 +18,9 @@ This module is build upon the interval module and provides a way to generate and
 
 
 
+
 ----
+
 
 == Triads ==
 
@@ -79,7 +83,9 @@ The natural triads are ubiquitous, but so is the ability of musicians and compos
 
 As you can see these functions work without a key argument and always give back notes with the same absolute intervals between them.
 
+
 ----
+
 
 == Sevenths ==
 
@@ -128,7 +134,9 @@ Once again, you can also request a specific seventh chord, but this time there a
 
 }}}
 
+
 ----
+
 
 === Get Chords from Shorthand ===
 
@@ -169,7 +177,9 @@ Currently the following abbreviations are recognised:
 
 The letters `m` and `M` in the abbreviations  can always be substituted by respectively `min`, `mi` or `-` and `maj` or `ma` (eg. `from_shorthand("Amin7") == from_shorthand("Am7")`, etc.).
 	
+
 ----
+
 
 == Chords by Harmonic Function ==
 
@@ -208,7 +218,9 @@ It's often easier to refer to harmonic functions using roman numbers.
 
 The functions I-VI and I7-VI7 may all be used. The numbers II, III, VI and their sevenths may also be refered to using lower-case numbers (ii, ii7, etc) to indicate that they are minor. See the progressions tutorial for more about harmonic sequences + an advanced to_chords function.
 
+
 ----
+
 
 == Inversions ==
 
@@ -236,7 +248,9 @@ Other functions that can be used:
 
 }}}
 
+
 ----
+
 
 
 == Recognize ==
@@ -282,7 +296,9 @@ The chord descriptions returned by determine can be quite lengthy. That's why yo
 
 }}}
 
+
 ----
+
 
 == Exercises ==
 
@@ -290,7 +306,9 @@ The chord descriptions returned by determine can be quite lengthy. That's why yo
   # Determine what _type_ of triads and sevenths are naturally occuring in every key.
   # The chord sequence I, IV, V, I is a simple song. Write a program that takes a key and prints out the corresponding chords in shorthand. 
 
+
 ----
+
 
 = End of Tutorial 4 =
 

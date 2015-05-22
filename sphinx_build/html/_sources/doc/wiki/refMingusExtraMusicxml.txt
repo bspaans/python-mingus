@@ -1,5 +1,7 @@
 #summary Reference documentation for `mingus.extra.musicxml`.
+
 ----
+
 = mingus.extra.musicxml =
 Convert mingus.containers to MusicXML files.
 
@@ -12,7 +14,9 @@ and is supported by over 100 applications.
 
 http://www.musicxml.org/xml.html
 
+
 ----
+
 == Attributes ==
 === `major_keys` ===
   * *Type*: list
@@ -22,7 +26,9 @@ http://www.musicxml.org/xml.html
   * *Type*: list
   * *Value*: `['ab', 'eb', 'bb', 'f', 'c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#']`
 
+
 ----
+
 == Functions ==
 === `_bar2musicxml(bar)` ===
 === `_composition2musicxml(comp)` ===
@@ -44,5 +50,7 @@ Return lowest common multiple.
   * *Default values*: zip = False
 Create an XML file (or MXL if compressed) for a given composition.
 
+
 ----
+
 [mingusIndex Back to Index]

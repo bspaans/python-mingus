@@ -1,5 +1,7 @@
 #summary Reference documentation for `mingus.core.progressions`.
+
 ----
+
 = mingus.core.progressions =
 Module for dealing with progressions.
 
@@ -12,7 +14,9 @@ more complex progressions, like: #V7, bIIdim7, etc.
 This module provides methods which can convert progressions to chords and
 vice versa.
 
+
 ----
+
 == Attributes ==
 === `numeral_intervals` ===
   * *Type*: list
@@ -22,7 +26,9 @@ vice versa.
   * *Type*: list
   * *Value*: `['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']`
 
+
 ----
+
 == Functions ==
 === `determine(chord, key, shorthand)` ===
   * *Default values*: shorthand = False
@@ -177,5 +183,7 @@ use Idom7.
 === `tuple_to_string(prog_tuple)` ===
 Create a string from tuples returned by parse_string.
 
+
 ----
+
 [mingusIndex Back to Index]

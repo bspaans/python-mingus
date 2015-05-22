@@ -1,6 +1,8 @@
 ﻿#summary Exploring mingus.core.scales
 
+
 ----
+
 
 = Tutorial 5 - Scales =
 
@@ -15,7 +17,9 @@ This module isn't 100% complete yet, but might already be of use to you.
 }}}
 
 
+
 ----
+
 
 == The Diatonic Scale and Its Modes == 
 
@@ -52,7 +56,9 @@ Sometimes we want to refer to a particular mode of the diatonic scale. This mean
 
 For more on modes, see [http://en.wikipedia.org/wiki/Musical_mode wikipedia]
 
+
 ----
+
 
 == The Minor Scales ==
 
@@ -83,7 +89,9 @@ The melodic minor also has a raised sixth to fill the gap, but 'officially' only
 
 }}}
 
+
 ----
+
 
 == Other Scales ==
 
@@ -104,11 +112,15 @@ The whole note scale consists of six notes each a major second apart:
 
 }}}
 
+
 ----
+
 
 As stated before, the scales module isn't 100% finished. There has been some work done on a scale recognition function (scales.determine), but that hasn't been completed yet (see issue #17). It can do exact matches on scales that are known, but it should be able to do fuzzy matches so that it can also return possible scales over a given chord (see issue #14).
 
+
 ----
+
 
 = End of Tutorial 5 = 
 

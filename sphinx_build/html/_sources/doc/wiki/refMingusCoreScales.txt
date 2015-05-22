@@ -1,5 +1,7 @@
 #summary Reference documentation for `mingus.core.scales`.
+
 ----
+
 = mingus.core.scales =
 Module for dealing with scales.
 
@@ -34,13 +36,17 @@ Other scales
  * WholeTone(note)
  * Octatonic(note)
 
+
 ----
+
 == Attributes ==
 === `keys` ===
   * *Type*: list
   * *Value*: `[('Cb', 'ab'), ('Gb', 'eb'), ('Db', 'bb'), ('Ab', 'f'), ('Eb', 'c'), ('Bb', 'g'), ('F', 'd'), ('C', 'a'), ('G', 'e'), ('D', 'b'), ('A', 'f#'), ('E', 'c#'), ('B', 'g#'), ('F#', 'd#'), ('C#', 'a#')]`
 
+
 ----
+
 == Functions ==
 === `augment(note)` ===
 Augment a given note.
@@ -96,5 +102,7 @@ Example:
 'E'
 }}}
 
+
 ----
+
 [mingusIndex Back to Index]

@@ -1,6 +1,8 @@
 ﻿#summary Using mingus.midi.MidiFileOut
 
+
 ----
+
 
 = Tutorial 2 - Saving Containers as Midi Files = 
 
@@ -13,7 +15,9 @@
 
 }}}
 
+
 ----
+
 
 == Saving Notes, !NoteContainers, Bars, Tracks and Compositions ==
 
@@ -26,7 +30,9 @@ The functions in this module all work the same and are very simple to use. `writ
 
 As in the !FluidSynth module you can set the channel and velocity on Notes by setting the `channel` and `velocity` attributes. And again, to change the tempo you can set the `bpm` attribute on a !NoteContainer.
 
+
 ----
+
 
 = End of Tutorial 2 = 
 

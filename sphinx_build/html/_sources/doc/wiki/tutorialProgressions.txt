@@ -1,6 +1,8 @@
 ﻿#summary The simple mingus.core.progressions
 
+
 ----
+
 
 = Tutorial 7 - Progressions =
 
@@ -16,7 +18,9 @@ The progressions module provides methods which can convert progressions into cho
 
 }}}
 
+
 ----
+
 
 == Functions to Chords ==
 
@@ -52,7 +56,9 @@ Another advantage is that the `to_chords` function knows about prefixes and suff
 
 Note: since the use of '7' as suffix classicly means that you want the natural seventh chord instead of the natural triad, you have to use the 'dom7' shorthand to get the dominanth seventh - where you would use '7' when talking about chords. In other words I7 will give you a major seventh, Idom7 a dominanth seventh. 
 
+
 ----
+
 
 == Chords to Functions ==
 
@@ -70,7 +76,9 @@ Now that we can convert progressions to chords, it would be nice if we could han
 
 }}}
 
+
 ----
+
 
 == Substitutions ==
 
@@ -83,7 +91,9 @@ Now that we can convert progressions to chords, it would be nice if we could han
 
 `substitute` performs all kinds of substitutions. If you want more fine grained control you can use the functions `substitute_harmonic`, `substitute_major_for_minor`, `substitute_minor_for_major`, `substitute_diminished_for_diminished` and `substitute_diminished_for_dominant`. Check the reference section of this module to read more about them.
 
+
 ----
+
 
 = End of Tutorial 7 =
 

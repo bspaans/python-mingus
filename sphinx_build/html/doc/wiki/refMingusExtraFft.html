@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>#summary Reference documentation for mingus.extra.fft. &mdash; mingus 0.5.1 documentation</title>
+    <title>&lt;no title&gt; &mdash; mingus 0.5.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -45,18 +45,24 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="summary-reference-documentation-for-mingus-extra-fft">
-<h1>#summary Reference documentation for <cite>mingus.extra.fft</cite>.<a class="headerlink" href="#summary-reference-documentation-for-mingus-extra-fft" title="Permalink to this headline">¶</a></h1>
+  <p>#summary Reference documentation for <cite>mingus.extra.fft</cite>.</p>
+<hr class="docutils" />
 <p>= mingus.extra.fft =
 Find the frequencies in raw audio data by using fast Fourier transformations
 (supplied by numpy).</p>
 <p>This module can also convert the found frequencies to Note objects.</p>
+<hr class="docutils" />
+<p>== Attributes ==
+=== <cite>x</cite> ===</p>
 <blockquote>
 <div><ul class="simple">
 <li><em>Type</em>: int</li>
 <li><em>Value</em>: <cite>128</cite></li>
 </ul>
 </div></blockquote>
+<hr class="docutils" />
+<p>== Functions ==
+=== <cite>_fft(a, n, axis)</cite> ===</p>
 <blockquote>
 <div><ul class="simple">
 <li><em>Default values</em>: n = None, axis = -1</li>
@@ -66,9 +72,8 @@ Find the frequencies in raw audio data by using fast Fourier transformations
 <p>This function computes the one-dimensional <em>n</em>-point discrete Fourier
 Transform (DFT) with the efficient Fast Fourier Transform (FFT)
 algorithm [CT].</p>
-</div>
-<div class="section" id="parameters">
-<h1>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h1>
+<p>Parameters</p>
+<hr class="docutils" />
 <dl class="docutils">
 <dt>a <span class="classifier-delimiter">:</span> <span class="classifier">array_like</span></dt>
 <dd>Input array, can be complex.</dd>
@@ -81,42 +86,35 @@ the length of the input (along the axis specified by <cite>axis</cite>) is used.
 <dd>Axis over which to compute the FFT.  If not given, the last axis is
 used.</dd>
 </dl>
-</div>
-<div class="section" id="returns">
-<h1>Returns<a class="headerlink" href="#returns" title="Permalink to this headline">¶</a></h1>
+<p>Returns</p>
 <dl class="docutils">
 <dt>out <span class="classifier-delimiter">:</span> <span class="classifier">complex ndarray</span></dt>
 <dd>The truncated or zero-padded input, transformed along the axis
 indicated by <cite>axis</cite>, or the last one if <cite>axis</cite> is not specified.</dd>
 </dl>
-</div>
-<div class="section" id="raises">
-<h1>Raises<a class="headerlink" href="#raises" title="Permalink to this headline">¶</a></h1>
+<p>Raises</p>
 <dl class="docutils">
 <dt>IndexError</dt>
 <dd>if <cite>axes</cite> is larger than the last axis of <cite>a</cite>.</dd>
 </dl>
-</div>
-<div class="section" id="see-also">
-<h1>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h1>
+<p>See Also</p>
+<hr class="docutils" />
+<hr class="docutils" />
 <p>numpy.fft : for definition of the DFT and conventions used.
 ifft : The inverse of <cite>fft</cite>.
 fft2 : The two-dimensional FFT.
 fftn : The <em>n</em>-dimensional FFT.
 rfftn : The <em>n</em>-dimensional FFT of real input.
 fftfreq : Frequency bins for given FFT parameters.</p>
-</div>
-<div class="section" id="notes">
-<h1>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h1>
+<p>Notes</p>
 <p>FFT (Fast Fourier Transform) refers to a way the discrete Fourier
 Transform (DFT) can be calculated efficiently, by using symmetries in the
 calculated terms.  The symmetry is highest when <cite>n</cite> is a power of 2, and
 the transform is therefore most efficient for these sizes.</p>
 <p>The DFT is defined, with the conventions used in this implementation, in
 the documentation for the <cite>numpy.fft</cite> module.</p>
-</div>
-<div class="section" id="references">
-<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h1>
+<p>References</p>
+<hr class="docutils" />
 <table class="docutils citation" frame="void" id="ct" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
@@ -125,9 +123,9 @@ machine calculation of complex Fourier series,&#8221; <em>Math. Comput.</em>
 19: 297-301.</td></tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="examples">
-<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
+<p>Examples</p>
+<hr class="docutils" />
+<hr class="docutils" />
 <p>{{{
 &gt;&gt;&gt; np.fft.fft(np.exp(2j * np.pi * np.arange(8) / 8))
 array([ -3.44505240e-16 +1.14383329e-17j,</p>
@@ -202,7 +200,8 @@ grouped together.</p>
 </dd>
 </dl>
 <p>Convert the (frequencies, amplitude) list to a (Note, amplitude) list.</p>
-</div>
+<hr class="docutils" />
+<p>[mingusIndex Back to Index]</p>
 
 
           </div>
@@ -210,18 +209,6 @@ grouped together.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">#summary Reference documentation for <cite>mingus.extra.fft</cite>.</a></li>
-<li><a class="reference internal" href="#parameters">Parameters</a></li>
-<li><a class="reference internal" href="#returns">Returns</a></li>
-<li><a class="reference internal" href="#raises">Raises</a></li>
-<li><a class="reference internal" href="#see-also">See Also</a></li>
-<li><a class="reference internal" href="#notes">Notes</a></li>
-<li><a class="reference internal" href="#references">References</a></li>
-<li><a class="reference internal" href="#examples">Examples</a></li>
-</ul>
-
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">

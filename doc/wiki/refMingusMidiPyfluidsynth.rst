@@ -1,5 +1,7 @@
 #summary Reference documentation for `mingus.midi.pyfluidsynth`.
+
 ----
+
 = mingus.midi.pyfluidsynth =
 Python bindings for FluidSynth.
 
@@ -18,7 +20,9 @@ soundcard yourself.
 
 FluidSynth works on all major platforms, so pyFluidSynth should also.
 
+
 ----
+
 == Attributes ==
 === `DEFAULT_MODE` ===
   * *Type*: int
@@ -52,7 +56,9 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
   * *Type*: ctypes.PyDLL
   * *Value*: `<PyDLL 'None', handle fffffffffffffffe at 1008c4950>`
 
+
 ----
+
 == Functions ==
 === `ARRAY(typ, len)` ===
 === `CFUNCTYPE(restype)` ===
@@ -115,5 +121,7 @@ wstring_at(addr[, size]) -> string
 
 Return the string at addr.
 
+
 ----
+
 [mingusIndex Back to Index]

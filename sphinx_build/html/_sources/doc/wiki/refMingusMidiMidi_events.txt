@@ -1,8 +1,12 @@
 #summary Reference documentation for `mingus.midi.midi_events`.
+
 ----
+
 = mingus.midi.midi_events =
 None
+
 ----
+
 == Attributes ==
 === `BALANCE` ===
   * *Type*: int
@@ -148,5 +152,7 @@ None
   * *Type*: str
   * *Value*: `'\x03'`
 
+
 ----
+
 [mingusIndex Back to Index]

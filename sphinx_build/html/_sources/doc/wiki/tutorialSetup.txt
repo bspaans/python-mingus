@@ -31,6 +31,8 @@ Installing !FluidSynth on Linux and Mac shouldn't be a problem, doing it on Wind
   # Add the QSynth directory to your PATH.
   # In the QSynth directory, copy libfluidsynth-1.dll to libfluidsynth.dll
 
+
 ----
+
 
   * [mingusIndex Back to Index]

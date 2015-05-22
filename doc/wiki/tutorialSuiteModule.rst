@@ -1,6 +1,8 @@
 ﻿#summary The mingus.containers.Suite module
 
+
 ----
+
 
 = Tutorial 7 - Suite =
 
@@ -14,7 +16,9 @@ The Suite class can be used to store compositions together and will probably not
 
 }}}
 
+
 ----
+
 
 == Creating Suites ==
 
@@ -40,7 +44,9 @@ The following functions will set some useful attributes. Note however that the a
 }}}
 
 
+
 ----
+
 
 == Adding Compositions ==
 
@@ -65,7 +71,9 @@ The following functions will set some useful attributes. Note however that the a
 }}}
 
 
+
 ----
+
 
 = End of Tutorial 7 = 
 

@@ -1,14 +1,20 @@
 #summary Reference documentation for `mingus.extra.tablature`.
+
 ----
+
 = mingus.extra.tablature =
 Functions to convert mingus.containers to pretty ASCII tablature.
+
 ----
+
 == Attributes ==
 === `default_tuning` ===
   * *Type*: mingus.extra.tunings.StringTuning
   * *Value*: `<mingus.extra.tunings.StringTuning object at 0x1003d0f10>`
 
+
 ----
+
 == Functions ==
 === `_get_qsize(tuning, width)` ===
 Return a reasonable quarter note size for 'tuning' and 'width'.
@@ -96,5 +102,7 @@ own tuning).
 
 'string' and 'fret' attributes on Notes are taken into account.
 
+
 ----
+
 [mingusIndex Back to Index]

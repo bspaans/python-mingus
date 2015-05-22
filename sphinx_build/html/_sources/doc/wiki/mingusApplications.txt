@@ -3,7 +3,9 @@
 
 This is an overview of some of the applications that use mingus. If you know of or have written another program, get in [mingusContact contact] and we'll add it as soon as possible.
 
+
 ----
+
 
 == Example Application: Drum Machine ==
 
@@ -20,7 +22,9 @@ This is an overview of some of the applications that use mingus. If you know of 
 _ Clicking on the image will take you to a demonstration on YouTube _
 
 
+
 ----
+
 
 
 == Example Application: Keyboard ==
@@ -36,7 +40,9 @@ _ Clicking on the image will take you to a demonstration on YouTube _
 
 _ Clicking on the image will take you to a demonstration on YouTube _
 
+
 ----
+
 
 == Improviser ==
 
@@ -52,6 +58,8 @@ _ Clicking on the image will take you to a demonstration on YouTube _
 _ Clicking on the image will take you to an example composition on YouTube _
 
 
+
 ----
+
 
   * [mingusIndex Back to Index]

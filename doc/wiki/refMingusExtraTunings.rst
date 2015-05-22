@@ -1,9 +1,13 @@
 #summary Reference documentation for `mingus.extra.tunings`.
+
 ----
+
 = mingus.extra.tunings =
 Dozens of standard tunings, a StringTuning class and some functions to help
 you search through them.
+
 ----
+
 == Functions ==
 === `add_tuning(instrument, description, tuning)` ===
 Add a new tuning to the index.
@@ -54,5 +58,7 @@ Example:
 >>> tunings.get_tunings('bass')
 }}}
 
+
 ----
+
 [mingusIndex Back to Index]

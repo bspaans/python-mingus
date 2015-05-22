@@ -1,6 +1,8 @@
 ﻿#summary The mingus.containers.Track module
 
+
 ----
+
 
 = Tutorial 5 - Tracks =
 
@@ -14,7 +16,9 @@ The Track class is a simple data structure to store [tutorialBarModule Bars] in.
 
 }}}
 
+
 ----
+
 
 == Creating Tracks ==
 
@@ -28,7 +32,9 @@ To create a new track you can simply make a new instance of `Track()`. If you wa
 }}}
 
 
+
 ----
+
 
 == Adding Bars ==
 
@@ -70,7 +76,9 @@ True
 
 }}}
 
+
 ----
+
 
 == List Notation ==
 
@@ -91,13 +99,17 @@ True
 
 }}}
 
+
 ----
+
 
 == Other Methods ==
 
 The usual methods: -transpose, augment, diminish, to_major and to_minor- are also available on Tracks. Calls to these functions will get redirected to each Bar's equivalent.
 
+
 ----
+
 
 = End of Tutorial 5 = 
 

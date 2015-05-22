@@ -1,5 +1,7 @@
 #summary Reference documentation for `mingus.core.chords`.
+
 ----
+
 = mingus.core.chords =
 Module to create chords.
 
@@ -78,7 +80,9 @@ Useful Functions
  * determine - Can recognize all the chords that can be generated with from_shorthand (a lot) and their inversions.
  * from_shorthand - Generates chords from shorthand (eg. 'Cmin7')
 
+
 ----
+
 == Attributes ==
 === `chord_shorthand_meaning` ===
   * *Type*: dict
@@ -88,7 +92,9 @@ Useful Functions
   * *Type*: dict
   * *Value*: `{'': <function major_triad at 0x100357488>, 'm11': <function minor_eleventh at 0x100357f50>, 'm13': <function minor_thirteenth at 0x10036a050>, '67': <function dominant_sixth at 0x100357b90>, '69': <function sixth_ninth at 0x100357c08>, '7b12': <function hendrix_chord at 0x10036a5f0>, 'hendrix': <function hendrix_chord at 0x10036a5f0>, 'aug': <function augmented_triad at 0x1003575f0>, 'm7': <function minor_seventh at 0x1003577d0>, 'm6': <function minor_sixth at 0x100357aa0>, '6': <function major_sixth at 0x100357b18>, '5': <function <lambda> at 0x10036bde8>, 'm9': <function minor_ninth at 0x100357c80>, 'm7+': <function augmented_minor_seventh at 0x10036a488>, '6/7': <function dominant_sixth at 0x100357b90>, '7#11': <function lydian_dominant_seventh at 0x10036a578>, '6/9': <function sixth_ninth at 0x100357c08>, '11': <function eleventh at 0x100357ed8>, 'dim': <function diminished_triad at 0x100357578>, '13': <function dominant_thirteenth at 0x10036a140>, '7b5': <function dominant_flat_five at 0x10036a500>, 'm7b5': <function minor_seventh_flat_five at 0x100357938>, 'susb9': <function suspended_fourth_ninth at 0x10036a398>, 'mM7': <function minor_major_seventh at 0x100357a28>, '7b9': <function dominant_flat_ninth at 0x100357de8>, 'M13': <function major_thirteenth at 0x10036a0c8>, 'sus47': <function suspended_seventh at 0x10036a320>, 'm': <function minor_triad at 0x100357500>, 'sus4b9': <function suspended_fourth_ninth at 0x10036a398>, 'M7': <function major_seventh at 0x100357758>, 'M6': <function major_sixth at 0x100357b18>, 'dim7': <function diminished_seventh at 0x1003579b0>, 'M7+': <function augmented_major_seventh at 0x10036a410>, 'M9': <function major_ninth at 0x100357cf8>, 'dom7': <function dominant_seventh at 0x100357848>, 'M7+5': <function augmented_minor_seventh at 0x10036a488>, '+': <function augmented_triad at 0x1003575f0>, 'sus': <function suspended_triad at 0x10036a1b8>, '7': <function dominant_seventh at 0x100357848>, '9': <function dominant_ninth at 0x100357d70>, 'M': <function major_triad at 0x100357488>, '7+': <function augmented_major_seventh at 0x10036a410>, 'sus2': <function suspended_second_triad at 0x10036a230>, 'sus4': <function suspended_fourth_triad at 0x10036a2a8>, '7#5': <function augmented_minor_seventh at 0x10036a488>, '7#9': <function dominant_sharp_ninth at 0x100357e60>, 'm/M7': <function minor_major_seventh at 0x100357a28>}`
 
+
 ----
+
 == Functions ==
 === `I(key)` ===
 === `I7(key)` ===
@@ -667,5 +673,7 @@ Implemented using a cache.
 === `vi7(key)` ===
 === `vii(key)` ===
 === `vii7(key)` ===
+
 ----
+
 [mingusIndex Back to Index]

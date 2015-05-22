@@ -21,6 +21,8 @@ for contributors and packagers.
 For development talk you can also visit the #mingus channel on freenode.net. 
 
 
+
 ----
+
 
   * [mingusIndex Back to Index]

@@ -1,10 +1,14 @@
 ﻿#summary mingus.core.meter
 
+
 ----
+
 
 = Tutorial 6 - Note Value and Meter =
 
+
 ----
+
 
 == Importing the value Module ==
 
@@ -15,7 +19,9 @@
 }}}
 
 
+
 ----
+
 
 == Note Value ==
 
@@ -49,7 +55,9 @@ For medieval backwards compatibility the English notation has also been included
 
 Never again will you have to remember the difference between a semibreve and a semihemidemisemiquaver! 
 
+
 ----
+
 
 == Making Dotted Notes ==
 
@@ -63,7 +71,9 @@ A dot adds half the duration of the note. A second dot adds half of what was add
 
 }}}
 
+
 ----
+
 
 == Making Tuplets ==
 
@@ -94,7 +104,9 @@ A septuplet function also exists and defaults to the ratio 7:4. When the second 
 7.0
 }}}
 
+
 ----
+
 
 == Adding and Subtracting Note Values ==
 
@@ -109,7 +121,9 @@ In the container modules we will see that it is often handy to have some simple 
 4.0
 }}}
 
+
 ----
+
 
 == Recognising Note Values ==
 
@@ -126,7 +140,9 @@ The floating point numbers are a fast and simple way to store the length of a no
 (8, 1, 1, 1)
 }}}
 
+
 ----
+
 
 Now that we have seen how note values are handled, let's take a look at a slightly related and small module dealing with meter.
 
@@ -139,7 +155,9 @@ Now that we have seen how note values are handled, let's take a look at a slight
 }}}
 
 
+
 ----
+
 
 == Simple Meters ==
 
@@ -167,7 +185,9 @@ Some constants are also included:
 
 }}}
 
+
 ----
+
 
 == Compound Meters ==
 
@@ -184,7 +204,9 @@ False
 
 }}}
 
+
 ----
+
 
 == Asymmetrical Meters ==
 
@@ -206,7 +228,9 @@ False
 
 }}}
 
+
 ----
+
 
 = End of Tutorial 6 =
 

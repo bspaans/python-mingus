@@ -1,6 +1,8 @@
 ﻿#summary The mingus.containers.NoteContainers module
 
+
 ----
+
 
 = Tutorial 2 - !NoteContainers =
 
@@ -15,7 +17,9 @@ also use a !NoteContainer, which has some extra functionality and is used throug
 
 }}}
 
+
 ----
+
 
 == Creating a New !NoteContainer ==
 
@@ -38,7 +42,9 @@ A new !NoteContainer is easily created. You can create empty ones or ones alread
 
 }}}
 
+
 ----
+
 
 == Adding Notes to a !NoteContainer ==
 
@@ -84,7 +90,9 @@ Add multiple notes as a list of Note object or strings; or as another !NoteConta
 
 }}}
 
+
 ----
+
 
 == Removing Notes from a !NoteContainer ==
 
@@ -125,7 +133,9 @@ Removing more than one note from a !NoteContainer:
 
 The function `remove_notes` accepts lists of strings and Note objects, but does also accepts all the things `remove_note` accepts.
 
+
 ----
+
 
 == Using !NoteContainers as Lists ==
 
@@ -175,7 +185,9 @@ The '-' operator is overloaded as well and redirects calls to `remove_notes`. It
 []
 
 }}}
+
 ----
+
 
 == Other methods ==
 
@@ -193,7 +205,9 @@ An extra function is available to `determine` the type of chord or interval in t
 
 }}}
 
+
 ----
+
 
 = End of Tutorial 2 =
 

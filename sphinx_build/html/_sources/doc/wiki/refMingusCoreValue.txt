@@ -1,5 +1,7 @@
 #summary Reference documentation for `mingus.core.value`.
+
 ----
+
 = mingus.core.value =
 Module for dealing with values.
 
@@ -21,7 +23,9 @@ up your code. This module is here to help do the conversion.
 
 Medieval backwards compatibility privided.
 
+
 ----
+
 == Attributes ==
 === `base_quintuplets` ===
   * *Type*: list
@@ -119,7 +123,9 @@ Medieval backwards compatibility privided.
   * *Type*: int
   * *Value*: `1`
 
+
 ----
+
 == Functions ==
 === `add(value1, value2)` ===
 Return the value of the two combined.
@@ -246,5 +252,7 @@ Example:
 12
 }}}
 
+
 ----
+
 [mingusIndex Back to Index]

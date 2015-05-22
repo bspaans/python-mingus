@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>#summary Reference documentation for mingus.midi.fluidsynth. &mdash; mingus 0.5.1 documentation</title>
+    <title>&lt;no title&gt; &mdash; mingus 0.5.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -45,8 +45,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="summary-reference-documentation-for-mingus-midi-fluidsynth">
-<h1>#summary Reference documentation for <cite>mingus.midi.fluidsynth</cite>.<a class="headerlink" href="#summary-reference-documentation-for-mingus-midi-fluidsynth" title="Permalink to this headline">¶</a></h1>
+  <p>#summary Reference documentation for <cite>mingus.midi.fluidsynth</cite>.</p>
+<hr class="docutils" />
 <p>= mingus.midi.fluidsynth =
 FluidSynth support for mingus.</p>
 <p>FluidSynth is a software MIDI synthesizer which allows you to play the
@@ -57,6 +57,9 @@ need fluidsynth and a nice instrument collection (look here:
 &gt;&gt;&gt; from mingus.midi import fluidsynth
 &gt;&gt;&gt; fluidsynth.init(&#8216;soundfontlocation.sf2&#8217;)</p>
 <p>Now you are ready to play Notes, NoteContainers, etc.</p>
+<hr class="docutils" />
+<p>== Attributes ==
+=== <cite>initialized</cite> ===</p>
 <blockquote>
 <div><ul class="simple">
 <li><em>Type</em>: bool</li>
@@ -71,7 +74,10 @@ need fluidsynth and a nice instrument collection (look here:
 </ul>
 </dd>
 </dl>
-<p>Send a control change event on channel.</p>
+<hr class="docutils" />
+<p>== Functions ==
+=== <cite>control_change(channel, control, value)</cite> ===
+Send a control change event on channel.</p>
 <dl class="docutils">
 <dt>=== <cite>init(sf2, driver, file)</cite> ===</dt>
 <dd><ul class="first last simple">
@@ -181,7 +187,8 @@ function arguments.</p>
 <p>Use stop_Note to stop the notes in NoteContainer nc.</p>
 <p>=== <cite>stop_everything()</cite> ===
 Stop all the playing notes on all channels.</p>
-</div>
+<hr class="docutils" />
+<p>[mingusIndex Back to Index]</p>
 
 
           </div>

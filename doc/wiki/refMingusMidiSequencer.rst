@@ -1,5 +1,7 @@
 #summary Reference documentation for `mingus.midi.sequencer`.
+
 ----
+
 = mingus.midi.sequencer =
 A general purpose sequencer for the objects in mingus.containers.
 
@@ -11,5 +13,7 @@ messages in the notify(msg_type, param_dict) function of your object.
 See SequencerObserver for a pre made, easy to extend base class that can be
 attached to the Sequencer.
 
+
 ----
+
 [mingusIndex Back to Index]

@@ -1,12 +1,16 @@
 #summary Reference documentation for `mingus.extra.lilypond`.
+
 ----
+
 = mingus.extra.lilypond =
 Functions to generate files in the LilyPond format.
 
 This allows you to create sheet music from some of the objects in
 mingus.containers.
 
+
 ----
+
 == Functions ==
 === `from_Bar(bar, showkey, showtime)` ===
   * *Default values*: showkey = True, showtime = True
@@ -54,5 +58,7 @@ Save a string in LilyPond format to a PNG.
 
 LilyPond in the $PATH is needed.
 
+
 ----
+
 [mingusIndex Back to Index]

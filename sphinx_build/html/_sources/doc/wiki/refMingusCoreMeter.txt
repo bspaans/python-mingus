@@ -1,12 +1,16 @@
 #summary Reference documentation for `mingus.core.meter`.
+
 ----
+
 = mingus.core.meter =
 Module for dealing with meters.
 
 A meter is represented by a tuple. 4/4 time would look like (4,4), 3/4 like
 (3,4), etc.
 
+
 ----
+
 == Attributes ==
 === `common_time` ===
   * *Type*: tuple
@@ -16,7 +20,9 @@ A meter is represented by a tuple. 4/4 time would look like (4,4), 3/4 like
   * *Type*: tuple
   * *Value*: `(2, 2)`
 
+
 ----
+
 == Functions ==
 === `is_asymmetrical(meter)` ===
 Return True if meter is an asymmetrical meter, False otherwise.
@@ -59,5 +65,7 @@ Examples for meters are (3,4) for 3/4, (4,4) for 4/4, etc.
 === `valid_beat_duration(duration)` ===
 Return True when log2(duration) is an integer.
 
+
 ----
+
 [mingusIndex Back to Index]

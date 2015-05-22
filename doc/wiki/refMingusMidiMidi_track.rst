@@ -1,12 +1,16 @@
 #summary Reference documentation for `mingus.midi.midi_track`.
+
 ----
+
 = mingus.midi.midi_track =
 Methods for working with MIDI data as bytes.
 
 The MIDI file format specification I used can be found here:
 http://www.sonicspot.com/guide/midifiles.html
 
+
 ----
+
 == Attributes ==
 === `BALANCE` ===
   * *Type*: int
@@ -160,5 +164,7 @@ http://www.sonicspot.com/guide/midifiles.html
   * *Type*: list
   * *Value*: `['ab', 'eb', 'bb', 'f', 'c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#']`
 
+
 ----
+
 [mingusIndex Back to Index]

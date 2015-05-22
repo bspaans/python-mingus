@@ -1,6 +1,8 @@
 ﻿#summary A tutorial focusing on `mingus.core.diatonic`
 
+
 ----
+
 
 = Tutorial 2 - Keys and the Diatonic Scale=
 
@@ -14,7 +16,9 @@ The diatonic module is another fundamental module providing support for keys and
 
 }}}
 
+
 ----
+
 
 == Keys ==
 
@@ -27,7 +31,9 @@ As we have seen in the previous tutorial, mingus accepts some funky syntax (eg. 
 
 Although the following functions will still work with the strange syntax, I'd advise you -for your own sanity- not to indulge in them.
 
+
 ----
+
 
 ==The Notes in a Key==
 
@@ -52,7 +58,9 @@ If you were not completely sure what a key was before, it should now be pretty c
 }}}
 
 
+
 ----
+
 
 == A Better Integer to Note Converter ==
 
@@ -71,14 +79,18 @@ Remember how poorly a theoretic job `notes.int_to_note(int)` did? `notes.int_to_
 
 }}}
 
+
 ----
+
 
 == Exercises ==
 
   # Write a program that lets the user input a key, get the notes in the key and print the half note steps between the notes. What do you notice when you ask for different keys?
   # For every note in `basic_keys`: Convert the numbers 0-11 using `diatonic.int_to_note` and `notes.int_to_note`. If the values are different, output the values, the number and the key to screen.
 
+
 ----
+
 
 = End of Tutorial 2 = 
 
