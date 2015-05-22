@@ -230,7 +230,7 @@ You can learn more about `mingus.core.value <refMingusCoreValue>`_ and `mingus.c
   * `Tutorial 1 - Working with Notes <tutorialNote>`_
   * `Tutorial 2 - Keys and the Diatonic Scale <tutorialDiatonic>`_
   * `Tutorial 3 - Intervals <tutorialIntervals>`_
-  * `Tutorial 4 - Triads, Sevenths and Extended Chords `<tutorialChords>`_
+  * `Tutorial 4 - Triads, Sevenths and Extended Chords <tutorialChords>`_
   * `Tutorial 5 - Scales <tutorialScales>`_
   * Tutorial 6 - Note Value and Meter
   * `Tutorial 7 - Progressions <tutorialProgressions>`_

@@ -56,17 +56,19 @@
   <div class="section" id="tutorial-6-composition">
 <h1>Tutorial 6 - Composition<a class="headerlink" href="#tutorial-6-composition" title="Permalink to this headline">¶</a></h1>
 <p>A Composition can be used to organize Tracks and to add some metadata such as <cite>title</cite>, <cite>subtitle</cite> and <cite>author</cite>.</p>
-<p>== Import the Composition Class ==</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mingus.containers.Composition</span> <span class="kn">import</span> <span class="n">Composition</span>
 </pre></div>
 </div>
 <hr class="docutils" />
-<p>== Creating Compositions ==</p>
+<div class="section" id="creating-compositions">
+<h2>Creating Compositions<a class="headerlink" href="#creating-compositions" title="Permalink to this headline">¶</a></h2>
 <p>The Composition class takes no argument to create:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">=</span> <span class="n">Composition</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>== Setting Attributes ==</p>
+</div>
+<div class="section" id="setting-attributes">
+<h2>Setting Attributes<a class="headerlink" href="#setting-attributes" title="Permalink to this headline">¶</a></h2>
 <p>The <cite>author</cite>, <cite>email</cite>, <cite>title</cite> and <cite>subtitle</cite> attributes can be easily handled with the functions <cite>set_author</cite> and <cite>set_title</cite>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Composition</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">set_author</span><span class="p">(</span><span class="s">&#39;Author&#39;</span><span class="p">,</span> <span class="s">&#39;author@email.com&#39;</span><span class="p">)</span>
@@ -75,26 +77,34 @@
 </div>
 <hr class="docutils" />
 <p>This should sound pretty familiar by now:</p>
-<p>== Adding Tracks ==</p>
+</div>
+<div class="section" id="adding-tracks">
+<h2>Adding Tracks<a class="headerlink" href="#adding-tracks" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Composition</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">Track</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">add_track</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>== Adding Notes ==</p>
+</div>
+<div class="section" id="adding-notes">
+<h2>Adding Notes<a class="headerlink" href="#adding-notes" title="Permalink to this headline">¶</a></h2>
 <p>This might seem a little strange, and you probably won&#8217;t use it much.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Composition</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The note gets added to the tracks in <cite>Composition.selected_tracks</cite> which is automatically set when you use <cite>add_track</cite>, but which you can also use yourself.</p>
-<p>== The Overloaded &#8216;+&#8217; Operator ==</p>
+</div>
+<div class="section" id="the-overloaded-operator">
+<h2>The Overloaded &#8216;+&#8217; Operator<a class="headerlink" href="#the-overloaded-operator" title="Permalink to this headline">¶</a></h2>
 <p>This operator accepts Notes, note strings, !NoteContainers, Bars and Tracks.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Composition</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">+</span> <span class="s">&quot;C&quot;</span>
 </pre></div>
 </div>
-<p>== List Notation ==</p>
+</div>
+<div class="section" id="list-notation">
+<h2>List Notation<a class="headerlink" href="#list-notation" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Composition</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 <span class="go">0</span>
@@ -103,20 +113,20 @@
 </pre></div>
 </div>
 <hr class="docutils" />
-<p>= End of Tutorial 6 =</p>
-<p>You can learn more about [refMingusContainersComposition mingus.containers.Composition] in the reference section.</p>
+<p>You can learn more about <a class="reference external" href="refMingusContainersComposition">mingus.containers.Composition</a> in the reference section.</p>
 <blockquote>
 <div><ul class="simple">
-<li>[tutorialNoteModule Tutorial 1 - The Note Class]</li>
-<li>[tutorialNoteContainerModule Tutorial 2 - NoteContainers]</li>
-<li>[tutorialBarModule Tutorial 3 - Bars]</li>
-<li>[tutorialInstrumentModule Tutorial 4 - Instruments]</li>
-<li>[tutorialTrackModule Tutorial 5 - Tracks]</li>
+<li><a class="reference external" href="tutorialNoteModule">Tutorial 1 - The Note Class</a></li>
+<li><a class="reference external" href="tutorialNoteContainerModule">Tutorial 2 - NoteContainers</a></li>
+<li><a class="reference external" href="tutorialBarModule">Tutorial 3 - Bars</a></li>
+<li><a class="reference external" href="tutorialInstrumentModule">Tutorial 4 - Instruments</a></li>
+<li><a class="reference external" href="tutorialTrackModule">Tutorial 5 - Tracks</a></li>
 <li>Tutorial 6 - Compositions</li>
-<li>[tutorialSuiteModule Tutorial 7 - Suites]</li>
-<li>[mingusIndex Back to Index]</li>
+<li><a class="reference external" href="tutorialSuiteModule">Tutorial 7 - Suites</a></li>
+<li><a class="reference external" href="/index">Back to Index</a></li>
 </ul>
 </div></blockquote>
+</div>
 </div>
 
 
@@ -125,6 +135,19 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tutorial 6 - Composition</a><ul>
+<li><a class="reference internal" href="#creating-compositions">Creating Compositions</a></li>
+<li><a class="reference internal" href="#setting-attributes">Setting Attributes</a></li>
+<li><a class="reference internal" href="#adding-tracks">Adding Tracks</a></li>
+<li><a class="reference internal" href="#adding-notes">Adding Notes</a></li>
+<li><a class="reference internal" href="#the-overloaded-operator">The Overloaded &#8216;+&#8217; Operator</a></li>
+<li><a class="reference internal" href="#list-notation">List Notation</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="tutorialTrackModule.html"
                         title="previous chapter">Tutorial 5 - Tracks</a></p>

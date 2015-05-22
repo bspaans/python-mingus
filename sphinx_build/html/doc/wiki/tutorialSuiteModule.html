@@ -56,31 +56,37 @@
   <div class="section" id="tutorial-7-suite">
 <h1>Tutorial 7 - Suite<a class="headerlink" href="#tutorial-7-suite" title="Permalink to this headline">¶</a></h1>
 <p>The Suite class can be used to store compositions together and will probably not be used as much (if you want to write a symphony, knock yourself out though).</p>
-<p>== Import the Suite Class ==</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mingus.containers.Suite</span> <span class="kn">import</span> <span class="n">Suite</span>
 </pre></div>
 </div>
 <hr class="docutils" />
-<p>== Creating Suites ==</p>
+<div class="section" id="creating-suites">
+<h2>Creating Suites<a class="headerlink" href="#creating-suites" title="Permalink to this headline">¶</a></h2>
 <p>A Suite class takes no arguments to create:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">Suite</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>== Setting Attributes ==</p>
+</div>
+<div class="section" id="setting-attributes">
+<h2>Setting Attributes<a class="headerlink" href="#setting-attributes" title="Permalink to this headline">¶</a></h2>
 <p>The following functions will set some useful attributes. Note however that the authors and titles won&#8217;t be reset on the actual compositions, only on the Suite:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">Suite</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set_author</span><span class="p">(</span><span class="s">&#39;Author&#39;</span><span class="p">,</span> <span class="s">&#39;author@email.com&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&#39;Title&#39;</span><span class="p">,</span> <span class="s">&#39;Subtitle&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
 <hr class="docutils" />
-<p>== Adding Compositions ==</p>
+<div class="section" id="adding-compositions">
+<h2>Adding Compositions<a class="headerlink" href="#adding-compositions" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Composition</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">Suite</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">add_composition</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>== List Notation ==</p>
+</div>
+<div class="section" id="list-notation">
+<h2>List Notation<a class="headerlink" href="#list-notation" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Composition</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 <span class="go">0</span>
@@ -89,20 +95,20 @@
 </pre></div>
 </div>
 <hr class="docutils" />
-<p>= End of Tutorial 7 =</p>
-<p>You can learn more about [refMingusContainersSuite mingus.containers.Suite] in the reference section.</p>
+<p>You can learn more about <a class="reference external" href="refMingusContainersSuite">mingus.containers.Suite</a> in the reference section.</p>
 <blockquote>
 <div><ul class="simple">
-<li>[tutorialNoteModule Tutorial 1 - The Note Class]</li>
-<li>[tutorialNoteContainerModule Tutorial 2 - NoteContainers]</li>
-<li>[tutorialBarModule Tutorial 3 - Bars]</li>
-<li>[tutorialInstrumentModule Tutorial 4 - Instruments]</li>
-<li>[tutorialTrackModule Tutorial 5 - Tracks]</li>
-<li>[tutorialCompositionModule Tutorial 6 - Compositions]</li>
+<li><a class="reference external" href="tutorialNoteModule">Tutorial 1 - The Note Class</a></li>
+<li><a class="reference external" href="tutorialNoteContainerModule">Tutorial 2 - NoteContainers</a></li>
+<li><a class="reference external" href="tutorialBarModule">Tutorial 3 - Bars</a></li>
+<li><a class="reference external" href="tutorialInstrumentModule">Tutorial 4 - Instruments</a></li>
+<li><a class="reference external" href="tutorialTrackModule">Tutorial 5 - Tracks</a></li>
+<li><a class="reference external" href="tutorialCompositionModule">Tutorial 6 - Compositions</a></li>
 <li>Tutorial 7 - Suites</li>
-<li>[mingusIndex Back to Index]</li>
+<li><a class="reference external" href="/index">Back to Index</a></li>
 </ul>
 </div></blockquote>
+</div>
 </div>
 
 
@@ -111,6 +117,17 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tutorial 7 - Suite</a><ul>
+<li><a class="reference internal" href="#creating-suites">Creating Suites</a></li>
+<li><a class="reference internal" href="#setting-attributes">Setting Attributes</a></li>
+<li><a class="reference internal" href="#adding-compositions">Adding Compositions</a></li>
+<li><a class="reference internal" href="#list-notation">List Notation</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="tutorialCompositionModule.html"
                         title="previous chapter">Tutorial 6 - Composition</a></p>

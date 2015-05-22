@@ -25,7 +25,7 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
     <link rel="next" title="Tutorial 4 - Instruments" href="tutorialInstrumentModule.html" />
-    <link rel="prev" title="Tutorial 2 - !NoteContainers" href="tutorialNoteContainerModule.html" />
+    <link rel="prev" title="Tutorial 2 - NoteContainers" href="tutorialNoteContainerModule.html" />
    
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
@@ -42,7 +42,7 @@
           <a href="tutorialInstrumentModule.html" title="Tutorial 4 - Instruments"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="tutorialNoteContainerModule.html" title="Tutorial 2 - !NoteContainers"
+          <a href="tutorialNoteContainerModule.html" title="Tutorial 2 - NoteContainers"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
       </ul>
@@ -56,12 +56,12 @@
   <div class="section" id="tutorial-3-bars">
 <h1>Tutorial 3 - Bars<a class="headerlink" href="#tutorial-3-bars" title="Permalink to this headline">¶</a></h1>
 <p>Now that we can group notes vertically, we want to be able to group them horizontally. The Bar class (and later the Track class) can help us with that. A bar of music can be described as a collection of notes (!NoteContainers in our model) played in succession in a certain meter and key. This class tries to model that behaviour and provides ways to add and edit Notes and !NoteContainers.</p>
-<p>== Import the Bar Class ==</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mingus.containers.Bar</span> <span class="kn">import</span> <span class="n">Bar</span>
 </pre></div>
 </div>
 <hr class="docutils" />
-<p>== Creating a New Bar ==</p>
+<div class="section" id="creating-a-new-bar">
+<h2>Creating a New Bar<a class="headerlink" href="#creating-a-new-bar" title="Permalink to this headline">¶</a></h2>
 <p>A Bar() accepts a key and a meter as its optional arguments; these arguments by default set the key to C and the meter to 4/4.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">name</span>
@@ -81,8 +81,10 @@
 <span class="go">(4, 4)</span>
 </pre></div>
 </div>
+</div>
 <hr class="docutils" />
-<p>== Adding Notes and !NoteContainers to a Bar ==</p>
+<div class="section" id="adding-notes-and-notecontainers-to-a-bar">
+<h2>Adding Notes and !NoteContainers to a Bar<a class="headerlink" href="#adding-notes-and-notecontainers-to-a-bar" title="Permalink to this headline">¶</a></h2>
 <p>The <cite>place_notes(notes, duration)</cite> function is used to add notes to a Bar. Notes can be written as strings, but Note and NoteContainer objects, and lists of strings and Note objects are also accepted. The duration is entered as a float which stands for the note value. 1 Represents a whole note, 2 a half note, 4 a quarter note, etc. See the [refMingusCoreValue core.value] module and its [tutorialMeter tutorial] for more sophisticated note values. This function returns True if there was room enough in the Bar to place the notes and False otherwise.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">meter</span>
@@ -98,7 +100,9 @@
 </pre></div>
 </div>
 <p>As you can see, everything goes fine until we try to add another quarter note after we have already filled the Bar up.</p>
-<p>== Adding Rests ==</p>
+</div>
+<div class="section" id="adding-rests">
+<h2>Adding Rests<a class="headerlink" href="#adding-rests" title="Permalink to this headline">¶</a></h2>
 <p>Calling <cite>place_rest(duration)</cite> is the same as calling <cite>place_notes(None, duration)</cite> or adding an empty !NoteContainer.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">place_rest</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
@@ -107,7 +111,9 @@
 <span class="go">True</span>
 </pre></div>
 </div>
-<p>== The Overloaded &#8216;+&#8217; Operator ==</p>
+</div>
+<div class="section" id="the-overloaded-operator">
+<h2>The Overloaded &#8216;+&#8217; Operator<a class="headerlink" href="#the-overloaded-operator" title="Permalink to this headline">¶</a></h2>
 <p>&#8216;+&#8217; can be used to add notes quickly. The downside is that you can&#8217;t control the duration of the note which will default to the last item in the Bar.meter tuple (ie. 4 in (4, 4), 8 in (6, 8), etc.), but this shouldn&#8217;t be a problem for simple uses.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">+</span> <span class="s">&quot;C&quot;</span>
@@ -120,10 +126,13 @@
 <span class="go">True</span>
 </pre></div>
 </div>
+</div>
 <hr class="docutils" />
-<p>== The Bar Internals Explained ==</p>
+<div class="section" id="the-bar-internals-explained">
+<h2>The Bar Internals Explained<a class="headerlink" href="#the-bar-internals-explained" title="Permalink to this headline">¶</a></h2>
 <p>As we have seen before, the Bar class has a couple of attributes from which <cite>key</cite> and <cite>meter</cite> are the ones that you should deal with yourself, directly or indirectly. To understand what goes on behind the scenes however, we should take a look at <cite>length</cite> and <cite>current_beat</cite>:</p>
-<p>=== The length attribute ===</p>
+<div class="section" id="the-length-attribute">
+<h3>The length attribute<a class="headerlink" href="#the-length-attribute" title="Permalink to this headline">¶</a></h3>
 <p>The length attribute gets calculated each time you set a meter and is used throughout the class to check whether the Bar can contain any more notes, etc.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">length</span>
@@ -134,7 +143,9 @@
 </pre></div>
 </div>
 <p>The length gets calculated as follows: <cite>meter[0] * (1.0 / meter[1])</cite>. This is the reason it&#8217;s important to use the <cite>set_meter</cite> method instead of overwriting the <cite>meter</cite> attribute directly (as you can safely do with <cite>key</cite>).</p>
-<p>=== The current_beat attribute ===</p>
+</div>
+<div class="section" id="the-current-beat-attribute">
+<h3>The current_beat attribute<a class="headerlink" href="#the-current-beat-attribute" title="Permalink to this headline">¶</a></h3>
 <p>The <cite>current_beat</cite> attribute gets updated each time a note is added, removed or updated. It keeps track of the current place in the Bar.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">current_beat</span>
@@ -150,7 +161,9 @@
 </pre></div>
 </div>
 <p>When a note gets added, <cite>current_beat</cite> gets incremented with <cite>1 / duration</cite>. This allows us to check in a fast way if a Bar is full or not (a common task) and how much space it has available.</p>
-<p>=== Printing a Bar ===</p>
+</div>
+<div class="section" id="printing-a-bar">
+<h3>Printing a Bar<a class="headerlink" href="#printing-a-bar" title="Permalink to this headline">¶</a></h3>
 <p>When you print a Bar, this is what happens:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">+</span> <span class="s">&quot;C&quot;</span>
@@ -164,11 +177,16 @@
 </pre></div>
 </div>
 <p>As you might have noticed, the lists that get displayed when you print a Bar represent respectively the <cite>current_beat</cite> on which the NoteContainer is placed, the duration and the string representation of the NoteContainer itself. This can be handy when debugging.</p>
+</div>
+</div>
 <hr class="docutils" />
-<p>== Edit Bars ==</p>
+<div class="section" id="edit-bars">
+<h2>Edit Bars<a class="headerlink" href="#edit-bars" title="Permalink to this headline">¶</a></h2>
 <p>Now that you know how a Bar works, you can use a couple of methods that can help reorganise a Bar. <cite>place_notes_at(at, notes)</cite> will add the notes to the NoteContainer at place <cite>at</cite> and  <cite>change_note_duration(at, to)</cite> will change the note duration at <cite>at</cite> to <cite>to</cite> (amazing sentence).</p>
+</div>
 <hr class="docutils" />
-<p>== Using Bars as Lists ==</p>
+<div class="section" id="using-bars-as-lists">
+<h2>Using Bars as Lists<a class="headerlink" href="#using-bars-as-lists" title="Permalink to this headline">¶</a></h2>
 <p>Just like NoteContainers, Bars can be used as lists, to some extent:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">+</span> <span class="s">&quot;C&quot;</span>
@@ -184,22 +202,24 @@
 <span class="go">[0.0, 4, [&#39;E-4&#39;]]</span>
 </pre></div>
 </div>
+</div>
 <hr class="docutils" />
-<p>== Other Methods ==</p>
+<div class="section" id="other-methods">
+<h2>Other Methods<a class="headerlink" href="#other-methods" title="Permalink to this headline">¶</a></h2>
 <p>It should come as no surprise that the methods available in Note and !NoteContainer -transpose, augment, diminish, to_major and to_minor- are also available for Bars. A call to one of these functions will result into a call to that function on every !NoteContainer, which in turn calls the function on every Note.</p>
 <p>Some other methods and more information can be found in the reference section.</p>
 <hr class="docutils" />
-<p>= End of Tutorial 3 =</p>
-<p>You can learn more about [refMingusContainersBar mingus.containers.Bar in the reference section].</p>
+<p>You can learn more about <a class="reference external" href="refMingusContainersBar">mingus.containers.Bar in the reference section</a>.</p>
 <blockquote>
 <div><ul class="simple">
-<li>[tutorialNoteModule Tutorial 1 - The Note Class]</li>
-<li>[tutorialNoteContainerModule Tutorial 2 - NoteContainers]</li>
+<li><a class="reference external" href="tutorialNoteModule">Tutorial 1 - The Note Class</a></li>
+<li><a class="reference external" href="tutorialNoteContainerModule">Tutorial 2 - NoteContainers</a></li>
 <li>Tutorial 3 - Bars</li>
-<li>[tutorialInstrumentModule Tutorial 4 - Instruments]</li>
-<li>[mingusIndex Back to Index]</li>
+<li><a class="reference external" href="tutorialInstrumentModule">Tutorial 4 - Instruments</a></li>
+<li><a class="reference external" href="/index">Back to Index</a></li>
 </ul>
 </div></blockquote>
+</div>
 </div>
 
 
@@ -208,9 +228,29 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tutorial 3 - Bars</a><ul>
+<li><a class="reference internal" href="#creating-a-new-bar">Creating a New Bar</a></li>
+<li><a class="reference internal" href="#adding-notes-and-notecontainers-to-a-bar">Adding Notes and !NoteContainers to a Bar</a></li>
+<li><a class="reference internal" href="#adding-rests">Adding Rests</a></li>
+<li><a class="reference internal" href="#the-overloaded-operator">The Overloaded &#8216;+&#8217; Operator</a></li>
+<li><a class="reference internal" href="#the-bar-internals-explained">The Bar Internals Explained</a><ul>
+<li><a class="reference internal" href="#the-length-attribute">The length attribute</a></li>
+<li><a class="reference internal" href="#the-current-beat-attribute">The current_beat attribute</a></li>
+<li><a class="reference internal" href="#printing-a-bar">Printing a Bar</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#edit-bars">Edit Bars</a></li>
+<li><a class="reference internal" href="#using-bars-as-lists">Using Bars as Lists</a></li>
+<li><a class="reference internal" href="#other-methods">Other Methods</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="tutorialNoteContainerModule.html"
-                        title="previous chapter">Tutorial 2 - !NoteContainers</a></p>
+                        title="previous chapter">Tutorial 2 - NoteContainers</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="tutorialInstrumentModule.html"
                         title="next chapter">Tutorial 4 - Instruments</a></p>

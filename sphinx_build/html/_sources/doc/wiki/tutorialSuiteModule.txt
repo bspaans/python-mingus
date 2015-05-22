@@ -3,9 +3,6 @@
 
 The Suite class can be used to store compositions together and will probably not be used as much (if you want to write a symphony, knock yourself out though).
 
-== Import the Suite Class ==
-
-
 
 >>> from mingus.containers.Suite import Suite
 
@@ -15,7 +12,8 @@ The Suite class can be used to store compositions together and will probably not
 ----
 
 
-== Creating Suites ==
+Creating Suites
+---------------
 
 A Suite class takes no arguments to create:
 
@@ -25,7 +23,8 @@ A Suite class takes no arguments to create:
 
 
 
-== Setting Attributes ==
+Setting Attributes
+------------------
 
 The following functions will set some useful attributes. Note however that the authors and titles won't be reset on the actual compositions, only on the Suite:
 
@@ -43,7 +42,8 @@ The following functions will set some useful attributes. Note however that the a
 ----
 
 
-== Adding Compositions ==
+Adding Compositions
+-------------------
 
 
 
@@ -54,7 +54,8 @@ The following functions will set some useful attributes. Note however that the a
 
 
 
-== List Notation ==
+List Notation
+-------------
 
 
 
@@ -70,15 +71,13 @@ The following functions will set some useful attributes. Note however that the a
 ----
 
 
-= End of Tutorial 7 = 
+You can learn more about `mingus.containers.Suite <refMingusContainersSuite>`_ in the reference section.
 
-You can learn more about [refMingusContainersSuite mingus.containers.Suite] in the reference section.
-
-  * [tutorialNoteModule Tutorial 1 - The Note Class]
-  * [tutorialNoteContainerModule Tutorial 2 - NoteContainers]
-  * [tutorialBarModule Tutorial 3 - Bars]
-  * [tutorialInstrumentModule Tutorial 4 - Instruments]
-  * [tutorialTrackModule Tutorial 5 - Tracks]
-  * [tutorialCompositionModule Tutorial 6 - Compositions]
+  * `Tutorial 1 - The Note Class <tutorialNoteModule>`_
+  * `Tutorial 2 - NoteContainers <tutorialNoteContainerModule>`_
+  * `Tutorial 3 - Bars <tutorialBarModule>`_
+  * `Tutorial 4 - Instruments <tutorialInstrumentModule>`_
+  * `Tutorial 5 - Tracks <tutorialTrackModule>`_
+  * `Tutorial 6 - Compositions <tutorialCompositionModule>`_
   * Tutorial 7 - Suites
-  * [mingusIndex Back to Index]
+  * `Back to Index </index>`_

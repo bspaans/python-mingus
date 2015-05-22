@@ -56,12 +56,12 @@
   <div class="section" id="tutorial-4-instruments">
 <h1>Tutorial 4 - Instruments<a class="headerlink" href="#tutorial-4-instruments" title="Permalink to this headline">¶</a></h1>
 <p>We have grouped Notes in !NoteContainers and !NoteContainers in Bars, but before we can add Bars to Tracks, we need an Instrument class.</p>
-<p>== Import the Instrument Class and Subclasses ==</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mingus.containers.Instrument</span> <span class="kn">import</span> <span class="n">Instrument</span><span class="p">,</span> <span class="n">Piano</span><span class="p">,</span> <span class="n">Guitar</span>
 </pre></div>
 </div>
 <hr class="docutils" />
-<p>== Working with Instruments ==</p>
+<div class="section" id="working-with-instruments">
+<h2>Working with Instruments<a class="headerlink" href="#working-with-instruments" title="Permalink to this headline">¶</a></h2>
 <p>The Instrument module is currently very basic (plans on expanding it exist), but it stores all the things the rest of mingus might need.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">i</span> <span class="o">=</span> <span class="n">Instrument</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">i</span><span class="o">.</span><span class="n">name</span>
@@ -79,8 +79,10 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">i</span><span class="o">.</span><span class="n">clef</span> <span class="o">=</span> <span class="s">&quot;treble&quot;</span>
 </pre></div>
 </div>
+</div>
 <hr class="docutils" />
-<p>== Range Checking ==</p>
+<div class="section" id="range-checking">
+<h2>Range Checking<a class="headerlink" href="#range-checking" title="Permalink to this headline">¶</a></h2>
 <p>Because we have set a range, we can check whether or not a note is within the range of the instrument.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">Guitar</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Piano</span><span class="p">()</span>
@@ -100,8 +102,10 @@
 <span class="go">False</span>
 </pre></div>
 </div>
+</div>
 <hr class="docutils" />
-<p>== Midi Instruments ==</p>
+<div class="section" id="midi-instruments">
+<h2>Midi Instruments<a class="headerlink" href="#midi-instruments" title="Permalink to this headline">¶</a></h2>
 <p>Another, special subclass of Instrument is the MidiInstrument, which is used throughout the <cite>mingus.midi</cite> module. This instrument has an extra <cite>midi_instr</cite> attribute which you can set to an integer (0..127) to denote the MIDI instrument patch that should be used when playing notes. A list of instrument names is provided as <cite>names</cite> attribute.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mingus.containers.Instrument</span> <span class="kn">import</span> <span class="n">MidiInstrument</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">i</span> <span class="o">=</span> <span class="n">MidiInstrument</span><span class="p">()</span>
@@ -109,18 +113,18 @@
 </pre></div>
 </div>
 <hr class="docutils" />
-<p>= End of Tutorial 4 =</p>
-<p>You can learn more about mingus.containers.Instrument in the reference section</p>
+<p>You can learn more about <a class="reference external" href="refMingusContainersInstrument">mingus.containers.Instrument</a> in the reference section</p>
 <blockquote>
 <div><ul class="simple">
-<li>[tutorialNoteModule Tutorial 1 - The Note Class]</li>
-<li>[tutorialNoteContainerModule Tutorial 2 - NoteContainers]</li>
-<li>[tutorialBarModule Tutorial 3 - Bars]</li>
+<li><a class="reference external" href="tutorialNoteModule">Tutorial 1 - The Note Class</a></li>
+<li><a class="reference external" href="tutorialNoteContainerModule">Tutorial 2 - NoteContainers</a></li>
+<li><a class="reference external" href="tutorialBarModule">Tutorial 3 - Bars</a></li>
 <li>Tutorial 4 - Instruments</li>
-<li>[tutorialTrackModule Tutorial 5 - Tracks]</li>
-<li>[mingusIndex Back to Index]</li>
+<li><a class="reference external" href="tutorialTrackModule">Tutorial 5 - Tracks</a></li>
+<li><a class="reference external" href="/index">Back to Index</a></li>
 </ul>
 </div></blockquote>
+</div>
 </div>
 
 
@@ -129,6 +133,16 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tutorial 4 - Instruments</a><ul>
+<li><a class="reference internal" href="#working-with-instruments">Working with Instruments</a></li>
+<li><a class="reference internal" href="#range-checking">Range Checking</a></li>
+<li><a class="reference internal" href="#midi-instruments">Midi Instruments</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="tutorialBarModule.html"
                         title="previous chapter">Tutorial 3 - Bars</a></p>

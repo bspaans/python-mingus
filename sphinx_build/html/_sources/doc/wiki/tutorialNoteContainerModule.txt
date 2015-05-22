@@ -1,10 +1,9 @@
-﻿Tutorial 2 - !NoteContainers
-============================
+﻿Tutorial 2 - NoteContainers
+===========================
 
 What if we want to store several Note objects at once (ie. intervals, chords)? We could use a simple list and be done with it, but we could 
-also use a !NoteContainer, which has some extra functionality and is used throughout this package. 
+also use a NoteContainer, which has some extra functionality and is used throughout this package. 
 
-== Import the !NoteContainer Class ==
 
 
 
@@ -16,9 +15,10 @@ also use a !NoteContainer, which has some extra functionality and is used throug
 ----
 
 
-== Creating a New !NoteContainer ==
+Creating a New NoteContainer 
+-----------------------------
 
-A new !NoteContainer is easily created. You can create empty ones or ones already filled with notes:
+A new NoteContainer is easily created. You can create empty ones or ones already filled with notes:
 
 
 
@@ -41,7 +41,8 @@ A new !NoteContainer is easily created. You can create empty ones or ones alread
 ----
 
 
-== Adding Notes to a !NoteContainer ==
+Adding Notes to a NoteContainer 
+-------------------------------
 
 Add a single note as a string ("C", "C-5", etc.) or a Note object.
 
@@ -54,7 +55,7 @@ Add a single note as a string ("C", "C-5", etc.) or a Note object.
 
 
 
-Add multiple notes as a list of Note object or strings; or as another !NoteContainer. Single notes still work as well. The following examples all produce the same !NoteContainer:
+Add multiple notes as a list of Note object or strings; or as another NoteContainer. Single notes still work as well. The following examples all produce the same NoteContainer:
 
 
 
@@ -89,7 +90,8 @@ Add multiple notes as a list of Note object or strings; or as another !NoteConta
 ----
 
 
-== Removing Notes from a !NoteContainer ==
+Removing Notes from a NoteContainer
+-----------------------------------
 
 Remove a single note:
 
@@ -114,9 +116,10 @@ Removing a single note in a single octave:
 
 
 
-== Removing Multiple Notes from a !NoteContainer == 
+Removing Multiple Notes from a NoteContainer
+--------------------------------------------
 
-Removing more than one note from a !NoteContainer:
+Removing more than one note from a NoteContainer:
 
 
 
@@ -132,9 +135,10 @@ The function `remove_notes` accepts lists of strings and Note objects, but does 
 ----
 
 
-== Using !NoteContainers as Lists ==
+Using NoteContainers as Lists 
+-----------------------------
 
-Some basic operators and functions are overloaded which will allow you to work on !NoteContainers as if they were lists.
+Some basic operators and functions are overloaded which will allow you to work on NoteContainers as if they were lists.
 
 
 
@@ -152,9 +156,10 @@ Some basic operators and functions are overloaded which will allow you to work o
 
 
 
-== The Overloaded '+' Operator ==
+The Overloaded '+' Operator
+---------------------------
 
-The '+' operator is overloaded for !NoteContainer objects. This means that you can use '+' instead of the verbose add_notes() function. 
+The '+' operator is overloaded for NoteContainer objects. This means that you can use '+' instead of the verbose add_notes() function. 
 
 
 
@@ -184,9 +189,10 @@ The '-' operator is overloaded as well and redirects calls to `remove_notes`. It
 ----
 
 
-== Other methods ==
+Other methods
+-------------
 
-The methods available in Note -transpose, augment, diminish, to_major and to_minor- are also available for !NoteContainers. When one of these functions get called the !NoteContainer calls the functions on every one of his Note objects.
+The methods available in Note -transpose, augment, diminish, to_major and to_minor- are also available for NoteContainers. When one of these functions get called the NoteContainer calls the functions on every one of his Note objects.
 
 An extra function is available to `determine` the type of chord or interval in the container.
 
@@ -204,11 +210,10 @@ An extra function is available to `determine` the type of chord or interval in t
 ----
 
 
-= End of Tutorial 2 =
 
-You can learn more about [refMingusContainersNotecontainer mingus.containers.!NoteContainers] in the reference section.
+You can learn more about `mingus.containers.NoteContainers <refMingusContainersNotecontainer>`_ in the reference section.
 
-  * [tutorialNoteModule Tutorial 1 - The Note Class]
-  * Tutorial 2 - !NoteContainers
-  * [tutorialBarModule Tutorial 3 - Bars]
-  * [mingusIndex Back to Index]
+  * `Tutorial 1 - The Note Class <tutorialNoteModule>`_
+  * Tutorial 2 - NoteContainers
+  * `Tutorial 3 - Bars <tutorialBarModule>`_
+  * `Back to Index </index>`_

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Tutorial 2 - !NoteContainers &mdash; mingus 0.5.1 documentation</title>
+    <title>Tutorial 2 - NoteContainers &mdash; mingus 0.5.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -54,16 +54,16 @@
           <div class="body" role="main">
             
   <div class="section" id="tutorial-2-notecontainers">
-<h1>Tutorial 2 - !NoteContainers<a class="headerlink" href="#tutorial-2-notecontainers" title="Permalink to this headline">¶</a></h1>
+<h1>Tutorial 2 - NoteContainers<a class="headerlink" href="#tutorial-2-notecontainers" title="Permalink to this headline">¶</a></h1>
 <p>What if we want to store several Note objects at once (ie. intervals, chords)? We could use a simple list and be done with it, but we could
-also use a !NoteContainer, which has some extra functionality and is used throughout this package.</p>
-<p>== Import the !NoteContainer Class ==</p>
+also use a NoteContainer, which has some extra functionality and is used throughout this package.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mingus.containers.NoteContainer</span> <span class="kn">import</span> <span class="n">NoteContainer</span>
 </pre></div>
 </div>
 <hr class="docutils" />
-<p>== Creating a New !NoteContainer ==</p>
-<p>A new !NoteContainer is easily created. You can create empty ones or ones already filled with notes:</p>
+<div class="section" id="creating-a-new-notecontainer">
+<h2>Creating a New NoteContainer<a class="headerlink" href="#creating-a-new-notecontainer" title="Permalink to this headline">¶</a></h2>
+<p>A new NoteContainer is easily created. You can create empty ones or ones already filled with notes:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="n">NoteContainer</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n</span>
 <span class="go">[]</span>
@@ -78,8 +78,10 @@ also use a !NoteContainer, which has some extra functionality and is used throug
 <span class="go">[&#39;A-3&#39;, &#39;C-5&#39;, &#39;E-5&#39;]</span>
 </pre></div>
 </div>
+</div>
 <hr class="docutils" />
-<p>== Adding Notes to a !NoteContainer ==</p>
+<div class="section" id="adding-notes-to-a-notecontainer">
+<h2>Adding Notes to a NoteContainer<a class="headerlink" href="#adding-notes-to-a-notecontainer" title="Permalink to this headline">¶</a></h2>
 <p>Add a single note as a string (&#8220;C&#8221;, &#8220;C-5&#8221;, etc.) or a Note object.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="n">NoteContainer</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
@@ -87,7 +89,7 @@ also use a !NoteContainer, which has some extra functionality and is used throug
 <span class="go">[&#39;C-4&#39;]</span>
 </pre></div>
 </div>
-<p>Add multiple notes as a list of Note object or strings; or as another !NoteContainer. Single notes still work as well. The following examples all produce the same !NoteContainer:</p>
+<p>Add multiple notes as a list of Note object or strings; or as another NoteContainer. Single notes still work as well. The following examples all produce the same NoteContainer:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="n">NoteContainer</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n</span><span class="o">.</span><span class="n">add_notes</span><span class="p">([</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">])</span>
 </pre></div>
@@ -105,8 +107,10 @@ also use a !NoteContainer, which has some extra functionality and is used throug
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n</span><span class="o">.</span><span class="n">add_notes</span><span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="s">&quot;E&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
+</div>
 <hr class="docutils" />
-<p>== Removing Notes from a !NoteContainer ==</p>
+<div class="section" id="removing-notes-from-a-notecontainer">
+<h2>Removing Notes from a NoteContainer<a class="headerlink" href="#removing-notes-from-a-notecontainer" title="Permalink to this headline">¶</a></h2>
 <p>Remove a single note:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="n">NoteContainer</span><span class="p">([</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;G&quot;</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n</span><span class="o">.</span><span class="n">remove_note</span><span class="p">(</span><span class="s">&quot;E&quot;</span><span class="p">)</span>
@@ -122,17 +126,21 @@ also use a !NoteContainer, which has some extra functionality and is used throug
 <span class="go">[&#39;C-5&#39;]</span>
 </pre></div>
 </div>
-<p>== Removing Multiple Notes from a !NoteContainer ==</p>
-<p>Removing more than one note from a !NoteContainer:</p>
+</div>
+<div class="section" id="removing-multiple-notes-from-a-notecontainer">
+<h2>Removing Multiple Notes from a NoteContainer<a class="headerlink" href="#removing-multiple-notes-from-a-notecontainer" title="Permalink to this headline">¶</a></h2>
+<p>Removing more than one note from a NoteContainer:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="n">NoteContainer</span><span class="p">([</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;G&quot;</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n</span><span class="o">.</span><span class="n">remove_notes</span><span class="p">([</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">])</span>
 <span class="go">[&#39;G-4&#39;]</span>
 </pre></div>
 </div>
 <p>The function <cite>remove_notes</cite> accepts lists of strings and Note objects, but does also accepts all the things <cite>remove_note</cite> accepts.</p>
+</div>
 <hr class="docutils" />
-<p>== Using !NoteContainers as Lists ==</p>
-<p>Some basic operators and functions are overloaded which will allow you to work on !NoteContainers as if they were lists.</p>
+<div class="section" id="using-notecontainers-as-lists">
+<h2>Using NoteContainers as Lists<a class="headerlink" href="#using-notecontainers-as-lists" title="Permalink to this headline">¶</a></h2>
+<p>Some basic operators and functions are overloaded which will allow you to work on NoteContainers as if they were lists.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="n">NoteContainer</span><span class="p">([</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;G&quot;</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="go">&#39;C-4&#39;</span>
@@ -145,8 +153,10 @@ also use a !NoteContainer, which has some extra functionality and is used throug
 <span class="go">3</span>
 </pre></div>
 </div>
-<p>== The Overloaded &#8216;+&#8217; Operator ==</p>
-<p>The &#8216;+&#8217; operator is overloaded for !NoteContainer objects. This means that you can use &#8216;+&#8217; instead of the verbose add_notes() function.</p>
+</div>
+<div class="section" id="the-overloaded-operator">
+<h2>The Overloaded &#8216;+&#8217; Operator<a class="headerlink" href="#the-overloaded-operator" title="Permalink to this headline">¶</a></h2>
+<p>The &#8216;+&#8217; operator is overloaded for NoteContainer objects. This means that you can use &#8216;+&#8217; instead of the verbose add_notes() function.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="n">NoteContainer</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">+</span> <span class="s">&quot;C&quot;</span>
 <span class="go">[&#39;C-4&#39;]</span>
@@ -163,9 +173,11 @@ also use a !NoteContainer, which has some extra functionality and is used throug
 <span class="go">[]</span>
 </pre></div>
 </div>
+</div>
 <hr class="docutils" />
-<p>== Other methods ==</p>
-<p>The methods available in Note -transpose, augment, diminish, to_major and to_minor- are also available for !NoteContainers. When one of these functions get called the !NoteContainer calls the functions on every one of his Note objects.</p>
+<div class="section" id="other-methods">
+<h2>Other methods<a class="headerlink" href="#other-methods" title="Permalink to this headline">¶</a></h2>
+<p>The methods available in Note -transpose, augment, diminish, to_major and to_minor- are also available for NoteContainers. When one of these functions get called the NoteContainer calls the functions on every one of his Note objects.</p>
 <p>An extra function is available to <cite>determine</cite> the type of chord or interval in the container.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="n">NoteContainer</span><span class="p">([</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;G&quot;</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n</span><span class="o">.</span><span class="n">determine</span><span class="p">()</span>
@@ -175,16 +187,16 @@ also use a !NoteContainer, which has some extra functionality and is used throug
 </pre></div>
 </div>
 <hr class="docutils" />
-<p>= End of Tutorial 2 =</p>
-<p>You can learn more about [refMingusContainersNotecontainer mingus.containers.!NoteContainers] in the reference section.</p>
+<p>You can learn more about <a class="reference external" href="refMingusContainersNotecontainer">mingus.containers.NoteContainers</a> in the reference section.</p>
 <blockquote>
 <div><ul class="simple">
-<li>[tutorialNoteModule Tutorial 1 - The Note Class]</li>
-<li>Tutorial 2 - !NoteContainers</li>
-<li>[tutorialBarModule Tutorial 3 - Bars]</li>
-<li>[mingusIndex Back to Index]</li>
+<li><a class="reference external" href="tutorialNoteModule">Tutorial 1 - The Note Class</a></li>
+<li>Tutorial 2 - NoteContainers</li>
+<li><a class="reference external" href="tutorialBarModule">Tutorial 3 - Bars</a></li>
+<li><a class="reference external" href="/index">Back to Index</a></li>
 </ul>
 </div></blockquote>
+</div>
 </div>
 
 
@@ -193,6 +205,20 @@ also use a !NoteContainer, which has some extra functionality and is used throug
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tutorial 2 - NoteContainers</a><ul>
+<li><a class="reference internal" href="#creating-a-new-notecontainer">Creating a New NoteContainer</a></li>
+<li><a class="reference internal" href="#adding-notes-to-a-notecontainer">Adding Notes to a NoteContainer</a></li>
+<li><a class="reference internal" href="#removing-notes-from-a-notecontainer">Removing Notes from a NoteContainer</a></li>
+<li><a class="reference internal" href="#removing-multiple-notes-from-a-notecontainer">Removing Multiple Notes from a NoteContainer</a></li>
+<li><a class="reference internal" href="#using-notecontainers-as-lists">Using NoteContainers as Lists</a></li>
+<li><a class="reference internal" href="#the-overloaded-operator">The Overloaded &#8216;+&#8217; Operator</a></li>
+<li><a class="reference internal" href="#other-methods">Other methods</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="tutorialNoteModule.html"
                         title="previous chapter">Tutorial 1 - The Note Class</a></p>

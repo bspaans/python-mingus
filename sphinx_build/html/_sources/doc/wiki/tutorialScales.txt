@@ -115,7 +115,7 @@ As stated before, the scales module isn't 100% finished. There has been some wor
 
 ----
 
-You can learn more about [refMingusCoreScales mingus.core.scales in the reference section].
+You can learn more about `mingus.core.scales in the reference section <refMingusCoreScales>`_.
 
   * `Tutorial 1 - Working with Notes <tutorialNote>`_
   * `Tutorial 2 - Keys and the Diatonic Scale <tutorialDiatonic>`_

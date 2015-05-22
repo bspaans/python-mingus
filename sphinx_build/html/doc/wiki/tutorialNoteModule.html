@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
-    <link rel="next" title="Tutorial 2 - !NoteContainers" href="tutorialNoteContainerModule.html" />
+    <link rel="next" title="Tutorial 2 - NoteContainers" href="tutorialNoteContainerModule.html" />
     <link rel="prev" title="Tutorial 8 - Working the Core" href="tutorialCore.html" />
    
   
@@ -39,7 +39,7 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="tutorialNoteContainerModule.html" title="Tutorial 2 - !NoteContainers"
+          <a href="tutorialNoteContainerModule.html" title="Tutorial 2 - NoteContainers"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="tutorialCore.html" title="Tutorial 8 - Working the Core"
@@ -56,12 +56,12 @@
   <div class="section" id="tutorial-1-the-note-class">
 <h1>Tutorial 1 - The Note Class<a class="headerlink" href="#tutorial-1-the-note-class" title="Permalink to this headline">¶</a></h1>
 <p><cite>mingus.core.notes</cite> provides a way to work with notes. However, what if we want to work with notes in different octaves? Or what if we want to set the amplitude or some effects on a note? This Note class solves those problems and also provides the cornerstone of the <cite>mingus.containers</cite> package.</p>
-<p>== Importing the Note Class ==</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mingus.containers.Note</span> <span class="kn">import</span> <span class="n">Note</span>
 </pre></div>
 </div>
 <hr class="docutils" />
-<p>== Creating and Setting Notes ==</p>
+<div class="section" id="creating-and-setting-notes">
+<h2>Creating and Setting Notes<a class="headerlink" href="#creating-and-setting-notes" title="Permalink to this headline">¶</a></h2>
 <p>Defining and setting notes is pretty easy and can be done in a variety of ways.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Note</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
 <span class="go">&#39;C-4&#39;</span>
@@ -77,7 +77,9 @@
 <span class="go">&#39;C-5&#39;</span>
 </pre></div>
 </div>
-<p>== Note Attributes ==</p>
+</div>
+<div class="section" id="note-attributes">
+<h2>Note Attributes<a class="headerlink" href="#note-attributes" title="Permalink to this headline">¶</a></h2>
 <p>The attributes <cite>name</cite>, <cite>octave</cite> and <cite>dynamics</cite> are always set and accessible from the outside:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Note</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span>
@@ -92,8 +94,10 @@
 </div>
 <p>The dynamics dictionary can be used to store additional information such as volume and effects.</p>
 <p><em>NB</em> If you are using the mingus.midi package: setting the <cite>velocity</cite>, <cite>channel</cite> and <cite>bpm</cite> attribute will have an effect on the output.</p>
+</div>
 <hr class="docutils" />
-<p>== A Better Note to Integer Converter ==</p>
+<div class="section" id="a-better-note-to-integer-converter">
+<h2>A Better Note to Integer Converter<a class="headerlink" href="#a-better-note-to-integer-converter" title="Permalink to this headline">¶</a></h2>
 <p>A problem with <cite>mingus.core.notes.note_to_int</cite> is that it returns integers in the range 0-11. This would mean that &#8216;Cb&#8217; and &#8216;B&#8217; are both 11. This can be helpful, but when you are dealing with octaves you don&#8217;t want this. The Note class fixes this and also overloads the int() function to make it simpler to use:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">int</span><span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="go">48</span>
@@ -103,16 +107,21 @@
 <span class="go">59</span>
 </pre></div>
 </div>
-<p>== A Better Integer to Note Converter ==</p>
+</div>
+<div class="section" id="a-better-integer-to-note-converter">
+<h2>A Better Integer to Note Converter<a class="headerlink" href="#a-better-integer-to-note-converter" title="Permalink to this headline">¶</a></h2>
 <p>The opposite of the previous function is <cite>from_int(integer)</cite>, which sets the note to the corresponding integer where 0 is a C on octave 0, 12 is a C on octave 1, etc.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Note</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">from_int</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
 <span class="go">&#39;C-1&#39;</span>
 </pre></div>
 </div>
+</div>
 <hr class="docutils" />
-<p>== Methods on Notes ==</p>
-<p>=== Octaves ===</p>
+<div class="section" id="methods-on-notes">
+<h2>Methods on Notes<a class="headerlink" href="#methods-on-notes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="octaves">
+<h3>Octaves<a class="headerlink" href="#octaves" title="Permalink to this headline">¶</a></h3>
 <p>Changing the octave can be done by setting the octave attribute, but the following methods can also be used:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Note</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
@@ -129,7 +138,9 @@
 <span class="go">&#39;A-5&#39;</span>
 </pre></div>
 </div>
-<p>=== Transposing ===</p>
+</div>
+<div class="section" id="transposing">
+<h3>Transposing<a class="headerlink" href="#transposing" title="Permalink to this headline">¶</a></h3>
 <p>To move a Note an interval up or down, you can use the function <cite>transpose(interval, up=True)</cite>. The interval should be valid interval shorthand (see the [tutorialIntervals interval tutorial])</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Note</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="s">&quot;3&quot;</span><span class="p">)</span>
@@ -140,9 +151,13 @@
 <span class="go">&#39;G#-5&#39;</span>
 </pre></div>
 </div>
-<p>=== Hertz ===</p>
+</div>
+<div class="section" id="hertz">
+<h3>Hertz<a class="headerlink" href="#hertz" title="Permalink to this headline">¶</a></h3>
 <p>Converting from and to hertz can be done using the <cite>from_hertz(hertz, standard_pitch=440)</cite> and <cite>to_hertz(standard_pitch=440)</cite> functions, where <cite>standard_pitch</cite> can be used to set the pitch of A-4, from which the rest is calculated.</p>
-<p>=== Migrated Methods ===</p>
+</div>
+<div class="section" id="migrated-methods">
+<h3>Migrated Methods<a class="headerlink" href="#migrated-methods" title="Permalink to this headline">¶</a></h3>
 <p>Some of the functions in <cite>mingus.core.notes</cite> were added to the Note class as methods for convenience.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Note</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
@@ -175,15 +190,16 @@
 </pre></div>
 </div>
 <hr class="docutils" />
-<p>= End of Tutorial 1 =</p>
-<p>You can learn more about [refMingusContainersNote mingus.containers.Note] in the reference section</p>
+<p>You can learn more about <a class="reference external" href="refMingusContainersNote">mingus.containers.Note</a> in the reference section</p>
 <blockquote>
 <div><ul class="simple">
 <li>Tutorial 1 - The Note Class</li>
-<li>[tutorialNoteContainerModule Tutorial 2 - NoteContainers]</li>
-<li>[mingusIndex Back to Index]</li>
+<li><a class="reference external" href="tutorialNoteContainerModule">Tutorial 2 - NoteContainers</a></li>
+<li><a class="reference external" href="/index">Back to Index</a></li>
 </ul>
 </div></blockquote>
+</div>
+</div>
 </div>
 
 
@@ -192,12 +208,30 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tutorial 1 - The Note Class</a><ul>
+<li><a class="reference internal" href="#creating-and-setting-notes">Creating and Setting Notes</a></li>
+<li><a class="reference internal" href="#note-attributes">Note Attributes</a></li>
+<li><a class="reference internal" href="#a-better-note-to-integer-converter">A Better Note to Integer Converter</a></li>
+<li><a class="reference internal" href="#a-better-integer-to-note-converter">A Better Integer to Note Converter</a></li>
+<li><a class="reference internal" href="#methods-on-notes">Methods on Notes</a><ul>
+<li><a class="reference internal" href="#octaves">Octaves</a></li>
+<li><a class="reference internal" href="#transposing">Transposing</a></li>
+<li><a class="reference internal" href="#hertz">Hertz</a></li>
+<li><a class="reference internal" href="#migrated-methods">Migrated Methods</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="tutorialCore.html"
                         title="previous chapter">Tutorial 8 - Working the Core</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="tutorialNoteContainerModule.html"
-                        title="next chapter">Tutorial 2 - !NoteContainers</a></p>
+                        title="next chapter">Tutorial 2 - NoteContainers</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
