@@ -6,11 +6,11 @@ also use a !NoteContainer, which has some extra functionality and is used throug
 
 == Import the !NoteContainer Class ==
 
-{{{
+
 
 >>> from mingus.containers.NoteContainer import NoteContainer
 
-}}}
+
 
 
 ----
@@ -20,7 +20,7 @@ also use a !NoteContainer, which has some extra functionality and is used throug
 
 A new !NoteContainer is easily created. You can create empty ones or ones already filled with notes:
 
-{{{
+
 
 >>> n = NoteContainer()
 >>> n
@@ -35,7 +35,7 @@ A new !NoteContainer is easily created. You can create empty ones or ones alread
 >>> n
 ['A-3', 'C-5', 'E-5']
 
-}}}
+
 
 
 ----
@@ -45,45 +45,45 @@ A new !NoteContainer is easily created. You can create empty ones or ones alread
 
 Add a single note as a string ("C", "C-5", etc.) or a Note object.
 
-{{{
+
 
 >>> n = NoteContainer()
 >>> n.add_note("C")
 >>> n
 ['C-4']
 
-}}}
+
 
 Add multiple notes as a list of Note object or strings; or as another !NoteContainer. Single notes still work as well. The following examples all produce the same !NoteContainer:
 
-{{{
+
 
 >>> n = NoteContainer()
 >>> n.add_notes(["C", "E"])
 
-}}}
 
-{{{
+
+
 
 >>> n.empty()
 >>> n.add_notes(NoteContainer(["C", "E"])
 
-}}}
 
-{{{
+
+
 
 >>> n.empty()
 >>> n.add_notes([Note("C"), Note("E")])
 
-}}}
 
-{{{
+
+
 
 >>> n.empty()
 >>> n.add_notes(Note("C"))
 >>> n.add_notes(Note("E"))
 
-}}}
+
 
 
 ----
@@ -93,7 +93,7 @@ Add multiple notes as a list of Note object or strings; or as another !NoteConta
 
 Remove a single note:
 
-{{{
+
 
 >>> n = NoteContainer(["C", "E", "G"])
 >>> n.remove_note("E")
@@ -102,29 +102,29 @@ Remove a single note:
 >>> n.remove_note("C")
 []
 
-}}}
+
 
 Removing a single note in a single octave:
 
-{{{
+
 
 >>> n = NoteContainer(["C-4", "C-5"])
 >>> n.remove_note("C", 4)
 ['C-5']
 
-}}}
+
 
 == Removing Multiple Notes from a !NoteContainer == 
 
 Removing more than one note from a !NoteContainer:
 
-{{{
+
 
 >>> n = NoteContainer(["C", "E", "G"])
 >>> n.remove_notes(["C", "E"])
 ['G-4']
 
-}}}
+
 
 The function `remove_notes` accepts lists of strings and Note objects, but does also accepts all the things `remove_note` accepts.
 
@@ -136,7 +136,7 @@ The function `remove_notes` accepts lists of strings and Note objects, but does 
 
 Some basic operators and functions are overloaded which will allow you to work on !NoteContainers as if they were lists.
 
-{{{
+
 
 >>> n = NoteContainer(["C", "E", "G"])
 >>> n[0]
@@ -149,14 +149,14 @@ Some basic operators and functions are overloaded which will allow you to work o
 >>> len(n)
 3
 
-}}}
+
 
 
 == The Overloaded '+' Operator ==
 
 The '+' operator is overloaded for !NoteContainer objects. This means that you can use '+' instead of the verbose add_notes() function. 
 
-{{{
+
 
 >>> n = NoteContainer()
 >>> n + "C"
@@ -164,14 +164,14 @@ The '+' operator is overloaded for !NoteContainer objects. This means that you c
 >>> n + ["E", "G"]
 ["C-4", "E-4", "G-4"]
 
-}}}
+
 
 
 == The Overloaded '-' Operator ==
 
 The '-' operator is overloaded as well and redirects calls to `remove_notes`. It can be used like this:
 
-{{{
+
 
 >>> n = NoteContainer(["C", "E", "G"])
 >>> n - "E"
@@ -179,7 +179,7 @@ The '-' operator is overloaded as well and redirects calls to `remove_notes`. It
 >>> n - ["C", "G"]
 []
 
-}}}
+
 
 ----
 
@@ -190,7 +190,7 @@ The methods available in Note -transpose, augment, diminish, to_major and to_min
 
 An extra function is available to `determine` the type of chord or interval in the container.
 
-{{{
+
 
 >>> n = NoteContainer(["C", "E", "G"])
 >>> n.determine()
@@ -198,7 +198,7 @@ An extra function is available to `determine` the type of chord or interval in t
 >>> n.determine(True)
 ['Cmaj']
 
-}}}
+
 
 
 ----

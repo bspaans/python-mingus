@@ -5,11 +5,11 @@ The Suite class can be used to store compositions together and will probably not
 
 == Import the Suite Class ==
 
-{{{
+
 
 >>> from mingus.containers.Suite import Suite
 
-}}}
+
 
 
 ----
@@ -19,24 +19,24 @@ The Suite class can be used to store compositions together and will probably not
 
 A Suite class takes no arguments to create:
 
-{{{
+
 
 >>> s = Suite()
 
-}}}
+
 
 == Setting Attributes ==
 
 The following functions will set some useful attributes. Note however that the authors and titles won't be reset on the actual compositions, only on the Suite:
 
-{{{
+
 
 >>> s = Suite()
 >>> s.set_author('Author', 'author@email.com')
 >>> s.set_title('Title', 'Subtitle')
 
 
-}}}
+
 
 
 
@@ -45,25 +45,25 @@ The following functions will set some useful attributes. Note however that the a
 
 == Adding Compositions ==
 
-{{{
+
 
 >>> c = Composition()
 >>> s = Suite()
 >>> s.add_composition(c)
 
-}}}
+
 
 
 == List Notation ==
 
-{{{
+
 
 >>> c = Composition()
 >>> len(c)
 0
 >>> c.add_composition(Composition())
 >>> c[0] = Composition()
-}}}
+
 
 
 

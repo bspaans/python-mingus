@@ -28,34 +28,34 @@ A meter is represented by a tuple. 4/4 time would look like (4,4), 3/4 like
 Return True if meter is an asymmetrical meter, False otherwise.
 
 Examples:
-{{{
+
 >>> is_asymmetrical((3,4))
 True
 >>> is_asymmetrical((4,4))
 False
-}}}
+
 
 === `is_compound(meter)` ===
 Return True if meter is a compound meter, False otherwise.
 
 Examples:
-{{{
+
 >>> is_compound((3,4))
 True
 >>> is_compound((4,4))
 False
-}}}
+
 
 === `is_simple(meter)` ===
 Return True if meter is a simple meter, False otherwise.
 
 Examples:
-{{{
+
 >>> is_simple((3,4))
 True
 >>> is_simple((4,4))
 True
-}}}
+
 
 === `is_valid(meter)` ===
 Return True if meter is a valid tuple representation of a meter.

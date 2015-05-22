@@ -79,12 +79,12 @@ that's the case those values take presedence over the ones given here as
 function arguments.
 
 Example:
-{{{
+
 >>> n = Note('C', 4)
 >>> n.channel = 9
 >>> n.velocity = 50
 >>> FluidSynth.play_Note(n)
-}}}
+
 
 === `play_NoteContainer(nc, channel, velocity)` ===
   * *Default values*: channel = 1, velocity = 100
