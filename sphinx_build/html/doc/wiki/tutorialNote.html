@@ -56,18 +56,14 @@
   <div class="section" id="tutorial-1-working-with-notes">
 <h1>Tutorial 1 - Working with notes<a class="headerlink" href="#tutorial-1-working-with-notes" title="Permalink to this headline">¶</a></h1>
 <p>mingus was written out of a desire to have a pythonic way of working with music: simple but also correct. This module lies at the heart of the package and introduces the first building blocks: note names, accidentals and an int-to-note converter (and vice versa).</p>
-<div class="section" id="import-the-notes-module">
-<h2>Import the notes module<a class="headerlink" href="#import-the-notes-module" title="Permalink to this headline">¶</a></h2>
 <p>To start this tutorial, open up a python shell and enter:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mingus.core.notes</span> <span class="kn">as</span> <span class="nn">notes</span>
 </pre></div>
 </div>
 <p>Now we are ready to work with notes.</p>
-</div>
-</div>
 <hr class="docutils" />
 <div class="section" id="notes-as-strings">
-<h1>Notes as strings<a class="headerlink" href="#notes-as-strings" title="Permalink to this headline">¶</a></h1>
+<h2>Notes as strings<a class="headerlink" href="#notes-as-strings" title="Permalink to this headline">¶</a></h2>
 <p>A note in mingus is represented by a name (A...G) and some or no accidentals (&#8216;#&#8217; and &#8216;b&#8217;); where &#8216;b&#8217; lowers and &#8216;#&#8217; raises the note by one half note step. To test whether an arbitrary string is a valid note we can use <cite>notes.is_valid_note(str)</cite>.</p>
 <p>Some examples of valid notes:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">is_valid_note</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
@@ -108,10 +104,10 @@
 </div>
 <hr class="docutils" />
 <div class="section" id="notes-as-integers">
-<h1>Notes as Integers<a class="headerlink" href="#notes-as-integers" title="Permalink to this headline">¶</a></h1>
+<h2>Notes as Integers<a class="headerlink" href="#notes-as-integers" title="Permalink to this headline">¶</a></h2>
 <p>Sometimes it is easier to work with notes as integers in range(0,12). This is possible with the functions <cite>notes.note_to_int(str)</cite> and <cite>notes.int_to_note(int)</cite>.</p>
 <div class="section" id="note-to-integer">
-<h2>Note to integer<a class="headerlink" href="#note-to-integer" title="Permalink to this headline">¶</a></h2>
+<h3>Note to integer<a class="headerlink" href="#note-to-integer" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">note_to_int</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
 <span class="go">0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">note_to_int</span><span class="p">(</span><span class="s">&quot;B&quot;</span><span class="p">)</span>
@@ -127,7 +123,7 @@
 <p>As you can see in the examples some notes return the same values. These notes are called enharmonic, because they sound the same. (There is <cite>notes.is_enharmonic(note1, note2)</cite> to test if two notes are enharmonic).</p>
 </div>
 <div class="section" id="integer-to-note">
-<h2>Integer to Note<a class="headerlink" href="#integer-to-note" title="Permalink to this headline">¶</a></h2>
+<h3>Integer to Note<a class="headerlink" href="#integer-to-note" title="Permalink to this headline">¶</a></h3>
 <p>Because enharmonic notes exist, it is impossible to create a sound int-to-note converter based on an integer alone. For example; in the last piece of code we saw that B and Cb are both 11. They sound the same, but they aren&#8217;t theoretically the same. This can be important when building and recognizing intervals and thus scales and chords, because intervals depend on the note name. For instance: the interval between A and B is called a major second, while the interval between A and Cb is a diminished third. <cite>diatonic.int_to_note</cite> does a better job at the conversion, bearing the key in mind as well. The converter in [tutorialNoteModule Note] can also handles octaves on top of that.
 Anyway, if you don&#8217;t care about theoretically sound conversions or don&#8217;t need to differentiate, this function is fine (it sounds the same, after all):</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">int_to_note</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -146,9 +142,9 @@ Anyway, if you don&#8217;t care about theoretically sound conversions or don&#82
 </div>
 <hr class="docutils" />
 <div class="section" id="helper-functions">
-<h1>Helper Functions<a class="headerlink" href="#helper-functions" title="Permalink to this headline">¶</a></h1>
+<h2>Helper Functions<a class="headerlink" href="#helper-functions" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="augment-and-diminish">
-<h2>Augment and Diminish<a class="headerlink" href="#augment-and-diminish" title="Permalink to this headline">¶</a></h2>
+<h3>Augment and Diminish<a class="headerlink" href="#augment-and-diminish" title="Permalink to this headline">¶</a></h3>
 <p>Augmenting and diminishing a note is a little bit harder than just slapping a &#8216;#&#8217; or &#8216;b&#8217; on at the end of the string. For instance: when you want to augment a &#8216;Cb&#8217; note, a &#8216;C&#8217; would be nicer than a &#8216;Cb#&#8217; (although, again, they are the same, but it&#8217;s like using double negative). <cite>augment</cite> and <cite>diminish</cite> do a nice job at this:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">augment</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
 <span class="go">&quot;C#&quot;</span>
@@ -173,7 +169,7 @@ Anyway, if you don&#8217;t care about theoretically sound conversions or don&#82
 </div>
 </div>
 <div class="section" id="minor-and-major-conversions">
-<h2>Minor and Major conversions<a class="headerlink" href="#minor-and-major-conversions" title="Permalink to this headline">¶</a></h2>
+<h3>Minor and Major conversions<a class="headerlink" href="#minor-and-major-conversions" title="Permalink to this headline">¶</a></h3>
 <p>Minor:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">to_minor</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
 <span class="go">&quot;A&quot;</span>
@@ -200,17 +196,19 @@ Anyway, if you don&#8217;t care about theoretically sound conversions or don&#82
 </div>
 <hr class="docutils" />
 <div class="section" id="exercises">
-<h1>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h1>
-<blockquote>
-<div># Write a program that asks for a note, check if it&#8217;s valid and output the note which is five half notes away from it.
-# Get the minor equivalent of a valid note and diminish it.
-# Generate the first thousand fibonacci numbers and use a modulo 12 operation (eg. <cite>n % 12</cite>) to convert each value to a note.</div></blockquote>
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Write a program that asks for a note, check if it&#8217;s valid and output the note which is five half notes away from it.</li>
+<li>Get the minor equivalent of a valid note and diminish it.</li>
+<li>Generate the first thousand fibonacci numbers and use a modulo 12 operation (eg. <cite>n % 12</cite>) to convert each value to a note.</li>
+</ul>
 <hr class="docutils" />
 <p>You can learn more about <a class="reference external" href="refMingusCoreNotes">mingus.core.notes</a> in the reference section.</p>
 <ul class="simple">
 <li><a class="reference external" href="tutorialDiatonic">Tutorial 2 - Keys and the Diatonic Scale</a></li>
 <li><a class="reference external" href="/index">Back to Index</a></li>
 </ul>
+</div>
 </div>
 
 
@@ -222,9 +220,6 @@ Anyway, if you don&#8217;t care about theoretically sound conversions or don&#82
   <h3><a href="../../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Tutorial 1 - Working with notes</a><ul>
-<li><a class="reference internal" href="#import-the-notes-module">Import the notes module</a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#notes-as-strings">Notes as strings</a></li>
 <li><a class="reference internal" href="#notes-as-integers">Notes as Integers</a><ul>
 <li><a class="reference internal" href="#note-to-integer">Note to integer</a></li>
@@ -237,6 +232,8 @@ Anyway, if you don&#8217;t care about theoretically sound conversions or don&#82
 </ul>
 </li>
 <li><a class="reference internal" href="#exercises">Exercises</a></li>
+</ul>
+</li>
 </ul>
 
   <h4>Previous topic</h4>

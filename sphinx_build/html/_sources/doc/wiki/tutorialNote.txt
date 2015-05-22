@@ -3,8 +3,6 @@
 
 mingus was written out of a desire to have a pythonic way of working with music: simple but also correct. This module lies at the heart of the package and introduces the first building blocks: note names, accidentals and an int-to-note converter (and vice versa).
 
-Import the notes module
------------------------
 
 To start this tutorial, open up a python shell and enter:
 
@@ -19,7 +17,7 @@ Now we are ready to work with notes.
 
 
 Notes as strings
-================
+----------------
 
 A note in mingus is represented by a name (A...G) and some or no accidentals ('#' and 'b'); where 'b' lowers and '#' raises the note by one half note step. To test whether an arbitrary string is a valid note we can use `notes.is_valid_note(str)`.
 
@@ -71,12 +69,12 @@ As you can see, mingus can handle any number of accidentals, whether it is the s
 
 
 Notes as Integers
-=================
+-----------------
 
 Sometimes it is easier to work with notes as integers in range(0,12). This is possible with the functions `notes.note_to_int(str)` and `notes.int_to_note(int)`.
 
 Note to integer
----------------
+^^^^^^^^^^^^^^^
 
 >>> notes.note_to_int("C")
 0
@@ -93,7 +91,7 @@ Note to integer
 As you can see in the examples some notes return the same values. These notes are called enharmonic, because they sound the same. (There is `notes.is_enharmonic(note1, note2)` to test if two notes are enharmonic).
 
 Integer to Note
----------------
+^^^^^^^^^^^^^^^
 
 Because enharmonic notes exist, it is impossible to create a sound int-to-note converter based on an integer alone. For example; in the last piece of code we saw that B and Cb are both 11. They sound the same, but they aren't theoretically the same. This can be important when building and recognizing intervals and thus scales and chords, because intervals depend on the note name. For instance: the interval between A and B is called a major second, while the interval between A and Cb is a diminished third. `diatonic.int_to_note` does a better job at the conversion, bearing the key in mind as well. The converter in [tutorialNoteModule Note] can also handles octaves on top of that. 
 Anyway, if you don't care about theoretically sound conversions or don't need to differentiate, this function is fine (it sounds the same, after all):
@@ -117,10 +115,10 @@ Anyway, if you don't care about theoretically sound conversions or don't need to
 
 
 Helper Functions
-================
+----------------
 
 Augment and Diminish
---------------------
+^^^^^^^^^^^^^^^^^^^^
 
 Augmenting and diminishing a note is a little bit harder than just slapping a '#' or 'b' on at the end of the string. For instance: when you want to augment a 'Cb' note, a 'C' would be nicer than a 'Cb#' (although, again, they are the same, but it's like using double negative). `augment` and `diminish` do a nice job at this:
 
@@ -150,7 +148,7 @@ Diminishing a note:
 
 
 Minor and Major conversions
----------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Minor:
 
@@ -182,11 +180,11 @@ Major:
 
 
 Exercises
-=========
+---------
 
-  # Write a program that asks for a note, check if it's valid and output the note which is five half notes away from it.
-  # Get the minor equivalent of a valid note and diminish it.
-  # Generate the first thousand fibonacci numbers and use a modulo 12 operation (eg. `n % 12`) to convert each value to a note. 
+* Write a program that asks for a note, check if it's valid and output the note which is five half notes away from it.
+* Get the minor equivalent of a valid note and diminish it.
+* Generate the first thousand fibonacci numbers and use a modulo 12 operation (eg. `n % 12`) to convert each value to a note. 
 
 
 ----

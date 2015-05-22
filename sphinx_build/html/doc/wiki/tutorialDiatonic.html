@@ -56,16 +56,12 @@
   <div class="section" id="tutorial-2-keys-and-the-diatonic-scale">
 <h1>Tutorial 2 - Keys and the Diatonic Scale<a class="headerlink" href="#tutorial-2-keys-and-the-diatonic-scale" title="Permalink to this headline">¶</a></h1>
 <p>The diatonic module is another fundamental module providing support for keys and the diatonic scale. Without this module, mingus would be utterly useless. Let&#8217;s open up a python shell and start exploring.</p>
-<div class="section" id="import-the-module">
-<h2>Import the module<a class="headerlink" href="#import-the-module" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">core.diatonic</span> <span class="kn">as</span> <span class="nn">diatonic</span>
 </pre></div>
 </div>
-</div>
-</div>
 <hr class="docutils" />
 <div class="section" id="keys">
-<h1>Keys<a class="headerlink" href="#keys" title="Permalink to this headline">¶</a></h1>
+<h2>Keys<a class="headerlink" href="#keys" title="Permalink to this headline">¶</a></h2>
 <p>As we have seen in the previous tutorial, mingus accepts some funky syntax (eg. &#8216;C####bbb#b&#8217;). While this is fine, it&#8217;s normally not really helpful, especially not when talking about keys and scales. This module defines a list of basic notes (based on the circle of fifths):</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diatonic</span><span class="o">.</span><span class="n">basic_keys</span>
 <span class="go">[&#39;Gb&#39;, &#39;Db&#39;, &#39;Ab&#39;, &#39;Eb&#39;, &#39;Bb&#39;, &#39;F&#39;, &#39;C&#39;, &#39;G&#39;, &#39;D&#39;, &#39;A&#39;, &#39;E&#39;, &#39;B&#39;, &#39;F#&#39;, &#39;C#&#39;, &#39;G#&#39;, &#39;D#&#39;, &#39;A#&#39;]</span>
@@ -75,7 +71,7 @@
 </div>
 <hr class="docutils" />
 <div class="section" id="the-notes-in-a-key">
-<h1>The Notes in a Key<a class="headerlink" href="#the-notes-in-a-key" title="Permalink to this headline">¶</a></h1>
+<h2>The Notes in a Key<a class="headerlink" href="#the-notes-in-a-key" title="Permalink to this headline">¶</a></h2>
 <p>To get the notes in a certain key, you can use <cite>diatonic.get_notes(note)</cite>. This method returns a list of notes, starting with the tonic.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diatonic</span><span class="o">.</span><span class="n">get_notes</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
 <span class="go">[&quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;, &quot;G&quot;, &quot;A&quot;, &quot;B&quot;]</span>
@@ -91,7 +87,7 @@
 </div>
 <hr class="docutils" />
 <div class="section" id="a-better-integer-to-note-converter">
-<h1>A Better Integer to Note Converter<a class="headerlink" href="#a-better-integer-to-note-converter" title="Permalink to this headline">¶</a></h1>
+<h2>A Better Integer to Note Converter<a class="headerlink" href="#a-better-integer-to-note-converter" title="Permalink to this headline">¶</a></h2>
 <p>Remember how poorly a theoretic job <cite>notes.int_to_note(int)</cite> did? <cite>notes.int_to_note</cite> would always convert 10 to A#, regardless of what key you&#8217;re in. This fact becomes really obvious when you are playing in Bb. A better function would pay attention to the key as well; we can do that now:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diatonic</span><span class="o">.</span><span class="n">int_to_note</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">)</span>
 <span class="go">&#39;A#&#39;</span>
@@ -106,10 +102,11 @@
 </div>
 <hr class="docutils" />
 <div class="section" id="exercises">
-<h1>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h1>
-<blockquote>
-<div># Write a program that lets the user input a key, get the notes in the key and print the half note steps between the notes. What do you notice when you ask for different keys?
-# For every note in <cite>basic_keys</cite>: Convert the numbers 0-11 using <cite>diatonic.int_to_note</cite> and <cite>notes.int_to_note</cite>. If the values are different, output the values, the number and the key to screen.</div></blockquote>
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Write a program that lets the user input a key, get the notes in the key and print the half note steps between the notes. What do you notice when you ask for different keys?</li>
+<li>For every note in <cite>basic_keys</cite>: Convert the numbers 0-11 using <cite>diatonic.int_to_note</cite> and <cite>notes.int_to_note</cite>. If the values are different, output the values, the number and the key to screen.</li>
+</ul>
 <hr class="docutils" />
 <p>You can learn more about <a class="reference external" href="refMingusCoreDiatonic">mingus.core.diatonic</a> in the reference section</p>
 <blockquote>
@@ -121,6 +118,7 @@
 </ul>
 </div></blockquote>
 </div>
+</div>
 
 
           </div>
@@ -131,13 +129,12 @@
   <h3><a href="../../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Tutorial 2 - Keys and the Diatonic Scale</a><ul>
-<li><a class="reference internal" href="#import-the-module">Import the module</a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#keys">Keys</a></li>
 <li><a class="reference internal" href="#the-notes-in-a-key">The Notes in a Key</a></li>
 <li><a class="reference internal" href="#a-better-integer-to-note-converter">A Better Integer to Note Converter</a></li>
 <li><a class="reference internal" href="#exercises">Exercises</a></li>
+</ul>
+</li>
 </ul>
 
   <h4>Previous topic</h4>
