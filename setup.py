@@ -20,8 +20,8 @@ http://mingus.googlecode.com
 """,
 
       author = "Bart Spaans",
-      author_email = "onderstekop@gmail.com",
-      url = "http://mingus.googlecode.com/",
+      author_email = "bart.spaans@gmail.com",
+      url = "http://github.com/bspaans/python-mingus",
       packages = ['mingus', 'mingus.core', 'mingus.containers', 'mingus.extra', 'mingus.midi'],
       data_files = [('mingus_examples/pygame-drum', ['mingus_examples/pygame-drum/pad.png',\
                          'mingus_examples/pygame-drum/pygame-drum.py']),\

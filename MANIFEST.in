@@ -1,7 +1,6 @@
 recursive-include mingus *.py
 recursive-include mingus_examples *.py *.png
 recursive-include unittest *.py
-include CHANGELOG
 include LICENSE
 include THANKS
 include AUTHORS
