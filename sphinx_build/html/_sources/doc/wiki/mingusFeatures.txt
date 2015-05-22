@@ -43,15 +43,4 @@ mingus.extra
 
 ----
 
-
-=============
-Documentation
-=============
-
-All functions and classes are appropriately documented  and most modules have special tutorials that walk you through their usage. Reference documentation and tutorials are accessible through the [mingusIndex wiki].
-
-
-----
-
-
-  * [mingusIndex Back to Index]
+:doc:`Back to Index </>`
