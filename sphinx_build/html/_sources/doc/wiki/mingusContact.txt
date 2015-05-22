@@ -1,9 +1,5 @@
-﻿#summary Contact information
-#sidebar mingusSidebar
-
-----
-
-= Contact = 
+﻿Contact
+=======
 
 == Bug Reports ==
 

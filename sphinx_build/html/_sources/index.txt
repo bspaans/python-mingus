@@ -6,10 +6,10 @@
 *mingus* is an advanced, cross-platform music theory and notation package for [http://www.python.org Python] with MIDI file and playback support. It can be used to play around with music theory, to build editors, educational tools and other applications that need to process and/or play music. It can also be used to create sheet music with [http://www.lilypond.org LilyPond].
 
 
-== Getting Started == 
-
 .. toctree::
    :maxdepth: 2
+   :caption: Getting Started
+   :name: mastertoc
 
    doc/wiki/mingusFeatures
    doc/wiki/tutorialGettingmingus
@@ -22,43 +22,54 @@
 = Tutorials =
 
 
-== Fundamentals ==
-
 Exploring `mingus.core`
 
-  # [tutorialNote Working with Notes]
-  # [tutorialDiatonic Keys and the Diatonic Scale]
-  # [tutorialIntervals Intervals]
-  # [tutorialChords Triads, Sevenths and Extended Chords]
-  # [tutorialScales Scales]
-  # [tutorialMeter Note Value and Meter]
-  # [tutorialProgressions Progressions]
-  # [tutorialCore Working with the Core] 
+.. toctree::
+   :maxdepth: 2
+   :caption: Fundamentals
+   :name: minguscore
 
-== Grouping Notes ==
+   doc/wiki/tutorialNote
+   doc/wiki/tutorialDiatonic
+   doc/wiki/tutorialIntervals
+   doc/wiki/tutorialChords
+   doc/wiki/tutorialScales
+   doc/wiki/tutorialMeter
+   doc/wiki/tutorialProgressions
+   doc/wiki/tutorialCore
 
 Exploring `mingus.containers`
 
-  # [tutorialNoteModule The Note Class]
-  # [tutorialNoteContainerModule NoteContainers]
-  # [tutorialBarModule Bars]
-  # [tutorialInstrumentModule Instruments]
-  # [tutorialTrackModule Tracks]
-  # [tutorialCompositionModule Compositions]
-  # [tutorialSuiteModule Suites]
+.. toctree::
+   :maxdepth: 2
+   :caption: Grouping Notes
 
-== Midi ==
+   doc/wiki/tutorialNoteModule
+   doc/wiki/tutorialNoteContainerModule
+   doc/wiki/tutorialBarModule
+   doc/wiki/tutorialInstrumentModule
+   doc/wiki/tutorialTrackModule
+   doc/wiki/tutorialCompositionModule
+   doc/wiki/tutorialSuiteModule
+
 
 Exploring `mingus.midi`
 
-  # [tutorialFluidsynth Playing Containers with FluidSynth]
-  # [tutorialMidiFileOut Saving Containers as Midi Files]
+.. toctree::
+   :maxdepth: 2
+   :caption: Midi
 
-== Extras ==
+   doc/wiki/tutorialFluidsynth
+   doc/wiki/tutorialMidiFileOut
+
 
 Exploring `mingus.extra`
 
-  # [tutorialExtraLilypond Generating Sheet Music with LilyPond]
+.. toctree::
+   :maxdepth: 2
+   :caption: Extras
+
+   doc/wiki/tutorialExtraLilypond
 
 ----
 

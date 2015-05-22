@@ -1,9 +1,5 @@
-﻿#summary Overview of mingus' features
-#sidebar mingusSidebar
-
-----
-
-= Features =
+﻿Features
+========
 
 == mingus 0.4 features ==
 

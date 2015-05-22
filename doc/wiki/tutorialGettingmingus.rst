@@ -1,9 +1,5 @@
-﻿#summary Where to get the latest mingus releases and additional packages
-#sidebar mingusSidebar
-
-----
-
-= Getting mingus =
+﻿Getting mingus
+==============
 
 The latest source package (in `tar.gz` format) will always be available in [http://code.google.com/p/mingus/downloads/list the download list on this site]. A windows installer can be found there as well.
 

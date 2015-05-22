@@ -1,9 +1,5 @@
-﻿#summary Applications using the mingus library
-#sidebar mingusSidebar
-
-----
-
-= Applications =
+﻿Applications
+============
 
 This is an overview of some of the applications that use mingus. If you know of or have written another program, get in [mingusContact contact] and we'll add it as soon as possible.
 

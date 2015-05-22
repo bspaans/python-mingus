@@ -1,9 +1,5 @@
-﻿#summary Tips on setting up mingus
-#sidebar mingusSidebar
-
-----
-
-= Setup =
+﻿Setup
+=====
 
 == Installing from Source ==
 
