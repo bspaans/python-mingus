@@ -1,10 +1,5 @@
-﻿#summary mingus.core.meter
-
-
-----
-
-
-= Tutorial 6 - Note Value and Meter =
+﻿Tutorial 6 - Note Value and Meter
+=================================
 
 
 ----

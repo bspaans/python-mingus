@@ -1,10 +1,5 @@
-﻿#summary Exploring mingus.core.scales
-
-
-----
-
-
-= Tutorial 5 - Scales =
+﻿Tutorial 5 - Scales
+===================
 
 This module isn't 100% complete yet, but might already be of use to you.
 

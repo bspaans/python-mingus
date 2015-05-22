@@ -1,10 +1,5 @@
-﻿#summary What to do with the mingus.core toolbox?
-
-
-----
-
-
-= Tutorial 8 - Working with the Core = 
+﻿Tutorial 8 - Working with the Core
+==================================
 
 `modules.core` allows you to build all kinds of applications. The last tutorial in this section presents you with some information that might help you build software with this subpackage.
 

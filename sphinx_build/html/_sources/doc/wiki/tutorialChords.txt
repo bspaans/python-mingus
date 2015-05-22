@@ -1,10 +1,5 @@
-﻿#summary Working through the various aspects of mingus.core.chords
-
-
-----
-
-
-= Tutorial 4 - Triads, Sevenths and Extended Chords =
+﻿Tutorial 4 - Triads, Sevenths and Extended Chords
+=================================================
 
 This module is build upon the interval module and provides a way to generate and recognise various chords. 
 

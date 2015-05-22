@@ -1,10 +1,5 @@
-﻿#summary A tutorial focusing on `mingus.core.diatonic`
-
-
-----
-
-
-= Tutorial 2 - Keys and the Diatonic Scale=
+﻿Tutorial 2 - Keys and the Diatonic Scale
+========================================
 
 The diatonic module is another fundamental module providing support for keys and the diatonic scale. Without this module, mingus would be utterly useless. Let's open up a python shell and start exploring.
 

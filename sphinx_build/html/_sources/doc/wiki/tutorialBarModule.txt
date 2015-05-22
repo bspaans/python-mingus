@@ -1,10 +1,5 @@
-﻿#summary The mingus.containers.Bar module
-
-
-----
-
-
-= Tutorial 3 - Bars =
+﻿Tutorial 3 - Bars
+=================
 
 Now that we can group notes vertically, we want to be able to group them horizontally. The Bar class (and later the Track class) can help us with that. A bar of music can be described as a collection of notes (!NoteContainers in our model) played in succession in a certain meter and key. This class tries to model that behaviour and provides ways to add and edit Notes and !NoteContainers.
 

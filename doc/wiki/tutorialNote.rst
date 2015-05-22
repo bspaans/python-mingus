@@ -1,10 +1,5 @@
-﻿#summary A tutorial for working with mingus.core.notes
-
-
-----
-
-
-= Tutorial 1 - Working with notes=
+﻿Tutorial 1 - Working with notes
+===============================
 
 mingus was written out of a desire to have a pythonic way of working with music: simple but also correct. This module lies at the heart of the package and introduces the first building blocks: note names, accidentals and an int-to-note converter (and vice versa).
 

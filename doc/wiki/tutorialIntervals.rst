@@ -1,10 +1,5 @@
-﻿#summary Exploring `mingus.core.intervals`
-
-
-----
-
-
-= Tutorial 3 - Intervals =
+﻿Tutorial 3 - Intervals
+======================
 
 An interval in music theory describes the relationship between the pitches of two notes and is a building block for chords and scales. This module can be used to build arbitrary intervals. It also has a special recognizing function, which can determine the interval between two notes.
 

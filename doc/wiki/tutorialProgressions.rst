@@ -1,10 +1,5 @@
-﻿#summary The simple mingus.core.progressions
-
-
-----
-
-
-= Tutorial 7 - Progressions =
+﻿Tutorial 7 - Progressions
+=========================
 
 In music theory you often deal with sequences of chords. These chord sequences are called progressions and are often written down using roman numerals. In this system the 'I' refers to the first natural triad in a key, the II to the second, etc. We can add prefixes and suffixes to denote more complex progressions like #V7, bIIdim7, etc.
 
