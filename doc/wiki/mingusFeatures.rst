@@ -43,4 +43,4 @@ mingus.extra
 
 ----
 
-:doc:`Back to Index </>`
+:doc:`Back to Index </index>`
