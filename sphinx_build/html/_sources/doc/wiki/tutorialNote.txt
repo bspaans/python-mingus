@@ -3,15 +3,15 @@
 
 mingus was written out of a desire to have a pythonic way of working with music: simple but also correct. This module lies at the heart of the package and introduces the first building blocks: note names, accidentals and an int-to-note converter (and vice versa).
 
-==Import the notes module==
+=======================
+Import the notes module
+=======================
 
 To start this tutorial, open up a python shell and enter:
 
-{{{
 
 >>> import mingus.core.notes as notes
 
-}}}
 
 Now we are ready to work with notes.
 
@@ -19,13 +19,14 @@ Now we are ready to work with notes.
 ----
 
 
-==Notes as strings==
+================
+Notes as strings
+================
 
 A note in mingus is represented by a name (A...G) and some or no accidentals ('#' and 'b'); where 'b' lowers and '#' raises the note by one half note step. To test whether an arbitrary string is a valid note we can use `notes.is_valid_note(str)`.
 
 Some examples of valid notes:
 
-{{{
 
 >>> notes.is_valid_note("C")
 True
@@ -38,11 +39,9 @@ True
 >>> notes.is_valid_note("G##")
 True
 
-}}}
 
 Some examples of invalid notes:
 
-{{{
 
 >>> notes.is_valid_note("c")
 False
@@ -50,40 +49,36 @@ False
 False
 >>> notes.is_valid_note("E-b")
 False
-}}}
 
 Some, perhaps suprisingly valid notes:
 
-{{{
 
 >>> notes.is_valid_note("C######bb")
 True
 >>> notes.is_valid_note("C#b#bb##b##bb")
 True
 
-}}}
 
 As you can see, mingus can handle any number of accidentals, whether it is the sensible thing to do or not. If you want to clean up messy accidentals, you can use remove_redundant_accidentals(note). Because it's all fun and games until someone gets hurt.
 
-{{{
 
 >>> notes.remove_redundant_accidentals("C##b")
 'C#'
 >>> notes.remove_redundant_accidentals("C#b#bb##b##bb")
 'C'
 
-}}}
 
 
 ----
 
 
-==Notes as Integers==
+=================
+Notes as Integers
+=================
 
 Sometimes it is easier to work with notes as integers in range(0,12). This is possible with the functions `notes.note_to_int(str)` and `notes.int_to_note(int)`.
 
 ===Note to integer===
-{{{
 
 >>> notes.note_to_int("C")
 0
@@ -96,7 +91,6 @@ Sometimes it is easier to work with notes as integers in range(0,12). This is po
 >>> notes.note_to_int("Db")
 1
 
-}}}
 
 As you can see in the examples some notes return the same values. These notes are called enharmonic, because they sound the same. (There is `notes.is_enharmonic(note1, note2)` to test if two notes are enharmonic).
 
@@ -123,13 +117,14 @@ Anyway, if you don't care about theoretically sound conversions or don't need to
 ----
 
 
-==Helper Functions==
+================
+Helper Functions
+================
 
 ===Augment and Diminish===
 
 Augmenting and diminishing a note is a little bit harder than just slapping a '#' or 'b' on at the end of the string. For instance: when you want to augment a 'Cb' note, a 'C' would be nicer than a 'Cb#' (although, again, they are the same, but it's like using double negative). `augment` and `diminish` do a nice job at this:
 
-{{{
 
 >>> notes.augment("C")
 "C#"
@@ -140,11 +135,9 @@ Augmenting and diminishing a note is a little bit harder than just slapping a '#
 >>> notes.augment("B")
 "B#"
 
-}}}
 
 Diminishing a note:
 
-{{{
 
 >>> notes.diminish("C")
 "Cb"
@@ -155,14 +148,12 @@ Diminishing a note:
 >>> notes.diminish("B#")
 "B"
 
-}}}
 
 
 ===Minor and Major conversions===
 
 Minor:
 
-{{{
 
 >>> notes.to_minor("C")
 "A"
@@ -173,11 +164,9 @@ Minor:
 >>> notes.to_minor("B")
 "G#"
 
-}}}
 
 Major:
 
-{{{
 
 >>> notes.to_major("A")
 "C"
@@ -187,7 +176,6 @@ Major:
 "D"
 >>> notes.to_major("G#")
 "B"
-}}}
 
 
 ----
