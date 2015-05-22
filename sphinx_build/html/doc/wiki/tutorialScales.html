@@ -57,22 +57,17 @@
 <h1>Tutorial 5 - Scales<a class="headerlink" href="#tutorial-5-scales" title="Permalink to this headline">¶</a></h1>
 <p>This module isn&#8217;t 100% complete yet, but might already be of use to you.</p>
 <p>== Importing the Module ==</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mingus.core.scales</span> <span class="kn">as</span> <span class="nn">scales</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <hr class="docutils" />
 <p>== The Diatonic Scale and Its Modes ==</p>
 <p>Throughout these tutorials we have been using a sequence of notes called the diatonic scale. You can already get it from the <cite>diatonic</cite> module, but it&#8217;s also linked here for completeness:</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">scales</span><span class="o">.</span><span class="n">diatonic</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
 <span class="go">[&quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;, &quot;G&quot;, &quot;A&quot;, &quot;B&quot;]</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <p>Sometimes we want to refer to a particular mode of the diatonic scale. This means that you start the scale on another note. The ionian mode, which is the same as the diatonic, starts on C, the dorian mode starts on D, etc.</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">scales</span><span class="o">.</span><span class="n">ionian</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
 <span class="go">[&quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;, &quot;G&quot;, &quot;A&quot;, &quot;B&quot;]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">scales</span><span class="o">.</span><span class="n">dorian</span><span class="p">(</span><span class="s">&quot;D&quot;</span><span class="p">)</span>
@@ -89,45 +84,36 @@
 <span class="go">[&quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;, &quot;G&quot;, &quot;A&quot;]</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <p>For more on modes, see [<a class="reference external" href="http://en.wikipedia.org/wiki/Musical_mode">http://en.wikipedia.org/wiki/Musical_mode</a> wikipedia]</p>
 <hr class="docutils" />
 <p>== The Minor Scales ==</p>
 <p>The natural minor scale is the scale starting on the minor of a key and is thus the same as the aeolian mode:</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">scales</span><span class="o">.</span><span class="n">natural_minor</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">)</span>
 <span class="go">[&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;, &quot;G&quot;]</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <p>The harmonic minor differentiates from the natural minor in its raised seventh, which gives the scale a dominant seventh chord.</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">scales</span><span class="o">.</span><span class="n">harmonic_minor</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">)</span>
 <span class="go">[&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;, &quot;G#&quot;]</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <p>The melodic minor also has a raised sixth to fill the gap, but &#8216;officially&#8217; only when it&#8217;s used in an ascending order. When descending, the scale to use is a minor scale. I use the word officially lightly, because this rule has been used rather inconsistently.</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">scales</span><span class="o">.</span><span class="n">melodic_minor</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">)</span>
 <span class="go">[&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F#&quot;, &quot;G#&quot;]</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <hr class="docutils" />
 <p>== Other Scales ==</p>
 <p>Some other common scales are the chromatic and whole note ones. The chromatic scale basically consists of twelve notes each a minor second step apart (there are some notational differences ([<a class="reference external" href="http://en.wikipedia.org/wiki/Chromatic_scale">http://en.wikipedia.org/wiki/Chromatic_scale</a> source]), but they are not supported at this point).</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">scales</span><span class="o">.</span><span class="n">chromatic</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
 <span class="go">[&quot;C&quot;, &quot;Db&quot;, &quot;D&quot;, &quot;Eb&quot;, &quot;E&quot;, &quot;F&quot;, &quot;Gb&quot;, &quot;G&quot;, &quot;Ab&quot;, &quot;A&quot;, &quot;Bb&quot;, &quot;B&quot;]</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <p>The whole note scale consists of six notes each a major second apart:</p>
-<p>{{{
-&gt;&gt;&gt; scales.whole_note(&#8220;C&#8221;)
-[&#8220;C&#8221;, &#8220;D&#8221;, &#8220;E&#8221;, &#8220;F#&#8221;, &#8220;G#&#8221;, &#8220;A#&#8221;]</p>
-<p>}}}</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">scales</span><span class="o">.</span><span class="n">whole_note</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F#&quot;, &quot;G#&quot;, &quot;A#&quot;]</span>
+</pre></div>
+</div>
 <hr class="docutils" />
 <p>As stated before, the scales module isn&#8217;t 100% finished. There has been some work done on a scale recognition function (scales.determine), but that hasn&#8217;t been completed yet (see issue #17). It can do exact matches on scales that are known, but it should be able to do fuzzy matches so that it can also return possible scales over a given chord (see issue #14).</p>
 <hr class="docutils" />

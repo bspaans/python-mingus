@@ -5,11 +5,11 @@ This module isn't 100% complete yet, but might already be of use to you.
 
 == Importing the Module ==
 
-{{{
+
 
 >>> import mingus.core.scales as scales
 
-}}}
+
 
 
 
@@ -20,16 +20,16 @@ This module isn't 100% complete yet, but might already be of use to you.
 
 Throughout these tutorials we have been using a sequence of notes called the diatonic scale. You can already get it from the `diatonic` module, but it's also linked here for completeness:
 
-{{{
+
 
 >>> scales.diatonic("C")
 ["C", "D", "E", "F", "G", "A", "B"]
 
-}}}
+
 
 Sometimes we want to refer to a particular mode of the diatonic scale. This means that you start the scale on another note. The ionian mode, which is the same as the diatonic, starts on C, the dorian mode starts on D, etc.
 
-{{{
+
 
 >>> scales.ionian("C")
 ["C", "D", "E", "F", "G", "A", "B"]
@@ -47,7 +47,7 @@ Sometimes we want to refer to a particular mode of the diatonic scale. This mean
 ["B", "C", "D", "E", "F", "G", "A"]
 
 
-}}}
+
 
 For more on modes, see [http://en.wikipedia.org/wiki/Musical_mode wikipedia]
 
@@ -59,30 +59,30 @@ For more on modes, see [http://en.wikipedia.org/wiki/Musical_mode wikipedia]
 
 The natural minor scale is the scale starting on the minor of a key and is thus the same as the aeolian mode:
 
-{{{
+
 
 >>> scales.natural_minor("A")
 ["A", "B", "C", "D", "E", "F", "G"]
 
-}}}
+
 
 The harmonic minor differentiates from the natural minor in its raised seventh, which gives the scale a dominant seventh chord. 
 
-{{{
+
 
 >>> scales.harmonic_minor("A")
 ["A", "B", "C", "D", "E", "F", "G#"]
 
-}}}
+
 
 The melodic minor also has a raised sixth to fill the gap, but 'officially' only when it's used in an ascending order. When descending, the scale to use is a minor scale. I use the word officially lightly, because this rule has been used rather inconsistently.
 
-{{{
+
 
 >>> scales.melodic_minor("A")
 ["A", "B", "C", "D", "E", "F#", "G#"]
 
-}}}
+
 
 
 ----
@@ -92,20 +92,20 @@ The melodic minor also has a raised sixth to fill the gap, but 'officially' only
 
 Some other common scales are the chromatic and whole note ones. The chromatic scale basically consists of twelve notes each a minor second step apart (there are some notational differences ([http://en.wikipedia.org/wiki/Chromatic_scale source]), but they are not supported at this point). 
 
-{{{
+
 
 >>> scales.chromatic("C")
 ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"]
 
-}}}
+
 
 The whole note scale consists of six notes each a major second apart:
 
-{{{
+
 >>> scales.whole_note("C")
 ["C", "D", "E", "F#", "G#", "A#"]
 
-}}}
+
 
 
 ----

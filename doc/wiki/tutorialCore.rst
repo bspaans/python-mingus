@@ -5,11 +5,11 @@
 
 == Importing Everything From Core ==
 
-{{{
+
 
 >>> from mingus.core import *
 
-}}}
+
 
 This will import the modules discussed in the previous tutorials in the current namespace. So `notes`, `diatonic`, `intervals`, `chords`, `scales`, `value`, `meter` and `progressions` are all directly accessible.
 

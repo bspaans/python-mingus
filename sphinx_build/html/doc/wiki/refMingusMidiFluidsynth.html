@@ -140,13 +140,13 @@ new wave file will be initialized to store the audio data.</p>
 <p>The channel and velocity can be set as Note attributes as well. If
 that&#8217;s the case those values take presedence over the ones given here as
 function arguments.</p>
-<p>Example:
-{{{
-&gt;&gt;&gt; n = Note(&#8216;C&#8217;, 4)
-&gt;&gt;&gt; n.channel = 9
-&gt;&gt;&gt; n.velocity = 50
-&gt;&gt;&gt; FluidSynth.play_Note(n)
-}}}</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="n">Note</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n</span><span class="o">.</span><span class="n">channel</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n</span><span class="o">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">FluidSynth</span><span class="o">.</span><span class="n">play_Note</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="docutils">
 <dt>=== <cite>play_NoteContainer(nc, channel, velocity)</cite> ===</dt>
 <dd><ul class="first last simple">

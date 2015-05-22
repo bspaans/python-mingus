@@ -56,18 +56,16 @@
   <div class="section" id="tutorial-2-saving-containers-as-midi-files">
 <h1>Tutorial 2 - Saving Containers as Midi Files<a class="headerlink" href="#tutorial-2-saving-containers-as-midi-files" title="Permalink to this headline">¶</a></h1>
 <p>== Importing !MidiFileOut ==</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mingus.midi</span> <span class="kn">import</span> <span class="n">MidiFileOut</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <hr class="docutils" />
 <p>== Saving Notes, !NoteContainers, Bars, Tracks and Compositions ==</p>
 <p>The functions in this module all work the same and are very simple to use. <cite>write_Note</cite>, <cite>write_NoteContainer</cite>, <cite>write_Bar</cite>, <cite>write_Track</cite> and <cite>write_Composition</cite> all take four arguments, from which the last two are optional. The first argument specifies the filename, the second is the object itself, the third argument is the number of beats per minute (default = 120) and the last argument specifies the number of times the object should be repeated (default = 0).</p>
-<p>{{{
-&gt;&gt;&gt; nc = NoteContainer([&#8220;A&#8221;, &#8220;C&#8221;, &#8220;E&#8221;])
-&gt;&gt;&gt; MidiFileOut.write_NoteContainer(&#8220;test.mid&#8221;, nc)
-}}}</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">nc</span> <span class="o">=</span> <span class="n">NoteContainer</span><span class="p">([</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">MidiFileOut</span><span class="o">.</span><span class="n">write_NoteContainer</span><span class="p">(</span><span class="s">&quot;test.mid&quot;</span><span class="p">,</span> <span class="n">nc</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>As in the !FluidSynth module you can set the channel and velocity on Notes by setting the <cite>channel</cite> and <cite>velocity</cite> attributes. And again, to change the tempo you can set the <cite>bpm</cite> attribute on a !NoteContainer.</p>
 <hr class="docutils" />
 <p>= End of Tutorial 2 =</p>

@@ -112,30 +112,30 @@ little overview:</p>
 <p>== Functions ==
 === <cite>augment(note)</cite> ===
 Augment a given note.</p>
-<p>Examples:
-{{{
-&gt;&gt;&gt; augment(&#8216;C&#8217;)
-&#8216;C#&#8217;
-&gt;&gt;&gt; augment(&#8216;Cb&#8217;)
-&#8216;C&#8217;
-}}}</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">augment</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
+<span class="go">&#39;C#&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augment</span><span class="p">(</span><span class="s">&#39;Cb&#39;</span><span class="p">)</span>
+<span class="go">&#39;C&#39;</span>
+</pre></div>
+</div>
 <p>=== <cite>determine(notes)</cite> ===
 Determine the scales containing the notes.</p>
 <p>All major and minor scales are recognized.</p>
-<p>Example:
-{{{
-&gt;&gt;&gt; determine([&#8216;A&#8217;, &#8216;Bb&#8217;, &#8216;E&#8217;, &#8216;F#&#8217;, &#8216;G&#8217;])
-[&#8216;G melodic minor&#8217;, &#8216;G Bachian&#8217;, &#8216;D harmonic major&#8217;]
-}}}</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">([</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;Bb&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;F#&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">])</span>
+<span class="go">[&#39;G melodic minor&#39;, &#39;G Bachian&#39;, &#39;D harmonic major&#39;]</span>
+</pre></div>
+</div>
 <p>=== <cite>diminish(note)</cite> ===
 Diminish a given note.</p>
-<p>Examples:
-{{{
-&gt;&gt;&gt; diminish(&#8216;C&#8217;)
-&#8216;Cb&#8217;
-&gt;&gt;&gt; diminish(&#8216;C#&#8217;)
-&#8216;C&#8217;
-}}}</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diminish</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
+<span class="go">&#39;Cb&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">diminish</span><span class="p">(</span><span class="s">&#39;C#&#39;</span><span class="p">)</span>
+<span class="go">&#39;C&#39;</span>
+</pre></div>
+</div>
 <dl class="docutils">
 <dt>=== <cite>get_notes(key)</cite> ===</dt>
 <dd><ul class="first last simple">
@@ -144,20 +144,20 @@ Diminish a given note.</p>
 </dd>
 </dl>
 <p>Return an ordered list of the notes in this natural key.</p>
-<p>Examples:
-{{{
-&gt;&gt;&gt; get_notes(&#8216;F&#8217;)
-[&#8216;F&#8217;, &#8216;G&#8217;, &#8216;A&#8217;, &#8216;Bb&#8217;, &#8216;C&#8217;, &#8216;D&#8217;, &#8216;E&#8217;]
-&gt;&gt;&gt; get_notes(&#8216;c&#8217;)
-[&#8216;C&#8217;, &#8216;D&#8217;, &#8216;Eb&#8217;, &#8216;F&#8217;, &#8216;G&#8217;, &#8216;Ab&#8217;, &#8216;Bb&#8217;]
-}}}</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">get_notes</span><span class="p">(</span><span class="s">&#39;F&#39;</span><span class="p">)</span>
+<span class="go">[&#39;F&#39;, &#39;G&#39;, &#39;A&#39;, &#39;Bb&#39;, &#39;C&#39;, &#39;D&#39;, &#39;E&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_notes</span><span class="p">(</span><span class="s">&#39;c&#39;</span><span class="p">)</span>
+<span class="go">[&#39;C&#39;, &#39;D&#39;, &#39;Eb&#39;, &#39;F&#39;, &#39;G&#39;, &#39;Ab&#39;, &#39;Bb&#39;]</span>
+</pre></div>
+</div>
 <p>=== <cite>reduce_accidentals(note)</cite> ===
 Reduce any extra accidentals to proper notes.</p>
-<p>Example:
-{{{
-&gt;&gt;&gt; reduce_accidentals(&#8216;C####&#8217;)
-&#8216;E&#8217;
-}}}</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">reduce_accidentals</span><span class="p">(</span><span class="s">&#39;C####&#39;</span><span class="p">)</span>
+<span class="go">&#39;E&#39;</span>
+</pre></div>
+</div>
 <hr class="docutils" />
 <p>[mingusIndex Back to Index]</p>
 

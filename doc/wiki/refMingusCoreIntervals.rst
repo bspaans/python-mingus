@@ -31,7 +31,7 @@ You should probably not use this directly.
 Name the interval between note1 and note2.
 
 Examples:
-{{{
+
 >>> determine('C', 'E')
 'major third'
 >>> determine('C', 'Eb')
@@ -40,16 +40,16 @@ Examples:
 'augmented third'
 >>> determine('C', 'Ebb')
 'diminished third'
-}}}
+
 
 This works for all intervals. Note that there are corner cases for major
 fifths and fourths:
-{{{
+
 >>> determine('C', 'G')
 'perfect fifth'
 >>> determine('C', 'F')
 'perfect fourth'
-}}}
+
 
 === `fifth(note, key)` ===
 Take the diatonic fifth of note in key.
@@ -57,12 +57,12 @@ Take the diatonic fifth of note in key.
 Raise a KeyError exception if the note is not found in the given key.
 
 Examples:
-{{{
+
 >>> fifth('E', 'C')
 'B'
 >>> fifth('E', 'F')
 'Bb'
-}}}
+
 
 === `fourth(note, key)` ===
 Take the diatonic fourth of note in key.
@@ -70,26 +70,26 @@ Take the diatonic fourth of note in key.
 Raise a KeyError exception if the note is not found in the given key.
 
 Examples:
-{{{
+
 >>> fourth('E', 'C')
 'A'
 >>> fourth('E', 'B')
 'A#'
-}}}
+
 
 === `from_shorthand(note, interval, up)` ===
   * *Default values*: up = True
 Return the note on interval up or down.
 
 Examples:
-{{{
+
 >>> from_shorthand('A', 'b3')
 'C'
 >>> from_shorthand('D', '2')
 'E'
 >>> from_shorthand('E', '2', False)
 'D'
-}}}
+
 
 === `get_interval(note, interval, key)` ===
   * *Default values*: key = 'C'
@@ -105,19 +105,19 @@ given key.
 Raise a KeyError exception if start_note is not a valid note.
 
 Example:
-{{{
+
 >>> interval('C', 'D', 1)
 'E'
-}}}
+
 
 === `invert(interval)` ===
 Invert an interval.
 
 Example:
-{{{
+
 >>> invert(['C', 'E'])
 ['E', 'C']
-}}}
+
 
 === `is_consonant(note1, note2, include_fourths)` ===
   * *Default values*: include_fourths = True
@@ -171,12 +171,12 @@ Return an integer in the range of 0-11, determining the half note steps
 between note1 and note2.
 
 Examples:
-{{{
+
 >>> measure('C', 'D')
 2
 >>> measure('D', 'C')
 10
-}}}
+
 
 === `minor_fifth(note)` ===
 === `minor_fourth(note)` ===
@@ -193,12 +193,12 @@ Take the diatonic second of note in key.
 Raise a KeyError exception if the note is not found in the given key.
 
 Examples:
-{{{
+
 >>> second('E', 'C')
 'F'
 >>> second('E', 'D')
 'F#'
-}}}
+
 
 === `seventh(note, key)` ===
 Take the diatonic seventh of note in key.
@@ -206,12 +206,12 @@ Take the diatonic seventh of note in key.
 Raise a KeyError exception if the note is not found in the given key.
 
 Examples:
-{{{
+
 >>> seventh('E', 'C')
 'D'
 >>> seventh('E', 'B')
 'D#'
-}}}
+
 
 === `sixth(note, key)` ===
 Take the diatonic sixth of note in key.
@@ -219,12 +219,12 @@ Take the diatonic sixth of note in key.
 Raise a KeyError exception if the note is not found in the given key.
 
 Examples:
-{{{
+
 >>> sixth('E', 'C')
 'C'
 >>> sixth('E', 'B')
 'C#'
-}}}
+
 
 === `third(note, key)` ===
 Take the diatonic third of note in key.
@@ -232,12 +232,12 @@ Take the diatonic third of note in key.
 Raise a KeyError exception if the note is not found in the given key.
 
 Examples:
-{{{
+
 >>> third('E', 'C')
 'G'
 >>> third('E', 'E')
 'G#'
-}}}
+
 
 === `unison(note, key)` ===
   * *Default values*: key = None
@@ -249,10 +249,10 @@ The key is not at all important, but is here for consistency reasons
 only.
 
 Example:
-{{{
+
 >>> unison('C')
 'C'
-}}}
+
 
 
 ----

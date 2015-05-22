@@ -57,15 +57,12 @@
 <h1>Tutorial 3 - Bars<a class="headerlink" href="#tutorial-3-bars" title="Permalink to this headline">¶</a></h1>
 <p>Now that we can group notes vertically, we want to be able to group them horizontally. The Bar class (and later the Track class) can help us with that. A bar of music can be described as a collection of notes (!NoteContainers in our model) played in succession in a certain meter and key. This class tries to model that behaviour and provides ways to add and edit Notes and !NoteContainers.</p>
 <p>== Import the Bar Class ==</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mingus.containers.Bar</span> <span class="kn">import</span> <span class="n">Bar</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <hr class="docutils" />
 <p>== Creating a New Bar ==</p>
 <p>A Bar() accepts a key and a meter as its optional arguments; these arguments by default set the key to C and the meter to 4/4.</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">name</span>
 <span class="go">&#39;C&#39;</span>
@@ -73,9 +70,7 @@
 <span class="go">(4, 4)</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <p>If you change the meter after its initial creation be sure to use the <cite>set_meter</cite> function instead of setting the <cite>meter</cite> attribute directly, because the length of the Bar needs to be changed as well (see &#8216;The Bar internals explained&#8217; below).</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">e</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">e</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">name</span>
 <span class="go">&#39;E&#39;</span>
@@ -86,11 +81,9 @@
 <span class="go">(4, 4)</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <hr class="docutils" />
 <p>== Adding Notes and !NoteContainers to a Bar ==</p>
 <p>The <cite>place_notes(notes, duration)</cite> function is used to add notes to a Bar. Notes can be written as strings, but Note and NoteContainer objects, and lists of strings and Note objects are also accepted. The duration is entered as a float which stands for the note value. 1 Represents a whole note, 2 a half note, 4 a quarter note, etc. See the [refMingusCoreValue core.value] module and its [tutorialMeter tutorial] for more sophisticated note values. This function returns True if there was room enough in the Bar to place the notes and False otherwise.</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">meter</span>
 <span class="go">(4, 4)</span>
@@ -104,11 +97,9 @@
 <span class="go">False</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <p>As you can see, everything goes fine until we try to add another quarter note after we have already filled the Bar up.</p>
 <p>== Adding Rests ==</p>
 <p>Calling <cite>place_rest(duration)</cite> is the same as calling <cite>place_notes(None, duration)</cite> or adding an empty !NoteContainer.</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">place_rest</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 <span class="go">True</span>
@@ -116,10 +107,8 @@
 <span class="go">True</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <p>== The Overloaded &#8216;+&#8217; Operator ==</p>
 <p>&#8216;+&#8217; can be used to add notes quickly. The downside is that you can&#8217;t control the duration of the note which will default to the last item in the Bar.meter tuple (ie. 4 in (4, 4), 8 in (6, 8), etc.), but this shouldn&#8217;t be a problem for simple uses.</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">+</span> <span class="s">&quot;C&quot;</span>
 <span class="go">True</span>
@@ -131,13 +120,11 @@
 <span class="go">True</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <hr class="docutils" />
 <p>== The Bar Internals Explained ==</p>
 <p>As we have seen before, the Bar class has a couple of attributes from which <cite>key</cite> and <cite>meter</cite> are the ones that you should deal with yourself, directly or indirectly. To understand what goes on behind the scenes however, we should take a look at <cite>length</cite> and <cite>current_beat</cite>:</p>
 <p>=== The length attribute ===</p>
 <p>The length attribute gets calculated each time you set a meter and is used throughout the class to check whether the Bar can contain any more notes, etc.</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">length</span>
 <span class="go">1.0</span>
@@ -146,11 +133,9 @@
 <span class="go">1.25</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <p>The length gets calculated as follows: <cite>meter[0] * (1.0 / meter[1])</cite>. This is the reason it&#8217;s important to use the <cite>set_meter</cite> method instead of overwriting the <cite>meter</cite> attribute directly (as you can safely do with <cite>key</cite>).</p>
 <p>=== The current_beat attribute ===</p>
 <p>The <cite>current_beat</cite> attribute gets updated each time a note is added, removed or updated. It keeps track of the current place in the Bar.</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">current_beat</span>
 <span class="go">0.0</span>
@@ -164,11 +149,9 @@
 <span class="go">0.5</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <p>When a note gets added, <cite>current_beat</cite> gets incremented with <cite>1 / duration</cite>. This allows us to check in a fast way if a Bar is full or not (a common task) and how much space it has available.</p>
 <p>=== Printing a Bar ===</p>
 <p>When you print a Bar, this is what happens:</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">+</span> <span class="s">&quot;C&quot;</span>
 <span class="go">True</span>
@@ -180,7 +163,6 @@
 <span class="go">[[0.0, 4, [&#39;C-4&#39;]], [0.25, 4, [&#39;E-4&#39;]]]</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <p>As you might have noticed, the lists that get displayed when you print a Bar represent respectively the <cite>current_beat</cite> on which the NoteContainer is placed, the duration and the string representation of the NoteContainer itself. This can be handy when debugging.</p>
 <hr class="docutils" />
 <p>== Edit Bars ==</p>
@@ -188,7 +170,6 @@
 <hr class="docutils" />
 <p>== Using Bars as Lists ==</p>
 <p>Just like NoteContainers, Bars can be used as lists, to some extent:</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">+</span> <span class="s">&quot;C&quot;</span>
 <span class="go">True</span>
@@ -203,7 +184,6 @@
 <span class="go">[0.0, 4, [&#39;E-4&#39;]]</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <hr class="docutils" />
 <p>== Other Methods ==</p>
 <p>It should come as no surprise that the methods available in Note and !NoteContainer -transpose, augment, diminish, to_major and to_minor- are also available for Bars. A call to one of these functions will result into a call to that function on every !NoteContainer, which in turn calls the function on every Note.</p>

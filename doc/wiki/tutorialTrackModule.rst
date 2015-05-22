@@ -5,11 +5,11 @@ The Track class is a simple data structure to store [tutorialBarModule Bars] in.
 
 == Import the Track Class ==
 
-{{{
+
 
 >>> from mingus.containers.Track import Track
 
-}}}
+
 
 
 ----
@@ -19,12 +19,12 @@ The Track class is a simple data structure to store [tutorialBarModule Bars] in.
 
 To create a new track you can simply make a new instance of `Track()`. If you want to have Instrument support, with automatic range checking, etc. you should give that as an argument:
 
-{{{
+
 
 >>> t = Track()
 >>> t = Track(Instrument())
 
-}}}
+
 
 
 
@@ -35,13 +35,13 @@ To create a new track you can simply make a new instance of `Track()`. If you wa
 
 Adding bars can be done using `add_bar`.
 
-{{{
+
 
 >>> b = Bar()
 >>> t = Track()
 >>> t.add_bar(b)
 
-}}}
+
 
 == Adding Notes and NoteContainers ==
 
@@ -49,19 +49,19 @@ Adding notes to a track can be done using `add_notes`. This function accepts Not
 
 Also, when an Instrument is attached to the Track, but the note turns out not to be within the range of that Instrument, an !InstrumentRangeError will be raised.
 
-{{{
+
 
 >>> t = Track()
 >>> t.add_notes("C")
 True
 
-}}}
+
 
 == The overloaded '+' operator ==
 
 This should be familiar stuff by now, but the '+' operator is overloaded for the Track class as well and accepts strings, NoteContainers, Notes and Bars.
 
-{{{
+
 
 >>> t = Track()
 >>> b = Bar()
@@ -69,7 +69,7 @@ This should be familiar stuff by now, but the '+' operator is overloaded for the
 >>> t + "C-4"
 True
 
-}}}
+
 
 
 ----
@@ -79,7 +79,7 @@ True
 
 Tracks, like Bars and !NoteContainers can be used as lists as well. 
 
-{{{
+
 >>> t = Track()
 >>> b = Bar()
 >>> b + "C"
@@ -92,7 +92,7 @@ True
 >>> t[0]
 [[]]
 
-}}}
+
 
 
 ----

@@ -99,7 +99,7 @@ As you can see in the examples some notes return the same values. These notes ar
 Because enharmonic notes exist, it is impossible to create a sound int-to-note converter based on an integer alone. For example; in the last piece of code we saw that B and Cb are both 11. They sound the same, but they aren't theoretically the same. This can be important when building and recognizing intervals and thus scales and chords, because intervals depend on the note name. For instance: the interval between A and B is called a major second, while the interval between A and Cb is a diminished third. `diatonic.int_to_note` does a better job at the conversion, bearing the key in mind as well. The converter in [tutorialNoteModule Note] can also handles octaves on top of that. 
 Anyway, if you don't care about theoretically sound conversions or don't need to differentiate, this function is fine (it sounds the same, after all):
 
-{{{
+
 
 >>> notes.int_to_note(0)
 "C"
@@ -111,7 +111,7 @@ Anyway, if you don't care about theoretically sound conversions or don't need to
 "D#"
 >>> notes.int_to_note(4)
 "E"
-}}}
+
 
 
 ----

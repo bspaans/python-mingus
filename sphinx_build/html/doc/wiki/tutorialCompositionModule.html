@@ -57,63 +57,51 @@
 <h1>Tutorial 6 - Composition<a class="headerlink" href="#tutorial-6-composition" title="Permalink to this headline">¶</a></h1>
 <p>A Composition can be used to organize Tracks and to add some metadata such as <cite>title</cite>, <cite>subtitle</cite> and <cite>author</cite>.</p>
 <p>== Import the Composition Class ==</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mingus.containers.Composition</span> <span class="kn">import</span> <span class="n">Composition</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <hr class="docutils" />
 <p>== Creating Compositions ==</p>
 <p>The Composition class takes no argument to create:</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">=</span> <span class="n">Composition</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <p>== Setting Attributes ==</p>
 <p>The <cite>author</cite>, <cite>email</cite>, <cite>title</cite> and <cite>subtitle</cite> attributes can be easily handled with the functions <cite>set_author</cite> and <cite>set_title</cite>:</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Composition</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">set_author</span><span class="p">(</span><span class="s">&#39;Author&#39;</span><span class="p">,</span> <span class="s">&#39;author@email.com&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&#39;First Mingus Composition&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <hr class="docutils" />
 <p>This should sound pretty familiar by now:</p>
 <p>== Adding Tracks ==</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Composition</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">Track</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">add_track</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <p>== Adding Notes ==</p>
 <p>This might seem a little strange, and you probably won&#8217;t use it much.</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Composition</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <p>The note gets added to the tracks in <cite>Composition.selected_tracks</cite> which is automatically set when you use <cite>add_track</cite>, but which you can also use yourself.</p>
 <p>== The Overloaded &#8216;+&#8217; Operator ==</p>
 <p>This operator accepts Notes, note strings, !NoteContainers, Bars and Tracks.</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Composition</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">+</span> <span class="s">&quot;C&quot;</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <p>== List Notation ==</p>
-<p>{{{
-&gt;&gt;&gt; c = Composition()
-&gt;&gt;&gt; len(c)
-0
-&gt;&gt;&gt; c + Track()
-&gt;&gt;&gt; c[0] = Track
-}}}</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Composition</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">+</span> <span class="n">Track</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Track</span>
+</pre></div>
+</div>
 <hr class="docutils" />
 <p>= End of Tutorial 6 =</p>
 <p>You can learn more about [refMingusContainersComposition mingus.containers.Composition] in the reference section.</p>

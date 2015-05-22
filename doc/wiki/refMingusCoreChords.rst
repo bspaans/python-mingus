@@ -114,28 +114,28 @@ Useful Functions
 Build an augmented major seventh chord on note.
 
 Example:
-{{{
+
 >>> augmented_major_seventh('C')
 ['C', 'E', 'G#', 'B']
-}}}
+
 
 === `augmented_minor_seventh(note)` ===
 Build an augmented minor seventh chord on note.
 
 Example:
-{{{
+
 >>> augmented_minor_seventh('C')
 ['C', 'E', 'G#', 'Bb']
-}}}
+
 
 === `augmented_triad(note)` ===
 Build an augmented triad on note.
 
 Example:
-{{{
+
 >>> augmented_triad('C')
 ['C', 'E', 'G#']
-}}}
+
 
 === `determine(chord, shorthand, no_inversions, no_polychords)` ===
   * *Default values*: shorthand = False, no_inversions = False, no_polychords = False
@@ -174,10 +174,10 @@ If shorthand is set to True, results will be returned in chord shorthand
 ('Cmin7', etc.); inversions will be dropped in that case.
 
 Example:
-{{{
+
 >>> determine_seventh(['C', 'E', 'G', 'B'])
 ['C major seventh']
-}}}
+
 
 === `determine_triad(triad, shorthand, no_inversions, placeholder)` ===
   * *Default values*: shorthand = False, no_inversions = False, placeholder = None
@@ -190,41 +190,41 @@ This function can determine major, minor, diminished and suspended
 triads. Also knows about invertions.
 
 Examples:
-{{{
+
 >>> determine_triad(['A', 'C', 'E'])
 'A minor triad'
 >>> determine_triad(['C', 'E', 'A'])
 'A minor triad, first inversion'
 >>> determine_triad(['A', 'C', 'E'], True)
 'Am'
-}}}
+
 
 === `diminished_seventh(note)` ===
 Build a diminished seventh chord on note.
 
 Example:
-{{{
+
 >>> diminished_seventh('C')
 ['C', 'Eb', 'Gb', 'Bbb']
-}}}
+
 
 === `diminished_triad(note)` ===
 Build a diminished triad on note.
 
 Example:
-{{{
+
 >>> diminished_triad('C')
 ['C', 'Eb', 'Gb']
-}}}
+
 
 === `dominant(key)` ===
 Return the dominant chord in key.
 
 Example:
-{{{
+
 >>> dominant('C')
 ['G', 'B', 'D']
-}}}
+
 
 === `dominant7(key)` ===
 Return the dominant seventh chord in key.
@@ -233,73 +233,73 @@ Return the dominant seventh chord in key.
 Build a dominant flat five chord on note.
 
 Example:
-{{{
+
 >>> dominant_flat_five('C')
 ['C', 'E', 'Gb', 'Bb']
-}}}
+
 
 === `dominant_flat_ninth(note)` ===
 Build a dominant flat ninth chord on note.
 
 Example:
-{{{
+
 >>> dominant_ninth('C')
 ['C', 'E', 'G', 'Bb', 'Db']
-}}}
+
 
 === `dominant_ninth(note)` ===
 Build a dominant ninth chord on note.
 
 Example:
-{{{
+
 >>> dominant_ninth('C')
 ['C', 'E', 'G', 'Bb', 'D']
-}}}
+
 
 === `dominant_seventh(note)` ===
 Build a dominant seventh on note.
 
 Example:
-{{{
+
 >>> dominant_seventh('C')
 ['C', 'E', 'G', 'Bb']
-}}}
+
 
 === `dominant_sharp_ninth(note)` ===
 Build a dominant sharp ninth chord on note.
 
 Example:
-{{{
+
 >>> dominant_ninth('C')
 ['C', 'E', 'G', 'Bb', 'D#']
-}}}
+
 
 === `dominant_sixth(note)` ===
 Build the altered chord 6/7 on note.
 
 Example:
-{{{
+
 >>> dominant_sixth('C')
 ['C', 'E', 'G', 'A', 'Bb']
-}}}
+
 
 === `dominant_thirteenth(note)` ===
 Build a dominant thirteenth chord on note.
 
 Example:
-{{{
+
 >>> dominant_thirteenth('C')
 ['C', 'E', 'G', 'Bb', 'D', 'A']
-}}}
+
 
 === `eleventh(note)` ===
 Build an eleventh chord on note.
 
 Example:
-{{{
+
 >>> eleventh('C')
 ['C', 'G', 'Bb', 'F']
-}}}
+
 
 === `first_inversion(chord)` ===
 Return the first inversion of a chord.
@@ -317,7 +317,7 @@ call when a slashed chord or polychord is found.
 See http://tinyurl.com/3hn6v8u for a nice overview of chord patterns.
 
 Examples:
-{{{
+
 >>> from_shorthand('Amin')
 ['A', 'C', 'E']
 >>> from_shorthand('Am/M7')
@@ -328,17 +328,17 @@ Examples:
 ['G', 'A', 'C#', 'E']
 >>> from_shorthand('Dm|G')
 ['G', 'B', 'D', 'F', 'A']
-}}}
+
 
 Recognised abbreviations: the letters "m" and "M" in the following
 abbreviations can always be substituted by respectively "min", "mi" or
 "-" and "maj" or "ma".
 
 Example:
-{{{
+
 >>> from_shorthand('Amin7') == from_shorthand('Am7')
 True
-}}}
+
 
 Triads: 'm', 'M' or '', 'dim'
 
@@ -366,19 +366,19 @@ Build a half diminished seventh (also known as "minor seventh flat
 five") chord on note.
 
 Example:
-{{{
+
 >>> half_diminished_seventh('C')
 ['C', 'Eb', 'Gb', 'Bb']
-}}}
+
 
 === `hendrix_chord(note)` ===
 Build the famous Hendrix chord (7b12).
 
 Example:
-{{{
+
 >>> hendrix_chord('C')
 ['C', 'E', 'G', 'Bb', 'Eb']
-}}}
+
 
 === `ii(key)` ===
 === `ii7(key)` ===
@@ -394,64 +394,64 @@ Invert a given chord one time.
 Build the lydian dominant seventh (7#11) on note.
 
 Example:
-{{{
+
 >>> lydian_dominant_seventh('C')
 ['C', 'E', 'G', 'Bb', 'F#']
-}}}
+
 
 === `major_ninth(note)` ===
 Build a major ninth chord on note.
 
 Example:
-{{{
+
 >>> major_ninth('C')
 ['C', 'E', 'G', 'B', 'D']
-}}}
+
 
 === `major_seventh(note)` ===
 Build a major seventh on note.
 
 Example:
-{{{
+
 >>> major_seventh('C')
 ['C', 'E', 'G', 'B']
-}}}
+
 
 === `major_sixth(note)` ===
 Build a major sixth chord on note.
 
 Example:
-{{{
+
 >>> major_sixth('C')
 ['C', 'E', 'G', 'A']
-}}}
+
 
 === `major_thirteenth(note)` ===
 Build a major thirteenth chord on note.
 
 Example:
-{{{
+
 >>> major_thirteenth('C')
 ['C', 'E', 'G', 'B', 'D', 'A']
-}}}
+
 
 === `major_triad(note)` ===
 Build a major triad on note.
 
 Example:
-{{{
+
 >>> major_triad('C')
 ['C', 'E', 'G']
-}}}
+
 
 === `mediant(key)` ===
 Return the mediant chord in key.
 
 Example:
-{{{
+
 >>> mediant('C')
 ['E', 'G', 'B']
-}}}
+
 
 === `mediant7(key)` ===
 Returns the mediant seventh chord in key.
@@ -460,37 +460,37 @@ Returns the mediant seventh chord in key.
 Build a minor eleventh chord on note.
 
 Example:
-{{{
+
 >>> minor_eleventh('C')
 ['C', 'Eb', 'G', 'Bb', 'F']
-}}}
+
 
 === `minor_major_seventh(note)` ===
 Build a minor major seventh chord on note.
 
 Example:
-{{{
+
 >>> minor_major_seventh('C')
 ['C', 'Eb', 'G', 'B']
-}}}
+
 
 === `minor_ninth(note)` ===
 Build a minor ninth chord on note.
 
 Example:
-{{{
+
 >>> minor_ninth('C')
 ['C', 'Eb', 'G', 'Bb', 'D']
-}}}
+
 
 === `minor_seventh(note)` ===
 Build a minor seventh on note.
 
 Example:
-{{{
+
 >>> minor_seventh('C')
 ['C', 'Eb', 'G', 'Bb']
-}}}
+
 
 === `minor_seventh_flat_five(note)` ===
 Build a minor seventh flat five (also known as "half diminished
@@ -502,28 +502,28 @@ See half_diminished_seventh(note) for docs.
 Build a minor sixth chord on note.
 
 Example:
-{{{
+
 >>> minor_sixth('C')
 ['C', 'Eb', 'G', 'A']
-}}}
+
 
 === `minor_thirteenth(note)` ===
 Build a minor thirteenth chord on note.
 
 Example:
-{{{
+
 >>> minor_thirteenth('C')
 ['C', 'Eb', 'G', 'Bb', 'D', 'A']
-}}}
+
 
 === `minor_triad(note)` ===
 Build a minor triad on note.
 
 Example:
-{{{
+
 >>> minor_triad('C')
 ['C', 'Eb', 'G']
-}}}
+
 
 === `second_inversion(chord)` ===
 Return the second inversion of chord.
@@ -532,10 +532,10 @@ Return the second inversion of chord.
 Return the seventh chord on note in key.
 
 Example:
-{{{
+
 >>> seventh('C', 'C')
 ['C', 'E', 'G', 'B']
-}}}
+
 
 === `sevenths(key)` ===
 Return all the sevenths chords in key in a list.
@@ -544,19 +544,19 @@ Return all the sevenths chords in key in a list.
 Build the sixth/ninth chord on note.
 
 Example:
-{{{
+
 >>> sixth_ninth('C')
 ['C', 'E', 'G', 'A', 'D']
-}}}
+
 
 === `subdominant(key)` ===
 Return the subdominant chord in key.
 
 Example:
-{{{
+
 >>> subdominant('C')
 ['F', 'A', 'C']
-}}}
+
 
 === `subdominant7(key)` ===
 Return the subdominant seventh chord in key.
@@ -565,10 +565,10 @@ Return the subdominant seventh chord in key.
 Return the submediant chord in key.
 
 Example:
-{{{
+
 >>> submediant('C')
 ['A', 'C', 'E']
-}}}
+
 
 === `submediant7(key)` ===
 Return the submediant seventh chord in key.
@@ -577,10 +577,10 @@ Return the submediant seventh chord in key.
 Return the subtonic chord in key.
 
 Example:
-{{{
+
 >>> subtonic('C')
 ['B', 'D', 'F']
-}}}
+
 
 === `subtonic7(key)` ===
 Return the subtonic seventh chord in key.
@@ -589,10 +589,10 @@ Return the subtonic seventh chord in key.
 Return the supertonic chord in key.
 
 Example:
-{{{
+
 >>> supertonic('C')
 ['D', 'F', 'A']
-}}}
+
 
 === `supertonic7(key)` ===
 Return the supertonic seventh chord in key.
@@ -601,37 +601,37 @@ Return the supertonic seventh chord in key.
 Build a suspended fourth flat ninth chord on note.
 
 Example:
-{{{
+
 >>> suspended_fourth_ninth('C')
 ['C', 'F', 'G', 'Db']
-}}}
+
 
 === `suspended_fourth_triad(note)` ===
 Build a suspended fourth triad on note.
 
 Example:
-{{{
+
 >>> suspended_fourth_triad('C')
 ['C', 'F', 'G']
-}}}
+
 
 === `suspended_second_triad(note)` ===
 Build a suspended second triad on note.
 
 Example:
-{{{
+
 >>> suspended_second_triad('C')
 ['C', 'D', 'G']
-}}}
+
 
 === `suspended_seventh(note)` ===
 Build a suspended (flat) seventh chord on note.
 
 Example:
-{{{
+
 >>> suspended_seventh('C')
 ['C', 'F', 'G', 'Bb']
-}}}
+
 
 === `suspended_triad(note)` ===
 An alias for suspended_fourth_triad.
@@ -643,12 +643,12 @@ Return the third inversion of chord.
 Return the tonic chord in key.
 
 Examples:
-{{{
+
 >>> tonic('C')
 ['C', 'E', 'G']
 >>> tonic('c')
 ['C', 'Eb', 'G']
-}}}
+
 
 === `tonic7(key)` ===
 Return the seventh chord in key.
@@ -657,12 +657,12 @@ Return the seventh chord in key.
 Return the triad on note in key as a list.
 
 Examples:
-{{{
+
 >>> triad('E', 'C')
 ['E', 'G', 'B']
 >>> triad('E', 'B')
 ['E', 'G#', 'B']
-}}}
+
 
 === `triads(key)` ===
 Return all the triads in key.

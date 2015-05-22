@@ -7,11 +7,11 @@
 
 == Importing the value Module ==
 
-{{{
+
 
 >>> import mingus.core.value as value
 
-}}}
+
 
 
 
@@ -26,27 +26,27 @@ A note value indicates the relative duration of a note. In mingus, note values a
 
 Let us start by looking at some constants.
 
-{{{
+
 >>> value.whole
 1
 >>> value.eighth
 8
 >>> value.sixteenth
 16
-}}}
+
 
 Nothing spectular so far. 
 
 For medieval backwards compatibility the English notation has also been included.
 
-{{{
+
 >>> value.longa
 0.25
 >>> value.quaver
 8
 >>> value.quasihemidemisemiquaver
 128
-}}}
+
 
 Never again will you have to remember the difference between a semibreve and a semihemidemisemiquaver! 
 
@@ -58,13 +58,13 @@ Never again will you have to remember the difference between a semibreve and a s
 
 A dot adds half the duration of the note. A second dot adds half of what was added before, etc. For example: a dotted eighth note has the length of three sixteenth notes and an eighth note with two dots has the length of seven thirty second notes. The function `dots(value, nr=1)` returns the dotted note value.
 
-{{{
+
 >>> value.dots(value.eighth)
 5.3333333333333333
 >>> value.dots(value.eighth, 2)
 4.5714285714285712
 
-}}}
+
 
 
 ----
@@ -74,30 +74,30 @@ A dot adds half the duration of the note. A second dot adds half of what was add
 
 A tuplet can be written as a ratio. For example: 5:4 means that you play 5 notes in the duration of 4 (this is also called a quintuplet), 3:2 means that you play 3 notes in the duration of 2 (a triplet), etc. The tuplet function calculates the note value when playing in a certain ratio.
 
-{{{
+
 >>> value.tuplet(value.eighth, 5, 4)
 10.0
 >>> value.tuplet(value.eighth, 3, 2)
 12.0
-}}}
+
 
 There are a couple of 'shortcut' functions to tuplet that have predefined ratios; triplet (3:2) and quintuplet (5:4).
 
-{{{
+
 >>> value.triplet(value.eighth)
 12.0
 >>> value.quintuplet(value.eighth)
 10.0
-}}}
+
 
 A septuplet function also exists and defaults to the ratio 7:4. When the second argument is set to False, the ratio is the less common 7:8.
 
-{{{
+
 >>> value.septuplet(value.eighth)
 14.0
 >>> value.septuplet(value.eighth, False)
 7.0
-}}}
+
 
 
 ----
@@ -107,14 +107,14 @@ A septuplet function also exists and defaults to the ratio 7:4. When the second 
 
 In the container modules we will see that it is often handy to have some simple functions for basic adding and subtracting available.
 
-{{{
+
 >>> value.add(value.eighth, value.quarter)
 2.6666666666666665
 >>> value.add(value.eighth, value.eighth)
 4.0
 >>> value.subtract(2.6666666666666665, 8)
 4.0
-}}}
+
 
 
 ----
@@ -124,7 +124,7 @@ In the container modules we will see that it is often handy to have some simple 
 
 The floating point numbers are a fast and simple way to store the length of a note, but for some reasons (mainly notation related) it would be nice to know the basic note value, the number of dots and the ratio. Determine returns just that:
 
-{{{
+
 >>> value.determine(value.eighth)
 (8, 0, 1, 1)
 >>> value.determine(12)
@@ -133,7 +133,7 @@ The floating point numbers are a fast and simple way to store the length of a no
 (8, 0, 7, 4)
 >>> value.determine(dots(value.eighth))
 (8, 1, 1, 1)
-}}}
+
 
 
 ----
@@ -143,11 +143,11 @@ Now that we have seen how note values are handled, let's take a look at a slight
 
 == Importing meter Module ==
 
-{{{
+
 
 >>> import mingus.core.meter as meter
 
-}}}
+
 
 
 
@@ -158,7 +158,7 @@ Now that we have seen how note values are handled, let's take a look at a slight
 
 Meters in mingus are represented by a tuple consisting of respectively the nominator and the denominator. We can use is_valid to test whether an arbitrary tuple is a valid representation or not:
 
-{{{
+
 
 >>> meter.is_valid((4, 4))
 True
@@ -167,18 +167,18 @@ False
 >>> meter.is_valid((5, 4))
 True
 
-}}}
+
 
 Some constants are also included:
 
-{{{
+
 
 >>> meter.common_time
 (4, 4)
 >>> meter.cut_time
 (2, 2)
 
-}}}
+
 
 
 ----
@@ -188,7 +188,7 @@ Some constants are also included:
 
 Compound meter is a meter in which each measure is divided into three or more or two uneven parts (as opposed to two even parts). To test whether a meter is compound or not, we can use `is_compound`:
 
-{{{
+
 
 >>> meter.is_compound((3, 4))
 True
@@ -197,7 +197,7 @@ True
 >>> meter.is_compound((4, 4))
 False
 
-}}}
+
 
 
 ----
@@ -207,7 +207,7 @@ False
 
 Asymmetrical meters represent meters that can't be divided into parts of two. is_assymetrical test whether this is true or not.
 
-{{{
+
 
 >>> meter.is_assymetrical((3, 4))
 True
@@ -221,7 +221,7 @@ False
 False
 
 
-}}}
+
 
 
 ----

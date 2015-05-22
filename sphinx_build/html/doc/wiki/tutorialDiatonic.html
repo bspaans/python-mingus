@@ -57,39 +57,34 @@
 <h1>Tutorial 2 - Keys and the Diatonic Scale<a class="headerlink" href="#tutorial-2-keys-and-the-diatonic-scale" title="Permalink to this headline">¶</a></h1>
 <p>The diatonic module is another fundamental module providing support for keys and the diatonic scale. Without this module, mingus would be utterly useless. Let&#8217;s open up a python shell and start exploring.</p>
 <p>==Import the module==</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">core.diatonic</span> <span class="kn">as</span> <span class="nn">diatonic</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <hr class="docutils" />
 <p>== Keys ==</p>
 <p>As we have seen in the previous tutorial, mingus accepts some funky syntax (eg. &#8216;C####bbb#b&#8217;). While this is fine, it&#8217;s normally not really helpful, especially not when talking about keys and scales. This module defines a list of basic notes (based on the circle of fifths):</p>
-<p>{{{
-&gt;&gt;&gt; diatonic.basic_keys
-[&#8216;Gb&#8217;, &#8216;Db&#8217;, &#8216;Ab&#8217;, &#8216;Eb&#8217;, &#8216;Bb&#8217;, &#8216;F&#8217;, &#8216;C&#8217;, &#8216;G&#8217;, &#8216;D&#8217;, &#8216;A&#8217;, &#8216;E&#8217;, &#8216;B&#8217;, &#8216;F#&#8217;, &#8216;C#&#8217;, &#8216;G#&#8217;, &#8216;D#&#8217;, &#8216;A#&#8217;]
-}}}</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diatonic</span><span class="o">.</span><span class="n">basic_keys</span>
+<span class="go">[&#39;Gb&#39;, &#39;Db&#39;, &#39;Ab&#39;, &#39;Eb&#39;, &#39;Bb&#39;, &#39;F&#39;, &#39;C&#39;, &#39;G&#39;, &#39;D&#39;, &#39;A&#39;, &#39;E&#39;, &#39;B&#39;, &#39;F#&#39;, &#39;C#&#39;, &#39;G#&#39;, &#39;D#&#39;, &#39;A#&#39;]</span>
+</pre></div>
+</div>
 <p>Although the following functions will still work with the strange syntax, I&#8217;d advise you -for your own sanity- not to indulge in them.</p>
 <hr class="docutils" />
 <p>==The Notes in a Key==</p>
 <p>To get the notes in a certain key, you can use <cite>diatonic.get_notes(note)</cite>. This method returns a list of notes, starting with the tonic.</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diatonic</span><span class="o">.</span><span class="n">get_notes</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
 <span class="go">[&quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;, &quot;G&quot;, &quot;A&quot;, &quot;B&quot;]</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <p>If you were not completely sure what a key was before, it should now be pretty clear. The key of C consists of all the white notes, which have a certain number of half note steps between them. If we now want the notes in the key of E, we can take the same steps, but this time starting on &#8216;E&#8217; instead of &#8216;C&#8217;. (See exercise 1).</p>
-<p>{{{
-&gt;&gt;&gt; diatonic.get_notes(&#8220;E&#8221;)
-[&#8220;E&#8221;, &#8220;F#&#8221;, &#8220;G#&#8221;, &#8220;A&#8221;, &#8220;B&#8221;, &#8220;C#&#8221;, &#8220;D#&#8221;]
-&gt;&gt;&gt; diatonic.get_notes(&#8220;Bb&#8221;)
-[&#8220;Bb&#8221;, &#8220;C&#8221;, &#8220;D&#8221;, &#8220;Eb&#8221;, &#8220;F&#8221;, &#8220;G&#8221;, &#8220;A&#8221;]</p>
-<p>}}}</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diatonic</span><span class="o">.</span><span class="n">get_notes</span><span class="p">(</span><span class="s">&quot;E&quot;</span><span class="p">)</span>
+<span class="go">[&quot;E&quot;, &quot;F#&quot;, &quot;G#&quot;, &quot;A&quot;, &quot;B&quot;, &quot;C#&quot;, &quot;D#&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">diatonic</span><span class="o">.</span><span class="n">get_notes</span><span class="p">(</span><span class="s">&quot;Bb&quot;</span><span class="p">)</span>
+<span class="go">[&quot;Bb&quot;, &quot;C&quot;, &quot;D&quot;, &quot;Eb&quot;, &quot;F&quot;, &quot;G&quot;, &quot;A&quot;]</span>
+</pre></div>
+</div>
 <hr class="docutils" />
 <p>== A Better Integer to Note Converter ==</p>
 <p>Remember how poorly a theoretic job <cite>notes.int_to_note(int)</cite> did? <cite>notes.int_to_note</cite> would always convert 10 to A#, regardless of what key you&#8217;re in. This fact becomes really obvious when you are playing in Bb. A better function would pay attention to the key as well; we can do that now:</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diatonic</span><span class="o">.</span><span class="n">int_to_note</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">)</span>
 <span class="go">&#39;A#&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">diatonic</span><span class="o">.</span><span class="n">int_to_note</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s">&quot;F&quot;</span><span class="p">)</span>
@@ -100,7 +95,6 @@
 <span class="go">&#39;Cb&#39;</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <hr class="docutils" />
 <p>== Exercises ==</p>
 <blockquote>

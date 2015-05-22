@@ -16,12 +16,12 @@ The instrument and description parameters should be strings; tuning
 should be a list of strings or a list of lists to denote courses.
 
 Example:
-{{{
+
 >>> std_strings = ['E-2', 'A-2', 'D-3', 'G-3', 'B-3', 'E-4']
 >>> tuning.add_tuning('Guitar', 'standard', std_strings)
 >>> tw_strings = [['E-2', 'E-3'], ['A-2', 'A-3'], ...........]
 >>> tuning.add_tuning('Guitar', 'twelve string', tw_string)
-}}}
+
 
 === `fingers_needed(fingering)` ===
 Return the number of fingers needed to play the given fingering.
@@ -39,10 +39,10 @@ case-insensitive prefixes. So search for 'bass' is the same is
 'Bass Guitar'.
 
 Example:
-{{{
+
 >>> tunings.get_tuning('guitar', 'standard')
 <tunings.StringTuning instance at 0x139ac20>
-}}}
+
 
 === `get_tunings(instrument, nr_of_strings, nr_of_courses)` ===
   * *Default values*: instrument = None, nr_of_strings = None, nr_of_courses = None
@@ -53,10 +53,10 @@ asking for 'bass' yields the same tunings as 'Bass Guitar'; the string
 'ba' yields all the instruments starting with 'ba'.
 
 Example:
-{{{
+
 >>> tunings.get_tunings(nr_of_string = 4)
 >>> tunings.get_tunings('bass')
-}}}
+
 
 
 ----

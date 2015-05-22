@@ -57,103 +57,98 @@
 <h1>Tutorial 6 - Note Value and Meter<a class="headerlink" href="#tutorial-6-note-value-and-meter" title="Permalink to this headline">¶</a></h1>
 <hr class="docutils" />
 <p>== Importing the value Module ==</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mingus.core.value</span> <span class="kn">as</span> <span class="nn">value</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <hr class="docutils" />
 <p>== Note Value ==</p>
 <p>A note value indicates the relative duration of a note. In mingus, note values are represented by floating point numbers. A quarter note is 4, because it stands for 1/4 note, an eighth note is 8 because it stands for 1/8, a sixteenth note is 16, etc. These are all pretty straight forward, but how do you define a sixteenth triplet? Well, sixteenth triplets are made by taking an eighth note and deviding it in 3 equal parts. 1/8 times 1/3 = 1/24; so 24 is the number we want. How about a dotted eighth note? A dotted eighth note has the length of an eighth note plus half an eighth note. 1/8 + 1/16 = 3/16 = 1 / 16 / 3. So 16/3 is the number we are looking for. As you can see these calculations can be quite tiresome and can clutter up your code. This module is here to help do the conversion.</p>
 <p>=== English or Standard Notation ===</p>
 <p>Let us start by looking at some constants.</p>
-<p>{{{
-&gt;&gt;&gt; value.whole
-1
-&gt;&gt;&gt; value.eighth
-8
-&gt;&gt;&gt; value.sixteenth
-16
-}}}</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">value</span><span class="o">.</span><span class="n">whole</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">value</span><span class="o">.</span><span class="n">eighth</span>
+<span class="go">8</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">value</span><span class="o">.</span><span class="n">sixteenth</span>
+<span class="go">16</span>
+</pre></div>
+</div>
 <p>Nothing spectular so far.</p>
 <p>For medieval backwards compatibility the English notation has also been included.</p>
-<p>{{{
-&gt;&gt;&gt; value.longa
-0.25
-&gt;&gt;&gt; value.quaver
-8
-&gt;&gt;&gt; value.quasihemidemisemiquaver
-128
-}}}</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">value</span><span class="o">.</span><span class="n">longa</span>
+<span class="go">0.25</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">value</span><span class="o">.</span><span class="n">quaver</span>
+<span class="go">8</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">value</span><span class="o">.</span><span class="n">quasihemidemisemiquaver</span>
+<span class="go">128</span>
+</pre></div>
+</div>
 <p>Never again will you have to remember the difference between a semibreve and a semihemidemisemiquaver!</p>
 <hr class="docutils" />
 <p>== Making Dotted Notes ==</p>
 <p>A dot adds half the duration of the note. A second dot adds half of what was added before, etc. For example: a dotted eighth note has the length of three sixteenth notes and an eighth note with two dots has the length of seven thirty second notes. The function <cite>dots(value, nr=1)</cite> returns the dotted note value.</p>
-<p>{{{
-&gt;&gt;&gt; value.dots(value.eighth)
-5.3333333333333333
-&gt;&gt;&gt; value.dots(value.eighth, 2)
-4.5714285714285712</p>
-<p>}}}</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">value</span><span class="o">.</span><span class="n">dots</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">eighth</span><span class="p">)</span>
+<span class="go">5.3333333333333333</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">value</span><span class="o">.</span><span class="n">dots</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">eighth</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">4.5714285714285712</span>
+</pre></div>
+</div>
 <hr class="docutils" />
 <p>== Making Tuplets ==</p>
 <p>A tuplet can be written as a ratio. For example: 5:4 means that you play 5 notes in the duration of 4 (this is also called a quintuplet), 3:2 means that you play 3 notes in the duration of 2 (a triplet), etc. The tuplet function calculates the note value when playing in a certain ratio.</p>
-<p>{{{
-&gt;&gt;&gt; value.tuplet(value.eighth, 5, 4)
-10.0
-&gt;&gt;&gt; value.tuplet(value.eighth, 3, 2)
-12.0
-}}}</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">value</span><span class="o">.</span><span class="n">tuplet</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">eighth</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="go">10.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">value</span><span class="o">.</span><span class="n">tuplet</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">eighth</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">12.0</span>
+</pre></div>
+</div>
 <p>There are a couple of &#8216;shortcut&#8217; functions to tuplet that have predefined ratios; triplet (3:2) and quintuplet (5:4).</p>
-<p>{{{
-&gt;&gt;&gt; value.triplet(value.eighth)
-12.0
-&gt;&gt;&gt; value.quintuplet(value.eighth)
-10.0
-}}}</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">value</span><span class="o">.</span><span class="n">triplet</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">eighth</span><span class="p">)</span>
+<span class="go">12.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">value</span><span class="o">.</span><span class="n">quintuplet</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">eighth</span><span class="p">)</span>
+<span class="go">10.0</span>
+</pre></div>
+</div>
 <p>A septuplet function also exists and defaults to the ratio 7:4. When the second argument is set to False, the ratio is the less common 7:8.</p>
-<p>{{{
-&gt;&gt;&gt; value.septuplet(value.eighth)
-14.0
-&gt;&gt;&gt; value.septuplet(value.eighth, False)
-7.0
-}}}</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">value</span><span class="o">.</span><span class="n">septuplet</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">eighth</span><span class="p">)</span>
+<span class="go">14.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">value</span><span class="o">.</span><span class="n">septuplet</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">eighth</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+<span class="go">7.0</span>
+</pre></div>
+</div>
 <hr class="docutils" />
 <p>== Adding and Subtracting Note Values ==</p>
 <p>In the container modules we will see that it is often handy to have some simple functions for basic adding and subtracting available.</p>
-<p>{{{
-&gt;&gt;&gt; value.add(value.eighth, value.quarter)
-2.6666666666666665
-&gt;&gt;&gt; value.add(value.eighth, value.eighth)
-4.0
-&gt;&gt;&gt; value.subtract(2.6666666666666665, 8)
-4.0
-}}}</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">value</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">eighth</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="n">quarter</span><span class="p">)</span>
+<span class="go">2.6666666666666665</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">value</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">eighth</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="n">eighth</span><span class="p">)</span>
+<span class="go">4.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">value</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="mf">2.6666666666666665</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="go">4.0</span>
+</pre></div>
+</div>
 <hr class="docutils" />
 <p>== Recognising Note Values ==</p>
 <p>The floating point numbers are a fast and simple way to store the length of a note, but for some reasons (mainly notation related) it would be nice to know the basic note value, the number of dots and the ratio. Determine returns just that:</p>
-<p>{{{
-&gt;&gt;&gt; value.determine(value.eighth)
-(8, 0, 1, 1)
-&gt;&gt;&gt; value.determine(12)
-(8, 0, 3, 2)
-&gt;&gt;&gt; value.determine(14)
-(8, 0, 7, 4)
-&gt;&gt;&gt; value.determine(dots(value.eighth))
-(8, 1, 1, 1)
-}}}</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">value</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">eighth</span><span class="p">)</span>
+<span class="go">(8, 0, 1, 1)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">value</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="go">(8, 0, 3, 2)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">value</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="mi">14</span><span class="p">)</span>
+<span class="go">(8, 0, 7, 4)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">value</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="n">dots</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">eighth</span><span class="p">))</span>
+<span class="go">(8, 1, 1, 1)</span>
+</pre></div>
+</div>
 <hr class="docutils" />
 <p>Now that we have seen how note values are handled, let&#8217;s take a look at a slightly related and small module dealing with meter.</p>
 <p>== Importing meter Module ==</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mingus.core.meter</span> <span class="kn">as</span> <span class="nn">meter</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <hr class="docutils" />
 <p>== Simple Meters ==</p>
 <p>Meters in mingus are represented by a tuple consisting of respectively the nominator and the denominator. We can use is_valid to test whether an arbitrary tuple is a valid representation or not:</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">meter</span><span class="o">.</span><span class="n">is_valid</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">meter</span><span class="o">.</span><span class="n">is_valid</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
@@ -162,20 +157,16 @@
 <span class="go">True</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <p>Some constants are also included:</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">meter</span><span class="o">.</span><span class="n">common_time</span>
 <span class="go">(4, 4)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">meter</span><span class="o">.</span><span class="n">cut_time</span>
 <span class="go">(2, 2)</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <hr class="docutils" />
 <p>== Compound Meters ==</p>
 <p>Compound meter is a meter in which each measure is divided into three or more or two uneven parts (as opposed to two even parts). To test whether a meter is compound or not, we can use <cite>is_compound</cite>:</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">meter</span><span class="o">.</span><span class="n">is_compound</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">meter</span><span class="o">.</span><span class="n">is_compound</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
@@ -184,11 +175,9 @@
 <span class="go">False</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <hr class="docutils" />
 <p>== Asymmetrical Meters ==</p>
 <p>Asymmetrical meters represent meters that can&#8217;t be divided into parts of two. is_assymetrical test whether this is true or not.</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">meter</span><span class="o">.</span><span class="n">is_assymetrical</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">meter</span><span class="o">.</span><span class="n">is_assymetrical</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -201,7 +190,6 @@
 <span class="go">False</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <hr class="docutils" />
 <p>= End of Tutorial 6 =</p>
 <p>You can learn more about [refMingusCoreValue mingus.core.value] and [refMingusCoreMeter mingus.core.meter] in the reference section.</p>

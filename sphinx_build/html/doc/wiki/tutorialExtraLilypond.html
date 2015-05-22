@@ -57,15 +57,12 @@
 <h1>Tutorial 1 - Generating Sheet Music with LilyPond<a class="headerlink" href="#tutorial-1-generating-sheet-music-with-lilypond" title="Permalink to this headline">¶</a></h1>
 <p>The LilyPond module provides some methods to help you generate files in the LilyPond format. This allows you to create sheet music from some of the objects in mingus.containers.</p>
 <p>== Importing the LilyPond Module ==</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mingus.extra.LilyPond</span> <span class="kn">as</span> <span class="nn">LilyPond</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <hr class="docutils" />
 <p>== Generate LilyPond Strings ==</p>
 <p>LilyPond creates sheet music from files formatted in the LilyPond format. This module can convert instances of the <cite>mingus.containers</cite> module to formatted LilyPond strings. The functions <cite>from_Note</cite>, <cite>from_NoteContainer</cite>, <cite>from_Bar</cite>, <cite>from_Track</cite>, <cite>from_Composition</cite> and <cite>from_Suite</cite> can all be used to do that job. We will look at one simple example, to find out more about the respective functions and their arguments, you can check the [refMingusExtraLilypond reference section].</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">+</span> <span class="s">&quot;C&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">+</span> <span class="s">&quot;E&quot;</span>
@@ -75,11 +72,9 @@
 <span class="go">&quot;{ \\time 4/4 \\key c \\major c&#39;4 e&#39;4 g&#39;4 b&#39;4 }&quot;</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <hr class="docutils" />
 <p>== Generating Files from LilyPond Strings ==</p>
 <p>To do something useful with the strings generated in the previous section, we can use the <cite>to_png</cite> and <cite>to_pdf</cite> functions. This does assume that you have !LilyPond installed and in your $PATH.</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">+</span> <span class="s">&quot;C&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">+</span> <span class="s">&quot;E&quot;</span>
@@ -89,7 +84,6 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">LilyPond</span><span class="o">.</span><span class="n">to_png</span><span class="p">(</span><span class="n">bar</span><span class="p">,</span> <span class="s">&quot;my_first_bar&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <p><a class="reference external" href="http://www.onderstekop.nl/dump/lpexample.png">http://www.onderstekop.nl/dump/lpexample.png</a></p>
 <hr class="docutils" />
 <p>= End of Tutorial 1 =</p>

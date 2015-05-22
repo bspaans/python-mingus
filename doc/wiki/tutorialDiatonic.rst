@@ -5,11 +5,11 @@ The diatonic module is another fundamental module providing support for keys and
 
 ==Import the module==
 
-{{{
+
 
 >>> import core.diatonic as diatonic
 
-}}}
+
 
 
 ----
@@ -19,10 +19,10 @@ The diatonic module is another fundamental module providing support for keys and
 
 As we have seen in the previous tutorial, mingus accepts some funky syntax (eg. 'C####bbb#b'). While this is fine, it's normally not really helpful, especially not when talking about keys and scales. This module defines a list of basic notes (based on the circle of fifths):
 
-{{{
+
 >>> diatonic.basic_keys
 ['Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#', 'G#', 'D#', 'A#'] 
-}}}
+
 
 Although the following functions will still work with the strange syntax, I'd advise you -for your own sanity- not to indulge in them.
 
@@ -35,22 +35,22 @@ Although the following functions will still work with the strange syntax, I'd ad
 
 To get the notes in a certain key, you can use `diatonic.get_notes(note)`. This method returns a list of notes, starting with the tonic.
 
-{{{
+
 
 >>> diatonic.get_notes("C")
 ["C", "D", "E", "F", "G", "A", "B"]
 
-}}}
+
 
 If you were not completely sure what a key was before, it should now be pretty clear. The key of C consists of all the white notes, which have a certain number of half note steps between them. If we now want the notes in the key of E, we can take the same steps, but this time starting on 'E' instead of 'C'. (See exercise 1).
 
-{{{
+
 >>> diatonic.get_notes("E")
 ["E", "F#", "G#", "A", "B", "C#", "D#"]
 >>> diatonic.get_notes("Bb")
 ["Bb", "C", "D", "Eb", "F", "G", "A"]
 
-}}}
+
 
 
 
@@ -61,7 +61,7 @@ If you were not completely sure what a key was before, it should now be pretty c
 
 Remember how poorly a theoretic job `notes.int_to_note(int)` did? `notes.int_to_note` would always convert 10 to A#, regardless of what key you're in. This fact becomes really obvious when you are playing in Bb. A better function would pay attention to the key as well; we can do that now:
 
-{{{
+
 
 >>> diatonic.int_to_note(10, "C")
 'A#'
@@ -72,7 +72,7 @@ Remember how poorly a theoretic job `notes.int_to_note(int)` did? `notes.int_to_
 >>> diatonic.int_to_note(11, "Gb")
 'Cb'
 
-}}}
+
 
 
 ----

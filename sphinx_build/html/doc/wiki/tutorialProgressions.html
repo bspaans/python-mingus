@@ -58,41 +58,32 @@
 <p>In music theory you often deal with sequences of chords. These chord sequences are called progressions and are often written down using roman numerals. In this system the &#8216;I&#8217; refers to the first natural triad in a key, the II to the second, etc. We can add prefixes and suffixes to denote more complex progressions like #V7, bIIdim7, etc.</p>
 <p>The progressions module provides methods which can convert progressions into chords and vice versa. It can also give suggestions for chord-substitutions.</p>
 <p>== Importing the Module ==</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mingus.core.progressions</span> <span class="kn">as</span> <span class="nn">progressions</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <hr class="docutils" />
 <p>== Functions to Chords ==</p>
 <p>Remember the chord functions from [tutorialChords the chords tutorial]? As handy as they can be, they feel a bit clunky. For example: we want to take the I, IV and V7 chord in a couple of different keys:</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">chords</span><span class="o">.</span><span class="n">I</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">),</span> <span class="n">chords</span><span class="o">.</span><span class="n">IV</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">),</span> <span class="n">chords</span><span class="o">.</span><span class="n">V7</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">chords</span><span class="o">.</span><span class="n">I</span><span class="p">(</span><span class="s">&quot;F&quot;</span><span class="p">),</span> <span class="n">chords</span><span class="o">.</span><span class="n">IV</span><span class="p">(</span><span class="s">&quot;F&quot;</span><span class="p">),</span> <span class="n">chords</span><span class="o">.</span><span class="n">V7</span><span class="p">(</span><span class="s">&quot;F&quot;</span><span class="p">)]</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <p>As you can see, you would have to retype the actual progression everytime you needed it. Instead we can do this:</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">progression</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;I&quot;</span><span class="p">,</span> <span class="s">&quot;IV&quot;</span><span class="p">,</span> <span class="s">&quot;V7&quot;</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">progressions</span><span class="o">.</span><span class="n">to_chords</span><span class="p">(</span><span class="n">progression</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">progressions</span><span class="o">.</span><span class="n">to_chords</span><span class="p">(</span><span class="n">progression</span><span class="p">,</span> <span class="s">&quot;F&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <p>Which will do exactly the same thing and is generally a lot nicer and more modular.</p>
 <p>Another advantage is that the <cite>to_chords</cite> function knows about prefixes and suffixes so you denote complex progressions. You can use any number of accidentals as prefix and any known chord shorthand as suffix:</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">progressions</span><span class="o">.</span><span class="n">to_chords</span><span class="p">([</span><span class="s">&quot;I&quot;</span><span class="p">,</span> <span class="s">&quot;bIV&quot;</span><span class="p">,</span> <span class="s">&quot;VIIdim7&quot;</span><span class="p">])</span>
 <span class="go">[[&#39;C&#39;, &#39;E&#39;, &#39;G&#39;], [&#39;Fb&#39;, &#39;Ab&#39;, &#39;Cb&#39;], [&#39;B&#39;, &#39;D&#39;, &#39;F&#39;, &#39;Ab&#39;]]</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <p>Note: since the use of &#8216;7&#8217; as suffix classicly means that you want the natural seventh chord instead of the natural triad, you have to use the &#8216;dom7&#8217; shorthand to get the dominanth seventh - where you would use &#8216;7&#8217; when talking about chords. In other words I7 will give you a major seventh, Idom7 a dominanth seventh.</p>
 <hr class="docutils" />
 <p>== Chords to Functions ==</p>
 <p>Now that we can convert progressions to chords, it would be nice if we could hand mingus some chords and get the progressions back. That&#8217;s what <cite>determine</cite> is for. Here&#8217;s an example that uses the chords from the previous example:</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">progressions</span><span class="o">.</span><span class="n">to_chords</span><span class="p">([</span><span class="s">&quot;I&quot;</span><span class="p">,</span> <span class="s">&quot;bIV&quot;</span><span class="p">,</span> <span class="s">&quot;VIIdim7&quot;</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <span class="go">[[&#39;C&#39;, &#39;E&#39;, &#39;G&#39;], [&#39;Fb&#39;, &#39;Ab&#39;, &#39;Cb&#39;], [&#39;B&#39;, &#39;D&#39;, &#39;F&#39;, &#39;Ab&#39;]]</span>
@@ -102,14 +93,13 @@
 <span class="go">[[&#39;I&#39;], [&#39;bIV&#39;], [&#39;viidim7&#39;]]</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <hr class="docutils" />
 <p>== Substitutions ==</p>
 <p><cite>substitute(progression, index, depth = 0)</cite> gives a list of possible substitutions for <cite>progression[index]</cite>. If depth &gt; 0 the substitutions of each result will be recursively added as well.</p>
-<p>{{{
-&gt;&gt;&gt; progressions.substitute([&#8220;I&#8221;, &#8220;IV&#8221;, &#8220;V&#8221;, &#8220;I&#8221;], 0)
-[&#8220;III&#8221;, &#8220;VI&#8221;, etc.
-}}}</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">progressions</span><span class="o">.</span><span class="n">substitute</span><span class="p">([</span><span class="s">&quot;I&quot;</span><span class="p">,</span> <span class="s">&quot;IV&quot;</span><span class="p">,</span> <span class="s">&quot;V&quot;</span><span class="p">,</span> <span class="s">&quot;I&quot;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">[&quot;III&quot;, &quot;VI&quot;, etc.</span>
+</pre></div>
+</div>
 <p><cite>substitute</cite> performs all kinds of substitutions. If you want more fine grained control you can use the functions <cite>substitute_harmonic</cite>, <cite>substitute_major_for_minor</cite>, <cite>substitute_minor_for_major</cite>, <cite>substitute_diminished_for_diminished</cite> and <cite>substitute_diminished_for_dominant</cite>. Check the reference section of this module to read more about them.</p>
 <hr class="docutils" />
 <p>= End of Tutorial 7 =</p>

@@ -5,11 +5,11 @@ We have grouped Notes in !NoteContainers and !NoteContainers in Bars, but before
 
 == Import the Instrument Class and Subclasses ==
 
-{{{
+
 
 >>> from mingus.containers.Instrument import Instrument, Piano, Guitar
 
-}}}
+
 
 
 ----
@@ -19,7 +19,7 @@ We have grouped Notes in !NoteContainers and !NoteContainers in Bars, but before
 
 The Instrument module is currently very basic (plans on expanding it exist), but it stores all the things the rest of mingus might need. 
 
-{{{
+
 
 >>> i = Instrument()
 >>> i.name
@@ -29,18 +29,18 @@ The Instrument module is currently very basic (plans on expanding it exist), but
 >>> i.clef
 'bass and treble'
 
-}}}
+
 
 The easiest way to use the Instrument class is probably to subclass it (see the Piano and Guiter classes), but you can also use the `set_range` function and `name` and `clef` attributes directly.
 
-{{{
+
 
 >>> i = Instrument()
 >>> i.setrange(("C", "E"))
 >>> i.name = "Keyboard - five keys"
 >>> i.clef = "treble"
 
-}}}
+
 
 
 ----
@@ -50,7 +50,7 @@ The easiest way to use the Instrument class is probably to subclass it (see the 
 
 Because we have set a range, we can check whether or not a note is within the range of the instrument.
 
-{{{
+
 
 >>> g = Guitar()
 >>> p = Piano()
@@ -61,11 +61,11 @@ False
 >>> p.note_in_range("E-2")
 True
 
-}}}
+
 
 To test multiple notes at once we can either use `notes_in_range` or `can_play_notes`. They both do the same thing and the alias is here for semantic reasons only.
 
-{{{
+
 
 >>> g = Guitar()
 >>> g.can_play_notes(["A", "C", "E"])
@@ -73,7 +73,7 @@ True
 >>> g.can_play_notes(["A-2", "C-2", "E-2"])
 False
 
-}}}
+
 
 
 ----
@@ -83,13 +83,13 @@ False
 
 Another, special subclass of Instrument is the MidiInstrument, which is used throughout the `mingus.midi` module. This instrument has an extra `midi_instr` attribute which you can set to an integer (0..127) to denote the MIDI instrument patch that should be used when playing notes. A list of instrument names is provided as `names` attribute.
 
-{{{
+
 
 >>> from mingus.containers.Instrument import MidiInstrument
 >>> i = MidiInstrument()
 >>> i.midi_instr = 14
 
-}}}
+
 
 
 

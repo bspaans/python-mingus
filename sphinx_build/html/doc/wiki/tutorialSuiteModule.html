@@ -57,45 +57,35 @@
 <h1>Tutorial 7 - Suite<a class="headerlink" href="#tutorial-7-suite" title="Permalink to this headline">¶</a></h1>
 <p>The Suite class can be used to store compositions together and will probably not be used as much (if you want to write a symphony, knock yourself out though).</p>
 <p>== Import the Suite Class ==</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mingus.containers.Suite</span> <span class="kn">import</span> <span class="n">Suite</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <hr class="docutils" />
 <p>== Creating Suites ==</p>
 <p>A Suite class takes no arguments to create:</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">Suite</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <p>== Setting Attributes ==</p>
 <p>The following functions will set some useful attributes. Note however that the authors and titles won&#8217;t be reset on the actual compositions, only on the Suite:</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">Suite</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set_author</span><span class="p">(</span><span class="s">&#39;Author&#39;</span><span class="p">,</span> <span class="s">&#39;author@email.com&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&#39;Title&#39;</span><span class="p">,</span> <span class="s">&#39;Subtitle&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <hr class="docutils" />
 <p>== Adding Compositions ==</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Composition</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">Suite</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">add_composition</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <p>== List Notation ==</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Composition</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 <span class="go">0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">add_composition</span><span class="p">(</span><span class="n">Composition</span><span class="p">())</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Composition</span><span class="p">()</span>
-<span class="go">}}}</span>
 </pre></div>
 </div>
 <hr class="docutils" />

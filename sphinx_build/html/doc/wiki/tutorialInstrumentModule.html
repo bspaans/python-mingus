@@ -57,15 +57,12 @@
 <h1>Tutorial 4 - Instruments<a class="headerlink" href="#tutorial-4-instruments" title="Permalink to this headline">¶</a></h1>
 <p>We have grouped Notes in !NoteContainers and !NoteContainers in Bars, but before we can add Bars to Tracks, we need an Instrument class.</p>
 <p>== Import the Instrument Class and Subclasses ==</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mingus.containers.Instrument</span> <span class="kn">import</span> <span class="n">Instrument</span><span class="p">,</span> <span class="n">Piano</span><span class="p">,</span> <span class="n">Guitar</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <hr class="docutils" />
 <p>== Working with Instruments ==</p>
 <p>The Instrument module is currently very basic (plans on expanding it exist), but it stores all the things the rest of mingus might need.</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">i</span> <span class="o">=</span> <span class="n">Instrument</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">i</span><span class="o">.</span><span class="n">name</span>
 <span class="go">&#39;Instrument&#39;</span>
@@ -75,20 +72,16 @@
 <span class="go">&#39;bass and treble&#39;</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <p>The easiest way to use the Instrument class is probably to subclass it (see the Piano and Guiter classes), but you can also use the <cite>set_range</cite> function and <cite>name</cite> and <cite>clef</cite> attributes directly.</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">i</span> <span class="o">=</span> <span class="n">Instrument</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">i</span><span class="o">.</span><span class="n">setrange</span><span class="p">((</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">i</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Keyboard - five keys&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">i</span><span class="o">.</span><span class="n">clef</span> <span class="o">=</span> <span class="s">&quot;treble&quot;</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <hr class="docutils" />
 <p>== Range Checking ==</p>
 <p>Because we have set a range, we can check whether or not a note is within the range of the instrument.</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">Guitar</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Piano</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">note_in_range</span><span class="p">(</span><span class="s">&quot;E&quot;</span><span class="p">)</span>
@@ -99,9 +92,7 @@
 <span class="go">True</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <p>To test multiple notes at once we can either use <cite>notes_in_range</cite> or <cite>can_play_notes</cite>. They both do the same thing and the alias is here for semantic reasons only.</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">Guitar</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">can_play_notes</span><span class="p">([</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">])</span>
 <span class="go">True</span>
@@ -109,17 +100,14 @@
 <span class="go">False</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <hr class="docutils" />
 <p>== Midi Instruments ==</p>
 <p>Another, special subclass of Instrument is the MidiInstrument, which is used throughout the <cite>mingus.midi</cite> module. This instrument has an extra <cite>midi_instr</cite> attribute which you can set to an integer (0..127) to denote the MIDI instrument patch that should be used when playing notes. A list of instrument names is provided as <cite>names</cite> attribute.</p>
-<p>{{{</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mingus.containers.Instrument</span> <span class="kn">import</span> <span class="n">MidiInstrument</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">i</span> <span class="o">=</span> <span class="n">MidiInstrument</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">i</span><span class="o">.</span><span class="n">midi_instr</span> <span class="o">=</span> <span class="mi">14</span>
 </pre></div>
 </div>
-<p>}}}</p>
 <hr class="docutils" />
 <p>= End of Tutorial 4 =</p>
 <p>You can learn more about mingus.containers.Instrument in the reference section</p>

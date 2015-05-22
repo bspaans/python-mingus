@@ -59,12 +59,12 @@ Return the list of accidentals present into the key signature.
 Return an ordered list of the notes in this natural key.
 
 Examples:
-{{{
+
 >>> get_notes('F')
 ['F', 'G', 'A', 'Bb', 'C', 'D', 'E']
 >>> get_notes('c')
 ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb']
-}}}
+
 
 === `is_valid_key(key)` ===
 Return True if key is in a recognized format. False if not.
@@ -73,19 +73,19 @@ Return True if key is in a recognized format. False if not.
 Return the relative major of a minor key.
 
 Example:
-{{{
+
 >>> relative_major('a')
 'C'
-}}}
+
 
 === `relative_minor(key)` ===
 Return the relative minor of a major key.
 
 Example:
-{{{
+
 >>> relative_minor('C')
 'a'
-}}}
+
 
 
 ----

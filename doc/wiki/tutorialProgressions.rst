@@ -7,11 +7,11 @@ The progressions module provides methods which can convert progressions into cho
 
 == Importing the Module == 
 
-{{{
+
 
 >>> import mingus.core.progressions as progressions
 
-}}}
+
 
 
 ----
@@ -21,33 +21,33 @@ The progressions module provides methods which can convert progressions into cho
 
 Remember the chord functions from [tutorialChords the chords tutorial]? As handy as they can be, they feel a bit clunky. For example: we want to take the I, IV and V7 chord in a couple of different keys:
 
-{{{
+
 
 >>> [chords.I("C"), chords.IV("C"), chords.V7("C")]
 >>> [chords.I("F"), chords.IV("F"), chords.V7("F")]
 
-}}}
+
 
 As you can see, you would have to retype the actual progression everytime you needed it. Instead we can do this:
 
-{{{
+
 
 >>> progression = ["I", "IV", "V7"]
 >>> progressions.to_chords(progression, "C")
 >>> progressions.to_chords(progression, "F")
 
-}}}
+
 
 Which will do exactly the same thing and is generally a lot nicer and more modular. 
 
 Another advantage is that the `to_chords` function knows about prefixes and suffixes so you denote complex progressions. You can use any number of accidentals as prefix and any known chord shorthand as suffix:
 
-{{{
+
 
 >>> progressions.to_chords(["I", "bIV", "VIIdim7"])
 [['C', 'E', 'G'], ['Fb', 'Ab', 'Cb'], ['B', 'D', 'F', 'Ab']]
 
-}}}
+
 
 Note: since the use of '7' as suffix classicly means that you want the natural seventh chord instead of the natural triad, you have to use the 'dom7' shorthand to get the dominanth seventh - where you would use '7' when talking about chords. In other words I7 will give you a major seventh, Idom7 a dominanth seventh. 
 
@@ -59,7 +59,7 @@ Note: since the use of '7' as suffix classicly means that you want the natural s
 
 Now that we can convert progressions to chords, it would be nice if we could hand mingus some chords and get the progressions back. That's what `determine` is for. Here's an example that uses the chords from the previous example:
 
-{{{
+
 
 >>> a = progressions.to_chords(["I", "bIV", "VIIdim7"])
 >>> a
@@ -69,7 +69,7 @@ Now that we can convert progressions to chords, it would be nice if we could han
 >>> progressions.determine(a, "C", True)
 [['I'], ['bIV'], ['viidim7']]
 
-}}}
+
 
 
 ----
@@ -79,10 +79,10 @@ Now that we can convert progressions to chords, it would be nice if we could han
 
 `substitute(progression, index, depth = 0)` gives a list of possible substitutions for `progression[index]`. If depth > 0 the substitutions of each result will be recursively added as well.
 
-{{{
+
 >>> progressions.substitute(["I", "IV", "V", "I"], 0)
 ["III", "VI", etc.
-}}}
+
 
 `substitute` performs all kinds of substitutions. If you want more fine grained control you can use the functions `substitute_harmonic`, `substitute_major_for_minor`, `substitute_minor_for_major`, `substitute_diminished_for_diminished` and `substitute_diminished_for_dominant`. Check the reference section of this module to read more about them.
 
