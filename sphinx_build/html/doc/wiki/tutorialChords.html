@@ -1,0 +1,335 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>&lt;no title&gt; &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p>#summary Working through the various aspects of mingus.core.chords</p>
+<hr class="docutils" />
+<p>= Tutorial 4 - Triads, Sevenths and Extended Chords =</p>
+<p>This module is build upon the interval module and provides a way to generate and recognise various chords.</p>
+<p>== Importing chords Module ==</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mingus.core.chords</span> <span class="kn">as</span> <span class="nn">chords</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<hr class="docutils" />
+<p>== Triads ==</p>
+<p>Triads are chords made of three notes.</p>
+<p>=== Natural Diatonic Triads ==</p>
+<p>Natural diatonic triads are probably the most common chords. As was hinted in the last exercises of the intervals tutorial, they are constructed by choosing a base note in a key and adding its third and fifth. For instance, here are the notes in C again:</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diatonic</span><span class="o">.</span><span class="n">get_notes</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&#39;C&#39;, &#39;D&#39;, &#39;E&#39;, &#39;F&#39;, &#39;G&#39;, &#39;A&#39;, &#39;B&#39;]</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<p>Let&#8217;s say we want the triad starting on D. We pick its third, &#8216;F&#8217;, and its fifth, &#8216;A&#8217;, and we&#8217;re already done.</p>
+<p>This, in a nutshell, is what the following procedure does. To get the triad starting on a certain note in a certain key we can use the <cite>chords.triad(note, key)</cite> function:</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">triad</span><span class="p">(</span><span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;E&quot;, &quot;G&quot;, &quot;B&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">triad</span><span class="p">(</span><span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">)</span>
+<span class="go">[&quot;E&quot;, &quot;G#&quot;, &quot;B&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">triad</span><span class="p">(</span><span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;F&quot;</span><span class="p">)</span>
+<span class="go">[&quot;E&quot;, &quot;G&quot;, &quot;Bb&quot;]</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<p>We can also request all the triads in a certain key with <cite>chords.triads(key)</cite>:</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">triads</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[[&quot;C&quot;, &quot;E&quot;, &quot;G&quot;], [&quot;D&quot;, &quot;F&quot;, &quot;A&quot;], [&quot;E&quot;, &quot;G&quot;, &quot;B&quot;], [&quot;F&quot;, &quot;A&quot;, &quot;C&quot;], [&quot;G&quot;, &quot;B&quot;, &quot;D&quot;], [&quot;A&quot;, &quot;C&quot;, &quot;E&quot;], [&quot;B&quot;, &quot;D&quot;, &quot;F&quot;]]</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<p>=== Absolute Triads ===</p>
+<p>The natural triads are ubiquitous, but so is the ability of musicians and composers to stray of the path and put in their own chords to keep things interesting. That&#8217;s why working with only the naturally appearing chords within a key is often not enough.</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">major_triad</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;C&quot;, &quot;E&quot;, &quot;G&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">minor_triad</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;C&quot;, &quot;Eb&quot;, &quot;G&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">diminished_triad</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;C&quot;, &quot;Eb&quot;, &quot;Gb&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">augmented_triad</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;C&quot;, &quot;E&quot;, &quot;G#&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">suspended_triad</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;C&quot;, &quot;F&quot;, &quot;G&quot;]</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<p>As you can see these functions work without a key argument and always give back notes with the same absolute intervals between them.</p>
+<hr class="docutils" />
+<p>== Sevenths ==</p>
+<p>=== Natural Diatonic Sevenths ===</p>
+<p>Triads and sevenths are constructed in the same way, in that thirds are added to a base note. For a triad, we&#8217;d take the base note, its third and its fifth. For a seventh chord, we also take its seventh (which is again a third away from the last added note).</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">seventh</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;C&quot;, &quot;E&quot;, &quot;G&quot;, &quot;B&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">seventh</span><span class="p">(</span><span class="s">&quot;D&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;D&quot;, &quot;F&quot;, &quot;A&quot;, &quot;C&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">seventh</span><span class="p">(</span><span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;E&quot;, &quot;G&quot;, &quot;B&quot;, &quot;D&quot;]</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<p>You can also use <cite>chords.sevenths(key)</cite> to get all the seventh chords in that key.</p>
+<p>=== Absolute Sevenths ===</p>
+<p>Once again, you can also request a specific seventh chord, but this time there are a lot more of them.</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">major_seventh</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;C&quot;, &quot;E&quot;, &quot;G&quot;, &quot;B&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">minor_seventh</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;C&quot;, &quot;Eb&quot;, &quot;G&quot;, &quot;Bb&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">dominant_seventh</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;C&quot;, &quot;E&quot;, &quot;G&quot;, &quot;Bb&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">half_diminished_seventh</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;C&quot;, &quot;Eb&quot;, &quot;Gb&quot;, &quot;Bb&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">minor_seventh_flat_five</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;C&quot;, &quot;Eb&quot;, &quot;Gb&quot;, &quot;Bb&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">diminished_seventh</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;C&quot;, &quot;Eb&quot;, &quot;Gb&quot;, &quot;Bbb&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">minor_major_seventh</span><span class="p">(</span><span class="n">C</span><span class="s">&quot;)</span>
+<span class="go">[&quot;C&quot;, &quot;Eb&quot;, &quot;G&quot;, &quot;B&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">augmented_major_seventh</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;C&quot;, &quot;E&quot;, &quot;G#&quot;, &quot;B&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">augmented_minor_seventh</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;C&quot;, &quot;E&quot;, &quot;G#&quot;, &quot;Bb&quot;]</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<hr class="docutils" />
+<p>=== Get Chords from Shorthand ===</p>
+<p>Usually you don&#8217;t want to remember and type all the different functions just to get some simple chords. The <cite>from_shorthand(string)</cite> function tries to make life easier. from_shorthand takes a string representation of a chord and returns a list of notes.</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&#39;C&#39;, &#39;E&#39;, &#39;G&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&quot;Cm&quot;</span><span class="p">)</span>
+<span class="go">[&#39;C&#39;, &#39;Eb&#39;, &#39;G&#39;]</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<p>The <cite>from_shorthand</cite> function can deal with almost any chord and knows about most common abbreviations. Here is a slashed chord and a polychord, just to give you a flavour:</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&quot;A/G&quot;</span><span class="p">)</span>
+<span class="go">[&#39;G&#39;, &#39;A&#39;, &#39;C#&#39;, &#39;E&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&quot;Cm/M7|FM&quot;</span><span class="p">)</span>
+<span class="go">[&#39;F&#39;, &#39;A&#39;, &#39;C&#39;, &#39;Eb&#39;, &#39;G&#39;, &#39;B&#39;]</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<p>Currently the following abbreviations are recognised:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Triads: <em>&#8216;m&#8217;</em>, <em>&#8216;M&#8217;</em> or <em>&#8216;&#8217;</em>, <em>&#8216;dim&#8217;</em>.</li>
+<li>Sevenths: <em>&#8216;m7&#8217;</em>, <em>&#8216;M7&#8217;</em>, <em>&#8216;7&#8217;</em>, <em>&#8216;m7b5&#8217;</em>, <em>&#8216;dim7&#8217;</em>, <em>&#8216;m/M7&#8217;</em> or <em>&#8216;mM7&#8217;</em></li>
+<li>Augmented chords: <em>&#8216;aug&#8217;</em> or <em>&#8216;+&#8217;</em>, <em>&#8216;7#5&#8217;</em> or <em>&#8216;M7+5&#8217;</em>, <em>&#8216;M7+&#8217;</em>, <em>&#8216;m7+&#8217;</em>, <em>&#8216;7+&#8217;</em></li>
+<li>Suspended chords: <em>&#8216;sus4&#8217;</em>, <em>&#8216;sus2&#8217;</em>, <em>&#8216;sus47&#8217;</em>, <em>&#8216;sus&#8217;</em>, <em>&#8216;11&#8217;</em>, <em>&#8216;sus4b9&#8217;</em> or <em>&#8216;susb9&#8217;</em></li>
+<li>Sixths: <em>&#8216;6&#8217;</em>, <em>&#8216;m6&#8217;</em>, <em>&#8216;M6&#8217;</em>, <em>&#8216;6/7&#8217;</em> or <em>&#8216;67&#8217;</em>, <em>6/9</em> or <em>69</em></li>
+<li>Ninths: <em>&#8216;9&#8217;</em>, <em>&#8216;M9&#8217;</em>, <em>&#8216;m9&#8217;</em>, <em>&#8216;7b9&#8217;</em>, <em>&#8216;7#9&#8217;</em></li>
+<li>Elevenths: <em>&#8216;11&#8217;</em>, <em>&#8216;7#11&#8217;</em>, <em>&#8216;m11&#8217;</em></li>
+<li>Thirteenths: <em>&#8216;13&#8217;</em>, <em>&#8216;M13&#8217;</em>, <em>&#8216;m13&#8217;</em></li>
+<li>Altered chords: <em>&#8216;7b5&#8217;</em>, <em>&#8216;7b9&#8217;</em>, <em>&#8216;7#9&#8217;</em>, <em>&#8216;67&#8217;</em> or <em>&#8216;6/7&#8217;</em></li>
+<li>Special: <em>&#8216;5&#8217;</em>, <em>&#8216;NC&#8217;</em>, <em>&#8216;hendrix&#8217;</em></li>
+</ul>
+</div></blockquote>
+<p>The letters <cite>m</cite> and <cite>M</cite> in the abbreviations  can always be substituted by respectively <cite>min</cite>, <cite>mi</cite> or <cite>-</cite> and <cite>maj</cite> or <cite>ma</cite> (eg. <cite>from_shorthand(&#8220;Amin7&#8221;) == from_shorthand(&#8220;Am7&#8221;)</cite>, etc.).</p>
+<hr class="docutils" />
+<p>== Chords by Harmonic Function ==</p>
+<p>You can also refer to chords by their harmonic function. For instance <cite>tonic(key)</cite> will get you the tonic triad; <cite>tonic7(key)</cite> the tonic seventh.</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">tonic</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;C&quot;, &quot;E&quot;, &quot;G&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">supertonic</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;D&quot;, &quot;F&quot;, &quot;A&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">mediant</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;E&quot;, &quot;G&quot;, &quot;B&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">subdominant</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;F&quot;, &quot;A&quot;, &quot;C&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">dominant</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;G&quot;, &quot;B&quot;, &quot;D&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">submediant</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;A&quot;, &quot;C&quot;, &quot;E&quot;]</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<p>=== Roman Numbering ===</p>
+<p>It&#8217;s often easier to refer to harmonic functions using roman numbers.</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">I</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;C&quot;, &quot;E&quot;, &quot;G&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">IV</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;F&quot;, &quot;A&quot;, &quot;C&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">V7</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
+<span class="go">[&#39;G&#39;, &#39;B&#39;, &#39;D&#39;, &#39;F&#39;]</span>
+<span class="go">}}}</span>
+</pre></div>
+</div>
+<p>The functions I-VI and I7-VI7 may all be used. The numbers II, III, VI and their sevenths may also be refered to using lower-case numbers (ii, ii7, etc) to indicate that they are minor. See the progressions tutorial for more about harmonic sequences + an advanced to_chords function.</p>
+<hr class="docutils" />
+<p>== Inversions ==</p>
+<p>Inverting a chord can be pretty common depending on genre. Here is a quick way to do take the first inversion in mingus:</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">first_inversion</span><span class="p">([</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;G&quot;</span><span class="p">])</span>
+<span class="go">[&quot;E&quot;, &quot;G&quot;, &quot;C&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">first_inversion</span><span class="p">([</span><span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;G&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">])</span>
+<span class="go">[&quot;G&quot;, &quot;C&quot;, &quot;E&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">first_inversion</span><span class="p">([</span><span class="s">&quot;G&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">])</span>
+<span class="go">[&quot;C&quot;, &quot;E&quot;, &quot;G&quot;]</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<p>Other functions that can be used:</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">second_inversion</span><span class="p">([</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;G&quot;</span><span class="p">])</span>
+<span class="go">[&quot;G&quot;, &quot;C&quot;, &quot;E&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">third_inversion</span><span class="p">([</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;G&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span><span class="p">])</span>
+<span class="go">[&quot;B&quot;, &quot;C&quot;, &quot;E&quot;, &quot;G&quot;]</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<hr class="docutils" />
+<p>== Recognize ==</p>
+<p>One of the cool things about this module is that it can not only generate but also recognise various chords and their inversions.</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">determine</span><span class="p">([</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;G&quot;</span><span class="p">])</span>
+<span class="go">[&#39;C major triad&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">determine</span><span class="p">([</span><span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;G&quot;</span><span class="p">])</span>
+<span class="go">[&#39;C major seventh, third inversion&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">determine</span><span class="p">([</span><span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;G#&quot;</span><span class="p">])</span>
+<span class="go">[&#39;C augmented major seventh, third inversion&#39;]</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<p>As you can see, the <cite>chords.determine</cite> will recognize pretty complex chords. You might wonder why the function returns a list. This is because certain chord can have multiple (or no) interpretations. Whenever their is more than one interpretation, the list will be ordered from less to most inversions, followed by polychords (the <cite>|</cite> notation). Therefore, the first item in the list is probably the most likely interpretation:</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">determine</span><span class="p">([</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;Eb&quot;</span><span class="p">,</span> <span class="s">&quot;Gb&quot;</span><span class="p">,</span> <span class="s">&quot;Bb&quot;</span><span class="p">])</span>
+<span class="go">[&#39;C half diminished seventh&#39;, &#39;Eb minor sixth, third inversion&#39;, &#39;Ebm|Cdim&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">determine</span><span class="p">([</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">])</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<p>_Note:_ Currently <cite>chords.determine</cite> can take lists containing one to fourteen notes. A list of one item will just return the note. A list of two notes will be redirected to <cite>intervals.determine</cite>. The rest will be interpreted as chords.</p>
+<p>=== Shorthand ===</p>
+<p>The chord descriptions returned by determine can be quite lengthy. That&#8217;s why you can also request the chords to be returned in shorthand. The chord description will be replaced by an abbreviation (often found in jazz) and the inversion won&#8217;t be included in the result.</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">determine</span><span class="p">([</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;G&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span><span class="p">],</span> <span class="bp">True</span><span class="p">)</span>
+<span class="go">[&quot;Cmaj7&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">determine</span><span class="p">([</span><span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;G&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">],</span> <span class="bp">True</span><span class="p">)</span>
+<span class="go">[&quot;Cmaj7&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chords</span><span class="o">.</span><span class="n">determine</span><span class="p">([</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;Eb&quot;</span><span class="p">,</span> <span class="s">&quot;Gb&quot;</span><span class="p">,</span> <span class="s">&quot;Bb&quot;</span><span class="p">],</span> <span class="bp">True</span><span class="p">)</span>
+<span class="go">[&quot;Cmin7b5&quot;, &quot;Ebmin6&quot;, &quot;Ebm|Cdim&quot;]</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<hr class="docutils" />
+<p>== Exercises ==</p>
+<blockquote>
+<div># Write a program that takes a key and prints out all the triads and sevenths as shorthand.
+# Determine what _type_ of triads and sevenths are naturally occuring in every key.
+# The chord sequence I, IV, V, I is a simple song. Write a program that takes a key and prints out the corresponding chords in shorthand.</div></blockquote>
+<hr class="docutils" />
+<p>= End of Tutorial 4 =</p>
+<p>You can learn more about [refMingusCoreChords mingus.core.chords in the reference section.]</p>
+<blockquote>
+<div><ul class="simple">
+<li>[tutorialNote Tutorial 1 - Working with Notes]</li>
+<li>[tutorialDiatonic Tutorial 2 - Keys and the Diatonic Scale]</li>
+<li>[tutorialIntervals Tutorial 3 - Intervals]</li>
+<li>Tutorial 4 - Triads, Sevenths and Extended Chords</li>
+<li>[tutorialScales Tutorial 5 - Scales]</li>
+<li>[mingusIndex Back to Index]</li>
+</ul>
+</div></blockquote>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/doc/wiki/tutorialChords.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+      |
+      <a href="../../_sources/doc/wiki/tutorialChords.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>

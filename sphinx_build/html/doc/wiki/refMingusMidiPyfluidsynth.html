@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>#summary Reference documentation for mingus.midi.pyfluidsynth. &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="summary-reference-documentation-for-mingus-midi-pyfluidsynth">
+<h1>#summary Reference documentation for <cite>mingus.midi.pyfluidsynth</cite>.<a class="headerlink" href="#summary-reference-documentation-for-mingus-midi-pyfluidsynth" title="Permalink to this headline">¶</a></h1>
+<p>= mingus.midi.pyfluidsynth =
+Python bindings for FluidSynth.</p>
+<p>FluidSynth is a software synthesizer for generating music.  It works like a
+MIDI synthesizer.</p>
+<p>You load patches, set parameters, then send NOTEON and NOTEOFF events to
+play notes.</p>
+<p>Instruments are defined in SoundFonts, generally files with the extension
+SF2.</p>
+<p>FluidSynth can either be used to play audio itself, or you can call a
+function that returns chunks of audio data and output the data to the
+soundcard yourself.</p>
+<p>FluidSynth works on all major platforms, so pyFluidSynth should also.</p>
+<blockquote>
+<div><ul class="simple">
+<li><em>Type</em>: int</li>
+<li><em>Value</em>: <cite>4</cite></li>
+</ul>
+</div></blockquote>
+<dl class="docutils">
+<dt>=== <cite>RTLD_GLOBAL</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: int</li>
+<li><em>Value</em>: <cite>8</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>RTLD_LOCAL</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: int</li>
+<li><em>Value</em>: <cite>4</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>api_version</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: str</li>
+<li><em>Value</em>: <cite>&#8216;1.2&#8217;</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>cdll</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: ctypes.LibraryLoader</li>
+<li><em>Value</em>: <cite>&lt;ctypes.LibraryLoader object at 0x1008c48d0&gt;</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>lib</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: str</li>
+<li><em>Value</em>: <cite>&#8216;/usr/local/lib/libfluidsynth.dylib&#8217;</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>pydll</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: ctypes.LibraryLoader</li>
+<li><em>Value</em>: <cite>&lt;ctypes.LibraryLoader object at 0x1008c4910&gt;</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>pythonapi</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: ctypes.PyDLL</li>
+<li><em>Value</em>: <cite>&lt;PyDLL &#8216;None&#8217;, handle fffffffffffffffe at 1008c4950&gt;</cite></li>
+</ul>
+</dd>
+</dl>
+<p>=== <cite>CFUNCTYPE(restype)</cite> ===
+CFUNCTYPE(restype, <a href="#id1"><span class="problematic" id="id2">*</span></a>argtypes,</p>
+<blockquote>
+<div>use_errno=False, use_last_error=False) -&gt; function prototype.</div></blockquote>
+<p>restype: the result type
+argtypes: a sequence specifying the argument types</p>
+<p>The function prototype can be called in different ways to create a
+callable object:</p>
+<p>prototype(integer address) -&gt; foreign function
+prototype(callable) -&gt; create and return a C callable function from callable
+prototype(integer index, method name[, paramflags]) -&gt; foreign function calling a COM method
+prototype((ordinal number, dll object)[, paramflags]) -&gt; foreign function exported by ordinal
+prototype((function name, dll object)[, paramflags]) -&gt; foreign function exported by name</p>
+<p>=== <cite>PYFUNCTYPE(restype)</cite> ===
+=== <cite>SetPointerType(pointer, cls)</cite> ===
+=== <cite>c_buffer(init, size)</cite> ===</p>
+<blockquote>
+<div><ul class="simple">
+<li><em>Default values</em>: size = None</li>
+</ul>
+</div></blockquote>
+<p>=== <cite>cast(obj, typ)</cite> ===
+=== <cite>cfunc(name, result)</cite> ===
+Build and apply a ctypes prototype complete with parameter flags.</p>
+<dl class="docutils">
+<dt>=== <cite>create_string_buffer(init, size)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: size = None</li>
+</ul>
+</dd>
+</dl>
+<p>create_string_buffer(aString) -&gt; character array
+create_string_buffer(anInteger) -&gt; character array
+create_string_buffer(aString, anInteger) -&gt; character array</p>
+<dl class="docutils">
+<dt>=== <cite>create_unicode_buffer(init, size)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: size = None</li>
+</ul>
+</dd>
+</dl>
+<p>create_unicode_buffer(aString) -&gt; character array
+create_unicode_buffer(anInteger) -&gt; character array
+create_unicode_buffer(aString, anInteger) -&gt; character array</p>
+<p>=== <cite>find_library(name)</cite> ===
+=== <cite>fluid_synth_write_s16_stereo(synth, len)</cite> ===
+Return generated samples in stereo 16-bit format.</p>
+<p>Return value is a Numpy array of samples.</p>
+<p>=== <cite>raw_audio_string(data)</cite> ===
+Return a string of bytes to send to soundcard.</p>
+<p>Input is a numpy array of samples. Default output format is 16-bit
+signed (other formats not currently supported).</p>
+<dl class="docutils">
+<dt>=== <cite>string_at(ptr, size)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: size = -1</li>
+</ul>
+</dd>
+</dl>
+<p>string_at(addr[, size]) -&gt; string</p>
+<p>Return the string at addr.</p>
+<dl class="docutils">
+<dt>=== <cite>wstring_at(ptr, size)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: size = -1</li>
+</ul>
+</dd>
+</dl>
+<p>wstring_at(addr[, size]) -&gt; string</p>
+<p>Return the string at addr.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/doc/wiki/refMingusMidiPyfluidsynth.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+      |
+      <a href="../../_sources/doc/wiki/refMingusMidiPyfluidsynth.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>

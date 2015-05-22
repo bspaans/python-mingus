@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>&lt;no title&gt; &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p>#summary The mingus.containers.Note module</p>
+<hr class="docutils" />
+<p>= Tutorial 1 - The Note Class =</p>
+<p><cite>mingus.core.notes</cite> provides a way to work with notes. However, what if we want to work with notes in different octaves? Or what if we want to set the amplitude or some effects on a note? This Note class solves those problems and also provides the cornerstone of the <cite>mingus.containers</cite> package.</p>
+<p>== Importing the Note Class ==</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mingus.containers.Note</span> <span class="kn">import</span> <span class="n">Note</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<hr class="docutils" />
+<p>== Creating and Setting Notes ==</p>
+<p>Defining and setting notes is pretty easy and can be done in a variety of ways.</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Note</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">&#39;C-4&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Note</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="go">&#39;C-4&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Note</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">&#39;C-5&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Note</span><span class="p">(</span><span class="s">&quot;C-3&quot;</span><span class="p">)</span>
+<span class="go">&#39;C-3&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="n">Note</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n</span><span class="o">.</span><span class="n">set_note</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n</span>
+<span class="go">&#39;C-5&#39;</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<p>== Note Attributes ==</p>
+<p>The attributes <cite>name</cite>, <cite>octave</cite> and <cite>dynamics</cite> are always set and accessible from the outside:</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Note</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span>
+<span class="go">&#39;C-4&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">name</span>
+<span class="go">&#39;C&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">octave</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">dynamics</span>
+<span class="go">{}</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<p>The dynamics dictionary can be used to store additional information such as volume and effects.</p>
+<p><em>NB</em> If you are using the mingus.midi package: setting the <cite>velocity</cite>, <cite>channel</cite> and <cite>bpm</cite> attribute will have an effect on the output.</p>
+<hr class="docutils" />
+<p>== A Better Note to Integer Converter ==</p>
+<p>A problem with <cite>mingus.core.notes.note_to_int</cite> is that it returns integers in the range 0-11. This would mean that &#8216;Cb&#8217; and &#8216;B&#8217; are both 11. This can be helpful, but when you are dealing with octaves you don&#8217;t want this. The Note class fixes this and also overloads the int() function to make it simpler to use:</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">int</span><span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="go">48</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">int</span><span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="s">&quot;Cb&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="go">47</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">int</span><span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="go">59</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<p>== A Better Integer to Note Converter ==</p>
+<p>The opposite of the previous function is <cite>from_int(integer)</cite>, which sets the note to the corresponding integer where 0 is a C on octave 0, 12 is a C on octave 1, etc.</p>
+<p>{{{
+&gt;&gt;&gt; c = Note()
+&gt;&gt;&gt; c.from_int(12)
+&#8216;C-1&#8217;</p>
+<p>}}}</p>
+<hr class="docutils" />
+<p>== Methods on Notes ==</p>
+<p>=== Octaves ===</p>
+<p>Changing the octave can be done by setting the octave attribute, but the following methods can also be used:</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Note</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">&#39;A-5&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">octave_up</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">&#39;A-6&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">octave_down</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">&#39;A-5&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">change_octave</span><span class="p">(</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">&#39;A-7&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">change_octave</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">&#39;A-5&#39;</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<p>=== Transposing ===</p>
+<p>To move a Note an interval up or down, you can use the function <cite>transpose(interval, up=True)</cite>. The interval should be valid interval shorthand (see the [tutorialIntervals interval tutorial])</p>
+<p>{{{
+&gt;&gt;&gt; a = Note(&#8220;A&#8221;)
+&gt;&gt;&gt; a.transpose(&#8220;3&#8221;)
+&gt;&gt;&gt; a
+&#8216;C#-5&#8217;
+&gt;&gt;&gt; a.transpose(&#8220;4&#8221;, up=False)
+&gt;&gt;&gt; a
+&#8216;G#-5&#8217;</p>
+<p>}}}</p>
+<p>=== Hertz ===</p>
+<p>Converting from and to hertz can be done using the <cite>from_hertz(hertz, standard_pitch=440)</cite> and <cite>to_hertz(standard_pitch=440)</cite> functions, where <cite>standard_pitch</cite> can be used to set the pitch of A-4, from which the rest is calculated.</p>
+<p>=== Migrated Methods ===</p>
+<p>Some of the functions in <cite>mingus.core.notes</cite> were added to the Note class as methods for convenience.</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Note</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">&#39;A-4&#39;</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<p>{{{
+&gt;&gt;&gt; a.augment()
+&gt;&gt;&gt; a
+&#8216;A#-4&#8217;</p>
+<p>}}}</p>
+<p>{{{
+&gt;&gt;&gt; a.diminish()
+&gt;&gt;&gt; a
+&#8216;A-4&#8217;
+}}}</p>
+<p>{{{
+&gt;&gt;&gt; a.to_major()
+&gt;&gt;&gt; a
+&#8216;C-4&#8217;
+}}}</p>
+<p>{{{
+&gt;&gt;&gt; a.to_minor()
+&gt;&gt;&gt; a
+&#8216;A-4&#8217;
+}}}</p>
+<p>{{{
+&gt;&gt;&gt; a = Note(&#8220;A#b#b&#8221;)
+&gt;&gt;&gt; a.remove_redundant_accidentals()
+&#8216;A-4&#8217;
+}}}</p>
+<hr class="docutils" />
+<p>= End of Tutorial 1 =</p>
+<p>You can learn more about [refMingusContainersNote mingus.containers.Note] in the reference section</p>
+<blockquote>
+<div><ul class="simple">
+<li>Tutorial 1 - The Note Class</li>
+<li>[tutorialNoteContainerModule Tutorial 2 - NoteContainers]</li>
+<li>[mingusIndex Back to Index]</li>
+</ul>
+</div></blockquote>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/doc/wiki/tutorialNoteModule.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+      |
+      <a href="../../_sources/doc/wiki/tutorialNoteModule.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>

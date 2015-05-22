@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>#summary Reference documentation for mingus.core.progressions. &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="summary-reference-documentation-for-mingus-core-progressions">
+<h1>#summary Reference documentation for <cite>mingus.core.progressions</cite>.<a class="headerlink" href="#summary-reference-documentation-for-mingus-core-progressions" title="Permalink to this headline">¶</a></h1>
+<p>= mingus.core.progressions =
+Module for dealing with progressions.</p>
+<p>In music and music theory you often deal with sequencesi of chords. These
+chord sequences are called progressions and are often written down using
+roman numerals. In this system the &#8216;I&#8217; refers to the first natural triad in
+a key, the II to the second, etc. We can add prefixes and suffixes to denote
+more complex progressions, like: #V7, bIIdim7, etc.</p>
+<p>This module provides methods which can convert progressions to chords and
+vice versa.</p>
+<blockquote>
+<div><ul class="simple">
+<li><em>Type</em>: list</li>
+<li><em>Value</em>: <cite>[0, 2, 4, 5, 7, 9, 11]</cite></li>
+</ul>
+</div></blockquote>
+<dl class="docutils">
+<dt>=== <cite>numerals</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: list</li>
+<li><em>Value</em>: <cite>[&#8216;I&#8217;, &#8216;II&#8217;, &#8216;III&#8217;, &#8216;IV&#8217;, &#8216;V&#8217;, &#8216;VI&#8217;, &#8216;VII&#8217;]</cite></li>
+</ul>
+</dd>
+</dl>
+<blockquote>
+<div><ul class="simple">
+<li><em>Default values</em>: shorthand = False</li>
+</ul>
+</div></blockquote>
+<p>Determine the harmonic function of chord in key.</p>
+<p>This function can also deal with lists of chords.</p>
+<p>Examples:
+{{{
+&gt;&gt;&gt; determine([&#8216;C&#8217;, &#8216;E&#8217;, &#8216;G&#8217;], &#8216;C&#8217;)
+[&#8216;tonic&#8217;]
+&gt;&gt;&gt; determine([&#8216;G&#8217;, &#8216;B&#8217;, &#8216;D&#8217;], &#8216;C&#8217;)
+[&#8216;dominant&#8217;]
+&gt;&gt;&gt; determine([&#8216;G&#8217;, &#8216;B&#8217;, &#8216;D&#8217;, &#8216;F&#8217;], &#8216;C&#8217;, True)
+[&#8216;V7&#8217;]
+&gt;&gt;&gt; determine([[&#8216;C&#8217;, &#8216;E&#8217;, &#8216;G&#8217;], [&#8216;G&#8217;, &#8216;B&#8217;, &#8216;D&#8217;]], &#8216;C&#8217;, True)
+[[&#8216;I&#8217;], [&#8216;V&#8217;]]
+}}}</p>
+<p>=== <cite>interval_diff(progression1, progression2, interval)</cite> ===
+Return the number of half steps progression2 needs to be diminished or
+augmented until the interval between progression1 and progression2 is
+interval.</p>
+<p>=== <cite>parse_string(progression)</cite> ===
+Return a tuple (roman numeral, accidentals, chord suffix).</p>
+<p>Examples:
+{{{
+&gt;&gt;&gt; parse_string(&#8216;I&#8217;)
+(&#8216;I&#8217;, 0, &#8216;&#8217;)
+&gt;&gt;&gt; parse_string(&#8216;bIM7&#8217;)
+(&#8216;I&#8217;, -1, &#8216;M7&#8217;)
+}}}</p>
+<dl class="docutils">
+<dt>=== <cite>skip(roman_numeral, skip)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: skip = 1</li>
+</ul>
+</dd>
+</dl>
+<p>Skip the given places to the next roman numeral.</p>
+<p>Examples:
+{{{
+&gt;&gt;&gt; skip(&#8216;I&#8217;)
+&#8216;II&#8217;
+&gt;&gt;&gt; skip(&#8216;VII&#8217;)
+&#8216;I&#8217;
+&gt;&gt;&gt; skip(&#8216;I&#8217;, 2)
+&#8216;III&#8217;
+}}}</p>
+<dl class="docutils">
+<dt>=== <cite>substitute(progression, substitute_index, depth)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: depth = 0</li>
+</ul>
+</dd>
+</dl>
+<p>Give a list of possible substitutions for progression[substitute_index].</p>
+<p>If depth &gt; 0 the substitutions of each result will be recursively added
+as well.</p>
+<p>Example:
+{{{
+&gt;&gt;&gt; substitute([&#8216;I&#8217;, &#8216;IV&#8217;, &#8216;V&#8217;, &#8216;I&#8217;], 0)
+[&#8216;III&#8217;, &#8216;III7&#8217;, &#8216;VI&#8217;, &#8216;VI7&#8217;, &#8216;I7&#8217;]
+}}}</p>
+<dl class="docutils">
+<dt>=== <cite>substitute_diminished_for_diminished(progression, substitute_index, ignore_suffix)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: ignore_suffix = False</li>
+</ul>
+</dd>
+</dl>
+<p>Substitute a diminished chord for another diminished chord.</p>
+<p>&#8216;dim&#8217; and &#8216;dim7&#8217; suffixes recognized, and &#8216;VI&#8217; if there is no suffix.</p>
+<p>Example:
+{{{
+&gt;&gt;&gt; substitute_diminished_for_diminished([&#8216;VII&#8217;], 0)
+[&#8216;IIdim&#8217;, &#8216;bIVdim&#8217;, &#8216;bbVIdim&#8217;]
+}}}</p>
+<dl class="docutils">
+<dt>=== <cite>substitute_diminished_for_dominant(progression, substitute_index, ignore_suffix)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: ignore_suffix = False</li>
+</ul>
+</dd>
+<dt>=== <cite>substitute_harmonic(progression, substitute_index, ignore_suffix)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: ignore_suffix = False</li>
+</ul>
+</dd>
+</dl>
+<p>Do simple harmonic substitutions. Return a list of possible substitions
+for progression[substitute_index].</p>
+<p>If ignore_suffix is set to True the suffix of the chord being
+substituted will be ignored. Otherwise only progressions without a
+suffix, or with suffix &#8216;7&#8217; will be substituted.</p>
+<p>The following table is used to convert progressions:
+|| I || III ||
+|| I || VI ||
+|| IV || II ||
+|| IV || VI ||
+|| V || VII ||</p>
+<dl class="docutils">
+<dt>=== <cite>substitute_major_for_minor(progression, substitute_index, ignore_suffix)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: ignore_suffix = False</li>
+</ul>
+</dd>
+</dl>
+<p>Substitute major chords for their minor equivalent.</p>
+<p>&#8216;M&#8217; and &#8216;M7&#8217; suffixes recognized, and [&#8216;I&#8217;, &#8216;IV&#8217;, &#8216;V&#8217;] if there is no
+suffix.</p>
+<p>Examples:
+{{{
+&gt;&gt;&gt; substitute_major_for_minor([&#8216;I&#8217;], 0)
+[&#8216;VI&#8217;]
+&gt;&gt;&gt; substitute_major_for_minor([&#8216;VM7&#8217;], 0)
+[&#8216;IIIm7&#8217;]
+}}}</p>
+<dl class="docutils">
+<dt>=== <cite>substitute_minor_for_major(progression, substitute_index, ignore_suffix)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: ignore_suffix = False</li>
+</ul>
+</dd>
+</dl>
+<p>Substitute minor chords for its major equivalent.</p>
+<p>&#8216;m&#8217; and &#8216;m7&#8217; suffixes recognized, and [&#8216;II&#8217;, &#8216;III&#8217;, &#8216;VI&#8217;] if there is no
+suffix.</p>
+<p>Examples:
+{{{
+&gt;&gt;&gt; substitute_minor_for_major([&#8216;VI&#8217;], 0)
+[&#8216;I&#8217;]
+&gt;&gt;&gt; substitute_minor_for_major([&#8216;Vm&#8217;], 0)
+[&#8216;bVIIM&#8217;]
+&gt;&gt;&gt; substitute_minor_for_major([&#8216;VIm7&#8217;], 0)
+[&#8216;IM7&#8217;]
+}}}</p>
+<dl class="docutils">
+<dt>=== <cite>to_chords(progression, key)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: key = &#8216;C&#8217;</li>
+</ul>
+</dd>
+</dl>
+<p>Convert a list of chord functions or a string to a list of chords.</p>
+<p>Examples:
+{{{
+&gt;&gt;&gt; to_chords([&#8216;I&#8217;, &#8216;V7&#8217;])
+[[&#8216;C&#8217;, &#8216;E&#8217;, &#8216;G&#8217;], [&#8216;G&#8217;, &#8216;B&#8217;, &#8216;D&#8217;, &#8216;F&#8217;]]
+&gt;&gt;&gt; to_chords(&#8216;I7&#8217;)
+[[&#8216;C&#8217;, &#8216;E&#8217;, &#8216;G&#8217;, &#8216;B&#8217;]]
+}}}</p>
+<p>Any number of accidentals can be used as prefix to augment or diminish;
+for example: bIV or #I.</p>
+<p>All the chord abbreviations in the chord module can be used as suffixes;
+for example: Im7, IVdim7, etc.</p>
+<p>You can combine prefixes and suffixes to manage complex progressions:
+#vii7, #iidim7, iii7, etc.</p>
+<p>Using 7 as suffix is ambiguous, since it is classicly used to denote the
+seventh chord when talking about progressions instead of just the
+dominant seventh chord. We have taken the classic route; I7 will get
+you a major seventh chord. If you specifically want a dominanth seventh,
+use Idom7.</p>
+<p>=== <cite>tuple_to_string(prog_tuple)</cite> ===
+Create a string from tuples returned by parse_string.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/doc/wiki/refMingusCoreProgressions.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+      |
+      <a href="../../_sources/doc/wiki/refMingusCoreProgressions.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>

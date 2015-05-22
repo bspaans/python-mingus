@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>&lt;no title&gt; &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p>#summary The mingus.containers.Track module</p>
+<hr class="docutils" />
+<p>= Tutorial 5 - Tracks =</p>
+<p>The Track class is a simple data structure to store [tutorialBarModule Bars] in. The Class can also be used with an [tutorialInstrumentModule Instrument], but this is optional.</p>
+<p>== Import the Track Class ==</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mingus.containers.Track</span> <span class="kn">import</span> <span class="n">Track</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<hr class="docutils" />
+<p>== Creating Tracks ==</p>
+<p>To create a new track you can simply make a new instance of <cite>Track()</cite>. If you want to have Instrument support, with automatic range checking, etc. you should give that as an argument:</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">Track</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">Track</span><span class="p">(</span><span class="n">Instrument</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<hr class="docutils" />
+<p>== Adding Bars ==</p>
+<p>Adding bars can be done using <cite>add_bar</cite>.</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">Track</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">add_bar</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<p>== Adding Notes and NoteContainers ==</p>
+<p>Adding notes to a track can be done using <cite>add_notes</cite>. This function accepts Notes, notes as strings and NoteContainers and adds them to the last Bar. If the [refMingusContainersBar Bar] is full, a new one will automatically be created. If the [refMingusContainersBar Bar] is not full but the note can&#8217;t fit in, this method will return <cite>False</cite>. True otherwise.</p>
+<p>Also, when an Instrument is attached to the Track, but the note turns out not to be within the range of that Instrument, an !InstrumentRangeError will be raised.</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">Track</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">add_notes</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<p>== The overloaded &#8216;+&#8217; operator ==</p>
+<p>This should be familiar stuff by now, but the &#8216;+&#8217; operator is overloaded for the Track class as well and accepts strings, NoteContainers, Notes and Bars.</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">Track</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">+</span> <span class="n">b</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">+</span> <span class="s">&quot;C-4&quot;</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<hr class="docutils" />
+<p>== List Notation ==</p>
+<p>Tracks, like Bars and !NoteContainers can be used as lists as well.</p>
+<p>{{{
+&gt;&gt;&gt; t = Track()
+&gt;&gt;&gt; b = Bar()
+&gt;&gt;&gt; b + &#8220;C&#8221;
+True
+&gt;&gt;&gt; t + b
+True
+&gt;&gt;&gt; t[0]
+[[0.0, 4, [&#8220;C-4&#8221;]]]
+&gt;&gt;&gt; t[0] = Bar()
+&gt;&gt;&gt; t[0]
+[[]]</p>
+<p>}}}</p>
+<hr class="docutils" />
+<p>== Other Methods ==</p>
+<p>The usual methods: -transpose, augment, diminish, to_major and to_minor- are also available on Tracks. Calls to these functions will get redirected to each Bar&#8217;s equivalent.</p>
+<hr class="docutils" />
+<p>= End of Tutorial 5 =</p>
+<p>You can learn more about [refMingusContainersTrack mingus.containers.Track in the reference section]</p>
+<blockquote>
+<div><ul class="simple">
+<li>[tutorialNoteModule Tutorial 1 - The Note Class]</li>
+<li>[tutorialNoteContainerModule Tutorial 2 - NoteContainers]</li>
+<li>[tutorialBarModule Tutorial 3 - Bars]</li>
+<li>[tutorialInstrumentModule Tutorial 4 - Instruments]</li>
+<li>Tutorial 5 - Tracks</li>
+<li>[tutorialCompositionModule Tutorial 6 - Compositions]</li>
+<li>[mingusIndex Back to Index]</li>
+</ul>
+</div></blockquote>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/doc/wiki/tutorialTrackModule.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+      |
+      <a href="../../_sources/doc/wiki/tutorialTrackModule.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>

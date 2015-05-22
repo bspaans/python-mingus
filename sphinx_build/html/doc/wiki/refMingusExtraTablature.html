@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>#summary Reference documentation for mingus.extra.tablature. &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="summary-reference-documentation-for-mingus-extra-tablature">
+<h1>#summary Reference documentation for <cite>mingus.extra.tablature</cite>.<a class="headerlink" href="#summary-reference-documentation-for-mingus-extra-tablature" title="Permalink to this headline">¶</a></h1>
+<p>= mingus.extra.tablature =
+Functions to convert mingus.containers to pretty ASCII tablature.
+&#8212;-
+== Attributes ==
+=== <cite>default_tuning</cite> ===</p>
+<blockquote>
+<div><ul class="simple">
+<li><em>Type</em>: mingus.extra.tunings.StringTuning</li>
+<li><em>Value</em>: <cite>&lt;mingus.extra.tunings.StringTuning object at 0x1003d0f10&gt;</cite></li>
+</ul>
+</div></blockquote>
+<p>Return a reasonable quarter note size for &#8216;tuning&#8217; and &#8216;width&#8217;.</p>
+<p>=== <cite>_get_width(maxwidth)</cite> ===
+Return the width of a single bar, when width of the page is given.</p>
+<dl class="docutils">
+<dt>=== <cite>add_headers(width, title, subtitle, author, email, description, tunings)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: width = 80, title = &#8216;Untitled&#8217;, subtitle = &#8216;&#8217;, author = &#8216;&#8217;, email = &#8216;&#8217;, description = &#8216;&#8217;, tunings = []</li>
+</ul>
+</dd>
+</dl>
+<p>Create a nice header in the form of a list of strings using the
+information that has been filled in.</p>
+<p>All arguments except &#8216;width&#8217; and &#8216;tunings&#8217; should be strings. &#8216;width&#8217;
+should be an integer and &#8216;tunings&#8217; a list of tunings representing the
+instruments.</p>
+<dl class="docutils">
+<dt>=== <cite>begin_track(tuning, padding)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: padding = 2</li>
+</ul>
+</dd>
+</dl>
+<p>Helper function that builds the first few characters of every bar.</p>
+<dl class="docutils">
+<dt>=== <cite>from_Bar(bar, width, tuning, collapse)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: width = 40, tuning = None, collapse = True</li>
+</ul>
+</dd>
+</dl>
+<p>Convert a mingus.containers.Bar object to ASCII tablature.</p>
+<p>Throw a FingerError if no playable fingering can be found.</p>
+<p>&#8216;tuning&#8217; should be a StringTuning object or None for the default tuning.
+If &#8216;collapse&#8217; is False this will return a list of lines, if it&#8217;s True
+all lines will be concatenated with a newline symbol.</p>
+<p>Use &#8216;string&#8217; and &#8216;fret&#8217; attributes on Notes to force certain fingerings.</p>
+<dl class="docutils">
+<dt>=== <cite>from_Composition(composition, width)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: width = 80</li>
+</ul>
+</dd>
+</dl>
+<p>Convert a mingus.containers.Composition to an ASCII tablature string.</p>
+<p>Automatically add an header based on the title, subtitle, author, e-mail
+and description attributes. An extra description of the piece can also
+be given.</p>
+<p>Tunings can be set by using the Track.instrument.tuning or Track.tuning
+attribute.</p>
+<dl class="docutils">
+<dt>=== <cite>from_Note(note, width, tuning)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: width = 80, tuning = None</li>
+</ul>
+</dd>
+</dl>
+<p>Return a string made out of ASCII tablature representing a Note object
+or note string.</p>
+<p>Throw a RangeError if a suitable fret can&#8217;t be found.</p>
+<p>&#8216;tuning&#8217; should be a StringTuning object or None for the default tuning.</p>
+<p>To force a certain fingering you can use a &#8216;string&#8217; and &#8216;fret&#8217; attribute
+on the Note. If the fingering is valid, it will get used instead of the
+default one.</p>
+<dl class="docutils">
+<dt>=== <cite>from_NoteContainer(notes, width, tuning)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: width = 80, tuning = None</li>
+</ul>
+</dd>
+</dl>
+<p>Return a string made out of ASCII tablature representing a
+NoteContainer object or list of note strings / Note objects.</p>
+<p>Throw a FingerError if no playable fingering can be found.</p>
+<p>&#8216;tuning&#8217; should be a StringTuning object or None for the default tuning.</p>
+<p>To force a certain fingering you can use a &#8216;string&#8217; and &#8216;fret&#8217; attribute
+on one or more of the Notes. If the fingering is valid, it will get used
+instead of the default one.</p>
+<dl class="docutils">
+<dt>=== <cite>from_Suite(suite, maxwidth)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: maxwidth = 80</li>
+</ul>
+</dd>
+</dl>
+<p>Convert a mingus.containers.Suite to an ASCII tablature string, complete
+with headers.</p>
+<p>This function makes use of the Suite&#8217;s title, subtitle, author, email
+and description attributes.</p>
+<dl class="docutils">
+<dt>=== <cite>from_Track(track, maxwidth, tuning)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: maxwidth = 80, tuning = None</li>
+</ul>
+</dd>
+</dl>
+<p>Convert a mingus.containers.Track object to an ASCII tablature string.</p>
+<p>&#8216;tuning&#8217; should be set to a StringTuning object or to None to use the
+Track&#8217;s tuning (or alternatively the default if the Track hasn&#8217;t got its
+own tuning).</p>
+<p>&#8216;string&#8217; and &#8216;fret&#8217; attributes on Notes are taken into account.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/doc/wiki/refMingusExtraTablature.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+      |
+      <a href="../../_sources/doc/wiki/refMingusExtraTablature.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>

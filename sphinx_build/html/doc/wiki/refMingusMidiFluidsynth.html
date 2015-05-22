@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>#summary Reference documentation for mingus.midi.fluidsynth. &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="summary-reference-documentation-for-mingus-midi-fluidsynth">
+<h1>#summary Reference documentation for <cite>mingus.midi.fluidsynth</cite>.<a class="headerlink" href="#summary-reference-documentation-for-mingus-midi-fluidsynth" title="Permalink to this headline">¶</a></h1>
+<p>= mingus.midi.fluidsynth =
+FluidSynth support for mingus.</p>
+<p>FluidSynth is a software MIDI synthesizer which allows you to play the
+containers in mingus.containers real-time. To work with this module, you&#8217;ll
+need fluidsynth and a nice instrument collection (look here:
+<a class="reference external" href="http://www.hammersound.net">http://www.hammersound.net</a>, go to Sounds → Soundfont Library → Collections).</p>
+<p>To start using FluidSynth with mingus, do:
+&gt;&gt;&gt; from mingus.midi import fluidsynth
+&gt;&gt;&gt; fluidsynth.init(&#8216;soundfontlocation.sf2&#8217;)</p>
+<p>Now you are ready to play Notes, NoteContainers, etc.</p>
+<blockquote>
+<div><ul class="simple">
+<li><em>Type</em>: bool</li>
+<li><em>Value</em>: <cite>False</cite></li>
+</ul>
+</div></blockquote>
+<dl class="docutils">
+<dt>=== <cite>midi</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: mingus.midi.fluidsynth.FluidSynthSequencer</li>
+<li><em>Value</em>: <cite>&lt;mingus.midi.fluidsynth.FluidSynthSequencer object at 0x1009e52d0&gt;</cite></li>
+</ul>
+</dd>
+</dl>
+<p>Send a control change event on channel.</p>
+<dl class="docutils">
+<dt>=== <cite>init(sf2, driver, file)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: driver = None, file = None</li>
+</ul>
+</dd>
+</dl>
+<p>Initialize the audio.</p>
+<p>Return True on success, False on failure.</p>
+<p>This function needs to be called before you can have any audio.</p>
+<p>The sf2 argument should be the location of a valid soundfont file.</p>
+<p>The optional driver argument can be any of &#8216;alsa&#8217;, &#8216;oss&#8217;, &#8216;jack&#8217;,
+&#8216;portaudio&#8217;, &#8216;sndmgr&#8217;, &#8216;coreaudio&#8217; or &#8216;Direct Sound&#8217;.</p>
+<p>If the file argument is not None, then instead of loading the driver, a
+new wave file will be initialized to store the audio data.</p>
+<p>=== <cite>main_volume(channel, value)</cite> ===
+=== <cite>modulation(channel, value)</cite> ===
+=== <cite>pan(channel, value)</cite> ===
+=== <cite>play_Bar(bar, channel, bpm)</cite> ===</p>
+<blockquote>
+<div><ul class="simple">
+<li><em>Default values</em>: channel = 1, bpm = 120</li>
+</ul>
+</div></blockquote>
+<p>Play a Bar object using play_NoteContainer and stop_NoteContainer.</p>
+<p>Set a bpm attribute on a NoteContainer to change the tempo.</p>
+<dl class="docutils">
+<dt>=== <cite>play_Bars(bars, channels, bpm)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: bpm = 120</li>
+</ul>
+</dd>
+</dl>
+<p>Play a list of bars on the given list of channels.</p>
+<p>Set a bpm attribute on a NoteContainer to change the tempo.</p>
+<dl class="docutils">
+<dt>=== <cite>play_Composition(composition, channels, bpm)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: channels = None, bpm = 120</li>
+</ul>
+</dd>
+</dl>
+<p>Play a composition.</p>
+<dl class="docutils">
+<dt>=== <cite>play_Note(note, channel, velocity)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: channel = 1, velocity = 100</li>
+</ul>
+</dd>
+</dl>
+<p>Convert a Note object to a &#8216;midi on&#8217; command.</p>
+<p>The channel and velocity can be set as Note attributes as well. If
+that&#8217;s the case those values take presedence over the ones given here as
+function arguments.</p>
+<p>Example:
+{{{
+&gt;&gt;&gt; n = Note(&#8216;C&#8217;, 4)
+&gt;&gt;&gt; n.channel = 9
+&gt;&gt;&gt; n.velocity = 50
+&gt;&gt;&gt; FluidSynth.play_Note(n)
+}}}</p>
+<dl class="docutils">
+<dt>=== <cite>play_NoteContainer(nc, channel, velocity)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: channel = 1, velocity = 100</li>
+</ul>
+</dd>
+</dl>
+<p>Use play_Note to play the Notes in the NoteContainer nc.</p>
+<dl class="docutils">
+<dt>=== <cite>play_Track(track, channel, bpm)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: channel = 1, bpm = 120</li>
+</ul>
+</dd>
+</dl>
+<p>Use play_Bar to play a Track object.</p>
+<dl class="docutils">
+<dt>=== <cite>play_Tracks(tracks, channels, bpm)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: bpm = 120</li>
+</ul>
+</dd>
+</dl>
+<p>Use play_Bars to play a list of Tracks on the given list of channels.</p>
+<dl class="docutils">
+<dt>=== <cite>set_instrument(channel, instr, bank)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: bank = 0</li>
+</ul>
+</dd>
+<dt>=== <cite>stop_Note(note, channel)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: channel = 1</li>
+</ul>
+</dd>
+</dl>
+<p>Stop the Note playing at channel.</p>
+<p>If a channel attribute is set on the note, it will take presedence.</p>
+<dl class="docutils">
+<dt>=== <cite>stop_NoteContainer(nc, channel)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: channel = 1</li>
+</ul>
+</dd>
+</dl>
+<p>Use stop_Note to stop the notes in NoteContainer nc.</p>
+<p>=== <cite>stop_everything()</cite> ===
+Stop all the playing notes on all channels.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/doc/wiki/refMingusMidiFluidsynth.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+      |
+      <a href="../../_sources/doc/wiki/refMingusMidiFluidsynth.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>

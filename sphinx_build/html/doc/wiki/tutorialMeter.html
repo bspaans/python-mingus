@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>&lt;no title&gt; &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p>#summary mingus.core.meter</p>
+<hr class="docutils" />
+<p>= Tutorial 6 - Note Value and Meter =</p>
+<hr class="docutils" />
+<p>== Importing the value Module ==</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mingus.core.value</span> <span class="kn">as</span> <span class="nn">value</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<hr class="docutils" />
+<p>== Note Value ==</p>
+<p>A note value indicates the relative duration of a note. In mingus, note values are represented by floating point numbers. A quarter note is 4, because it stands for 1/4 note, an eighth note is 8 because it stands for 1/8, a sixteenth note is 16, etc. These are all pretty straight forward, but how do you define a sixteenth triplet? Well, sixteenth triplets are made by taking an eighth note and deviding it in 3 equal parts. 1/8 times 1/3 = 1/24; so 24 is the number we want. How about a dotted eighth note? A dotted eighth note has the length of an eighth note plus half an eighth note. 1/8 + 1/16 = 3/16 = 1 / 16 / 3. So 16/3 is the number we are looking for. As you can see these calculations can be quite tiresome and can clutter up your code. This module is here to help do the conversion.</p>
+<p>=== English or Standard Notation ===</p>
+<p>Let us start by looking at some constants.</p>
+<p>{{{
+&gt;&gt;&gt; value.whole
+1
+&gt;&gt;&gt; value.eighth
+8
+&gt;&gt;&gt; value.sixteenth
+16
+}}}</p>
+<p>Nothing spectular so far.</p>
+<p>For medieval backwards compatibility the English notation has also been included.</p>
+<p>{{{
+&gt;&gt;&gt; value.longa
+0.25
+&gt;&gt;&gt; value.quaver
+8
+&gt;&gt;&gt; value.quasihemidemisemiquaver
+128
+}}}</p>
+<p>Never again will you have to remember the difference between a semibreve and a semihemidemisemiquaver!</p>
+<hr class="docutils" />
+<p>== Making Dotted Notes ==</p>
+<p>A dot adds half the duration of the note. A second dot adds half of what was added before, etc. For example: a dotted eighth note has the length of three sixteenth notes and an eighth note with two dots has the length of seven thirty second notes. The function <cite>dots(value, nr=1)</cite> returns the dotted note value.</p>
+<p>{{{
+&gt;&gt;&gt; value.dots(value.eighth)
+5.3333333333333333
+&gt;&gt;&gt; value.dots(value.eighth, 2)
+4.5714285714285712</p>
+<p>}}}</p>
+<hr class="docutils" />
+<p>== Making Tuplets ==</p>
+<p>A tuplet can be written as a ratio. For example: 5:4 means that you play 5 notes in the duration of 4 (this is also called a quintuplet), 3:2 means that you play 3 notes in the duration of 2 (a triplet), etc. The tuplet function calculates the note value when playing in a certain ratio.</p>
+<p>{{{
+&gt;&gt;&gt; value.tuplet(value.eighth, 5, 4)
+10.0
+&gt;&gt;&gt; value.tuplet(value.eighth, 3, 2)
+12.0
+}}}</p>
+<p>There are a couple of &#8216;shortcut&#8217; functions to tuplet that have predefined ratios; triplet (3:2) and quintuplet (5:4).</p>
+<p>{{{
+&gt;&gt;&gt; value.triplet(value.eighth)
+12.0
+&gt;&gt;&gt; value.quintuplet(value.eighth)
+10.0
+}}}</p>
+<p>A septuplet function also exists and defaults to the ratio 7:4. When the second argument is set to False, the ratio is the less common 7:8.</p>
+<p>{{{
+&gt;&gt;&gt; value.septuplet(value.eighth)
+14.0
+&gt;&gt;&gt; value.septuplet(value.eighth, False)
+7.0
+}}}</p>
+<hr class="docutils" />
+<p>== Adding and Subtracting Note Values ==</p>
+<p>In the container modules we will see that it is often handy to have some simple functions for basic adding and subtracting available.</p>
+<p>{{{
+&gt;&gt;&gt; value.add(value.eighth, value.quarter)
+2.6666666666666665
+&gt;&gt;&gt; value.add(value.eighth, value.eighth)
+4.0
+&gt;&gt;&gt; value.subtract(2.6666666666666665, 8)
+4.0
+}}}</p>
+<hr class="docutils" />
+<p>== Recognising Note Values ==</p>
+<p>The floating point numbers are a fast and simple way to store the length of a note, but for some reasons (mainly notation related) it would be nice to know the basic note value, the number of dots and the ratio. Determine returns just that:</p>
+<p>{{{
+&gt;&gt;&gt; value.determine(value.eighth)
+(8, 0, 1, 1)
+&gt;&gt;&gt; value.determine(12)
+(8, 0, 3, 2)
+&gt;&gt;&gt; value.determine(14)
+(8, 0, 7, 4)
+&gt;&gt;&gt; value.determine(dots(value.eighth))
+(8, 1, 1, 1)
+}}}</p>
+<hr class="docutils" />
+<p>Now that we have seen how note values are handled, let&#8217;s take a look at a slightly related and small module dealing with meter.</p>
+<p>== Importing meter Module ==</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mingus.core.meter</span> <span class="kn">as</span> <span class="nn">meter</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<hr class="docutils" />
+<p>== Simple Meters ==</p>
+<p>Meters in mingus are represented by a tuple consisting of respectively the nominator and the denominator. We can use is_valid to test whether an arbitrary tuple is a valid representation or not:</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">meter</span><span class="o">.</span><span class="n">is_valid</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">meter</span><span class="o">.</span><span class="n">is_valid</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">meter</span><span class="o">.</span><span class="n">is_valid</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<p>Some constants are also included:</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">meter</span><span class="o">.</span><span class="n">common_time</span>
+<span class="go">(4, 4)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">meter</span><span class="o">.</span><span class="n">cut_time</span>
+<span class="go">(2, 2)</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<hr class="docutils" />
+<p>== Compound Meters ==</p>
+<p>Compound meter is a meter in which each measure is divided into three or more or two uneven parts (as opposed to two even parts). To test whether a meter is compound or not, we can use <cite>is_compound</cite>:</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">meter</span><span class="o">.</span><span class="n">is_compound</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">meter</span><span class="o">.</span><span class="n">is_compound</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">meter</span><span class="o">.</span><span class="n">is_compound</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<hr class="docutils" />
+<p>== Asymmetrical Meters ==</p>
+<p>Asymmetrical meters represent meters that can&#8217;t be divided into parts of two. is_assymetrical test whether this is true or not.</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">meter</span><span class="o">.</span><span class="n">is_assymetrical</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">meter</span><span class="o">.</span><span class="n">is_assymetrical</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">meter</span><span class="o">.</span><span class="n">is_assymetrical</span><span class="p">((</span><span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">meter</span><span class="o">.</span><span class="n">is_assymetrical</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">meter</span><span class="o">.</span><span class="n">is_assymetrical</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<hr class="docutils" />
+<p>= End of Tutorial 6 =</p>
+<p>You can learn more about [refMingusCoreValue mingus.core.value] and [refMingusCoreMeter mingus.core.meter] in the reference section.</p>
+<blockquote>
+<div><ul class="simple">
+<li>[tutorialNote Tutorial 1 - Working with Notes]</li>
+<li>[tutorialDiatonic Tutorial 2 - Keys and the Diatonic Scale]</li>
+<li>[tutorialIntervals Tutorial 3 - Intervals]</li>
+<li>[tutorialChords Tutorial 4 - Triads, Sevenths and Extended Chords]</li>
+<li>[tutorialScales Tutorial 5 - Scales]</li>
+<li>Tutorial 6 - Note Value and Meter</li>
+<li>[tutorialProgressions Tutorial 7 - Progressions]</li>
+<li>[tutorialCore Tutorial 8 - ...And Now What?]</li>
+<li>[mingusIndex Back to Index]</li>
+</ul>
+</div></blockquote>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/doc/wiki/tutorialMeter.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+      |
+      <a href="../../_sources/doc/wiki/tutorialMeter.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>&lt;no title&gt; &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p>#summary Exploring <cite>mingus.core.intervals</cite></p>
+<hr class="docutils" />
+<p>= Tutorial 3 - Intervals =</p>
+<p>An interval in music theory describes the relationship between the pitches of two notes and is a building block for chords and scales. This module can be used to build arbitrary intervals. It also has a special recognizing function, which can determine the interval between two notes.</p>
+<p>== Importing Intervals ==</p>
+<p>The same as before. A python shell and a simple import is all we need to get started:</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mingus.core.intervals</span> <span class="kn">as</span> <span class="nn">intervals</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<hr class="docutils" />
+<p>== Natural Diatonic Intervals ==</p>
+<p>Taking the natural unison, second, third, fourth, fifth, sixth or seventh of a certain note in a certain key is pretty easy with functions named just like that. The functions expect a note and a key:</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">intervals</span><span class="o">.</span><span class="n">second</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">&quot;D&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">intervals</span><span class="o">.</span><span class="n">second</span><span class="p">(</span><span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">&quot;F&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">intervals</span><span class="o">.</span><span class="n">second</span><span class="p">(</span><span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;D&quot;</span><span class="p">)</span>
+<span class="go">&quot;F#&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">intervals</span><span class="o">.</span><span class="n">third</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">&quot;E&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">intervals</span><span class="o">.</span><span class="n">seventh</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">&quot;B&quot;</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<p>For people who are uncertain about what&#8217;s going on here, take a look at the notes in the key of C:</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diatonic</span><span class="o">.</span><span class="n">get_notes</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&#39;C&#39;, &#39;D&#39;, &#39;E&#39;, &#39;F&#39;, &#39;G&#39;, &#39;A&#39;, &#39;B&#39;]</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<p>If we want the natural second, starting on C in the key of C, we move one step to the right and get D. If we start on the E, we get an F, etc.
+Now, if we want to get the third we move two steps to the right, for the fourth, three steps, etc. If we reach the end, we start back at the beginning. For instance, the natural fourth of A in the key of C is D.</p>
+<hr class="docutils" />
+<p>== Absolute Intervals ==</p>
+<p>The second, third, etc. functions work great and are heavily used in the chord module, but sometimes you need a specific interval starting on a note. The same function names, but prefixed with minor or major will take care of that:</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">intervals</span><span class="o">.</span><span class="n">minor_second</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">&quot;Db&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">intervals</span><span class="o">.</span><span class="n">major_sixth</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">&quot;A&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">intervals</span><span class="o">.</span><span class="n">minor_third</span><span class="p">(</span><span class="s">&quot;Cb&quot;</span><span class="p">)</span>
+<span class="go">&quot;Ebb&quot;</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<p>The theory behind this is a bit harder, though. If we look at the notes in the key of C again, we find that the number of half steps between C and D is two and the number of half steps between C and E is four. We know that these are respectively the second and the third natural interval. By convention we call these major. Db and Eb would be a minor second and a minor third. The same works for the other natural intervals. (See also exercise 1)</p>
+<p><em>Note</em> <cite>major_fifth</cite> and <cite>major_fourth</cite> are better known as <cite>perfect_fifth</cite> and <cite>perfect_fourth</cite>. Both functions may be used.</p>
+<hr class="docutils" />
+<p>=== Interval Shorthand ===</p>
+<p>The <cite>from_shorthand</cite> function gives you a way to handle intervals programmatically. You can use the numbers 1-7 combined with an optional accidental prefix to get the interval from a certain note. Any number of accidentals can be used, but -again- use it cautiously. No prefix means that you want the major interval, a &#8216;b&#8217; will return the minor interval, &#8216;bb&#8217; the diminished, &#8216;#&#8217; the augmented.</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;3&quot;</span><span class="p">)</span>
+<span class="go">&#39;C#&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;b3&quot;</span><span class="p">)</span>
+<span class="go">&#39;C&#39;</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<p>The interval usually goes up, but you can let it go down as well.</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;2&quot;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+<span class="go">&#39;D&#39;</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<p>=== Recognize Intervals ===</p>
+<p>To determine what the interval between note1 and note2 is called, we can use <cite>interval.determine(note1, note2)</cite>. This is where we really start to notice that &#8216;Cb&#8217; and &#8216;B&#8217; are not the same:</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">interval</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">):</span>
+<span class="go">&quot;major third&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">interval</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;Cb&quot;</span><span class="p">):</span>
+<span class="go">&quot;minor unison&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">interval</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span><span class="p">):</span>
+<span class="go">&quot;major seventh&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">interval</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;G&quot;</span><span class="p">):</span>
+<span class="go">&quot;minor seventh&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">interval</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="s">&quot;Gbb&quot;</span><span class="p">,</span> <span class="s">&quot;Ab&quot;</span><span class="p">):</span>
+<span class="go">&quot;augmented second&quot;</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<p>The determine function can also output the result in shorthand, which can be fed back into <cite>from_shorthand</cite>.</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">interval</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+<span class="go">&quot;3&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">interval</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;Eb&quot;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+<span class="go">&quot;b3&quot;</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<hr class="docutils" />
+<p>=== Measuring ===</p>
+<p>Sometimes it&#8217;s just more convenient to work with integers than with shorthand. For those occasions you can use the <cite>measure</cite> function, which will return the number of half note steps between two notes. Also notice how the steps between C and D are different from the steps between D and C:</p>
+<p>{{{</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">interval</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;D&quot;</span><span class="p">)</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">interval</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="s">&quot;D&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">10</span>
+</pre></div>
+</div>
+<p>}}}</p>
+<hr class="docutils" />
+<p>== Exercises ==</p>
+<blockquote>
+<div># Take the minor and major thirds and fourths of the note C. Output the note and the note as integer to the screen. Do you notice something?
+# Create a program where a user can input a key and a note and gets the note + the natural third + the natural fifth back. This is a called a natural triad (= chord made out of three notes).</div></blockquote>
+<hr class="docutils" />
+<p>= End of Tutorial 3 =</p>
+<p>You can learn more about [refMingusCoreIntervals mingus.core.intervals] in the reference section.</p>
+<blockquote>
+<div><ul class="simple">
+<li>[tutorialNote Tutorial 1 - Working with Notes]</li>
+<li>[tutorialDiatonic Tutorial 2 - Keys and the Diatonic Scale]</li>
+<li>Tutorial 3 - Intervals</li>
+<li>[tutorialChords Tutorial 4 - Triads, Sevenths and Extended Chords]</li>
+<li>[mingusIndex Back to Index]</li>
+</ul>
+</div></blockquote>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/doc/wiki/tutorialIntervals.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+      |
+      <a href="../../_sources/doc/wiki/tutorialIntervals.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>

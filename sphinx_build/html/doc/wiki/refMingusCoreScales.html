@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>#summary Reference documentation for mingus.core.scales. &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="summary-reference-documentation-for-mingus-core-scales">
+<h1>#summary Reference documentation for <cite>mingus.core.scales</cite>.<a class="headerlink" href="#summary-reference-documentation-for-mingus-core-scales" title="Permalink to this headline">¶</a></h1>
+<p>= mingus.core.scales =
+Module for dealing with scales.</p>
+<p>The scales module allows you to create a plethora of scales. Here&#8217;s a
+little overview:</p>
+<dl class="docutils">
+<dt>The diatonic scales</dt>
+<dd><ul class="first last simple">
+<li>Diatonic(note, semitones)</li>
+</ul>
+</dd>
+<dt>Ancient scales</dt>
+<dd><ul class="first last simple">
+<li>Ionian(note)</li>
+<li>Dorian(note)</li>
+<li>Phrygian(note)</li>
+<li>Lydian(note)</li>
+<li>Mixolydian(note)</li>
+<li>Aeolian(note)</li>
+<li>Locrian(note)</li>
+</ul>
+</dd>
+<dt>The major scales</dt>
+<dd><ul class="first last simple">
+<li>Major(note)</li>
+<li>HarmonicMajor(note)</li>
+</ul>
+</dd>
+<dt>The minor scales</dt>
+<dd><ul class="first last simple">
+<li>NaturalMinor(note)</li>
+<li>HarmonicMinor(note)</li>
+<li>MelodicMinor(note)</li>
+<li>Bachian(note)</li>
+<li>MinorNeapolitan(note)</li>
+</ul>
+</dd>
+<dt>Other scales</dt>
+<dd><ul class="first last simple">
+<li>Chromatic(note)</li>
+<li>WholeTone(note)</li>
+<li>Octatonic(note)</li>
+</ul>
+</dd>
+</dl>
+<blockquote>
+<div><ul class="simple">
+<li><em>Type</em>: list</li>
+<li><em>Value</em>: <cite>[(&#8216;Cb&#8217;, &#8216;ab&#8217;), (&#8216;Gb&#8217;, &#8216;eb&#8217;), (&#8216;Db&#8217;, &#8216;bb&#8217;), (&#8216;Ab&#8217;, &#8216;f&#8217;), (&#8216;Eb&#8217;, &#8216;c&#8217;), (&#8216;Bb&#8217;, &#8216;g&#8217;), (&#8216;F&#8217;, &#8216;d&#8217;), (&#8216;C&#8217;, &#8216;a&#8217;), (&#8216;G&#8217;, &#8216;e&#8217;), (&#8216;D&#8217;, &#8216;b&#8217;), (&#8216;A&#8217;, &#8216;f#&#8217;), (&#8216;E&#8217;, &#8216;c#&#8217;), (&#8216;B&#8217;, &#8216;g#&#8217;), (&#8216;F#&#8217;, &#8216;d#&#8217;), (&#8216;C#&#8217;, &#8216;a#&#8217;)]</cite></li>
+</ul>
+</div></blockquote>
+<p>Augment a given note.</p>
+<p>Examples:
+{{{
+&gt;&gt;&gt; augment(&#8216;C&#8217;)
+&#8216;C#&#8217;
+&gt;&gt;&gt; augment(&#8216;Cb&#8217;)
+&#8216;C&#8217;
+}}}</p>
+<p>=== <cite>determine(notes)</cite> ===
+Determine the scales containing the notes.</p>
+<p>All major and minor scales are recognized.</p>
+<p>Example:
+{{{
+&gt;&gt;&gt; determine([&#8216;A&#8217;, &#8216;Bb&#8217;, &#8216;E&#8217;, &#8216;F#&#8217;, &#8216;G&#8217;])
+[&#8216;G melodic minor&#8217;, &#8216;G Bachian&#8217;, &#8216;D harmonic major&#8217;]
+}}}</p>
+<p>=== <cite>diminish(note)</cite> ===
+Diminish a given note.</p>
+<p>Examples:
+{{{
+&gt;&gt;&gt; diminish(&#8216;C&#8217;)
+&#8216;Cb&#8217;
+&gt;&gt;&gt; diminish(&#8216;C#&#8217;)
+&#8216;C&#8217;
+}}}</p>
+<dl class="docutils">
+<dt>=== <cite>get_notes(key)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: key = &#8216;C&#8217;</li>
+</ul>
+</dd>
+</dl>
+<p>Return an ordered list of the notes in this natural key.</p>
+<p>Examples:
+{{{
+&gt;&gt;&gt; get_notes(&#8216;F&#8217;)
+[&#8216;F&#8217;, &#8216;G&#8217;, &#8216;A&#8217;, &#8216;Bb&#8217;, &#8216;C&#8217;, &#8216;D&#8217;, &#8216;E&#8217;]
+&gt;&gt;&gt; get_notes(&#8216;c&#8217;)
+[&#8216;C&#8217;, &#8216;D&#8217;, &#8216;Eb&#8217;, &#8216;F&#8217;, &#8216;G&#8217;, &#8216;Ab&#8217;, &#8216;Bb&#8217;]
+}}}</p>
+<p>=== <cite>reduce_accidentals(note)</cite> ===
+Reduce any extra accidentals to proper notes.</p>
+<p>Example:
+{{{
+&gt;&gt;&gt; reduce_accidentals(&#8216;C####&#8217;)
+&#8216;E&#8217;
+}}}</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/doc/wiki/refMingusCoreScales.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+      |
+      <a href="../../_sources/doc/wiki/refMingusCoreScales.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>

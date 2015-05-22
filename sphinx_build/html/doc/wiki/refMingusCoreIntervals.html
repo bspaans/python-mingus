@@ -1,0 +1,325 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>#summary Reference documentation for mingus.core.intervals. &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="summary-reference-documentation-for-mingus-core-intervals">
+<h1>#summary Reference documentation for <cite>mingus.core.intervals</cite>.<a class="headerlink" href="#summary-reference-documentation-for-mingus-core-intervals" title="Permalink to this headline">¶</a></h1>
+<p>= mingus.core.intervals =
+Module to create intervals from notes.</p>
+<p>When you are working in a key (for instance &#8216;F&#8217;), you can use the functions
+second (&#8216;G&#8217;), third (&#8216;A&#8217;), fourth (&#8216;Bb&#8217;), fifth (&#8216;C&#8217;), sixth (&#8216;D&#8217;) and
+seventh (&#8216;E&#8217;) to get to the respective natural intervals of that note.</p>
+<p>When you want to get the absolute intervals you can use the minor and major
+functions. For example: minor_third(&#8216;F&#8217;) returns &#8216;Ab&#8217; while major_third(&#8216;F&#8217;)
+returns &#8216;A&#8217;.</p>
+<p>This modules also contains other useful helper functions like measure,
+determine, invert, is_consonant and is_dissonant.</p>
+<p>A helper function for the minor and major functions.</p>
+<p>You should probably not use this directly.</p>
+<p>=== <cite>augmented_unison(note)</cite> ===
+=== <cite>determine(note1, note2, shorthand)</cite> ===</p>
+<blockquote>
+<div><ul class="simple">
+<li><em>Default values</em>: shorthand = False</li>
+</ul>
+</div></blockquote>
+<p>Name the interval between note1 and note2.</p>
+<p>Examples:
+{{{
+&gt;&gt;&gt; determine(&#8216;C&#8217;, &#8216;E&#8217;)
+&#8216;major third&#8217;
+&gt;&gt;&gt; determine(&#8216;C&#8217;, &#8216;Eb&#8217;)
+&#8216;minor third&#8217;
+&gt;&gt;&gt; determine(&#8216;C&#8217;, &#8216;E#&#8217;)
+&#8216;augmented third&#8217;
+&gt;&gt;&gt; determine(&#8216;C&#8217;, &#8216;Ebb&#8217;)
+&#8216;diminished third&#8217;
+}}}</p>
+<p>This works for all intervals. Note that there are corner cases for major
+fifths and fourths:
+{{{
+&gt;&gt;&gt; determine(&#8216;C&#8217;, &#8216;G&#8217;)
+&#8216;perfect fifth&#8217;
+&gt;&gt;&gt; determine(&#8216;C&#8217;, &#8216;F&#8217;)
+&#8216;perfect fourth&#8217;
+}}}</p>
+<p>=== <cite>fifth(note, key)</cite> ===
+Take the diatonic fifth of note in key.</p>
+<p>Raise a KeyError exception if the note is not found in the given key.</p>
+<p>Examples:
+{{{
+&gt;&gt;&gt; fifth(&#8216;E&#8217;, &#8216;C&#8217;)
+&#8216;B&#8217;
+&gt;&gt;&gt; fifth(&#8216;E&#8217;, &#8216;F&#8217;)
+&#8216;Bb&#8217;
+}}}</p>
+<p>=== <cite>fourth(note, key)</cite> ===
+Take the diatonic fourth of note in key.</p>
+<p>Raise a KeyError exception if the note is not found in the given key.</p>
+<p>Examples:
+{{{
+&gt;&gt;&gt; fourth(&#8216;E&#8217;, &#8216;C&#8217;)
+&#8216;A&#8217;
+&gt;&gt;&gt; fourth(&#8216;E&#8217;, &#8216;B&#8217;)
+&#8216;A#&#8217;
+}}}</p>
+<dl class="docutils">
+<dt>=== <cite>from_shorthand(note, interval, up)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: up = True</li>
+</ul>
+</dd>
+</dl>
+<p>Return the note on interval up or down.</p>
+<p>Examples:
+{{{
+&gt;&gt;&gt; from_shorthand(&#8216;A&#8217;, &#8216;b3&#8217;)
+&#8216;C&#8217;
+&gt;&gt;&gt; from_shorthand(&#8216;D&#8217;, &#8216;2&#8217;)
+&#8216;E&#8217;
+&gt;&gt;&gt; from_shorthand(&#8216;E&#8217;, &#8216;2&#8217;, False)
+&#8216;D&#8217;
+}}}</p>
+<dl class="docutils">
+<dt>=== <cite>get_interval(note, interval, key)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: key = &#8216;C&#8217;</li>
+</ul>
+</dd>
+</dl>
+<p>Return the note an interval (in half notes) away from the given note.</p>
+<p>This will produce mostly theoretical sound results, but you should use
+the minor and major functions to work around the corner cases.</p>
+<p>=== <cite>interval(key, start_note, interval)</cite> ===
+Return the note found at the interval starting from start_note in the
+given key.</p>
+<p>Raise a KeyError exception if start_note is not a valid note.</p>
+<p>Example:
+{{{
+&gt;&gt;&gt; interval(&#8216;C&#8217;, &#8216;D&#8217;, 1)
+&#8216;E&#8217;
+}}}</p>
+<p>=== <cite>invert(interval)</cite> ===
+Invert an interval.</p>
+<p>Example:
+{{{
+&gt;&gt;&gt; invert([&#8216;C&#8217;, &#8216;E&#8217;])
+[&#8216;E&#8217;, &#8216;C&#8217;]
+}}}</p>
+<dl class="docutils">
+<dt>=== <cite>is_consonant(note1, note2, include_fourths)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: include_fourths = True</li>
+</ul>
+</dd>
+</dl>
+<p>Return True if the interval is consonant.</p>
+<p>A consonance is a harmony, chord, or interval considered stable, as
+opposed to a dissonance.</p>
+<p>This function tests whether the given interval is consonant. This
+basically means that it checks whether the interval is (or sounds like)
+a unison, third, sixth, perfect fourth or perfect fifth.</p>
+<p>In classical music the fourth is considered dissonant when used
+contrapuntal, which is why you can choose to exclude it.</p>
+<dl class="docutils">
+<dt>=== <cite>is_dissonant(note1, note2, include_fourths)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: include_fourths = False</li>
+</ul>
+</dd>
+</dl>
+<p>Return True if the insterval is dissonant.</p>
+<p>This function tests whether an interval is considered unstable,
+dissonant.</p>
+<p>In the default case perfect fourths are considered consonant, but this
+can be changed by setting exclude_fourths to True.</p>
+<p>=== <cite>is_imperfect_consonant(note1, note2)</cite> ===
+Return True id the interval is an imperfect consonant one.</p>
+<p>Imperfect consonances are either minor or major thirds or minor or major
+sixths.</p>
+<dl class="docutils">
+<dt>=== <cite>is_perfect_consonant(note1, note2, include_fourths)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: include_fourths = True</li>
+</ul>
+</dd>
+</dl>
+<p>Return True if the interval is a perfect consonant one.</p>
+<p>Perfect consonances are either unisons, perfect fourths or fifths, or
+octaves (which is the same as a unison in this model).</p>
+<p>Perfect fourths are usually included as well, but are considered
+dissonant when used contrapuntal, which is why you can exclude them.</p>
+<p>=== <cite>major_fifth(note)</cite> ===
+=== <cite>major_fourth(note)</cite> ===
+=== <cite>major_second(note)</cite> ===
+=== <cite>major_seventh(note)</cite> ===
+=== <cite>major_sixth(note)</cite> ===
+=== <cite>major_third(note)</cite> ===
+=== <cite>major_unison(note)</cite> ===
+=== <cite>measure(note1, note2)</cite> ===
+Return an integer in the range of 0-11, determining the half note steps
+between note1 and note2.</p>
+<p>Examples:
+{{{
+&gt;&gt;&gt; measure(&#8216;C&#8217;, &#8216;D&#8217;)
+2
+&gt;&gt;&gt; measure(&#8216;D&#8217;, &#8216;C&#8217;)
+10
+}}}</p>
+<p>=== <cite>minor_fifth(note)</cite> ===
+=== <cite>minor_fourth(note)</cite> ===
+=== <cite>minor_second(note)</cite> ===
+=== <cite>minor_seventh(note)</cite> ===
+=== <cite>minor_sixth(note)</cite> ===
+=== <cite>minor_third(note)</cite> ===
+=== <cite>minor_unison(note)</cite> ===
+=== <cite>perfect_fifth(note)</cite> ===
+=== <cite>perfect_fourth(note)</cite> ===
+=== <cite>second(note, key)</cite> ===
+Take the diatonic second of note in key.</p>
+<p>Raise a KeyError exception if the note is not found in the given key.</p>
+<p>Examples:
+{{{
+&gt;&gt;&gt; second(&#8216;E&#8217;, &#8216;C&#8217;)
+&#8216;F&#8217;
+&gt;&gt;&gt; second(&#8216;E&#8217;, &#8216;D&#8217;)
+&#8216;F#&#8217;
+}}}</p>
+<p>=== <cite>seventh(note, key)</cite> ===
+Take the diatonic seventh of note in key.</p>
+<p>Raise a KeyError exception if the note is not found in the given key.</p>
+<p>Examples:
+{{{
+&gt;&gt;&gt; seventh(&#8216;E&#8217;, &#8216;C&#8217;)
+&#8216;D&#8217;
+&gt;&gt;&gt; seventh(&#8216;E&#8217;, &#8216;B&#8217;)
+&#8216;D#&#8217;
+}}}</p>
+<p>=== <cite>sixth(note, key)</cite> ===
+Take the diatonic sixth of note in key.</p>
+<p>Raise a KeyError exception if the note is not found in the given key.</p>
+<p>Examples:
+{{{
+&gt;&gt;&gt; sixth(&#8216;E&#8217;, &#8216;C&#8217;)
+&#8216;C&#8217;
+&gt;&gt;&gt; sixth(&#8216;E&#8217;, &#8216;B&#8217;)
+&#8216;C#&#8217;
+}}}</p>
+<p>=== <cite>third(note, key)</cite> ===
+Take the diatonic third of note in key.</p>
+<p>Raise a KeyError exception if the note is not found in the given key.</p>
+<p>Examples:
+{{{
+&gt;&gt;&gt; third(&#8216;E&#8217;, &#8216;C&#8217;)
+&#8216;G&#8217;
+&gt;&gt;&gt; third(&#8216;E&#8217;, &#8216;E&#8217;)
+&#8216;G#&#8217;
+}}}</p>
+<dl class="docutils">
+<dt>=== <cite>unison(note, key)</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Default values</em>: key = None</li>
+</ul>
+</dd>
+</dl>
+<p>Return the unison of note.</p>
+<p>Raise a KeyError exception if the note is not found in the given key.</p>
+<p>The key is not at all important, but is here for consistency reasons
+only.</p>
+<p>Example:
+{{{
+&gt;&gt;&gt; unison(&#8216;C&#8217;)
+&#8216;C&#8217;
+}}}</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/doc/wiki/refMingusCoreIntervals.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+      |
+      <a href="../../_sources/doc/wiki/refMingusCoreIntervals.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>#summary Reference documentation for mingus.midi.midi_track. &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="summary-reference-documentation-for-mingus-midi-midi-track">
+<h1>#summary Reference documentation for <cite>mingus.midi.midi_track</cite>.<a class="headerlink" href="#summary-reference-documentation-for-mingus-midi-midi-track" title="Permalink to this headline">¶</a></h1>
+<p>= mingus.midi.midi_track =
+Methods for working with MIDI data as bytes.</p>
+<p>The MIDI file format specification I used can be found here:
+<a class="reference external" href="http://www.sonicspot.com/guide/midifiles.html">http://www.sonicspot.com/guide/midifiles.html</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><em>Type</em>: int</li>
+<li><em>Value</em>: <cite>8</cite></li>
+</ul>
+</div></blockquote>
+<dl class="docutils">
+<dt>=== <cite>BANK_SELECT</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: int</li>
+<li><em>Value</em>: <cite>0</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>BREATH_CONTROLLER</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: int</li>
+<li><em>Value</em>: <cite>2</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>CHANNEL_AFTERTOUCH</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: int</li>
+<li><em>Value</em>: <cite>13</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>CONTROLLER</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: int</li>
+<li><em>Value</em>: <cite>11</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>COPYRIGHT_NOTICE</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: str</li>
+<li><em>Value</em>: <cite>&#8216;x02&#8217;</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>CUE_POINT</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: str</li>
+<li><em>Value</em>: <cite>&#8216;x07&#8217;</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>DATA_ENTRY_MSB</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: int</li>
+<li><em>Value</em>: <cite>6</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>EFFECT_CONTROL_1</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: int</li>
+<li><em>Value</em>: <cite>12</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>EFFECT_CONTROL_2</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: int</li>
+<li><em>Value</em>: <cite>13</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>END_OF_TRACK</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: str</li>
+<li><em>Value</em>: <cite>&#8216;/&#8217;</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>EXPRESSION_CONTROLLER</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: int</li>
+<li><em>Value</em>: <cite>11</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>FILE_HEADER</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: str</li>
+<li><em>Value</em>: <cite>&#8216;MThd&#8217;</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>FOOT_CONTROLLER</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: int</li>
+<li><em>Value</em>: <cite>4</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>INSTRUMENT_NAME</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: str</li>
+<li><em>Value</em>: <cite>&#8216;x04&#8217;</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>KEY_SIGNATURE</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: str</li>
+<li><em>Value</em>: <cite>&#8216;Y&#8217;</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>LYRICS</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: str</li>
+<li><em>Value</em>: <cite>&#8216;x05&#8217;</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>MAIN_VOLUME</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: int</li>
+<li><em>Value</em>: <cite>7</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>MARKER</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: str</li>
+<li><em>Value</em>: <cite>&#8216;x06&#8217;</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>META_EVENT</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: str</li>
+<li><em>Value</em>: <cite>&#8216;xff&#8217;</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>MIDI_CHANNEL_PREFIX</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: str</li>
+<li><em>Value</em>: <cite>&#8216; &#8216;</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>MODULATION</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: int</li>
+<li><em>Value</em>: <cite>1</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>NOTE_AFTERTOUCH</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: int</li>
+<li><em>Value</em>: <cite>10</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>NOTE_OFF</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: int</li>
+<li><em>Value</em>: <cite>8</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>NOTE_ON</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: int</li>
+<li><em>Value</em>: <cite>9</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>PAN</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: int</li>
+<li><em>Value</em>: <cite>10</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>PITCH_BEND</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: int</li>
+<li><em>Value</em>: <cite>14</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>PORTAMENTO_TIME</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: int</li>
+<li><em>Value</em>: <cite>5</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>PROGRAM_CHANGE</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: int</li>
+<li><em>Value</em>: <cite>12</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>SEQUENCE_NUMBER</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: str</li>
+<li><em>Value</em>: <cite>&#8216;x00&#8217;</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>SET_TEMPO</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: str</li>
+<li><em>Value</em>: <cite>&#8216;Q&#8217;</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>SMPTE_OFFSET</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: str</li>
+<li><em>Value</em>: <cite>&#8216;T&#8217;</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>TEXT_EVENT</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: str</li>
+<li><em>Value</em>: <cite>&#8216;x01&#8217;</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>TIME_SIGNATURE</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: str</li>
+<li><em>Value</em>: <cite>&#8216;X&#8217;</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>TRACK_HEADER</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: str</li>
+<li><em>Value</em>: <cite>&#8216;MTrk&#8217;</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>TRACK_NAME</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: str</li>
+<li><em>Value</em>: <cite>&#8216;x03&#8217;</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>major_keys</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: list</li>
+<li><em>Value</em>: <cite>[&#8216;Cb&#8217;, &#8216;Gb&#8217;, &#8216;Db&#8217;, &#8216;Ab&#8217;, &#8216;Eb&#8217;, &#8216;Bb&#8217;, &#8216;F&#8217;, &#8216;C&#8217;, &#8216;G&#8217;, &#8216;D&#8217;, &#8216;A&#8217;, &#8216;E&#8217;, &#8216;B&#8217;, &#8216;F#&#8217;, &#8216;C#&#8217;]</cite></li>
+</ul>
+</dd>
+<dt>=== <cite>minor_keys</cite> ===</dt>
+<dd><ul class="first last simple">
+<li><em>Type</em>: list</li>
+<li><em>Value</em>: <cite>[&#8216;ab&#8217;, &#8216;eb&#8217;, &#8216;bb&#8217;, &#8216;f&#8217;, &#8216;c&#8217;, &#8216;g&#8217;, &#8216;d&#8217;, &#8216;a&#8217;, &#8216;e&#8217;, &#8216;b&#8217;, &#8216;f#&#8217;, &#8216;c#&#8217;, &#8216;g#&#8217;, &#8216;d#&#8217;, &#8216;a#&#8217;]</cite></li>
+</ul>
+</dd>
+</dl>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/doc/wiki/refMingusMidiMidi_track.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+      |
+      <a href="../../_sources/doc/wiki/refMingusMidiMidi_track.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>
