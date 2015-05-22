@@ -19,7 +19,9 @@
 
 ----
 
-= Tutorials =
+=========
+Tutorials
+=========
 
 
 Exploring `mingus.core`
@@ -73,47 +75,56 @@ Exploring `mingus.extra`
 
 ----
 
-= Reference =
+=========
+Reference
+=========
 
-== mingus.core ==
+.. toctree::
+   :maxdepth: 2
+   :caption: mingus.core
 
-  * [refMingusCoreNotes notes]
-  * [refMingusCoreDiatonic diatonic]
-  * [refMingusCoreIntervals intervals]
-  * [refMingusCoreChords chords]
-  * [refMingusCoreScales scales]
-  * [refMingusCoreMeter meter]
-  * [refMingusCoreValue value]
-  * [refMingusCoreProgressions progressions]
+   refMingusCoreNotes
+   refMingusCoreDiatonic
+   refMingusCoreIntervals
+   refMingusCoreChords
+   refMingusCoreScales
+   refMingusCoreMeter
+   refMingusCoreValue
+   refMingusCoreProgressions
 
-== mingus.containers ==
+.. toctree::
+   :maxdepth: 2
+   :caption: mingus.containers
 
-  * [refMingusContainersNote Note]
-  * [refMingusContainersNotecontainer NoteContainer]
-  * [refMingusContainersBar Bar]
-  * [refMingusContainersInstrument Instrument]
-    * [refMingusContainersPiano Piano]
-    * [refMingusContainersGuitar Guitar]
-    * [refMingusContainersMidiinstrument MidiInstrument]
-  * [refMingusContainersTrack Track]
-  * [refMingusContainersComposition Composition]
-  * [refMingusContainersSuite Suite]
+   refMingusContainersNote
+   refMingusContainersNotecontainer
+   refMingusContainersBar
+   refMingusContainersInstrument
+     refMingusContainersPiano 
+     refMingusContainersGuitar
+     refMingusContainersMidiinstrument 
+   refMingusContainersTrack
+   refMingusContainersComposition
+   refMingusContainersSuite
 
-== mingus.midi ==
+.. toctree::
+   :maxdepth: 2
+   :caption: mingus.midi
 
-  * [refMingusMidiSequencer Sequencer]
-  * [refMingusMidiSequencerobserver SequencerObserver]
-  * [refMingusMidiFluidsynth fluidsynth]
-  * [refMingusMidiMiditrack MidiTrack]
-  * [refMingusMidiMidifileout MidiFileOut]
-  * [refMingusMidiMidifilein MidiFileIn]
+   refMingusMidiSequencer
+   refMingusMidiSequencerobserver
+   refMingusMidiFluidsynth
+   refMingusMidiMiditrack
+   refMingusMidiMidifileout
+   refMingusMidiMidifilein
 
-== mingus.extra ==
+.. toctree::
+   :maxdepth: 2
+   :caption: mingus.extra
 
-  * [refMingusExtraLilypond LilyPond]
-  * [refMingusExtraTunings tunings]
-    * [refMingusExtraStringtuning StringTuning]
-  * [refMingusExtraTablature tablature]
-  * [refMingusExtraFft fft]
-
-----
+   refMingusExtraLilypond
+   refMingusExtraTunings
+       refMingusExtraStringtuning
+   refMingusExtraTablature
+   refMingusExtraFft
+   
