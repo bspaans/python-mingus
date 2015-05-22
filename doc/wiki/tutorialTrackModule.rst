@@ -1,10 +1,5 @@
-﻿#summary The mingus.containers.Track module
-
-
-----
-
-
-= Tutorial 5 - Tracks =
+﻿Tutorial 5 - Tracks
+===================
 
 The Track class is a simple data structure to store [tutorialBarModule Bars] in. The Class can also be used with an [tutorialInstrumentModule Instrument], but this is optional. 
 
