@@ -1,5 +1,5 @@
-﻿#summary Wiki Index
-#labels Featured
+﻿mingus
+======
 
 = Introduction =
 
@@ -8,11 +8,14 @@
 
 == Getting Started == 
 
-  # [mingusFeatures Features]
-  # [tutorialGettingmingus Getting mingus]
-  # [tutorialSetup Setting Up mingus]
-  # [mingusApplications Applications Using mingus]
-  # [mingusContact Contact]
+.. toctree::
+   :maxdepth: 2
+
+   doc/wiki/mingusFeatures
+   doc/wiki/tutorialGettingmingus
+   doc/wiki/tutorialSetup
+   doc/wiki/mingusApplications
+   doc/wiki/mingusContact
 
 ----
 
