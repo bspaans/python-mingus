@@ -11,11 +11,11 @@
    :caption: Getting Started
    :name: mastertoc
 
-   mingusFeatures
-   tutorialGettingmingus
-   tutorialSetup
-   mingusApplications
-   mingusContact
+   doc/wiki/mingusFeatures
+   doc/wiki/tutorialGettingmingus
+   doc/wiki/tutorialSetup
+   doc/wiki/mingusApplications
+   doc/wiki/mingusContact
 
 
 ----
@@ -33,14 +33,14 @@ Exploring `mingus.core`
    :caption: Fundamentals
    :name: minguscore
 
-   tutorialNote
-   tutorialDiatonic
-   tutorialIntervals
-   tutorialChords
-   tutorialScales
-   tutorialMeter
-   tutorialProgressions
-   tutorialCore
+   doc/wiki/tutorialNote
+   doc/wiki/tutorialDiatonic
+   doc/wiki/tutorialIntervals
+   doc/wiki/tutorialChords
+   doc/wiki/tutorialScales
+   doc/wiki/tutorialMeter
+   doc/wiki/tutorialProgressions
+   doc/wiki/tutorialCore
 
 Exploring `mingus.containers`
 
@@ -48,13 +48,13 @@ Exploring `mingus.containers`
    :maxdepth: 2
    :caption: Grouping Notes
 
-   tutorialNoteModule
-   tutorialNoteContainerModule
-   tutorialBarModule
-   tutorialInstrumentModule
-   tutorialTrackModule
-   tutorialCompositionModule
-   tutorialSuiteModule
+   doc/wiki/tutorialNoteModule
+   doc/wiki/tutorialNoteContainerModule
+   doc/wiki/tutorialBarModule
+   doc/wiki/tutorialInstrumentModule
+   doc/wiki/tutorialTrackModule
+   doc/wiki/tutorialCompositionModule
+   doc/wiki/tutorialSuiteModule
 
 
 Exploring `mingus.midi`
@@ -63,8 +63,8 @@ Exploring `mingus.midi`
    :maxdepth: 2
    :caption: Midi
 
-   tutorialFluidsynth
-   tutorialMidiFileOut
+   doc/wiki/tutorialFluidsynth
+   doc/wiki/tutorialMidiFileOut
 
 
 Exploring `mingus.extra`
@@ -73,7 +73,7 @@ Exploring `mingus.extra`
    :maxdepth: 2
    :caption: Extras
 
-   tutorialExtraLilypond
+   doc/wiki/tutorialExtraLilypond
 
 
 ----
@@ -87,48 +87,48 @@ Reference
    :maxdepth: 2
    :caption: mingus.core
 
-   refMingusCoreNotes
-   refMingusCoreDiatonic
-   refMingusCoreIntervals
-   refMingusCoreChords
-   refMingusCoreScales
-   refMingusCoreMeter
-   refMingusCoreValue
-   refMingusCoreProgressions
+   doc/wiki/refMingusCoreNotes
+   doc/wiki/refMingusCoreDiatonic
+   doc/wiki/refMingusCoreIntervals
+   doc/wiki/refMingusCoreChords
+   doc/wiki/refMingusCoreScales
+   doc/wiki/refMingusCoreMeter
+   doc/wiki/refMingusCoreValue
+   doc/wiki/refMingusCoreProgressions
 
 .. toctree::
    :maxdepth: 2
    :caption: mingus.containers
 
-   refMingusContainersNote
-   refMingusContainersNotecontainer
-   refMingusContainersBar
-   refMingusContainersInstrument
-     refMingusContainersPiano 
-     refMingusContainersGuitar
-     refMingusContainersMidiinstrument 
-   refMingusContainersTrack
-   refMingusContainersComposition
-   refMingusContainersSuite
+   doc/wiki/refMingusContainersNote
+   doc/wiki/refMingusContainersNotecontainer
+   doc/wiki/refMingusContainersBar
+   doc/wiki/refMingusContainersInstrument
+   doc/wiki/refMingusContainersPiano 
+   doc/wiki/refMingusContainersGuitar
+   doc/wiki/refMingusContainersMidiinstrument 
+   doc/wiki/refMingusContainersTrack
+   doc/wiki/refMingusContainersComposition
+   doc/wiki/refMingusContainersSuite
 
 .. toctree::
    :maxdepth: 2
    :caption: mingus.midi
 
-   refMingusMidiSequencer
-   refMingusMidiSequencerobserver
-   refMingusMidiFluidsynth
-   refMingusMidiMiditrack
-   refMingusMidiMidifileout
-   refMingusMidiMidifilein
+   doc/wiki/refMingusMidiSequencer
+   doc/wiki/refMingusMidiSequencerobserver
+   doc/wiki/refMingusMidiFluidsynth
+   doc/wiki/refMingusMidiMiditrack
+   doc/wiki/refMingusMidiMidifileout
+   doc/wiki/refMingusMidiMidifilein
 
 .. toctree::
    :maxdepth: 2
    :caption: mingus.extra
 
-   refMingusExtraLilypond
-   refMingusExtraTunings
-       refMingusExtraStringtuning
-   refMingusExtraTablature
-   refMingusExtraFft
+   doc/wiki/refMingusExtraLilypond
+   doc/wiki/refMingusExtraTunings
+   doc/wiki/refMingusExtraStringtuning
+   doc/wiki/refMingusExtraTablature
+   doc/wiki/refMingusExtraFft
    
