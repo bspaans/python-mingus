@@ -3,25 +3,20 @@
 
 This module is build upon the interval module and provides a way to generate and recognise various chords. 
 
-== Importing chords Module ==
-
-
 
 >>> import mingus.core.chords as chords
-
-
-
-
 
 
 ----
 
 
-== Triads ==
+Triads
+------
 
 Triads are chords made of three notes. 
 
-=== Natural Diatonic Triads ==
+Natural Diatonic Triads
+^^^^^^^^^^^^^^^^^^^^^^^
 
 Natural diatonic triads are probably the most common chords. As was hinted in the last exercises of the intervals tutorial, they are constructed by choosing a base note in a key and adding its third and fifth. For instance, here are the notes in C again:
 
@@ -57,7 +52,8 @@ We can also request all the triads in a certain key with `chords.triads(key)`:
 
 
 
-=== Absolute Triads ===
+Absolute Triads
+^^^^^^^^^^^^^^^
 
 The natural triads are ubiquitous, but so is the ability of musicians and composers to stray of the path and put in their own chords to keep things interesting. That's why working with only the naturally appearing chords within a key is often not enough. 
 
@@ -82,9 +78,11 @@ As you can see these functions work without a key argument and always give back 
 ----
 
 
-== Sevenths ==
+Sevenths
+--------
 
-=== Natural Diatonic Sevenths ===
+Natural Diatonic Sevenths
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Triads and sevenths are constructed in the same way, in that thirds are added to a base note. For a triad, we'd take the base note, its third and its fifth. For a seventh chord, we also take its seventh (which is again a third away from the last added note).
 
@@ -102,7 +100,8 @@ Triads and sevenths are constructed in the same way, in that thirds are added to
 You can also use `chords.sevenths(key)` to get all the seventh chords in that key.
 
 
-=== Absolute Sevenths ===
+Absolute Sevenths
+^^^^^^^^^^^^^^^^^
 
 Once again, you can also request a specific seventh chord, but this time there are a lot more of them. 
 
@@ -133,7 +132,8 @@ Once again, you can also request a specific seventh chord, but this time there a
 ----
 
 
-=== Get Chords from Shorthand ===
+Get Chords from Shorthand
+-------------------------
 
 Usually you don't want to remember and type all the different functions just to get some simple chords. The `from_shorthand(string)` function tries to make life easier. from_shorthand takes a string representation of a chord and returns a list of notes.
 
@@ -176,7 +176,8 @@ The letters `m` and `M` in the abbreviations  can always be substituted by respe
 ----
 
 
-== Chords by Harmonic Function ==
+Chords by Harmonic Function
+---------------------------
 
 You can also refer to chords by their harmonic function. For instance `tonic(key)` will get you the tonic triad; `tonic7(key)` the tonic seventh. 
 
@@ -197,7 +198,8 @@ You can also refer to chords by their harmonic function. For instance `tonic(key
 
 
 
-=== Roman Numbering ===
+Roman Numbering
+^^^^^^^^^^^^^^^
 
 It's often easier to refer to harmonic functions using roman numbers. 
 
@@ -217,7 +219,8 @@ The functions I-VI and I7-VI7 may all be used. The numbers II, III, VI and their
 ----
 
 
-== Inversions ==
+Inversions
+----------
 
 Inverting a chord can be pretty common depending on genre. Here is a quick way to do take the first inversion in mingus:
 
@@ -248,7 +251,8 @@ Other functions that can be used:
 
 
 
-== Recognize ==
+Recognize
+---------
 
 One of the cool things about this module is that it can not only generate but also recognise various chords and their inversions.
 
@@ -276,7 +280,8 @@ As you can see, the `chords.determine` will recognize pretty complex chords. You
 
 _Note:_ Currently `chords.determine` can take lists containing one to fourteen notes. A list of one item will just return the note. A list of two notes will be redirected to `intervals.determine`. The rest will be interpreted as chords.
 
-=== Shorthand ===
+Shorthand
+---------
 
 The chord descriptions returned by determine can be quite lengthy. That's why you can also request the chords to be returned in shorthand. The chord description will be replaced by an abbreviation (often found in jazz) and the inversion won't be included in the result.
 
@@ -295,23 +300,22 @@ The chord descriptions returned by determine can be quite lengthy. That's why yo
 ----
 
 
-== Exercises ==
+Exercises
+---------
 
-  # Write a program that takes a key and prints out all the triads and sevenths as shorthand.
-  # Determine what _type_ of triads and sevenths are naturally occuring in every key.
-  # The chord sequence I, IV, V, I is a simple song. Write a program that takes a key and prints out the corresponding chords in shorthand. 
+* Write a program that takes a key and prints out all the triads and sevenths as shorthand.
+* Determine what _type_ of triads and sevenths are naturally occuring in every key.
+* The chord sequence I, IV, V, I is a simple song. Write a program that takes a key and prints out the corresponding chords in shorthand. 
 
 
 ----
 
 
-= End of Tutorial 4 =
+You can learn more about `mingus.core.chords in the reference section <refMingusCoreChords>`_.
 
-You can learn more about [refMingusCoreChords mingus.core.chords in the reference section.]
-
-  * [tutorialNote Tutorial 1 - Working with Notes]
-  * [tutorialDiatonic Tutorial 2 - Keys and the Diatonic Scale]
-  * [tutorialIntervals Tutorial 3 - Intervals]
-  * Tutorial 4 - Triads, Sevenths and Extended Chords
-  * [tutorialScales Tutorial 5 - Scales]
-  * [mingusIndex Back to Index]
+  * `Tutorial 1 - Working with Notes <tutorialNote>`_
+  * `Tutorial 2 - Keys and the Diatonic Scale <tutorialDiatonic>`_
+  * `Tutorial 3 - Intervals <tutorialIntervals>`_
+  * Tutorial 4 - Triads, Sevenths and Extended Chords 
+  * `Tutorial 5 - Scales <tutorialScales>`_
+  * `Back to Index </index>`_
