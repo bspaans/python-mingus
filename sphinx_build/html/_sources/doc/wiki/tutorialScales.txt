@@ -120,7 +120,7 @@ You can learn more about [refMingusCoreScales mingus.core.scales in the referenc
   * `Tutorial 1 - Working with Notes <tutorialNote>`_
   * `Tutorial 2 - Keys and the Diatonic Scale <tutorialDiatonic>`_
   * `Tutorial 3 - Intervals <tutorialIntervals>`_
-  * `Tutorial 4 - Triads, Sevenths and Extended Chords `<tutorialChords>`_
+  * `Tutorial 4 - Triads, Sevenths and Extended Chords <tutorialChords>`_
   * Tutorial 5 - Scales
   * `Tutorial 6 - Note Value and Meter <tutorialMeter>`_
   * `Back to Index </index>`_

@@ -18,7 +18,7 @@ The progressions module provides methods which can convert progressions into cho
 Functions to Chords
 -------------------
 
-Remember the chord functions from [tutorialChords the chords tutorial]? As handy as they can be, they feel a bit clunky. For example: we want to take the I, IV and V7 chord in a couple of different keys:
+Remember the chord functions from `the chords tutorial <tutorialChords>`_? As handy as they can be, they feel a bit clunky. For example: we want to take the I, IV and V7 chord in a couple of different keys:
 
 
 
@@ -97,7 +97,7 @@ You can learn more about `mingus.core.progressions <refMingusCoreProgressions>`_
   * `Tutorial 1 - Working with Notes <tutorialNote>`_
   * `Tutorial 2 - Keys and the Diatonic Scale <tutorialDiatonic>`_
   * `Tutorial 3 - Intervals <tutorialIntervals>`_
-  * `Tutorial 4 - Triads, Sevenths and Extended Chords `<tutorialChords>`_
+  * `Tutorial 4 - Triads, Sevenths and Extended Chords <tutorialChords>`_
   * `Tutorial 5 - Scales <tutorialScales>`_
   * `Tutorial 6 - Note Value and Meter <tutorialMeter>`_
   * Tutorial 7 - Progressions

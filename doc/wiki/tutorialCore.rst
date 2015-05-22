@@ -17,7 +17,7 @@ This will import the modules discussed in the previous tutorials in the current 
 Module Dependencies
 -------------------
 
-http://www.onderstekop.nl/dump/core.1.png
+.. image:: core.1.png
 
 
 ----
