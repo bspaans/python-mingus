@@ -111,7 +111,8 @@ Change the Instrument
 >>> fluidsynth.set_instrument(1, 14)
 
 
-=== Panning, Modulation and Other Control Change Commands ===
+Panning, Modulation and Other Control Change Commands
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `panning(channel, value)` and `modulation(channel, value)` are shortcuts to the `control_change(channel, control, value)` function added for your convenience. There are more control change commands however. You can find tables by googling, but know that FluidSynth ignores some of the commands.
 
