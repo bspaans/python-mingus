@@ -1,9 +1,9 @@
 #!/bin/bash -e
 
-rm -rf doc
-git checkout master doc
-mv doc/wiki/mingusIndex.rst index.rst
-make html
+git checkout sphinx-workspace sphinx_build/html
+git clean -xf
+mv sphinx_build/html/* .
+rm -rf sphinx_build
 git add .
 git commit -m "Scripted build"
-
+git push origin gh-pages
