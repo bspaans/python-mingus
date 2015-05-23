@@ -1,17 +1,14 @@
 ﻿Setup
 =====
 
-Installation
-------------
-
 Using pip
-^^^^^^^^^
+----------
 
 1. `pip install mingus`
 
 
 Installing from Source
-^^^^^^^^^^^^^^^^^^^^^^
+----------------------
 
 1. Clone https://github.com/bspaans/python-mingus or unpack the source archive
 2. `python setup.py install`
@@ -19,7 +16,7 @@ Installing from Source
 
 
 Using your package manager
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------
 
 mingus might be packaged for your distribution's package manager. See :doc:`getting mingus<tutorialGettingmingus>` for a list.
 
