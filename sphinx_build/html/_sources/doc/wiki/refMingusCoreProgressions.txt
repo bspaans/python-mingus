@@ -18,13 +18,88 @@ Attributes
 ----------
 
 numeral_intervals
-^^^^^^^^^^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: list
   * *Value*: `[0, 2, 4, 5, 7, 9, 11]`
 
 numerals
-^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: list
   * *Value*: `['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']`

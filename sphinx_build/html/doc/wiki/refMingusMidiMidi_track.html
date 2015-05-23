@@ -52,350 +52,503 @@
 <a class="reference external" href="http://www.sonicspot.com/guide/midifiles.html">http://www.sonicspot.com/guide/midifiles.html</a></p>
 <div class="section" id="attributes">
 <h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="balance">
-<h3>BALANCE<a class="headerlink" href="#balance" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>8</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="bank-select">
-<h3>BANK_SELECT<a class="headerlink" href="#bank-select" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>0</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="breath-controller">
-<h3>BREATH_CONTROLLER<a class="headerlink" href="#breath-controller" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>2</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="channel-aftertouch">
-<h3>CHANNEL_AFTERTOUCH<a class="headerlink" href="#channel-aftertouch" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>13</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="controller">
-<h3>CONTROLLER<a class="headerlink" href="#controller" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>11</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="copyright-notice">
-<h3>COPYRIGHT_NOTICE<a class="headerlink" href="#copyright-notice" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: str</li>
-<li><em>Value</em>: <cite>&#8216;x02&#8217;</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="cue-point">
-<h3>CUE_POINT<a class="headerlink" href="#cue-point" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: str</li>
-<li><em>Value</em>: <cite>&#8216;x07&#8217;</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="data-entry-msb">
-<h3>DATA_ENTRY_MSB<a class="headerlink" href="#data-entry-msb" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>6</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="effect-control-1">
-<h3>EFFECT_CONTROL_1<a class="headerlink" href="#effect-control-1" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>12</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="effect-control-2">
-<h3>EFFECT_CONTROL_2<a class="headerlink" href="#effect-control-2" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>13</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="end-of-track">
-<h3>END_OF_TRACK<a class="headerlink" href="#end-of-track" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: str</li>
-<li><em>Value</em>: <cite>&#8216;/&#8217;</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="expression-controller">
-<h3>EXPRESSION_CONTROLLER<a class="headerlink" href="#expression-controller" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>11</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="file-header">
-<h3>FILE_HEADER<a class="headerlink" href="#file-header" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: str</li>
-<li><em>Value</em>: <cite>&#8216;MThd&#8217;</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="foot-controller">
-<h3>FOOT_CONTROLLER<a class="headerlink" href="#foot-controller" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>4</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="instrument-name">
-<h3>INSTRUMENT_NAME<a class="headerlink" href="#instrument-name" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: str</li>
-<li><em>Value</em>: <cite>&#8216;x04&#8217;</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="key-signature">
-<h3>KEY_SIGNATURE<a class="headerlink" href="#key-signature" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: str</li>
-<li><em>Value</em>: <cite>&#8216;Y&#8217;</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="lyrics">
-<h3>LYRICS<a class="headerlink" href="#lyrics" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: str</li>
-<li><em>Value</em>: <cite>&#8216;x05&#8217;</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="main-volume">
-<h3>MAIN_VOLUME<a class="headerlink" href="#main-volume" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>7</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="marker">
-<h3>MARKER<a class="headerlink" href="#marker" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: str</li>
-<li><em>Value</em>: <cite>&#8216;x06&#8217;</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="meta-event">
-<h3>META_EVENT<a class="headerlink" href="#meta-event" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: str</li>
-<li><em>Value</em>: <cite>&#8216;xff&#8217;</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="midi-channel-prefix">
-<h3>MIDI_CHANNEL_PREFIX<a class="headerlink" href="#midi-channel-prefix" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: str</li>
-<li><em>Value</em>: <cite>&#8216; &#8216;</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="modulation">
-<h3>MODULATION<a class="headerlink" href="#modulation" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>1</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="note-aftertouch">
-<h3>NOTE_AFTERTOUCH<a class="headerlink" href="#note-aftertouch" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>10</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="note-off">
-<h3>NOTE_OFF<a class="headerlink" href="#note-off" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>8</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="note-on">
-<h3>NOTE_ON<a class="headerlink" href="#note-on" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>9</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="pan">
-<h3>PAN<a class="headerlink" href="#pan" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>10</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="pitch-bend">
-<h3>PITCH_BEND<a class="headerlink" href="#pitch-bend" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>14</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="portamento-time">
-<h3>PORTAMENTO_TIME<a class="headerlink" href="#portamento-time" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>5</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="program-change">
-<h3>PROGRAM_CHANGE<a class="headerlink" href="#program-change" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>12</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="sequence-number">
-<h3>SEQUENCE_NUMBER<a class="headerlink" href="#sequence-number" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: str</li>
-<li><em>Value</em>: <cite>&#8216;x00&#8217;</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="set-tempo">
-<h3>SET_TEMPO<a class="headerlink" href="#set-tempo" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: str</li>
-<li><em>Value</em>: <cite>&#8216;Q&#8217;</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="smpte-offset">
-<h3>SMPTE_OFFSET<a class="headerlink" href="#smpte-offset" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: str</li>
-<li><em>Value</em>: <cite>&#8216;T&#8217;</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="text-event">
-<h3>TEXT_EVENT<a class="headerlink" href="#text-event" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: str</li>
-<li><em>Value</em>: <cite>&#8216;x01&#8217;</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="time-signature">
-<h3>TIME_SIGNATURE<a class="headerlink" href="#time-signature" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: str</li>
-<li><em>Value</em>: <cite>&#8216;X&#8217;</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="track-header">
-<h3>TRACK_HEADER<a class="headerlink" href="#track-header" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: str</li>
-<li><em>Value</em>: <cite>&#8216;MTrk&#8217;</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="track-name">
-<h3>TRACK_NAME<a class="headerlink" href="#track-name" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: str</li>
-<li><em>Value</em>: <cite>&#8216;x03&#8217;</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="major-keys">
-<h3>major_keys<a class="headerlink" href="#major-keys" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: list</li>
-<li><em>Value</em>: <cite>[&#8216;Cb&#8217;, &#8216;Gb&#8217;, &#8216;Db&#8217;, &#8216;Ab&#8217;, &#8216;Eb&#8217;, &#8216;Bb&#8217;, &#8216;F&#8217;, &#8216;C&#8217;, &#8216;G&#8217;, &#8216;D&#8217;, &#8216;A&#8217;, &#8216;E&#8217;, &#8216;B&#8217;, &#8216;F#&#8217;, &#8216;C#&#8217;]</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="minor-keys">
-<h3>minor_keys<a class="headerlink" href="#minor-keys" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: list</li>
-<li><em>Value</em>: <cite>[&#8216;ab&#8217;, &#8216;eb&#8217;, &#8216;bb&#8217;, &#8216;f&#8217;, &#8216;c&#8217;, &#8216;g&#8217;, &#8216;d&#8217;, &#8216;a&#8217;, &#8216;e&#8217;, &#8216;b&#8217;, &#8216;f#&#8217;, &#8216;c#&#8217;, &#8216;g#&#8217;, &#8216;d#&#8217;, &#8216;a#&#8217;]</cite></li>
-</ul>
-</div></blockquote>
+<p>BALANCE</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>BANK_SELECT</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>BREATH_CONTROLLER</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>CHANNEL_AFTERTOUCH</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>CONTROLLER</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>COPYRIGHT_NOTICE</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>CUE_POINT</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>DATA_ENTRY_MSB</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>EFFECT_CONTROL_1</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>EFFECT_CONTROL_2</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>END_OF_TRACK</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>EXPRESSION_CONTROLLER</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>FILE_HEADER</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>FOOT_CONTROLLER</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>INSTRUMENT_NAME</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>KEY_SIGNATURE</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>LYRICS</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>MAIN_VOLUME</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>MARKER</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>META_EVENT</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>MIDI_CHANNEL_PREFIX</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>MODULATION</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>NOTE_AFTERTOUCH</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>NOTE_OFF</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>NOTE_ON</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>PAN</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>PITCH_BEND</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>PORTAMENTO_TIME</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>PROGRAM_CHANGE</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>SEQUENCE_NUMBER</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>SET_TEMPO</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>SMPTE_OFFSET</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>TEXT_EVENT</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>TIME_SIGNATURE</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>TRACK_HEADER</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>TRACK_NAME</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>major_keys</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>minor_keys</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
 <hr class="docutils" />
 <p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
-</div>
 </div>
 </div>
 
@@ -408,47 +561,7 @@
   <h3><a href="../../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">mingus.midi.midi_track</a><ul>
-<li><a class="reference internal" href="#attributes">Attributes</a><ul>
-<li><a class="reference internal" href="#balance">BALANCE</a></li>
-<li><a class="reference internal" href="#bank-select">BANK_SELECT</a></li>
-<li><a class="reference internal" href="#breath-controller">BREATH_CONTROLLER</a></li>
-<li><a class="reference internal" href="#channel-aftertouch">CHANNEL_AFTERTOUCH</a></li>
-<li><a class="reference internal" href="#controller">CONTROLLER</a></li>
-<li><a class="reference internal" href="#copyright-notice">COPYRIGHT_NOTICE</a></li>
-<li><a class="reference internal" href="#cue-point">CUE_POINT</a></li>
-<li><a class="reference internal" href="#data-entry-msb">DATA_ENTRY_MSB</a></li>
-<li><a class="reference internal" href="#effect-control-1">EFFECT_CONTROL_1</a></li>
-<li><a class="reference internal" href="#effect-control-2">EFFECT_CONTROL_2</a></li>
-<li><a class="reference internal" href="#end-of-track">END_OF_TRACK</a></li>
-<li><a class="reference internal" href="#expression-controller">EXPRESSION_CONTROLLER</a></li>
-<li><a class="reference internal" href="#file-header">FILE_HEADER</a></li>
-<li><a class="reference internal" href="#foot-controller">FOOT_CONTROLLER</a></li>
-<li><a class="reference internal" href="#instrument-name">INSTRUMENT_NAME</a></li>
-<li><a class="reference internal" href="#key-signature">KEY_SIGNATURE</a></li>
-<li><a class="reference internal" href="#lyrics">LYRICS</a></li>
-<li><a class="reference internal" href="#main-volume">MAIN_VOLUME</a></li>
-<li><a class="reference internal" href="#marker">MARKER</a></li>
-<li><a class="reference internal" href="#meta-event">META_EVENT</a></li>
-<li><a class="reference internal" href="#midi-channel-prefix">MIDI_CHANNEL_PREFIX</a></li>
-<li><a class="reference internal" href="#modulation">MODULATION</a></li>
-<li><a class="reference internal" href="#note-aftertouch">NOTE_AFTERTOUCH</a></li>
-<li><a class="reference internal" href="#note-off">NOTE_OFF</a></li>
-<li><a class="reference internal" href="#note-on">NOTE_ON</a></li>
-<li><a class="reference internal" href="#pan">PAN</a></li>
-<li><a class="reference internal" href="#pitch-bend">PITCH_BEND</a></li>
-<li><a class="reference internal" href="#portamento-time">PORTAMENTO_TIME</a></li>
-<li><a class="reference internal" href="#program-change">PROGRAM_CHANGE</a></li>
-<li><a class="reference internal" href="#sequence-number">SEQUENCE_NUMBER</a></li>
-<li><a class="reference internal" href="#set-tempo">SET_TEMPO</a></li>
-<li><a class="reference internal" href="#smpte-offset">SMPTE_OFFSET</a></li>
-<li><a class="reference internal" href="#text-event">TEXT_EVENT</a></li>
-<li><a class="reference internal" href="#time-signature">TIME_SIGNATURE</a></li>
-<li><a class="reference internal" href="#track-header">TRACK_HEADER</a></li>
-<li><a class="reference internal" href="#track-name">TRACK_NAME</a></li>
-<li><a class="reference internal" href="#major-keys">major_keys</a></li>
-<li><a class="reference internal" href="#minor-keys">minor_keys</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#attributes">Attributes</a></li>
 </ul>
 </li>
 </ul>

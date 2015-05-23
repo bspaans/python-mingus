@@ -27,145 +27,940 @@ Attributes
 ----------
 
 base_quintuplets
-^^^^^^^^^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: list
   * *Value*: `[0.3125, 0.625, 1.25, 2.5, 5, 10, 20, 40, 80, 160]`
 
 base_septuplets
-^^^^^^^^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: list
   * *Value*: `[0.4375, 0.875, 1.75, 3.5, 7, 14, 28, 56, 112, 224]`
 
 base_triplets
-^^^^^^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: list
   * *Value*: `[0.375, 0.75, 1.5, 3, 6, 12, 24, 48, 96, 192]`
 
 base_values
-^^^^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: list
   * *Value*: `[0.25, 0.5, 1, 2, 4, 8, 16, 32, 64, 128]`
 
 breve
-^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: float
   * *Value*: `0.5`
 
 crotchet
-^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: int
   * *Value*: `4`
 
 demisemiquaver
-^^^^^^^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: int
   * *Value*: `32`
 
 eighth
-^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: int
   * *Value*: `8`
 
 half
-^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: int
   * *Value*: `2`
 
 hemidemisemiquaver
-^^^^^^^^^^^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: int
   * *Value*: `64`
 
 hundred_twenty_eighth
-^^^^^^^^^^^^^^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: int
   * *Value*: `128`
 
 longa
-^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: float
   * *Value*: `0.25`
 
 minim
-^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: int
   * *Value*: `2`
 
 musicxml
-^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: dict
   * *Value*: `{16: '16th', 1: 'whole', 2: 'half', 4: 'quarter', 32: '32th', 8: 'eighth', 64: '64th', 128: '128th'}`
 
 quarter
-^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: int
   * *Value*: `4`
 
 quasihemidemisemiquaver
-^^^^^^^^^^^^^^^^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: int
   * *Value*: `128`
 
 quaver
-^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: int
   * *Value*: `8`
 
 semibreve
-^^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: int
   * *Value*: `1`
 
 semihemidemisemiquaver
-^^^^^^^^^^^^^^^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: int
   * *Value*: `128`
 
 semiquaver
-^^^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: int
   * *Value*: `16`
 
 sixteenth
-^^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: int
   * *Value*: `16`
 
 sixty_fourth
-^^^^^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: int
   * *Value*: `64`
 
 thirty_second
-^^^^^^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: int
   * *Value*: `32`
 
 whole
-^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: int
   * *Value*: `1`

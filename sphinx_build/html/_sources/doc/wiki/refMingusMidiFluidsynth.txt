@@ -20,16 +20,61 @@ Attributes
 ----------
 
 initialized
-^^^^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: bool
   * *Value*: `False`
 
 midi
-^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: mingus.midi.fluidsynth.FluidSynthSequencer
-  * *Value*: `<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x7fb233305910>`
+  * *Value*: `<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x7ffadd480950>`
 
 ----
 

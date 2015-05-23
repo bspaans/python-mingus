@@ -12,7 +12,10 @@ Attributes
 ----------
 
 x
-^
+
+----
+
+.. attribute::
 
   * *Type*: int
   * *Value*: `128`

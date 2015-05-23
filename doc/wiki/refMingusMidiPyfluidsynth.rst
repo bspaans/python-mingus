@@ -24,52 +24,247 @@ Attributes
 ----------
 
 DEFAULT_MODE
-^^^^^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: int
   * *Value*: `0`
 
 RTLD_GLOBAL
-^^^^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: int
   * *Value*: `256`
 
 RTLD_LOCAL
-^^^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: int
   * *Value*: `0`
 
 api_version
-^^^^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: str
   * *Value*: `'1.2'`
 
 cdll
-^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: ctypes.LibraryLoader
-  * *Value*: `<ctypes.LibraryLoader object at 0x7fb233803890>`
+  * *Value*: `<ctypes.LibraryLoader object at 0x7ffadd97f8d0>`
 
 lib
-^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: str
   * *Value*: `'libfluidsynth.so.1'`
 
 pydll
-^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: ctypes.LibraryLoader
-  * *Value*: `<ctypes.LibraryLoader object at 0x7fb2338038d0>`
+  * *Value*: `<ctypes.LibraryLoader object at 0x7ffadd97f910>`
 
 pythonapi
-^^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: ctypes.PyDLL
-  * *Value*: `<PyDLL 'None', handle 7fb236f20188 at 7fb233803910>`
+  * *Value*: `<PyDLL 'None', handle 7ffae109c188 at 7ffadd97f950>`
 
 ----
 

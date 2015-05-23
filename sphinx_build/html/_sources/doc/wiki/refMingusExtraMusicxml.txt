@@ -18,13 +18,73 @@ Attributes
 ----------
 
 major_keys
-^^^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: list
   * *Value*: `['Cb', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#']`
 
 minor_keys
-^^^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: list
   * *Value*: `['ab', 'eb', 'bb', 'f', 'c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#']`

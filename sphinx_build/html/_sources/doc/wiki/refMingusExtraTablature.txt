@@ -8,10 +8,52 @@ Attributes
 ----------
 
 default_tuning
-^^^^^^^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: mingus.extra.tunings.StringTuning
-  * *Value*: `<mingus.extra.tunings.StringTuning object at 0x7fb235ac2e50>`
+  * *Value*: `<mingus.extra.tunings.StringTuning object at 0x7ffadfc3ee90>`
 
 ----
 

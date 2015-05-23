@@ -14,7 +14,25 @@ Attributes
 ----------
 
 fifths
-^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: list
   * *Value*: `['F', 'C', 'G', 'D', 'A', 'E', 'B']`

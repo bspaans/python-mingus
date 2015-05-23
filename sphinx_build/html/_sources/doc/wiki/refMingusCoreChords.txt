@@ -84,13 +84,127 @@ Attributes
 ----------
 
 chord_shorthand
-^^^^^^^^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: dict
-  * *Value*: `{'': <function major_triad at 0x7fb236d49410>, 'm11': <function minor_eleventh at 0x7fb236d49ed8>, 'm13': <function minor_thirteenth at 0x7fb236d49f50>, '67': <function dominant_sixth at 0x7fb236d49b18>, '69': <function sixth_ninth at 0x7fb236d49b90>, '7b12': <function hendrix_chord at 0x7fb236d5f578>, 'hendrix': <function hendrix_chord at 0x7fb236d5f578>, 'aug': <function augmented_triad at 0x7fb236d49578>, 'm7': <function minor_seventh at 0x7fb236d49758>, 'm6': <function minor_sixth at 0x7fb236d49a28>, '6': <function major_sixth at 0x7fb236d49aa0>, '5': <function <lambda> at 0x7fb236d60d70>, 'm9': <function minor_ninth at 0x7fb236d49c08>, 'm7+': <function augmented_minor_seventh at 0x7fb236d5f410>, '6/7': <function dominant_sixth at 0x7fb236d49b18>, '7#11': <function lydian_dominant_seventh at 0x7fb236d5f500>, '6/9': <function sixth_ninth at 0x7fb236d49b90>, '11': <function eleventh at 0x7fb236d49e60>, 'dim': <function diminished_triad at 0x7fb236d49500>, '13': <function dominant_thirteenth at 0x7fb236d5f0c8>, '7b5': <function dominant_flat_five at 0x7fb236d5f488>, 'm7b5': <function minor_seventh_flat_five at 0x7fb236d498c0>, 'susb9': <function suspended_fourth_ninth at 0x7fb236d5f320>, 'mM7': <function minor_major_seventh at 0x7fb236d499b0>, '7b9': <function dominant_flat_ninth at 0x7fb236d49d70>, 'M13': <function major_thirteenth at 0x7fb236d5f050>, 'sus47': <function suspended_seventh at 0x7fb236d5f2a8>, 'm': <function minor_triad at 0x7fb236d49488>, 'sus4b9': <function suspended_fourth_ninth at 0x7fb236d5f320>, 'M7': <function major_seventh at 0x7fb236d496e0>, 'M6': <function major_sixth at 0x7fb236d49aa0>, 'dim7': <function diminished_seventh at 0x7fb236d49938>, 'M7+': <function augmented_major_seventh at 0x7fb236d5f398>, 'M9': <function major_ninth at 0x7fb236d49c80>, 'dom7': <function dominant_seventh at 0x7fb236d497d0>, 'M7+5': <function augmented_minor_seventh at 0x7fb236d5f410>, '+': <function augmented_triad at 0x7fb236d49578>, 'sus': <function suspended_triad at 0x7fb236d5f140>, '7': <function dominant_seventh at 0x7fb236d497d0>, '9': <function dominant_ninth at 0x7fb236d49cf8>, 'M': <function major_triad at 0x7fb236d49410>, '7+': <function augmented_major_seventh at 0x7fb236d5f398>, 'sus2': <function suspended_second_triad at 0x7fb236d5f1b8>, 'sus4': <function suspended_fourth_triad at 0x7fb236d5f230>, '7#5': <function augmented_minor_seventh at 0x7fb236d5f410>, '7#9': <function dominant_sharp_ninth at 0x7fb236d49de8>, 'm/M7': <function minor_major_seventh at 0x7fb236d499b0>}`
+  * *Value*: `{'': <function major_triad at 0x7ffae0ec5410>, 'm11': <function minor_eleventh at 0x7ffae0ec5ed8>, 'm13': <function minor_thirteenth at 0x7ffae0ec5f50>, '67': <function dominant_sixth at 0x7ffae0ec5b18>, '69': <function sixth_ninth at 0x7ffae0ec5b90>, '7b12': <function hendrix_chord at 0x7ffae0edb578>, 'hendrix': <function hendrix_chord at 0x7ffae0edb578>, 'aug': <function augmented_triad at 0x7ffae0ec5578>, 'm7': <function minor_seventh at 0x7ffae0ec5758>, 'm6': <function minor_sixth at 0x7ffae0ec5a28>, '6': <function major_sixth at 0x7ffae0ec5aa0>, '5': <function <lambda> at 0x7ffae0edcd70>, 'm9': <function minor_ninth at 0x7ffae0ec5c08>, 'm7+': <function augmented_minor_seventh at 0x7ffae0edb410>, '6/7': <function dominant_sixth at 0x7ffae0ec5b18>, '7#11': <function lydian_dominant_seventh at 0x7ffae0edb500>, '6/9': <function sixth_ninth at 0x7ffae0ec5b90>, '11': <function eleventh at 0x7ffae0ec5e60>, 'dim': <function diminished_triad at 0x7ffae0ec5500>, '13': <function dominant_thirteenth at 0x7ffae0edb0c8>, '7b5': <function dominant_flat_five at 0x7ffae0edb488>, 'm7b5': <function minor_seventh_flat_five at 0x7ffae0ec58c0>, 'susb9': <function suspended_fourth_ninth at 0x7ffae0edb320>, 'mM7': <function minor_major_seventh at 0x7ffae0ec59b0>, '7b9': <function dominant_flat_ninth at 0x7ffae0ec5d70>, 'M13': <function major_thirteenth at 0x7ffae0edb050>, 'sus47': <function suspended_seventh at 0x7ffae0edb2a8>, 'm': <function minor_triad at 0x7ffae0ec5488>, 'sus4b9': <function suspended_fourth_ninth at 0x7ffae0edb320>, 'M7': <function major_seventh at 0x7ffae0ec56e0>, 'M6': <function major_sixth at 0x7ffae0ec5aa0>, 'dim7': <function diminished_seventh at 0x7ffae0ec5938>, 'M7+': <function augmented_major_seventh at 0x7ffae0edb398>, 'M9': <function major_ninth at 0x7ffae0ec5c80>, 'dom7': <function dominant_seventh at 0x7ffae0ec57d0>, 'M7+5': <function augmented_minor_seventh at 0x7ffae0edb410>, '+': <function augmented_triad at 0x7ffae0ec5578>, 'sus': <function suspended_triad at 0x7ffae0edb140>, '7': <function dominant_seventh at 0x7ffae0ec57d0>, '9': <function dominant_ninth at 0x7ffae0ec5cf8>, 'M': <function major_triad at 0x7ffae0ec5410>, '7+': <function augmented_major_seventh at 0x7ffae0edb398>, 'sus2': <function suspended_second_triad at 0x7ffae0edb1b8>, 'sus4': <function suspended_fourth_triad at 0x7ffae0edb230>, '7#5': <function augmented_minor_seventh at 0x7ffae0edb410>, '7#9': <function dominant_sharp_ninth at 0x7ffae0ec5de8>, 'm/M7': <function minor_major_seventh at 0x7ffae0ec59b0>}`
 
 chord_shorthand_meaning
-^^^^^^^^^^^^^^^^^^^^^^^
+
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
+----
+
+.. attribute::
 
   * *Type*: dict
   * *Value*: `{'': ' major triad', 'm11': ' minor eleventh', 'add11': ' eleventh', '67': ' dominant sixth', '69': ' sixth ninth', '7b12': ' hendrix chord', 'hendrix': ' hendrix chord', 'aug': ' augmented triad', 'm7': ' minor seventh', 'm6': ' minor sixth', '6': ' major sixth', '5': ' perfect fifth', 'm9': ' minor ninth', 'm7+': ' augmented minor seventh', '6/7': ' dominant sixth', '7#11': ' lydian dominant seventh', '6/9': ' sixth ninth', '11': ' eleventh', 'dim': ' diminished triad', '13': ' dominant thirteenth', '7b5': ' dominant flat five', 'm7b5': ' half diminished seventh', 'susb9': ' suspended fourth ninth', 'mM7': ' minor/major seventh', 'm13': ' minor thirteenth', '7b9': ' dominant flat ninth', 'M13': ' major thirteenth', 'sus47': ' suspended seventh', 'm': ' minor triad', 'sus4b9': ' suspended fourth ninth', 'M7': ' major seventh', 'M6': ' major sixth', 'dim7': ' diminished seventh', 'M7+': ' augmented major seventh', 'M9': ' major ninth', 'add13': ' dominant thirteenth', 'dom7': ' dominant seventh', 'M7+5': ' augmented minor seventh', '+': ' augmented triad', 'sus': ' suspended fourth triad', '7': ' dominant seventh', '9': ' dominant ninth', 'M': ' major triad', '7+': ' augmented major seventh', 'sus2': ' suspended second triad', 'sus4': ' suspended fourth triad', '7#5': ' augmented minor seventh', '7#9': ' dominant sharp ninth', 'm/M7': ' minor/major seventh', 'add9': ' dominant ninth', '7sus4': ' suspended seventh'}`

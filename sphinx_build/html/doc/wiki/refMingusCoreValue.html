@@ -71,222 +71,295 @@ up your code. This module is here to help do the conversion.</p>
 <p>Medieval backwards compatibility privided.</p>
 <div class="section" id="attributes">
 <h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="base-quintuplets">
-<h3>base_quintuplets<a class="headerlink" href="#base-quintuplets" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: list</li>
-<li><em>Value</em>: <cite>[0.3125, 0.625, 1.25, 2.5, 5, 10, 20, 40, 80, 160]</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="base-septuplets">
-<h3>base_septuplets<a class="headerlink" href="#base-septuplets" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: list</li>
-<li><em>Value</em>: <cite>[0.4375, 0.875, 1.75, 3.5, 7, 14, 28, 56, 112, 224]</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="base-triplets">
-<h3>base_triplets<a class="headerlink" href="#base-triplets" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: list</li>
-<li><em>Value</em>: <cite>[0.375, 0.75, 1.5, 3, 6, 12, 24, 48, 96, 192]</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="base-values">
-<h3>base_values<a class="headerlink" href="#base-values" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: list</li>
-<li><em>Value</em>: <cite>[0.25, 0.5, 1, 2, 4, 8, 16, 32, 64, 128]</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="breve">
-<h3>breve<a class="headerlink" href="#breve" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: float</li>
-<li><em>Value</em>: <cite>0.5</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="crotchet">
-<h3>crotchet<a class="headerlink" href="#crotchet" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>4</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="demisemiquaver">
-<h3>demisemiquaver<a class="headerlink" href="#demisemiquaver" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>32</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="eighth">
-<h3>eighth<a class="headerlink" href="#eighth" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>8</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="half">
-<h3>half<a class="headerlink" href="#half" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>2</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="hemidemisemiquaver">
-<h3>hemidemisemiquaver<a class="headerlink" href="#hemidemisemiquaver" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>64</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="hundred-twenty-eighth">
-<h3>hundred_twenty_eighth<a class="headerlink" href="#hundred-twenty-eighth" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>128</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="longa">
-<h3>longa<a class="headerlink" href="#longa" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: float</li>
-<li><em>Value</em>: <cite>0.25</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="minim">
-<h3>minim<a class="headerlink" href="#minim" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>2</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="musicxml">
-<h3>musicxml<a class="headerlink" href="#musicxml" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: dict</li>
-<li><em>Value</em>: <cite>{16: &#8216;16th&#8217;, 1: &#8216;whole&#8217;, 2: &#8216;half&#8217;, 4: &#8216;quarter&#8217;, 32: &#8216;32th&#8217;, 8: &#8216;eighth&#8217;, 64: &#8216;64th&#8217;, 128: &#8216;128th&#8217;}</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="quarter">
-<h3>quarter<a class="headerlink" href="#quarter" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>4</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="quasihemidemisemiquaver">
-<h3>quasihemidemisemiquaver<a class="headerlink" href="#quasihemidemisemiquaver" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>128</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="quaver">
-<h3>quaver<a class="headerlink" href="#quaver" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>8</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="semibreve">
-<h3>semibreve<a class="headerlink" href="#semibreve" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>1</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="semihemidemisemiquaver">
-<h3>semihemidemisemiquaver<a class="headerlink" href="#semihemidemisemiquaver" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>128</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="semiquaver">
-<h3>semiquaver<a class="headerlink" href="#semiquaver" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>16</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="sixteenth">
-<h3>sixteenth<a class="headerlink" href="#sixteenth" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>16</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="sixty-fourth">
-<h3>sixty_fourth<a class="headerlink" href="#sixty-fourth" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>64</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="thirty-second">
-<h3>thirty_second<a class="headerlink" href="#thirty-second" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>32</cite></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="whole">
-<h3>whole<a class="headerlink" href="#whole" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>1</cite></li>
-</ul>
-</div></blockquote>
-</div>
+<p>base_quintuplets</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>base_septuplets</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>base_triplets</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>base_values</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>breve</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>crotchet</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>demisemiquaver</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>eighth</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>half</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>hemidemisemiquaver</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>hundred_twenty_eighth</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>longa</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>minim</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>musicxml</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>quarter</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>quasihemidemisemiquaver</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>quaver</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>semibreve</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>semihemidemisemiquaver</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>semiquaver</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>sixteenth</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>sixty_fourth</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>thirty_second</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p>whole</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
 </div>
 <hr class="docutils" />
 <div class="section" id="functions">
@@ -444,33 +517,7 @@ the note value when playing in rat1:rat2.</p>
   <h3><a href="../../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">mingus.core.value</a><ul>
-<li><a class="reference internal" href="#attributes">Attributes</a><ul>
-<li><a class="reference internal" href="#base-quintuplets">base_quintuplets</a></li>
-<li><a class="reference internal" href="#base-septuplets">base_septuplets</a></li>
-<li><a class="reference internal" href="#base-triplets">base_triplets</a></li>
-<li><a class="reference internal" href="#base-values">base_values</a></li>
-<li><a class="reference internal" href="#breve">breve</a></li>
-<li><a class="reference internal" href="#crotchet">crotchet</a></li>
-<li><a class="reference internal" href="#demisemiquaver">demisemiquaver</a></li>
-<li><a class="reference internal" href="#eighth">eighth</a></li>
-<li><a class="reference internal" href="#half">half</a></li>
-<li><a class="reference internal" href="#hemidemisemiquaver">hemidemisemiquaver</a></li>
-<li><a class="reference internal" href="#hundred-twenty-eighth">hundred_twenty_eighth</a></li>
-<li><a class="reference internal" href="#longa">longa</a></li>
-<li><a class="reference internal" href="#minim">minim</a></li>
-<li><a class="reference internal" href="#musicxml">musicxml</a></li>
-<li><a class="reference internal" href="#quarter">quarter</a></li>
-<li><a class="reference internal" href="#quasihemidemisemiquaver">quasihemidemisemiquaver</a></li>
-<li><a class="reference internal" href="#quaver">quaver</a></li>
-<li><a class="reference internal" href="#semibreve">semibreve</a></li>
-<li><a class="reference internal" href="#semihemidemisemiquaver">semihemidemisemiquaver</a></li>
-<li><a class="reference internal" href="#semiquaver">semiquaver</a></li>
-<li><a class="reference internal" href="#sixteenth">sixteenth</a></li>
-<li><a class="reference internal" href="#sixty-fourth">sixty_fourth</a></li>
-<li><a class="reference internal" href="#thirty-second">thirty_second</a></li>
-<li><a class="reference internal" href="#whole">whole</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#attributes">Attributes</a></li>
 <li><a class="reference internal" href="#functions">Functions</a></li>
 </ul>
 </li>
