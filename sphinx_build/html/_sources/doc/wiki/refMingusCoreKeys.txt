@@ -77,6 +77,7 @@ get_notes(key)
 Return an ordered list of the notes in this natural key.
 
 Examples:
+
 >>> get_notes('F')
 ['F', 'G', 'A', 'Bb', 'C', 'D', 'E']
 >>> get_notes('c')
@@ -93,6 +94,7 @@ relative_major(key)
 Return the relative major of a minor key.
 
 Example:
+
 >>> relative_major('a')
 'C'
 
@@ -102,6 +104,7 @@ relative_minor(key)
 Return the relative minor of a major key.
 
 Example:
+
 >>> relative_minor('C')
 'a'
 

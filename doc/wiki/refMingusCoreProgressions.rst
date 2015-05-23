@@ -43,6 +43,7 @@ Determine the harmonic function of chord in key.
 This function can also deal with lists of chords.
 
 Examples:
+
 >>> determine(['C', 'E', 'G'], 'C')
 ['tonic']
 >>> determine(['G', 'B', 'D'], 'C')
@@ -65,6 +66,7 @@ parse_string(progression)
 Return a tuple (roman numeral, accidentals, chord suffix).
 
 Examples:
+
 >>> parse_string('I')
 ('I', 0, '')
 >>> parse_string('bIM7')
@@ -77,6 +79,7 @@ skip(roman_numeral, skip)
 Skip the given places to the next roman numeral.
 
 Examples:
+
 >>> skip('I')
 'II'
 >>> skip('VII')
@@ -94,6 +97,7 @@ If depth > 0 the substitutions of each result will be recursively added
 as well.
 
 Example:
+
 >>> substitute(['I', 'IV', 'V', 'I'], 0)
 ['III', 'III7', 'VI', 'VI7', 'I7']
 
@@ -106,6 +110,7 @@ Substitute a diminished chord for another diminished chord.
 'dim' and 'dim7' suffixes recognized, and 'VI' if there is no suffix.
 
 Example:
+
 >>> substitute_diminished_for_diminished(['VII'], 0)
 ['IIdim', 'bIVdim', 'bbVIdim']
 
@@ -141,6 +146,7 @@ Substitute major chords for their minor equivalent.
 suffix.
 
 Examples:
+
 >>> substitute_major_for_minor(['I'], 0)
 ['VI']
 >>> substitute_major_for_minor(['VM7'], 0)
@@ -156,6 +162,7 @@ Substitute minor chords for its major equivalent.
 suffix.
 
 Examples:
+
 >>> substitute_minor_for_major(['VI'], 0)
 ['I']
 >>> substitute_minor_for_major(['Vm'], 0)
@@ -170,6 +177,7 @@ to_chords(progression, key)
 Convert a list of chord functions or a string to a list of chords.
 
 Examples:
+
 >>> to_chords(['I', 'V7'])
 [['C', 'E', 'G'], ['G', 'B', 'D', 'F']]
 >>> to_chords('I7')

@@ -96,15 +96,17 @@ vice versa.</p>
 </div></blockquote>
 <p>Determine the harmonic function of chord in key.</p>
 <p>This function can also deal with lists of chords.</p>
-<p>Examples:
-&gt;&gt;&gt; determine([&#8216;C&#8217;, &#8216;E&#8217;, &#8216;G&#8217;], &#8216;C&#8217;)
-[&#8216;tonic&#8217;]
-&gt;&gt;&gt; determine([&#8216;G&#8217;, &#8216;B&#8217;, &#8216;D&#8217;], &#8216;C&#8217;)
-[&#8216;dominant&#8217;]
-&gt;&gt;&gt; determine([&#8216;G&#8217;, &#8216;B&#8217;, &#8216;D&#8217;, &#8216;F&#8217;], &#8216;C&#8217;, True)
-[&#8216;V7&#8217;]
-&gt;&gt;&gt; determine([[&#8216;C&#8217;, &#8216;E&#8217;, &#8216;G&#8217;], [&#8216;G&#8217;, &#8216;B&#8217;, &#8216;D&#8217;]], &#8216;C&#8217;, True)
-[[&#8216;I&#8217;], [&#8216;V&#8217;]]</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">([</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">],</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
+<span class="go">[&#39;tonic&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">([</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">],</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
+<span class="go">[&#39;dominant&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">([</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;F&#39;</span><span class="p">],</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+<span class="go">[&#39;V7&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">([[</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">]],</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+<span class="go">[[&#39;I&#39;], [&#39;V&#39;]]</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="interval-diff-progression1-progression2-interval">
 <h3>interval_diff(progression1, progression2, interval)<a class="headerlink" href="#interval-diff-progression1-progression2-interval" title="Permalink to this headline">¶</a></h3>
@@ -115,11 +117,13 @@ interval.</p>
 <div class="section" id="parse-string-progression">
 <h3>parse_string(progression)<a class="headerlink" href="#parse-string-progression" title="Permalink to this headline">¶</a></h3>
 <p>Return a tuple (roman numeral, accidentals, chord suffix).</p>
-<p>Examples:
-&gt;&gt;&gt; parse_string(&#8216;I&#8217;)
-(&#8216;I&#8217;, 0, &#8216;&#8217;)
-&gt;&gt;&gt; parse_string(&#8216;bIM7&#8217;)
-(&#8216;I&#8217;, -1, &#8216;M7&#8217;)</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">parse_string</span><span class="p">(</span><span class="s">&#39;I&#39;</span><span class="p">)</span>
+<span class="go">(&#39;I&#39;, 0, &#39;&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parse_string</span><span class="p">(</span><span class="s">&#39;bIM7&#39;</span><span class="p">)</span>
+<span class="go">(&#39;I&#39;, -1, &#39;M7&#39;)</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="skip-roman-numeral-skip">
 <h3>skip(roman_numeral, skip)<a class="headerlink" href="#skip-roman-numeral-skip" title="Permalink to this headline">¶</a></h3>
@@ -129,13 +133,15 @@ interval.</p>
 </ul>
 </div></blockquote>
 <p>Skip the given places to the next roman numeral.</p>
-<p>Examples:
-&gt;&gt;&gt; skip(&#8216;I&#8217;)
-&#8216;II&#8217;
-&gt;&gt;&gt; skip(&#8216;VII&#8217;)
-&#8216;I&#8217;
-&gt;&gt;&gt; skip(&#8216;I&#8217;, 2)
-&#8216;III&#8217;</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">skip</span><span class="p">(</span><span class="s">&#39;I&#39;</span><span class="p">)</span>
+<span class="go">&#39;II&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">skip</span><span class="p">(</span><span class="s">&#39;VII&#39;</span><span class="p">)</span>
+<span class="go">&#39;I&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">skip</span><span class="p">(</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">&#39;III&#39;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="substitute-progression-substitute-index-depth">
 <h3>substitute(progression, substitute_index, depth)<a class="headerlink" href="#substitute-progression-substitute-index-depth" title="Permalink to this headline">¶</a></h3>
@@ -147,9 +153,11 @@ interval.</p>
 <p>Give a list of possible substitutions for progression[substitute_index].</p>
 <p>If depth &gt; 0 the substitutions of each result will be recursively added
 as well.</p>
-<p>Example:
-&gt;&gt;&gt; substitute([&#8216;I&#8217;, &#8216;IV&#8217;, &#8216;V&#8217;, &#8216;I&#8217;], 0)
-[&#8216;III&#8217;, &#8216;III7&#8217;, &#8216;VI&#8217;, &#8216;VI7&#8217;, &#8216;I7&#8217;]</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">substitute</span><span class="p">([</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;IV&#39;</span><span class="p">,</span> <span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="s">&#39;I&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">[&#39;III&#39;, &#39;III7&#39;, &#39;VI&#39;, &#39;VI7&#39;, &#39;I7&#39;]</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="substitute-diminished-for-diminished-progression-substitute-index-ignore-suffix">
 <h3>substitute_diminished_for_diminished(progression, substitute_index, ignore_suffix)<a class="headerlink" href="#substitute-diminished-for-diminished-progression-substitute-index-ignore-suffix" title="Permalink to this headline">¶</a></h3>
@@ -160,9 +168,11 @@ as well.</p>
 </div></blockquote>
 <p>Substitute a diminished chord for another diminished chord.</p>
 <p>&#8216;dim&#8217; and &#8216;dim7&#8217; suffixes recognized, and &#8216;VI&#8217; if there is no suffix.</p>
-<p>Example:
-&gt;&gt;&gt; substitute_diminished_for_diminished([&#8216;VII&#8217;], 0)
-[&#8216;IIdim&#8217;, &#8216;bIVdim&#8217;, &#8216;bbVIdim&#8217;]</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_diminished_for_diminished</span><span class="p">([</span><span class="s">&#39;VII&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">[&#39;IIdim&#39;, &#39;bIVdim&#39;, &#39;bbVIdim&#39;]</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="substitute-diminished-for-dominant-progression-substitute-index-ignore-suffix">
 <h3>substitute_diminished_for_dominant(progression, substitute_index, ignore_suffix)<a class="headerlink" href="#substitute-diminished-for-dominant-progression-substitute-index-ignore-suffix" title="Permalink to this headline">¶</a></h3>
@@ -201,11 +211,13 @@ suffix, or with suffix &#8216;7&#8217; will be substituted.</p>
 <p>Substitute major chords for their minor equivalent.</p>
 <p>&#8216;M&#8217; and &#8216;M7&#8217; suffixes recognized, and [&#8216;I&#8217;, &#8216;IV&#8217;, &#8216;V&#8217;] if there is no
 suffix.</p>
-<p>Examples:
-&gt;&gt;&gt; substitute_major_for_minor([&#8216;I&#8217;], 0)
-[&#8216;VI&#8217;]
-&gt;&gt;&gt; substitute_major_for_minor([&#8216;VM7&#8217;], 0)
-[&#8216;IIIm7&#8217;]</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_major_for_minor</span><span class="p">([</span><span class="s">&#39;I&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">[&#39;VI&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_major_for_minor</span><span class="p">([</span><span class="s">&#39;VM7&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">[&#39;IIIm7&#39;]</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="substitute-minor-for-major-progression-substitute-index-ignore-suffix">
 <h3>substitute_minor_for_major(progression, substitute_index, ignore_suffix)<a class="headerlink" href="#substitute-minor-for-major-progression-substitute-index-ignore-suffix" title="Permalink to this headline">¶</a></h3>
@@ -217,13 +229,15 @@ suffix.</p>
 <p>Substitute minor chords for its major equivalent.</p>
 <p>&#8216;m&#8217; and &#8216;m7&#8217; suffixes recognized, and [&#8216;II&#8217;, &#8216;III&#8217;, &#8216;VI&#8217;] if there is no
 suffix.</p>
-<p>Examples:
-&gt;&gt;&gt; substitute_minor_for_major([&#8216;VI&#8217;], 0)
-[&#8216;I&#8217;]
-&gt;&gt;&gt; substitute_minor_for_major([&#8216;Vm&#8217;], 0)
-[&#8216;bVIIM&#8217;]
-&gt;&gt;&gt; substitute_minor_for_major([&#8216;VIm7&#8217;], 0)
-[&#8216;IM7&#8217;]</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_minor_for_major</span><span class="p">([</span><span class="s">&#39;VI&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">[&#39;I&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_minor_for_major</span><span class="p">([</span><span class="s">&#39;Vm&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">[&#39;bVIIM&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_minor_for_major</span><span class="p">([</span><span class="s">&#39;VIm7&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">[&#39;IM7&#39;]</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="to-chords-progression-key">
 <h3>to_chords(progression, key)<a class="headerlink" href="#to-chords-progression-key" title="Permalink to this headline">¶</a></h3>
@@ -233,11 +247,13 @@ suffix.</p>
 </ul>
 </div></blockquote>
 <p>Convert a list of chord functions or a string to a list of chords.</p>
-<p>Examples:
-&gt;&gt;&gt; to_chords([&#8216;I&#8217;, &#8216;V7&#8217;])
-[[&#8216;C&#8217;, &#8216;E&#8217;, &#8216;G&#8217;], [&#8216;G&#8217;, &#8216;B&#8217;, &#8216;D&#8217;, &#8216;F&#8217;]]
-&gt;&gt;&gt; to_chords(&#8216;I7&#8217;)
-[[&#8216;C&#8217;, &#8216;E&#8217;, &#8216;G&#8217;, &#8216;B&#8217;]]</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">to_chords</span><span class="p">([</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;V7&#39;</span><span class="p">])</span>
+<span class="go">[[&#39;C&#39;, &#39;E&#39;, &#39;G&#39;], [&#39;G&#39;, &#39;B&#39;, &#39;D&#39;, &#39;F&#39;]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">to_chords</span><span class="p">(</span><span class="s">&#39;I7&#39;</span><span class="p">)</span>
+<span class="go">[[&#39;C&#39;, &#39;E&#39;, &#39;G&#39;, &#39;B&#39;]]</span>
+</pre></div>
+</div>
 <p>Any number of accidentals can be used as prefix to augment or diminish;
 for example: bIV or #I.</p>
 <p>All the chord abbreviations in the chord module can be used as suffixes;

@@ -29,7 +29,7 @@ midi
 ^^^^
 
   * *Type*: mingus.midi.fluidsynth.FluidSynthSequencer
-  * *Value*: `<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x7f50216b5950>`
+  * *Value*: `<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x7f6796798950>`
 
 ----
 
@@ -101,6 +101,7 @@ that's the case those values take presedence over the ones given here as
 function arguments.
 
 Example:
+
 >>> n = Note('C', 4)
 >>> n.channel = 9
 >>> n.velocity = 50

@@ -83,6 +83,7 @@ References
 
 Examples
 --------
+
 >>> np.fft.fft(np.exp(2j * np.pi * np.arange(8) / 8))
 array([ -3.44505240e-16 +1.14383329e-17j,
          8.00000000e+00 -5.71092652e-15j,
@@ -92,6 +93,7 @@ array([ -3.44505240e-16 +1.14383329e-17j,
          0.00000000e+00 +1.66837030e-15j,
          1.14383329e-17 +1.22460635e-16j,
          -1.64863782e-15 +1.77635684e-15j])
+
 
 >>> import matplotlib.pyplot as plt
 >>> t = np.arange(256)

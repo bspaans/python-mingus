@@ -36,6 +36,7 @@ determine(note1, note2, shorthand)
 Name the interval between note1 and note2.
 
 Examples:
+
 >>> determine('C', 'E')
 'major third'
 >>> determine('C', 'Eb')
@@ -47,6 +48,7 @@ Examples:
 
 This works for all intervals. Note that there are corner cases for major
 fifths and fourths:
+
 >>> determine('C', 'G')
 'perfect fifth'
 >>> determine('C', 'F')
@@ -60,6 +62,7 @@ Take the diatonic fifth of note in key.
 Raise a KeyError exception if the note is not found in the given key.
 
 Examples:
+
 >>> fifth('E', 'C')
 'B'
 >>> fifth('E', 'F')
@@ -73,6 +76,7 @@ Take the diatonic fourth of note in key.
 Raise a KeyError exception if the note is not found in the given key.
 
 Examples:
+
 >>> fourth('E', 'C')
 'A'
 >>> fourth('E', 'B')
@@ -85,6 +89,7 @@ from_shorthand(note, interval, up)
 Return the note on interval up or down.
 
 Examples:
+
 >>> from_shorthand('A', 'b3')
 'C'
 >>> from_shorthand('D', '2')
@@ -110,6 +115,7 @@ given key.
 Raise a KeyError exception if start_note is not a valid note.
 
 Example:
+
 >>> interval('C', 'D', 1)
 'E'
 
@@ -119,6 +125,7 @@ invert(interval)
 Invert an interval.
 
 Example:
+
 >>> invert(['C', 'E'])
 ['E', 'C']
 
@@ -198,6 +205,7 @@ Return an integer in the range of 0-11, determining the half note steps
 between note1 and note2.
 
 Examples:
+
 >>> measure('C', 'D')
 2
 >>> measure('D', 'C')
@@ -238,6 +246,7 @@ Take the diatonic second of note in key.
 Raise a KeyError exception if the note is not found in the given key.
 
 Examples:
+
 >>> second('E', 'C')
 'F'
 >>> second('E', 'D')
@@ -251,6 +260,7 @@ Take the diatonic seventh of note in key.
 Raise a KeyError exception if the note is not found in the given key.
 
 Examples:
+
 >>> seventh('E', 'C')
 'D'
 >>> seventh('E', 'B')
@@ -264,6 +274,7 @@ Take the diatonic sixth of note in key.
 Raise a KeyError exception if the note is not found in the given key.
 
 Examples:
+
 >>> sixth('E', 'C')
 'C'
 >>> sixth('E', 'B')
@@ -277,6 +288,7 @@ Take the diatonic third of note in key.
 Raise a KeyError exception if the note is not found in the given key.
 
 Examples:
+
 >>> third('E', 'C')
 'G'
 >>> third('E', 'E')
@@ -294,6 +306,7 @@ The key is not at all important, but is here for consistency reasons
 only.
 
 Example:
+
 >>> unison('C')
 'C'
 

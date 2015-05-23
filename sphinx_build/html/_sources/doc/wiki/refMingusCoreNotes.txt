@@ -30,6 +30,7 @@ augment(note)
 Augment a given note.
 
 Examples:
+
 >>> augment('C')
 'C#'
 >>> augment('Cb')
@@ -41,6 +42,7 @@ diminish(note)
 Diminish a given note.
 
 Examples:
+
 >>> diminish('C')
 'Cb'
 >>> diminish('C#')
@@ -58,6 +60,7 @@ Throw a RangeError exception if the note_int is not in the range 0-11.
 If not specified, sharps will be used.
 
 Examples:
+
 >>> int_to_note(0)
 'C'
 >>> int_to_note(3)
@@ -89,6 +92,7 @@ reduce_accidentals(note)
 Reduce any extra accidentals to proper notes.
 
 Example:
+
 >>> reduce_accidentals('C####')
 'E'
 
@@ -98,6 +102,7 @@ remove_redundant_accidentals(note)
 Remove redundant sharps and flats from the given note.
 
 Examples:
+
 >>> remove_redundant_accidentals('C##b')
 'C#'
 >>> remove_redundant_accidentals('Eb##b')

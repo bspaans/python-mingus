@@ -34,6 +34,7 @@ is_asymmetrical(meter)
 Return True if meter is an asymmetrical meter, False otherwise.
 
 Examples:
+
 >>> is_asymmetrical((3,4))
 True
 >>> is_asymmetrical((4,4))
@@ -45,6 +46,7 @@ is_compound(meter)
 Return True if meter is a compound meter, False otherwise.
 
 Examples:
+
 >>> is_compound((3,4))
 True
 >>> is_compound((4,4))
@@ -56,6 +58,7 @@ is_simple(meter)
 Return True if meter is a simple meter, False otherwise.
 
 Examples:
+
 >>> is_simple((3,4))
 True
 >>> is_simple((4,4))

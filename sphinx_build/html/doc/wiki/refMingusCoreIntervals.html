@@ -82,41 +82,49 @@ determine, invert, is_consonant and is_dissonant.</p>
 </ul>
 </div></blockquote>
 <p>Name the interval between note1 and note2.</p>
-<p>Examples:
-&gt;&gt;&gt; determine(&#8216;C&#8217;, &#8216;E&#8217;)
-&#8216;major third&#8217;
-&gt;&gt;&gt; determine(&#8216;C&#8217;, &#8216;Eb&#8217;)
-&#8216;minor third&#8217;
-&gt;&gt;&gt; determine(&#8216;C&#8217;, &#8216;E#&#8217;)
-&#8216;augmented third&#8217;
-&gt;&gt;&gt; determine(&#8216;C&#8217;, &#8216;Ebb&#8217;)
-&#8216;diminished third&#8217;</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">)</span>
+<span class="go">&#39;major third&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;Eb&#39;</span><span class="p">)</span>
+<span class="go">&#39;minor third&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E#&#39;</span><span class="p">)</span>
+<span class="go">&#39;augmented third&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;Ebb&#39;</span><span class="p">)</span>
+<span class="go">&#39;diminished third&#39;</span>
+</pre></div>
+</div>
 <p>This works for all intervals. Note that there are corner cases for major
-fifths and fourths:
-&gt;&gt;&gt; determine(&#8216;C&#8217;, &#8216;G&#8217;)
-&#8216;perfect fifth&#8217;
-&gt;&gt;&gt; determine(&#8216;C&#8217;, &#8216;F&#8217;)
-&#8216;perfect fourth&#8217;</p>
+fifths and fourths:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">)</span>
+<span class="go">&#39;perfect fifth&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;F&#39;</span><span class="p">)</span>
+<span class="go">&#39;perfect fourth&#39;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="fifth-note-key">
 <h3>fifth(note, key)<a class="headerlink" href="#fifth-note-key" title="Permalink to this headline">¶</a></h3>
 <p>Take the diatonic fifth of note in key.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
-<p>Examples:
-&gt;&gt;&gt; fifth(&#8216;E&#8217;, &#8216;C&#8217;)
-&#8216;B&#8217;
-&gt;&gt;&gt; fifth(&#8216;E&#8217;, &#8216;F&#8217;)
-&#8216;Bb&#8217;</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fifth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
+<span class="go">&#39;B&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fifth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;F&#39;</span><span class="p">)</span>
+<span class="go">&#39;Bb&#39;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="fourth-note-key">
 <h3>fourth(note, key)<a class="headerlink" href="#fourth-note-key" title="Permalink to this headline">¶</a></h3>
 <p>Take the diatonic fourth of note in key.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
-<p>Examples:
-&gt;&gt;&gt; fourth(&#8216;E&#8217;, &#8216;C&#8217;)
-&#8216;A&#8217;
-&gt;&gt;&gt; fourth(&#8216;E&#8217;, &#8216;B&#8217;)
-&#8216;A#&#8217;</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fourth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
+<span class="go">&#39;A&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fourth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">)</span>
+<span class="go">&#39;A#&#39;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="from-shorthand-note-interval-up">
 <h3>from_shorthand(note, interval, up)<a class="headerlink" href="#from-shorthand-note-interval-up" title="Permalink to this headline">¶</a></h3>
@@ -126,13 +134,15 @@ fifths and fourths:
 </ul>
 </div></blockquote>
 <p>Return the note on interval up or down.</p>
-<p>Examples:
-&gt;&gt;&gt; from_shorthand(&#8216;A&#8217;, &#8216;b3&#8217;)
-&#8216;C&#8217;
-&gt;&gt;&gt; from_shorthand(&#8216;D&#8217;, &#8216;2&#8217;)
-&#8216;E&#8217;
-&gt;&gt;&gt; from_shorthand(&#8216;E&#8217;, &#8216;2&#8217;, False)
-&#8216;D&#8217;</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;b3&#39;</span><span class="p">)</span>
+<span class="go">&#39;C&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;2&#39;</span><span class="p">)</span>
+<span class="go">&#39;E&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;2&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+<span class="go">&#39;D&#39;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="get-interval-note-interval-key">
 <h3>get_interval(note, interval, key)<a class="headerlink" href="#get-interval-note-interval-key" title="Permalink to this headline">¶</a></h3>
@@ -150,16 +160,20 @@ the minor and major functions to work around the corner cases.</p>
 <p>Return the note found at the interval starting from start_note in the
 given key.</p>
 <p>Raise a KeyError exception if start_note is not a valid note.</p>
-<p>Example:
-&gt;&gt;&gt; interval(&#8216;C&#8217;, &#8216;D&#8217;, 1)
-&#8216;E&#8217;</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">interval</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">&#39;E&#39;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="invert-interval">
 <h3>invert(interval)<a class="headerlink" href="#invert-interval" title="Permalink to this headline">¶</a></h3>
 <p>Invert an interval.</p>
-<p>Example:
-&gt;&gt;&gt; invert([&#8216;C&#8217;, &#8216;E&#8217;])
-[&#8216;E&#8217;, &#8216;C&#8217;]</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">invert</span><span class="p">([</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">])</span>
+<span class="go">[&#39;E&#39;, &#39;C&#39;]</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="is-consonant-note1-note2-include-fourths">
 <h3>is_consonant(note1, note2, include_fourths)<a class="headerlink" href="#is-consonant-note1-note2-include-fourths" title="Permalink to this headline">¶</a></h3>
@@ -234,11 +248,13 @@ dissonant when used contrapuntal, which is why you can exclude them.</p>
 <h3>measure(note1, note2)<a class="headerlink" href="#measure-note1-note2" title="Permalink to this headline">¶</a></h3>
 <p>Return an integer in the range of 0-11, determining the half note steps
 between note1 and note2.</p>
-<p>Examples:
-&gt;&gt;&gt; measure(&#8216;C&#8217;, &#8216;D&#8217;)
-2
-&gt;&gt;&gt; measure(&#8216;D&#8217;, &#8216;C&#8217;)
-10</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">measure</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">)</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">measure</span><span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
+<span class="go">10</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="minor-fifth-note">
 <h3>minor_fifth(note)<a class="headerlink" href="#minor-fifth-note" title="Permalink to this headline">¶</a></h3>
@@ -271,41 +287,49 @@ between note1 and note2.</p>
 <h3>second(note, key)<a class="headerlink" href="#second-note-key" title="Permalink to this headline">¶</a></h3>
 <p>Take the diatonic second of note in key.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
-<p>Examples:
-&gt;&gt;&gt; second(&#8216;E&#8217;, &#8216;C&#8217;)
-&#8216;F&#8217;
-&gt;&gt;&gt; second(&#8216;E&#8217;, &#8216;D&#8217;)
-&#8216;F#&#8217;</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">second</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
+<span class="go">&#39;F&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">second</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">)</span>
+<span class="go">&#39;F#&#39;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="seventh-note-key">
 <h3>seventh(note, key)<a class="headerlink" href="#seventh-note-key" title="Permalink to this headline">¶</a></h3>
 <p>Take the diatonic seventh of note in key.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
-<p>Examples:
-&gt;&gt;&gt; seventh(&#8216;E&#8217;, &#8216;C&#8217;)
-&#8216;D&#8217;
-&gt;&gt;&gt; seventh(&#8216;E&#8217;, &#8216;B&#8217;)
-&#8216;D#&#8217;</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">seventh</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
+<span class="go">&#39;D&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">seventh</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">)</span>
+<span class="go">&#39;D#&#39;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="sixth-note-key">
 <h3>sixth(note, key)<a class="headerlink" href="#sixth-note-key" title="Permalink to this headline">¶</a></h3>
 <p>Take the diatonic sixth of note in key.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
-<p>Examples:
-&gt;&gt;&gt; sixth(&#8216;E&#8217;, &#8216;C&#8217;)
-&#8216;C&#8217;
-&gt;&gt;&gt; sixth(&#8216;E&#8217;, &#8216;B&#8217;)
-&#8216;C#&#8217;</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sixth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
+<span class="go">&#39;C&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sixth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">)</span>
+<span class="go">&#39;C#&#39;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="third-note-key">
 <h3>third(note, key)<a class="headerlink" href="#third-note-key" title="Permalink to this headline">¶</a></h3>
 <p>Take the diatonic third of note in key.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
-<p>Examples:
-&gt;&gt;&gt; third(&#8216;E&#8217;, &#8216;C&#8217;)
-&#8216;G&#8217;
-&gt;&gt;&gt; third(&#8216;E&#8217;, &#8216;E&#8217;)
-&#8216;G#&#8217;</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">third</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
+<span class="go">&#39;G&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">third</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">)</span>
+<span class="go">&#39;G#&#39;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="unison-note-key">
 <h3>unison(note, key)<a class="headerlink" href="#unison-note-key" title="Permalink to this headline">¶</a></h3>
@@ -318,9 +342,11 @@ between note1 and note2.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>The key is not at all important, but is here for consistency reasons
 only.</p>
-<p>Example:
-&gt;&gt;&gt; unison(&#8216;C&#8217;)
-&#8216;C&#8217;</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">unison</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
+<span class="go">&#39;C&#39;</span>
+</pre></div>
+</div>
 <hr class="docutils" />
 <p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
 </div>
