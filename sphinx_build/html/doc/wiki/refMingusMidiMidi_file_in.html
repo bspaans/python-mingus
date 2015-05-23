@@ -1,0 +1,276 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mingus.midi.midi_file_in &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
+    <link rel="next" title="mingus.extra.lilypond" href="refMingusExtraLilypond.html" />
+    <link rel="prev" title="mingus.midi.midi_file_out" href="refMingusMidiMidi_file_out.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="refMingusExtraLilypond.html" title="mingus.extra.lilypond"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="refMingusMidiMidi_file_out.html" title="mingus.midi.midi_file_out"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <span class="target" id="module-mingus.midi.midi_file_in"></span><div class="section" id="mingus-midi-midi-file-in">
+<h1>mingus.midi.midi_file_in<a class="headerlink" href="#mingus-midi-midi-file-in" title="Permalink to this headline">¶</a></h1>
+<p>Read a MIDI file and convert it into mingus.containers objects.</p>
+<dl class="class">
+<dt id="mingus.midi.midi_file_in.FormatError">
+<em class="property">class </em><code class="descclassname">mingus.midi.midi_file_in.</code><code class="descname">FormatError</code><a class="reference internal" href="../../_modules/mingus/midi/midi_file_in.html#FormatError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.midi_file_in.FormatError" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="mingus.midi.midi_file_in.FormatError.args">
+<code class="descname">args</code><a class="headerlink" href="#mingus.midi.midi_file_in.FormatError.args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: getset_descriptor
+<code class="docutils literal"><span class="pre">&lt;attribute</span> <span class="pre">'args'</span> <span class="pre">of</span> <span class="pre">'exceptions.BaseException'</span> <span class="pre">objects&gt;</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mingus.midi.midi_file_in.FormatError.message">
+<code class="descname">message</code><a class="headerlink" href="#mingus.midi.midi_file_in.FormatError.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: getset_descriptor
+<code class="docutils literal"><span class="pre">&lt;attribute</span> <span class="pre">'message'</span> <span class="pre">of</span> <span class="pre">'exceptions.BaseException'</span> <span class="pre">objects&gt;</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mingus.midi.midi_file_in.HeaderError">
+<em class="property">class </em><code class="descclassname">mingus.midi.midi_file_in.</code><code class="descname">HeaderError</code><a class="reference internal" href="../../_modules/mingus/midi/midi_file_in.html#HeaderError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.midi_file_in.HeaderError" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="mingus.midi.midi_file_in.HeaderError.args">
+<code class="descname">args</code><a class="headerlink" href="#mingus.midi.midi_file_in.HeaderError.args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: getset_descriptor
+<code class="docutils literal"><span class="pre">&lt;attribute</span> <span class="pre">'args'</span> <span class="pre">of</span> <span class="pre">'exceptions.BaseException'</span> <span class="pre">objects&gt;</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mingus.midi.midi_file_in.HeaderError.message">
+<code class="descname">message</code><a class="headerlink" href="#mingus.midi.midi_file_in.HeaderError.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: getset_descriptor
+<code class="docutils literal"><span class="pre">&lt;attribute</span> <span class="pre">'message'</span> <span class="pre">of</span> <span class="pre">'exceptions.BaseException'</span> <span class="pre">objects&gt;</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mingus.midi.midi_file_in.MidiFile">
+<em class="property">class </em><code class="descclassname">mingus.midi.midi_file_in.</code><code class="descname">MidiFile</code><a class="reference internal" href="../../_modules/mingus/midi/midi_file_in.html#MidiFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.midi_file_in.MidiFile" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="mingus.midi.midi_file_in.MidiFile.MIDI_to_Composition">
+<code class="descname">MIDI_to_Composition</code><span class="sig-paren">(</span><em>self</em>, <em>file</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/midi_file_in.html#MidiFile.MIDI_to_Composition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.midi_file_in.MidiFile.MIDI_to_Composition" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mingus.midi.midi_file_in.MidiFile.bpm">
+<code class="descname">bpm</code><a class="headerlink" href="#mingus.midi.midi_file_in.MidiFile.bpm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: int
+<code class="docutils literal"><span class="pre">120</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mingus.midi.midi_file_in.MidiFile.bytes_read">
+<code class="descname">bytes_read</code><a class="headerlink" href="#mingus.midi.midi_file_in.MidiFile.bytes_read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: int
+<code class="docutils literal"><span class="pre">0</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mingus.midi.midi_file_in.MidiFile.bytes_to_int">
+<code class="descname">bytes_to_int</code><span class="sig-paren">(</span><em>self</em>, <em>bytes</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/midi_file_in.html#MidiFile.bytes_to_int"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.midi_file_in.MidiFile.bytes_to_int" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mingus.midi.midi_file_in.MidiFile.meter">
+<code class="descname">meter</code><a class="headerlink" href="#mingus.midi.midi_file_in.MidiFile.meter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: tuple
+<code class="docutils literal"><span class="pre">(4,</span> <span class="pre">4)</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mingus.midi.midi_file_in.MidiFile.parse_midi_event">
+<code class="descname">parse_midi_event</code><span class="sig-paren">(</span><em>self</em>, <em>fp</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/midi_file_in.html#MidiFile.parse_midi_event"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.midi_file_in.MidiFile.parse_midi_event" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse a MIDI event.</p>
+<p>Return a dictionary and the number of bytes read.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mingus.midi.midi_file_in.MidiFile.parse_midi_file">
+<code class="descname">parse_midi_file</code><span class="sig-paren">(</span><em>self</em>, <em>file</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/midi_file_in.html#MidiFile.parse_midi_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.midi_file_in.MidiFile.parse_midi_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse a MIDI file.</p>
+<p>Return the header -as a tuple containing respectively the MIDI
+format, the number of tracks and the time division-, the parsed
+track data and the number of bytes read.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mingus.midi.midi_file_in.MidiFile.parse_midi_file_header">
+<code class="descname">parse_midi_file_header</code><span class="sig-paren">(</span><em>self</em>, <em>fp</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/midi_file_in.html#MidiFile.parse_midi_file_header"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.midi_file_in.MidiFile.parse_midi_file_header" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the header of a MIDI file and return a tuple containing the
+format type, number of tracks and parsed time division information.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mingus.midi.midi_file_in.MidiFile.parse_time_division">
+<code class="descname">parse_time_division</code><span class="sig-paren">(</span><em>self</em>, <em>bytes</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/midi_file_in.html#MidiFile.parse_time_division"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.midi_file_in.MidiFile.parse_time_division" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse the time division found in the header of a MIDI file and
+return a dictionary with the boolean fps set to indicate whether to
+use frames per second or ticks per beat.</p>
+<p>If fps is True, the values SMPTE_frames and clock_ticks will also be
+set. If fps is False, ticks_per_beat will hold the value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mingus.midi.midi_file_in.MidiFile.parse_track">
+<code class="descname">parse_track</code><span class="sig-paren">(</span><em>self</em>, <em>fp</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/midi_file_in.html#MidiFile.parse_track"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.midi_file_in.MidiFile.parse_track" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse a MIDI track from its header to its events.</p>
+<p>Return a list of events and the number of bytes that were read.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mingus.midi.midi_file_in.MidiFile.parse_track_header">
+<code class="descname">parse_track_header</code><span class="sig-paren">(</span><em>self</em>, <em>fp</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/midi_file_in.html#MidiFile.parse_track_header"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.midi_file_in.MidiFile.parse_track_header" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the size of the track chunk.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mingus.midi.midi_file_in.MidiFile.parse_varbyte_as_int">
+<code class="descname">parse_varbyte_as_int</code><span class="sig-paren">(</span><em>self</em>, <em>fp</em>, <em>return_bytes_read=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/midi_file_in.html#MidiFile.parse_varbyte_as_int"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.midi_file_in.MidiFile.parse_varbyte_as_int" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a variable length byte from the file and return the
+corresponding integer.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mingus.midi.midi_file_in.TimeDivisionError">
+<em class="property">class </em><code class="descclassname">mingus.midi.midi_file_in.</code><code class="descname">TimeDivisionError</code><a class="reference internal" href="../../_modules/mingus/midi/midi_file_in.html#TimeDivisionError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.midi_file_in.TimeDivisionError" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="mingus.midi.midi_file_in.TimeDivisionError.args">
+<code class="descname">args</code><a class="headerlink" href="#mingus.midi.midi_file_in.TimeDivisionError.args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: getset_descriptor
+<code class="docutils literal"><span class="pre">&lt;attribute</span> <span class="pre">'args'</span> <span class="pre">of</span> <span class="pre">'exceptions.BaseException'</span> <span class="pre">objects&gt;</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mingus.midi.midi_file_in.TimeDivisionError.message">
+<code class="descname">message</code><a class="headerlink" href="#mingus.midi.midi_file_in.TimeDivisionError.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: getset_descriptor
+<code class="docutils literal"><span class="pre">&lt;attribute</span> <span class="pre">'message'</span> <span class="pre">of</span> <span class="pre">'exceptions.BaseException'</span> <span class="pre">objects&gt;</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="mingus.midi.midi_file_in.MIDI_to_Composition">
+<code class="descclassname">mingus.midi.midi_file_in.</code><code class="descname">MIDI_to_Composition</code><span class="sig-paren">(</span><em>file</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/midi_file_in.html#MIDI_to_Composition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.midi_file_in.MIDI_to_Composition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a MIDI file to a mingus.containers.Composition and return it
+in a tuple with the last used tempo in beats per minute (this will
+change in the future).</p>
+<p>This function can raise all kinds of exceptions (IOError, HeaderError,
+TimeDivisionError, FormatError), so be sure to try and catch.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">mingus</a></h1>
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=bspaans&repo=python-mingus&type=watch&count=true&size=large"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/bspaans/python-mingus" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
