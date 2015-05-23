@@ -11,7 +11,7 @@ default_tuning
 ^^^^^^^^^^^^^^
 
   * *Type*: mingus.extra.tunings.StringTuning
-  * *Value*: `<mingus.extra.tunings.StringTuning object at 0x7fcdad67ae50>`
+  * *Value*: `<mingus.extra.tunings.StringTuning object at 0x7f018c3c1e50>`
 
 ----
 
