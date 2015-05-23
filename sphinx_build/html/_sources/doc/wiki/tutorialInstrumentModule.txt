@@ -5,7 +5,7 @@ We have grouped Notes in NoteContainers and NoteContainers in Bars, but before w
 
 
 
->>> from mingus.containers.Instrument import Instrument, Piano, Guitar
+>>> from mingus.containers.instrument import Instrument, Piano, Guitar
 
 
 

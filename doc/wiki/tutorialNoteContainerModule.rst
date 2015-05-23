@@ -7,7 +7,7 @@ also use a NoteContainer, which has some extra functionality and is used through
 
 
 
->>> from mingus.containers.NoteContainer import NoteContainer
+>>> from mingus.containers import NoteContainer
 
 
 

@@ -4,7 +4,7 @@
 The Suite class can be used to store compositions together and will probably not be used as much (if you want to write a symphony, knock yourself out though).
 
 
->>> from mingus.containers.Suite import Suite
+>>> from mingus.containers import Suite
 
 
 

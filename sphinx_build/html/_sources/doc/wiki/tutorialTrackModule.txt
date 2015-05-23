@@ -6,7 +6,7 @@ The Track class is a simple data structure to store [tutorialBarModule Bars] in.
 
 
 
->>> from mingus.containers.Track import Track
+>>> from mingus.containers import Track
 
 
 

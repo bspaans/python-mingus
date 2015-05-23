@@ -4,7 +4,7 @@
 A Composition can be used to organize Tracks and to add some metadata such as `title`, `subtitle` and `author`.
 
 
->>> from mingus.containers.Composition import Composition
+>>> from mingus.containers import Composition
 
 
 
