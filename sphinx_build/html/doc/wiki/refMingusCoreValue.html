@@ -292,9 +292,10 @@ up your code. This module is here to help do the conversion.</p>
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt>
-<code class="descname">add(value1, value2)Return the value of the two combined.</code></dt>
-<dd></dd></dl>
+<dt id="add">
+<code class="descname">add</code><span class="sig-paren">(</span><em>value1</em>, <em>value2</em><span class="sig-paren">)</span><a class="headerlink" href="#add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the value of the two combined.</p>
+</dd></dl>
 
 <p>Example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">add</span><span class="p">(</span><span class="n">eighth</span><span class="p">,</span> <span class="n">quarter</span><span class="p">)</span>
@@ -302,9 +303,10 @@ up your code. This module is here to help do the conversion.</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">determine(value)Analyse the value and return a tuple containing the parts it's made of.</code></dt>
-<dd></dd></dl>
+<dt id="determine">
+<code class="descname">determine</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#determine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Analyse the value and return a tuple containing the parts it&#8217;s made of.</p>
+</dd></dl>
 
 <p>The tuple respectively consists of the base note value, the number of
 dots, and the ratio (see tuplet).</p>
@@ -320,11 +322,11 @@ dots, and the ratio (see tuplet).</p>
 <p>This function recognizes all the base values, triplets, quintuplets,
 septuplets and up to four dots. The values are matched on range.</p>
 <dl class="function">
-<dt>
-<code class="descname">dots(value, nr)  * *Default values*: nr = 1</code></dt>
-<dd></dd></dl>
+<dt id="dots">
+<code class="descname">dots</code><span class="sig-paren">(</span><em>value</em>, <em>nr=1</em><span class="sig-paren">)</span><a class="headerlink" href="#dots" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the dotted note value.</p>
+</dd></dl>
 
-<p>Return the dotted note value.</p>
 <p>A dot adds half the duration of the note. A second dot adds half of what
 was added before, etc. So a dotted eighth note has the length of three
 sixteenth notes. An eighth note with two dots has the length of seven
@@ -339,9 +341,10 @@ thirty second notes.</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">quintuplet(value)Return the quintuplet note value.</code></dt>
-<dd></dd></dl>
+<dt id="quintuplet">
+<code class="descname">quintuplet</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#quintuplet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the quintuplet note value.</p>
+</dd></dl>
 
 <p>A quintuplet divides the base value two above into five parts. So a
 quintuplet eighth note is a fifth of a half note.</p>
@@ -353,11 +356,11 @@ quintuplet eighth note is a fifth of a half note.</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">septuplet(value, in_fourths)  * *Default values*: in_fourths = True</code></dt>
-<dd></dd></dl>
+<dt id="septuplet">
+<code class="descname">septuplet</code><span class="sig-paren">(</span><em>value</em>, <em>in_fourths=True</em><span class="sig-paren">)</span><a class="headerlink" href="#septuplet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the septuplet note value.</p>
+</dd></dl>
 
-<p>Return the septuplet note value.</p>
 <p>The usage of a septuplet is ambigious: seven notes can be played either
 in the duration of four or eighth notes.</p>
 <p>If in_fourths is set to True, this function will use 4, otherwise 8
@@ -375,9 +378,10 @@ notes. So a septuplet eighth note is respectively either 14 or 7.</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">subtract(value1, value2)Return the note value for value1 minus value2.</code></dt>
-<dd></dd></dl>
+<dt id="subtract">
+<code class="descname">subtract</code><span class="sig-paren">(</span><em>value1</em>, <em>value2</em><span class="sig-paren">)</span><a class="headerlink" href="#subtract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the note value for value1 minus value2.</p>
+</dd></dl>
 
 <p>There are no exceptions for producing negative values, which can be
 useful for taking differences.</p>
@@ -387,9 +391,10 @@ useful for taking differences.</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">triplet(value)Return the triplet note value.</code></dt>
-<dd></dd></dl>
+<dt id="triplet">
+<code class="descname">triplet</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#triplet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the triplet note value.</p>
+</dd></dl>
 
 <p>A triplet divides the base value above into three parts. So a triplet
 eighth note is a third of a quarter note.</p>
@@ -401,9 +406,10 @@ eighth note is a third of a quarter note.</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">tuplet(value, rat1, rat2)Return a tuplet.</code></dt>
-<dd></dd></dl>
+<dt id="tuplet">
+<code class="descname">tuplet</code><span class="sig-paren">(</span><em>value</em>, <em>rat1</em>, <em>rat2</em><span class="sig-paren">)</span><a class="headerlink" href="#tuplet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuplet.</p>
+</dd></dl>
 
 <p>A tuplet can be written as a ratio. For example: 5:4 means that you play
 5 notes in the duration of 4 (a quintuplet), 3:2 means that you play 3

@@ -101,7 +101,7 @@ soundcard yourself.</p>
 <blockquote>
 <div><ul class="simple">
 <li><em>Type</em>: ctypes.LibraryLoader</li>
-<li><em>Value</em>: <cite>&lt;ctypes.LibraryLoader object at 0x7f9f3d5758d0&gt;</cite></li>
+<li><em>Value</em>: <cite>&lt;ctypes.LibraryLoader object at 0x7fed5e250890&gt;</cite></li>
 </ul>
 </div></blockquote>
 </div>
@@ -119,7 +119,7 @@ soundcard yourself.</p>
 <blockquote>
 <div><ul class="simple">
 <li><em>Type</em>: ctypes.LibraryLoader</li>
-<li><em>Value</em>: <cite>&lt;ctypes.LibraryLoader object at 0x7f9f3d575910&gt;</cite></li>
+<li><em>Value</em>: <cite>&lt;ctypes.LibraryLoader object at 0x7fed5e2508d0&gt;</cite></li>
 </ul>
 </div></blockquote>
 </div>
@@ -128,7 +128,7 @@ soundcard yourself.</p>
 <blockquote>
 <div><ul class="simple">
 <li><em>Type</em>: ctypes.PyDLL</li>
-<li><em>Value</em>: <cite>&lt;PyDLL &#8216;None&#8217;, handle 7f9f40c93188 at 7f9f3d575950&gt;</cite></li>
+<li><em>Value</em>: <cite>&lt;PyDLL &#8216;None&#8217;, handle 7fed6196d188 at 7fed5e250910&gt;</cite></li>
 </ul>
 </div></blockquote>
 </div>
@@ -137,11 +137,18 @@ soundcard yourself.</p>
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt>
-<code class="descname">ARRAY(typ, len).. function:: CFUNCTYPE(restype)CFUNCTYPE(restype, *argtypes,</code></dt>
-<dt>
-<code class="descname">use_errno=False, use_last_error=False) -&gt; function prototype.</code></dt>
+<dt id="ARRAY">
+<code class="descname">ARRAY</code><span class="sig-paren">(</span><em>typ</em>, <em>len</em><span class="sig-paren">)</span><a class="headerlink" href="#ARRAY" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="function">
+<dt id="CFUNCTYPE">
+<code class="descname">CFUNCTYPE</code><span class="sig-paren">(</span><em>restype</em><span class="sig-paren">)</span><a class="headerlink" href="#CFUNCTYPE" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>CFUNCTYPE(restype, <a href="#id1"><span class="problematic" id="id2">*</span></a>argtypes,</dt>
+<dd>use_errno=False, use_last_error=False) -&gt; function prototype.</dd>
+</dl>
+</dd></dl>
 
 <p>restype: the result type
 argtypes: a sequence specifying the argument types</p>
@@ -153,57 +160,80 @@ prototype(integer index, method name[, paramflags]) -&gt; foreign function calli
 prototype((ordinal number, dll object)[, paramflags]) -&gt; foreign function exported by ordinal
 prototype((function name, dll object)[, paramflags]) -&gt; foreign function exported by name</p>
 <dl class="function">
-<dt>
-<code class="descname">PYFUNCTYPE(restype).. function:: SetPointerType(pointer, cls).. function:: c_buffer(init, size)  * *Default values*: size = None</code></dt>
+<dt id="PYFUNCTYPE">
+<code class="descname">PYFUNCTYPE</code><span class="sig-paren">(</span><em>restype</em><span class="sig-paren">)</span><a class="headerlink" href="#PYFUNCTYPE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
-<dt>
-<code class="descname">cast(obj, typ).. function:: cfunc(name, result)Build and apply a ctypes prototype complete with parameter flags.</code></dt>
+<dt id="SetPointerType">
+<code class="descname">SetPointerType</code><span class="sig-paren">(</span><em>pointer</em>, <em>cls</em><span class="sig-paren">)</span><a class="headerlink" href="#SetPointerType" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
-<dt>
-<code class="descname">create_string_buffer(init, size)  * *Default values*: size = None</code></dt>
+<dt id="c_buffer">
+<code class="descname">c_buffer</code><span class="sig-paren">(</span><em>init</em>, <em>size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#c_buffer" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<p>create_string_buffer(aString) -&gt; character array
-create_string_buffer(anInteger) -&gt; character array
+<dl class="function">
+<dt id="cast">
+<code class="descname">cast</code><span class="sig-paren">(</span><em>obj</em>, <em>typ</em><span class="sig-paren">)</span><a class="headerlink" href="#cast" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="cfunc">
+<code class="descname">cfunc</code><span class="sig-paren">(</span><em>name</em>, <em>result</em><span class="sig-paren">)</span><a class="headerlink" href="#cfunc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build and apply a ctypes prototype complete with parameter flags.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="create_string_buffer">
+<code class="descname">create_string_buffer</code><span class="sig-paren">(</span><em>init</em>, <em>size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#create_string_buffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>create_string_buffer(aString) -&gt; character array</p>
+</dd></dl>
+
+<p>create_string_buffer(anInteger) -&gt; character array
 create_string_buffer(aString, anInteger) -&gt; character array</p>
 <dl class="function">
-<dt>
-<code class="descname">create_unicode_buffer(init, size)  * *Default values*: size = None</code></dt>
-<dd></dd></dl>
+<dt id="create_unicode_buffer">
+<code class="descname">create_unicode_buffer</code><span class="sig-paren">(</span><em>init</em>, <em>size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#create_unicode_buffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>create_unicode_buffer(aString) -&gt; character array</p>
+</dd></dl>
 
-<p>create_unicode_buffer(aString) -&gt; character array
-create_unicode_buffer(anInteger) -&gt; character array
+<p>create_unicode_buffer(anInteger) -&gt; character array
 create_unicode_buffer(aString, anInteger) -&gt; character array</p>
 <dl class="function">
-<dt>
-<code class="descname">find_library(name).. function:: fluid_synth_write_s16_stereo(synth, len)Return generated samples in stereo 16-bit format.</code></dt>
+<dt id="find_library">
+<code class="descname">find_library</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#find_library" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="function">
+<dt id="fluid_synth_write_s16_stereo">
+<code class="descname">fluid_synth_write_s16_stereo</code><span class="sig-paren">(</span><em>synth</em>, <em>len</em><span class="sig-paren">)</span><a class="headerlink" href="#fluid_synth_write_s16_stereo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return generated samples in stereo 16-bit format.</p>
+</dd></dl>
 
 <p>Return value is a Numpy array of samples.</p>
 <dl class="function">
-<dt>
-<code class="descname">raw_audio_string(data)Return a string of bytes to send to soundcard.</code></dt>
-<dd></dd></dl>
+<dt id="raw_audio_string">
+<code class="descname">raw_audio_string</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#raw_audio_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a string of bytes to send to soundcard.</p>
+</dd></dl>
 
 <p>Input is a numpy array of samples. Default output format is 16-bit
 signed (other formats not currently supported).</p>
 <dl class="function">
-<dt>
-<code class="descname">string_at(ptr, size)  * *Default values*: size = -1</code></dt>
-<dd></dd></dl>
+<dt id="string_at">
+<code class="descname">string_at</code><span class="sig-paren">(</span><em>ptr</em>, <em>size=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#string_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>string_at(addr[, size]) -&gt; string</p>
+</dd></dl>
 
-<p>string_at(addr[, size]) -&gt; string</p>
 <p>Return the string at addr.</p>
 <dl class="function">
-<dt>
-<code class="descname">wstring_at(ptr, size)  * *Default values*: size = -1</code></dt>
-<dd></dd></dl>
+<dt id="wstring_at">
+<code class="descname">wstring_at</code><span class="sig-paren">(</span><em>ptr</em>, <em>size=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#wstring_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>wstring_at(addr[, size]) -&gt; string</p>
+</dd></dl>
 
-<p>wstring_at(addr[, size]) -&gt; string</p>
 <p>Return the string at addr.</p>
 <hr class="docutils" />
 <p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>

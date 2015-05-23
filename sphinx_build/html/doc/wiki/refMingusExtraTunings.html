@@ -60,9 +60,10 @@ you search through them.</p>
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt>
-<code class="descname">add_tuning(instrument, description, tuning)Add a new tuning to the index.</code></dt>
-<dd></dd></dl>
+<dt id="add_tuning">
+<code class="descname">add_tuning</code><span class="sig-paren">(</span><em>instrument</em>, <em>description</em>, <em>tuning</em><span class="sig-paren">)</span><a class="headerlink" href="#add_tuning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new tuning to the index.</p>
+</dd></dl>
 
 <p>The instrument and description parameters should be strings; tuning
 should be a list of strings or a list of lists to denote courses.</p>
@@ -74,22 +75,24 @@ should be a list of strings or a list of lists to denote courses.</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">fingers_needed(fingering)Return the number of fingers needed to play the given fingering.</code></dt>
-<dd></dd></dl>
+<dt id="fingers_needed">
+<code class="descname">fingers_needed</code><span class="sig-paren">(</span><em>fingering</em><span class="sig-paren">)</span><a class="headerlink" href="#fingers_needed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of fingers needed to play the given fingering.</p>
+</dd></dl>
 
 <dl class="function">
-<dt>
-<code class="descname">get_instruments()Return a sorted list of instruments that have string tunings defined</code></dt>
-<dd></dd></dl>
+<dt id="get_instruments">
+<code class="descname">get_instruments</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#get_instruments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a sorted list of instruments that have string tunings defined</p>
+</dd></dl>
 
 <p>for them.</p>
 <dl class="function">
-<dt>
-<code class="descname">get_tuning(instrument, description, nr_of_strings, nr_of_courses)  * *Default values*: nr_of_strings = None, nr_of_courses = None</code></dt>
-<dd></dd></dl>
+<dt id="get_tuning">
+<code class="descname">get_tuning</code><span class="sig-paren">(</span><em>instrument</em>, <em>description</em>, <em>nr_of_strings=None</em>, <em>nr_of_courses=None</em><span class="sig-paren">)</span><a class="headerlink" href="#get_tuning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the first tuning that satisfies the constraints.</p>
+</dd></dl>
 
-<p>Get the first tuning that satisfies the constraints.</p>
 <p>The instrument and description arguments are treated like
 case-insensitive prefixes. So search for &#8216;bass&#8217; is the same is
 &#8216;Bass Guitar&#8217;.</p>
@@ -99,11 +102,11 @@ case-insensitive prefixes. So search for &#8216;bass&#8217; is the same is
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">get_tunings(instrument, nr_of_strings, nr_of_courses)  * *Default values*: instrument = None, nr_of_strings = None, nr_of_courses = None</code></dt>
-<dd></dd></dl>
+<dt id="get_tunings">
+<code class="descname">get_tunings</code><span class="sig-paren">(</span><em>instrument=None</em>, <em>nr_of_strings=None</em>, <em>nr_of_courses=None</em><span class="sig-paren">)</span><a class="headerlink" href="#get_tunings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search tunings on instrument, strings, courses or a combination.</p>
+</dd></dl>
 
-<p>Search tunings on instrument, strings, courses or a combination.</p>
 <p>The instrument is actually treated like a case-insensitive prefix. So
 asking for &#8216;bass&#8217; yields the same tunings as &#8216;Bass Guitar&#8217;; the string
 &#8216;ba&#8217; yields all the instruments starting with &#8216;ba&#8217;.</p>

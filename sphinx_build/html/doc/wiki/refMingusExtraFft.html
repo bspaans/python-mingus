@@ -70,11 +70,11 @@
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt>
-<code class="descname">_fft(a, n, axis)  * *Default values*: n = None, axis = -1</code></dt>
-<dd></dd></dl>
+<dt id="_fft">
+<code class="descname">_fft</code><span class="sig-paren">(</span><em>a</em>, <em>n=None</em>, <em>axis=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#_fft" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the one-dimensional discrete Fourier Transform.</p>
+</dd></dl>
 
-<p>Compute the one-dimensional discrete Fourier Transform.</p>
 <p>This function computes the one-dimensional <em>n</em>-point discrete Fourier
 Transform (DFT) with the efficient Fast Fourier Transform (FFT)
 algorithm [CT].</p>
@@ -164,56 +164,59 @@ machine calculation of complex Fourier series,&#8221; <em>Math. Comput.</em>
 in the real part and anti-symmetric in the imaginary part, as described in
 the <cite>numpy.fft</cite> documentation.</p>
 <dl class="function">
-<dt>
-<code class="descname">_find_log_index(f)Look up the index of the frequency f in the frequency table.</code></dt>
-<dd></dd></dl>
+<dt id="_find_log_index">
+<code class="descname">_find_log_index</code><span class="sig-paren">(</span><em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#_find_log_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Look up the index of the frequency f in the frequency table.</p>
+</dd></dl>
 
 <p>Return the nearest index.</p>
 <dl class="function">
-<dt>
-<code class="descname">analyze_chunks(data, freq, bits, chunksize)  * *Default values*: chunksize = 512</code></dt>
-<dd></dd></dl>
+<dt id="analyze_chunks">
+<code class="descname">analyze_chunks</code><span class="sig-paren">(</span><em>data</em>, <em>freq</em>, <em>bits</em>, <em>chunksize=512</em><span class="sig-paren">)</span><a class="headerlink" href="#analyze_chunks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cut the one channel data in chunks and analyzes them separately.</p>
+</dd></dl>
 
-<p>Cut the one channel data in chunks and analyzes them separately.</p>
 <p>Making the chunksize a power of two works fastest.</p>
 <dl class="function">
-<dt>
-<code class="descname">data_from_file(file)Return (first channel data, sample frequency, sample width) from a .wav</code></dt>
-<dd></dd></dl>
+<dt id="data_from_file">
+<code class="descname">data_from_file</code><span class="sig-paren">(</span><em>file</em><span class="sig-paren">)</span><a class="headerlink" href="#data_from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return (first channel data, sample frequency, sample width) from a .wav</p>
+</dd></dl>
 
 <p>file.</p>
 <dl class="function">
-<dt>
-<code class="descname">find_Note(data, freq, bits)Get the frequencies, feed them to find_notes and the return the Note</code></dt>
-<dd></dd></dl>
+<dt id="find_Note">
+<code class="descname">find_Note</code><span class="sig-paren">(</span><em>data</em>, <em>freq</em>, <em>bits</em><span class="sig-paren">)</span><a class="headerlink" href="#find_Note" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the frequencies, feed them to find_notes and the return the Note</p>
+</dd></dl>
 
 <p>with the highest amplitude.</p>
 <dl class="function">
-<dt>
-<code class="descname">find_frequencies(data, freq, bits)  * *Default values*: freq = 44100, bits = 16</code></dt>
-<dd></dd></dl>
+<dt id="find_frequencies">
+<code class="descname">find_frequencies</code><span class="sig-paren">(</span><em>data</em>, <em>freq=44100</em>, <em>bits=16</em><span class="sig-paren">)</span><a class="headerlink" href="#find_frequencies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert audio data into a frequency-amplitude table using fast fourier</p>
+</dd></dl>
 
-<p>Convert audio data into a frequency-amplitude table using fast fourier
-transformation.</p>
+<p>transformation.</p>
 <p>Return a list of tuples (frequency, amplitude).</p>
 <p>Data should only contain one channel of audio.</p>
 <dl class="function">
-<dt>
-<code class="descname">find_melody(file, chunksize)  * *Default values*: file = '440_480_clean.wav', chunksize = 512</code></dt>
-<dd></dd></dl>
+<dt id="find_melody">
+<code class="descname">find_melody</code><span class="sig-paren">(</span><em>file=440_480_clean.wav</em>, <em>chunksize=512</em><span class="sig-paren">)</span><a class="headerlink" href="#find_melody" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cut the sample into chunks and analyze each chunk.</p>
+</dd></dl>
 
-<p>Cut the sample into chunks and analyze each chunk.</p>
 <p>Return a list [(Note, chunks)] where chunks is the number of chunks
 where that note is the most dominant.</p>
 <p>If two consequent chunks turn out to return the same Note they are
 grouped together.</p>
 <p>This is an experimental function.</p>
 <dl class="function">
-<dt>
-<code class="descname">find_notes(freqTable, maxNote)  * *Default values*: maxNote = 100</code></dt>
-<dd></dd></dl>
+<dt id="find_notes">
+<code class="descname">find_notes</code><span class="sig-paren">(</span><em>freqTable</em>, <em>maxNote=100</em><span class="sig-paren">)</span><a class="headerlink" href="#find_notes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the (frequencies, amplitude) list to a (Note, amplitude) list.</p>
+</dd></dl>
 
-<p>Convert the (frequencies, amplitude) list to a (Note, amplitude) list.</p>
 <hr class="docutils" />
 <p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
 </div>

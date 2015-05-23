@@ -75,9 +75,10 @@ enables simple calculations.</p>
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt>
-<code class="descname">augment(note)Augment a given note.</code></dt>
-<dd></dd></dl>
+<dt id="augment">
+<code class="descname">augment</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#augment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Augment a given note.</p>
+</dd></dl>
 
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">augment</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
@@ -87,9 +88,10 @@ enables simple calculations.</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">diminish(note)Diminish a given note.</code></dt>
-<dd></dd></dl>
+<dt id="diminish">
+<code class="descname">diminish</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#diminish" title="Permalink to this definition">¶</a></dt>
+<dd><p>Diminish a given note.</p>
+</dd></dl>
 
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diminish</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
@@ -99,12 +101,12 @@ enables simple calculations.</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">int_to_note(note_int, accidentals)  * *Default values*: accidentals = '#'</code></dt>
-<dd></dd></dl>
+<dt id="int_to_note">
+<code class="descname">int_to_note</code><span class="sig-paren">(</span><em>note_int</em>, <em>accidentals=#</em><span class="sig-paren">)</span><a class="headerlink" href="#int_to_note" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert integers in the range of 0-11 to notes in the form of C or C#</p>
+</dd></dl>
 
-<p>Convert integers in the range of 0-11 to notes in the form of C or C#
-or Db.</p>
+<p>or Db.</p>
 <p>Throw a RangeError exception if the note_int is not in the range 0-11.</p>
 <p>If not specified, sharps will be used.</p>
 <p>Examples:</p>
@@ -117,26 +119,30 @@ or Db.</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">is_enharmonic(note1, note2)Test whether note1 and note2 are enharmonic, i.e. they sound the same.</code></dt>
-<dd></dd></dl>
+<dt id="is_enharmonic">
+<code class="descname">is_enharmonic</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em><span class="sig-paren">)</span><a class="headerlink" href="#is_enharmonic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test whether note1 and note2 are enharmonic, i.e. they sound the same.</p>
+</dd></dl>
 
 <dl class="function">
-<dt>
-<code class="descname">is_valid_note(note)Return True if note is in a recognised format. False if not.</code></dt>
-<dd></dd></dl>
+<dt id="is_valid_note">
+<code class="descname">is_valid_note</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#is_valid_note" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if note is in a recognised format. False if not.</p>
+</dd></dl>
 
 <dl class="function">
-<dt>
-<code class="descname">note_to_int(note)Convert notes in the form of C, C#, Cb, C##, etc. to an integer in the</code></dt>
-<dd></dd></dl>
+<dt id="note_to_int">
+<code class="descname">note_to_int</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#note_to_int" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert notes in the form of C, C#, Cb, C##, etc. to an integer in the</p>
+</dd></dl>
 
 <p>range of 0-11.</p>
 <p>Throw a NoteFormatError exception if the note format is not recognised.</p>
 <dl class="function">
-<dt>
-<code class="descname">reduce_accidentals(note)Reduce any extra accidentals to proper notes.</code></dt>
-<dd></dd></dl>
+<dt id="reduce_accidentals">
+<code class="descname">reduce_accidentals</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#reduce_accidentals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reduce any extra accidentals to proper notes.</p>
+</dd></dl>
 
 <p>Example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">reduce_accidentals</span><span class="p">(</span><span class="s">&#39;C####&#39;</span><span class="p">)</span>
@@ -144,9 +150,10 @@ or Db.</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">remove_redundant_accidentals(note)Remove redundant sharps and flats from the given note.</code></dt>
-<dd></dd></dl>
+<dt id="remove_redundant_accidentals">
+<code class="descname">remove_redundant_accidentals</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#remove_redundant_accidentals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove redundant sharps and flats from the given note.</p>
+</dd></dl>
 
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">remove_redundant_accidentals</span><span class="p">(</span><span class="s">&#39;C##b&#39;</span><span class="p">)</span>

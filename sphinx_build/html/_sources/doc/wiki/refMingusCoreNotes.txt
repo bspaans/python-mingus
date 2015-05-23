@@ -24,7 +24,9 @@ fifths
 Functions
 ---------
 
-.. function:: augment(note)Augment a given note.
+.. function:: augment(note)
+
+  Augment a given note.
 
 Examples:
 
@@ -33,7 +35,9 @@ Examples:
 >>> augment('Cb')
 'C'
 
-.. function:: diminish(note)Diminish a given note.
+.. function:: diminish(note)
+
+  Diminish a given note.
 
 Examples:
 
@@ -42,8 +46,9 @@ Examples:
 >>> diminish('C#')
 'C'
 
-.. function:: int_to_note(note_int, accidentals)  * *Default values*: accidentals = '#'
-Convert integers in the range of 0-11 to notes in the form of C or C#
+.. function:: int_to_note(note_int, accidentals=#)
+
+  Convert integers in the range of 0-11 to notes in the form of C or C#
 or Db.
 
 Throw a RangeError exception if the note_int is not in the range 0-11.
@@ -59,23 +64,33 @@ Examples:
 >>> int_to_note(3, 'b')
 'Eb'
 
-.. function:: is_enharmonic(note1, note2)Test whether note1 and note2 are enharmonic, i.e. they sound the same.
+.. function:: is_enharmonic(note1, note2)
 
-.. function:: is_valid_note(note)Return True if note is in a recognised format. False if not.
+  Test whether note1 and note2 are enharmonic, i.e. they sound the same.
 
-.. function:: note_to_int(note)Convert notes in the form of C, C#, Cb, C##, etc. to an integer in the
+.. function:: is_valid_note(note)
+
+  Return True if note is in a recognised format. False if not.
+
+.. function:: note_to_int(note)
+
+  Convert notes in the form of C, C#, Cb, C##, etc. to an integer in the
 range of 0-11.
 
 Throw a NoteFormatError exception if the note format is not recognised.
 
-.. function:: reduce_accidentals(note)Reduce any extra accidentals to proper notes.
+.. function:: reduce_accidentals(note)
+
+  Reduce any extra accidentals to proper notes.
 
 Example:
 
 >>> reduce_accidentals('C####')
 'E'
 
-.. function:: remove_redundant_accidentals(note)Remove redundant sharps and flats from the given note.
+.. function:: remove_redundant_accidentals(note)
+
+  Remove redundant sharps and flats from the given note.
 
 Examples:
 

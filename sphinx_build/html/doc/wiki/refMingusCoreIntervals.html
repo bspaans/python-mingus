@@ -67,17 +67,23 @@ determine, invert, is_consonant and is_dissonant.</p>
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt>
-<code class="descname">augment_or_diminish_until_the_interval_is_right(note1, note2, interval)A helper function for the minor and major functions.</code></dt>
-<dd></dd></dl>
+<dt id="augment_or_diminish_until_the_interval_is_right">
+<code class="descname">augment_or_diminish_until_the_interval_is_right</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em>, <em>interval</em><span class="sig-paren">)</span><a class="headerlink" href="#augment_or_diminish_until_the_interval_is_right" title="Permalink to this definition">¶</a></dt>
+<dd><p>A helper function for the minor and major functions.</p>
+</dd></dl>
 
 <p>You should probably not use this directly.</p>
 <dl class="function">
-<dt>
-<code class="descname">augmented_unison(note).. function:: determine(note1, note2, shorthand)  * *Default values*: shorthand = False</code></dt>
+<dt id="augmented_unison">
+<code class="descname">augmented_unison</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#augmented_unison" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<p>Name the interval between note1 and note2.</p>
+<dl class="function">
+<dt id="determine">
+<code class="descname">determine</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em>, <em>shorthand=False</em><span class="sig-paren">)</span><a class="headerlink" href="#determine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name the interval between note1 and note2.</p>
+</dd></dl>
+
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">)</span>
 <span class="go">&#39;major third&#39;</span>
@@ -98,9 +104,10 @@ fifths and fourths:</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">fifth(note, key)Take the diatonic fifth of note in key.</code></dt>
-<dd></dd></dl>
+<dt id="fifth">
+<code class="descname">fifth</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#fifth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take the diatonic fifth of note in key.</p>
+</dd></dl>
 
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>Examples:</p>
@@ -111,9 +118,10 @@ fifths and fourths:</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">fourth(note, key)Take the diatonic fourth of note in key.</code></dt>
-<dd></dd></dl>
+<dt id="fourth">
+<code class="descname">fourth</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#fourth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take the diatonic fourth of note in key.</p>
+</dd></dl>
 
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>Examples:</p>
@@ -124,11 +132,11 @@ fifths and fourths:</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">from_shorthand(note, interval, up)  * *Default values*: up = True</code></dt>
-<dd></dd></dl>
+<dt id="from_shorthand">
+<code class="descname">from_shorthand</code><span class="sig-paren">(</span><em>note</em>, <em>interval</em>, <em>up=True</em><span class="sig-paren">)</span><a class="headerlink" href="#from_shorthand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the note on interval up or down.</p>
+</dd></dl>
 
-<p>Return the note on interval up or down.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;b3&#39;</span><span class="p">)</span>
 <span class="go">&#39;C&#39;</span>
@@ -139,17 +147,18 @@ fifths and fourths:</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">get_interval(note, interval, key)  * *Default values*: key = 'C'</code></dt>
-<dd></dd></dl>
+<dt id="get_interval">
+<code class="descname">get_interval</code><span class="sig-paren">(</span><em>note</em>, <em>interval</em>, <em>key=C</em><span class="sig-paren">)</span><a class="headerlink" href="#get_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the note an interval (in half notes) away from the given note.</p>
+</dd></dl>
 
-<p>Return the note an interval (in half notes) away from the given note.</p>
 <p>This will produce mostly theoretical sound results, but you should use
 the minor and major functions to work around the corner cases.</p>
 <dl class="function">
-<dt>
-<code class="descname">interval(key, start_note, interval)Return the note found at the interval starting from start_note in the</code></dt>
-<dd></dd></dl>
+<dt id="interval">
+<code class="descname">interval</code><span class="sig-paren">(</span><em>key</em>, <em>start_note</em>, <em>interval</em><span class="sig-paren">)</span><a class="headerlink" href="#interval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the note found at the interval starting from start_note in the</p>
+</dd></dl>
 
 <p>given key.</p>
 <p>Raise a KeyError exception if start_note is not a valid note.</p>
@@ -159,9 +168,10 @@ the minor and major functions to work around the corner cases.</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">invert(interval)Invert an interval.</code></dt>
-<dd></dd></dl>
+<dt id="invert">
+<code class="descname">invert</code><span class="sig-paren">(</span><em>interval</em><span class="sig-paren">)</span><a class="headerlink" href="#invert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invert an interval.</p>
+</dd></dl>
 
 <p>Example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">invert</span><span class="p">([</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">])</span>
@@ -169,11 +179,11 @@ the minor and major functions to work around the corner cases.</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">is_consonant(note1, note2, include_fourths)  * *Default values*: include_fourths = True</code></dt>
-<dd></dd></dl>
+<dt id="is_consonant">
+<code class="descname">is_consonant</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em>, <em>include_fourths=True</em><span class="sig-paren">)</span><a class="headerlink" href="#is_consonant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the interval is consonant.</p>
+</dd></dl>
 
-<p>Return True if the interval is consonant.</p>
 <p>A consonance is a harmony, chord, or interval considered stable, as
 opposed to a dissonance.</p>
 <p>This function tests whether the given interval is consonant. This
@@ -182,36 +192,73 @@ a unison, third, sixth, perfect fourth or perfect fifth.</p>
 <p>In classical music the fourth is considered dissonant when used
 contrapuntal, which is why you can choose to exclude it.</p>
 <dl class="function">
-<dt>
-<code class="descname">is_dissonant(note1, note2, include_fourths)  * *Default values*: include_fourths = False</code></dt>
-<dd></dd></dl>
+<dt id="is_dissonant">
+<code class="descname">is_dissonant</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em>, <em>include_fourths=False</em><span class="sig-paren">)</span><a class="headerlink" href="#is_dissonant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the insterval is dissonant.</p>
+</dd></dl>
 
-<p>Return True if the insterval is dissonant.</p>
 <p>This function tests whether an interval is considered unstable,
 dissonant.</p>
 <p>In the default case perfect fourths are considered consonant, but this
 can be changed by setting exclude_fourths to True.</p>
 <dl class="function">
-<dt>
-<code class="descname">is_imperfect_consonant(note1, note2)Return True id the interval is an imperfect consonant one.</code></dt>
-<dd></dd></dl>
+<dt id="is_imperfect_consonant">
+<code class="descname">is_imperfect_consonant</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em><span class="sig-paren">)</span><a class="headerlink" href="#is_imperfect_consonant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True id the interval is an imperfect consonant one.</p>
+</dd></dl>
 
 <p>Imperfect consonances are either minor or major thirds or minor or major
 sixths.</p>
 <dl class="function">
-<dt>
-<code class="descname">is_perfect_consonant(note1, note2, include_fourths)  * *Default values*: include_fourths = True</code></dt>
-<dd></dd></dl>
+<dt id="is_perfect_consonant">
+<code class="descname">is_perfect_consonant</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em>, <em>include_fourths=True</em><span class="sig-paren">)</span><a class="headerlink" href="#is_perfect_consonant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the interval is a perfect consonant one.</p>
+</dd></dl>
 
-<p>Return True if the interval is a perfect consonant one.</p>
 <p>Perfect consonances are either unisons, perfect fourths or fifths, or
 octaves (which is the same as a unison in this model).</p>
 <p>Perfect fourths are usually included as well, but are considered
 dissonant when used contrapuntal, which is why you can exclude them.</p>
 <dl class="function">
-<dt>
-<code class="descname">major_fifth(note).. function:: major_fourth(note).. function:: major_second(note).. function:: major_seventh(note).. function:: major_sixth(note).. function:: major_third(note).. function:: major_unison(note).. function:: measure(note1, note2)Return an integer in the range of 0-11, determining the half note steps</code></dt>
+<dt id="major_fifth">
+<code class="descname">major_fifth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#major_fifth" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="function">
+<dt id="major_fourth">
+<code class="descname">major_fourth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#major_fourth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="major_second">
+<code class="descname">major_second</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#major_second" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="major_seventh">
+<code class="descname">major_seventh</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#major_seventh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="major_sixth">
+<code class="descname">major_sixth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#major_sixth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="major_third">
+<code class="descname">major_third</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#major_third" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="major_unison">
+<code class="descname">major_unison</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#major_unison" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="measure">
+<code class="descname">measure</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em><span class="sig-paren">)</span><a class="headerlink" href="#measure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an integer in the range of 0-11, determining the half note steps</p>
+</dd></dl>
 
 <p>between note1 and note2.</p>
 <p>Examples:</p>
@@ -222,9 +269,55 @@ dissonant when used contrapuntal, which is why you can exclude them.</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">minor_fifth(note).. function:: minor_fourth(note).. function:: minor_second(note).. function:: minor_seventh(note).. function:: minor_sixth(note).. function:: minor_third(note).. function:: minor_unison(note).. function:: perfect_fifth(note).. function:: perfect_fourth(note).. function:: second(note, key)Take the diatonic second of note in key.</code></dt>
+<dt id="minor_fifth">
+<code class="descname">minor_fifth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#minor_fifth" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="function">
+<dt id="minor_fourth">
+<code class="descname">minor_fourth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#minor_fourth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="minor_second">
+<code class="descname">minor_second</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#minor_second" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="minor_seventh">
+<code class="descname">minor_seventh</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#minor_seventh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="minor_sixth">
+<code class="descname">minor_sixth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#minor_sixth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="minor_third">
+<code class="descname">minor_third</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#minor_third" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="minor_unison">
+<code class="descname">minor_unison</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#minor_unison" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="perfect_fifth">
+<code class="descname">perfect_fifth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#perfect_fifth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="perfect_fourth">
+<code class="descname">perfect_fourth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#perfect_fourth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="second">
+<code class="descname">second</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#second" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take the diatonic second of note in key.</p>
+</dd></dl>
 
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>Examples:</p>
@@ -235,9 +328,10 @@ dissonant when used contrapuntal, which is why you can exclude them.</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">seventh(note, key)Take the diatonic seventh of note in key.</code></dt>
-<dd></dd></dl>
+<dt id="seventh">
+<code class="descname">seventh</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#seventh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take the diatonic seventh of note in key.</p>
+</dd></dl>
 
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>Examples:</p>
@@ -248,9 +342,10 @@ dissonant when used contrapuntal, which is why you can exclude them.</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">sixth(note, key)Take the diatonic sixth of note in key.</code></dt>
-<dd></dd></dl>
+<dt id="sixth">
+<code class="descname">sixth</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#sixth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take the diatonic sixth of note in key.</p>
+</dd></dl>
 
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>Examples:</p>
@@ -261,9 +356,10 @@ dissonant when used contrapuntal, which is why you can exclude them.</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">third(note, key)Take the diatonic third of note in key.</code></dt>
-<dd></dd></dl>
+<dt id="third">
+<code class="descname">third</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#third" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take the diatonic third of note in key.</p>
+</dd></dl>
 
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>Examples:</p>
@@ -274,11 +370,11 @@ dissonant when used contrapuntal, which is why you can exclude them.</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">unison(note, key)  * *Default values*: key = None</code></dt>
-<dd></dd></dl>
+<dt id="unison">
+<code class="descname">unison</code><span class="sig-paren">(</span><em>note</em>, <em>key=None</em><span class="sig-paren">)</span><a class="headerlink" href="#unison" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the unison of note.</p>
+</dd></dl>
 
-<p>Return the unison of note.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>The key is not at all important, but is here for consistency reasons
 only.</p>

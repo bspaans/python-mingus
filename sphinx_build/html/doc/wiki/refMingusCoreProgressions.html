@@ -88,11 +88,11 @@ vice versa.</p>
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt>
-<code class="descname">determine(chord, key, shorthand)  * *Default values*: shorthand = False</code></dt>
-<dd></dd></dl>
+<dt id="determine">
+<code class="descname">determine</code><span class="sig-paren">(</span><em>chord</em>, <em>key</em>, <em>shorthand=False</em><span class="sig-paren">)</span><a class="headerlink" href="#determine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine the harmonic function of chord in key.</p>
+</dd></dl>
 
-<p>Determine the harmonic function of chord in key.</p>
 <p>This function can also deal with lists of chords.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">([</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">],</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
@@ -106,16 +106,18 @@ vice versa.</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">interval_diff(progression1, progression2, interval)Return the number of half steps progression2 needs to be diminished or</code></dt>
-<dd></dd></dl>
+<dt id="interval_diff">
+<code class="descname">interval_diff</code><span class="sig-paren">(</span><em>progression1</em>, <em>progression2</em>, <em>interval</em><span class="sig-paren">)</span><a class="headerlink" href="#interval_diff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of half steps progression2 needs to be diminished or</p>
+</dd></dl>
 
 <p>augmented until the interval between progression1 and progression2 is
 interval.</p>
 <dl class="function">
-<dt>
-<code class="descname">parse_string(progression)Return a tuple (roman numeral, accidentals, chord suffix).</code></dt>
-<dd></dd></dl>
+<dt id="parse_string">
+<code class="descname">parse_string</code><span class="sig-paren">(</span><em>progression</em><span class="sig-paren">)</span><a class="headerlink" href="#parse_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple (roman numeral, accidentals, chord suffix).</p>
+</dd></dl>
 
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">parse_string</span><span class="p">(</span><span class="s">&#39;I&#39;</span><span class="p">)</span>
@@ -125,11 +127,11 @@ interval.</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">skip(roman_numeral, skip)  * *Default values*: skip = 1</code></dt>
-<dd></dd></dl>
+<dt id="skip">
+<code class="descname">skip</code><span class="sig-paren">(</span><em>roman_numeral</em>, <em>skip=1</em><span class="sig-paren">)</span><a class="headerlink" href="#skip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Skip the given places to the next roman numeral.</p>
+</dd></dl>
 
-<p>Skip the given places to the next roman numeral.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">skip</span><span class="p">(</span><span class="s">&#39;I&#39;</span><span class="p">)</span>
 <span class="go">&#39;II&#39;</span>
@@ -140,11 +142,11 @@ interval.</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">substitute(progression, substitute_index, depth)  * *Default values*: depth = 0</code></dt>
-<dd></dd></dl>
+<dt id="substitute">
+<code class="descname">substitute</code><span class="sig-paren">(</span><em>progression</em>, <em>substitute_index</em>, <em>depth=0</em><span class="sig-paren">)</span><a class="headerlink" href="#substitute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Give a list of possible substitutions for progression[substitute_index].</p>
+</dd></dl>
 
-<p>Give a list of possible substitutions for progression[substitute_index].</p>
 <p>If depth &gt; 0 the substitutions of each result will be recursively added
 as well.</p>
 <p>Example:</p>
@@ -153,11 +155,11 @@ as well.</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">substitute_diminished_for_diminished(progression, substitute_index, ignore_suffix)  * *Default values*: ignore_suffix = False</code></dt>
-<dd></dd></dl>
+<dt id="substitute_diminished_for_diminished">
+<code class="descname">substitute_diminished_for_diminished</code><span class="sig-paren">(</span><em>progression</em>, <em>substitute_index</em>, <em>ignore_suffix=False</em><span class="sig-paren">)</span><a class="headerlink" href="#substitute_diminished_for_diminished" title="Permalink to this definition">¶</a></dt>
+<dd><p>Substitute a diminished chord for another diminished chord.</p>
+</dd></dl>
 
-<p>Substitute a diminished chord for another diminished chord.</p>
 <p>&#8216;dim&#8217; and &#8216;dim7&#8217; suffixes recognized, and &#8216;VI&#8217; if there is no suffix.</p>
 <p>Example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_diminished_for_diminished</span><span class="p">([</span><span class="s">&#39;VII&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
@@ -165,17 +167,17 @@ as well.</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">substitute_diminished_for_dominant(progression, substitute_index, ignore_suffix)  * *Default values*: ignore_suffix = False</code></dt>
+<dt id="substitute_diminished_for_dominant">
+<code class="descname">substitute_diminished_for_dominant</code><span class="sig-paren">(</span><em>progression</em>, <em>substitute_index</em>, <em>ignore_suffix=False</em><span class="sig-paren">)</span><a class="headerlink" href="#substitute_diminished_for_dominant" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
-<dt>
-<code class="descname">substitute_harmonic(progression, substitute_index, ignore_suffix)  * *Default values*: ignore_suffix = False</code></dt>
-<dd></dd></dl>
+<dt id="substitute_harmonic">
+<code class="descname">substitute_harmonic</code><span class="sig-paren">(</span><em>progression</em>, <em>substitute_index</em>, <em>ignore_suffix=False</em><span class="sig-paren">)</span><a class="headerlink" href="#substitute_harmonic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do simple harmonic substitutions. Return a list of possible substitions</p>
+</dd></dl>
 
-<p>Do simple harmonic substitutions. Return a list of possible substitions
-for progression[substitute_index].</p>
+<p>for progression[substitute_index].</p>
 <p>If ignore_suffix is set to True the suffix of the chord being
 substituted will be ignored. Otherwise only progressions without a
 suffix, or with suffix &#8216;7&#8217; will be substituted.</p>
@@ -186,11 +188,11 @@ suffix, or with suffix &#8216;7&#8217; will be substituted.</p>
 || IV || VI ||
 || V || VII ||</p>
 <dl class="function">
-<dt>
-<code class="descname">substitute_major_for_minor(progression, substitute_index, ignore_suffix)  * *Default values*: ignore_suffix = False</code></dt>
-<dd></dd></dl>
+<dt id="substitute_major_for_minor">
+<code class="descname">substitute_major_for_minor</code><span class="sig-paren">(</span><em>progression</em>, <em>substitute_index</em>, <em>ignore_suffix=False</em><span class="sig-paren">)</span><a class="headerlink" href="#substitute_major_for_minor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Substitute major chords for their minor equivalent.</p>
+</dd></dl>
 
-<p>Substitute major chords for their minor equivalent.</p>
 <p>&#8216;M&#8217; and &#8216;M7&#8217; suffixes recognized, and [&#8216;I&#8217;, &#8216;IV&#8217;, &#8216;V&#8217;] if there is no
 suffix.</p>
 <p>Examples:</p>
@@ -201,11 +203,11 @@ suffix.</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">substitute_minor_for_major(progression, substitute_index, ignore_suffix)  * *Default values*: ignore_suffix = False</code></dt>
-<dd></dd></dl>
+<dt id="substitute_minor_for_major">
+<code class="descname">substitute_minor_for_major</code><span class="sig-paren">(</span><em>progression</em>, <em>substitute_index</em>, <em>ignore_suffix=False</em><span class="sig-paren">)</span><a class="headerlink" href="#substitute_minor_for_major" title="Permalink to this definition">¶</a></dt>
+<dd><p>Substitute minor chords for its major equivalent.</p>
+</dd></dl>
 
-<p>Substitute minor chords for its major equivalent.</p>
 <p>&#8216;m&#8217; and &#8216;m7&#8217; suffixes recognized, and [&#8216;II&#8217;, &#8216;III&#8217;, &#8216;VI&#8217;] if there is no
 suffix.</p>
 <p>Examples:</p>
@@ -218,11 +220,11 @@ suffix.</p>
 </pre></div>
 </div>
 <dl class="function">
-<dt>
-<code class="descname">to_chords(progression, key)  * *Default values*: key = 'C'</code></dt>
-<dd></dd></dl>
+<dt id="to_chords">
+<code class="descname">to_chords</code><span class="sig-paren">(</span><em>progression</em>, <em>key=C</em><span class="sig-paren">)</span><a class="headerlink" href="#to_chords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a list of chord functions or a string to a list of chords.</p>
+</dd></dl>
 
-<p>Convert a list of chord functions or a string to a list of chords.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">to_chords</span><span class="p">([</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;V7&#39;</span><span class="p">])</span>
 <span class="go">[[&#39;C&#39;, &#39;E&#39;, &#39;G&#39;], [&#39;G&#39;, &#39;B&#39;, &#39;D&#39;, &#39;F&#39;]]</span>
@@ -242,9 +244,10 @@ dominant seventh chord. We have taken the classic route; I7 will get
 you a major seventh chord. If you specifically want a dominanth seventh,
 use Idom7.</p>
 <dl class="function">
-<dt>
-<code class="descname">tuple_to_string(prog_tuple)Create a string from tuples returned by parse_string.</code></dt>
-<dd></dd></dl>
+<dt id="tuple_to_string">
+<code class="descname">tuple_to_string</code><span class="sig-paren">(</span><em>prog_tuple</em><span class="sig-paren">)</span><a class="headerlink" href="#tuple_to_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a string from tuples returned by parse_string.</p>
+</dd></dl>
 
 <hr class="docutils" />
 <p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>

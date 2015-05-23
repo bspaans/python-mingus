@@ -34,8 +34,9 @@ numerals
 Functions
 ---------
 
-.. function:: determine(chord, key, shorthand)  * *Default values*: shorthand = False
-Determine the harmonic function of chord in key.
+.. function:: determine(chord, key, shorthand=False)
+
+  Determine the harmonic function of chord in key.
 
 This function can also deal with lists of chords.
 
@@ -50,11 +51,15 @@ Examples:
 >>> determine([['C', 'E', 'G'], ['G', 'B', 'D']], 'C', True)
 [['I'], ['V']]
 
-.. function:: interval_diff(progression1, progression2, interval)Return the number of half steps progression2 needs to be diminished or
+.. function:: interval_diff(progression1, progression2, interval)
+
+  Return the number of half steps progression2 needs to be diminished or
 augmented until the interval between progression1 and progression2 is
 interval.
 
-.. function:: parse_string(progression)Return a tuple (roman numeral, accidentals, chord suffix).
+.. function:: parse_string(progression)
+
+  Return a tuple (roman numeral, accidentals, chord suffix).
 
 Examples:
 
@@ -63,8 +68,9 @@ Examples:
 >>> parse_string('bIM7')
 ('I', -1, 'M7')
 
-.. function:: skip(roman_numeral, skip)  * *Default values*: skip = 1
-Skip the given places to the next roman numeral.
+.. function:: skip(roman_numeral, skip=1)
+
+  Skip the given places to the next roman numeral.
 
 Examples:
 
@@ -75,8 +81,9 @@ Examples:
 >>> skip('I', 2)
 'III'
 
-.. function:: substitute(progression, substitute_index, depth)  * *Default values*: depth = 0
-Give a list of possible substitutions for progression[substitute_index].
+.. function:: substitute(progression, substitute_index, depth=0)
+
+  Give a list of possible substitutions for progression[substitute_index].
 
 If depth > 0 the substitutions of each result will be recursively added
 as well.
@@ -86,8 +93,9 @@ Example:
 >>> substitute(['I', 'IV', 'V', 'I'], 0)
 ['III', 'III7', 'VI', 'VI7', 'I7']
 
-.. function:: substitute_diminished_for_diminished(progression, substitute_index, ignore_suffix)  * *Default values*: ignore_suffix = False
-Substitute a diminished chord for another diminished chord.
+.. function:: substitute_diminished_for_diminished(progression, substitute_index, ignore_suffix=False)
+
+  Substitute a diminished chord for another diminished chord.
 
 'dim' and 'dim7' suffixes recognized, and 'VI' if there is no suffix.
 
@@ -96,9 +104,11 @@ Example:
 >>> substitute_diminished_for_diminished(['VII'], 0)
 ['IIdim', 'bIVdim', 'bbVIdim']
 
-.. function:: substitute_diminished_for_dominant(progression, substitute_index, ignore_suffix)  * *Default values*: ignore_suffix = False
-.. function:: substitute_harmonic(progression, substitute_index, ignore_suffix)  * *Default values*: ignore_suffix = False
-Do simple harmonic substitutions. Return a list of possible substitions
+.. function:: substitute_diminished_for_dominant(progression, substitute_index, ignore_suffix=False)
+
+.. function:: substitute_harmonic(progression, substitute_index, ignore_suffix=False)
+
+  Do simple harmonic substitutions. Return a list of possible substitions
 for progression[substitute_index].
 
 If ignore_suffix is set to True the suffix of the chord being
@@ -112,8 +122,9 @@ The following table is used to convert progressions:
 || IV || VI ||
 || V || VII ||
 
-.. function:: substitute_major_for_minor(progression, substitute_index, ignore_suffix)  * *Default values*: ignore_suffix = False
-Substitute major chords for their minor equivalent.
+.. function:: substitute_major_for_minor(progression, substitute_index, ignore_suffix=False)
+
+  Substitute major chords for their minor equivalent.
 
 'M' and 'M7' suffixes recognized, and ['I', 'IV', 'V'] if there is no
 suffix.
@@ -125,8 +136,9 @@ Examples:
 >>> substitute_major_for_minor(['VM7'], 0)
 ['IIIm7']
 
-.. function:: substitute_minor_for_major(progression, substitute_index, ignore_suffix)  * *Default values*: ignore_suffix = False
-Substitute minor chords for its major equivalent.
+.. function:: substitute_minor_for_major(progression, substitute_index, ignore_suffix=False)
+
+  Substitute minor chords for its major equivalent.
 
 'm' and 'm7' suffixes recognized, and ['II', 'III', 'VI'] if there is no
 suffix.
@@ -140,8 +152,9 @@ Examples:
 >>> substitute_minor_for_major(['VIm7'], 0)
 ['IM7']
 
-.. function:: to_chords(progression, key)  * *Default values*: key = 'C'
-Convert a list of chord functions or a string to a list of chords.
+.. function:: to_chords(progression, key=C)
+
+  Convert a list of chord functions or a string to a list of chords.
 
 Examples:
 
@@ -165,7 +178,9 @@ dominant seventh chord. We have taken the classic route; I7 will get
 you a major seventh chord. If you specifically want a dominanth seventh,
 use Idom7.
 
-.. function:: tuple_to_string(prog_tuple)Create a string from tuples returned by parse_string.
+.. function:: tuple_to_string(prog_tuple)
+
+  Create a string from tuples returned by parse_string.
 
 ----
 

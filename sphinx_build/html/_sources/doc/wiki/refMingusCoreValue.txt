@@ -175,14 +175,18 @@ whole
 Functions
 ---------
 
-.. function:: add(value1, value2)Return the value of the two combined.
+.. function:: add(value1, value2)
+
+  Return the value of the two combined.
 
 Example:
 
 >>> add(eighth, quarter)
 2.6666666666666665
 
-.. function:: determine(value)Analyse the value and return a tuple containing the parts it's made of.
+.. function:: determine(value)
+
+  Analyse the value and return a tuple containing the parts it's made of.
 
 The tuple respectively consists of the base note value, the number of
 dots, and the ratio (see tuplet).
@@ -199,8 +203,9 @@ Examples:
 This function recognizes all the base values, triplets, quintuplets,
 septuplets and up to four dots. The values are matched on range.
 
-.. function:: dots(value, nr)  * *Default values*: nr = 1
-Return the dotted note value.
+.. function:: dots(value, nr=1)
+
+  Return the dotted note value.
 
 A dot adds half the duration of the note. A second dot adds half of what
 was added before, etc. So a dotted eighth note has the length of three
@@ -216,7 +221,9 @@ Examples:
 >>> dots(quarter)
 2.6666666666666665
 
-.. function:: quintuplet(value)Return the quintuplet note value.
+.. function:: quintuplet(value)
+
+  Return the quintuplet note value.
 
 A quintuplet divides the base value two above into five parts. So a
 quintuplet eighth note is a fifth of a half note.
@@ -228,8 +235,9 @@ Examples:
 >>> quintuplet(4)
 5
 
-.. function:: septuplet(value, in_fourths)  * *Default values*: in_fourths = True
-Return the septuplet note value.
+.. function:: septuplet(value, in_fourths=True)
+
+  Return the septuplet note value.
 
 The usage of a septuplet is ambigious: seven notes can be played either
 in the duration of four or eighth notes.
@@ -249,7 +257,9 @@ Examples:
 >>> septuplet(8, False)
 7
 
-.. function:: subtract(value1, value2)Return the note value for value1 minus value2.
+.. function:: subtract(value1, value2)
+
+  Return the note value for value1 minus value2.
 
 There are no exceptions for producing negative values, which can be
 useful for taking differences.
@@ -259,7 +269,9 @@ Example:
 >>> substract(quarter, eighth)
 8.0
 
-.. function:: triplet(value)Return the triplet note value.
+.. function:: triplet(value)
+
+  Return the triplet note value.
 
 A triplet divides the base value above into three parts. So a triplet
 eighth note is a third of a quarter note.
@@ -271,7 +283,9 @@ Examples:
 >>> triplet(4)
 6
 
-.. function:: tuplet(value, rat1, rat2)Return a tuplet.
+.. function:: tuplet(value, rat1, rat2)
+
+  Return a tuplet.
 
 A tuplet can be written as a ratio. For example: 5:4 means that you play
 5 notes in the duration of 4 (a quintuplet), 3:2 means that you play 3

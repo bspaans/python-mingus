@@ -61,59 +61,69 @@ mingus.containers.</p>
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt>
-<code class="descname">from_Bar(bar, showkey, showtime)  * *Default values*: showkey = True, showtime = True</code></dt>
-<dd></dd></dl>
+<dt id="from_Bar">
+<code class="descname">from_Bar</code><span class="sig-paren">(</span><em>bar</em>, <em>showkey=True</em>, <em>showtime=True</em><span class="sig-paren">)</span><a class="headerlink" href="#from_Bar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a Bar object and return the LilyPond equivalent in a string.</p>
+</dd></dl>
 
-<p>Get a Bar object and return the LilyPond equivalent in a string.</p>
 <p>The showkey and showtime parameters can be set to determine whether the
 key and the time should be shown.</p>
 <dl class="function">
-<dt>
-<code class="descname">from_Composition(composition)Return the LilyPond equivalent of a Composition in a string.</code></dt>
-<dd></dd></dl>
+<dt id="from_Composition">
+<code class="descname">from_Composition</code><span class="sig-paren">(</span><em>composition</em><span class="sig-paren">)</span><a class="headerlink" href="#from_Composition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the LilyPond equivalent of a Composition in a string.</p>
+</dd></dl>
 
 <dl class="function">
-<dt>
-<code class="descname">from_Note(note, process_octaves, standalone)  * *Default values*: process_octaves = True, standalone = True</code></dt>
-<dd></dd></dl>
+<dt id="from_Note">
+<code class="descname">from_Note</code><span class="sig-paren">(</span><em>note</em>, <em>process_octaves=True</em>, <em>standalone=True</em><span class="sig-paren">)</span><a class="headerlink" href="#from_Note" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a Note object and return the LilyPond equivalent in a string.</p>
+</dd></dl>
 
-<p>Get a Note object and return the LilyPond equivalent in a string.</p>
 <p>If process_octaves is set to False, all data regarding octaves will be
 ignored. If standalone is True, the result can be used by functions
 like to_png and will produce a valid output. The argument is mostly here
 to let from_NoteContainer make use of this function.</p>
 <dl class="function">
-<dt>
-<code class="descname">from_NoteContainer(nc, duration, standalone)  * *Default values*: duration = None, standalone = True</code></dt>
-<dd></dd></dl>
+<dt id="from_NoteContainer">
+<code class="descname">from_NoteContainer</code><span class="sig-paren">(</span><em>nc</em>, <em>duration=None</em>, <em>standalone=True</em><span class="sig-paren">)</span><a class="headerlink" href="#from_NoteContainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a NoteContainer object and return the LilyPond equivalent in a</p>
+</dd></dl>
 
-<p>Get a NoteContainer object and return the LilyPond equivalent in a
-string.</p>
+<p>string.</p>
 <p>The second argument determining the duration of the NoteContainer is
 optional. When the standalone argument is True the result of this
 function can be used directly by functions like to_png. It is mostly
 here to be used by from_Bar.</p>
 <dl class="function">
-<dt>
-<code class="descname">from_Suite(suite).. function:: from_Track(track)Process a Track object and return the LilyPond equivalent in a string.</code></dt>
+<dt id="from_Suite">
+<code class="descname">from_Suite</code><span class="sig-paren">(</span><em>suite</em><span class="sig-paren">)</span><a class="headerlink" href="#from_Suite" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
-<dt>
-<code class="descname">save_string_and_execute_LilyPond(ly_string, filename, command)A helper function for to_png and to_pdf. Should not be used directly.</code></dt>
-<dd></dd></dl>
+<dt id="from_Track">
+<code class="descname">from_Track</code><span class="sig-paren">(</span><em>track</em><span class="sig-paren">)</span><a class="headerlink" href="#from_Track" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process a Track object and return the LilyPond equivalent in a string.</p>
+</dd></dl>
 
 <dl class="function">
-<dt>
-<code class="descname">to_pdf(ly_string, filename)Save a string in LilyPond format to a PDF.</code></dt>
-<dd></dd></dl>
+<dt id="save_string_and_execute_LilyPond">
+<code class="descname">save_string_and_execute_LilyPond</code><span class="sig-paren">(</span><em>ly_string</em>, <em>filename</em>, <em>command</em><span class="sig-paren">)</span><a class="headerlink" href="#save_string_and_execute_LilyPond" title="Permalink to this definition">¶</a></dt>
+<dd><p>A helper function for to_png and to_pdf. Should not be used directly.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="to_pdf">
+<code class="descname">to_pdf</code><span class="sig-paren">(</span><em>ly_string</em>, <em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#to_pdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save a string in LilyPond format to a PDF.</p>
+</dd></dl>
 
 <p>LilyPond in the $PATH is needed.</p>
 <dl class="function">
-<dt>
-<code class="descname">to_png(ly_string, filename)Save a string in LilyPond format to a PNG.</code></dt>
-<dd></dd></dl>
+<dt id="to_png">
+<code class="descname">to_png</code><span class="sig-paren">(</span><em>ly_string</em>, <em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#to_png" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save a string in LilyPond format to a PNG.</p>
+</dd></dl>
 
 <p>LilyPond in the $PATH is needed.</p>
 <hr class="docutils" />
