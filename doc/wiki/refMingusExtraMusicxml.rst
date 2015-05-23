@@ -22,63 +22,63 @@ http://www.musicxml.org/xml.html
 
    .. attribute:: ATTRIBUTE_NODE
 
-   Attribute of type: int
-   ``2``
+      Attribute of type: int
+      ``2``
 
    .. attribute:: CDATA_SECTION_NODE
 
-   Attribute of type: int
-   ``4``
+      Attribute of type: int
+      ``4``
 
    .. attribute:: COMMENT_NODE
 
-   Attribute of type: int
-   ``8``
+      Attribute of type: int
+      ``8``
 
    .. attribute:: DOCUMENT_FRAGMENT_NODE
 
-   Attribute of type: int
-   ``11``
+      Attribute of type: int
+      ``11``
 
    .. attribute:: DOCUMENT_NODE
 
-   Attribute of type: int
-   ``9``
+      Attribute of type: int
+      ``9``
 
    .. attribute:: DOCUMENT_TYPE_NODE
 
-   Attribute of type: int
-   ``10``
+      Attribute of type: int
+      ``10``
 
    .. attribute:: ELEMENT_NODE
 
-   Attribute of type: int
-   ``1``
+      Attribute of type: int
+      ``1``
 
    .. attribute:: ENTITY_NODE
 
-   Attribute of type: int
-   ``6``
+      Attribute of type: int
+      ``6``
 
    .. attribute:: ENTITY_REFERENCE_NODE
 
-   Attribute of type: int
-   ``5``
+      Attribute of type: int
+      ``5``
 
    .. attribute:: NOTATION_NODE
 
-   Attribute of type: int
-   ``12``
+      Attribute of type: int
+      ``12``
 
    .. attribute:: PROCESSING_INSTRUCTION_NODE
 
-   Attribute of type: int
-   ``7``
+      Attribute of type: int
+      ``7``
 
    .. attribute:: TEXT_NODE
 
-   Attribute of type: int
-   ``3``
+      Attribute of type: int
+      ``3``
 
    .. method:: __init__(self)
 
@@ -148,21 +148,21 @@ http://www.musicxml.org/xml.html
 
    .. attribute:: actualEncoding
 
-   Attribute of type: NoneType
-   ``None``
+      Attribute of type: NoneType
+      ``None``
 
    .. method:: appendChild(self, node)
 
 
    .. attribute:: async
 
-   Attribute of type: bool
-   ``False``
+      Attribute of type: bool
+      ``False``
 
    .. attribute:: attributes
 
-   Attribute of type: NoneType
-   ``None``
+      Attribute of type: NoneType
+      ``None``
 
    .. method:: cloneNode(self, deep)
 
@@ -196,33 +196,33 @@ http://www.musicxml.org/xml.html
 
    .. attribute:: doctype
 
-   Attribute of type: NoneType
-   ``None``
+      Attribute of type: NoneType
+      ``None``
 
    .. attribute:: documentElement
 
-   Attribute of type: property
-   ``<property object at 0x7fd01139c2b8>``
+      Attribute of type: property
+      ``<property object at 0x7f906633f2b8>``
 
    .. attribute:: documentURI
 
-   Attribute of type: NoneType
-   ``None``
+      Attribute of type: NoneType
+      ``None``
 
    .. attribute:: encoding
 
-   Attribute of type: NoneType
-   ``None``
+      Attribute of type: NoneType
+      ``None``
 
    .. attribute:: errorHandler
 
-   Attribute of type: NoneType
-   ``None``
+      Attribute of type: NoneType
+      ``None``
 
    .. attribute:: firstChild
 
-   Attribute of type: property
-   ``<property object at 0x7fd0113f9628>``
+      Attribute of type: property
+      ``<property object at 0x7f906639c628>``
 
    .. method:: getElementById(self, id)
 
@@ -244,8 +244,8 @@ http://www.musicxml.org/xml.html
 
    .. attribute:: implementation
 
-   Attribute of type: instance
-   ``<xml.dom.minidom.DOMImplementation instance at 0x7fd0113979e0>``
+      Attribute of type: instance
+      ``<xml.dom.minidom.DOMImplementation instance at 0x7f9066338a28>``
 
    .. method:: importNode(self, node, deep)
 
@@ -261,8 +261,8 @@ http://www.musicxml.org/xml.html
 
    .. attribute:: lastChild
 
-   Attribute of type: property
-   ``<property object at 0x7fd0113f9730>``
+      Attribute of type: property
+      ``<property object at 0x7f906639c730>``
 
    .. method:: load(self, uri)
 
@@ -272,56 +272,56 @@ http://www.musicxml.org/xml.html
 
    .. attribute:: localName
 
-   Attribute of type: property
-   ``<property object at 0x7fd0113f9d60>``
+      Attribute of type: property
+      ``<property object at 0x7f906639cd60>``
 
    .. attribute:: namespaceURI
 
-   Attribute of type: NoneType
-   ``None``
+      Attribute of type: NoneType
+      ``None``
 
    .. attribute:: nextSibling
 
-   Attribute of type: NoneType
-   ``None``
+      Attribute of type: NoneType
+      ``None``
 
    .. attribute:: nodeName
 
-   Attribute of type: str
-   ``'#document'``
+      Attribute of type: str
+      ``'#document'``
 
    .. attribute:: nodeType
 
-   Attribute of type: int
-   ``9``
+      Attribute of type: int
+      ``9``
 
    .. attribute:: nodeValue
 
-   Attribute of type: NoneType
-   ``None``
+      Attribute of type: NoneType
+      ``None``
 
    .. method:: normalize(self)
 
 
    .. attribute:: ownerDocument
 
-   Attribute of type: NoneType
-   ``None``
+      Attribute of type: NoneType
+      ``None``
 
    .. attribute:: parentNode
 
-   Attribute of type: NoneType
-   ``None``
+      Attribute of type: NoneType
+      ``None``
 
    .. attribute:: prefix
 
-   Attribute of type: NoneType
-   ``None``
+      Attribute of type: NoneType
+      ``None``
 
    .. attribute:: previousSibling
 
-   Attribute of type: NoneType
-   ``None``
+      Attribute of type: NoneType
+      ``None``
 
    .. method:: removeChild(self, oldChild)
 
@@ -340,13 +340,13 @@ http://www.musicxml.org/xml.html
 
    .. attribute:: standalone
 
-   Attribute of type: NoneType
-   ``None``
+      Attribute of type: NoneType
+      ``None``
 
    .. attribute:: strictErrorChecking
 
-   Attribute of type: bool
-   ``False``
+      Attribute of type: bool
+      ``False``
 
    .. method:: toprettyxml(self, indent=	, newl=
 , encoding=None)
@@ -360,8 +360,8 @@ http://www.musicxml.org/xml.html
 
    .. attribute:: version
 
-   Attribute of type: NoneType
-   ``None``
+      Attribute of type: NoneType
+      ``None``
 
    .. method:: writexml(self, writer, indent=, addindent=, newl=, encoding=None)
 
@@ -370,15 +370,15 @@ http://www.musicxml.org/xml.html
 
 .. data:: major_keys
 
-   Attribute of type: list
-   ``['Cb', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#']``
+      Attribute of type: list
+      ``['Cb', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#']``
 
 ----
 
 .. data:: minor_keys
 
-   Attribute of type: list
-   ``['ab', 'eb', 'bb', 'f', 'c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#']``
+      Attribute of type: list
+      ``['ab', 'eb', 'bb', 'f', 'c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#']``
 
 ----
 
@@ -394,14 +394,14 @@ http://www.musicxml.org/xml.html
 
 .. function:: _gcd(a=None, b=None, terms=None)
 
-   Return greatest common divisor using Euclid's Algorithm.
+      Return greatest common divisor using Euclid's Algorithm.
 
 
 ----
 
 .. function:: _lcm(a=None, b=None, terms=None)
 
-   Return lowest common multiple.
+      Return lowest common multiple.
 
 
 ----
@@ -438,7 +438,7 @@ http://www.musicxml.org/xml.html
 
 .. function:: write_Composition(composition, filename, zip=False)
 
-   Create an XML file (or MXL if compressed) for a given composition.
+      Create an XML file (or MXL if compressed) for a given composition.
 
 ----
 

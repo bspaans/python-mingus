@@ -75,9 +75,7 @@ soundcard yourself.</p>
 <dd><dl class="method">
 <dt id="mingus.midi.pyfluidsynth.Synth.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><em>self</em>, <em>gain=0.2</em>, <em>samplerate=44100</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/pyfluidsynth.html#Synth.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.Synth.__init__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Create a new synthesizer object to control sound generation.</p>
+<dd><p>Create a new synthesizer object to control sound generation.</p>
 <dl class="docutils">
 <dt>Optional keyword arguments:</dt>
 <dd><dl class="first docutils">
@@ -87,18 +85,18 @@ soundcard yourself.</p>
 <p class="last">samplerate: output samplerate in Hz, default is 44100 Hz</p>
 </dd>
 </dl>
+</dd></dl>
+
 <dl class="method">
 <dt id="mingus.midi.pyfluidsynth.Synth.bank_select">
 <code class="descname">bank_select</code><span class="sig-paren">(</span><em>self</em>, <em>chan</em>, <em>bank</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/pyfluidsynth.html#Synth.bank_select"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.Synth.bank_select" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Choose a bank.</p>
+</dd></dl>
 
-<p>Choose a bank.</p>
 <dl class="method">
 <dt id="mingus.midi.pyfluidsynth.Synth.cc">
 <code class="descname">cc</code><span class="sig-paren">(</span><em>self</em>, <em>chan</em>, <em>ctrl</em>, <em>val</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/pyfluidsynth.html#Synth.cc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.Synth.cc" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Send control change value.</p>
+<dd><p>Send control change value.</p>
 <p>The controls that are recognized are dependent on the
 SoundFont.  Values are always 0 to 127.  Typical controls
 include:</p>
@@ -110,6 +108,8 @@ include:</p>
 64: sustain
 91: reverb
 93: chorus</div></blockquote>
+</dd></dl>
+
 <dl class="method">
 <dt id="mingus.midi.pyfluidsynth.Synth.delete">
 <code class="descname">delete</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/pyfluidsynth.html#Synth.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.Synth.delete" title="Permalink to this definition">¶</a></dt>
@@ -118,76 +118,74 @@ include:</p>
 <dl class="method">
 <dt id="mingus.midi.pyfluidsynth.Synth.get_samples">
 <code class="descname">get_samples</code><span class="sig-paren">(</span><em>self</em>, <em>len=1024</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/pyfluidsynth.html#Synth.get_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.Synth.get_samples" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Generate audio samples.</p>
+<dd><p>Generate audio samples.</p>
 <p>The return value will be a NumPy array containing the given
 length of audio samples.  If the synth is set to stereo output
 (the default) the array will be size 2 * len.</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="mingus.midi.pyfluidsynth.Synth.noteoff">
 <code class="descname">noteoff</code><span class="sig-paren">(</span><em>self</em>, <em>chan</em>, <em>key</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/pyfluidsynth.html#Synth.noteoff"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.Synth.noteoff" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Stop a note.</p>
+</dd></dl>
 
-<p>Stop a note.</p>
 <dl class="method">
 <dt id="mingus.midi.pyfluidsynth.Synth.noteon">
 <code class="descname">noteon</code><span class="sig-paren">(</span><em>self</em>, <em>chan</em>, <em>key</em>, <em>vel</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/pyfluidsynth.html#Synth.noteon"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.Synth.noteon" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Play a note.</p>
+</dd></dl>
 
-<p>Play a note.</p>
 <dl class="method">
 <dt id="mingus.midi.pyfluidsynth.Synth.pitch_bend">
 <code class="descname">pitch_bend</code><span class="sig-paren">(</span><em>self</em>, <em>chan</em>, <em>val</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/pyfluidsynth.html#Synth.pitch_bend"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.Synth.pitch_bend" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Adjust pitch of a playing channel by small amounts.</p>
+<dd><p>Adjust pitch of a playing channel by small amounts.</p>
 <p>A pitch bend value of 0 is no pitch change from default.
 A value of -2048 is 1 semitone down.
 A value of 2048 is 1 semitone up.
 Maximum values are -8192 to +8192 (transposing by 4 semitones).</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="mingus.midi.pyfluidsynth.Synth.program_change">
 <code class="descname">program_change</code><span class="sig-paren">(</span><em>self</em>, <em>chan</em>, <em>prg</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/pyfluidsynth.html#Synth.program_change"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.Synth.program_change" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Change the program.</p>
+</dd></dl>
 
-<p>Change the program.</p>
 <dl class="method">
 <dt id="mingus.midi.pyfluidsynth.Synth.program_reset">
 <code class="descname">program_reset</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/pyfluidsynth.html#Synth.program_reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.Synth.program_reset" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Reset the programs on all channels.</p>
+</dd></dl>
 
-<p>Reset the programs on all channels.</p>
 <dl class="method">
 <dt id="mingus.midi.pyfluidsynth.Synth.program_select">
 <code class="descname">program_select</code><span class="sig-paren">(</span><em>self</em>, <em>chan</em>, <em>sfid</em>, <em>bank</em>, <em>preset</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/pyfluidsynth.html#Synth.program_select"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.Synth.program_select" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Select a program.</p>
+</dd></dl>
 
-<p>Select a program.</p>
 <dl class="method">
 <dt id="mingus.midi.pyfluidsynth.Synth.sfload">
 <code class="descname">sfload</code><span class="sig-paren">(</span><em>self</em>, <em>filename</em>, <em>update_midi_preset=0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/pyfluidsynth.html#Synth.sfload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.Synth.sfload" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Load SoundFont and return its IDi.</p>
+</dd></dl>
 
-<p>Load SoundFont and return its IDi.</p>
 <dl class="method">
 <dt id="mingus.midi.pyfluidsynth.Synth.sfont_select">
 <code class="descname">sfont_select</code><span class="sig-paren">(</span><em>self</em>, <em>chan</em>, <em>sfid</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/pyfluidsynth.html#Synth.sfont_select"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.Synth.sfont_select" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Choose a SoundFont.</p>
+</dd></dl>
 
-<p>Choose a SoundFont.</p>
 <dl class="method">
 <dt id="mingus.midi.pyfluidsynth.Synth.sfunload">
 <code class="descname">sfunload</code><span class="sig-paren">(</span><em>self</em>, <em>sfid</em>, <em>update_midi_preset=0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/pyfluidsynth.html#Synth.sfunload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.Synth.sfunload" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Unload a SoundFont and free memory it used.</p>
+</dd></dl>
 
-<p>Unload a SoundFont and free memory it used.</p>
 <dl class="method">
 <dt id="mingus.midi.pyfluidsynth.Synth.start">
 <code class="descname">start</code><span class="sig-paren">(</span><em>self</em>, <em>driver=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/pyfluidsynth.html#Synth.start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.Synth.start" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Start audio output driver in separate background thread.</p>
+<dd><p>Start audio output driver in separate background thread.</p>
 <p>Call this function any time after creating the Synth object.
 If you don&#8217;t call this function, use get_samples() to generate
 samples.</p>
@@ -207,12 +205,14 @@ samples.</p>
 </dl>
 <p>Not all drivers will be available for every platform, it depends on
 which drivers were compiled into FluidSynth for your platform.</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="mingus.midi.pyfluidsynth.Synth.system_reset">
 <code class="descname">system_reset</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/pyfluidsynth.html#Synth.system_reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.Synth.system_reset" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Stop all notes and reset all programs.</p>
+</dd></dl>
 
-<p>Stop all notes and reset all programs.</p>
 </dd></dl>
 
 <hr class="docutils" />
@@ -252,7 +252,7 @@ which drivers were compiled into FluidSynth for your platform.</p>
 <dt id="mingus.midi.pyfluidsynth.cdll">
 <code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">cdll</code><a class="headerlink" href="#mingus.midi.pyfluidsynth.cdll" title="Permalink to this definition">¶</a></dt>
 <dd><p>Attribute of type: ctypes.LibraryLoader
-<code class="docutils literal"><span class="pre">&lt;ctypes.LibraryLoader</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7fd0118c5850&gt;</span></code></p>
+<code class="docutils literal"><span class="pre">&lt;ctypes.LibraryLoader</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7f9066868810&gt;</span></code></p>
 </dd></dl>
 
 <hr class="docutils" />
@@ -268,7 +268,7 @@ which drivers were compiled into FluidSynth for your platform.</p>
 <dt id="mingus.midi.pyfluidsynth.pydll">
 <code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">pydll</code><a class="headerlink" href="#mingus.midi.pyfluidsynth.pydll" title="Permalink to this definition">¶</a></dt>
 <dd><p>Attribute of type: ctypes.LibraryLoader
-<code class="docutils literal"><span class="pre">&lt;ctypes.LibraryLoader</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7fd0118c5890&gt;</span></code></p>
+<code class="docutils literal"><span class="pre">&lt;ctypes.LibraryLoader</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7f9066868850&gt;</span></code></p>
 </dd></dl>
 
 <hr class="docutils" />
@@ -276,7 +276,7 @@ which drivers were compiled into FluidSynth for your platform.</p>
 <dt id="mingus.midi.pyfluidsynth.pythonapi">
 <code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">pythonapi</code><a class="headerlink" href="#mingus.midi.pyfluidsynth.pythonapi" title="Permalink to this definition">¶</a></dt>
 <dd><p>Attribute of type: ctypes.PyDLL
-<code class="docutils literal"><span class="pre">&lt;PyDLL</span> <span class="pre">'None',</span> <span class="pre">handle</span> <span class="pre">7fd014fe1188</span> <span class="pre">at</span> <span class="pre">7fd0118c58d0&gt;</span></code></p>
+<code class="docutils literal"><span class="pre">&lt;PyDLL</span> <span class="pre">'None',</span> <span class="pre">handle</span> <span class="pre">7f9069f84188</span> <span class="pre">at</span> <span class="pre">7f9066868890&gt;</span></code></p>
 </dd></dl>
 
 <hr class="docutils" />
