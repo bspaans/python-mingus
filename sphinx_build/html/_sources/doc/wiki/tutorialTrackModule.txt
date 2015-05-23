@@ -59,7 +59,7 @@ True
 
 
 
-The overloaded '+' operator
+The Overloaded '+' Operator
 ---------------------------
 
 This should be familiar stuff by now, but the '+' operator is overloaded for the Track class as well and accepts strings, NoteContainers, Notes and Bars.

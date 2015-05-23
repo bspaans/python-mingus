@@ -16,7 +16,7 @@ Now we are ready to work with notes.
 ----
 
 
-Notes as strings
+Notes as Strings
 ----------------
 
 A note in mingus is represented by a name (A...G) and some or no accidentals ('#' and 'b'); where 'b' lowers and '#' raises the note by one half note step. To test whether an arbitrary string is a valid note we can use `notes.is_valid_note(str)`.
