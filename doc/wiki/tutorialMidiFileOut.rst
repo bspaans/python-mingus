@@ -2,9 +2,6 @@
 ============================================
 
 
-== Importing !MidiFileOut ==
-
-
 
 >>> from mingus.midi import MidiFileOut
 
@@ -14,7 +11,8 @@
 ----
 
 
-== Saving Notes, NoteContainers, Bars, Tracks and Compositions ==
+Saving Notes, NoteContainers, Bars, Tracks and Compositions
+-----------------------------------------------------------
 
 The functions in this module all work the same and are very simple to use. `write_Note`, `write_NoteContainer`, `write_Bar`, `write_Track` and `write_Composition` all take four arguments, from which the last two are optional. The first argument specifies the filename, the second is the object itself, the third argument is the number of beats per minute (default = 120) and the last argument specifies the number of times the object should be repeated (default = 0).
 
@@ -29,10 +27,8 @@ As in the FluidSynth module you can set the channel and velocity on Notes by set
 ----
 
 
-= End of Tutorial 2 = 
+You can learn more about `mingus.midi.MidiFileOut <refMingusMidiMidifileout>`_ in the reference section.
 
-You can learn more about [refMingusMidiMidifileout mingus.midi.MidiFileOut] in the reference section.
-
-  * [tutorialFluidsynth Playing Containers with FluidSynth ]
+  * `Playing Containers with FluidSynth <tutorialFluidsynth>`_
   * Saving Containers as Midi File
-  * [mingusIndex Back to Index]
+  * :doc:`Back to Index </index>`

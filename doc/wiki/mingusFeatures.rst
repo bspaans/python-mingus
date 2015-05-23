@@ -38,7 +38,7 @@ mingus.midi
 mingus.extra
 ============
 
-  * Create png's and pdf's from Bars, Tracks, Compositions and Suites using !LilyPond.
+  * Create png's and pdf's from Bars, Tracks, Compositions and Suites using LilyPond.
 
 
 ----

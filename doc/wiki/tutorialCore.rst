@@ -27,4 +27,4 @@ Module Dependencies
 You can learn everything about mingus.core in the reference section.
 
   * `Move on the next set of tutorials <tutorialNoteModule>`_
-  * `Back to Index </index>`_
+  * :doc:`Back to Index </index>`

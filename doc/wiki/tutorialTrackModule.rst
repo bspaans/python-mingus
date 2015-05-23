@@ -59,7 +59,7 @@ True
 
 
 
-The overloaded '+' operator
+The Overloaded '+' Operator
 ---------------------------
 
 This should be familiar stuff by now, but the '+' operator is overloaded for the Track class as well and accepts strings, NoteContainers, Notes and Bars.
@@ -120,4 +120,4 @@ You can learn more about `mingus.containers.Track in the reference section <refM
   * `Tutorial 4 - Instruments <tutorialInstrumentModule>`_
   * Tutorial 5 - Tracks
   * `Tutorial 6 - Compositions <tutorialCompositionModule>`_
-  * `Back to Index </index>`_
+  * :doc:`Back to Index </index>`

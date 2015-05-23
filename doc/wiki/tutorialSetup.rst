@@ -20,7 +20,7 @@ mingus might be packaged for your distribution's package manager. See [tutorialG
 
 == Recommended Programs == 
 
-  # You may also want to install !LilyPond to generate sheet music: http://www.lilypond.org/
+  # You may also want to install LilyPond to generate sheet music: http://www.lilypond.org/
   # Additionally, you can install FluidSynth for realtime MIDI playback support: http://fluidsynth.resonance.org/trac
 
 === Installing FluidSynth on Windows ===

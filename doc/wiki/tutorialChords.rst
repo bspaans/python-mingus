@@ -318,4 +318,4 @@ You can learn more about `mingus.core.chords in the reference section <refMingus
   * `Tutorial 3 - Intervals <tutorialIntervals>`_
   * Tutorial 4 - Triads, Sevenths and Extended Chords 
   * `Tutorial 5 - Scales <tutorialScales>`_
-  * `Back to Index </index>`_
+  * :doc:`Back to Index </index>`

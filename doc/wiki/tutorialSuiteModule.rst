@@ -80,4 +80,4 @@ You can learn more about `mingus.containers.Suite <refMingusContainersSuite>`_ i
   * `Tutorial 5 - Tracks <tutorialTrackModule>`_
   * `Tutorial 6 - Compositions <tutorialCompositionModule>`_
   * Tutorial 7 - Suites
-  * `Back to Index </index>`_
+  * :doc:`Back to Index </index>`

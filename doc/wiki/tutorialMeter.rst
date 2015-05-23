@@ -235,4 +235,4 @@ You can learn more about `mingus.core.value <refMingusCoreValue>`_ and `mingus.c
   * Tutorial 6 - Note Value and Meter
   * `Tutorial 7 - Progressions <tutorialProgressions>`_
   * `Tutorial 8 - Working the Core <tutorialCore>`_
-  * `Back to Index </index>`_
+  * :doc:`Back to Index </index>`

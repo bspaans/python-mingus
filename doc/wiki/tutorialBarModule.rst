@@ -235,4 +235,4 @@ You can learn more about `mingus.containers.Bar in the reference section <refMin
   * `Tutorial 2 - NoteContainers <tutorialNoteContainerModule>`_
   * Tutorial 3 - Bars
   * `Tutorial 4 - Instruments <tutorialInstrumentModule>`_
-  * `Back to Index </index>`_
+  * :doc:`Back to Index </index>`

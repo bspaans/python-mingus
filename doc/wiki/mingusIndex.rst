@@ -1,6 +1,8 @@
 ﻿mingus
 ======
 
+.. image:: doc/wiki/lpexample.png
+
 *mingus* is an advanced, cross-platform music theory and notation package for `Python <http://www.python.org>`_ with MIDI file and playback support. It can be used to play around with music theory, to build editors, educational tools and other applications that need to process and/or play music. It can also be used to create sheet music with `LilyPond <http://www.lilypond.org LilyPond>`_.
 
 ===============
@@ -26,7 +28,7 @@ Tutorials
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Fundamentals: Exploring `mingus.core`
    :name: minguscore
 
@@ -41,7 +43,7 @@ Tutorials
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Grouping Notes: Exploring `mingus.containers`
 
    doc/wiki/tutorialNoteModule
@@ -55,7 +57,7 @@ Tutorials
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Midi: Exploring `mingus.midi`
 
    doc/wiki/tutorialFluidsynth
@@ -64,7 +66,7 @@ Tutorials
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Extras: Exploring `mingus.extra`
 
    doc/wiki/tutorialExtraLilypond
@@ -78,7 +80,7 @@ Reference
 =========
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: mingus.core
 
    doc/wiki/refMingusCoreNotes
@@ -91,7 +93,7 @@ Reference
    doc/wiki/refMingusCoreProgressions
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: mingus.containers
 
    doc/wiki/refMingusContainersNote
@@ -106,7 +108,7 @@ Reference
    doc/wiki/refMingusContainersSuite
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: mingus.midi
 
    doc/wiki/refMingusMidiSequencer
@@ -117,7 +119,7 @@ Reference
    doc/wiki/refMingusMidiMidifilein
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: mingus.extra
 
    doc/wiki/refMingusExtraLilypond
