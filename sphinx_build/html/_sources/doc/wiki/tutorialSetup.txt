@@ -7,7 +7,7 @@ Installation
 Using pip
 ^^^^^^^^^
 
-1. pip install mingus
+1. `pip install mingus`
 
 
 Installing from Source
