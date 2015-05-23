@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial 7 - Progressions &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
+    <link rel="next" title="Tutorial 8 - Working the Core" href="tutorialCore.html" />
+    <link rel="prev" title="Tutorial 6 - Note Value and Meter" href="tutorialMeter.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tutorialCore.html" title="Tutorial 8 - Working the Core"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tutorialMeter.html" title="Tutorial 6 - Note Value and Meter"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tutorial-7-progressions">
+<h1>Tutorial 7 - Progressions<a class="headerlink" href="#tutorial-7-progressions" title="Permalink to this headline">¶</a></h1>
+<p>In music theory you often deal with sequences of chords. These chord sequences are called progressions and are often written down using roman numerals. In this system the &#8216;I&#8217; refers to the first natural triad in a key, the II to the second, etc. We can add prefixes and suffixes to denote more complex progressions like #V7, bIIdim7, etc.</p>
+<p>The progressions module provides methods which can convert progressions into chords and vice versa. It can also give suggestions for chord-substitutions.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mingus.core.progressions</span> <span class="kn">as</span> <span class="nn">progressions</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<div class="section" id="functions-to-chords">
+<h2>Functions to Chords<a class="headerlink" href="#functions-to-chords" title="Permalink to this headline">¶</a></h2>
+<p>Remember the chord functions from <a class="reference external" href="tutorialChords">the chords tutorial</a>? As handy as they can be, they feel a bit clunky. For example: we want to take the I, IV and V7 chord in a couple of different keys:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">chords</span><span class="o">.</span><span class="n">I</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">),</span> <span class="n">chords</span><span class="o">.</span><span class="n">IV</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">),</span> <span class="n">chords</span><span class="o">.</span><span class="n">V7</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">chords</span><span class="o">.</span><span class="n">I</span><span class="p">(</span><span class="s">&quot;F&quot;</span><span class="p">),</span> <span class="n">chords</span><span class="o">.</span><span class="n">IV</span><span class="p">(</span><span class="s">&quot;F&quot;</span><span class="p">),</span> <span class="n">chords</span><span class="o">.</span><span class="n">V7</span><span class="p">(</span><span class="s">&quot;F&quot;</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>As you can see, you would have to retype the actual progression everytime you needed it. Instead we can do this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">progression</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;I&quot;</span><span class="p">,</span> <span class="s">&quot;IV&quot;</span><span class="p">,</span> <span class="s">&quot;V7&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">progressions</span><span class="o">.</span><span class="n">to_chords</span><span class="p">(</span><span class="n">progression</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">progressions</span><span class="o">.</span><span class="n">to_chords</span><span class="p">(</span><span class="n">progression</span><span class="p">,</span> <span class="s">&quot;F&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Which will do exactly the same thing and is generally a lot nicer and more modular.</p>
+<p>Another advantage is that the <cite>to_chords</cite> function knows about prefixes and suffixes so you denote complex progressions. You can use any number of accidentals as prefix and any known chord shorthand as suffix:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">progressions</span><span class="o">.</span><span class="n">to_chords</span><span class="p">([</span><span class="s">&quot;I&quot;</span><span class="p">,</span> <span class="s">&quot;bIV&quot;</span><span class="p">,</span> <span class="s">&quot;VIIdim7&quot;</span><span class="p">])</span>
+<span class="go">[[&#39;C&#39;, &#39;E&#39;, &#39;G&#39;], [&#39;Fb&#39;, &#39;Ab&#39;, &#39;Cb&#39;], [&#39;B&#39;, &#39;D&#39;, &#39;F&#39;, &#39;Ab&#39;]]</span>
+</pre></div>
+</div>
+<p>Note: since the use of &#8216;7&#8217; as suffix classicly means that you want the natural seventh chord instead of the natural triad, you have to use the &#8216;dom7&#8217; shorthand to get the dominanth seventh - where you would use &#8216;7&#8217; when talking about chords. In other words I7 will give you a major seventh, Idom7 a dominanth seventh.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="chords-to-functions">
+<h2>Chords to Functions<a class="headerlink" href="#chords-to-functions" title="Permalink to this headline">¶</a></h2>
+<p>Now that we can convert progressions to chords, it would be nice if we could hand mingus some chords and get the progressions back. That&#8217;s what <cite>determine</cite> is for. Here&#8217;s an example that uses the chords from the previous example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">progressions</span><span class="o">.</span><span class="n">to_chords</span><span class="p">([</span><span class="s">&quot;I&quot;</span><span class="p">,</span> <span class="s">&quot;bIV&quot;</span><span class="p">,</span> <span class="s">&quot;VIIdim7&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">[[&#39;C&#39;, &#39;E&#39;, &#39;G&#39;], [&#39;Fb&#39;, &#39;Ab&#39;, &#39;Cb&#39;], [&#39;B&#39;, &#39;D&#39;, &#39;F&#39;, &#39;Ab&#39;]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">progressions</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[[&#39;tonic&#39;], [&#39;minor subdominant&#39;], [&#39;subtonic diminished seventh&#39;]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">progressions</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+<span class="go">[[&#39;I&#39;], [&#39;bIV&#39;], [&#39;viidim7&#39;]]</span>
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="substitutions">
+<h2>Substitutions<a class="headerlink" href="#substitutions" title="Permalink to this headline">¶</a></h2>
+<p><cite>substitute(progression, index, depth = 0)</cite> gives a list of possible substitutions for <cite>progression[index]</cite>. If depth &gt; 0 the substitutions of each result will be recursively added as well.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">progressions</span><span class="o">.</span><span class="n">substitute</span><span class="p">([</span><span class="s">&quot;I&quot;</span><span class="p">,</span> <span class="s">&quot;IV&quot;</span><span class="p">,</span> <span class="s">&quot;V&quot;</span><span class="p">,</span> <span class="s">&quot;I&quot;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">[&quot;III&quot;, &quot;VI&quot;, etc.</span>
+</pre></div>
+</div>
+<p><cite>substitute</cite> performs all kinds of substitutions. If you want more fine grained control you can use the functions <cite>substitute_harmonic</cite>, <cite>substitute_major_for_minor</cite>, <cite>substitute_minor_for_major</cite>, <cite>substitute_diminished_for_diminished</cite> and <cite>substitute_diminished_for_dominant</cite>. Check the reference section of this module to read more about them.</p>
+<hr class="docutils" />
+<p>You can learn more about <a class="reference external" href="refMingusCoreProgressions">mingus.core.progressions</a> in the reference section.</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="tutorialNote">Tutorial 1 - Working with Notes</a></li>
+<li><a class="reference external" href="tutorialDiatonic">Tutorial 2 - Keys and the Diatonic Scale</a></li>
+<li><a class="reference external" href="tutorialIntervals">Tutorial 3 - Intervals</a></li>
+<li><a class="reference external" href="tutorialChords">Tutorial 4 - Triads, Sevenths and Extended Chords</a></li>
+<li><a class="reference external" href="tutorialScales">Tutorial 5 - Scales</a></li>
+<li><a class="reference external" href="tutorialMeter">Tutorial 6 - Note Value and Meter</a></li>
+<li>Tutorial 7 - Progressions</li>
+<li><a class="reference external" href="tutorialCore">Tutorial 8 - Working the Core</a></li>
+<li><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">mingus</a></h1>
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=bspaans&repo=python-mingus&type=watch&count=true&size=large"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/bspaans/python-mingus" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

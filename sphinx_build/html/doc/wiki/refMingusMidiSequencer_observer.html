@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mingus.midi.sequencer_observer &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <span class="target" id="module-mingus.midi.sequencer_observer"></span><div class="section" id="mingus-midi-sequencer-observer">
+<h1>mingus.midi.sequencer_observer<a class="headerlink" href="#mingus-midi-sequencer-observer" title="Permalink to this headline">¶</a></h1>
+<p>Provides an easy to extend base class that can be used to observe a
+Sequencer.</p>
+<p>Each time a Sequencer starts playing a new Note, Bar, w/e, an event is
+fired; this SequencerObserver intercepts the event messages and calls the
+proper function so you only have to implement the functions for the events
+you need to see.</p>
+<dl class="class">
+<dt id="mingus.midi.sequencer_observer.SequencerObserver">
+<em class="property">class </em><code class="descclassname">mingus.midi.sequencer_observer.</code><code class="descname">SequencerObserver</code><a class="reference internal" href="../../_modules/mingus/midi/sequencer_observer.html#SequencerObserver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.sequencer_observer.SequencerObserver" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="mingus.midi.sequencer_observer.SequencerObserver.cc_event">
+<code class="descname">cc_event</code><span class="sig-paren">(</span><em>self</em>, <em>channel</em>, <em>control</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/sequencer_observer.html#SequencerObserver.cc_event"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.sequencer_observer.SequencerObserver.cc_event" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mingus.midi.sequencer_observer.SequencerObserver.instr_event">
+<code class="descname">instr_event</code><span class="sig-paren">(</span><em>self</em>, <em>channel</em>, <em>instr</em>, <em>bank</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/sequencer_observer.html#SequencerObserver.instr_event"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.sequencer_observer.SequencerObserver.instr_event" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mingus.midi.sequencer_observer.SequencerObserver.notify">
+<code class="descname">notify</code><span class="sig-paren">(</span><em>self</em>, <em>msg_type</em>, <em>params</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/sequencer_observer.html#SequencerObserver.notify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.sequencer_observer.SequencerObserver.notify" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mingus.midi.sequencer_observer.SequencerObserver.play_Bar">
+<code class="descname">play_Bar</code><span class="sig-paren">(</span><em>self</em>, <em>bar</em>, <em>channel</em>, <em>bpm</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/sequencer_observer.html#SequencerObserver.play_Bar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.sequencer_observer.SequencerObserver.play_Bar" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mingus.midi.sequencer_observer.SequencerObserver.play_Bars">
+<code class="descname">play_Bars</code><span class="sig-paren">(</span><em>self</em>, <em>bars</em>, <em>channels</em>, <em>bpm</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/sequencer_observer.html#SequencerObserver.play_Bars"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.sequencer_observer.SequencerObserver.play_Bars" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mingus.midi.sequencer_observer.SequencerObserver.play_Composition">
+<code class="descname">play_Composition</code><span class="sig-paren">(</span><em>self</em>, <em>composition</em>, <em>channels</em>, <em>bpm</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/sequencer_observer.html#SequencerObserver.play_Composition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.sequencer_observer.SequencerObserver.play_Composition" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mingus.midi.sequencer_observer.SequencerObserver.play_Note">
+<code class="descname">play_Note</code><span class="sig-paren">(</span><em>self</em>, <em>note</em>, <em>channel</em>, <em>velocity</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/sequencer_observer.html#SequencerObserver.play_Note"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.sequencer_observer.SequencerObserver.play_Note" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mingus.midi.sequencer_observer.SequencerObserver.play_NoteContainer">
+<code class="descname">play_NoteContainer</code><span class="sig-paren">(</span><em>self</em>, <em>notes</em>, <em>channel</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/sequencer_observer.html#SequencerObserver.play_NoteContainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.sequencer_observer.SequencerObserver.play_NoteContainer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mingus.midi.sequencer_observer.SequencerObserver.play_Track">
+<code class="descname">play_Track</code><span class="sig-paren">(</span><em>self</em>, <em>track</em>, <em>channel</em>, <em>bpm</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/sequencer_observer.html#SequencerObserver.play_Track"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.sequencer_observer.SequencerObserver.play_Track" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mingus.midi.sequencer_observer.SequencerObserver.play_Tracks">
+<code class="descname">play_Tracks</code><span class="sig-paren">(</span><em>self</em>, <em>tracks</em>, <em>channels</em>, <em>bpm</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/sequencer_observer.html#SequencerObserver.play_Tracks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.sequencer_observer.SequencerObserver.play_Tracks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mingus.midi.sequencer_observer.SequencerObserver.play_int_note_event">
+<code class="descname">play_int_note_event</code><span class="sig-paren">(</span><em>self</em>, <em>int_note</em>, <em>channel</em>, <em>velocity</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/sequencer_observer.html#SequencerObserver.play_int_note_event"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.sequencer_observer.SequencerObserver.play_int_note_event" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mingus.midi.sequencer_observer.SequencerObserver.sleep">
+<code class="descname">sleep</code><span class="sig-paren">(</span><em>self</em>, <em>seconds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/sequencer_observer.html#SequencerObserver.sleep"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.sequencer_observer.SequencerObserver.sleep" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mingus.midi.sequencer_observer.SequencerObserver.stop_Note">
+<code class="descname">stop_Note</code><span class="sig-paren">(</span><em>self</em>, <em>note</em>, <em>channel</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/sequencer_observer.html#SequencerObserver.stop_Note"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.sequencer_observer.SequencerObserver.stop_Note" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mingus.midi.sequencer_observer.SequencerObserver.stop_NoteContainer">
+<code class="descname">stop_NoteContainer</code><span class="sig-paren">(</span><em>self</em>, <em>notes</em>, <em>channel</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/sequencer_observer.html#SequencerObserver.stop_NoteContainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.sequencer_observer.SequencerObserver.stop_NoteContainer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mingus.midi.sequencer_observer.SequencerObserver.stop_int_note_event">
+<code class="descname">stop_int_note_event</code><span class="sig-paren">(</span><em>self</em>, <em>int_note</em>, <em>channel</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/sequencer_observer.html#SequencerObserver.stop_int_note_event"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.sequencer_observer.SequencerObserver.stop_int_note_event" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<hr class="docutils" />
+<p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">mingus</a></h1>
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=bspaans&repo=python-mingus&type=watch&count=true&size=large"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/bspaans/python-mingus" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

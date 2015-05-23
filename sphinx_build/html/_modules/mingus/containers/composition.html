@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mingus.containers.composition &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">mingus 0.5.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for mingus.containers.composition</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="c">#    mingus - Music theory Python package, composition module.</span>
+<span class="c">#    Copyright (C) 2008-2009, Bart Spaans</span>
+<span class="c">#</span>
+<span class="c">#    This program is free software: you can redistribute it and/or modify</span>
+<span class="c">#    it under the terms of the GNU General Public License as published by</span>
+<span class="c">#    the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c">#    (at your option) any later version.</span>
+<span class="c">#</span>
+<span class="c">#    This program is distributed in the hope that it will be useful,</span>
+<span class="c">#    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c">#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c">#    GNU General Public License for more details.</span>
+<span class="c">#</span>
+<span class="c">#    You should have received a copy of the GNU General Public License</span>
+<span class="c">#    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="kn">from</span> <span class="nn">mt_exceptions</span> <span class="kn">import</span> <span class="n">UnexpectedObjectError</span>
+
+<div class="viewcode-block" id="Composition"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersComposition.html#mingus.containers.composition.Composition">[docs]</a><span class="k">class</span> <span class="nc">Composition</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;A composition object.</span>
+
+<span class="sd">    The Composition class is a datastructure for working with Tracks.</span>
+
+<span class="sd">    Composition can be stored together in Suites.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">title</span> <span class="o">=</span> <span class="s">&#39;Untitled&#39;</span>
+    <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+    <span class="n">author</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+    <span class="n">tracks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">selected_tracks</span> <span class="o">=</span> <span class="p">[]</span>
+
+<div class="viewcode-block" id="Composition.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersComposition.html#mingus.containers.composition.Composition.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">empty</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="Composition.empty"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersComposition.html#mingus.containers.composition.Composition.empty">[docs]</a>    <span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Remove all the tracks from this class.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tracks</span> <span class="o">=</span> <span class="p">[]</span>
+</div>
+<div class="viewcode-block" id="Composition.reset"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersComposition.html#mingus.containers.composition.Composition.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reset the information in this class.</span>
+
+<span class="sd">        Remove the track and composer information.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">empty</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_title</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_author</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="Composition.add_track"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersComposition.html#mingus.containers.composition.Composition.add_track">[docs]</a>    <span class="k">def</span> <span class="nf">add_track</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">track</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a track to the composition.</span>
+
+<span class="sd">        Raise an UnexpectedObjectError if the argument is not a</span>
+<span class="sd">        mingus.containers.Track object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">track</span><span class="p">,</span> <span class="s">&#39;bars&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">UnexpectedObjectError</span><span class="p">(</span><span class="s">&quot;Unexpected object &#39;</span><span class="si">%s</span><span class="s">&#39;, &quot;</span>
+                    <span class="s">&quot;expecting a mingus.containers.Track object&quot;</span> <span class="o">%</span> <span class="n">track</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tracks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">track</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">selected_tracks</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tracks</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+</div>
+<div class="viewcode-block" id="Composition.add_note"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersComposition.html#mingus.containers.composition.Composition.add_note">[docs]</a>    <span class="k">def</span> <span class="nf">add_note</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a note to the selected tracks.</span>
+
+<span class="sd">        Everything container.Track supports in __add__ is accepted.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">selected_tracks</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tracks</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">note</span>
+</div>
+<div class="viewcode-block" id="Composition.set_title"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersComposition.html#mingus.containers.composition.Composition.set_title">[docs]</a>    <span class="k">def</span> <span class="nf">set_title</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&#39;Untitled&#39;</span><span class="p">,</span> <span class="n">subtitle</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the title and subtitle of the piece.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">title</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subtitle</span> <span class="o">=</span> <span class="n">subtitle</span>
+</div>
+<div class="viewcode-block" id="Composition.set_author"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersComposition.html#mingus.containers.composition.Composition.set_author">[docs]</a>    <span class="k">def</span> <span class="nf">set_author</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">author</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the title and author of the piece.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">author</span> <span class="o">=</span> <span class="n">author</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">email</span>
+</div>
+<div class="viewcode-block" id="Composition.__add__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersComposition.html#mingus.containers.composition.Composition.__add__">[docs]</a>    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Enable the &#39;+&#39; operator for Compositions.</span>
+
+<span class="sd">        Notes, note strings, NoteContainers, Bars and Tracks are accepted.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s">&#39;bars&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_track</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Composition.__getitem__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersComposition.html#mingus.containers.composition.Composition.__getitem__">[docs]</a>    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Enable the &#39;[]&#39; notation.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracks</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+</div>
+<div class="viewcode-block" id="Composition.__setitem__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersComposition.html#mingus.containers.composition.Composition.__setitem__">[docs]</a>    <span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Enable the &#39;[] =&#39; notation.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tracks</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+</div>
+<div class="viewcode-block" id="Composition.__len__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersComposition.html#mingus.containers.composition.Composition.__len__">[docs]</a>    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Enable the len() function.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tracks</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Composition.__repr__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersComposition.html#mingus.containers.composition.Composition.__repr__">[docs]</a>    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a string representing the class.&quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracks</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+</pre></div></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">mingus</a></h1>
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=bspaans&repo=python-mingus&type=watch&count=true&size=large"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/bspaans/python-mingus" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
