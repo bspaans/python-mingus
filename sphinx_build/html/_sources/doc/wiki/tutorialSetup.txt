@@ -19,7 +19,7 @@ Installing .deb or Windows Package
 Installing from your default package manager
 --------------------------------------------
 
-mingus might be packaged for your distribution's package manager. See :doc:`<tutorialGettingmingus>` for a list.
+mingus might be packaged for your distribution's package manager. See :doc:`getting mingus<tutorialGettingmingus>` for a list.
 
 
 Recommended Programs
