@@ -19,7 +19,7 @@ Now you are ready to play Notes, NoteContainers, etc.
 
 ----
 
-.. attribute::initialized
+.. attribute:: initialized
 
    Attribute of type: bool
    Value*: `False`
@@ -27,10 +27,10 @@ Now you are ready to play Notes, NoteContainers, etc.
 
 ----
 
-.. attribute::midi
+.. attribute:: midi
 
    Attribute of type: mingus.midi.fluidsynth.FluidSynthSequencer
-   Value*: `<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x7fba2ab50990>`
+   Value*: `<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x7f5c1d070990>`
 
 
 ----

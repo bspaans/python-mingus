@@ -10,7 +10,7 @@ This module provides a simple interface for dealing with keys.
 
 ----
 
-.. attribute::base_scale
+.. attribute:: base_scale
 
    Attribute of type: list
    Value*: `['C', 'D', 'E', 'F', 'G', 'A', 'B']`
@@ -18,7 +18,7 @@ This module provides a simple interface for dealing with keys.
 
 ----
 
-.. attribute::couple
+.. attribute:: couple
 
    Attribute of type: tuple
    Value*: `('C#', 'a#')`
@@ -26,7 +26,7 @@ This module provides a simple interface for dealing with keys.
 
 ----
 
-.. attribute::keys
+.. attribute:: keys
 
    Attribute of type: list
    Value*: `[('Cb', 'ab'), ('Gb', 'eb'), ('Db', 'bb'), ('Ab', 'f'), ('Eb', 'c'), ('Bb', 'g'), ('F', 'd'), ('C', 'a'), ('G', 'e'), ('D', 'b'), ('A', 'f#'), ('E', 'c#'), ('B', 'g#'), ('F#', 'd#'), ('C#', 'a#')]`
@@ -34,7 +34,7 @@ This module provides a simple interface for dealing with keys.
 
 ----
 
-.. attribute::major_keys
+.. attribute:: major_keys
 
    Attribute of type: list
    Value*: `['Cb', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#']`
@@ -42,7 +42,7 @@ This module provides a simple interface for dealing with keys.
 
 ----
 
-.. attribute::minor_keys
+.. attribute:: minor_keys
 
    Attribute of type: list
    Value*: `['ab', 'eb', 'bb', 'f', 'c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#']`

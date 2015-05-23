@@ -26,7 +26,7 @@ Medieval backwards compatibility privided.
 
 ----
 
-.. attribute::base_quintuplets
+.. attribute:: base_quintuplets
 
    Attribute of type: list
    Value*: `[0.3125, 0.625, 1.25, 2.5, 5, 10, 20, 40, 80, 160]`
@@ -34,7 +34,7 @@ Medieval backwards compatibility privided.
 
 ----
 
-.. attribute::base_septuplets
+.. attribute:: base_septuplets
 
    Attribute of type: list
    Value*: `[0.4375, 0.875, 1.75, 3.5, 7, 14, 28, 56, 112, 224]`
@@ -42,7 +42,7 @@ Medieval backwards compatibility privided.
 
 ----
 
-.. attribute::base_triplets
+.. attribute:: base_triplets
 
    Attribute of type: list
    Value*: `[0.375, 0.75, 1.5, 3, 6, 12, 24, 48, 96, 192]`
@@ -50,7 +50,7 @@ Medieval backwards compatibility privided.
 
 ----
 
-.. attribute::base_values
+.. attribute:: base_values
 
    Attribute of type: list
    Value*: `[0.25, 0.5, 1, 2, 4, 8, 16, 32, 64, 128]`
@@ -58,7 +58,7 @@ Medieval backwards compatibility privided.
 
 ----
 
-.. attribute::breve
+.. attribute:: breve
 
    Attribute of type: float
    Value*: `0.5`
@@ -66,7 +66,7 @@ Medieval backwards compatibility privided.
 
 ----
 
-.. attribute::crotchet
+.. attribute:: crotchet
 
    Attribute of type: int
    Value*: `4`
@@ -74,7 +74,7 @@ Medieval backwards compatibility privided.
 
 ----
 
-.. attribute::demisemiquaver
+.. attribute:: demisemiquaver
 
    Attribute of type: int
    Value*: `32`
@@ -82,7 +82,7 @@ Medieval backwards compatibility privided.
 
 ----
 
-.. attribute::eighth
+.. attribute:: eighth
 
    Attribute of type: int
    Value*: `8`
@@ -90,7 +90,7 @@ Medieval backwards compatibility privided.
 
 ----
 
-.. attribute::half
+.. attribute:: half
 
    Attribute of type: int
    Value*: `2`
@@ -98,7 +98,7 @@ Medieval backwards compatibility privided.
 
 ----
 
-.. attribute::hemidemisemiquaver
+.. attribute:: hemidemisemiquaver
 
    Attribute of type: int
    Value*: `64`
@@ -106,7 +106,7 @@ Medieval backwards compatibility privided.
 
 ----
 
-.. attribute::hundred_twenty_eighth
+.. attribute:: hundred_twenty_eighth
 
    Attribute of type: int
    Value*: `128`
@@ -114,7 +114,7 @@ Medieval backwards compatibility privided.
 
 ----
 
-.. attribute::longa
+.. attribute:: longa
 
    Attribute of type: float
    Value*: `0.25`
@@ -122,7 +122,7 @@ Medieval backwards compatibility privided.
 
 ----
 
-.. attribute::minim
+.. attribute:: minim
 
    Attribute of type: int
    Value*: `2`
@@ -130,7 +130,7 @@ Medieval backwards compatibility privided.
 
 ----
 
-.. attribute::musicxml
+.. attribute:: musicxml
 
    Attribute of type: dict
    Value*: `{16: '16th', 1: 'whole', 2: 'half', 4: 'quarter', 32: '32th', 8: 'eighth', 64: '64th', 128: '128th'}`
@@ -138,7 +138,7 @@ Medieval backwards compatibility privided.
 
 ----
 
-.. attribute::quarter
+.. attribute:: quarter
 
    Attribute of type: int
    Value*: `4`
@@ -146,7 +146,7 @@ Medieval backwards compatibility privided.
 
 ----
 
-.. attribute::quasihemidemisemiquaver
+.. attribute:: quasihemidemisemiquaver
 
    Attribute of type: int
    Value*: `128`
@@ -154,7 +154,7 @@ Medieval backwards compatibility privided.
 
 ----
 
-.. attribute::quaver
+.. attribute:: quaver
 
    Attribute of type: int
    Value*: `8`
@@ -162,7 +162,7 @@ Medieval backwards compatibility privided.
 
 ----
 
-.. attribute::semibreve
+.. attribute:: semibreve
 
    Attribute of type: int
    Value*: `1`
@@ -170,7 +170,7 @@ Medieval backwards compatibility privided.
 
 ----
 
-.. attribute::semihemidemisemiquaver
+.. attribute:: semihemidemisemiquaver
 
    Attribute of type: int
    Value*: `128`
@@ -178,7 +178,7 @@ Medieval backwards compatibility privided.
 
 ----
 
-.. attribute::semiquaver
+.. attribute:: semiquaver
 
    Attribute of type: int
    Value*: `16`
@@ -186,7 +186,7 @@ Medieval backwards compatibility privided.
 
 ----
 
-.. attribute::sixteenth
+.. attribute:: sixteenth
 
    Attribute of type: int
    Value*: `16`
@@ -194,7 +194,7 @@ Medieval backwards compatibility privided.
 
 ----
 
-.. attribute::sixty_fourth
+.. attribute:: sixty_fourth
 
    Attribute of type: int
    Value*: `64`
@@ -202,7 +202,7 @@ Medieval backwards compatibility privided.
 
 ----
 
-.. attribute::thirty_second
+.. attribute:: thirty_second
 
    Attribute of type: int
    Value*: `32`
@@ -210,7 +210,7 @@ Medieval backwards compatibility privided.
 
 ----
 
-.. attribute::whole
+.. attribute:: whole
 
    Attribute of type: int
    Value*: `1`

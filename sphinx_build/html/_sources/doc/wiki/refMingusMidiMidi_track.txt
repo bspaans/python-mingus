@@ -11,7 +11,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::BALANCE
+.. attribute:: BALANCE
 
    Attribute of type: int
    Value*: `8`
@@ -19,7 +19,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::BANK_SELECT
+.. attribute:: BANK_SELECT
 
    Attribute of type: int
    Value*: `0`
@@ -27,7 +27,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::BREATH_CONTROLLER
+.. attribute:: BREATH_CONTROLLER
 
    Attribute of type: int
    Value*: `2`
@@ -35,7 +35,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::CHANNEL_AFTERTOUCH
+.. attribute:: CHANNEL_AFTERTOUCH
 
    Attribute of type: int
    Value*: `13`
@@ -43,7 +43,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::CONTROLLER
+.. attribute:: CONTROLLER
 
    Attribute of type: int
    Value*: `11`
@@ -51,7 +51,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::COPYRIGHT_NOTICE
+.. attribute:: COPYRIGHT_NOTICE
 
    Attribute of type: str
    Value*: `'\x02'`
@@ -59,7 +59,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::CUE_POINT
+.. attribute:: CUE_POINT
 
    Attribute of type: str
    Value*: `'\x07'`
@@ -67,7 +67,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::DATA_ENTRY_MSB
+.. attribute:: DATA_ENTRY_MSB
 
    Attribute of type: int
    Value*: `6`
@@ -75,7 +75,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::EFFECT_CONTROL_1
+.. attribute:: EFFECT_CONTROL_1
 
    Attribute of type: int
    Value*: `12`
@@ -83,7 +83,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::EFFECT_CONTROL_2
+.. attribute:: EFFECT_CONTROL_2
 
    Attribute of type: int
    Value*: `13`
@@ -91,7 +91,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::END_OF_TRACK
+.. attribute:: END_OF_TRACK
 
    Attribute of type: str
    Value*: `'/'`
@@ -99,7 +99,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::EXPRESSION_CONTROLLER
+.. attribute:: EXPRESSION_CONTROLLER
 
    Attribute of type: int
    Value*: `11`
@@ -107,7 +107,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::FILE_HEADER
+.. attribute:: FILE_HEADER
 
    Attribute of type: str
    Value*: `'MThd'`
@@ -115,7 +115,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::FOOT_CONTROLLER
+.. attribute:: FOOT_CONTROLLER
 
    Attribute of type: int
    Value*: `4`
@@ -123,7 +123,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::INSTRUMENT_NAME
+.. attribute:: INSTRUMENT_NAME
 
    Attribute of type: str
    Value*: `'\x04'`
@@ -131,7 +131,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::KEY_SIGNATURE
+.. attribute:: KEY_SIGNATURE
 
    Attribute of type: str
    Value*: `'Y'`
@@ -139,7 +139,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::LYRICS
+.. attribute:: LYRICS
 
    Attribute of type: str
    Value*: `'\x05'`
@@ -147,7 +147,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::MAIN_VOLUME
+.. attribute:: MAIN_VOLUME
 
    Attribute of type: int
    Value*: `7`
@@ -155,7 +155,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::MARKER
+.. attribute:: MARKER
 
    Attribute of type: str
    Value*: `'\x06'`
@@ -163,7 +163,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::META_EVENT
+.. attribute:: META_EVENT
 
    Attribute of type: str
    Value*: `'\xff'`
@@ -171,7 +171,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::MIDI_CHANNEL_PREFIX
+.. attribute:: MIDI_CHANNEL_PREFIX
 
    Attribute of type: str
    Value*: `' '`
@@ -179,7 +179,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::MODULATION
+.. attribute:: MODULATION
 
    Attribute of type: int
    Value*: `1`
@@ -187,7 +187,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::NOTE_AFTERTOUCH
+.. attribute:: NOTE_AFTERTOUCH
 
    Attribute of type: int
    Value*: `10`
@@ -195,7 +195,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::NOTE_OFF
+.. attribute:: NOTE_OFF
 
    Attribute of type: int
    Value*: `8`
@@ -203,7 +203,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::NOTE_ON
+.. attribute:: NOTE_ON
 
    Attribute of type: int
    Value*: `9`
@@ -211,7 +211,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::PAN
+.. attribute:: PAN
 
    Attribute of type: int
    Value*: `10`
@@ -219,7 +219,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::PITCH_BEND
+.. attribute:: PITCH_BEND
 
    Attribute of type: int
    Value*: `14`
@@ -227,7 +227,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::PORTAMENTO_TIME
+.. attribute:: PORTAMENTO_TIME
 
    Attribute of type: int
    Value*: `5`
@@ -235,7 +235,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::PROGRAM_CHANGE
+.. attribute:: PROGRAM_CHANGE
 
    Attribute of type: int
    Value*: `12`
@@ -243,7 +243,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::SEQUENCE_NUMBER
+.. attribute:: SEQUENCE_NUMBER
 
    Attribute of type: str
    Value*: `'\x00'`
@@ -251,7 +251,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::SET_TEMPO
+.. attribute:: SET_TEMPO
 
    Attribute of type: str
    Value*: `'Q'`
@@ -259,7 +259,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::SMPTE_OFFSET
+.. attribute:: SMPTE_OFFSET
 
    Attribute of type: str
    Value*: `'T'`
@@ -267,7 +267,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::TEXT_EVENT
+.. attribute:: TEXT_EVENT
 
    Attribute of type: str
    Value*: `'\x01'`
@@ -275,7 +275,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::TIME_SIGNATURE
+.. attribute:: TIME_SIGNATURE
 
    Attribute of type: str
    Value*: `'X'`
@@ -283,7 +283,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::TRACK_HEADER
+.. attribute:: TRACK_HEADER
 
    Attribute of type: str
    Value*: `'MTrk'`
@@ -291,7 +291,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::TRACK_NAME
+.. attribute:: TRACK_NAME
 
    Attribute of type: str
    Value*: `'\x03'`
@@ -299,7 +299,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::major_keys
+.. attribute:: major_keys
 
    Attribute of type: list
    Value*: `['Cb', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#']`
@@ -307,7 +307,7 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute::minor_keys
+.. attribute:: minor_keys
 
    Attribute of type: list
    Value*: `['ab', 'eb', 'bb', 'f', 'c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#']`

@@ -5,7 +5,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::BALANCE
+.. attribute:: BALANCE
 
    Attribute of type: int
    Value*: `8`
@@ -13,7 +13,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::BANK_SELECT
+.. attribute:: BANK_SELECT
 
    Attribute of type: int
    Value*: `0`
@@ -21,7 +21,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::BREATH_CONTROLLER
+.. attribute:: BREATH_CONTROLLER
 
    Attribute of type: int
    Value*: `2`
@@ -29,7 +29,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::CHANNEL_AFTERTOUCH
+.. attribute:: CHANNEL_AFTERTOUCH
 
    Attribute of type: int
    Value*: `13`
@@ -37,7 +37,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::CONTROLLER
+.. attribute:: CONTROLLER
 
    Attribute of type: int
    Value*: `11`
@@ -45,7 +45,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::COPYRIGHT_NOTICE
+.. attribute:: COPYRIGHT_NOTICE
 
    Attribute of type: str
    Value*: `'\x02'`
@@ -53,7 +53,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::CUE_POINT
+.. attribute:: CUE_POINT
 
    Attribute of type: str
    Value*: `'\x07'`
@@ -61,7 +61,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::DATA_ENTRY_MSB
+.. attribute:: DATA_ENTRY_MSB
 
    Attribute of type: int
    Value*: `6`
@@ -69,7 +69,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::EFFECT_CONTROL_1
+.. attribute:: EFFECT_CONTROL_1
 
    Attribute of type: int
    Value*: `12`
@@ -77,7 +77,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::EFFECT_CONTROL_2
+.. attribute:: EFFECT_CONTROL_2
 
    Attribute of type: int
    Value*: `13`
@@ -85,7 +85,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::END_OF_TRACK
+.. attribute:: END_OF_TRACK
 
    Attribute of type: str
    Value*: `'/'`
@@ -93,7 +93,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::EXPRESSION_CONTROLLER
+.. attribute:: EXPRESSION_CONTROLLER
 
    Attribute of type: int
    Value*: `11`
@@ -101,7 +101,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::FILE_HEADER
+.. attribute:: FILE_HEADER
 
    Attribute of type: str
    Value*: `'MThd'`
@@ -109,7 +109,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::FOOT_CONTROLLER
+.. attribute:: FOOT_CONTROLLER
 
    Attribute of type: int
    Value*: `4`
@@ -117,7 +117,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::INSTRUMENT_NAME
+.. attribute:: INSTRUMENT_NAME
 
    Attribute of type: str
    Value*: `'\x04'`
@@ -125,7 +125,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::KEY_SIGNATURE
+.. attribute:: KEY_SIGNATURE
 
    Attribute of type: str
    Value*: `'Y'`
@@ -133,7 +133,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::LYRICS
+.. attribute:: LYRICS
 
    Attribute of type: str
    Value*: `'\x05'`
@@ -141,7 +141,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::MAIN_VOLUME
+.. attribute:: MAIN_VOLUME
 
    Attribute of type: int
    Value*: `7`
@@ -149,7 +149,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::MARKER
+.. attribute:: MARKER
 
    Attribute of type: str
    Value*: `'\x06'`
@@ -157,7 +157,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::META_EVENT
+.. attribute:: META_EVENT
 
    Attribute of type: str
    Value*: `'\xff'`
@@ -165,7 +165,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::MIDI_CHANNEL_PREFIX
+.. attribute:: MIDI_CHANNEL_PREFIX
 
    Attribute of type: str
    Value*: `' '`
@@ -173,7 +173,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::MODULATION
+.. attribute:: MODULATION
 
    Attribute of type: int
    Value*: `1`
@@ -181,7 +181,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::NOTE_AFTERTOUCH
+.. attribute:: NOTE_AFTERTOUCH
 
    Attribute of type: int
    Value*: `10`
@@ -189,7 +189,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::NOTE_OFF
+.. attribute:: NOTE_OFF
 
    Attribute of type: int
    Value*: `8`
@@ -197,7 +197,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::NOTE_ON
+.. attribute:: NOTE_ON
 
    Attribute of type: int
    Value*: `9`
@@ -205,7 +205,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::PAN
+.. attribute:: PAN
 
    Attribute of type: int
    Value*: `10`
@@ -213,7 +213,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::PITCH_BEND
+.. attribute:: PITCH_BEND
 
    Attribute of type: int
    Value*: `14`
@@ -221,7 +221,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::PORTAMENTO_TIME
+.. attribute:: PORTAMENTO_TIME
 
    Attribute of type: int
    Value*: `5`
@@ -229,7 +229,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::PROGRAM_CHANGE
+.. attribute:: PROGRAM_CHANGE
 
    Attribute of type: int
    Value*: `12`
@@ -237,7 +237,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::SEQUENCE_NUMBER
+.. attribute:: SEQUENCE_NUMBER
 
    Attribute of type: str
    Value*: `'\x00'`
@@ -245,7 +245,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::SET_TEMPO
+.. attribute:: SET_TEMPO
 
    Attribute of type: str
    Value*: `'Q'`
@@ -253,7 +253,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::SMPTE_OFFSET
+.. attribute:: SMPTE_OFFSET
 
    Attribute of type: str
    Value*: `'T'`
@@ -261,7 +261,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::TEXT_EVENT
+.. attribute:: TEXT_EVENT
 
    Attribute of type: str
    Value*: `'\x01'`
@@ -269,7 +269,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::TIME_SIGNATURE
+.. attribute:: TIME_SIGNATURE
 
    Attribute of type: str
    Value*: `'X'`
@@ -277,7 +277,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::TRACK_HEADER
+.. attribute:: TRACK_HEADER
 
    Attribute of type: str
    Value*: `'MTrk'`
@@ -285,7 +285,7 @@ mingus.midi.midi_events
 
 ----
 
-.. attribute::TRACK_NAME
+.. attribute:: TRACK_NAME
 
    Attribute of type: str
    Value*: `'\x03'`

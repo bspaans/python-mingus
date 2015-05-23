@@ -23,7 +23,7 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 
 ----
 
-.. attribute::DEFAULT_MODE
+.. attribute:: DEFAULT_MODE
 
    Attribute of type: int
    Value*: `0`
@@ -31,7 +31,7 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 
 ----
 
-.. attribute::RTLD_GLOBAL
+.. attribute:: RTLD_GLOBAL
 
    Attribute of type: int
    Value*: `256`
@@ -39,7 +39,7 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 
 ----
 
-.. attribute::RTLD_LOCAL
+.. attribute:: RTLD_LOCAL
 
    Attribute of type: int
    Value*: `0`
@@ -47,7 +47,7 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 
 ----
 
-.. attribute::api_version
+.. attribute:: api_version
 
    Attribute of type: str
    Value*: `'1.2'`
@@ -55,15 +55,15 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 
 ----
 
-.. attribute::cdll
+.. attribute:: cdll
 
    Attribute of type: ctypes.LibraryLoader
-   Value*: `<ctypes.LibraryLoader object at 0x7fba2b050910>`
+   Value*: `<ctypes.LibraryLoader object at 0x7f5c1d570910>`
 
 
 ----
 
-.. attribute::lib
+.. attribute:: lib
 
    Attribute of type: str
    Value*: `'libfluidsynth.so.1'`
@@ -71,18 +71,18 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 
 ----
 
-.. attribute::pydll
+.. attribute:: pydll
 
    Attribute of type: ctypes.LibraryLoader
-   Value*: `<ctypes.LibraryLoader object at 0x7fba2b050950>`
+   Value*: `<ctypes.LibraryLoader object at 0x7f5c1d570950>`
 
 
 ----
 
-.. attribute::pythonapi
+.. attribute:: pythonapi
 
    Attribute of type: ctypes.PyDLL
-   Value*: `<PyDLL 'None', handle 7fba2e76d188 at 7fba2b050990>`
+   Value*: `<PyDLL 'None', handle 7f5c20c8d188 at 7f5c1d570990>`
 
 
 ----

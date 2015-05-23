@@ -17,7 +17,7 @@ vice versa.
 
 ----
 
-.. attribute::numeral_intervals
+.. attribute:: numeral_intervals
 
    Attribute of type: list
    Value*: `[0, 2, 4, 5, 7, 9, 11]`
@@ -25,7 +25,7 @@ vice versa.
 
 ----
 
-.. attribute::numerals
+.. attribute:: numerals
 
    Attribute of type: list
    Value*: `['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']`

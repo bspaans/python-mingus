@@ -13,7 +13,7 @@ enables simple calculations.
 
 ----
 
-.. attribute::fifths
+.. attribute:: fifths
 
    Attribute of type: list
    Value*: `['F', 'C', 'G', 'D', 'A', 'E', 'B']`

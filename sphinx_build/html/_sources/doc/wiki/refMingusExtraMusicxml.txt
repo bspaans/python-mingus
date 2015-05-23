@@ -17,7 +17,7 @@ http://www.musicxml.org/xml.html
 
 ----
 
-.. attribute::major_keys
+.. attribute:: major_keys
 
    Attribute of type: list
    Value*: `['Cb', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#']`
@@ -25,7 +25,7 @@ http://www.musicxml.org/xml.html
 
 ----
 
-.. attribute::minor_keys
+.. attribute:: minor_keys
 
    Attribute of type: list
    Value*: `['ab', 'eb', 'bb', 'f', 'c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#']`
