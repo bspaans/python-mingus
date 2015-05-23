@@ -11,266 +11,266 @@ http://www.sonicspot.com/guide/midifiles.html
 
 ----
 
-.. attribute:: BALANCE
+.. data:: BALANCE
 
    Attribute of type: int
    ``8``
 
 ----
 
-.. attribute:: BANK_SELECT
+.. data:: BANK_SELECT
 
    Attribute of type: int
    ``0``
 
 ----
 
-.. attribute:: BREATH_CONTROLLER
+.. data:: BREATH_CONTROLLER
 
    Attribute of type: int
    ``2``
 
 ----
 
-.. attribute:: CHANNEL_AFTERTOUCH
+.. data:: CHANNEL_AFTERTOUCH
 
    Attribute of type: int
    ``13``
 
 ----
 
-.. attribute:: CONTROLLER
+.. data:: CONTROLLER
 
    Attribute of type: int
    ``11``
 
 ----
 
-.. attribute:: COPYRIGHT_NOTICE
+.. data:: COPYRIGHT_NOTICE
 
    Attribute of type: str
    ``'\x02'``
 
 ----
 
-.. attribute:: CUE_POINT
+.. data:: CUE_POINT
 
    Attribute of type: str
    ``'\x07'``
 
 ----
 
-.. attribute:: DATA_ENTRY_MSB
+.. data:: DATA_ENTRY_MSB
 
    Attribute of type: int
    ``6``
 
 ----
 
-.. attribute:: EFFECT_CONTROL_1
+.. data:: EFFECT_CONTROL_1
 
    Attribute of type: int
    ``12``
 
 ----
 
-.. attribute:: EFFECT_CONTROL_2
+.. data:: EFFECT_CONTROL_2
 
    Attribute of type: int
    ``13``
 
 ----
 
-.. attribute:: END_OF_TRACK
+.. data:: END_OF_TRACK
 
    Attribute of type: str
    ``'/'``
 
 ----
 
-.. attribute:: EXPRESSION_CONTROLLER
+.. data:: EXPRESSION_CONTROLLER
 
    Attribute of type: int
    ``11``
 
 ----
 
-.. attribute:: FILE_HEADER
+.. data:: FILE_HEADER
 
    Attribute of type: str
    ``'MThd'``
 
 ----
 
-.. attribute:: FOOT_CONTROLLER
+.. data:: FOOT_CONTROLLER
 
    Attribute of type: int
    ``4``
 
 ----
 
-.. attribute:: INSTRUMENT_NAME
+.. data:: INSTRUMENT_NAME
 
    Attribute of type: str
    ``'\x04'``
 
 ----
 
-.. attribute:: KEY_SIGNATURE
+.. data:: KEY_SIGNATURE
 
    Attribute of type: str
    ``'Y'``
 
 ----
 
-.. attribute:: LYRICS
+.. data:: LYRICS
 
    Attribute of type: str
    ``'\x05'``
 
 ----
 
-.. attribute:: MAIN_VOLUME
+.. data:: MAIN_VOLUME
 
    Attribute of type: int
    ``7``
 
 ----
 
-.. attribute:: MARKER
+.. data:: MARKER
 
    Attribute of type: str
    ``'\x06'``
 
 ----
 
-.. attribute:: META_EVENT
+.. data:: META_EVENT
 
    Attribute of type: str
    ``'\xff'``
 
 ----
 
-.. attribute:: MIDI_CHANNEL_PREFIX
+.. data:: MIDI_CHANNEL_PREFIX
 
    Attribute of type: str
    ``' '``
 
 ----
 
-.. attribute:: MODULATION
+.. data:: MODULATION
 
    Attribute of type: int
    ``1``
 
 ----
 
-.. attribute:: NOTE_AFTERTOUCH
+.. data:: NOTE_AFTERTOUCH
 
    Attribute of type: int
    ``10``
 
 ----
 
-.. attribute:: NOTE_OFF
+.. data:: NOTE_OFF
 
    Attribute of type: int
    ``8``
 
 ----
 
-.. attribute:: NOTE_ON
+.. data:: NOTE_ON
 
    Attribute of type: int
    ``9``
 
 ----
 
-.. attribute:: PAN
+.. data:: PAN
 
    Attribute of type: int
    ``10``
 
 ----
 
-.. attribute:: PITCH_BEND
+.. data:: PITCH_BEND
 
    Attribute of type: int
    ``14``
 
 ----
 
-.. attribute:: PORTAMENTO_TIME
+.. data:: PORTAMENTO_TIME
 
    Attribute of type: int
    ``5``
 
 ----
 
-.. attribute:: PROGRAM_CHANGE
+.. data:: PROGRAM_CHANGE
 
    Attribute of type: int
    ``12``
 
 ----
 
-.. attribute:: SEQUENCE_NUMBER
+.. data:: SEQUENCE_NUMBER
 
    Attribute of type: str
    ``'\x00'``
 
 ----
 
-.. attribute:: SET_TEMPO
+.. data:: SET_TEMPO
 
    Attribute of type: str
    ``'Q'``
 
 ----
 
-.. attribute:: SMPTE_OFFSET
+.. data:: SMPTE_OFFSET
 
    Attribute of type: str
    ``'T'``
 
 ----
 
-.. attribute:: TEXT_EVENT
+.. data:: TEXT_EVENT
 
    Attribute of type: str
    ``'\x01'``
 
 ----
 
-.. attribute:: TIME_SIGNATURE
+.. data:: TIME_SIGNATURE
 
    Attribute of type: str
    ``'X'``
 
 ----
 
-.. attribute:: TRACK_HEADER
+.. data:: TRACK_HEADER
 
    Attribute of type: str
    ``'MTrk'``
 
 ----
 
-.. attribute:: TRACK_NAME
+.. data:: TRACK_NAME
 
    Attribute of type: str
    ``'\x03'``
 
 ----
 
-.. attribute:: major_keys
+.. data:: major_keys
 
    Attribute of type: list
    ``['Cb', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#']``
 
 ----
 
-.. attribute:: minor_keys
+.. data:: minor_keys
 
    Attribute of type: list
    ``['ab', 'eb', 'bb', 'f', 'c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#']``

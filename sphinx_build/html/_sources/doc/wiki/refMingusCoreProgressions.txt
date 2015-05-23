@@ -17,14 +17,14 @@ vice versa.
 
 ----
 
-.. attribute:: numeral_intervals
+.. data:: numeral_intervals
 
    Attribute of type: list
    ``[0, 2, 4, 5, 7, 9, 11]``
 
 ----
 
-.. attribute:: numerals
+.. data:: numerals
 
    Attribute of type: list
    ``['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']``

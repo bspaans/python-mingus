@@ -10,35 +10,35 @@ This module provides a simple interface for dealing with keys.
 
 ----
 
-.. attribute:: base_scale
+.. data:: base_scale
 
    Attribute of type: list
    ``['C', 'D', 'E', 'F', 'G', 'A', 'B']``
 
 ----
 
-.. attribute:: couple
+.. data:: couple
 
    Attribute of type: tuple
    ``('C#', 'a#')``
 
 ----
 
-.. attribute:: keys
+.. data:: keys
 
    Attribute of type: list
    ``[('Cb', 'ab'), ('Gb', 'eb'), ('Db', 'bb'), ('Ab', 'f'), ('Eb', 'c'), ('Bb', 'g'), ('F', 'd'), ('C', 'a'), ('G', 'e'), ('D', 'b'), ('A', 'f#'), ('E', 'c#'), ('B', 'g#'), ('F#', 'd#'), ('C#', 'a#')]``
 
 ----
 
-.. attribute:: major_keys
+.. data:: major_keys
 
    Attribute of type: list
    ``['Cb', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#']``
 
 ----
 
-.. attribute:: minor_keys
+.. data:: minor_keys
 
    Attribute of type: list
    ``['ab', 'eb', 'bb', 'f', 'c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#']``

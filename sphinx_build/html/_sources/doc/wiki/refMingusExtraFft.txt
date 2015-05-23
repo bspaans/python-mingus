@@ -11,7 +11,7 @@ This module can also convert the found frequencies to Note objects.
 
 ----
 
-.. attribute:: x
+.. data:: x
 
    Attribute of type: int
    ``128``

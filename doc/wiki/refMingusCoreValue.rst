@@ -26,168 +26,168 @@ Medieval backwards compatibility privided.
 
 ----
 
-.. attribute:: base_quintuplets
+.. data:: base_quintuplets
 
    Attribute of type: list
    ``[0.3125, 0.625, 1.25, 2.5, 5, 10, 20, 40, 80, 160]``
 
 ----
 
-.. attribute:: base_septuplets
+.. data:: base_septuplets
 
    Attribute of type: list
    ``[0.4375, 0.875, 1.75, 3.5, 7, 14, 28, 56, 112, 224]``
 
 ----
 
-.. attribute:: base_triplets
+.. data:: base_triplets
 
    Attribute of type: list
    ``[0.375, 0.75, 1.5, 3, 6, 12, 24, 48, 96, 192]``
 
 ----
 
-.. attribute:: base_values
+.. data:: base_values
 
    Attribute of type: list
    ``[0.25, 0.5, 1, 2, 4, 8, 16, 32, 64, 128]``
 
 ----
 
-.. attribute:: breve
+.. data:: breve
 
    Attribute of type: float
    ``0.5``
 
 ----
 
-.. attribute:: crotchet
+.. data:: crotchet
 
    Attribute of type: int
    ``4``
 
 ----
 
-.. attribute:: demisemiquaver
+.. data:: demisemiquaver
 
    Attribute of type: int
    ``32``
 
 ----
 
-.. attribute:: eighth
+.. data:: eighth
 
    Attribute of type: int
    ``8``
 
 ----
 
-.. attribute:: half
+.. data:: half
 
    Attribute of type: int
    ``2``
 
 ----
 
-.. attribute:: hemidemisemiquaver
+.. data:: hemidemisemiquaver
 
    Attribute of type: int
    ``64``
 
 ----
 
-.. attribute:: hundred_twenty_eighth
+.. data:: hundred_twenty_eighth
 
    Attribute of type: int
    ``128``
 
 ----
 
-.. attribute:: longa
+.. data:: longa
 
    Attribute of type: float
    ``0.25``
 
 ----
 
-.. attribute:: minim
+.. data:: minim
 
    Attribute of type: int
    ``2``
 
 ----
 
-.. attribute:: musicxml
+.. data:: musicxml
 
    Attribute of type: dict
    ``{16: '16th', 1: 'whole', 2: 'half', 4: 'quarter', 32: '32th', 8: 'eighth', 64: '64th', 128: '128th'}``
 
 ----
 
-.. attribute:: quarter
+.. data:: quarter
 
    Attribute of type: int
    ``4``
 
 ----
 
-.. attribute:: quasihemidemisemiquaver
+.. data:: quasihemidemisemiquaver
 
    Attribute of type: int
    ``128``
 
 ----
 
-.. attribute:: quaver
+.. data:: quaver
 
    Attribute of type: int
    ``8``
 
 ----
 
-.. attribute:: semibreve
+.. data:: semibreve
 
    Attribute of type: int
    ``1``
 
 ----
 
-.. attribute:: semihemidemisemiquaver
+.. data:: semihemidemisemiquaver
 
    Attribute of type: int
    ``128``
 
 ----
 
-.. attribute:: semiquaver
+.. data:: semiquaver
 
    Attribute of type: int
    ``16``
 
 ----
 
-.. attribute:: sixteenth
+.. data:: sixteenth
 
    Attribute of type: int
    ``16``
 
 ----
 
-.. attribute:: sixty_fourth
+.. data:: sixty_fourth
 
    Attribute of type: int
    ``64``
 
 ----
 
-.. attribute:: thirty_second
+.. data:: thirty_second
 
    Attribute of type: int
    ``32``
 
 ----
 
-.. attribute:: whole
+.. data:: whole
 
    Attribute of type: int
    ``1``

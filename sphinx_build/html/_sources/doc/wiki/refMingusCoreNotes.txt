@@ -13,7 +13,7 @@ enables simple calculations.
 
 ----
 
-.. attribute:: fifths
+.. data:: fifths
 
    Attribute of type: list
    ``['F', 'C', 'G', 'D', 'A', 'E', 'B']``

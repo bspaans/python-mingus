@@ -11,14 +11,14 @@ A meter is represented by a tuple. 4/4 time would look like (4,4), 3/4 like
 
 ----
 
-.. attribute:: common_time
+.. data:: common_time
 
    Attribute of type: tuple
    ``(4, 4)``
 
 ----
 
-.. attribute:: cut_time
+.. data:: cut_time
 
    Attribute of type: tuple
    ``(2, 2)``

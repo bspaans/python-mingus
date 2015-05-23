@@ -59,7 +59,7 @@ function that returns chunks of audio data and output the data to the
 soundcard yourself.</p>
 <p>FluidSynth works on all major platforms, so pyFluidSynth should also.</p>
 <hr class="docutils" />
-<dl class="attribute">
+<dl class="data">
 <dt id="DEFAULT_MODE">
 <code class="descname">DEFAULT_MODE</code><a class="headerlink" href="#DEFAULT_MODE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Attribute of type: int
@@ -67,7 +67,7 @@ soundcard yourself.</p>
 </dd></dl>
 
 <hr class="docutils" />
-<dl class="attribute">
+<dl class="data">
 <dt id="RTLD_GLOBAL">
 <code class="descname">RTLD_GLOBAL</code><a class="headerlink" href="#RTLD_GLOBAL" title="Permalink to this definition">¶</a></dt>
 <dd><p>Attribute of type: int
@@ -75,7 +75,7 @@ soundcard yourself.</p>
 </dd></dl>
 
 <hr class="docutils" />
-<dl class="attribute">
+<dl class="data">
 <dt id="RTLD_LOCAL">
 <code class="descname">RTLD_LOCAL</code><a class="headerlink" href="#RTLD_LOCAL" title="Permalink to this definition">¶</a></dt>
 <dd><p>Attribute of type: int
@@ -83,7 +83,7 @@ soundcard yourself.</p>
 </dd></dl>
 
 <hr class="docutils" />
-<dl class="attribute">
+<dl class="data">
 <dt id="api_version">
 <code class="descname">api_version</code><a class="headerlink" href="#api_version" title="Permalink to this definition">¶</a></dt>
 <dd><p>Attribute of type: str
@@ -91,15 +91,15 @@ soundcard yourself.</p>
 </dd></dl>
 
 <hr class="docutils" />
-<dl class="attribute">
+<dl class="data">
 <dt id="cdll">
 <code class="descname">cdll</code><a class="headerlink" href="#cdll" title="Permalink to this definition">¶</a></dt>
 <dd><p>Attribute of type: ctypes.LibraryLoader
-<code class="docutils literal"><span class="pre">&lt;ctypes.LibraryLoader</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7f8d611038d0&gt;</span></code></p>
+<code class="docutils literal"><span class="pre">&lt;ctypes.LibraryLoader</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7f1b1accd990&gt;</span></code></p>
 </dd></dl>
 
 <hr class="docutils" />
-<dl class="attribute">
+<dl class="data">
 <dt id="lib">
 <code class="descname">lib</code><a class="headerlink" href="#lib" title="Permalink to this definition">¶</a></dt>
 <dd><p>Attribute of type: str
@@ -107,19 +107,19 @@ soundcard yourself.</p>
 </dd></dl>
 
 <hr class="docutils" />
-<dl class="attribute">
+<dl class="data">
 <dt id="pydll">
 <code class="descname">pydll</code><a class="headerlink" href="#pydll" title="Permalink to this definition">¶</a></dt>
 <dd><p>Attribute of type: ctypes.LibraryLoader
-<code class="docutils literal"><span class="pre">&lt;ctypes.LibraryLoader</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7f8d61103910&gt;</span></code></p>
+<code class="docutils literal"><span class="pre">&lt;ctypes.LibraryLoader</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7f1b1accd9d0&gt;</span></code></p>
 </dd></dl>
 
 <hr class="docutils" />
-<dl class="attribute">
+<dl class="data">
 <dt id="pythonapi">
 <code class="descname">pythonapi</code><a class="headerlink" href="#pythonapi" title="Permalink to this definition">¶</a></dt>
 <dd><p>Attribute of type: ctypes.PyDLL
-<code class="docutils literal"><span class="pre">&lt;PyDLL</span> <span class="pre">'None',</span> <span class="pre">handle</span> <span class="pre">7f8d64820188</span> <span class="pre">at</span> <span class="pre">7f8d61103950&gt;</span></code></p>
+<code class="docutils literal"><span class="pre">&lt;PyDLL</span> <span class="pre">'None',</span> <span class="pre">handle</span> <span class="pre">7f1b1e3e9188</span> <span class="pre">at</span> <span class="pre">7f1b1accda10&gt;</span></code></p>
 </dd></dl>
 
 <hr class="docutils" />
@@ -234,6 +234,168 @@ signed (other formats not currently supported).</p>
 <dd><p>wstring_at(addr[, size]) -&gt; string</p>
 <p>Return the string at addr.</p>
 </dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>self</em>, <em>gain=0.2</em>, <em>samplerate=44100</em><span class="sig-paren">)</span><a class="headerlink" href="#__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new synthesizer object to control sound generation.</p>
+<dl class="docutils">
+<dt>Optional keyword arguments:</dt>
+<dd><dl class="first docutils">
+<dt>gain: scale factor for audio output, default is 0.2</dt>
+<dd>lower values are quieter, allow more simultaneous notes</dd>
+</dl>
+<p class="last">samplerate: output samplerate in Hz, default is 44100 Hz</p>
+</dd>
+</dl>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="bank_select">
+<code class="descname">bank_select</code><span class="sig-paren">(</span><em>self</em>, <em>chan</em>, <em>bank</em><span class="sig-paren">)</span><a class="headerlink" href="#bank_select" title="Permalink to this definition">¶</a></dt>
+<dd><p>Choose a bank.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="cc">
+<code class="descname">cc</code><span class="sig-paren">(</span><em>self</em>, <em>chan</em>, <em>ctrl</em>, <em>val</em><span class="sig-paren">)</span><a class="headerlink" href="#cc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send control change value.</p>
+<p>The controls that are recognized are dependent on the
+SoundFont.  Values are always 0 to 127.  Typical controls
+include:</p>
+<blockquote>
+<div>1: vibrato
+7: volume
+10: pan (left to right)
+11: expression (soft to loud)
+64: sustain
+91: reverb
+93: chorus</div></blockquote>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#delete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="get_samples">
+<code class="descname">get_samples</code><span class="sig-paren">(</span><em>self</em>, <em>len=1024</em><span class="sig-paren">)</span><a class="headerlink" href="#get_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate audio samples.</p>
+<p>The return value will be a NumPy array containing the given
+length of audio samples.  If the synth is set to stereo output
+(the default) the array will be size 2 * len.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="noteoff">
+<code class="descname">noteoff</code><span class="sig-paren">(</span><em>self</em>, <em>chan</em>, <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#noteoff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop a note.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="noteon">
+<code class="descname">noteon</code><span class="sig-paren">(</span><em>self</em>, <em>chan</em>, <em>key</em>, <em>vel</em><span class="sig-paren">)</span><a class="headerlink" href="#noteon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Play a note.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="pitch_bend">
+<code class="descname">pitch_bend</code><span class="sig-paren">(</span><em>self</em>, <em>chan</em>, <em>val</em><span class="sig-paren">)</span><a class="headerlink" href="#pitch_bend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adjust pitch of a playing channel by small amounts.</p>
+<p>A pitch bend value of 0 is no pitch change from default.
+A value of -2048 is 1 semitone down.
+A value of 2048 is 1 semitone up.
+Maximum values are -8192 to +8192 (transposing by 4 semitones).</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="program_change">
+<code class="descname">program_change</code><span class="sig-paren">(</span><em>self</em>, <em>chan</em>, <em>prg</em><span class="sig-paren">)</span><a class="headerlink" href="#program_change" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the program.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="program_reset">
+<code class="descname">program_reset</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#program_reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the programs on all channels.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="program_select">
+<code class="descname">program_select</code><span class="sig-paren">(</span><em>self</em>, <em>chan</em>, <em>sfid</em>, <em>bank</em>, <em>preset</em><span class="sig-paren">)</span><a class="headerlink" href="#program_select" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select a program.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="sfload">
+<code class="descname">sfload</code><span class="sig-paren">(</span><em>self</em>, <em>filename</em>, <em>update_midi_preset=0</em><span class="sig-paren">)</span><a class="headerlink" href="#sfload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load SoundFont and return its IDi.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="sfont_select">
+<code class="descname">sfont_select</code><span class="sig-paren">(</span><em>self</em>, <em>chan</em>, <em>sfid</em><span class="sig-paren">)</span><a class="headerlink" href="#sfont_select" title="Permalink to this definition">¶</a></dt>
+<dd><p>Choose a SoundFont.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="sfunload">
+<code class="descname">sfunload</code><span class="sig-paren">(</span><em>self</em>, <em>sfid</em>, <em>update_midi_preset=0</em><span class="sig-paren">)</span><a class="headerlink" href="#sfunload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unload a SoundFont and free memory it used.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="start">
+<code class="descname">start</code><span class="sig-paren">(</span><em>self</em>, <em>driver=None</em><span class="sig-paren">)</span><a class="headerlink" href="#start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start audio output driver in separate background thread.</p>
+<p>Call this function any time after creating the Synth object.
+If you don&#8217;t call this function, use get_samples() to generate
+samples.</p>
+<dl class="docutils">
+<dt>Optional keyword argument:</dt>
+<dd><dl class="first last docutils">
+<dt>driver: which audio driver to use for output</dt>
+<dd><dl class="first last docutils">
+<dt>Possible choices:</dt>
+<dd>&#8216;alsa&#8217;, &#8216;oss&#8217;, &#8216;jack&#8217;, &#8216;portaudio&#8217;
+&#8216;sndmgr&#8217;, &#8216;coreaudio&#8217;, &#8216;Direct Sound&#8217;,
+&#8216;dsound&#8217;, &#8216;pulseaudio&#8217;</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>Not all drivers will be available for every platform, it depends on
+which drivers were compiled into FluidSynth for your platform.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="system_reset">
+<code class="descname">system_reset</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#system_reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop all notes and reset all programs.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="Synth">
+<em class="property">class </em><code class="descname">Synth</code><a class="headerlink" href="#Synth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <hr class="docutils" />
 <p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
