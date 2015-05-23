@@ -1,13 +1,10 @@
 ﻿Getting mingus
 ==============
 
-The latest source package (in `tar.gz` format) can be found in `the github releases <https://github.com/bspaans/python-mingus/releases>`_. 
-A windows installer can be found there as well.
+The latest release, as well as the windows installer are available at [http://pypi.python.org/pypi/mingus/ Python's Package Index],
+which means you can also use `easyinstall mingus` and `pip install mingus`. See also: :doc:`Setup <tutorialSetup>`
 
-The latest source, as well as the windows installer are also available at [http://pypi.python.org/pypi/mingus/ Python's Package Index],
-which means you can also use `easyinstall mingus` and `pip install mingus`.
-
-And last but not least: you can choose to check out the latest version from the mingus' git repository with the command:
+You can also check out the latest source from our git repository:
 
 `git clone https://github.com/bspaans/python-mingus.git`
 
