@@ -53,7 +53,7 @@ default_tuning
 .. attribute::
 
   * *Type*: mingus.extra.tunings.StringTuning
-  * *Value*: `<mingus.extra.tunings.StringTuning object at 0x7ffadfc3ee90>`
+  * *Value*: `<mingus.extra.tunings.StringTuning object at 0x7f9ebcdbae90>`
 
 ----
 

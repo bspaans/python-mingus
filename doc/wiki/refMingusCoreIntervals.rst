@@ -42,20 +42,24 @@ Functions
   
   Examples:
   
->>> determine('C', 'E')
+  >>> determine('C', 'E')
   'major third'
+  
   >>> determine('C', 'Eb')
   'minor third'
+  
   >>> determine('C', 'E#')
   'augmented third'
+  
   >>> determine('C', 'Ebb')
   'diminished third'
   
   This works for all intervals. Note that there are corner cases for major
   fifths and fourths:
   
->>> determine('C', 'G')
+  >>> determine('C', 'G')
   'perfect fifth'
+  
   >>> determine('C', 'F')
   'perfect fourth'
 
@@ -70,8 +74,9 @@ Functions
   
   Examples:
   
->>> fifth('E', 'C')
+  >>> fifth('E', 'C')
   'B'
+  
   >>> fifth('E', 'F')
   'Bb'
 
@@ -86,8 +91,9 @@ Functions
   
   Examples:
   
->>> fourth('E', 'C')
+  >>> fourth('E', 'C')
   'A'
+  
   >>> fourth('E', 'B')
   'A#'
 
@@ -100,10 +106,12 @@ Functions
   
   Examples:
   
->>> from_shorthand('A', 'b3')
+  >>> from_shorthand('A', 'b3')
   'C'
+  
   >>> from_shorthand('D', '2')
   'E'
+  
   >>> from_shorthand('E', '2', False)
   'D'
 
@@ -129,7 +137,7 @@ Functions
   
   Example:
   
->>> interval('C', 'D', 1)
+  >>> interval('C', 'D', 1)
   'E'
 
 
@@ -141,7 +149,7 @@ Functions
   
   Example:
   
->>> invert(['C', 'E'])
+  >>> invert(['C', 'E'])
   ['E', 'C']
 
 
@@ -242,8 +250,9 @@ Functions
   
   Examples:
   
->>> measure('C', 'D')
+  >>> measure('C', 'D')
   2
+  
   >>> measure('D', 'C')
   10
 
@@ -303,8 +312,9 @@ Functions
   
   Examples:
   
->>> second('E', 'C')
+  >>> second('E', 'C')
   'F'
+  
   >>> second('E', 'D')
   'F#'
 
@@ -319,8 +329,9 @@ Functions
   
   Examples:
   
->>> seventh('E', 'C')
+  >>> seventh('E', 'C')
   'D'
+  
   >>> seventh('E', 'B')
   'D#'
 
@@ -335,8 +346,9 @@ Functions
   
   Examples:
   
->>> sixth('E', 'C')
+  >>> sixth('E', 'C')
   'C'
+  
   >>> sixth('E', 'B')
   'C#'
 
@@ -351,8 +363,9 @@ Functions
   
   Examples:
   
->>> third('E', 'C')
+  >>> third('E', 'C')
   'G'
+  
   >>> third('E', 'E')
   'G#'
 
@@ -370,7 +383,7 @@ Functions
   
   Example:
   
->>> unison('C')
+  >>> unison('C')
   'C'
 
 ----

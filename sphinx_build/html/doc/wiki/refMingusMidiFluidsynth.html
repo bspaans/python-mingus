@@ -158,14 +158,20 @@ new wave file will be initialized to store the audio data.</p>
 that&#8217;s the case those values take presedence over the ones given here as
 function arguments.</p>
 <p>Example:</p>
-</dd></dl>
-
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="n">Note</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="go">  &gt;&gt;&gt; n.channel = 9</span>
-<span class="go">  &gt;&gt;&gt; n.velocity = 50</span>
-<span class="go">  &gt;&gt;&gt; FluidSynth.play_Note(n)</span>
 </pre></div>
 </div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span><span class="o">.</span><span class="n">channel</span> <span class="o">=</span> <span class="mi">9</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span><span class="o">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="mi">50</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">FluidSynth</span><span class="o">.</span><span class="n">play_Note</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <hr class="docutils" />
 <dl class="function">
 <dt id="play_NoteContainer">

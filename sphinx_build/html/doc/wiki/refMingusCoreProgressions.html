@@ -103,18 +103,24 @@ vice versa.</p>
 <dd><p>Determine the harmonic function of chord in key.</p>
 <p>This function can also deal with lists of chords.</p>
 <p>Examples:</p>
-</dd></dl>
-
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">([</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">],</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">  [&#39;tonic&#39;]</span>
-<span class="go">  &gt;&gt;&gt; determine([&#39;G&#39;, &#39;B&#39;, &#39;D&#39;], &#39;C&#39;)</span>
-<span class="go">  [&#39;dominant&#39;]</span>
-<span class="go">  &gt;&gt;&gt; determine([&#39;G&#39;, &#39;B&#39;, &#39;D&#39;, &#39;F&#39;], &#39;C&#39;, True)</span>
-<span class="go">  [&#39;V7&#39;]</span>
-<span class="go">  &gt;&gt;&gt; determine([[&#39;C&#39;, &#39;E&#39;, &#39;G&#39;], [&#39;G&#39;, &#39;B&#39;, &#39;D&#39;]], &#39;C&#39;, True)</span>
-<span class="go">  [[&#39;I&#39;], [&#39;V&#39;]]</span>
+<span class="go">[&#39;tonic&#39;]</span>
 </pre></div>
 </div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">([</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">],</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
+<span class="go">[&#39;dominant&#39;]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">([</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;F&#39;</span><span class="p">],</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+<span class="go">[&#39;V7&#39;]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">([[</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">]],</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+<span class="go">[[&#39;I&#39;], [&#39;V&#39;]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <hr class="docutils" />
 <dl class="function">
 <dt id="interval_diff">
@@ -130,30 +136,36 @@ interval.</p>
 <code class="descname">parse_string</code><span class="sig-paren">(</span><em>progression</em><span class="sig-paren">)</span><a class="headerlink" href="#parse_string" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a tuple (roman numeral, accidentals, chord suffix).</p>
 <p>Examples:</p>
-</dd></dl>
-
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">parse_string</span><span class="p">(</span><span class="s">&#39;I&#39;</span><span class="p">)</span>
-<span class="go">  (&#39;I&#39;, 0, &#39;&#39;)</span>
-<span class="go">  &gt;&gt;&gt; parse_string(&#39;bIM7&#39;)</span>
-<span class="go">  (&#39;I&#39;, -1, &#39;M7&#39;)</span>
+<span class="go">(&#39;I&#39;, 0, &#39;&#39;)</span>
 </pre></div>
 </div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">parse_string</span><span class="p">(</span><span class="s">&#39;bIM7&#39;</span><span class="p">)</span>
+<span class="go">(&#39;I&#39;, -1, &#39;M7&#39;)</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <hr class="docutils" />
 <dl class="function">
 <dt id="skip">
 <code class="descname">skip</code><span class="sig-paren">(</span><em>roman_numeral</em>, <em>skip=1</em><span class="sig-paren">)</span><a class="headerlink" href="#skip" title="Permalink to this definition">¶</a></dt>
 <dd><p>Skip the given places to the next roman numeral.</p>
 <p>Examples:</p>
-</dd></dl>
-
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">skip</span><span class="p">(</span><span class="s">&#39;I&#39;</span><span class="p">)</span>
-<span class="go">  &#39;II&#39;</span>
-<span class="go">  &gt;&gt;&gt; skip(&#39;VII&#39;)</span>
-<span class="go">  &#39;I&#39;</span>
-<span class="go">  &gt;&gt;&gt; skip(&#39;I&#39;, 2)</span>
-<span class="go">  &#39;III&#39;</span>
+<span class="go">&#39;II&#39;</span>
 </pre></div>
 </div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">skip</span><span class="p">(</span><span class="s">&#39;VII&#39;</span><span class="p">)</span>
+<span class="go">&#39;I&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">skip</span><span class="p">(</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">&#39;III&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <hr class="docutils" />
 <dl class="function">
 <dt id="substitute">
@@ -162,12 +174,12 @@ interval.</p>
 <p>If depth &gt; 0 the substitutions of each result will be recursively added
 as well.</p>
 <p>Example:</p>
-</dd></dl>
-
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">substitute</span><span class="p">([</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;IV&#39;</span><span class="p">,</span> <span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="s">&#39;I&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
-<span class="go">  [&#39;III&#39;, &#39;III7&#39;, &#39;VI&#39;, &#39;VI7&#39;, &#39;I7&#39;]</span>
+<span class="go">[&#39;III&#39;, &#39;III7&#39;, &#39;VI&#39;, &#39;VI7&#39;, &#39;I7&#39;]</span>
 </pre></div>
 </div>
+</dd></dl>
+
 <hr class="docutils" />
 <dl class="function">
 <dt id="substitute_diminished_for_diminished">
@@ -175,12 +187,12 @@ as well.</p>
 <dd><p>Substitute a diminished chord for another diminished chord.</p>
 <p>&#8216;dim&#8217; and &#8216;dim7&#8217; suffixes recognized, and &#8216;VI&#8217; if there is no suffix.</p>
 <p>Example:</p>
-</dd></dl>
-
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_diminished_for_diminished</span><span class="p">([</span><span class="s">&#39;VII&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
-<span class="go">  [&#39;IIdim&#39;, &#39;bIVdim&#39;, &#39;bbVIdim&#39;]</span>
+<span class="go">[&#39;IIdim&#39;, &#39;bIVdim&#39;, &#39;bbVIdim&#39;]</span>
 </pre></div>
 </div>
+</dd></dl>
+
 <hr class="docutils" />
 <dl class="function">
 <dt id="substitute_diminished_for_dominant">
@@ -212,14 +224,16 @@ suffix, or with suffix &#8216;7&#8217; will be substituted.</p>
 <p>&#8216;M&#8217; and &#8216;M7&#8217; suffixes recognized, and [&#8216;I&#8217;, &#8216;IV&#8217;, &#8216;V&#8217;] if there is no
 suffix.</p>
 <p>Examples:</p>
-</dd></dl>
-
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_major_for_minor</span><span class="p">([</span><span class="s">&#39;I&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
-<span class="go">  [&#39;VI&#39;]</span>
-<span class="go">  &gt;&gt;&gt; substitute_major_for_minor([&#39;VM7&#39;], 0)</span>
-<span class="go">  [&#39;IIIm7&#39;]</span>
+<span class="go">[&#39;VI&#39;]</span>
 </pre></div>
 </div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_major_for_minor</span><span class="p">([</span><span class="s">&#39;VM7&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">[&#39;IIIm7&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <hr class="docutils" />
 <dl class="function">
 <dt id="substitute_minor_for_major">
@@ -228,32 +242,35 @@ suffix.</p>
 <p>&#8216;m&#8217; and &#8216;m7&#8217; suffixes recognized, and [&#8216;II&#8217;, &#8216;III&#8217;, &#8216;VI&#8217;] if there is no
 suffix.</p>
 <p>Examples:</p>
-</dd></dl>
-
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_minor_for_major</span><span class="p">([</span><span class="s">&#39;VI&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
-<span class="go">  [&#39;I&#39;]</span>
-<span class="go">  &gt;&gt;&gt; substitute_minor_for_major([&#39;Vm&#39;], 0)</span>
-<span class="go">  [&#39;bVIIM&#39;]</span>
-<span class="go">  &gt;&gt;&gt; substitute_minor_for_major([&#39;VIm7&#39;], 0)</span>
-<span class="go">  [&#39;IM7&#39;]</span>
+<span class="go">[&#39;I&#39;]</span>
 </pre></div>
 </div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_minor_for_major</span><span class="p">([</span><span class="s">&#39;Vm&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">[&#39;bVIIM&#39;]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_minor_for_major</span><span class="p">([</span><span class="s">&#39;VIm7&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">[&#39;IM7&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <hr class="docutils" />
 <dl class="function">
 <dt id="to_chords">
 <code class="descname">to_chords</code><span class="sig-paren">(</span><em>progression</em>, <em>key=C</em><span class="sig-paren">)</span><a class="headerlink" href="#to_chords" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert a list of chord functions or a string to a list of chords.</p>
 <p>Examples:</p>
-</dd></dl>
-
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">to_chords</span><span class="p">([</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;V7&#39;</span><span class="p">])</span>
-<span class="go">  [[&#39;C&#39;, &#39;E&#39;, &#39;G&#39;], [&#39;G&#39;, &#39;B&#39;, &#39;D&#39;, &#39;F&#39;]]</span>
-<span class="go">  &gt;&gt;&gt; to_chords(&#39;I7&#39;)</span>
-<span class="go">  [[&#39;C&#39;, &#39;E&#39;, &#39;G&#39;, &#39;B&#39;]]</span>
+<span class="go">[[&#39;C&#39;, &#39;E&#39;, &#39;G&#39;], [&#39;G&#39;, &#39;B&#39;, &#39;D&#39;, &#39;F&#39;]]</span>
 </pre></div>
 </div>
-<blockquote>
-<div><p>Any number of accidentals can be used as prefix to augment or diminish;
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">to_chords</span><span class="p">(</span><span class="s">&#39;I7&#39;</span><span class="p">)</span>
+<span class="go">[[&#39;C&#39;, &#39;E&#39;, &#39;G&#39;, &#39;B&#39;]]</span>
+</pre></div>
+</div>
+<p>Any number of accidentals can be used as prefix to augment or diminish;
 for example: bIV or #I.</p>
 <p>All the chord abbreviations in the chord module can be used as suffixes;
 for example: Im7, IVdim7, etc.</p>
@@ -264,7 +281,8 @@ seventh chord when talking about progressions instead of just the
 dominant seventh chord. We have taken the classic route; I7 will get
 you a major seventh chord. If you specifically want a dominanth seventh,
 use Idom7.</p>
-</div></blockquote>
+</dd></dl>
+
 <hr class="docutils" />
 <dl class="function">
 <dt id="tuple_to_string">

@@ -94,8 +94,9 @@ Functions
   
   Examples:
   
->>> is_asymmetrical((3,4))
+  >>> is_asymmetrical((3,4))
   True
+  
   >>> is_asymmetrical((4,4))
   False
 
@@ -108,8 +109,9 @@ Functions
   
   Examples:
   
->>> is_compound((3,4))
+  >>> is_compound((3,4))
   True
+  
   >>> is_compound((4,4))
   False
 
@@ -122,8 +124,9 @@ Functions
   
   Examples:
   
->>> is_simple((3,4))
+  >>> is_simple((3,4))
   True
+  
   >>> is_simple((4,4))
   True
 

@@ -132,7 +132,7 @@ chord_shorthand
 .. attribute::
 
   * *Type*: dict
-  * *Value*: `{'': <function major_triad at 0x7ffae0ec5410>, 'm11': <function minor_eleventh at 0x7ffae0ec5ed8>, 'm13': <function minor_thirteenth at 0x7ffae0ec5f50>, '67': <function dominant_sixth at 0x7ffae0ec5b18>, '69': <function sixth_ninth at 0x7ffae0ec5b90>, '7b12': <function hendrix_chord at 0x7ffae0edb578>, 'hendrix': <function hendrix_chord at 0x7ffae0edb578>, 'aug': <function augmented_triad at 0x7ffae0ec5578>, 'm7': <function minor_seventh at 0x7ffae0ec5758>, 'm6': <function minor_sixth at 0x7ffae0ec5a28>, '6': <function major_sixth at 0x7ffae0ec5aa0>, '5': <function <lambda> at 0x7ffae0edcd70>, 'm9': <function minor_ninth at 0x7ffae0ec5c08>, 'm7+': <function augmented_minor_seventh at 0x7ffae0edb410>, '6/7': <function dominant_sixth at 0x7ffae0ec5b18>, '7#11': <function lydian_dominant_seventh at 0x7ffae0edb500>, '6/9': <function sixth_ninth at 0x7ffae0ec5b90>, '11': <function eleventh at 0x7ffae0ec5e60>, 'dim': <function diminished_triad at 0x7ffae0ec5500>, '13': <function dominant_thirteenth at 0x7ffae0edb0c8>, '7b5': <function dominant_flat_five at 0x7ffae0edb488>, 'm7b5': <function minor_seventh_flat_five at 0x7ffae0ec58c0>, 'susb9': <function suspended_fourth_ninth at 0x7ffae0edb320>, 'mM7': <function minor_major_seventh at 0x7ffae0ec59b0>, '7b9': <function dominant_flat_ninth at 0x7ffae0ec5d70>, 'M13': <function major_thirteenth at 0x7ffae0edb050>, 'sus47': <function suspended_seventh at 0x7ffae0edb2a8>, 'm': <function minor_triad at 0x7ffae0ec5488>, 'sus4b9': <function suspended_fourth_ninth at 0x7ffae0edb320>, 'M7': <function major_seventh at 0x7ffae0ec56e0>, 'M6': <function major_sixth at 0x7ffae0ec5aa0>, 'dim7': <function diminished_seventh at 0x7ffae0ec5938>, 'M7+': <function augmented_major_seventh at 0x7ffae0edb398>, 'M9': <function major_ninth at 0x7ffae0ec5c80>, 'dom7': <function dominant_seventh at 0x7ffae0ec57d0>, 'M7+5': <function augmented_minor_seventh at 0x7ffae0edb410>, '+': <function augmented_triad at 0x7ffae0ec5578>, 'sus': <function suspended_triad at 0x7ffae0edb140>, '7': <function dominant_seventh at 0x7ffae0ec57d0>, '9': <function dominant_ninth at 0x7ffae0ec5cf8>, 'M': <function major_triad at 0x7ffae0ec5410>, '7+': <function augmented_major_seventh at 0x7ffae0edb398>, 'sus2': <function suspended_second_triad at 0x7ffae0edb1b8>, 'sus4': <function suspended_fourth_triad at 0x7ffae0edb230>, '7#5': <function augmented_minor_seventh at 0x7ffae0edb410>, '7#9': <function dominant_sharp_ninth at 0x7ffae0ec5de8>, 'm/M7': <function minor_major_seventh at 0x7ffae0ec59b0>}`
+  * *Value*: `{'': <function major_triad at 0x7f9ebe042410>, 'm11': <function minor_eleventh at 0x7f9ebe042ed8>, 'm13': <function minor_thirteenth at 0x7f9ebe042f50>, '67': <function dominant_sixth at 0x7f9ebe042b18>, '69': <function sixth_ninth at 0x7f9ebe042b90>, '7b12': <function hendrix_chord at 0x7f9ebe058578>, 'hendrix': <function hendrix_chord at 0x7f9ebe058578>, 'aug': <function augmented_triad at 0x7f9ebe042578>, 'm7': <function minor_seventh at 0x7f9ebe042758>, 'm6': <function minor_sixth at 0x7f9ebe042a28>, '6': <function major_sixth at 0x7f9ebe042aa0>, '5': <function <lambda> at 0x7f9ebe059d70>, 'm9': <function minor_ninth at 0x7f9ebe042c08>, 'm7+': <function augmented_minor_seventh at 0x7f9ebe058410>, '6/7': <function dominant_sixth at 0x7f9ebe042b18>, '7#11': <function lydian_dominant_seventh at 0x7f9ebe058500>, '6/9': <function sixth_ninth at 0x7f9ebe042b90>, '11': <function eleventh at 0x7f9ebe042e60>, 'dim': <function diminished_triad at 0x7f9ebe042500>, '13': <function dominant_thirteenth at 0x7f9ebe0580c8>, '7b5': <function dominant_flat_five at 0x7f9ebe058488>, 'm7b5': <function minor_seventh_flat_five at 0x7f9ebe0428c0>, 'susb9': <function suspended_fourth_ninth at 0x7f9ebe058320>, 'mM7': <function minor_major_seventh at 0x7f9ebe0429b0>, '7b9': <function dominant_flat_ninth at 0x7f9ebe042d70>, 'M13': <function major_thirteenth at 0x7f9ebe058050>, 'sus47': <function suspended_seventh at 0x7f9ebe0582a8>, 'm': <function minor_triad at 0x7f9ebe042488>, 'sus4b9': <function suspended_fourth_ninth at 0x7f9ebe058320>, 'M7': <function major_seventh at 0x7f9ebe0426e0>, 'M6': <function major_sixth at 0x7f9ebe042aa0>, 'dim7': <function diminished_seventh at 0x7f9ebe042938>, 'M7+': <function augmented_major_seventh at 0x7f9ebe058398>, 'M9': <function major_ninth at 0x7f9ebe042c80>, 'dom7': <function dominant_seventh at 0x7f9ebe0427d0>, 'M7+5': <function augmented_minor_seventh at 0x7f9ebe058410>, '+': <function augmented_triad at 0x7f9ebe042578>, 'sus': <function suspended_triad at 0x7f9ebe058140>, '7': <function dominant_seventh at 0x7f9ebe0427d0>, '9': <function dominant_ninth at 0x7f9ebe042cf8>, 'M': <function major_triad at 0x7f9ebe042410>, '7+': <function augmented_major_seventh at 0x7f9ebe058398>, 'sus2': <function suspended_second_triad at 0x7f9ebe0581b8>, 'sus4': <function suspended_fourth_triad at 0x7f9ebe058230>, '7#5': <function augmented_minor_seventh at 0x7f9ebe058410>, '7#9': <function dominant_sharp_ninth at 0x7f9ebe042de8>, 'm/M7': <function minor_major_seventh at 0x7f9ebe0429b0>}`
 
 chord_shorthand_meaning
 
@@ -293,7 +293,7 @@ Functions
   
   Example:
   
->>> augmented_major_seventh('C')
+  >>> augmented_major_seventh('C')
   ['C', 'E', 'G#', 'B']
 
 
@@ -305,7 +305,7 @@ Functions
   
   Example:
   
->>> augmented_minor_seventh('C')
+  >>> augmented_minor_seventh('C')
   ['C', 'E', 'G#', 'Bb']
 
 
@@ -317,7 +317,7 @@ Functions
   
   Example:
   
->>> augmented_triad('C')
+  >>> augmented_triad('C')
   ['C', 'E', 'G#']
 
 
@@ -376,7 +376,7 @@ Functions
   
   Example:
   
->>> determine_seventh(['C', 'E', 'G', 'B'])
+  >>> determine_seventh(['C', 'E', 'G', 'B'])
   ['C major seventh']
 
 
@@ -394,10 +394,12 @@ Functions
   
   Examples:
   
->>> determine_triad(['A', 'C', 'E'])
+  >>> determine_triad(['A', 'C', 'E'])
   'A minor triad'
+  
   >>> determine_triad(['C', 'E', 'A'])
   'A minor triad, first inversion'
+  
   >>> determine_triad(['A', 'C', 'E'], True)
   'Am'
 
@@ -410,7 +412,7 @@ Functions
   
   Example:
   
->>> diminished_seventh('C')
+  >>> diminished_seventh('C')
   ['C', 'Eb', 'Gb', 'Bbb']
 
 
@@ -422,7 +424,7 @@ Functions
   
   Example:
   
->>> diminished_triad('C')
+  >>> diminished_triad('C')
   ['C', 'Eb', 'Gb']
 
 
@@ -434,7 +436,7 @@ Functions
   
   Example:
   
->>> dominant('C')
+  >>> dominant('C')
   ['G', 'B', 'D']
 
 
@@ -453,7 +455,7 @@ Functions
   
   Example:
   
->>> dominant_flat_five('C')
+  >>> dominant_flat_five('C')
   ['C', 'E', 'Gb', 'Bb']
 
 
@@ -465,7 +467,7 @@ Functions
   
   Example:
   
->>> dominant_ninth('C')
+  >>> dominant_ninth('C')
   ['C', 'E', 'G', 'Bb', 'Db']
 
 
@@ -477,7 +479,7 @@ Functions
   
   Example:
   
->>> dominant_ninth('C')
+  >>> dominant_ninth('C')
   ['C', 'E', 'G', 'Bb', 'D']
 
 
@@ -489,7 +491,7 @@ Functions
   
   Example:
   
->>> dominant_seventh('C')
+  >>> dominant_seventh('C')
   ['C', 'E', 'G', 'Bb']
 
 
@@ -501,7 +503,7 @@ Functions
   
   Example:
   
->>> dominant_ninth('C')
+  >>> dominant_ninth('C')
   ['C', 'E', 'G', 'Bb', 'D#']
 
 
@@ -513,7 +515,7 @@ Functions
   
   Example:
   
->>> dominant_sixth('C')
+  >>> dominant_sixth('C')
   ['C', 'E', 'G', 'A', 'Bb']
 
 
@@ -525,7 +527,7 @@ Functions
   
   Example:
   
->>> dominant_thirteenth('C')
+  >>> dominant_thirteenth('C')
   ['C', 'E', 'G', 'Bb', 'D', 'A']
 
 
@@ -537,7 +539,7 @@ Functions
   
   Example:
   
->>> eleventh('C')
+  >>> eleventh('C')
   ['C', 'G', 'Bb', 'F']
 
 
@@ -564,14 +566,18 @@ Functions
   
   Examples:
   
->>> from_shorthand('Amin')
+  >>> from_shorthand('Amin')
   ['A', 'C', 'E']
+  
   >>> from_shorthand('Am/M7')
   ['A', 'C', 'E', 'G#']
+  
   >>> from_shorthand('A')
   ['A', 'C#', 'E']
+  
   >>> from_shorthand('A/G')
   ['G', 'A', 'C#', 'E']
+  
   >>> from_shorthand('Dm|G')
   ['G', 'B', 'D', 'F', 'A']
   
@@ -581,7 +587,7 @@ Functions
   
   Example:
   
->>> from_shorthand('Amin7') == from_shorthand('Am7')
+  >>> from_shorthand('Amin7') == from_shorthand('Am7')
   True
   
   Triads: 'm', 'M' or '', 'dim'
@@ -615,7 +621,7 @@ Functions
   
   Example:
   
->>> half_diminished_seventh('C')
+  >>> half_diminished_seventh('C')
   ['C', 'Eb', 'Gb', 'Bb']
 
 
@@ -627,7 +633,7 @@ Functions
   
   Example:
   
->>> hendrix_chord('C')
+  >>> hendrix_chord('C')
   ['C', 'E', 'G', 'Bb', 'Eb']
 
 
@@ -673,7 +679,7 @@ Functions
   
   Example:
   
->>> lydian_dominant_seventh('C')
+  >>> lydian_dominant_seventh('C')
   ['C', 'E', 'G', 'Bb', 'F#']
 
 
@@ -685,7 +691,7 @@ Functions
   
   Example:
   
->>> major_ninth('C')
+  >>> major_ninth('C')
   ['C', 'E', 'G', 'B', 'D']
 
 
@@ -697,7 +703,7 @@ Functions
   
   Example:
   
->>> major_seventh('C')
+  >>> major_seventh('C')
   ['C', 'E', 'G', 'B']
 
 
@@ -709,7 +715,7 @@ Functions
   
   Example:
   
->>> major_sixth('C')
+  >>> major_sixth('C')
   ['C', 'E', 'G', 'A']
 
 
@@ -721,7 +727,7 @@ Functions
   
   Example:
   
->>> major_thirteenth('C')
+  >>> major_thirteenth('C')
   ['C', 'E', 'G', 'B', 'D', 'A']
 
 
@@ -733,7 +739,7 @@ Functions
   
   Example:
   
->>> major_triad('C')
+  >>> major_triad('C')
   ['C', 'E', 'G']
 
 
@@ -745,7 +751,7 @@ Functions
   
   Example:
   
->>> mediant('C')
+  >>> mediant('C')
   ['E', 'G', 'B']
 
 
@@ -764,7 +770,7 @@ Functions
   
   Example:
   
->>> minor_eleventh('C')
+  >>> minor_eleventh('C')
   ['C', 'Eb', 'G', 'Bb', 'F']
 
 
@@ -776,7 +782,7 @@ Functions
   
   Example:
   
->>> minor_major_seventh('C')
+  >>> minor_major_seventh('C')
   ['C', 'Eb', 'G', 'B']
 
 
@@ -788,7 +794,7 @@ Functions
   
   Example:
   
->>> minor_ninth('C')
+  >>> minor_ninth('C')
   ['C', 'Eb', 'G', 'Bb', 'D']
 
 
@@ -800,7 +806,7 @@ Functions
   
   Example:
   
->>> minor_seventh('C')
+  >>> minor_seventh('C')
   ['C', 'Eb', 'G', 'Bb']
 
 
@@ -822,7 +828,7 @@ Functions
   
   Example:
   
->>> minor_sixth('C')
+  >>> minor_sixth('C')
   ['C', 'Eb', 'G', 'A']
 
 
@@ -834,7 +840,7 @@ Functions
   
   Example:
   
->>> minor_thirteenth('C')
+  >>> minor_thirteenth('C')
   ['C', 'Eb', 'G', 'Bb', 'D', 'A']
 
 
@@ -846,7 +852,7 @@ Functions
   
   Example:
   
->>> minor_triad('C')
+  >>> minor_triad('C')
   ['C', 'Eb', 'G']
 
 
@@ -865,7 +871,7 @@ Functions
   
   Example:
   
->>> seventh('C', 'C')
+  >>> seventh('C', 'C')
   ['C', 'E', 'G', 'B']
 
 
@@ -884,7 +890,7 @@ Functions
   
   Example:
   
->>> sixth_ninth('C')
+  >>> sixth_ninth('C')
   ['C', 'E', 'G', 'A', 'D']
 
 
@@ -896,7 +902,7 @@ Functions
   
   Example:
   
->>> subdominant('C')
+  >>> subdominant('C')
   ['F', 'A', 'C']
 
 
@@ -915,7 +921,7 @@ Functions
   
   Example:
   
->>> submediant('C')
+  >>> submediant('C')
   ['A', 'C', 'E']
 
 
@@ -934,7 +940,7 @@ Functions
   
   Example:
   
->>> subtonic('C')
+  >>> subtonic('C')
   ['B', 'D', 'F']
 
 
@@ -953,7 +959,7 @@ Functions
   
   Example:
   
->>> supertonic('C')
+  >>> supertonic('C')
   ['D', 'F', 'A']
 
 
@@ -972,7 +978,7 @@ Functions
   
   Example:
   
->>> suspended_fourth_ninth('C')
+  >>> suspended_fourth_ninth('C')
   ['C', 'F', 'G', 'Db']
 
 
@@ -984,7 +990,7 @@ Functions
   
   Example:
   
->>> suspended_fourth_triad('C')
+  >>> suspended_fourth_triad('C')
   ['C', 'F', 'G']
 
 
@@ -996,7 +1002,7 @@ Functions
   
   Example:
   
->>> suspended_second_triad('C')
+  >>> suspended_second_triad('C')
   ['C', 'D', 'G']
 
 
@@ -1008,7 +1014,7 @@ Functions
   
   Example:
   
->>> suspended_seventh('C')
+  >>> suspended_seventh('C')
   ['C', 'F', 'G', 'Bb']
 
 
@@ -1034,8 +1040,9 @@ Functions
   
   Examples:
   
->>> tonic('C')
+  >>> tonic('C')
   ['C', 'E', 'G']
+  
   >>> tonic('c')
   ['C', 'Eb', 'G']
 
@@ -1055,8 +1062,9 @@ Functions
   
   Examples:
   
->>> triad('E', 'C')
+  >>> triad('E', 'C')
   ['E', 'G', 'B']
+  
   >>> triad('E', 'B')
   ['E', 'G#', 'B']
 

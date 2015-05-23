@@ -979,7 +979,7 @@ Functions
   
   Example:
   
->>> add(eighth, quarter)
+  >>> add(eighth, quarter)
   2.6666666666666665
 
 
@@ -994,10 +994,12 @@ Functions
   
   Examples:
   
->>> determine(8)
+  >>> determine(8)
   (8, 0, 1, 1)
+  
   >>> determine(12)
   (8, 0, 3, 2)
+  
   >>> determine(14)
   (8, 0, 7, 4)
   
@@ -1018,10 +1020,12 @@ Functions
   
   Examples:
   
->>> dots(eighth)
+  >>> dots(eighth)
   5.3333333333333333
+  
   >>> dots(eighth, 2)
   4.5714285714285712
+  
   >>> dots(quarter)
   2.6666666666666665
 
@@ -1037,8 +1041,9 @@ Functions
   
   Examples:
   
->>> quintuplet(8)
+  >>> quintuplet(8)
   10
+  
   >>> quintuplet(4)
   5
 
@@ -1057,13 +1062,14 @@ Functions
   
   Notice how
   
->>> septuplet(8, False) == septuplet(4, True)
+  >>> septuplet(8, False) == septuplet(4, True)
   True
   
   Examples:
   
->>> septuplet(8)
+  >>> septuplet(8)
   14
+  
   >>> septuplet(8, False)
   7
 
@@ -1079,7 +1085,7 @@ Functions
   
   Example:
   
->>> substract(quarter, eighth)
+  >>> substract(quarter, eighth)
   8.0
 
 
@@ -1094,8 +1100,9 @@ Functions
   
   Examples:
   
->>> triplet(eighth)
+  >>> triplet(eighth)
   12
+  
   >>> triplet(4)
   6
 
@@ -1113,7 +1120,7 @@ Functions
   
   Example:
   
->>> tuplet(8, 3, 2)
+  >>> tuplet(8, 3, 2)
   12
 
 ----

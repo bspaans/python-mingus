@@ -202,8 +202,9 @@ Functions
   
   Examples:
   
->>> get_notes('F')
+  >>> get_notes('F')
   ['F', 'G', 'A', 'Bb', 'C', 'D', 'E']
+  
   >>> get_notes('c')
   ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb']
 
@@ -223,7 +224,7 @@ Functions
   
   Example:
   
->>> relative_major('a')
+  >>> relative_major('a')
   'C'
 
 
@@ -235,7 +236,7 @@ Functions
   
   Example:
   
->>> relative_minor('C')
+  >>> relative_minor('C')
   'a'
 
 ----

@@ -132,14 +132,16 @@ for sharp key signatures.</p>
 <code class="descname">get_notes</code><span class="sig-paren">(</span><em>key=C</em><span class="sig-paren">)</span><a class="headerlink" href="#get_notes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return an ordered list of the notes in this natural key.</p>
 <p>Examples:</p>
-</dd></dl>
-
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">get_notes</span><span class="p">(</span><span class="s">&#39;F&#39;</span><span class="p">)</span>
-<span class="go">  [&#39;F&#39;, &#39;G&#39;, &#39;A&#39;, &#39;Bb&#39;, &#39;C&#39;, &#39;D&#39;, &#39;E&#39;]</span>
-<span class="go">  &gt;&gt;&gt; get_notes(&#39;c&#39;)</span>
-<span class="go">  [&#39;C&#39;, &#39;D&#39;, &#39;Eb&#39;, &#39;F&#39;, &#39;G&#39;, &#39;Ab&#39;, &#39;Bb&#39;]</span>
+<span class="go">[&#39;F&#39;, &#39;G&#39;, &#39;A&#39;, &#39;Bb&#39;, &#39;C&#39;, &#39;D&#39;, &#39;E&#39;]</span>
 </pre></div>
 </div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">get_notes</span><span class="p">(</span><span class="s">&#39;c&#39;</span><span class="p">)</span>
+<span class="go">[&#39;C&#39;, &#39;D&#39;, &#39;Eb&#39;, &#39;F&#39;, &#39;G&#39;, &#39;Ab&#39;, &#39;Bb&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <hr class="docutils" />
 <dl class="function">
 <dt id="is_valid_key">
@@ -153,24 +155,24 @@ for sharp key signatures.</p>
 <code class="descname">relative_major</code><span class="sig-paren">(</span><em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#relative_major" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the relative major of a minor key.</p>
 <p>Example:</p>
-</dd></dl>
-
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">relative_major</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">)</span>
-<span class="go">  &#39;C&#39;</span>
+<span class="go">&#39;C&#39;</span>
 </pre></div>
 </div>
+</dd></dl>
+
 <hr class="docutils" />
 <dl class="function">
 <dt id="relative_minor">
 <code class="descname">relative_minor</code><span class="sig-paren">(</span><em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#relative_minor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the relative minor of a major key.</p>
 <p>Example:</p>
-</dd></dl>
-
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">relative_minor</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">  &#39;a&#39;</span>
+<span class="go">&#39;a&#39;</span>
 </pre></div>
 </div>
+</dd></dl>
+
 <hr class="docutils" />
 <p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
 </div>

@@ -71,8 +71,9 @@ Functions
   
   Examples:
   
->>> augment('C')
+  >>> augment('C')
   'C#'
+  
   >>> augment('Cb')
   'C'
 
@@ -87,7 +88,7 @@ Functions
   
   Example:
   
->>> determine(['A', 'Bb', 'E', 'F#', 'G'])
+  >>> determine(['A', 'Bb', 'E', 'F#', 'G'])
   ['G melodic minor', 'G Bachian', 'D harmonic major']
 
 
@@ -99,8 +100,9 @@ Functions
   
   Examples:
   
->>> diminish('C')
+  >>> diminish('C')
   'Cb'
+  
   >>> diminish('C#')
   'C'
 
@@ -113,8 +115,9 @@ Functions
   
   Examples:
   
->>> get_notes('F')
+  >>> get_notes('F')
   ['F', 'G', 'A', 'Bb', 'C', 'D', 'E']
+  
   >>> get_notes('c')
   ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb']
 
@@ -127,7 +130,7 @@ Functions
   
   Example:
   
->>> reduce_accidentals('C####')
+  >>> reduce_accidentals('C####')
   'E'
 
 ----

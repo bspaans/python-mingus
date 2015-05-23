@@ -51,8 +51,9 @@ Functions
   
   Examples:
   
->>> augment('C')
+  >>> augment('C')
   'C#'
+  
   >>> augment('Cb')
   'C'
 
@@ -65,8 +66,9 @@ Functions
   
   Examples:
   
->>> diminish('C')
+  >>> diminish('C')
   'Cb'
+  
   >>> diminish('C#')
   'C'
 
@@ -84,10 +86,12 @@ Functions
   
   Examples:
   
->>> int_to_note(0)
+  >>> int_to_note(0)
   'C'
+  
   >>> int_to_note(3)
   'D#'
+  
   >>> int_to_note(3, 'b')
   'Eb'
 
@@ -124,7 +128,7 @@ Functions
   
   Example:
   
->>> reduce_accidentals('C####')
+  >>> reduce_accidentals('C####')
   'E'
 
 
@@ -136,8 +140,9 @@ Functions
   
   Examples:
   
->>> remove_redundant_accidentals('C##b')
+  >>> remove_redundant_accidentals('C##b')
   'C#'
+  
   >>> remove_redundant_accidentals('Eb##b')
   'E'
 

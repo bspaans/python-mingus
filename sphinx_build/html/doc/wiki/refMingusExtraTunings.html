@@ -67,14 +67,20 @@ you search through them.</p>
 <p>The instrument and description parameters should be strings; tuning
 should be a list of strings or a list of lists to denote courses.</p>
 <p>Example:</p>
-</dd></dl>
-
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">std_strings</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;E-2&#39;</span><span class="p">,</span> <span class="s">&#39;A-2&#39;</span><span class="p">,</span> <span class="s">&#39;D-3&#39;</span><span class="p">,</span> <span class="s">&#39;G-3&#39;</span><span class="p">,</span> <span class="s">&#39;B-3&#39;</span><span class="p">,</span> <span class="s">&#39;E-4&#39;</span><span class="p">]</span>
-<span class="go">  &gt;&gt;&gt; tuning.add_tuning(&#39;Guitar&#39;, &#39;standard&#39;, std_strings)</span>
-<span class="go">  &gt;&gt;&gt; tw_strings = [[&#39;E-2&#39;, &#39;E-3&#39;], [&#39;A-2&#39;, &#39;A-3&#39;], ...........]</span>
-<span class="go">  &gt;&gt;&gt; tuning.add_tuning(&#39;Guitar&#39;, &#39;twelve string&#39;, tw_string)</span>
 </pre></div>
 </div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tuning</span><span class="o">.</span><span class="n">add_tuning</span><span class="p">(</span><span class="s">&#39;Guitar&#39;</span><span class="p">,</span> <span class="s">&#39;standard&#39;</span><span class="p">,</span> <span class="n">std_strings</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tw_strings</span> <span class="o">=</span> <span class="p">[[</span><span class="s">&#39;E-2&#39;</span><span class="p">,</span> <span class="s">&#39;E-3&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;A-2&#39;</span><span class="p">,</span> <span class="s">&#39;A-3&#39;</span><span class="p">],</span> <span class="o">...........</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tuning</span><span class="o">.</span><span class="n">add_tuning</span><span class="p">(</span><span class="s">&#39;Guitar&#39;</span><span class="p">,</span> <span class="s">&#39;twelve string&#39;</span><span class="p">,</span> <span class="n">tw_string</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <hr class="docutils" />
 <dl class="function">
 <dt id="fingers_needed">
@@ -99,12 +105,12 @@ for them.</p>
 case-insensitive prefixes. So search for &#8216;bass&#8217; is the same is
 &#8216;Bass Guitar&#8217;.</p>
 <p>Example:</p>
-</dd></dl>
-
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tunings</span><span class="o">.</span><span class="n">get_tuning</span><span class="p">(</span><span class="s">&#39;guitar&#39;</span><span class="p">,</span> <span class="s">&#39;standard&#39;</span><span class="p">)</span>
-<span class="go">  &lt;tunings.StringTuning instance at 0x139ac20&gt;</span>
+<span class="go">&lt;tunings.StringTuning instance at 0x139ac20&gt;</span>
 </pre></div>
 </div>
+</dd></dl>
+
 <hr class="docutils" />
 <dl class="function">
 <dt id="get_tunings">
@@ -114,12 +120,14 @@ case-insensitive prefixes. So search for &#8216;bass&#8217; is the same is
 asking for &#8216;bass&#8217; yields the same tunings as &#8216;Bass Guitar&#8217;; the string
 &#8216;ba&#8217; yields all the instruments starting with &#8216;ba&#8217;.</p>
 <p>Example:</p>
-</dd></dl>
-
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tunings</span><span class="o">.</span><span class="n">get_tunings</span><span class="p">(</span><span class="n">nr_of_string</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
-<span class="go">  &gt;&gt;&gt; tunings.get_tunings(&#39;bass&#39;)</span>
 </pre></div>
 </div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tunings</span><span class="o">.</span><span class="n">get_tunings</span><span class="p">(</span><span class="s">&#39;bass&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <hr class="docutils" />
 <p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
 </div>

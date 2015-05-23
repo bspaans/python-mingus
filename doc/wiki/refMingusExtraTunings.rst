@@ -20,9 +20,12 @@ Functions
   
   Example:
   
->>> std_strings = ['E-2', 'A-2', 'D-3', 'G-3', 'B-3', 'E-4']
+  >>> std_strings = ['E-2', 'A-2', 'D-3', 'G-3', 'B-3', 'E-4']
+  
   >>> tuning.add_tuning('Guitar', 'standard', std_strings)
+  
   >>> tw_strings = [['E-2', 'E-3'], ['A-2', 'A-3'], ...........]
+  
   >>> tuning.add_tuning('Guitar', 'twelve string', tw_string)
 
 
@@ -53,7 +56,7 @@ Functions
   
   Example:
   
->>> tunings.get_tuning('guitar', 'standard')
+  >>> tunings.get_tuning('guitar', 'standard')
   <tunings.StringTuning instance at 0x139ac20>
 
 
@@ -69,7 +72,8 @@ Functions
   
   Example:
   
->>> tunings.get_tunings(nr_of_string = 4)
+  >>> tunings.get_tunings(nr_of_string = 4)
+  
   >>> tunings.get_tunings('bass')
 
 ----
