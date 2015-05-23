@@ -181,10 +181,8 @@ add(value1, value2)
 Return the value of the two combined.
 
 Example:
-{{{
 >>> add(eighth, quarter)
 2.6666666666666665
-}}}
 
 determine(value)
 ^^^^^^^^^^^^^^^^
@@ -195,14 +193,12 @@ The tuple respectively consists of the base note value, the number of
 dots, and the ratio (see tuplet).
 
 Examples:
-{{{
 >>> determine(8)
 (8, 0, 1, 1)
 >>> determine(12)
 (8, 0, 3, 2)
 >>> determine(14)
 (8, 0, 7, 4)
-}}}
 
 This function recognizes all the base values, triplets, quintuplets,
 septuplets and up to four dots. The values are matched on range.
@@ -219,14 +215,12 @@ sixteenth notes. An eighth note with two dots has the length of seven
 thirty second notes.
 
 Examples:
-{{{
 >>> dots(eighth)
 5.3333333333333333
 >>> dots(eighth, 2)
 4.5714285714285712
 >>> dots(quarter)
 2.6666666666666665
-}}}
 
 quintuplet(value)
 ^^^^^^^^^^^^^^^^^
@@ -237,12 +231,10 @@ A quintuplet divides the base value two above into five parts. So a
 quintuplet eighth note is a fifth of a half note.
 
 Examples:
-{{{
 >>> quintuplet(8)
 10
 >>> quintuplet(4)
 5
-}}}
 
 septuplet(value, in_fourths)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -257,18 +249,14 @@ If in_fourths is set to True, this function will use 4, otherwise 8
 notes. So a septuplet eighth note is respectively either 14 or 7.
 
 Notice how
-{{{
 >>> septuplet(8, False) == septuplet(4, True)
 True
-}}}
 
 Examples:
-{{{
 >>> septuplet(8)
 14
 >>> septuplet(8, False)
 7
-}}}
 
 subtract(value1, value2)
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -279,10 +267,8 @@ There are no exceptions for producing negative values, which can be
 useful for taking differences.
 
 Example:
-{{{
 >>> substract(quarter, eighth)
 8.0
-}}}
 
 triplet(value)
 ^^^^^^^^^^^^^^
@@ -293,12 +279,10 @@ A triplet divides the base value above into three parts. So a triplet
 eighth note is a third of a quarter note.
 
 Examples:
-{{{
 >>> triplet(eighth)
 12
 >>> triplet(4)
 6
-}}}
 
 tuplet(value, rat1, rat2)
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -311,10 +295,8 @@ notes in the duration of 2 (a triplet), etc. This function calculates
 the note value when playing in rat1:rat2.
 
 Example:
-{{{
 >>> tuplet(8, 3, 2)
 12
-}}}
 
 ----
 

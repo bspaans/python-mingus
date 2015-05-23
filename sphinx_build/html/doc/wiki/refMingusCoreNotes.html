@@ -78,23 +78,19 @@ enables simple calculations.</p>
 <h3>augment(note)<a class="headerlink" href="#augment-note" title="Permalink to this headline">¶</a></h3>
 <p>Augment a given note.</p>
 <p>Examples:
-{{{
 &gt;&gt;&gt; augment(&#8216;C&#8217;)
 &#8216;C#&#8217;
 &gt;&gt;&gt; augment(&#8216;Cb&#8217;)
-&#8216;C&#8217;
-}}}</p>
+&#8216;C&#8217;</p>
 </div>
 <div class="section" id="diminish-note">
 <h3>diminish(note)<a class="headerlink" href="#diminish-note" title="Permalink to this headline">¶</a></h3>
 <p>Diminish a given note.</p>
 <p>Examples:
-{{{
 &gt;&gt;&gt; diminish(&#8216;C&#8217;)
 &#8216;Cb&#8217;
 &gt;&gt;&gt; diminish(&#8216;C#&#8217;)
-&#8216;C&#8217;
-}}}</p>
+&#8216;C&#8217;</p>
 </div>
 <div class="section" id="int-to-note-note-int-accidentals">
 <h3>int_to_note(note_int, accidentals)<a class="headerlink" href="#int-to-note-note-int-accidentals" title="Permalink to this headline">¶</a></h3>
@@ -108,14 +104,12 @@ or Db.</p>
 <p>Throw a RangeError exception if the note_int is not in the range 0-11.</p>
 <p>If not specified, sharps will be used.</p>
 <p>Examples:
-{{{
 &gt;&gt;&gt; int_to_note(0)
 &#8216;C&#8217;
 &gt;&gt;&gt; int_to_note(3)
 &#8216;D#&#8217;
 &gt;&gt;&gt; int_to_note(3, &#8216;b&#8217;)
-&#8216;Eb&#8217;
-}}}</p>
+&#8216;Eb&#8217;</p>
 </div>
 <div class="section" id="is-enharmonic-note1-note2">
 <h3>is_enharmonic(note1, note2)<a class="headerlink" href="#is-enharmonic-note1-note2" title="Permalink to this headline">¶</a></h3>
@@ -135,21 +129,17 @@ range of 0-11.</p>
 <h3>reduce_accidentals(note)<a class="headerlink" href="#reduce-accidentals-note" title="Permalink to this headline">¶</a></h3>
 <p>Reduce any extra accidentals to proper notes.</p>
 <p>Example:
-{{{
 &gt;&gt;&gt; reduce_accidentals(&#8216;C####&#8217;)
-&#8216;E&#8217;
-}}}</p>
+&#8216;E&#8217;</p>
 </div>
 <div class="section" id="remove-redundant-accidentals-note">
 <h3>remove_redundant_accidentals(note)<a class="headerlink" href="#remove-redundant-accidentals-note" title="Permalink to this headline">¶</a></h3>
 <p>Remove redundant sharps and flats from the given note.</p>
 <p>Examples:
-{{{
 &gt;&gt;&gt; remove_redundant_accidentals(&#8216;C##b&#8217;)
 &#8216;C#&#8217;
 &gt;&gt;&gt; remove_redundant_accidentals(&#8216;Eb##b&#8217;)
-&#8216;E&#8217;
-}}}</p>
+&#8216;E&#8217;</p>
 <hr class="docutils" />
 <p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
 </div>

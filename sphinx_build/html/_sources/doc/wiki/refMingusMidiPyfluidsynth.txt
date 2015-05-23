@@ -51,7 +51,7 @@ cdll
 ^^^^
 
   * *Type*: ctypes.LibraryLoader
-  * *Value*: `<ctypes.LibraryLoader object at 0x7f3cd3ae28d0>`
+  * *Value*: `<ctypes.LibraryLoader object at 0x7f5021bb48d0>`
 
 lib
 ^^^
@@ -63,13 +63,13 @@ pydll
 ^^^^^
 
   * *Type*: ctypes.LibraryLoader
-  * *Value*: `<ctypes.LibraryLoader object at 0x7f3cd3ae2910>`
+  * *Value*: `<ctypes.LibraryLoader object at 0x7f5021bb4910>`
 
 pythonapi
 ^^^^^^^^^
 
   * *Type*: ctypes.PyDLL
-  * *Value*: `<PyDLL 'None', handle 7f3cd7200188 at 7f3cd3ae2950>`
+  * *Value*: `<PyDLL 'None', handle 7f50252d2188 at 7f5021bb4950>`
 
 ----
 

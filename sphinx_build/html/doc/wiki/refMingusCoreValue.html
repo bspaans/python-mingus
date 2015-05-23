@@ -295,10 +295,8 @@ up your code. This module is here to help do the conversion.</p>
 <h3>add(value1, value2)<a class="headerlink" href="#add-value1-value2" title="Permalink to this headline">¶</a></h3>
 <p>Return the value of the two combined.</p>
 <p>Example:
-{{{
 &gt;&gt;&gt; add(eighth, quarter)
-2.6666666666666665
-}}}</p>
+2.6666666666666665</p>
 </div>
 <div class="section" id="determine-value">
 <h3>determine(value)<a class="headerlink" href="#determine-value" title="Permalink to this headline">¶</a></h3>
@@ -306,14 +304,12 @@ up your code. This module is here to help do the conversion.</p>
 <p>The tuple respectively consists of the base note value, the number of
 dots, and the ratio (see tuplet).</p>
 <p>Examples:
-{{{
 &gt;&gt;&gt; determine(8)
 (8, 0, 1, 1)
 &gt;&gt;&gt; determine(12)
 (8, 0, 3, 2)
 &gt;&gt;&gt; determine(14)
-(8, 0, 7, 4)
-}}}</p>
+(8, 0, 7, 4)</p>
 <p>This function recognizes all the base values, triplets, quintuplets,
 septuplets and up to four dots. The values are matched on range.</p>
 </div>
@@ -330,14 +326,12 @@ was added before, etc. So a dotted eighth note has the length of three
 sixteenth notes. An eighth note with two dots has the length of seven
 thirty second notes.</p>
 <p>Examples:
-{{{
 &gt;&gt;&gt; dots(eighth)
 5.3333333333333333
 &gt;&gt;&gt; dots(eighth, 2)
 4.5714285714285712
 &gt;&gt;&gt; dots(quarter)
-2.6666666666666665
-}}}</p>
+2.6666666666666665</p>
 </div>
 <div class="section" id="quintuplet-value">
 <h3>quintuplet(value)<a class="headerlink" href="#quintuplet-value" title="Permalink to this headline">¶</a></h3>
@@ -345,12 +339,10 @@ thirty second notes.</p>
 <p>A quintuplet divides the base value two above into five parts. So a
 quintuplet eighth note is a fifth of a half note.</p>
 <p>Examples:
-{{{
 &gt;&gt;&gt; quintuplet(8)
 10
 &gt;&gt;&gt; quintuplet(4)
-5
-}}}</p>
+5</p>
 </div>
 <div class="section" id="septuplet-value-in-fourths">
 <h3>septuplet(value, in_fourths)<a class="headerlink" href="#septuplet-value-in-fourths" title="Permalink to this headline">¶</a></h3>
@@ -365,17 +357,13 @@ in the duration of four or eighth notes.</p>
 <p>If in_fourths is set to True, this function will use 4, otherwise 8
 notes. So a septuplet eighth note is respectively either 14 or 7.</p>
 <p>Notice how
-{{{
 &gt;&gt;&gt; septuplet(8, False) == septuplet(4, True)
-True
-}}}</p>
+True</p>
 <p>Examples:
-{{{
 &gt;&gt;&gt; septuplet(8)
 14
 &gt;&gt;&gt; septuplet(8, False)
-7
-}}}</p>
+7</p>
 </div>
 <div class="section" id="subtract-value1-value2">
 <h3>subtract(value1, value2)<a class="headerlink" href="#subtract-value1-value2" title="Permalink to this headline">¶</a></h3>
@@ -383,10 +371,8 @@ True
 <p>There are no exceptions for producing negative values, which can be
 useful for taking differences.</p>
 <p>Example:
-{{{
 &gt;&gt;&gt; substract(quarter, eighth)
-8.0
-}}}</p>
+8.0</p>
 </div>
 <div class="section" id="triplet-value">
 <h3>triplet(value)<a class="headerlink" href="#triplet-value" title="Permalink to this headline">¶</a></h3>
@@ -394,12 +380,10 @@ useful for taking differences.</p>
 <p>A triplet divides the base value above into three parts. So a triplet
 eighth note is a third of a quarter note.</p>
 <p>Examples:
-{{{
 &gt;&gt;&gt; triplet(eighth)
 12
 &gt;&gt;&gt; triplet(4)
-6
-}}}</p>
+6</p>
 </div>
 <div class="section" id="tuplet-value-rat1-rat2">
 <h3>tuplet(value, rat1, rat2)<a class="headerlink" href="#tuplet-value-rat1-rat2" title="Permalink to this headline">¶</a></h3>
@@ -409,10 +393,8 @@ eighth note is a third of a quarter note.</p>
 notes in the duration of 2 (a triplet), etc. This function calculates
 the note value when playing in rat1:rat2.</p>
 <p>Example:
-{{{
 &gt;&gt;&gt; tuplet(8, 3, 2)
-12
-}}}</p>
+12</p>
 <hr class="docutils" />
 <p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
 </div>

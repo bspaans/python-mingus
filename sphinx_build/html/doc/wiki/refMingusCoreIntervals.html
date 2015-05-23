@@ -83,7 +83,6 @@ determine, invert, is_consonant and is_dissonant.</p>
 </div></blockquote>
 <p>Name the interval between note1 and note2.</p>
 <p>Examples:
-{{{
 &gt;&gt;&gt; determine(&#8216;C&#8217;, &#8216;E&#8217;)
 &#8216;major third&#8217;
 &gt;&gt;&gt; determine(&#8216;C&#8217;, &#8216;Eb&#8217;)
@@ -91,40 +90,33 @@ determine, invert, is_consonant and is_dissonant.</p>
 &gt;&gt;&gt; determine(&#8216;C&#8217;, &#8216;E#&#8217;)
 &#8216;augmented third&#8217;
 &gt;&gt;&gt; determine(&#8216;C&#8217;, &#8216;Ebb&#8217;)
-&#8216;diminished third&#8217;
-}}}</p>
+&#8216;diminished third&#8217;</p>
 <p>This works for all intervals. Note that there are corner cases for major
 fifths and fourths:
-{{{
 &gt;&gt;&gt; determine(&#8216;C&#8217;, &#8216;G&#8217;)
 &#8216;perfect fifth&#8217;
 &gt;&gt;&gt; determine(&#8216;C&#8217;, &#8216;F&#8217;)
-&#8216;perfect fourth&#8217;
-}}}</p>
+&#8216;perfect fourth&#8217;</p>
 </div>
 <div class="section" id="fifth-note-key">
 <h3>fifth(note, key)<a class="headerlink" href="#fifth-note-key" title="Permalink to this headline">¶</a></h3>
 <p>Take the diatonic fifth of note in key.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>Examples:
-{{{
 &gt;&gt;&gt; fifth(&#8216;E&#8217;, &#8216;C&#8217;)
 &#8216;B&#8217;
 &gt;&gt;&gt; fifth(&#8216;E&#8217;, &#8216;F&#8217;)
-&#8216;Bb&#8217;
-}}}</p>
+&#8216;Bb&#8217;</p>
 </div>
 <div class="section" id="fourth-note-key">
 <h3>fourth(note, key)<a class="headerlink" href="#fourth-note-key" title="Permalink to this headline">¶</a></h3>
 <p>Take the diatonic fourth of note in key.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>Examples:
-{{{
 &gt;&gt;&gt; fourth(&#8216;E&#8217;, &#8216;C&#8217;)
 &#8216;A&#8217;
 &gt;&gt;&gt; fourth(&#8216;E&#8217;, &#8216;B&#8217;)
-&#8216;A#&#8217;
-}}}</p>
+&#8216;A#&#8217;</p>
 </div>
 <div class="section" id="from-shorthand-note-interval-up">
 <h3>from_shorthand(note, interval, up)<a class="headerlink" href="#from-shorthand-note-interval-up" title="Permalink to this headline">¶</a></h3>
@@ -135,14 +127,12 @@ fifths and fourths:
 </div></blockquote>
 <p>Return the note on interval up or down.</p>
 <p>Examples:
-{{{
 &gt;&gt;&gt; from_shorthand(&#8216;A&#8217;, &#8216;b3&#8217;)
 &#8216;C&#8217;
 &gt;&gt;&gt; from_shorthand(&#8216;D&#8217;, &#8216;2&#8217;)
 &#8216;E&#8217;
 &gt;&gt;&gt; from_shorthand(&#8216;E&#8217;, &#8216;2&#8217;, False)
-&#8216;D&#8217;
-}}}</p>
+&#8216;D&#8217;</p>
 </div>
 <div class="section" id="get-interval-note-interval-key">
 <h3>get_interval(note, interval, key)<a class="headerlink" href="#get-interval-note-interval-key" title="Permalink to this headline">¶</a></h3>
@@ -161,19 +151,15 @@ the minor and major functions to work around the corner cases.</p>
 given key.</p>
 <p>Raise a KeyError exception if start_note is not a valid note.</p>
 <p>Example:
-{{{
 &gt;&gt;&gt; interval(&#8216;C&#8217;, &#8216;D&#8217;, 1)
-&#8216;E&#8217;
-}}}</p>
+&#8216;E&#8217;</p>
 </div>
 <div class="section" id="invert-interval">
 <h3>invert(interval)<a class="headerlink" href="#invert-interval" title="Permalink to this headline">¶</a></h3>
 <p>Invert an interval.</p>
 <p>Example:
-{{{
 &gt;&gt;&gt; invert([&#8216;C&#8217;, &#8216;E&#8217;])
-[&#8216;E&#8217;, &#8216;C&#8217;]
-}}}</p>
+[&#8216;E&#8217;, &#8216;C&#8217;]</p>
 </div>
 <div class="section" id="is-consonant-note1-note2-include-fourths">
 <h3>is_consonant(note1, note2, include_fourths)<a class="headerlink" href="#is-consonant-note1-note2-include-fourths" title="Permalink to this headline">¶</a></h3>
@@ -249,12 +235,10 @@ dissonant when used contrapuntal, which is why you can exclude them.</p>
 <p>Return an integer in the range of 0-11, determining the half note steps
 between note1 and note2.</p>
 <p>Examples:
-{{{
 &gt;&gt;&gt; measure(&#8216;C&#8217;, &#8216;D&#8217;)
 2
 &gt;&gt;&gt; measure(&#8216;D&#8217;, &#8216;C&#8217;)
-10
-}}}</p>
+10</p>
 </div>
 <div class="section" id="minor-fifth-note">
 <h3>minor_fifth(note)<a class="headerlink" href="#minor-fifth-note" title="Permalink to this headline">¶</a></h3>
@@ -288,48 +272,40 @@ between note1 and note2.</p>
 <p>Take the diatonic second of note in key.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>Examples:
-{{{
 &gt;&gt;&gt; second(&#8216;E&#8217;, &#8216;C&#8217;)
 &#8216;F&#8217;
 &gt;&gt;&gt; second(&#8216;E&#8217;, &#8216;D&#8217;)
-&#8216;F#&#8217;
-}}}</p>
+&#8216;F#&#8217;</p>
 </div>
 <div class="section" id="seventh-note-key">
 <h3>seventh(note, key)<a class="headerlink" href="#seventh-note-key" title="Permalink to this headline">¶</a></h3>
 <p>Take the diatonic seventh of note in key.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>Examples:
-{{{
 &gt;&gt;&gt; seventh(&#8216;E&#8217;, &#8216;C&#8217;)
 &#8216;D&#8217;
 &gt;&gt;&gt; seventh(&#8216;E&#8217;, &#8216;B&#8217;)
-&#8216;D#&#8217;
-}}}</p>
+&#8216;D#&#8217;</p>
 </div>
 <div class="section" id="sixth-note-key">
 <h3>sixth(note, key)<a class="headerlink" href="#sixth-note-key" title="Permalink to this headline">¶</a></h3>
 <p>Take the diatonic sixth of note in key.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>Examples:
-{{{
 &gt;&gt;&gt; sixth(&#8216;E&#8217;, &#8216;C&#8217;)
 &#8216;C&#8217;
 &gt;&gt;&gt; sixth(&#8216;E&#8217;, &#8216;B&#8217;)
-&#8216;C#&#8217;
-}}}</p>
+&#8216;C#&#8217;</p>
 </div>
 <div class="section" id="third-note-key">
 <h3>third(note, key)<a class="headerlink" href="#third-note-key" title="Permalink to this headline">¶</a></h3>
 <p>Take the diatonic third of note in key.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>Examples:
-{{{
 &gt;&gt;&gt; third(&#8216;E&#8217;, &#8216;C&#8217;)
 &#8216;G&#8217;
 &gt;&gt;&gt; third(&#8216;E&#8217;, &#8216;E&#8217;)
-&#8216;G#&#8217;
-}}}</p>
+&#8216;G#&#8217;</p>
 </div>
 <div class="section" id="unison-note-key">
 <h3>unison(note, key)<a class="headerlink" href="#unison-note-key" title="Permalink to this headline">¶</a></h3>
@@ -343,10 +319,8 @@ between note1 and note2.</p>
 <p>The key is not at all important, but is here for consistency reasons
 only.</p>
 <p>Example:
-{{{
 &gt;&gt;&gt; unison(&#8216;C&#8217;)
-&#8216;C&#8217;
-}}}</p>
+&#8216;C&#8217;</p>
 <hr class="docutils" />
 <p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
 </div>

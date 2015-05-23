@@ -65,12 +65,10 @@ you search through them.</p>
 <p>The instrument and description parameters should be strings; tuning
 should be a list of strings or a list of lists to denote courses.</p>
 <p>Example:
-{{{
 &gt;&gt;&gt; std_strings = [&#8216;E-2&#8217;, &#8216;A-2&#8217;, &#8216;D-3&#8217;, &#8216;G-3&#8217;, &#8216;B-3&#8217;, &#8216;E-4&#8217;]
 &gt;&gt;&gt; tuning.add_tuning(&#8216;Guitar&#8217;, &#8216;standard&#8217;, std_strings)
 &gt;&gt;&gt; tw_strings = [[&#8216;E-2&#8217;, &#8216;E-3&#8217;], [&#8216;A-2&#8217;, &#8216;A-3&#8217;], ...........]
-&gt;&gt;&gt; tuning.add_tuning(&#8216;Guitar&#8217;, &#8216;twelve string&#8217;, tw_string)
-}}}</p>
+&gt;&gt;&gt; tuning.add_tuning(&#8216;Guitar&#8217;, &#8216;twelve string&#8217;, tw_string)</p>
 </div>
 <div class="section" id="fingers-needed-fingering">
 <h3>fingers_needed(fingering)<a class="headerlink" href="#fingers-needed-fingering" title="Permalink to this headline">¶</a></h3>
@@ -93,10 +91,8 @@ for them.</p>
 case-insensitive prefixes. So search for &#8216;bass&#8217; is the same is
 &#8216;Bass Guitar&#8217;.</p>
 <p>Example:
-{{{
 &gt;&gt;&gt; tunings.get_tuning(&#8216;guitar&#8217;, &#8216;standard&#8217;)
-&lt;tunings.StringTuning instance at 0x139ac20&gt;
-}}}</p>
+&lt;tunings.StringTuning instance at 0x139ac20&gt;</p>
 </div>
 <div class="section" id="get-tunings-instrument-nr-of-strings-nr-of-courses">
 <h3>get_tunings(instrument, nr_of_strings, nr_of_courses)<a class="headerlink" href="#get-tunings-instrument-nr-of-strings-nr-of-courses" title="Permalink to this headline">¶</a></h3>
@@ -110,10 +106,8 @@ case-insensitive prefixes. So search for &#8216;bass&#8217; is the same is
 asking for &#8216;bass&#8217; yields the same tunings as &#8216;Bass Guitar&#8217;; the string
 &#8216;ba&#8217; yields all the instruments starting with &#8216;ba&#8217;.</p>
 <p>Example:
-{{{
 &gt;&gt;&gt; tunings.get_tunings(nr_of_string = 4)
-&gt;&gt;&gt; tunings.get_tunings(&#8216;bass&#8217;)
-}}}</p>
+&gt;&gt;&gt; tunings.get_tunings(&#8216;bass&#8217;)</p>
 <hr class="docutils" />
 <p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
 </div>

@@ -30,12 +30,10 @@ augment(note)
 Augment a given note.
 
 Examples:
-{{{
 >>> augment('C')
 'C#'
 >>> augment('Cb')
 'C'
-}}}
 
 diminish(note)
 ^^^^^^^^^^^^^^
@@ -43,12 +41,10 @@ diminish(note)
 Diminish a given note.
 
 Examples:
-{{{
 >>> diminish('C')
 'Cb'
 >>> diminish('C#')
 'C'
-}}}
 
 int_to_note(note_int, accidentals)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -62,14 +58,12 @@ Throw a RangeError exception if the note_int is not in the range 0-11.
 If not specified, sharps will be used.
 
 Examples:
-{{{
 >>> int_to_note(0)
 'C'
 >>> int_to_note(3)
 'D#'
 >>> int_to_note(3, 'b')
 'Eb'
-}}}
 
 is_enharmonic(note1, note2)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -95,10 +89,8 @@ reduce_accidentals(note)
 Reduce any extra accidentals to proper notes.
 
 Example:
-{{{
 >>> reduce_accidentals('C####')
 'E'
-}}}
 
 remove_redundant_accidentals(note)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -106,12 +98,10 @@ remove_redundant_accidentals(note)
 Remove redundant sharps and flats from the given note.
 
 Examples:
-{{{
 >>> remove_redundant_accidentals('C##b')
 'C#'
 >>> remove_redundant_accidentals('Eb##b')
 'E'
-}}}
 
 ----
 
