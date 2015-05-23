@@ -12,7 +12,7 @@
 
 
 Saving Notes, NoteContainers, Bars, Tracks and Compositions
-===========================================================
+-----------------------------------------------------------
 
 The functions in this module all work the same and are very simple to use. `write_Note`, `write_NoteContainer`, `write_Bar`, `write_Track` and `write_Composition` all take four arguments, from which the last two are optional. The first argument specifies the filename, the second is the object itself, the third argument is the number of beats per minute (default = 120) and the last argument specifies the number of times the object should be repeated (default = 0).
 

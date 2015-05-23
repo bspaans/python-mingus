@@ -58,10 +58,9 @@
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mingus.midi</span> <span class="kn">import</span> <span class="n">MidiFileOut</span>
 </pre></div>
 </div>
-</div>
 <hr class="docutils" />
 <div class="section" id="saving-notes-notecontainers-bars-tracks-and-compositions">
-<h1>Saving Notes, NoteContainers, Bars, Tracks and Compositions<a class="headerlink" href="#saving-notes-notecontainers-bars-tracks-and-compositions" title="Permalink to this headline">¶</a></h1>
+<h2>Saving Notes, NoteContainers, Bars, Tracks and Compositions<a class="headerlink" href="#saving-notes-notecontainers-bars-tracks-and-compositions" title="Permalink to this headline">¶</a></h2>
 <p>The functions in this module all work the same and are very simple to use. <cite>write_Note</cite>, <cite>write_NoteContainer</cite>, <cite>write_Bar</cite>, <cite>write_Track</cite> and <cite>write_Composition</cite> all take four arguments, from which the last two are optional. The first argument specifies the filename, the second is the object itself, the third argument is the number of beats per minute (default = 120) and the last argument specifies the number of times the object should be repeated (default = 0).</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">nc</span> <span class="o">=</span> <span class="n">NoteContainer</span><span class="p">([</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">MidiFileOut</span><span class="o">.</span><span class="n">write_NoteContainer</span><span class="p">(</span><span class="s">&quot;test.mid&quot;</span><span class="p">,</span> <span class="n">nc</span><span class="p">)</span>
@@ -78,6 +77,7 @@
 </ul>
 </div></blockquote>
 </div>
+</div>
 
 
           </div>
@@ -87,8 +87,10 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Tutorial 2 - Saving Containers as Midi Files</a></li>
+<li><a class="reference internal" href="#">Tutorial 2 - Saving Containers as Midi Files</a><ul>
 <li><a class="reference internal" href="#saving-notes-notecontainers-bars-tracks-and-compositions">Saving Notes, NoteContainers, Bars, Tracks and Compositions</a></li>
+</ul>
+</li>
 </ul>
 
   <h4>Previous topic</h4>
