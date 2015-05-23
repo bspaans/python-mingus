@@ -22,10 +22,7 @@ x
 Functions
 ---------
 
-_fft(a, n, axis)
-^^^^^^^^^^^^^^^^
-
-  * *Default values*: n = None, axis = -1
+.. function:: _fft(a, n, axis)  * *Default values*: n = None, axis = -1
 Compute the one-dimensional discrete Fourier Transform.
 
 This function computes the one-dimensional *n*-point discrete Fourier
@@ -107,37 +104,22 @@ In this example, real input has an FFT which is Hermitian, i.e., symmetric
 in the real part and anti-symmetric in the imaginary part, as described in
 the `numpy.fft` documentation.
 
-_find_log_index(f)
-^^^^^^^^^^^^^^^^^^
-
-Look up the index of the frequency f in the frequency table.
+.. function:: _find_log_index(f)Look up the index of the frequency f in the frequency table.
 
 Return the nearest index.
 
-analyze_chunks(data, freq, bits, chunksize)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-  * *Default values*: chunksize = 512
+.. function:: analyze_chunks(data, freq, bits, chunksize)  * *Default values*: chunksize = 512
 Cut the one channel data in chunks and analyzes them separately.
 
 Making the chunksize a power of two works fastest.
 
-data_from_file(file)
-^^^^^^^^^^^^^^^^^^^^
-
-Return (first channel data, sample frequency, sample width) from a .wav
+.. function:: data_from_file(file)Return (first channel data, sample frequency, sample width) from a .wav
 file.
 
-find_Note(data, freq, bits)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Get the frequencies, feed them to find_notes and the return the Note
+.. function:: find_Note(data, freq, bits)Get the frequencies, feed them to find_notes and the return the Note
 with the highest amplitude.
 
-find_frequencies(data, freq, bits)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-  * *Default values*: freq = 44100, bits = 16
+.. function:: find_frequencies(data, freq, bits)  * *Default values*: freq = 44100, bits = 16
 Convert audio data into a frequency-amplitude table using fast fourier
 transformation.
 
@@ -145,10 +127,7 @@ Return a list of tuples (frequency, amplitude).
 
 Data should only contain one channel of audio.
 
-find_melody(file, chunksize)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-  * *Default values*: file = '440_480_clean.wav', chunksize = 512
+.. function:: find_melody(file, chunksize)  * *Default values*: file = '440_480_clean.wav', chunksize = 512
 Cut the sample into chunks and analyze each chunk.
 
 Return a list [(Note, chunks)] where chunks is the number of chunks
@@ -159,10 +138,7 @@ grouped together.
 
 This is an experimental function.
 
-find_notes(freqTable, maxNote)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-  * *Default values*: maxNote = 100
+.. function:: find_notes(freqTable, maxNote)  * *Default values*: maxNote = 100
 Convert the (frequencies, amplitude) list to a (Note, amplitude) list.
 
 ----

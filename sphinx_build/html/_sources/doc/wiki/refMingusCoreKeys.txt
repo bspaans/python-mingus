@@ -45,35 +45,23 @@ minor_keys
 Functions
 ---------
 
-get_key(accidentals)
-^^^^^^^^^^^^^^^^^^^^
-
-  * *Default values*: accidentals = 0
+.. function:: get_key(accidentals)  * *Default values*: accidentals = 0
 Return the key corrisponding to accidentals.
 
 Return the tuple containing the major key corrensponding to the
 accidentals put as input, and his relative minor; negative numbers for
 flats, positive numbers for sharps.
 
-get_key_signature(key)
-^^^^^^^^^^^^^^^^^^^^^^
-
-  * *Default values*: key = 'C'
+.. function:: get_key_signature(key)  * *Default values*: key = 'C'
 Return the key signature.
 
 0 for C or a, negative numbers for flat key signatures, positive numbers
 for sharp key signatures.
 
-get_key_signature_accidentals(key)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-  * *Default values*: key = 'C'
+.. function:: get_key_signature_accidentals(key)  * *Default values*: key = 'C'
 Return the list of accidentals present into the key signature.
 
-get_notes(key)
-^^^^^^^^^^^^^^
-
-  * *Default values*: key = 'C'
+.. function:: get_notes(key)  * *Default values*: key = 'C'
 Return an ordered list of the notes in this natural key.
 
 Examples:
@@ -83,25 +71,16 @@ Examples:
 >>> get_notes('c')
 ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb']
 
-is_valid_key(key)
-^^^^^^^^^^^^^^^^^
+.. function:: is_valid_key(key)Return True if key is in a recognized format. False if not.
 
-Return True if key is in a recognized format. False if not.
-
-relative_major(key)
-^^^^^^^^^^^^^^^^^^^
-
-Return the relative major of a minor key.
+.. function:: relative_major(key)Return the relative major of a minor key.
 
 Example:
 
 >>> relative_major('a')
 'C'
 
-relative_minor(key)
-^^^^^^^^^^^^^^^^^^^
-
-Return the relative minor of a major key.
+.. function:: relative_minor(key)Return the relative minor of a major key.
 
 Example:
 

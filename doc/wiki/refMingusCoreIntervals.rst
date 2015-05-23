@@ -19,20 +19,11 @@ determine, invert, is_consonant and is_dissonant.
 Functions
 ---------
 
-augment_or_diminish_until_the_interval_is_right(note1, note2, interval)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-A helper function for the minor and major functions.
+.. function:: augment_or_diminish_until_the_interval_is_right(note1, note2, interval)A helper function for the minor and major functions.
 
 You should probably not use this directly.
 
-augmented_unison(note)
-^^^^^^^^^^^^^^^^^^^^^^
-
-determine(note1, note2, shorthand)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-  * *Default values*: shorthand = False
+.. function:: augmented_unison(note).. function:: determine(note1, note2, shorthand)  * *Default values*: shorthand = False
 Name the interval between note1 and note2.
 
 Examples:
@@ -54,10 +45,7 @@ fifths and fourths:
 >>> determine('C', 'F')
 'perfect fourth'
 
-fifth(note, key)
-^^^^^^^^^^^^^^^^
-
-Take the diatonic fifth of note in key.
+.. function:: fifth(note, key)Take the diatonic fifth of note in key.
 
 Raise a KeyError exception if the note is not found in the given key.
 
@@ -68,10 +56,7 @@ Examples:
 >>> fifth('E', 'F')
 'Bb'
 
-fourth(note, key)
-^^^^^^^^^^^^^^^^^
-
-Take the diatonic fourth of note in key.
+.. function:: fourth(note, key)Take the diatonic fourth of note in key.
 
 Raise a KeyError exception if the note is not found in the given key.
 
@@ -82,10 +67,7 @@ Examples:
 >>> fourth('E', 'B')
 'A#'
 
-from_shorthand(note, interval, up)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-  * *Default values*: up = True
+.. function:: from_shorthand(note, interval, up)  * *Default values*: up = True
 Return the note on interval up or down.
 
 Examples:
@@ -97,19 +79,13 @@ Examples:
 >>> from_shorthand('E', '2', False)
 'D'
 
-get_interval(note, interval, key)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-  * *Default values*: key = 'C'
+.. function:: get_interval(note, interval, key)  * *Default values*: key = 'C'
 Return the note an interval (in half notes) away from the given note.
 
 This will produce mostly theoretical sound results, but you should use
 the minor and major functions to work around the corner cases.
 
-interval(key, start_note, interval)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Return the note found at the interval starting from start_note in the
+.. function:: interval(key, start_note, interval)Return the note found at the interval starting from start_note in the
 given key.
 
 Raise a KeyError exception if start_note is not a valid note.
@@ -119,20 +95,14 @@ Example:
 >>> interval('C', 'D', 1)
 'E'
 
-invert(interval)
-^^^^^^^^^^^^^^^^
-
-Invert an interval.
+.. function:: invert(interval)Invert an interval.
 
 Example:
 
 >>> invert(['C', 'E'])
 ['E', 'C']
 
-is_consonant(note1, note2, include_fourths)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-  * *Default values*: include_fourths = True
+.. function:: is_consonant(note1, note2, include_fourths)  * *Default values*: include_fourths = True
 Return True if the interval is consonant.
 
 A consonance is a harmony, chord, or interval considered stable, as
@@ -145,10 +115,7 @@ a unison, third, sixth, perfect fourth or perfect fifth.
 In classical music the fourth is considered dissonant when used
 contrapuntal, which is why you can choose to exclude it.
 
-is_dissonant(note1, note2, include_fourths)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-  * *Default values*: include_fourths = False
+.. function:: is_dissonant(note1, note2, include_fourths)  * *Default values*: include_fourths = False
 Return True if the insterval is dissonant.
 
 This function tests whether an interval is considered unstable,
@@ -157,18 +124,12 @@ dissonant.
 In the default case perfect fourths are considered consonant, but this
 can be changed by setting exclude_fourths to True.
 
-is_imperfect_consonant(note1, note2)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Return True id the interval is an imperfect consonant one.
+.. function:: is_imperfect_consonant(note1, note2)Return True id the interval is an imperfect consonant one.
 
 Imperfect consonances are either minor or major thirds or minor or major
 sixths.
 
-is_perfect_consonant(note1, note2, include_fourths)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-  * *Default values*: include_fourths = True
+.. function:: is_perfect_consonant(note1, note2, include_fourths)  * *Default values*: include_fourths = True
 Return True if the interval is a perfect consonant one.
 
 Perfect consonances are either unisons, perfect fourths or fifths, or
@@ -177,31 +138,7 @@ octaves (which is the same as a unison in this model).
 Perfect fourths are usually included as well, but are considered
 dissonant when used contrapuntal, which is why you can exclude them.
 
-major_fifth(note)
-^^^^^^^^^^^^^^^^^
-
-major_fourth(note)
-^^^^^^^^^^^^^^^^^^
-
-major_second(note)
-^^^^^^^^^^^^^^^^^^
-
-major_seventh(note)
-^^^^^^^^^^^^^^^^^^^
-
-major_sixth(note)
-^^^^^^^^^^^^^^^^^
-
-major_third(note)
-^^^^^^^^^^^^^^^^^
-
-major_unison(note)
-^^^^^^^^^^^^^^^^^^
-
-measure(note1, note2)
-^^^^^^^^^^^^^^^^^^^^^
-
-Return an integer in the range of 0-11, determining the half note steps
+.. function:: major_fifth(note).. function:: major_fourth(note).. function:: major_second(note).. function:: major_seventh(note).. function:: major_sixth(note).. function:: major_third(note).. function:: major_unison(note).. function:: measure(note1, note2)Return an integer in the range of 0-11, determining the half note steps
 between note1 and note2.
 
 Examples:
@@ -211,37 +148,7 @@ Examples:
 >>> measure('D', 'C')
 10
 
-minor_fifth(note)
-^^^^^^^^^^^^^^^^^
-
-minor_fourth(note)
-^^^^^^^^^^^^^^^^^^
-
-minor_second(note)
-^^^^^^^^^^^^^^^^^^
-
-minor_seventh(note)
-^^^^^^^^^^^^^^^^^^^
-
-minor_sixth(note)
-^^^^^^^^^^^^^^^^^
-
-minor_third(note)
-^^^^^^^^^^^^^^^^^
-
-minor_unison(note)
-^^^^^^^^^^^^^^^^^^
-
-perfect_fifth(note)
-^^^^^^^^^^^^^^^^^^^
-
-perfect_fourth(note)
-^^^^^^^^^^^^^^^^^^^^
-
-second(note, key)
-^^^^^^^^^^^^^^^^^
-
-Take the diatonic second of note in key.
+.. function:: minor_fifth(note).. function:: minor_fourth(note).. function:: minor_second(note).. function:: minor_seventh(note).. function:: minor_sixth(note).. function:: minor_third(note).. function:: minor_unison(note).. function:: perfect_fifth(note).. function:: perfect_fourth(note).. function:: second(note, key)Take the diatonic second of note in key.
 
 Raise a KeyError exception if the note is not found in the given key.
 
@@ -252,10 +159,7 @@ Examples:
 >>> second('E', 'D')
 'F#'
 
-seventh(note, key)
-^^^^^^^^^^^^^^^^^^
-
-Take the diatonic seventh of note in key.
+.. function:: seventh(note, key)Take the diatonic seventh of note in key.
 
 Raise a KeyError exception if the note is not found in the given key.
 
@@ -266,10 +170,7 @@ Examples:
 >>> seventh('E', 'B')
 'D#'
 
-sixth(note, key)
-^^^^^^^^^^^^^^^^
-
-Take the diatonic sixth of note in key.
+.. function:: sixth(note, key)Take the diatonic sixth of note in key.
 
 Raise a KeyError exception if the note is not found in the given key.
 
@@ -280,10 +181,7 @@ Examples:
 >>> sixth('E', 'B')
 'C#'
 
-third(note, key)
-^^^^^^^^^^^^^^^^
-
-Take the diatonic third of note in key.
+.. function:: third(note, key)Take the diatonic third of note in key.
 
 Raise a KeyError exception if the note is not found in the given key.
 
@@ -294,10 +192,7 @@ Examples:
 >>> third('E', 'E')
 'G#'
 
-unison(note, key)
-^^^^^^^^^^^^^^^^^
-
-  * *Default values*: key = None
+.. function:: unison(note, key)  * *Default values*: key = None
 Return the unison of note.
 
 Raise a KeyError exception if the note is not found in the given key.

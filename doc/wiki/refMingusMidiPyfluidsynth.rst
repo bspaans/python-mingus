@@ -51,7 +51,7 @@ cdll
 ^^^^
 
   * *Type*: ctypes.LibraryLoader
-  * *Value*: `<ctypes.LibraryLoader object at 0x7f6796c978d0>`
+  * *Value*: `<ctypes.LibraryLoader object at 0x7f9f3d5758d0>`
 
 lib
 ^^^
@@ -63,26 +63,20 @@ pydll
 ^^^^^
 
   * *Type*: ctypes.LibraryLoader
-  * *Value*: `<ctypes.LibraryLoader object at 0x7f6796c97910>`
+  * *Value*: `<ctypes.LibraryLoader object at 0x7f9f3d575910>`
 
 pythonapi
 ^^^^^^^^^
 
   * *Type*: ctypes.PyDLL
-  * *Value*: `<PyDLL 'None', handle 7f679a3b5188 at 7f6796c97950>`
+  * *Value*: `<PyDLL 'None', handle 7f9f40c93188 at 7f9f3d575950>`
 
 ----
 
 Functions
 ---------
 
-ARRAY(typ, len)
-^^^^^^^^^^^^^^^
-
-CFUNCTYPE(restype)
-^^^^^^^^^^^^^^^^^^
-
-CFUNCTYPE(restype, *argtypes,
+.. function:: ARRAY(typ, len).. function:: CFUNCTYPE(restype)CFUNCTYPE(restype, *argtypes,
              use_errno=False, use_last_error=False) -> function prototype.
 
 restype: the result type
@@ -97,70 +91,34 @@ prototype(integer index, method name[, paramflags]) -> foreign function calling 
 prototype((ordinal number, dll object)[, paramflags]) -> foreign function exported by ordinal
 prototype((function name, dll object)[, paramflags]) -> foreign function exported by name
 
-PYFUNCTYPE(restype)
-^^^^^^^^^^^^^^^^^^^
+.. function:: PYFUNCTYPE(restype).. function:: SetPointerType(pointer, cls).. function:: c_buffer(init, size)  * *Default values*: size = None
+.. function:: cast(obj, typ).. function:: cfunc(name, result)Build and apply a ctypes prototype complete with parameter flags.
 
-SetPointerType(pointer, cls)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-c_buffer(init, size)
-^^^^^^^^^^^^^^^^^^^^
-
-  * *Default values*: size = None
-cast(obj, typ)
-^^^^^^^^^^^^^^
-
-cfunc(name, result)
-^^^^^^^^^^^^^^^^^^^
-
-Build and apply a ctypes prototype complete with parameter flags.
-
-create_string_buffer(init, size)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-  * *Default values*: size = None
+.. function:: create_string_buffer(init, size)  * *Default values*: size = None
 create_string_buffer(aString) -> character array
 create_string_buffer(anInteger) -> character array
 create_string_buffer(aString, anInteger) -> character array
 
-create_unicode_buffer(init, size)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-  * *Default values*: size = None
+.. function:: create_unicode_buffer(init, size)  * *Default values*: size = None
 create_unicode_buffer(aString) -> character array
 create_unicode_buffer(anInteger) -> character array
 create_unicode_buffer(aString, anInteger) -> character array
 
-find_library(name)
-^^^^^^^^^^^^^^^^^^
-
-fluid_synth_write_s16_stereo(synth, len)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Return generated samples in stereo 16-bit format.
+.. function:: find_library(name).. function:: fluid_synth_write_s16_stereo(synth, len)Return generated samples in stereo 16-bit format.
 
 Return value is a Numpy array of samples.
 
-raw_audio_string(data)
-^^^^^^^^^^^^^^^^^^^^^^
-
-Return a string of bytes to send to soundcard.
+.. function:: raw_audio_string(data)Return a string of bytes to send to soundcard.
 
 Input is a numpy array of samples. Default output format is 16-bit
 signed (other formats not currently supported).
 
-string_at(ptr, size)
-^^^^^^^^^^^^^^^^^^^^
-
-  * *Default values*: size = -1
+.. function:: string_at(ptr, size)  * *Default values*: size = -1
 string_at(addr[, size]) -> string
 
 Return the string at addr.
 
-wstring_at(ptr, size)
-^^^^^^^^^^^^^^^^^^^^^
-
-  * *Default values*: size = -1
+.. function:: wstring_at(ptr, size)  * *Default values*: size = -1
 wstring_at(addr[, size]) -> string
 
 Return the string at addr.

@@ -8,10 +8,7 @@ you search through them.
 Functions
 ---------
 
-add_tuning(instrument, description, tuning)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Add a new tuning to the index.
+.. function:: add_tuning(instrument, description, tuning)Add a new tuning to the index.
 
 The instrument and description parameters should be strings; tuning
 should be a list of strings or a list of lists to denote courses.
@@ -23,21 +20,12 @@ Example:
 >>> tw_strings = [['E-2', 'E-3'], ['A-2', 'A-3'], ...........]
 >>> tuning.add_tuning('Guitar', 'twelve string', tw_string)
 
-fingers_needed(fingering)
-^^^^^^^^^^^^^^^^^^^^^^^^^
+.. function:: fingers_needed(fingering)Return the number of fingers needed to play the given fingering.
 
-Return the number of fingers needed to play the given fingering.
-
-get_instruments()
-^^^^^^^^^^^^^^^^^
-
-Return a sorted list of instruments that have string tunings defined
+.. function:: get_instruments()Return a sorted list of instruments that have string tunings defined
 for them.
 
-get_tuning(instrument, description, nr_of_strings, nr_of_courses)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-  * *Default values*: nr_of_strings = None, nr_of_courses = None
+.. function:: get_tuning(instrument, description, nr_of_strings, nr_of_courses)  * *Default values*: nr_of_strings = None, nr_of_courses = None
 Get the first tuning that satisfies the constraints.
 
 The instrument and description arguments are treated like
@@ -49,10 +37,7 @@ Example:
 >>> tunings.get_tuning('guitar', 'standard')
 <tunings.StringTuning instance at 0x139ac20>
 
-get_tunings(instrument, nr_of_strings, nr_of_courses)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-  * *Default values*: instrument = None, nr_of_strings = None, nr_of_courses = None
+.. function:: get_tunings(instrument, nr_of_strings, nr_of_courses)  * *Default values*: instrument = None, nr_of_strings = None, nr_of_courses = None
 Search tunings on instrument, strings, courses or a combination.
 
 The instrument is actually treated like a case-insensitive prefix. So

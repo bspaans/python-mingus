@@ -74,9 +74,11 @@ enables simple calculations.</p>
 <hr class="docutils" />
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="augment-note">
-<h3>augment(note)<a class="headerlink" href="#augment-note" title="Permalink to this headline">¶</a></h3>
-<p>Augment a given note.</p>
+<dl class="function">
+<dt>
+<code class="descname">augment(note)Augment a given note.</code></dt>
+<dd></dd></dl>
+
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">augment</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
 <span class="go">&#39;C#&#39;</span>
@@ -84,10 +86,11 @@ enables simple calculations.</p>
 <span class="go">&#39;C&#39;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="diminish-note">
-<h3>diminish(note)<a class="headerlink" href="#diminish-note" title="Permalink to this headline">¶</a></h3>
-<p>Diminish a given note.</p>
+<dl class="function">
+<dt>
+<code class="descname">diminish(note)Diminish a given note.</code></dt>
+<dd></dd></dl>
+
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diminish</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
 <span class="go">&#39;Cb&#39;</span>
@@ -95,14 +98,11 @@ enables simple calculations.</p>
 <span class="go">&#39;C&#39;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="int-to-note-note-int-accidentals">
-<h3>int_to_note(note_int, accidentals)<a class="headerlink" href="#int-to-note-note-int-accidentals" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Default values</em>: accidentals = &#8216;#&#8217;</li>
-</ul>
-</div></blockquote>
+<dl class="function">
+<dt>
+<code class="descname">int_to_note(note_int, accidentals)  * *Default values*: accidentals = '#'</code></dt>
+<dd></dd></dl>
+
 <p>Convert integers in the range of 0-11 to notes in the form of C or C#
 or Db.</p>
 <p>Throw a RangeError exception if the note_int is not in the range 0-11.</p>
@@ -116,33 +116,38 @@ or Db.</p>
 <span class="go">&#39;Eb&#39;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="is-enharmonic-note1-note2">
-<h3>is_enharmonic(note1, note2)<a class="headerlink" href="#is-enharmonic-note1-note2" title="Permalink to this headline">¶</a></h3>
-<p>Test whether note1 and note2 are enharmonic, i.e. they sound the same.</p>
-</div>
-<div class="section" id="is-valid-note-note">
-<h3>is_valid_note(note)<a class="headerlink" href="#is-valid-note-note" title="Permalink to this headline">¶</a></h3>
-<p>Return True if note is in a recognised format. False if not.</p>
-</div>
-<div class="section" id="note-to-int-note">
-<h3>note_to_int(note)<a class="headerlink" href="#note-to-int-note" title="Permalink to this headline">¶</a></h3>
-<p>Convert notes in the form of C, C#, Cb, C##, etc. to an integer in the
-range of 0-11.</p>
+<dl class="function">
+<dt>
+<code class="descname">is_enharmonic(note1, note2)Test whether note1 and note2 are enharmonic, i.e. they sound the same.</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">is_valid_note(note)Return True if note is in a recognised format. False if not.</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">note_to_int(note)Convert notes in the form of C, C#, Cb, C##, etc. to an integer in the</code></dt>
+<dd></dd></dl>
+
+<p>range of 0-11.</p>
 <p>Throw a NoteFormatError exception if the note format is not recognised.</p>
-</div>
-<div class="section" id="reduce-accidentals-note">
-<h3>reduce_accidentals(note)<a class="headerlink" href="#reduce-accidentals-note" title="Permalink to this headline">¶</a></h3>
-<p>Reduce any extra accidentals to proper notes.</p>
+<dl class="function">
+<dt>
+<code class="descname">reduce_accidentals(note)Reduce any extra accidentals to proper notes.</code></dt>
+<dd></dd></dl>
+
 <p>Example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">reduce_accidentals</span><span class="p">(</span><span class="s">&#39;C####&#39;</span><span class="p">)</span>
 <span class="go">&#39;E&#39;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="remove-redundant-accidentals-note">
-<h3>remove_redundant_accidentals(note)<a class="headerlink" href="#remove-redundant-accidentals-note" title="Permalink to this headline">¶</a></h3>
-<p>Remove redundant sharps and flats from the given note.</p>
+<dl class="function">
+<dt>
+<code class="descname">remove_redundant_accidentals(note)Remove redundant sharps and flats from the given note.</code></dt>
+<dd></dd></dl>
+
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">remove_redundant_accidentals</span><span class="p">(</span><span class="s">&#39;C##b&#39;</span><span class="p">)</span>
 <span class="go">&#39;C#&#39;</span>
@@ -152,7 +157,6 @@ range of 0-11.</p>
 </div>
 <hr class="docutils" />
 <p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
-</div>
 </div>
 </div>
 
@@ -169,17 +173,7 @@ range of 0-11.</p>
 <li><a class="reference internal" href="#fifths">fifths</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#functions">Functions</a><ul>
-<li><a class="reference internal" href="#augment-note">augment(note)</a></li>
-<li><a class="reference internal" href="#diminish-note">diminish(note)</a></li>
-<li><a class="reference internal" href="#int-to-note-note-int-accidentals">int_to_note(note_int, accidentals)</a></li>
-<li><a class="reference internal" href="#is-enharmonic-note1-note2">is_enharmonic(note1, note2)</a></li>
-<li><a class="reference internal" href="#is-valid-note-note">is_valid_note(note)</a></li>
-<li><a class="reference internal" href="#note-to-int-note">note_to_int(note)</a></li>
-<li><a class="reference internal" href="#reduce-accidentals-note">reduce_accidentals(note)</a></li>
-<li><a class="reference internal" href="#remove-redundant-accidentals-note">remove_redundant_accidentals(note)</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
 </ul>
 </li>
 </ul>

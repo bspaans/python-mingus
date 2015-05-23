@@ -7,10 +7,7 @@ Read a MIDI file and convert it into mingus.containers objects.
 Functions
 ---------
 
-MIDI_to_Composition(file)
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Convert a MIDI file to a mingus.containers.Composition and return it
+.. function:: MIDI_to_Composition(file)Convert a MIDI file to a mingus.containers.Composition and return it
 in a tuple with the last used tempo in beats per minute (this will
 change in the future).
 

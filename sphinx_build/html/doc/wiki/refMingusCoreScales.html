@@ -113,9 +113,11 @@ little overview:</p>
 <hr class="docutils" />
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="augment-note">
-<h3>augment(note)<a class="headerlink" href="#augment-note" title="Permalink to this headline">¶</a></h3>
-<p>Augment a given note.</p>
+<dl class="function">
+<dt>
+<code class="descname">augment(note)Augment a given note.</code></dt>
+<dd></dd></dl>
+
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">augment</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
 <span class="go">&#39;C#&#39;</span>
@@ -123,20 +125,22 @@ little overview:</p>
 <span class="go">&#39;C&#39;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="determine-notes">
-<h3>determine(notes)<a class="headerlink" href="#determine-notes" title="Permalink to this headline">¶</a></h3>
-<p>Determine the scales containing the notes.</p>
+<dl class="function">
+<dt>
+<code class="descname">determine(notes)Determine the scales containing the notes.</code></dt>
+<dd></dd></dl>
+
 <p>All major and minor scales are recognized.</p>
 <p>Example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">([</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;Bb&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;F#&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">])</span>
 <span class="go">[&#39;G melodic minor&#39;, &#39;G Bachian&#39;, &#39;D harmonic major&#39;]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="diminish-note">
-<h3>diminish(note)<a class="headerlink" href="#diminish-note" title="Permalink to this headline">¶</a></h3>
-<p>Diminish a given note.</p>
+<dl class="function">
+<dt>
+<code class="descname">diminish(note)Diminish a given note.</code></dt>
+<dd></dd></dl>
+
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diminish</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
 <span class="go">&#39;Cb&#39;</span>
@@ -144,14 +148,11 @@ little overview:</p>
 <span class="go">&#39;C&#39;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="get-notes-key">
-<h3>get_notes(key)<a class="headerlink" href="#get-notes-key" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Default values</em>: key = &#8216;C&#8217;</li>
-</ul>
-</div></blockquote>
+<dl class="function">
+<dt>
+<code class="descname">get_notes(key)  * *Default values*: key = 'C'</code></dt>
+<dd></dd></dl>
+
 <p>Return an ordered list of the notes in this natural key.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">get_notes</span><span class="p">(</span><span class="s">&#39;F&#39;</span><span class="p">)</span>
@@ -160,10 +161,11 @@ little overview:</p>
 <span class="go">[&#39;C&#39;, &#39;D&#39;, &#39;Eb&#39;, &#39;F&#39;, &#39;G&#39;, &#39;Ab&#39;, &#39;Bb&#39;]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="reduce-accidentals-note">
-<h3>reduce_accidentals(note)<a class="headerlink" href="#reduce-accidentals-note" title="Permalink to this headline">¶</a></h3>
-<p>Reduce any extra accidentals to proper notes.</p>
+<dl class="function">
+<dt>
+<code class="descname">reduce_accidentals(note)Reduce any extra accidentals to proper notes.</code></dt>
+<dd></dd></dl>
+
 <p>Example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">reduce_accidentals</span><span class="p">(</span><span class="s">&#39;C####&#39;</span><span class="p">)</span>
 <span class="go">&#39;E&#39;</span>
@@ -171,7 +173,6 @@ little overview:</p>
 </div>
 <hr class="docutils" />
 <p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
-</div>
 </div>
 </div>
 
@@ -188,14 +189,7 @@ little overview:</p>
 <li><a class="reference internal" href="#keys">keys</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#functions">Functions</a><ul>
-<li><a class="reference internal" href="#augment-note">augment(note)</a></li>
-<li><a class="reference internal" href="#determine-notes">determine(notes)</a></li>
-<li><a class="reference internal" href="#diminish-note">diminish(note)</a></li>
-<li><a class="reference internal" href="#get-notes-key">get_notes(key)</a></li>
-<li><a class="reference internal" href="#reduce-accidentals-note">reduce_accidentals(note)</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
 </ul>
 </li>
 </ul>

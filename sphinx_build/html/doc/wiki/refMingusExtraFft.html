@@ -69,18 +69,15 @@
 <hr class="docutils" />
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="fft-a-n-axis">
-<h3>_fft(a, n, axis)<a class="headerlink" href="#fft-a-n-axis" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Default values</em>: n = None, axis = -1</li>
-</ul>
-</div></blockquote>
+<dl class="function">
+<dt>
+<code class="descname">_fft(a, n, axis)  * *Default values*: n = None, axis = -1</code></dt>
+<dd></dd></dl>
+
 <p>Compute the one-dimensional discrete Fourier Transform.</p>
 <p>This function computes the one-dimensional <em>n</em>-point discrete Fourier
 Transform (DFT) with the efficient Fast Fourier Transform (FFT)
 algorithm [CT].</p>
-</div>
 </div>
 <div class="section" id="parameters">
 <h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
@@ -166,68 +163,59 @@ machine calculation of complex Fourier series,&#8221; <em>Math. Comput.</em>
 <p>In this example, real input has an FFT which is Hermitian, i.e., symmetric
 in the real part and anti-symmetric in the imaginary part, as described in
 the <cite>numpy.fft</cite> documentation.</p>
-<div class="section" id="find-log-index-f">
-<h3>_find_log_index(f)<a class="headerlink" href="#find-log-index-f" title="Permalink to this headline">¶</a></h3>
-<p>Look up the index of the frequency f in the frequency table.</p>
+<dl class="function">
+<dt>
+<code class="descname">_find_log_index(f)Look up the index of the frequency f in the frequency table.</code></dt>
+<dd></dd></dl>
+
 <p>Return the nearest index.</p>
-</div>
-<div class="section" id="analyze-chunks-data-freq-bits-chunksize">
-<h3>analyze_chunks(data, freq, bits, chunksize)<a class="headerlink" href="#analyze-chunks-data-freq-bits-chunksize" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Default values</em>: chunksize = 512</li>
-</ul>
-</div></blockquote>
+<dl class="function">
+<dt>
+<code class="descname">analyze_chunks(data, freq, bits, chunksize)  * *Default values*: chunksize = 512</code></dt>
+<dd></dd></dl>
+
 <p>Cut the one channel data in chunks and analyzes them separately.</p>
 <p>Making the chunksize a power of two works fastest.</p>
-</div>
-<div class="section" id="data-from-file-file">
-<h3>data_from_file(file)<a class="headerlink" href="#data-from-file-file" title="Permalink to this headline">¶</a></h3>
-<p>Return (first channel data, sample frequency, sample width) from a .wav
-file.</p>
-</div>
-<div class="section" id="find-note-data-freq-bits">
-<h3>find_Note(data, freq, bits)<a class="headerlink" href="#find-note-data-freq-bits" title="Permalink to this headline">¶</a></h3>
-<p>Get the frequencies, feed them to find_notes and the return the Note
-with the highest amplitude.</p>
-</div>
-<div class="section" id="find-frequencies-data-freq-bits">
-<h3>find_frequencies(data, freq, bits)<a class="headerlink" href="#find-frequencies-data-freq-bits" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Default values</em>: freq = 44100, bits = 16</li>
-</ul>
-</div></blockquote>
+<dl class="function">
+<dt>
+<code class="descname">data_from_file(file)Return (first channel data, sample frequency, sample width) from a .wav</code></dt>
+<dd></dd></dl>
+
+<p>file.</p>
+<dl class="function">
+<dt>
+<code class="descname">find_Note(data, freq, bits)Get the frequencies, feed them to find_notes and the return the Note</code></dt>
+<dd></dd></dl>
+
+<p>with the highest amplitude.</p>
+<dl class="function">
+<dt>
+<code class="descname">find_frequencies(data, freq, bits)  * *Default values*: freq = 44100, bits = 16</code></dt>
+<dd></dd></dl>
+
 <p>Convert audio data into a frequency-amplitude table using fast fourier
 transformation.</p>
 <p>Return a list of tuples (frequency, amplitude).</p>
 <p>Data should only contain one channel of audio.</p>
-</div>
-<div class="section" id="find-melody-file-chunksize">
-<h3>find_melody(file, chunksize)<a class="headerlink" href="#find-melody-file-chunksize" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Default values</em>: file = &#8216;440_480_clean.wav&#8217;, chunksize = 512</li>
-</ul>
-</div></blockquote>
+<dl class="function">
+<dt>
+<code class="descname">find_melody(file, chunksize)  * *Default values*: file = '440_480_clean.wav', chunksize = 512</code></dt>
+<dd></dd></dl>
+
 <p>Cut the sample into chunks and analyze each chunk.</p>
 <p>Return a list [(Note, chunks)] where chunks is the number of chunks
 where that note is the most dominant.</p>
 <p>If two consequent chunks turn out to return the same Note they are
 grouped together.</p>
 <p>This is an experimental function.</p>
-</div>
-<div class="section" id="find-notes-freqtable-maxnote">
-<h3>find_notes(freqTable, maxNote)<a class="headerlink" href="#find-notes-freqtable-maxnote" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Default values</em>: maxNote = 100</li>
-</ul>
-</div></blockquote>
+<dl class="function">
+<dt>
+<code class="descname">find_notes(freqTable, maxNote)  * *Default values*: maxNote = 100</code></dt>
+<dd></dd></dl>
+
 <p>Convert the (frequencies, amplitude) list to a (Note, amplitude) list.</p>
 <hr class="docutils" />
 <p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
-</div>
 </div>
 </div>
 
@@ -244,26 +232,14 @@ grouped together.</p>
 <li><a class="reference internal" href="#x">x</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#functions">Functions</a><ul>
-<li><a class="reference internal" href="#fft-a-n-axis">_fft(a, n, axis)</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
 <li><a class="reference internal" href="#parameters">Parameters</a></li>
 <li><a class="reference internal" href="#returns">Returns</a></li>
 <li><a class="reference internal" href="#raises">Raises</a></li>
 <li><a class="reference internal" href="#see-also">See Also</a></li>
 <li><a class="reference internal" href="#notes">Notes</a></li>
 <li><a class="reference internal" href="#references">References</a></li>
-<li><a class="reference internal" href="#examples">Examples</a><ul>
-<li><a class="reference internal" href="#find-log-index-f">_find_log_index(f)</a></li>
-<li><a class="reference internal" href="#analyze-chunks-data-freq-bits-chunksize">analyze_chunks(data, freq, bits, chunksize)</a></li>
-<li><a class="reference internal" href="#data-from-file-file">data_from_file(file)</a></li>
-<li><a class="reference internal" href="#find-note-data-freq-bits">find_Note(data, freq, bits)</a></li>
-<li><a class="reference internal" href="#find-frequencies-data-freq-bits">find_frequencies(data, freq, bits)</a></li>
-<li><a class="reference internal" href="#find-melody-file-chunksize">find_melody(file, chunksize)</a></li>
-<li><a class="reference internal" href="#find-notes-freqtable-maxnote">find_notes(freqTable, maxNote)</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
 </ul>
 </li>
 </ul>

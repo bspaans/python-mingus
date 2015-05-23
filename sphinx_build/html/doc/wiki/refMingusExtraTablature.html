@@ -63,7 +63,7 @@
 <blockquote>
 <div><ul class="simple">
 <li><em>Type</em>: mingus.extra.tunings.StringTuning</li>
-<li><em>Value</em>: <cite>&lt;mingus.extra.tunings.StringTuning object at 0x7f6798f57e90&gt;</cite></li>
+<li><em>Value</em>: <cite>&lt;mingus.extra.tunings.StringTuning object at 0x7f9f3f835e90&gt;</cite></li>
 </ul>
 </div></blockquote>
 </div>
@@ -71,71 +71,59 @@
 <hr class="docutils" />
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="get-qsize-tuning-width">
-<h3>_get_qsize(tuning, width)<a class="headerlink" href="#get-qsize-tuning-width" title="Permalink to this headline">¶</a></h3>
-<p>Return a reasonable quarter note size for &#8216;tuning&#8217; and &#8216;width&#8217;.</p>
-</div>
-<div class="section" id="get-width-maxwidth">
-<h3>_get_width(maxwidth)<a class="headerlink" href="#get-width-maxwidth" title="Permalink to this headline">¶</a></h3>
-<p>Return the width of a single bar, when width of the page is given.</p>
-</div>
-<div class="section" id="add-headers-width-title-subtitle-author-email-description-tunings">
-<h3>add_headers(width, title, subtitle, author, email, description, tunings)<a class="headerlink" href="#add-headers-width-title-subtitle-author-email-description-tunings" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Default values</em>: width = 80, title = &#8216;Untitled&#8217;, subtitle = &#8216;&#8217;, author = &#8216;&#8217;, email = &#8216;&#8217;, description = &#8216;&#8217;, tunings = []</li>
-</ul>
-</div></blockquote>
+<dl class="function">
+<dt>
+<code class="descname">_get_qsize(tuning, width)Return a reasonable quarter note size for 'tuning' and 'width'.</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">_get_width(maxwidth)Return the width of a single bar, when width of the page is given.</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">add_headers(width, title, subtitle, author, email, description, tunings)  * *Default values*: width = 80, title = 'Untitled', subtitle = '', author = '', email = '', description = '', tunings = []</code></dt>
+<dd></dd></dl>
+
 <p>Create a nice header in the form of a list of strings using the
 information that has been filled in.</p>
 <p>All arguments except &#8216;width&#8217; and &#8216;tunings&#8217; should be strings. &#8216;width&#8217;
 should be an integer and &#8216;tunings&#8217; a list of tunings representing the
 instruments.</p>
-</div>
-<div class="section" id="begin-track-tuning-padding">
-<h3>begin_track(tuning, padding)<a class="headerlink" href="#begin-track-tuning-padding" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Default values</em>: padding = 2</li>
-</ul>
-</div></blockquote>
+<dl class="function">
+<dt>
+<code class="descname">begin_track(tuning, padding)  * *Default values*: padding = 2</code></dt>
+<dd></dd></dl>
+
 <p>Helper function that builds the first few characters of every bar.</p>
-</div>
-<div class="section" id="from-bar-bar-width-tuning-collapse">
-<h3>from_Bar(bar, width, tuning, collapse)<a class="headerlink" href="#from-bar-bar-width-tuning-collapse" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Default values</em>: width = 40, tuning = None, collapse = True</li>
-</ul>
-</div></blockquote>
+<dl class="function">
+<dt>
+<code class="descname">from_Bar(bar, width, tuning, collapse)  * *Default values*: width = 40, tuning = None, collapse = True</code></dt>
+<dd></dd></dl>
+
 <p>Convert a mingus.containers.Bar object to ASCII tablature.</p>
 <p>Throw a FingerError if no playable fingering can be found.</p>
 <p>&#8216;tuning&#8217; should be a StringTuning object or None for the default tuning.
 If &#8216;collapse&#8217; is False this will return a list of lines, if it&#8217;s True
 all lines will be concatenated with a newline symbol.</p>
 <p>Use &#8216;string&#8217; and &#8216;fret&#8217; attributes on Notes to force certain fingerings.</p>
-</div>
-<div class="section" id="from-composition-composition-width">
-<h3>from_Composition(composition, width)<a class="headerlink" href="#from-composition-composition-width" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Default values</em>: width = 80</li>
-</ul>
-</div></blockquote>
+<dl class="function">
+<dt>
+<code class="descname">from_Composition(composition, width)  * *Default values*: width = 80</code></dt>
+<dd></dd></dl>
+
 <p>Convert a mingus.containers.Composition to an ASCII tablature string.</p>
 <p>Automatically add an header based on the title, subtitle, author, e-mail
 and description attributes. An extra description of the piece can also
 be given.</p>
 <p>Tunings can be set by using the Track.instrument.tuning or Track.tuning
 attribute.</p>
-</div>
-<div class="section" id="from-note-note-width-tuning">
-<h3>from_Note(note, width, tuning)<a class="headerlink" href="#from-note-note-width-tuning" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Default values</em>: width = 80, tuning = None</li>
-</ul>
-</div></blockquote>
+<dl class="function">
+<dt>
+<code class="descname">from_Note(note, width, tuning)  * *Default values*: width = 80, tuning = None</code></dt>
+<dd></dd></dl>
+
 <p>Return a string made out of ASCII tablature representing a Note object
 or note string.</p>
 <p>Throw a RangeError if a suitable fret can&#8217;t be found.</p>
@@ -143,14 +131,11 @@ or note string.</p>
 <p>To force a certain fingering you can use a &#8216;string&#8217; and &#8216;fret&#8217; attribute
 on the Note. If the fingering is valid, it will get used instead of the
 default one.</p>
-</div>
-<div class="section" id="from-notecontainer-notes-width-tuning">
-<h3>from_NoteContainer(notes, width, tuning)<a class="headerlink" href="#from-notecontainer-notes-width-tuning" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Default values</em>: width = 80, tuning = None</li>
-</ul>
-</div></blockquote>
+<dl class="function">
+<dt>
+<code class="descname">from_NoteContainer(notes, width, tuning)  * *Default values*: width = 80, tuning = None</code></dt>
+<dd></dd></dl>
+
 <p>Return a string made out of ASCII tablature representing a
 NoteContainer object or list of note strings / Note objects.</p>
 <p>Throw a FingerError if no playable fingering can be found.</p>
@@ -158,26 +143,20 @@ NoteContainer object or list of note strings / Note objects.</p>
 <p>To force a certain fingering you can use a &#8216;string&#8217; and &#8216;fret&#8217; attribute
 on one or more of the Notes. If the fingering is valid, it will get used
 instead of the default one.</p>
-</div>
-<div class="section" id="from-suite-suite-maxwidth">
-<h3>from_Suite(suite, maxwidth)<a class="headerlink" href="#from-suite-suite-maxwidth" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Default values</em>: maxwidth = 80</li>
-</ul>
-</div></blockquote>
+<dl class="function">
+<dt>
+<code class="descname">from_Suite(suite, maxwidth)  * *Default values*: maxwidth = 80</code></dt>
+<dd></dd></dl>
+
 <p>Convert a mingus.containers.Suite to an ASCII tablature string, complete
 with headers.</p>
 <p>This function makes use of the Suite&#8217;s title, subtitle, author, email
 and description attributes.</p>
-</div>
-<div class="section" id="from-track-track-maxwidth-tuning">
-<h3>from_Track(track, maxwidth, tuning)<a class="headerlink" href="#from-track-track-maxwidth-tuning" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Default values</em>: maxwidth = 80, tuning = None</li>
-</ul>
-</div></blockquote>
+<dl class="function">
+<dt>
+<code class="descname">from_Track(track, maxwidth, tuning)  * *Default values*: maxwidth = 80, tuning = None</code></dt>
+<dd></dd></dl>
+
 <p>Convert a mingus.containers.Track object to an ASCII tablature string.</p>
 <p>&#8216;tuning&#8217; should be set to a StringTuning object or to None to use the
 Track&#8217;s tuning (or alternatively the default if the Track hasn&#8217;t got its
@@ -185,7 +164,6 @@ own tuning).</p>
 <p>&#8216;string&#8217; and &#8216;fret&#8217; attributes on Notes are taken into account.</p>
 <hr class="docutils" />
 <p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
-</div>
 </div>
 </div>
 
@@ -202,19 +180,7 @@ own tuning).</p>
 <li><a class="reference internal" href="#default-tuning">default_tuning</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#functions">Functions</a><ul>
-<li><a class="reference internal" href="#get-qsize-tuning-width">_get_qsize(tuning, width)</a></li>
-<li><a class="reference internal" href="#get-width-maxwidth">_get_width(maxwidth)</a></li>
-<li><a class="reference internal" href="#add-headers-width-title-subtitle-author-email-description-tunings">add_headers(width, title, subtitle, author, email, description, tunings)</a></li>
-<li><a class="reference internal" href="#begin-track-tuning-padding">begin_track(tuning, padding)</a></li>
-<li><a class="reference internal" href="#from-bar-bar-width-tuning-collapse">from_Bar(bar, width, tuning, collapse)</a></li>
-<li><a class="reference internal" href="#from-composition-composition-width">from_Composition(composition, width)</a></li>
-<li><a class="reference internal" href="#from-note-note-width-tuning">from_Note(note, width, tuning)</a></li>
-<li><a class="reference internal" href="#from-notecontainer-notes-width-tuning">from_NoteContainer(notes, width, tuning)</a></li>
-<li><a class="reference internal" href="#from-suite-suite-maxwidth">from_Suite(suite, maxwidth)</a></li>
-<li><a class="reference internal" href="#from-track-track-maxwidth-tuning">from_Track(track, maxwidth, tuning)</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
 </ul>
 </li>
 </ul>

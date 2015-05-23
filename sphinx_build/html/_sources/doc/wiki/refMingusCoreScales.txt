@@ -50,10 +50,7 @@ keys
 Functions
 ---------
 
-augment(note)
-^^^^^^^^^^^^^
-
-Augment a given note.
+.. function:: augment(note)Augment a given note.
 
 Examples:
 
@@ -62,10 +59,7 @@ Examples:
 >>> augment('Cb')
 'C'
 
-determine(notes)
-^^^^^^^^^^^^^^^^
-
-Determine the scales containing the notes.
+.. function:: determine(notes)Determine the scales containing the notes.
 
 All major and minor scales are recognized.
 
@@ -74,10 +68,7 @@ Example:
 >>> determine(['A', 'Bb', 'E', 'F#', 'G'])
 ['G melodic minor', 'G Bachian', 'D harmonic major']
 
-diminish(note)
-^^^^^^^^^^^^^^
-
-Diminish a given note.
+.. function:: diminish(note)Diminish a given note.
 
 Examples:
 
@@ -86,10 +77,7 @@ Examples:
 >>> diminish('C#')
 'C'
 
-get_notes(key)
-^^^^^^^^^^^^^^
-
-  * *Default values*: key = 'C'
+.. function:: get_notes(key)  * *Default values*: key = 'C'
 Return an ordered list of the notes in this natural key.
 
 Examples:
@@ -99,10 +87,7 @@ Examples:
 >>> get_notes('c')
 ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb']
 
-reduce_accidentals(note)
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-Reduce any extra accidentals to proper notes.
+.. function:: reduce_accidentals(note)Reduce any extra accidentals to proper notes.
 
 Example:
 

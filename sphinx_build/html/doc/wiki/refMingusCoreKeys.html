@@ -100,45 +100,34 @@
 <hr class="docutils" />
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="get-key-accidentals">
-<h3>get_key(accidentals)<a class="headerlink" href="#get-key-accidentals" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Default values</em>: accidentals = 0</li>
-</ul>
-</div></blockquote>
+<dl class="function">
+<dt>
+<code class="descname">get_key(accidentals)  * *Default values*: accidentals = 0</code></dt>
+<dd></dd></dl>
+
 <p>Return the key corrisponding to accidentals.</p>
 <p>Return the tuple containing the major key corrensponding to the
 accidentals put as input, and his relative minor; negative numbers for
 flats, positive numbers for sharps.</p>
-</div>
-<div class="section" id="get-key-signature-key">
-<h3>get_key_signature(key)<a class="headerlink" href="#get-key-signature-key" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Default values</em>: key = &#8216;C&#8217;</li>
-</ul>
-</div></blockquote>
+<dl class="function">
+<dt>
+<code class="descname">get_key_signature(key)  * *Default values*: key = 'C'</code></dt>
+<dd></dd></dl>
+
 <p>Return the key signature.</p>
 <p>0 for C or a, negative numbers for flat key signatures, positive numbers
 for sharp key signatures.</p>
-</div>
-<div class="section" id="get-key-signature-accidentals-key">
-<h3>get_key_signature_accidentals(key)<a class="headerlink" href="#get-key-signature-accidentals-key" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Default values</em>: key = &#8216;C&#8217;</li>
-</ul>
-</div></blockquote>
+<dl class="function">
+<dt>
+<code class="descname">get_key_signature_accidentals(key)  * *Default values*: key = 'C'</code></dt>
+<dd></dd></dl>
+
 <p>Return the list of accidentals present into the key signature.</p>
-</div>
-<div class="section" id="get-notes-key">
-<h3>get_notes(key)<a class="headerlink" href="#get-notes-key" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Default values</em>: key = &#8216;C&#8217;</li>
-</ul>
-</div></blockquote>
+<dl class="function">
+<dt>
+<code class="descname">get_notes(key)  * *Default values*: key = 'C'</code></dt>
+<dd></dd></dl>
+
 <p>Return an ordered list of the notes in this natural key.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">get_notes</span><span class="p">(</span><span class="s">&#39;F&#39;</span><span class="p">)</span>
@@ -147,23 +136,26 @@ for sharp key signatures.</p>
 <span class="go">[&#39;C&#39;, &#39;D&#39;, &#39;Eb&#39;, &#39;F&#39;, &#39;G&#39;, &#39;Ab&#39;, &#39;Bb&#39;]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="is-valid-key-key">
-<h3>is_valid_key(key)<a class="headerlink" href="#is-valid-key-key" title="Permalink to this headline">¶</a></h3>
-<p>Return True if key is in a recognized format. False if not.</p>
-</div>
-<div class="section" id="relative-major-key">
-<h3>relative_major(key)<a class="headerlink" href="#relative-major-key" title="Permalink to this headline">¶</a></h3>
-<p>Return the relative major of a minor key.</p>
+<dl class="function">
+<dt>
+<code class="descname">is_valid_key(key)Return True if key is in a recognized format. False if not.</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">relative_major(key)Return the relative major of a minor key.</code></dt>
+<dd></dd></dl>
+
 <p>Example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">relative_major</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">)</span>
 <span class="go">&#39;C&#39;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="relative-minor-key">
-<h3>relative_minor(key)<a class="headerlink" href="#relative-minor-key" title="Permalink to this headline">¶</a></h3>
-<p>Return the relative minor of a major key.</p>
+<dl class="function">
+<dt>
+<code class="descname">relative_minor(key)Return the relative minor of a major key.</code></dt>
+<dd></dd></dl>
+
 <p>Example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">relative_minor</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
 <span class="go">&#39;a&#39;</span>
@@ -171,7 +163,6 @@ for sharp key signatures.</p>
 </div>
 <hr class="docutils" />
 <p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
-</div>
 </div>
 </div>
 
@@ -192,16 +183,7 @@ for sharp key signatures.</p>
 <li><a class="reference internal" href="#minor-keys">minor_keys</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#functions">Functions</a><ul>
-<li><a class="reference internal" href="#get-key-accidentals">get_key(accidentals)</a></li>
-<li><a class="reference internal" href="#get-key-signature-key">get_key_signature(key)</a></li>
-<li><a class="reference internal" href="#get-key-signature-accidentals-key">get_key_signature_accidentals(key)</a></li>
-<li><a class="reference internal" href="#get-notes-key">get_notes(key)</a></li>
-<li><a class="reference internal" href="#is-valid-key-key">is_valid_key(key)</a></li>
-<li><a class="reference internal" href="#relative-major-key">relative_major(key)</a></li>
-<li><a class="reference internal" href="#relative-minor-key">relative_minor(key)</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
 </ul>
 </li>
 </ul>

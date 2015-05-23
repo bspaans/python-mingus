@@ -101,7 +101,7 @@ soundcard yourself.</p>
 <blockquote>
 <div><ul class="simple">
 <li><em>Type</em>: ctypes.LibraryLoader</li>
-<li><em>Value</em>: <cite>&lt;ctypes.LibraryLoader object at 0x7f6796c978d0&gt;</cite></li>
+<li><em>Value</em>: <cite>&lt;ctypes.LibraryLoader object at 0x7f9f3d5758d0&gt;</cite></li>
 </ul>
 </div></blockquote>
 </div>
@@ -119,7 +119,7 @@ soundcard yourself.</p>
 <blockquote>
 <div><ul class="simple">
 <li><em>Type</em>: ctypes.LibraryLoader</li>
-<li><em>Value</em>: <cite>&lt;ctypes.LibraryLoader object at 0x7f6796c97910&gt;</cite></li>
+<li><em>Value</em>: <cite>&lt;ctypes.LibraryLoader object at 0x7f9f3d575910&gt;</cite></li>
 </ul>
 </div></blockquote>
 </div>
@@ -128,7 +128,7 @@ soundcard yourself.</p>
 <blockquote>
 <div><ul class="simple">
 <li><em>Type</em>: ctypes.PyDLL</li>
-<li><em>Value</em>: <cite>&lt;PyDLL &#8216;None&#8217;, handle 7f679a3b5188 at 7f6796c97950&gt;</cite></li>
+<li><em>Value</em>: <cite>&lt;PyDLL &#8216;None&#8217;, handle 7f9f40c93188 at 7f9f3d575950&gt;</cite></li>
 </ul>
 </div></blockquote>
 </div>
@@ -136,15 +136,13 @@ soundcard yourself.</p>
 <hr class="docutils" />
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="array-typ-len">
-<h3>ARRAY(typ, len)<a class="headerlink" href="#array-typ-len" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="cfunctype-restype">
-<h3>CFUNCTYPE(restype)<a class="headerlink" href="#cfunctype-restype" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>CFUNCTYPE(restype, <a href="#id1"><span class="problematic" id="id2">*</span></a>argtypes,</dt>
-<dd>use_errno=False, use_last_error=False) -&gt; function prototype.</dd>
-</dl>
+<dl class="function">
+<dt>
+<code class="descname">ARRAY(typ, len).. function:: CFUNCTYPE(restype)CFUNCTYPE(restype, *argtypes,</code></dt>
+<dt>
+<code class="descname">use_errno=False, use_last_error=False) -&gt; function prototype.</code></dt>
+<dd></dd></dl>
+
 <p>restype: the result type
 argtypes: a sequence specifying the argument types</p>
 <p>The function prototype can be called in different ways to create a
@@ -154,86 +152,61 @@ prototype(callable) -&gt; create and return a C callable function from callable
 prototype(integer index, method name[, paramflags]) -&gt; foreign function calling a COM method
 prototype((ordinal number, dll object)[, paramflags]) -&gt; foreign function exported by ordinal
 prototype((function name, dll object)[, paramflags]) -&gt; foreign function exported by name</p>
-</div>
-<div class="section" id="pyfunctype-restype">
-<h3>PYFUNCTYPE(restype)<a class="headerlink" href="#pyfunctype-restype" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="setpointertype-pointer-cls">
-<h3>SetPointerType(pointer, cls)<a class="headerlink" href="#setpointertype-pointer-cls" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="c-buffer-init-size">
-<h3>c_buffer(init, size)<a class="headerlink" href="#c-buffer-init-size" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Default values</em>: size = None</li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="cast-obj-typ">
-<h3>cast(obj, typ)<a class="headerlink" href="#cast-obj-typ" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="cfunc-name-result">
-<h3>cfunc(name, result)<a class="headerlink" href="#cfunc-name-result" title="Permalink to this headline">¶</a></h3>
-<p>Build and apply a ctypes prototype complete with parameter flags.</p>
-</div>
-<div class="section" id="create-string-buffer-init-size">
-<h3>create_string_buffer(init, size)<a class="headerlink" href="#create-string-buffer-init-size" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Default values</em>: size = None</li>
-</ul>
-</div></blockquote>
+<dl class="function">
+<dt>
+<code class="descname">PYFUNCTYPE(restype).. function:: SetPointerType(pointer, cls).. function:: c_buffer(init, size)  * *Default values*: size = None</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">cast(obj, typ).. function:: cfunc(name, result)Build and apply a ctypes prototype complete with parameter flags.</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">create_string_buffer(init, size)  * *Default values*: size = None</code></dt>
+<dd></dd></dl>
+
 <p>create_string_buffer(aString) -&gt; character array
 create_string_buffer(anInteger) -&gt; character array
 create_string_buffer(aString, anInteger) -&gt; character array</p>
-</div>
-<div class="section" id="create-unicode-buffer-init-size">
-<h3>create_unicode_buffer(init, size)<a class="headerlink" href="#create-unicode-buffer-init-size" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Default values</em>: size = None</li>
-</ul>
-</div></blockquote>
+<dl class="function">
+<dt>
+<code class="descname">create_unicode_buffer(init, size)  * *Default values*: size = None</code></dt>
+<dd></dd></dl>
+
 <p>create_unicode_buffer(aString) -&gt; character array
 create_unicode_buffer(anInteger) -&gt; character array
 create_unicode_buffer(aString, anInteger) -&gt; character array</p>
-</div>
-<div class="section" id="find-library-name">
-<h3>find_library(name)<a class="headerlink" href="#find-library-name" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="fluid-synth-write-s16-stereo-synth-len">
-<h3>fluid_synth_write_s16_stereo(synth, len)<a class="headerlink" href="#fluid-synth-write-s16-stereo-synth-len" title="Permalink to this headline">¶</a></h3>
-<p>Return generated samples in stereo 16-bit format.</p>
+<dl class="function">
+<dt>
+<code class="descname">find_library(name).. function:: fluid_synth_write_s16_stereo(synth, len)Return generated samples in stereo 16-bit format.</code></dt>
+<dd></dd></dl>
+
 <p>Return value is a Numpy array of samples.</p>
-</div>
-<div class="section" id="raw-audio-string-data">
-<h3>raw_audio_string(data)<a class="headerlink" href="#raw-audio-string-data" title="Permalink to this headline">¶</a></h3>
-<p>Return a string of bytes to send to soundcard.</p>
+<dl class="function">
+<dt>
+<code class="descname">raw_audio_string(data)Return a string of bytes to send to soundcard.</code></dt>
+<dd></dd></dl>
+
 <p>Input is a numpy array of samples. Default output format is 16-bit
 signed (other formats not currently supported).</p>
-</div>
-<div class="section" id="string-at-ptr-size">
-<h3>string_at(ptr, size)<a class="headerlink" href="#string-at-ptr-size" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Default values</em>: size = -1</li>
-</ul>
-</div></blockquote>
+<dl class="function">
+<dt>
+<code class="descname">string_at(ptr, size)  * *Default values*: size = -1</code></dt>
+<dd></dd></dl>
+
 <p>string_at(addr[, size]) -&gt; string</p>
 <p>Return the string at addr.</p>
-</div>
-<div class="section" id="wstring-at-ptr-size">
-<h3>wstring_at(ptr, size)<a class="headerlink" href="#wstring-at-ptr-size" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Default values</em>: size = -1</li>
-</ul>
-</div></blockquote>
+<dl class="function">
+<dt>
+<code class="descname">wstring_at(ptr, size)  * *Default values*: size = -1</code></dt>
+<dd></dd></dl>
+
 <p>wstring_at(addr[, size]) -&gt; string</p>
 <p>Return the string at addr.</p>
 <hr class="docutils" />
 <p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
-</div>
 </div>
 </div>
 
@@ -257,23 +230,7 @@ signed (other formats not currently supported).</p>
 <li><a class="reference internal" href="#pythonapi">pythonapi</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#functions">Functions</a><ul>
-<li><a class="reference internal" href="#array-typ-len">ARRAY(typ, len)</a></li>
-<li><a class="reference internal" href="#cfunctype-restype">CFUNCTYPE(restype)</a></li>
-<li><a class="reference internal" href="#pyfunctype-restype">PYFUNCTYPE(restype)</a></li>
-<li><a class="reference internal" href="#setpointertype-pointer-cls">SetPointerType(pointer, cls)</a></li>
-<li><a class="reference internal" href="#c-buffer-init-size">c_buffer(init, size)</a></li>
-<li><a class="reference internal" href="#cast-obj-typ">cast(obj, typ)</a></li>
-<li><a class="reference internal" href="#cfunc-name-result">cfunc(name, result)</a></li>
-<li><a class="reference internal" href="#create-string-buffer-init-size">create_string_buffer(init, size)</a></li>
-<li><a class="reference internal" href="#create-unicode-buffer-init-size">create_unicode_buffer(init, size)</a></li>
-<li><a class="reference internal" href="#find-library-name">find_library(name)</a></li>
-<li><a class="reference internal" href="#fluid-synth-write-s16-stereo-synth-len">fluid_synth_write_s16_stereo(synth, len)</a></li>
-<li><a class="reference internal" href="#raw-audio-string-data">raw_audio_string(data)</a></li>
-<li><a class="reference internal" href="#string-at-ptr-size">string_at(ptr, size)</a></li>
-<li><a class="reference internal" href="#wstring-at-ptr-size">wstring_at(ptr, size)</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
 </ul>
 </li>
 </ul>

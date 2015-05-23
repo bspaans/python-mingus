@@ -59,9 +59,11 @@
 you search through them.</p>
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="add-tuning-instrument-description-tuning">
-<h3>add_tuning(instrument, description, tuning)<a class="headerlink" href="#add-tuning-instrument-description-tuning" title="Permalink to this headline">¶</a></h3>
-<p>Add a new tuning to the index.</p>
+<dl class="function">
+<dt>
+<code class="descname">add_tuning(instrument, description, tuning)Add a new tuning to the index.</code></dt>
+<dd></dd></dl>
+
 <p>The instrument and description parameters should be strings; tuning
 should be a list of strings or a list of lists to denote courses.</p>
 <p>Example:</p>
@@ -71,23 +73,22 @@ should be a list of strings or a list of lists to denote courses.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tuning</span><span class="o">.</span><span class="n">add_tuning</span><span class="p">(</span><span class="s">&#39;Guitar&#39;</span><span class="p">,</span> <span class="s">&#39;twelve string&#39;</span><span class="p">,</span> <span class="n">tw_string</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="fingers-needed-fingering">
-<h3>fingers_needed(fingering)<a class="headerlink" href="#fingers-needed-fingering" title="Permalink to this headline">¶</a></h3>
-<p>Return the number of fingers needed to play the given fingering.</p>
-</div>
-<div class="section" id="get-instruments">
-<h3>get_instruments()<a class="headerlink" href="#get-instruments" title="Permalink to this headline">¶</a></h3>
-<p>Return a sorted list of instruments that have string tunings defined
-for them.</p>
-</div>
-<div class="section" id="get-tuning-instrument-description-nr-of-strings-nr-of-courses">
-<h3>get_tuning(instrument, description, nr_of_strings, nr_of_courses)<a class="headerlink" href="#get-tuning-instrument-description-nr-of-strings-nr-of-courses" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Default values</em>: nr_of_strings = None, nr_of_courses = None</li>
-</ul>
-</div></blockquote>
+<dl class="function">
+<dt>
+<code class="descname">fingers_needed(fingering)Return the number of fingers needed to play the given fingering.</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">get_instruments()Return a sorted list of instruments that have string tunings defined</code></dt>
+<dd></dd></dl>
+
+<p>for them.</p>
+<dl class="function">
+<dt>
+<code class="descname">get_tuning(instrument, description, nr_of_strings, nr_of_courses)  * *Default values*: nr_of_strings = None, nr_of_courses = None</code></dt>
+<dd></dd></dl>
+
 <p>Get the first tuning that satisfies the constraints.</p>
 <p>The instrument and description arguments are treated like
 case-insensitive prefixes. So search for &#8216;bass&#8217; is the same is
@@ -97,14 +98,11 @@ case-insensitive prefixes. So search for &#8216;bass&#8217; is the same is
 <span class="go">&lt;tunings.StringTuning instance at 0x139ac20&gt;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="get-tunings-instrument-nr-of-strings-nr-of-courses">
-<h3>get_tunings(instrument, nr_of_strings, nr_of_courses)<a class="headerlink" href="#get-tunings-instrument-nr-of-strings-nr-of-courses" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><em>Default values</em>: instrument = None, nr_of_strings = None, nr_of_courses = None</li>
-</ul>
-</div></blockquote>
+<dl class="function">
+<dt>
+<code class="descname">get_tunings(instrument, nr_of_strings, nr_of_courses)  * *Default values*: instrument = None, nr_of_strings = None, nr_of_courses = None</code></dt>
+<dd></dd></dl>
+
 <p>Search tunings on instrument, strings, courses or a combination.</p>
 <p>The instrument is actually treated like a case-insensitive prefix. So
 asking for &#8216;bass&#8217; yields the same tunings as &#8216;Bass Guitar&#8217;; the string
@@ -118,7 +116,6 @@ asking for &#8216;bass&#8217; yields the same tunings as &#8216;Bass Guitar&#821
 <p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
 </div>
 </div>
-</div>
 
 
           </div>
@@ -129,14 +126,7 @@ asking for &#8216;bass&#8217; yields the same tunings as &#8216;Bass Guitar&#821
   <h3><a href="../../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">mingus.extra.tunings</a><ul>
-<li><a class="reference internal" href="#functions">Functions</a><ul>
-<li><a class="reference internal" href="#add-tuning-instrument-description-tuning">add_tuning(instrument, description, tuning)</a></li>
-<li><a class="reference internal" href="#fingers-needed-fingering">fingers_needed(fingering)</a></li>
-<li><a class="reference internal" href="#get-instruments">get_instruments()</a></li>
-<li><a class="reference internal" href="#get-tuning-instrument-description-nr-of-strings-nr-of-courses">get_tuning(instrument, description, nr_of_strings, nr_of_courses)</a></li>
-<li><a class="reference internal" href="#get-tunings-instrument-nr-of-strings-nr-of-courses">get_tunings(instrument, nr_of_strings, nr_of_courses)</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
 </ul>
 </li>
 </ul>

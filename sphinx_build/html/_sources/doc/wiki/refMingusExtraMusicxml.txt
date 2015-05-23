@@ -34,46 +34,13 @@ minor_keys
 Functions
 ---------
 
-_bar2musicxml(bar)
-^^^^^^^^^^^^^^^^^^
-
-_composition2musicxml(comp)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-_gcd(a, b, terms)
-^^^^^^^^^^^^^^^^^
-
-  * *Default values*: a = None, b = None, terms = None
+.. function:: _bar2musicxml(bar).. function:: _composition2musicxml(comp).. function:: _gcd(a, b, terms)  * *Default values*: a = None, b = None, terms = None
 Return greatest common divisor using Euclid's Algorithm.
 
-_lcm(a, b, terms)
-^^^^^^^^^^^^^^^^^
-
-  * *Default values*: a = None, b = None, terms = None
+.. function:: _lcm(a, b, terms)  * *Default values*: a = None, b = None, terms = None
 Return lowest common multiple.
 
-_note2musicxml(note)
-^^^^^^^^^^^^^^^^^^^^
-
-_track2musicxml(track)
-^^^^^^^^^^^^^^^^^^^^^^
-
-from_Bar(bar)
-^^^^^^^^^^^^^
-
-from_Composition(comp)
-^^^^^^^^^^^^^^^^^^^^^^
-
-from_Note(note)
-^^^^^^^^^^^^^^^
-
-from_Track(track)
-^^^^^^^^^^^^^^^^^
-
-write_Composition(composition, filename, zip)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-  * *Default values*: zip = False
+.. function:: _note2musicxml(note).. function:: _track2musicxml(track).. function:: from_Bar(bar).. function:: from_Composition(comp).. function:: from_Note(note).. function:: from_Track(track).. function:: write_Composition(composition, filename, zip)  * *Default values*: zip = False
 Create an XML file (or MXL if compressed) for a given composition.
 
 ----
