@@ -17,7 +17,6 @@ Getting Started
    doc/wiki/tutorialGettingmingus
    doc/wiki/tutorialSetup
    doc/wiki/mingusApplications
-   doc/wiki/mingusContact
 
 
 
