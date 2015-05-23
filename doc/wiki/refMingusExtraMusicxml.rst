@@ -19,13 +19,15 @@ http://www.musicxml.org/xml.html
 
 .. attribute:: major_keys
 
-   Attribute of type: list (['Cb', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#'])
+   Attribute of type: list
+   ``['Cb', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#']``
 
 ----
 
 .. attribute:: minor_keys
 
-   Attribute of type: list (['ab', 'eb', 'bb', 'f', 'c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#'])
+   Attribute of type: list
+   ``['ab', 'eb', 'bb', 'f', 'c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#']``
 
 ----
 

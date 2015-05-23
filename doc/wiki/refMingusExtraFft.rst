@@ -13,7 +13,8 @@ This module can also convert the found frequencies to Note objects.
 
 .. attribute:: x
 
-   Attribute of type: int (128)
+   Attribute of type: int
+   ``128``
 
 ----
 

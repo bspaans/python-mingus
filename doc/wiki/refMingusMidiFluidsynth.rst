@@ -21,13 +21,15 @@ Now you are ready to play Notes, NoteContainers, etc.
 
 .. attribute:: initialized
 
-   Attribute of type: bool (False)
+   Attribute of type: bool
+   ``False``
 
 ----
 
 .. attribute:: midi
 
-   Attribute of type: mingus.midi.fluidsynth.FluidSynthSequencer (<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x7f7b21105910>)
+   Attribute of type: mingus.midi.fluidsynth.FluidSynthSequencer
+   ``<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x7f8d60c03950>``
 
 ----
 

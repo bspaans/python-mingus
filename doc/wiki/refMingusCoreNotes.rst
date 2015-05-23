@@ -15,7 +15,8 @@ enables simple calculations.
 
 .. attribute:: fifths
 
-   Attribute of type: list (['F', 'C', 'G', 'D', 'A', 'E', 'B'])
+   Attribute of type: list
+   ``['F', 'C', 'G', 'D', 'A', 'E', 'B']``
 
 ----
 
