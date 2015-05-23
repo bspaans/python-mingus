@@ -7,4 +7,5 @@ make html
 git rm -rf doc
 git add sphinx_build 
 git commit -m "Automated build"
+git push origin sphinx-workspace
 
