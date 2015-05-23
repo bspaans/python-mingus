@@ -1,0 +1,335 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mingus.extra.lilypond &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">mingus 0.5.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for mingus.extra.lilypond</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="c">#    mingus - Music theory Python package, lilypond module.</span>
+<span class="c">#    Copyright (C) 2008-2009, Bart Spaans</span>
+<span class="c">#</span>
+<span class="c">#    This program is free software: you can redistribute it and/or modify</span>
+<span class="c">#    it under the terms of the GNU General Public License as published by</span>
+<span class="c">#    the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c">#    (at your option) any later version.</span>
+<span class="c">#</span>
+<span class="c">#    This program is distributed in the hope that it will be useful,</span>
+<span class="c">#    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c">#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c">#    GNU General Public License for more details.</span>
+<span class="c">#</span>
+<span class="c">#    You should have received a copy of the GNU General Public License</span>
+<span class="c">#    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="sd">&quot;&quot;&quot;Functions to generate files in the LilyPond format.</span>
+
+<span class="sd">This allows you to create sheet music from some of the objects in</span>
+<span class="sd">mingus.containers.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">mingus.core.keys</span> <span class="kn">import</span> <span class="n">Key</span>
+<span class="kn">from</span> <span class="nn">mingus.containers.mt_exceptions</span> <span class="kn">import</span> <span class="p">(</span><span class="n">NoteFormatError</span><span class="p">,</span>
+        <span class="n">UnexpectedObjectError</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">mingus.core.value</span> <span class="kn">as</span> <span class="nn">value</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+
+<div class="viewcode-block" id="from_Note"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraLilypond.html#mingus.extra.lilypond.from_Note">[docs]</a><span class="k">def</span> <span class="nf">from_Note</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">process_octaves</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">standalone</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get a Note object and return the LilyPond equivalent in a string.</span>
+
+<span class="sd">    If process_octaves is set to False, all data regarding octaves will be</span>
+<span class="sd">    ignored. If standalone is True, the result can be used by functions</span>
+<span class="sd">    like to_png and will produce a valid output. The argument is mostly here</span>
+<span class="sd">    to let from_NoteContainer make use of this function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c"># Throw exception</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="c"># Lower the case of the name</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+    <span class="c"># Convert #&#39;s and b&#39;s to &#39;is&#39; and &#39;es&#39; suffixes</span>
+    <span class="k">for</span> <span class="n">accidental</span> <span class="ow">in</span> <span class="n">note</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="k">if</span> <span class="n">accidental</span> <span class="o">==</span> <span class="s">&#39;#&#39;</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="s">&#39;is&#39;</span>
+        <span class="k">elif</span> <span class="n">accidental</span> <span class="o">==</span> <span class="s">&#39;b&#39;</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="s">&#39;es&#39;</span>
+
+    <span class="c"># Place &#39; and , for octaves</span>
+    <span class="k">if</span> <span class="n">process_octaves</span><span class="p">:</span>
+        <span class="nb">oct</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">octave</span>
+        <span class="k">if</span> <span class="nb">oct</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="k">while</span> <span class="nb">oct</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">+=</span> <span class="s">&quot;&#39;&quot;</span>
+                <span class="nb">oct</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="nb">oct</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">while</span> <span class="nb">oct</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">+=</span> <span class="s">&#39;,&#39;</span>
+                <span class="nb">oct</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">standalone</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s">&#39;{ </span><span class="si">%s</span><span class="s"> }&#39;</span> <span class="o">%</span> <span class="n">result</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">result</span>
+</div>
+<div class="viewcode-block" id="from_NoteContainer"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraLilypond.html#mingus.extra.lilypond.from_NoteContainer">[docs]</a><span class="k">def</span> <span class="nf">from_NoteContainer</span><span class="p">(</span><span class="n">nc</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">standalone</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get a NoteContainer object and return the LilyPond equivalent in a</span>
+<span class="sd">    string.</span>
+
+<span class="sd">    The second argument determining the duration of the NoteContainer is</span>
+<span class="sd">    optional. When the standalone argument is True the result of this</span>
+<span class="sd">    function can be used directly by functions like to_png. It is mostly</span>
+<span class="sd">    here to be used by from_Bar.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c"># Throw exception</span>
+    <span class="k">if</span> <span class="n">nc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">nc</span><span class="p">,</span> <span class="s">&#39;notes&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="c"># Return rests for None or empty lists</span>
+    <span class="k">if</span> <span class="n">nc</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">nc</span><span class="o">.</span><span class="n">notes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="s">&#39;r&#39;</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">nc</span><span class="o">.</span><span class="n">notes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+
+    <span class="c"># Return a single note if the list contains only one note</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">from_Note</span><span class="p">(</span><span class="n">nc</span><span class="o">.</span><span class="n">notes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">standalone</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c"># Return the notes grouped in &#39;&lt;&#39; and &#39;&gt;&#39;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="s">&#39;&lt;&#39;</span>
+        <span class="k">for</span> <span class="n">notes</span> <span class="ow">in</span> <span class="n">nc</span><span class="o">.</span><span class="n">notes</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="n">from_Note</span><span class="p">(</span><span class="n">notes</span><span class="p">,</span> <span class="n">standalone</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; &#39;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;&gt;&#39;</span>
+
+    <span class="c"># Add the duration</span>
+    <span class="k">if</span> <span class="n">duration</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">parsed_value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span>
+
+        <span class="c"># Special case: check for longa and breve in the duration (issue #37)</span>
+        <span class="n">dur</span> <span class="o">=</span> <span class="n">parsed_value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">dur</span> <span class="o">==</span> <span class="n">value</span><span class="o">.</span><span class="n">longa</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="s">&#39;</span><span class="se">\\</span><span class="s">longa&#39;</span>
+        <span class="k">elif</span> <span class="n">dur</span> <span class="o">==</span> <span class="n">value</span><span class="o">.</span><span class="n">breve</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="s">&#39;</span><span class="se">\\</span><span class="s">breve&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">parsed_value</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">parsed_value</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="s">&#39;.&#39;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">standalone</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">result</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s">&#39;{ </span><span class="si">%s</span><span class="s"> }&#39;</span> <span class="o">%</span> <span class="n">result</span>
+</div>
+<div class="viewcode-block" id="from_Bar"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraLilypond.html#mingus.extra.lilypond.from_Bar">[docs]</a><span class="k">def</span> <span class="nf">from_Bar</span><span class="p">(</span><span class="n">bar</span><span class="p">,</span> <span class="n">showkey</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">showtime</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get a Bar object and return the LilyPond equivalent in a string.</span>
+
+<span class="sd">    The showkey and showtime parameters can be set to determine whether the</span>
+<span class="sd">    key and the time should be shown.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c"># Throw exception</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">bar</span><span class="p">,</span> <span class="s">&#39;bar&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="c"># Process the key</span>
+    <span class="k">if</span> <span class="n">showkey</span><span class="p">:</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\\</span><span class="s">key </span><span class="si">%s</span><span class="s"> </span><span class="se">\\</span><span class="s">major &#39;</span> <span class="o">%</span> <span class="n">from_Note</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="n">standalone</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">key</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+
+    <span class="c"># Handle the NoteContainers</span>
+    <span class="n">latest_ratio</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ratio_has_changed</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">for</span> <span class="n">bar_entry</span> <span class="ow">in</span> <span class="n">bar</span><span class="o">.</span><span class="n">bar</span><span class="p">:</span>
+        <span class="n">parsed_value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="n">bar_entry</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">ratio</span> <span class="o">=</span> <span class="n">parsed_value</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+        <span class="k">if</span> <span class="n">ratio</span> <span class="o">==</span> <span class="n">latest_ratio</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="n">from_NoteContainer</span><span class="p">(</span><span class="n">bar_entry</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">bar_entry</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                    <span class="n">standalone</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; &#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">ratio_has_changed</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">+=</span> <span class="s">&#39;}&#39;</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="s">&#39;</span><span class="se">\\</span><span class="s">times </span><span class="si">%d</span><span class="s">/</span><span class="si">%d</span><span class="s"> {&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">ratio</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ratio</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="n">from_NoteContainer</span><span class="p">(</span><span class="n">bar_entry</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">bar_entry</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                    <span class="n">standalone</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; &#39;</span>
+            <span class="n">latest_ratio</span> <span class="o">=</span> <span class="n">ratio</span>
+            <span class="n">ratio_has_changed</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="k">if</span> <span class="n">ratio_has_changed</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="s">&#39;}&#39;</span>
+
+    <span class="c"># Process the time</span>
+    <span class="k">if</span> <span class="n">showtime</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s">&#39;{ </span><span class="se">\\</span><span class="s">time </span><span class="si">%d</span><span class="s">/</span><span class="si">%d</span><span class="s"> </span><span class="si">%s</span><span class="s">}&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">meter</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bar</span><span class="o">.</span><span class="n">meter</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">result</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s">&#39;{ </span><span class="si">%s</span><span class="s">}&#39;</span> <span class="o">%</span> <span class="n">result</span>
+</div>
+<div class="viewcode-block" id="from_Track"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraLilypond.html#mingus.extra.lilypond.from_Track">[docs]</a><span class="k">def</span> <span class="nf">from_Track</span><span class="p">(</span><span class="n">track</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Process a Track object and return the LilyPond equivalent in a string.&quot;&quot;&quot;</span>
+    <span class="c"># Throw exception</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">track</span><span class="p">,</span> <span class="s">&#39;bars&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="n">lastkey</span> <span class="o">=</span> <span class="n">Key</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
+    <span class="n">lasttime</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+    <span class="c"># Handle the Bars:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+    <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">track</span><span class="o">.</span><span class="n">bars</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">lastkey</span> <span class="o">!=</span> <span class="n">bar</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+            <span class="n">showkey</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">showkey</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">if</span> <span class="n">lasttime</span> <span class="o">!=</span> <span class="n">bar</span><span class="o">.</span><span class="n">meter</span><span class="p">:</span>
+            <span class="n">showtime</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">showtime</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="n">from_Bar</span><span class="p">(</span><span class="n">bar</span><span class="p">,</span> <span class="n">showkey</span><span class="p">,</span> <span class="n">showtime</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; &#39;</span>
+        <span class="n">lastkey</span> <span class="o">=</span> <span class="n">bar</span><span class="o">.</span><span class="n">key</span>
+        <span class="n">lasttime</span> <span class="o">=</span> <span class="n">bar</span><span class="o">.</span><span class="n">meter</span>
+    <span class="k">return</span> <span class="s">&#39;{ </span><span class="si">%s</span><span class="s">}&#39;</span> <span class="o">%</span> <span class="n">result</span>
+</div>
+<div class="viewcode-block" id="from_Composition"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraLilypond.html#mingus.extra.lilypond.from_Composition">[docs]</a><span class="k">def</span> <span class="nf">from_Composition</span><span class="p">(</span><span class="n">composition</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the LilyPond equivalent of a Composition in a string.&quot;&quot;&quot;</span>
+    <span class="c"># warning Throw exception</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">composition</span><span class="p">,</span> <span class="s">&#39;tracks&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\\</span><span class="s">header { title = &quot;</span><span class="si">%s</span><span class="s">&quot; composer = &quot;</span><span class="si">%s</span><span class="s">&quot; opus = &quot;</span><span class="si">%s</span><span class="s">&quot; } &#39;</span>\
+         <span class="o">%</span> <span class="p">(</span><span class="n">composition</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="n">composition</span><span class="o">.</span><span class="n">author</span><span class="p">,</span> <span class="n">composition</span><span class="o">.</span><span class="n">subtitle</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">track</span> <span class="ow">in</span> <span class="n">composition</span><span class="o">.</span><span class="n">tracks</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="n">from_Track</span><span class="p">(</span><span class="n">track</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; &#39;</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</div>
+<div class="viewcode-block" id="from_Suite"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraLilypond.html#mingus.extra.lilypond.from_Suite">[docs]</a><span class="k">def</span> <span class="nf">from_Suite</span><span class="p">(</span><span class="n">suite</span><span class="p">):</span>
+    <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="to_png"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraLilypond.html#mingus.extra.lilypond.to_png">[docs]</a><span class="k">def</span> <span class="nf">to_png</span><span class="p">(</span><span class="n">ly_string</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Save a string in LilyPond format to a PNG.</span>
+
+<span class="sd">    LilyPond in the $PATH is needed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">save_string_and_execute_LilyPond</span><span class="p">(</span><span class="n">ly_string</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="s">&#39;-fpng&#39;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="to_pdf"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraLilypond.html#mingus.extra.lilypond.to_pdf">[docs]</a><span class="k">def</span> <span class="nf">to_pdf</span><span class="p">(</span><span class="n">ly_string</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Save a string in LilyPond format to a PDF.</span>
+
+<span class="sd">    LilyPond in the $PATH is needed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">save_string_and_execute_LilyPond</span><span class="p">(</span><span class="n">ly_string</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="s">&#39;-fpdf&#39;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="save_string_and_execute_LilyPond"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraLilypond.html#mingus.extra.lilypond.save_string_and_execute_LilyPond">[docs]</a><span class="k">def</span> <span class="nf">save_string_and_execute_LilyPond</span><span class="p">(</span><span class="n">ly_string</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">command</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A helper function for to_png and to_pdf. Should not be used directly.&quot;&quot;&quot;</span>
+    <span class="n">ly_string</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\\</span><span class="s">version &quot;2.10.33&quot;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">ly_string</span>
+    <span class="k">if</span> <span class="n">filename</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;.pdf&#39;</span> <span class="ow">or</span> <span class="s">&#39;.png&#39;</span><span class="p">]:</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span> <span class="o">+</span> <span class="s">&#39;.ly&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ly_string</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="n">command</span> <span class="o">=</span> <span class="s">&#39;lilypond </span><span class="si">%s</span><span class="s"> -o &quot;</span><span class="si">%s</span><span class="s">&quot; &quot;</span><span class="si">%s</span><span class="s">.ly&quot;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">&#39;Executing: </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">command</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">filename</span> <span class="o">+</span> <span class="s">&#39;.ly&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">True</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">mingus</a></h1>
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=bspaans&repo=python-mingus&type=watch&count=true&size=large"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/bspaans/python-mingus" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

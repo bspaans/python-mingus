@@ -1,0 +1,327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mingus.containers.track &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">mingus 0.5.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for mingus.containers.track</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="c">#    mingus - Music theory Python package, track module.</span>
+<span class="c">#    Copyright (C) 2008-2009, Bart Spaans</span>
+<span class="c">#</span>
+<span class="c">#    This program is free software: you can redistribute it and/or modify</span>
+<span class="c">#    it under the terms of the GNU General Public License as published by</span>
+<span class="c">#    the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c">#    (at your option) any later version.</span>
+<span class="c">#</span>
+<span class="c">#    This program is distributed in the hope that it will be useful,</span>
+<span class="c">#    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c">#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c">#    GNU General Public License for more details.</span>
+<span class="c">#</span>
+<span class="c">#    You should have received a copy of the GNU General Public License</span>
+<span class="c">#    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="kn">from</span> <span class="nn">mt_exceptions</span> <span class="kn">import</span> <span class="n">InstrumentRangeError</span>
+<span class="kn">from</span> <span class="nn">mingus.containers.note_container</span> <span class="kn">import</span> <span class="n">NoteContainer</span>
+<span class="kn">from</span> <span class="nn">mingus.containers.bar</span> <span class="kn">import</span> <span class="n">Bar</span>
+<span class="kn">import</span> <span class="nn">mingus.core.value</span> <span class="kn">as</span> <span class="nn">value</span>
+
+<div class="viewcode-block" id="Track"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track">[docs]</a><span class="k">class</span> <span class="nc">Track</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;A track object.</span>
+
+<span class="sd">    The Track class can be used to store Bars and to work on them.</span>
+
+<span class="sd">    The class is also designed to be used with Instruments, but this is</span>
+<span class="sd">    optional.</span>
+
+<span class="sd">    Tracks can be stored together in Compositions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">bars</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">instrument</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;Untitled&#39;</span>  <span class="c"># Will be looked for when saving a MIDI file.</span>
+    <span class="n">tuning</span> <span class="o">=</span> <span class="bp">None</span>  <span class="c"># Used by tablature</span>
+
+<div class="viewcode-block" id="Track.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instrument</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bars</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span> <span class="o">=</span> <span class="n">instrument</span>
+</div>
+<div class="viewcode-block" id="Track.add_bar"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.add_bar">[docs]</a>    <span class="k">def</span> <span class="nf">add_bar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bar</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a Bar to the current track.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bar</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+</div>
+<div class="viewcode-block" id="Track.add_notes"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.add_notes">[docs]</a>    <span class="k">def</span> <span class="nf">add_notes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a Note, note as string or NoteContainer to the last Bar.</span>
+
+<span class="sd">        If the Bar is full, a new one will automatically be created.</span>
+
+<span class="sd">        If the Bar is not full but the note can&#39;t fit in, this method will</span>
+<span class="sd">        return False. True otherwise.</span>
+
+<span class="sd">        An InstrumentRangeError exception will be raised if an Instrument is</span>
+<span class="sd">        attached to the Track, but the note turns out not to be within the</span>
+<span class="sd">        range of the Instrument.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">can_play_notes</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">InstrumentRangeError</span><span class="p">,</span> \
+                    <span class="s">&quot;Note &#39;</span><span class="si">%s</span><span class="s">&#39; is not in range of the instrument (</span><span class="si">%s</span><span class="s">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">note</span><span class="p">,</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">duration</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">duration</span> <span class="o">=</span> <span class="mi">4</span>
+
+        <span class="c"># Check whether the last bar is full, if so create a new bar and add the</span>
+        <span class="c"># note there</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bars</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Bar</span><span class="p">())</span>
+        <span class="n">last_bar</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bars</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">last_bar</span><span class="o">.</span><span class="n">is_full</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Bar</span><span class="p">(</span><span class="n">last_bar</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">last_bar</span><span class="o">.</span><span class="n">meter</span><span class="p">))</span>
+            <span class="c"># warning should hold note if it doesn&#39;t fit</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">bars</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">place_notes</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Track.get_notes"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.get_notes">[docs]</a>    <span class="k">def</span> <span class="nf">get_notes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return an iterator that iterates through every bar in the this</span>
+<span class="sd">        track.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bars</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">beat</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">notes</span> <span class="ow">in</span> <span class="n">bar</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">beat</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">notes</span> 
+</div>
+<div class="viewcode-block" id="Track.from_chords"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.from_chords">[docs]</a>    <span class="k">def</span> <span class="nf">from_chords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chords</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add chords to the Track.</span>
+
+<span class="sd">        The given chords should be a list of shorthand strings or list of</span>
+<span class="sd">        list of shorthand strings, etc.</span>
+
+<span class="sd">        Each sublist divides the value by 2.</span>
+
+<span class="sd">        If a tuning is set, chords will be expanded so they have a proper</span>
+<span class="sd">        fingering.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">        &gt;&gt;&gt; t = Track().from_chords([&#39;C&#39;, [&#39;Am&#39;, &#39;Dm&#39;], &#39;G7&#39;, &#39;C#&#39;], 1)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tun</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_tuning</span><span class="p">()</span>
+
+        <span class="k">def</span> <span class="nf">add_chord</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">duration</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">chord</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chord</span><span class="p">:</span>
+                    <span class="n">add_chord</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">duration</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">chord</span> <span class="o">=</span> <span class="n">NoteContainer</span><span class="p">()</span><span class="o">.</span><span class="n">from_chord</span><span class="p">(</span><span class="n">chord</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">tun</span><span class="p">:</span>
+                    <span class="n">chord</span> <span class="o">=</span> <span class="n">tun</span><span class="o">.</span><span class="n">find_chord_fingering</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span>
+                            <span class="n">return_best_as_NoteContainer</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_notes</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">duration</span><span class="p">):</span>
+                    <span class="c"># This should be the standard behaviour of add_notes</span>
+                    <span class="n">dur</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bars</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">value_left</span><span class="p">()</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">add_notes</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">dur</span><span class="p">)</span>
+
+                    <span class="c"># warning should hold note</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">add_notes</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">duration</span><span class="p">,</span> <span class="n">dur</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chords</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">c</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">add_chord</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">add_notes</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+</div>
+<div class="viewcode-block" id="Track.get_tuning"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.get_tuning">[docs]</a>    <span class="k">def</span> <span class="nf">get_tuning</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a StringTuning object.</span>
+
+<span class="sd">        If an instrument is set and has a tuning it will be returned.</span>
+<span class="sd">        Otherwise the track&#39;s one will be used.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">tuning</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">tuning</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tuning</span>
+</div>
+<div class="viewcode-block" id="Track.set_tuning"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.set_tuning">[docs]</a>    <span class="k">def</span> <span class="nf">set_tuning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tuning</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the tuning attribute on both the Track and its instrument (when</span>
+<span class="sd">        available).</span>
+
+<span class="sd">        Tuning should be a StringTuning or derivative object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">tuning</span> <span class="o">=</span> <span class="n">tuning</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tuning</span> <span class="o">=</span> <span class="n">tuning</span>
+        <span class="k">return</span> <span class="bp">self</span>
+</div>
+<div class="viewcode-block" id="Track.transpose"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.transpose">[docs]</a>    <span class="k">def</span> <span class="nf">transpose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">up</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Transpose all the notes in the track up or down the interval.</span>
+
+<span class="sd">        Call transpose() on every Bar.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bars</span><span class="p">:</span>
+            <span class="n">bar</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">interval</span><span class="p">,</span> <span class="n">up</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+</div>
+<div class="viewcode-block" id="Track.augment"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.augment">[docs]</a>    <span class="k">def</span> <span class="nf">augment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Augment all the bars in the Track.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bars</span><span class="p">:</span>
+            <span class="n">bar</span><span class="o">.</span><span class="n">augment</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span>
+</div>
+<div class="viewcode-block" id="Track.diminish"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.diminish">[docs]</a>    <span class="k">def</span> <span class="nf">diminish</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Diminish all the bars in the Track.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bars</span><span class="p">:</span>
+            <span class="n">bar</span><span class="o">.</span><span class="n">diminish</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span>
+</div>
+<div class="viewcode-block" id="Track.__add__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.__add__">[docs]</a>    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Enable the &#39;+&#39; operator for Tracks.</span>
+
+<span class="sd">        Notes, notes as string, NoteContainers and Bars accepted.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s">&#39;bar&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_bar</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s">&#39;notes&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_notes</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_notes</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Track.test_integrity"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.test_integrity">[docs]</a>    <span class="k">def</span> <span class="nf">test_integrity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Test whether all but the last Bars contained in this track are</span>
+<span class="sd">        full.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bars</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">b</span><span class="o">.</span><span class="n">is_full</span><span class="p">():</span>
+                <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">return</span> <span class="bp">True</span>
+</div>
+<div class="viewcode-block" id="Track.__eq__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.__eq__">[docs]</a>    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Enable the &#39;==&#39; operator for tracks.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bars</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bars</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">bars</span><span class="p">[</span><span class="n">x</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">return</span> <span class="bp">True</span>
+</div>
+<div class="viewcode-block" id="Track.__getitem__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.__getitem__">[docs]</a>    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Enable the &#39;[]&#39; notation for Tracks.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">bars</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+</div>
+<div class="viewcode-block" id="Track.__setitem__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.__setitem__">[docs]</a>    <span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Enable the &#39;[] =&#39; notation for Tracks.</span>
+
+<span class="sd">        Throw an UnexpectedObjectError if the value being set is not a</span>
+<span class="sd">        mingus.containers.Bar object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s">&#39;bar&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">UnexpectedObjectError</span><span class="p">(</span><span class="s">&quot;Unexpected object &#39;</span><span class="si">%s</span><span class="s">&#39;, &quot;</span>
+                    <span class="s">&quot;expecting a mingus.containers.Barobject&quot;</span> <span class="o">%</span> <span class="n">value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bars</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+</div>
+<div class="viewcode-block" id="Track.__repr__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.__repr__">[docs]</a>    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a string representing the class.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bars</span><span class="p">])</span>
+</div>
+<div class="viewcode-block" id="Track.__len__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.__len__">[docs]</a>    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Enable the len() function for Tracks.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bars</span><span class="p">)</span>
+</pre></div></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">mingus</a></h1>
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=bspaans&repo=python-mingus&type=watch&count=true&size=large"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/bspaans/python-mingus" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
