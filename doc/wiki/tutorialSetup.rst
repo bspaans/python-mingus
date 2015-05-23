@@ -18,11 +18,13 @@ Installing from Source
 
 
 
-
-Installing from your default package manager
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Using your package manager
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 mingus might be packaged for your distribution's package manager. See :doc:`getting mingus<tutorialGettingmingus>` for a list.
+
+
+----
 
 
 Recommended Programs
