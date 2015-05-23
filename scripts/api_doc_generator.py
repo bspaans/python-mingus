@@ -50,10 +50,11 @@ class Documize(object):
 
     def generate_module_wikidocs(self):
         self.reset()
-        res = '#summary Reference documentation for `{0}`.\n'.format(
-                self.module_string)
-        res += '----\n= {0} =\n{1}\n----\n'.format(self.module_string,
-                self.module.__doc__)
+        header = '=' * len(self.module_string)
+        res = '%s\n%s\n%s\n\n' % (header, self.module_string, header)
+
+        if self.module.__doc__ is not None:
+            res += self.module.__doc__ + '\n\n'
 
         # Gather all the documentation
         for element in dir(self.module):
@@ -70,25 +71,28 @@ class Documize(object):
 
         # Present attributes
         if len(self.attributes) != 0:
-            res += '== Attributes ==\n'
+            res += 'Attributes\n'
+            res += '----------\n\n'
             for a in self.attributes:
                 res += a
-            res += '----\n'
+            res += '----\n\n'
 
         # Present functions
         if len(self.functions) != 0:
-            res += '== Functions ==\n'
+            res += 'Functions\n'
+            res += '---------\n\n'
             for f in self.functions:
                 res += f
-            res += '----\n'
-        res += '[mingusIndex Back to Index]\n'
+            res += '----\n\n'
+        res += ':doc:`Back to Index</index>`\n'
         return res
 
     def generate_non_callable_docs(self, element_string, evaled):
         if element_string[0] != '_' and type(evaled) != types.ModuleType:
             t = str(type(evaled))
             t = t.split("'")
-            res = '=== `{0}` ===\n'.format(element_string)
+            res = element_string + '\n'
+            res += '^' * len(element_string) + '\n\n'
             res += '  * *Type*: {0}\n'.format(t[1])
             res += '  * *Value*: `{0}`\n\n'.format(repr(evaled))
             self.attributes.append(res)
@@ -104,7 +108,7 @@ class Documize(object):
             pass
 
     def generate_function_wikidocs(self, func_string, func):
-        res = '=== `{0}('.format(func_string)
+        res = '{0}('.format(func_string)
         argspec = inspect.getargspec(func)
         args = argspec[0]
         defaults = argspec[3]
@@ -121,7 +125,11 @@ class Documize(object):
                 res += '{0}, '.format(args[n])
         if res[-1] != '(':
             res = res[:-2]
-        res += ')` ===\n'
+        res += ')'
+
+        reslen = len(res)
+        res = res + '\n'
+        res += '^' * reslen + '\n\n'
 
         # Add default values (wiki doesn't allow '=' in headers)
         if len(def_values) != 0:
@@ -201,7 +209,7 @@ def generate_package_wikidocs(package_string, file_prefix='ref',
                     print "ERROR. Couldn't open file for writing."
 
 def main():
-    print 'mingus version 0.5, Copyright (C) 2008-2011, Bart Spaans\n'
+    print 'mingus version 0.5, Copyright (C) 2008-2015, Bart Spaans\n'
     print 'mingus comes with ABSOLUTELY NO WARRANTY. This is free'
     print 'software and you are welcome to redistribute it under'
     print 'certain conditions.'
@@ -211,10 +219,10 @@ def main():
     elif not os.path.isdir(sys.argv[1]):
         print '\n\nError: not a valid directory:', sys.argv[1]
         sys.exit(1)
-    generate_package_wikidocs('mingus.core', 'ref', '.wiki')
-    generate_package_wikidocs('mingus.midi', 'ref', '.wiki')
-    generate_package_wikidocs('mingus.containers', 'ref', '.wiki')
-    generate_package_wikidocs('mingus.extra', 'ref', '.wiki')
+    generate_package_wikidocs('mingus.core', 'ref', '.rst')
+    generate_package_wikidocs('mingus.midi', 'ref', '.rst')
+    generate_package_wikidocs('mingus.containers', 'ref', '.rst')
+    generate_package_wikidocs('mingus.extra', 'ref', '.rst')
 
 if __name__ == '__main__':
     main()
