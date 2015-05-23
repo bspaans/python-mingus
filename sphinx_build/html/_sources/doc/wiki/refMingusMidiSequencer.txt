@@ -13,4 +13,8 @@ See SequencerObserver for a pre made, easy to extend base class that can be
 attached to the Sequencer.
 
 
+----
+
+
+
 :doc:`Back to Index</index>`

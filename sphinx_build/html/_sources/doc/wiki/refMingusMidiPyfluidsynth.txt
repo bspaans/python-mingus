@@ -21,6 +21,9 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 
 
 
+.. class:: Synth
+
+
 ----
 
 .. data:: DEFAULT_MODE
@@ -54,7 +57,7 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 .. data:: cdll
 
    Attribute of type: ctypes.LibraryLoader
-   ``<ctypes.LibraryLoader object at 0x7f1b1accd990>``
+   ``<ctypes.LibraryLoader object at 0x7fe9110cf8d0>``
 
 ----
 
@@ -68,14 +71,14 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 .. data:: pydll
 
    Attribute of type: ctypes.LibraryLoader
-   ``<ctypes.LibraryLoader object at 0x7f1b1accd9d0>``
+   ``<ctypes.LibraryLoader object at 0x7fe9110cf910>``
 
 ----
 
 .. data:: pythonapi
 
    Attribute of type: ctypes.PyDLL
-   ``<PyDLL 'None', handle 7f1b1e3e9188 at 7f1b1accda10>``
+   ``<PyDLL 'None', handle 7fe9147ec188 at 7fe9110cf950>``
 
 ----
 
@@ -337,9 +340,8 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 
    Stop all notes and reset all programs.
 
-
-.. class:: Synth
-
 ----
+
+
 
 :doc:`Back to Index</index>`

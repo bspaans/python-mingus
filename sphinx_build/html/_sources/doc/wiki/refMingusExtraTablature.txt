@@ -10,7 +10,7 @@ Functions to convert mingus.containers to pretty ASCII tablature.
 .. data:: default_tuning
 
    Attribute of type: mingus.extra.tunings.StringTuning
-   ``<mingus.extra.tunings.StringTuning object at 0x7f1b1cf89f50>``
+   ``<mingus.extra.tunings.StringTuning object at 0x7fe91338de90>``
 
 ----
 
@@ -130,5 +130,7 @@ Functions to convert mingus.containers to pretty ASCII tablature.
    'string' and 'fret' attributes on Notes are taken into account.
 
 ----
+
+
 
 :doc:`Back to Index</index>`

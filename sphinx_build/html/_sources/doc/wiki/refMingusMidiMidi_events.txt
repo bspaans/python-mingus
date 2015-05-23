@@ -254,4 +254,8 @@ mingus.midi.midi_events
 
    Attribute of type: str
    ``'\x03'``
+----
+
+
+
 :doc:`Back to Index</index>`

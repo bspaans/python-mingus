@@ -82,4 +82,6 @@ A meter is represented by a tuple. 4/4 time would look like (4,4), 3/4 like
 
 ----
 
+
+
 :doc:`Back to Index</index>`

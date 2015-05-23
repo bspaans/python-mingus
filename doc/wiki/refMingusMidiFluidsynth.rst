@@ -29,7 +29,7 @@ Now you are ready to play Notes, NoteContainers, etc.
 .. data:: midi
 
    Attribute of type: mingus.midi.fluidsynth.FluidSynthSequencer
-   ``<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x7f1b1a7cda10>``
+   ``<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x7fe910bd0950>``
 
 ----
 
@@ -164,5 +164,7 @@ Now you are ready to play Notes, NoteContainers, etc.
    Stop all the playing notes on all channels.
 
 ----
+
+
 
 :doc:`Back to Index</index>`

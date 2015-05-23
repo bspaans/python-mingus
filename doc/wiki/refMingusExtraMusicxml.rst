@@ -15,6 +15,9 @@ http://www.musicxml.org/xml.html
 
 
 
+.. class:: Document
+
+
 ----
 
 .. attribute:: ATTRIBUTE_NODE
@@ -132,7 +135,7 @@ http://www.musicxml.org/xml.html
 .. attribute:: documentElement
 
    Attribute of type: property
-   ``<property object at 0x7f1b1a7a5310>``
+   ``<property object at 0x7fe910ba8310>``
 
 ----
 
@@ -160,28 +163,28 @@ http://www.musicxml.org/xml.html
 .. attribute:: firstChild
 
    Attribute of type: property
-   ``<property object at 0x7f1b1a7ff680>``
+   ``<property object at 0x7fe910c02680>``
 
 ----
 
 .. attribute:: implementation
 
    Attribute of type: instance
-   ``<xml.dom.minidom.DOMImplementation instance at 0x7f1b1a79f998>``
+   ``<xml.dom.minidom.DOMImplementation instance at 0x7fe910ba2950>``
 
 ----
 
 .. attribute:: lastChild
 
    Attribute of type: property
-   ``<property object at 0x7f1b1a7ff788>``
+   ``<property object at 0x7fe910c02788>``
 
 ----
 
 .. attribute:: localName
 
    Attribute of type: property
-   ``<property object at 0x7f1b1a7ffdb8>``
+   ``<property object at 0x7fe910c02db8>``
 
 ----
 
@@ -617,9 +620,8 @@ http://www.musicxml.org/xml.html
 
 .. method:: writexml(self, writer, indent=, addindent=, newl=, encoding=None)
 
-
-.. class:: Document
-
 ----
+
+
 
 :doc:`Back to Index</index>`

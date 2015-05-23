@@ -5,6 +5,9 @@ mingus.midi.midi_file_in
 Read a MIDI file and convert it into mingus.containers objects.
 
 
+.. class:: MidiFile
+
+
 ----
 
 .. attribute:: bpm
@@ -111,9 +114,8 @@ Read a MIDI file and convert it into mingus.containers objects.
    Read a variable length byte from the file and return the
    corresponding integer.
 
-
-.. class:: MidiFile
-
 ----
+
+
 
 :doc:`Back to Index</index>`
