@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mingus.midi.midi_file_out &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">mingus 0.5.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for mingus.midi.midi_file_out</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="c">#    mingus - Music theory Python package, midi_file_out module.</span>
+<span class="c">#    Copyright (C) 2008-2009, Bart Spaans</span>
+<span class="c">#</span>
+<span class="c">#    This program is free software: you can redistribute it and/or modify</span>
+<span class="c">#    it under the terms of the GNU General Public License as published by</span>
+<span class="c">#    the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c">#    (at your option) any later version.</span>
+<span class="c">#</span>
+<span class="c">#    This program is distributed in the hope that it will be useful,</span>
+<span class="c">#    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c">#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c">#    GNU General Public License for more details.</span>
+<span class="c">#</span>
+<span class="c">#    You should have received a copy of the GNU General Public License</span>
+<span class="c">#    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="sd">&quot;&quot;&quot;Functions that can generate MIDI files from the objects in</span>
+<span class="sd">mingus.containers.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">midi_track</span> <span class="kn">import</span> <span class="n">MidiTrack</span>
+<span class="kn">from</span> <span class="nn">binascii</span> <span class="kn">import</span> <span class="n">a2b_hex</span>
+
+<div class="viewcode-block" id="MidiFile"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_out.html#mingus.midi.midi_file_out.MidiFile">[docs]</a><span class="k">class</span> <span class="nc">MidiFile</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;A class that generates MIDI files from MidiTracks.&quot;&quot;&quot;</span>
+
+    <span class="n">tracks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">time_division</span> <span class="o">=</span> <span class="s">&quot;</span><span class="se">\x00\x48</span><span class="s">&quot;</span>
+
+<div class="viewcode-block" id="MidiFile.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_out.html#mingus.midi.midi_file_out.MidiFile.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tracks</span><span class="o">=</span><span class="p">[]):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tracks</span> <span class="o">=</span> <span class="n">tracks</span>
+</div>
+<div class="viewcode-block" id="MidiFile.get_midi_data"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_out.html#mingus.midi.midi_file_out.MidiFile.get_midi_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_midi_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Collect and return the raw, binary MIDI data from the tracks.&quot;&quot;&quot;</span>
+        <span class="n">tracks</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">get_midi_data</span><span class="p">()</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracks</span> <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">track_data</span> <span class="o">!=</span> <span class="s">&#39;&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">()</span> <span class="o">+</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tracks</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="MidiFile.header"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_out.html#mingus.midi.midi_file_out.MidiFile.header">[docs]</a>    <span class="k">def</span> <span class="nf">header</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a header for type 1 MIDI file.&quot;&quot;&quot;</span>
+        <span class="n">tracks</span> <span class="o">=</span> <span class="n">a2b_hex</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%04x</span><span class="s">&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">([</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracks</span> <span class="k">if</span>
+            <span class="n">t</span><span class="o">.</span><span class="n">track_data</span> <span class="o">!=</span> <span class="s">&#39;&#39;</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="s">&#39;MThd</span><span class="se">\x00\x00\x00\x06\x00\x01</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">tracks</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_division</span>
+</div>
+<div class="viewcode-block" id="MidiFile.reset"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_out.html#mingus.midi.midi_file_out.MidiFile.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reset every track.&quot;&quot;&quot;</span>
+        <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracks</span><span class="p">]</span>
+</div>
+<div class="viewcode-block" id="MidiFile.write_file"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_out.html#mingus.midi.midi_file_out.MidiFile.write_file">[docs]</a>    <span class="k">def</span> <span class="nf">write_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">file</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Collect the data from get_midi_data and write to file.&quot;&quot;&quot;</span>
+        <span class="n">dat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_midi_data</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="s">&#39;wb&#39;</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;Couldn&#39;t open &#39;</span><span class="si">%s</span><span class="s">&#39; for writing.&quot;</span> <span class="o">%</span> <span class="nb">file</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;An error occured while writing data to </span><span class="si">%s</span><span class="s">.&#39;</span> <span class="o">%</span> <span class="nb">file</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;Written </span><span class="si">%d</span><span class="s"> bytes to </span><span class="si">%s</span><span class="s">.&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dat</span><span class="p">),</span> <span class="nb">file</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">True</span>
+
+</div></div>
+<div class="viewcode-block" id="write_Note"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_out.html#mingus.midi.midi_file_out.write_Note">[docs]</a><span class="k">def</span> <span class="nf">write_Note</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">bpm</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Expect a Note object from mingus.containers and save it into a MIDI</span>
+<span class="sd">    file, specified in file.</span>
+
+<span class="sd">    You can set the velocity and channel in Note.velocity and Note.channel.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">MidiFile</span><span class="p">()</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">MidiTrack</span><span class="p">(</span><span class="n">bpm</span><span class="p">)</span>
+    <span class="n">m</span><span class="o">.</span><span class="n">tracks</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="p">]</span>
+    <span class="k">while</span> <span class="n">repeat</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">set_deltatime</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\x00</span><span class="s">&#39;</span><span class="p">)</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">play_Note</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">set_deltatime</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\x48</span><span class="s">&quot;</span><span class="p">)</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">stop_Note</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+        <span class="n">repeat</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">m</span><span class="o">.</span><span class="n">write_file</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="write_NoteContainer"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_out.html#mingus.midi.midi_file_out.write_NoteContainer">[docs]</a><span class="k">def</span> <span class="nf">write_NoteContainer</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">notecontainer</span><span class="p">,</span> <span class="n">bpm</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Write a mingus.NoteContainer to a MIDI file.&quot;&quot;&quot;</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">MidiFile</span><span class="p">()</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">MidiTrack</span><span class="p">(</span><span class="n">bpm</span><span class="p">)</span>
+    <span class="n">m</span><span class="o">.</span><span class="n">tracks</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="p">]</span>
+    <span class="k">while</span> <span class="n">repeat</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">set_deltatime</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\x00</span><span class="s">&#39;</span><span class="p">)</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">play_NoteContainer</span><span class="p">(</span><span class="n">notecontainer</span><span class="p">)</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">set_deltatime</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\x48</span><span class="s">&quot;</span><span class="p">)</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">stop_NoteContainer</span><span class="p">(</span><span class="n">notecontainer</span><span class="p">)</span>
+        <span class="n">repeat</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">m</span><span class="o">.</span><span class="n">write_file</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="write_Bar"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_out.html#mingus.midi.midi_file_out.write_Bar">[docs]</a><span class="k">def</span> <span class="nf">write_Bar</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">bar</span><span class="p">,</span> <span class="n">bpm</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Write a mingus.Bar to a MIDI file.</span>
+
+<span class="sd">    Both the key and the meter are written to the file as well.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">MidiFile</span><span class="p">()</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">MidiTrack</span><span class="p">(</span><span class="n">bpm</span><span class="p">)</span>
+    <span class="n">m</span><span class="o">.</span><span class="n">tracks</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="p">]</span>
+    <span class="k">while</span> <span class="n">repeat</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">play_Bar</span><span class="p">(</span><span class="n">bar</span><span class="p">)</span>
+        <span class="n">repeat</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">m</span><span class="o">.</span><span class="n">write_file</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="write_Track"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_out.html#mingus.midi.midi_file_out.write_Track">[docs]</a><span class="k">def</span> <span class="nf">write_Track</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">track</span><span class="p">,</span> <span class="n">bpm</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Write a mingus.Track to a MIDI file.</span>
+
+<span class="sd">    Write the name to the file and set the instrument if the instrument has</span>
+<span class="sd">    the attribute instrument_nr, which represents the MIDI instrument</span>
+<span class="sd">    number. The class MidiInstrument in mingus.containers.Instrument has</span>
+<span class="sd">    this attribute by default.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">MidiFile</span><span class="p">()</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">MidiTrack</span><span class="p">(</span><span class="n">bpm</span><span class="p">)</span>
+    <span class="n">m</span><span class="o">.</span><span class="n">tracks</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="p">]</span>
+    <span class="k">while</span> <span class="n">repeat</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">play_Track</span><span class="p">(</span><span class="n">track</span><span class="p">)</span>
+        <span class="n">repeat</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">m</span><span class="o">.</span><span class="n">write_file</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="write_Composition"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_out.html#mingus.midi.midi_file_out.write_Composition">[docs]</a><span class="k">def</span> <span class="nf">write_Composition</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">composition</span><span class="p">,</span> <span class="n">bpm</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Write a mingus.Composition to a MIDI file.&quot;&quot;&quot;</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">MidiFile</span><span class="p">()</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">composition</span><span class="o">.</span><span class="n">tracks</span><span class="p">)):</span>
+        <span class="n">t</span> <span class="o">+=</span> <span class="p">[</span><span class="n">MidiTrack</span><span class="p">(</span><span class="n">bpm</span><span class="p">)]</span>
+    <span class="n">m</span><span class="o">.</span><span class="n">tracks</span> <span class="o">=</span> <span class="n">t</span>
+    <span class="k">while</span> <span class="n">repeat</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">composition</span><span class="o">.</span><span class="n">tracks</span><span class="p">)):</span>
+            <span class="n">m</span><span class="o">.</span><span class="n">tracks</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">play_Track</span><span class="p">(</span><span class="n">composition</span><span class="o">.</span><span class="n">tracks</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">repeat</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">m</span><span class="o">.</span><span class="n">write_file</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
+</div>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">mingus.containers.NoteContainer</span> <span class="kn">import</span> <span class="n">NoteContainer</span>
+    <span class="kn">from</span> <span class="nn">mingus.containers.Bar</span> <span class="kn">import</span> <span class="n">Bar</span>
+    <span class="kn">from</span> <span class="nn">mingus.containers.Track</span> <span class="kn">import</span> <span class="n">Track</span>
+    <span class="kn">from</span> <span class="nn">mingus.containers.Instrument</span> <span class="kn">import</span> <span class="n">MidiInstrument</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">()</span>
+    <span class="n">b2</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">(</span><span class="s">&#39;Ab&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">NoteContainer</span><span class="p">([</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">])</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">Track</span><span class="p">()</span>
+    <span class="n">b</span> <span class="o">+</span> <span class="n">n</span>
+    <span class="n">b</span> <span class="o">+</span> <span class="p">[]</span>
+    <span class="n">b</span> <span class="o">+</span> <span class="n">n</span>
+    <span class="n">b</span> <span class="o">+</span> <span class="n">n</span>
+    <span class="n">b2</span> <span class="o">+</span> <span class="n">n</span>
+    <span class="n">b2</span> <span class="o">+</span> <span class="n">n</span>
+    <span class="n">b2</span> <span class="o">+</span> <span class="p">[]</span>
+    <span class="n">t</span> <span class="o">+</span> <span class="n">b</span>
+    <span class="n">t</span> <span class="o">+</span> <span class="n">b</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">MidiInstrument</span><span class="p">()</span>
+    <span class="n">m</span><span class="o">.</span><span class="n">instrument_nr</span> <span class="o">=</span> <span class="mi">13</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">instrument</span> <span class="o">=</span> <span class="n">m</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;Track Name Test&#39;</span>
+    <span class="n">write_NoteContainer</span><span class="p">(</span><span class="s">&#39;test.mid&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">write_Bar</span><span class="p">(</span><span class="s">&#39;test2.mid&#39;</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="n">write_Bar</span><span class="p">(</span><span class="s">&#39;test3.mid&#39;</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+    <span class="n">write_Bar</span><span class="p">(</span><span class="s">&#39;test4.mid&#39;</span><span class="p">,</span> <span class="n">b2</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">write_Track</span><span class="p">(</span><span class="s">&#39;test5.mid&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="mi">120</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">mingus</a></h1>
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=bspaans&repo=python-mingus&type=watch&count=true&size=large"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/bspaans/python-mingus" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

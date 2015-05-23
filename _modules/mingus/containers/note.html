@@ -1,0 +1,399 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mingus.containers.note &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">mingus 0.5.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for mingus.containers.note</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="c">#    mingus - Music theory Python package, note module.</span>
+<span class="c">#    Copyright (C) 2008-2009, Bart Spaans</span>
+<span class="c">#</span>
+<span class="c">#    This program is free software: you can redistribute it and/or modify</span>
+<span class="c">#    it under the terms of the GNU General Public License as published by</span>
+<span class="c">#    the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c">#    (at your option) any later version.</span>
+<span class="c">#</span>
+<span class="c">#    This program is distributed in the hope that it will be useful,</span>
+<span class="c">#    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c">#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c">#    GNU General Public License for more details.</span>
+<span class="c">#</span>
+<span class="c">#    You should have received a copy of the GNU General Public License</span>
+<span class="c">#    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="kn">from</span> <span class="nn">mingus.core</span> <span class="kn">import</span> <span class="n">notes</span><span class="p">,</span> <span class="n">intervals</span>
+<span class="kn">from</span> <span class="nn">mt_exceptions</span> <span class="kn">import</span> <span class="n">NoteFormatError</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">log</span>
+
+<div class="viewcode-block" id="Note"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note">[docs]</a><span class="k">class</span> <span class="nc">Note</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;A note object.</span>
+
+<span class="sd">    In the mingus.core module, notes are generally represented by strings.</span>
+<span class="sd">    Most of the times, this is not enough. We want to set the octave and</span>
+<span class="sd">    maybe the amplitude, vibrato or other dynamics. Then we want to store</span>
+<span class="sd">    the notes in bars, the bars in tracks, the tracks in compositions, etc.</span>
+
+<span class="sd">    We could do this with a number of lists, but ultimately it is a lot</span>
+<span class="sd">    easier to use objects. The Note class provides an easy way to deal with</span>
+<span class="sd">    notes in an object oriented matter.</span>
+
+<span class="sd">    You can use the class NoteContainer to group Notes together in intervals</span>
+<span class="sd">    and chords.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;C&#39;</span>
+    <span class="n">octave</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">dynamics</span> <span class="o">=</span> <span class="p">{}</span>
+
+<div class="viewcode-block" id="Note.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">dynamics</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_note</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">octave</span><span class="p">,</span> <span class="n">dynamics</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">):</span>
+            <span class="c"># Hardcopy Note object</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_note</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">name</span><span class="o">.</span><span class="n">octave</span><span class="p">,</span> <span class="n">name</span><span class="o">.</span><span class="n">dynamics</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s">&#39;channel&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">channel</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">channel</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s">&#39;velocity&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">velocity</span>
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">from_int</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NoteFormatError</span><span class="p">(</span><span class="s">&quot;Don&#39;t know what to do with name object: &quot;</span>
+                    <span class="s">&quot;&#39;</span><span class="si">%s</span><span class="s">&#39;&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Note.set_note"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.set_note">[docs]</a>    <span class="k">def</span> <span class="nf">set_note</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">dynamics</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="sd">&quot;&quot;&quot;Set the note to name in octave with dynamics.</span>
+
+<span class="sd">        Return the objects if it succeeded, raise an NoteFormatError</span>
+<span class="sd">        otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dash_index</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;-&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dash_index</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">notes</span><span class="o">.</span><span class="n">is_valid_note</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">octave</span> <span class="o">=</span> <span class="n">octave</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span> <span class="o">=</span> <span class="n">dynamics</span>
+                <span class="k">return</span> <span class="bp">self</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">NoteFormatError</span><span class="p">(</span><span class="s">&quot;The string &#39;</span><span class="si">%s</span><span class="s">&#39; is not a valid &quot;</span>
+                        <span class="s">&quot;representation of a note in mingus&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">dash_index</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">notes</span><span class="o">.</span><span class="n">is_valid_note</span><span class="p">(</span><span class="n">dash_index</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">dash_index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">octave</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">dash_index</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span> <span class="o">=</span> <span class="n">dynamics</span>
+                <span class="k">return</span> <span class="bp">self</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">NoteFormatError</span><span class="p">(</span><span class="s">&quot;The string &#39;</span><span class="si">%s</span><span class="s">&#39; is not a valid &quot;</span>
+                        <span class="s">&quot;representation of a note in mingus&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">False</span>
+</div>
+<div class="viewcode-block" id="Note.empty"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.empty">[docs]</a>    <span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Remove the data in the instance.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="n">octave</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">dynamics</span> <span class="o">=</span> <span class="p">{}</span>
+</div>
+<div class="viewcode-block" id="Note.augment"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.augment">[docs]</a>    <span class="k">def</span> <span class="nf">augment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Call notes.augment with this note as argument.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">notes</span><span class="o">.</span><span class="n">augment</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Note.diminish"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.diminish">[docs]</a>    <span class="k">def</span> <span class="nf">diminish</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Call notes.diminish with this note as argument.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">notes</span><span class="o">.</span><span class="n">diminish</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Note.change_octave"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.change_octave">[docs]</a>    <span class="k">def</span> <span class="nf">change_octave</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diff</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Change the octave of the note to the current octave + diff.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">octave</span> <span class="o">+=</span> <span class="n">diff</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">octave</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">octave</span> <span class="o">=</span> <span class="mi">0</span>
+</div>
+<div class="viewcode-block" id="Note.octave_up"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.octave_up">[docs]</a>    <span class="k">def</span> <span class="nf">octave_up</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Increment the current octave with 1.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">change_octave</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Note.octave_down"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.octave_down">[docs]</a>    <span class="k">def</span> <span class="nf">octave_down</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Decrement the current octave with 1.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">change_octave</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Note.remove_redundant_accidentals"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.remove_redundant_accidentals">[docs]</a>    <span class="k">def</span> <span class="nf">remove_redundant_accidentals</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Call notes.remove_redundant_accidentals on this note&#39;s name.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">notes</span><span class="o">.</span><span class="n">remove_redundant_accidentals</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Note.transpose"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.transpose">[docs]</a>    <span class="k">def</span> <span class="nf">transpose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">up</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Transpose the note up or down the interval.</span>
+
+<span class="sd">        Examples:</span>
+<span class="sd">        &gt;&gt;&gt; a = Note(&#39;A&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; a.transpose(&#39;3&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; a</span>
+<span class="sd">        &#39;C#-5&#39;</span>
+<span class="sd">        &gt;&gt;&gt; a.transpose(&#39;3&#39;, False)</span>
+<span class="sd">        &gt;&gt;&gt; a</span>
+<span class="sd">        &#39;A-4&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">o_octave</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">octave</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="n">from_shorthand</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">up</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">up</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span> <span class="o">&lt;</span> <span class="n">Note</span><span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">o_octave</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">octave</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span> <span class="o">&gt;</span> <span class="n">Note</span><span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">o_octave</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">octave</span> <span class="o">-=</span> <span class="mi">1</span>
+</div>
+<div class="viewcode-block" id="Note.from_int"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.from_int">[docs]</a>    <span class="k">def</span> <span class="nf">from_int</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integer</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the Note corresponding to the integer.</span>
+
+<span class="sd">        0 is a C on octave 0, 12 is a C on octave 1, etc.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">        &gt;&gt;&gt; Note().from_int(12)</span>
+<span class="sd">        &#39;C-1&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">notes</span><span class="o">.</span><span class="n">int_to_note</span><span class="p">(</span><span class="n">integer</span> <span class="o">%</span> <span class="mi">12</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">octave</span> <span class="o">=</span> <span class="n">integer</span> <span class="o">//</span> <span class="mi">12</span>
+        <span class="k">return</span> <span class="bp">self</span>
+</div>
+<div class="viewcode-block" id="Note.measure"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.measure">[docs]</a>    <span class="k">def</span> <span class="nf">measure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the number of semitones between this Note and the other.</span>
+
+<span class="sd">        Examples:</span>
+<span class="sd">        &gt;&gt;&gt; Note(&#39;C&#39;).measure(Note(&#39;D&#39;))</span>
+<span class="sd">        2</span>
+<span class="sd">        &gt;&gt;&gt; Note(&#39;D&#39;).measure(Note(&#39;C&#39;))</span>
+<span class="sd">        -2</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Note.to_hertz"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.to_hertz">[docs]</a>    <span class="k">def</span> <span class="nf">to_hertz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">standard_pitch</span><span class="o">=</span><span class="mi">440</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the Note in Hz.</span>
+
+<span class="sd">        The standard_pitch argument can be used to set the pitch of A-4,</span>
+<span class="sd">        from which the rest is calculated.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># int(Note(&quot;A&quot;)) == 57</span>
+        <span class="n">diff</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__int__</span><span class="p">()</span> <span class="o">-</span> <span class="mi">57</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="n">diff</span> <span class="o">/</span> <span class="mf">12.0</span><span class="p">)</span> <span class="o">*</span> <span class="mi">440</span>
+</div>
+<div class="viewcode-block" id="Note.from_hertz"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.from_hertz">[docs]</a>    <span class="k">def</span> <span class="nf">from_hertz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hertz</span><span class="p">,</span> <span class="n">standard_pitch</span><span class="o">=</span><span class="mi">440</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the Note name and pitch, calculated from the hertz value.</span>
+
+<span class="sd">        The standard_pitch argument can be used to set the pitch of A-4,</span>
+<span class="sd">        from which the rest is calculated.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="p">((</span><span class="n">log</span><span class="p">((</span><span class="nb">float</span><span class="p">(</span><span class="n">hertz</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">)</span> <span class="o">/</span> <span class="n">standard_pitch</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span>
+            <span class="mf">1.0</span> <span class="o">/</span> <span class="mi">24</span><span class="p">)</span> <span class="o">*</span> <span class="mi">12</span> <span class="o">+</span> <span class="mi">9</span><span class="p">)</span>  <span class="c"># notes.note_to_int(&quot;A&quot;)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">notes</span><span class="o">.</span><span class="n">int_to_note</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">%</span> <span class="mi">12</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">octave</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span> <span class="o">/</span> <span class="mi">12</span><span class="p">)</span> <span class="o">-</span> <span class="mi">6</span>
+        <span class="k">return</span> <span class="bp">self</span>
+</div>
+<div class="viewcode-block" id="Note.to_shorthand"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.to_shorthand">[docs]</a>    <span class="k">def</span> <span class="nf">to_shorthand</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Give the traditional Helmhotz pitch notation.</span>
+
+<span class="sd">        Examples:</span>
+<span class="sd">        &gt;&gt;&gt; Note(&#39;C-4&#39;).to_shorthand()</span>
+<span class="sd">        &quot;c&#39;&quot;</span>
+<span class="sd">        &gt;&gt;&gt; Note(&#39;C-3&#39;).to_shorthand()</span>
+<span class="sd">        &#39;c&#39;</span>
+<span class="sd">        &gt;&gt;&gt; Note(&#39;C-2&#39;).to_shorthand()</span>
+<span class="sd">        &#39;C&#39;</span>
+<span class="sd">        &gt;&gt;&gt; Note(&#39;C-1&#39;).to_shorthand()</span>
+<span class="sd">        &#39;C,&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">octave</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">o</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">octave</span> <span class="o">-</span> <span class="mi">3</span>
+        <span class="k">while</span> <span class="n">o</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">res</span> <span class="o">+=</span> <span class="s">&#39;,&#39;</span>
+            <span class="n">o</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">o</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">res</span> <span class="o">+=</span> <span class="s">&quot;&#39;&quot;</span>
+            <span class="n">o</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">res</span>
+</div>
+<div class="viewcode-block" id="Note.from_shorthand"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.from_shorthand">[docs]</a>    <span class="k">def</span> <span class="nf">from_shorthand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shorthand</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Convert from traditional Helmhotz pitch notation.</span>
+
+<span class="sd">        Examples:</span>
+<span class="sd">        &gt;&gt;&gt; Note().from_shorthand(&quot;C,,&quot;)</span>
+<span class="sd">        &#39;C-0&#39;</span>
+<span class="sd">        &gt;&gt;&gt; Note().from_shorthand(&quot;C&quot;)</span>
+<span class="sd">        &#39;C-2&#39;</span>
+<span class="sd">        &gt;&gt;&gt; Note().from_shorthand(&quot;c&#39;&quot;)</span>
+<span class="sd">        &#39;C-4&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="n">octave</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">shorthand</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">,</span> <span class="s">&#39;d&#39;</span><span class="p">,</span> <span class="s">&#39;e&#39;</span><span class="p">,</span> <span class="s">&#39;f&#39;</span><span class="p">,</span> <span class="s">&#39;g&#39;</span><span class="p">]:</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">upper</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+                <span class="n">octave</span> <span class="o">=</span> <span class="mi">3</span>
+            <span class="k">elif</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;F&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">]:</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="n">x</span>
+                <span class="n">octave</span> <span class="o">=</span> <span class="mi">2</span>
+            <span class="k">elif</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;#&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">]:</span>
+                <span class="n">name</span> <span class="o">+=</span> <span class="n">x</span>
+            <span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="s">&#39;,&#39;</span><span class="p">:</span>
+                <span class="n">octave</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="s">&quot;&#39;&quot;</span><span class="p">:</span>
+                <span class="n">octave</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_note</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">octave</span><span class="p">,</span> <span class="p">{})</span>
+</div>
+<div class="viewcode-block" id="Note.__int__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.__int__">[docs]</a>    <span class="k">def</span> <span class="nf">__int__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the current octave multiplied by twelve and add</span>
+<span class="sd">        notes.note_to_int to it.</span>
+<span class="sd">        </span>
+<span class="sd">        This means a C-0 returns 0, C-1 returns 12, etc. This method allows</span>
+<span class="sd">        you to use int() on Notes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">octave</span> <span class="o">*</span> <span class="mi">12</span> <span class="o">+</span> <span class="n">notes</span><span class="o">.</span><span class="n">note_to_int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+            <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="s">&#39;#&#39;</span><span class="p">:</span>
+                <span class="n">res</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="s">&#39;b&#39;</span><span class="p">:</span>
+                <span class="n">res</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">res</span>
+</div>
+<div class="viewcode-block" id="Note.__lt__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.__lt__">[docs]</a>    <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Enable the comparing operators on Notes (&gt;, &lt;, \ ==, !=, &gt;= and &lt;=).</span>
+
+<span class="sd">        So we can sort() Intervals, etc.</span>
+
+<span class="sd">        Examples:</span>
+<span class="sd">        &gt;&gt;&gt; Note(&#39;C&#39;, 4) &lt; Note(&#39;B&#39;, 4)</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; Note(&#39;C&#39;, 4) &gt; Note(&#39;B&#39;, 4)</span>
+<span class="sd">        False</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">other</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">int</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Note.__eq__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.__eq__">[docs]</a>    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compare Notes for equality by comparing their note values.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">other</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Note.__ne__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.__ne__">[docs]</a>    <span class="k">def</span> <span class="nf">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span> <span class="o">==</span> <span class="n">other</span>
+</div>
+<div class="viewcode-block" id="Note.__gt__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.__gt__">[docs]</a>    <span class="k">def</span> <span class="nf">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="ow">not</span><span class="p">(</span><span class="bp">self</span> <span class="o">&lt;</span> <span class="n">other</span> <span class="ow">or</span> <span class="bp">self</span> <span class="o">==</span> <span class="n">other</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Note.__le__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.__le__">[docs]</a>    <span class="k">def</span> <span class="nf">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="o">&lt;</span> <span class="n">other</span> <span class="ow">or</span> <span class="bp">self</span> <span class="o">==</span> <span class="n">other</span>
+</div>
+<div class="viewcode-block" id="Note.__ge__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.__ge__">[docs]</a>    <span class="k">def</span> <span class="nf">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span> <span class="o">&lt;</span> <span class="n">other</span>
+</div>
+<div class="viewcode-block" id="Note.__repr__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.__repr__">[docs]</a>    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a helpful representation for printing Note classes.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s">&quot;&#39;</span><span class="si">%s</span><span class="s">-</span><span class="si">%d</span><span class="s">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">octave</span><span class="p">)</span>
+</pre></div></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">mingus</a></h1>
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=bspaans&repo=python-mingus&type=watch&count=true&size=large"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/bspaans/python-mingus" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

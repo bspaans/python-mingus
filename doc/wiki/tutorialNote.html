@@ -1,0 +1,279 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial 1 - Working with notes &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
+    <link rel="next" title="Tutorial 2 - Keys and the Diatonic Scale" href="tutorialDiatonic.html" />
+    <link rel="prev" title="Applications" href="mingusApplications.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tutorialDiatonic.html" title="Tutorial 2 - Keys and the Diatonic Scale"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="mingusApplications.html" title="Applications"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tutorial-1-working-with-notes">
+<h1>Tutorial 1 - Working with notes<a class="headerlink" href="#tutorial-1-working-with-notes" title="Permalink to this headline">¶</a></h1>
+<p>mingus was written out of a desire to have a pythonic way of working with
+music: simple but also correct. This module lies at the heart of the package
+and introduces the first building blocks: note names, accidentals and an
+int-to-note converter (and vice versa).</p>
+<p>To start this tutorial, open up a python shell and enter:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mingus.core.notes</span> <span class="kn">as</span> <span class="nn">notes</span>
+</pre></div>
+</div>
+<p>Now we are ready to work with notes.</p>
+<hr class="docutils" />
+<div class="section" id="notes-as-strings">
+<h2>Notes as Strings<a class="headerlink" href="#notes-as-strings" title="Permalink to this headline">¶</a></h2>
+<p>A note in mingus is represented by a name (A...G) and some or no accidentals
+(&#8216;#&#8217; and &#8216;b&#8217;); where &#8216;b&#8217; lowers and &#8216;#&#8217; raises the note by one half note step.
+To test whether an arbitrary string is a valid note we can use
+<cite>notes.is_valid_note(str)</cite>.</p>
+<p>Some examples of valid notes:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">is_valid_note</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">is_valid_note</span><span class="p">(</span><span class="s">&quot;D#&quot;</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">is_valid_note</span><span class="p">(</span><span class="s">&quot;Eb&quot;</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">is_valid_note</span><span class="p">(</span><span class="s">&quot;Fbb&quot;</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">is_valid_note</span><span class="p">(</span><span class="s">&quot;G##&quot;</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>Some examples of invalid notes:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">is_valid_note</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">is_valid_note</span><span class="p">(</span><span class="s">&quot;D #&quot;</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">is_valid_note</span><span class="p">(</span><span class="s">&quot;E-b&quot;</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>Some, perhaps suprisingly valid notes:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">is_valid_note</span><span class="p">(</span><span class="s">&quot;C######bb&quot;</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">is_valid_note</span><span class="p">(</span><span class="s">&quot;C#b#bb##b##bb&quot;</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>As you can see, mingus can handle any number of accidentals, whether it is the
+sensible thing to do or not. If you want to clean up messy accidentals, you can
+use remove_redundant_accidentals(note). Because it&#8217;s all fun and games until
+someone gets hurt.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">remove_redundant_accidentals</span><span class="p">(</span><span class="s">&quot;C##b&quot;</span><span class="p">)</span>
+<span class="go">&#39;C#&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">remove_redundant_accidentals</span><span class="p">(</span><span class="s">&quot;C#b#bb##b##bb&quot;</span><span class="p">)</span>
+<span class="go">&#39;C&#39;</span>
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="notes-as-integers">
+<h2>Notes as Integers<a class="headerlink" href="#notes-as-integers" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes it is easier to work with notes as integers in range(0,12). This is possible with the functions <cite>notes.note_to_int(str)</cite> and <cite>notes.int_to_note(int)</cite>.</p>
+<div class="section" id="note-to-integer">
+<h3>Note to integer<a class="headerlink" href="#note-to-integer" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">note_to_int</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">note_to_int</span><span class="p">(</span><span class="s">&quot;B&quot;</span><span class="p">)</span>
+<span class="go">11</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">note_to_int</span><span class="p">(</span><span class="s">&quot;Cb&quot;</span><span class="p">)</span>
+<span class="go">11</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">note_to_int</span><span class="p">(</span><span class="s">&quot;C#&quot;</span><span class="p">)</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">note_to_int</span><span class="p">(</span><span class="s">&quot;Db&quot;</span><span class="p">)</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+<p>As you can see in the examples some notes return the same values. These notes are called enharmonic, because they sound the same. (There is <cite>notes.is_enharmonic(note1, note2)</cite> to test if two notes are enharmonic).</p>
+</div>
+<div class="section" id="integer-to-note">
+<h3>Integer to Note<a class="headerlink" href="#integer-to-note" title="Permalink to this headline">¶</a></h3>
+<p>Because enharmonic notes exist, it is impossible to create a sound int-to-note converter based on an integer alone. For example; in the last piece of code we saw that B and Cb are both 11. They sound the same, but they aren&#8217;t theoretically the same. This can be important when building and recognizing intervals and thus scales and chords, because intervals depend on the note name. For instance: the interval between A and B is called a major second, while the interval between A and Cb is a diminished third. <cite>diatonic.int_to_note</cite> does a better job at the conversion, bearing the key in mind as well. The converter in [tutorialNoteModule Note] can also handles octaves on top of that.
+Anyway, if you don&#8217;t care about theoretically sound conversions or don&#8217;t need to differentiate, this function is fine (it sounds the same, after all):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">int_to_note</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">&quot;C&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">int_to_note</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">&quot;C#&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">int_to_note</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">&quot;D&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">int_to_note</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">&quot;D#&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">int_to_note</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">&quot;E&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="helper-functions">
+<h2>Helper Functions<a class="headerlink" href="#helper-functions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="augment-and-diminish">
+<h3>Augment and Diminish<a class="headerlink" href="#augment-and-diminish" title="Permalink to this headline">¶</a></h3>
+<p>Augmenting and diminishing a note is a little bit harder than just slapping a &#8216;#&#8217; or &#8216;b&#8217; on at the end of the string. For instance: when you want to augment a &#8216;Cb&#8217; note, a &#8216;C&#8217; would be nicer than a &#8216;Cb#&#8217; (although, again, they are the same, but it&#8217;s like using double negative). <cite>augment</cite> and <cite>diminish</cite> do a nice job at this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">augment</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">&quot;C#&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">augment</span><span class="p">(</span><span class="s">&quot;Cb&quot;</span><span class="p">)</span>
+<span class="go">&quot;C&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">augment</span><span class="p">(</span><span class="s">&quot;C#&quot;</span><span class="p">)</span>
+<span class="go">&quot;C##&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">augment</span><span class="p">(</span><span class="s">&quot;B&quot;</span><span class="p">)</span>
+<span class="go">&quot;B#&quot;</span>
+</pre></div>
+</div>
+<p>Diminishing a note:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">diminish</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">&quot;Cb&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">diminish</span><span class="p">(</span><span class="s">&quot;C#&quot;</span><span class="p">)</span>
+<span class="go">&quot;C&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">diminish</span><span class="p">(</span><span class="s">&quot;Cb&quot;</span><span class="p">)</span>
+<span class="go">&quot;Cbb&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">diminish</span><span class="p">(</span><span class="s">&quot;B#&quot;</span><span class="p">)</span>
+<span class="go">&quot;B&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="minor-and-major-conversions">
+<h3>Minor and Major conversions<a class="headerlink" href="#minor-and-major-conversions" title="Permalink to this headline">¶</a></h3>
+<p>Minor:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">to_minor</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">&quot;A&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">to_minor</span><span class="p">(</span><span class="s">&quot;F&quot;</span><span class="p">)</span>
+<span class="go">&quot;D&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">to_minor</span><span class="p">(</span><span class="s">&quot;D&quot;</span><span class="p">)</span>
+<span class="go">&quot;B&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">to_minor</span><span class="p">(</span><span class="s">&quot;B&quot;</span><span class="p">)</span>
+<span class="go">&quot;G#&quot;</span>
+</pre></div>
+</div>
+<p>Major:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">to_major</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">)</span>
+<span class="go">&quot;C&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">to_major</span><span class="p">(</span><span class="s">&quot;D&quot;</span><span class="p">)</span>
+<span class="go">&quot;F&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">to_major</span><span class="p">(</span><span class="s">&quot;B&quot;</span><span class="p">)</span>
+<span class="go">&quot;D&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span><span class="o">.</span><span class="n">to_major</span><span class="p">(</span><span class="s">&quot;G#&quot;</span><span class="p">)</span>
+<span class="go">&quot;B&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Write a program that asks for a note, check if it&#8217;s valid and output the note which is five half notes away from it.</li>
+<li>Get the minor equivalent of a valid note and diminish it.</li>
+<li>Generate the first thousand fibonacci numbers and use a modulo 12 operation (eg. <cite>n % 12</cite>) to convert each value to a note.</li>
+</ul>
+<hr class="docutils" />
+<p>You can learn more about <a class="reference external" href="refMingusCoreNotes">mingus.core.notes</a> in the reference section.</p>
+<ul class="simple">
+<li><a class="reference external" href="tutorialDiatonic">Tutorial 2 - Keys and the Diatonic Scale</a></li>
+<li><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">mingus</a></h1>
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=bspaans&repo=python-mingus&type=watch&count=true&size=large"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/bspaans/python-mingus" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
