@@ -6,7 +6,7 @@
 
 
 
->>> from mingus.containers.Note import Note
+>>> from mingus.containers import Note
 
 
 

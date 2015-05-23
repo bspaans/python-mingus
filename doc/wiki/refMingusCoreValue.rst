@@ -1,3 +1,5 @@
+.. module:: mingus.core.value
+
 =================
 mingus.core.value
 =================
@@ -26,316 +28,318 @@ Medieval backwards compatibility privided.
 
 ----
 
-.. attribute:: base_quintuplets
+.. data:: base_quintuplets
 
-   Attribute of type: list
-   ``[0.3125, 0.625, 1.25, 2.5, 5, 10, 20, 40, 80, 160]``
-
-----
-
-.. attribute:: base_septuplets
-
-   Attribute of type: list
-   ``[0.4375, 0.875, 1.75, 3.5, 7, 14, 28, 56, 112, 224]``
+      Attribute of type: list
+      ``[0.3125, 0.625, 1.25, 2.5, 5, 10, 20, 40, 80, 160]``
 
 ----
 
-.. attribute:: base_triplets
+.. data:: base_septuplets
 
-   Attribute of type: list
-   ``[0.375, 0.75, 1.5, 3, 6, 12, 24, 48, 96, 192]``
-
-----
-
-.. attribute:: base_values
-
-   Attribute of type: list
-   ``[0.25, 0.5, 1, 2, 4, 8, 16, 32, 64, 128]``
+      Attribute of type: list
+      ``[0.4375, 0.875, 1.75, 3.5, 7, 14, 28, 56, 112, 224]``
 
 ----
 
-.. attribute:: breve
+.. data:: base_triplets
 
-   Attribute of type: float
-   ``0.5``
-
-----
-
-.. attribute:: crotchet
-
-   Attribute of type: int
-   ``4``
+      Attribute of type: list
+      ``[0.375, 0.75, 1.5, 3, 6, 12, 24, 48, 96, 192]``
 
 ----
 
-.. attribute:: demisemiquaver
+.. data:: base_values
 
-   Attribute of type: int
-   ``32``
-
-----
-
-.. attribute:: eighth
-
-   Attribute of type: int
-   ``8``
+      Attribute of type: list
+      ``[0.25, 0.5, 1, 2, 4, 8, 16, 32, 64, 128]``
 
 ----
 
-.. attribute:: half
+.. data:: breve
 
-   Attribute of type: int
-   ``2``
-
-----
-
-.. attribute:: hemidemisemiquaver
-
-   Attribute of type: int
-   ``64``
+      Attribute of type: float
+      ``0.5``
 
 ----
 
-.. attribute:: hundred_twenty_eighth
+.. data:: crotchet
 
-   Attribute of type: int
-   ``128``
-
-----
-
-.. attribute:: longa
-
-   Attribute of type: float
-   ``0.25``
+      Attribute of type: int
+      ``4``
 
 ----
 
-.. attribute:: minim
+.. data:: demisemiquaver
 
-   Attribute of type: int
-   ``2``
-
-----
-
-.. attribute:: musicxml
-
-   Attribute of type: dict
-   ``{16: '16th', 1: 'whole', 2: 'half', 4: 'quarter', 32: '32th', 8: 'eighth', 64: '64th', 128: '128th'}``
+      Attribute of type: int
+      ``32``
 
 ----
 
-.. attribute:: quarter
+.. data:: eighth
 
-   Attribute of type: int
-   ``4``
-
-----
-
-.. attribute:: quasihemidemisemiquaver
-
-   Attribute of type: int
-   ``128``
+      Attribute of type: int
+      ``8``
 
 ----
 
-.. attribute:: quaver
+.. data:: half
 
-   Attribute of type: int
-   ``8``
-
-----
-
-.. attribute:: semibreve
-
-   Attribute of type: int
-   ``1``
+      Attribute of type: int
+      ``2``
 
 ----
 
-.. attribute:: semihemidemisemiquaver
+.. data:: hemidemisemiquaver
 
-   Attribute of type: int
-   ``128``
-
-----
-
-.. attribute:: semiquaver
-
-   Attribute of type: int
-   ``16``
+      Attribute of type: int
+      ``64``
 
 ----
 
-.. attribute:: sixteenth
+.. data:: hundred_twenty_eighth
 
-   Attribute of type: int
-   ``16``
-
-----
-
-.. attribute:: sixty_fourth
-
-   Attribute of type: int
-   ``64``
+      Attribute of type: int
+      ``128``
 
 ----
 
-.. attribute:: thirty_second
+.. data:: longa
 
-   Attribute of type: int
-   ``32``
+      Attribute of type: float
+      ``0.25``
 
 ----
 
-.. attribute:: whole
+.. data:: minim
 
-   Attribute of type: int
-   ``1``
+      Attribute of type: int
+      ``2``
+
+----
+
+.. data:: musicxml
+
+      Attribute of type: dict
+      ``{16: '16th', 1: 'whole', 2: 'half', 4: 'quarter', 32: '32th', 8: 'eighth', 64: '64th', 128: '128th'}``
+
+----
+
+.. data:: quarter
+
+      Attribute of type: int
+      ``4``
+
+----
+
+.. data:: quasihemidemisemiquaver
+
+      Attribute of type: int
+      ``128``
+
+----
+
+.. data:: quaver
+
+      Attribute of type: int
+      ``8``
+
+----
+
+.. data:: semibreve
+
+      Attribute of type: int
+      ``1``
+
+----
+
+.. data:: semihemidemisemiquaver
+
+      Attribute of type: int
+      ``128``
+
+----
+
+.. data:: semiquaver
+
+      Attribute of type: int
+      ``16``
+
+----
+
+.. data:: sixteenth
+
+      Attribute of type: int
+      ``16``
+
+----
+
+.. data:: sixty_fourth
+
+      Attribute of type: int
+      ``64``
+
+----
+
+.. data:: thirty_second
+
+      Attribute of type: int
+      ``32``
+
+----
+
+.. data:: whole
+
+      Attribute of type: int
+      ``1``
 
 ----
 
 .. function:: add(value1, value2)
 
-   Return the value of the two combined.
-   
-   Example:
-   
-   >>> add(eighth, quarter)
-   2.6666666666666665
+      Return the value of the two combined.
+      
+      Example:
+      
+      >>> add(eighth, quarter)
+      2.6666666666666665
 
 
 ----
 
 .. function:: determine(value)
 
-   Analyse the value and return a tuple containing the parts it's made of.
-   
-   The tuple respectively consists of the base note value, the number of
-   dots, and the ratio (see tuplet).
-   
-   Examples:
-   
-   >>> determine(8)
-   (8, 0, 1, 1)
-   >>> determine(12)
-   (8, 0, 3, 2)
-   >>> determine(14)
-   (8, 0, 7, 4)
-   
-   This function recognizes all the base values, triplets, quintuplets,
-   septuplets and up to four dots. The values are matched on range.
+      Analyse the value and return a tuple containing the parts it's made of.
+      
+      The tuple respectively consists of the base note value, the number of
+      dots, and the ratio (see tuplet).
+      
+      Examples:
+      
+      >>> determine(8)
+      (8, 0, 1, 1)
+      >>> determine(12)
+      (8, 0, 3, 2)
+      >>> determine(14)
+      (8, 0, 7, 4)
+      
+      This function recognizes all the base values, triplets, quintuplets,
+      septuplets and up to four dots. The values are matched on range.
 
 
 ----
 
 .. function:: dots(value, nr=1)
 
-   Return the dotted note value.
-   
-   A dot adds half the duration of the note. A second dot adds half of what
-   was added before, etc. So a dotted eighth note has the length of three
-   sixteenth notes. An eighth note with two dots has the length of seven
-   thirty second notes.
-   
-   Examples:
-   
-   >>> dots(eighth)
-   5.3333333333333333
-   >>> dots(eighth, 2)
-   4.5714285714285712
-   >>> dots(quarter)
-   2.6666666666666665
+      Return the dotted note value.
+      
+      A dot adds half the duration of the note. A second dot adds half of what
+      was added before, etc. So a dotted eighth note has the length of three
+      sixteenth notes. An eighth note with two dots has the length of seven
+      thirty second notes.
+      
+      Examples:
+      
+      >>> dots(eighth)
+      5.3333333333333333
+      >>> dots(eighth, 2)
+      4.5714285714285712
+      >>> dots(quarter)
+      2.6666666666666665
 
 
 ----
 
 .. function:: quintuplet(value)
 
-   Return the quintuplet note value.
-   
-   A quintuplet divides the base value two above into five parts. So a
-   quintuplet eighth note is a fifth of a half note.
-   
-   Examples:
-   
-   >>> quintuplet(8)
-   10
-   >>> quintuplet(4)
-   5
+      Return the quintuplet note value.
+      
+      A quintuplet divides the base value two above into five parts. So a
+      quintuplet eighth note is a fifth of a half note.
+      
+      Examples:
+      
+      >>> quintuplet(8)
+      10
+      >>> quintuplet(4)
+      5
 
 
 ----
 
 .. function:: septuplet(value, in_fourths=True)
 
-   Return the septuplet note value.
-   
-   The usage of a septuplet is ambigious: seven notes can be played either
-   in the duration of four or eighth notes.
-   
-   If in_fourths is set to True, this function will use 4, otherwise 8
-   notes. So a septuplet eighth note is respectively either 14 or 7.
-   
-   Notice how
-   
-   >>> septuplet(8, False) == septuplet(4, True)
-   True
-   
-   Examples:
-   >>> septuplet(8)
-   14
-   >>> septuplet(8, False)
-   7
+      Return the septuplet note value.
+      
+      The usage of a septuplet is ambigious: seven notes can be played either
+      in the duration of four or eighth notes.
+      
+      If in_fourths is set to True, this function will use 4, otherwise 8
+      notes. So a septuplet eighth note is respectively either 14 or 7.
+      
+      Notice how
+      
+      >>> septuplet(8, False) == septuplet(4, True)
+      True
+      
+      Examples:
+      >>> septuplet(8)
+      14
+      >>> septuplet(8, False)
+      7
 
 
 ----
 
 .. function:: subtract(value1, value2)
 
-   Return the note value for value1 minus value2.
-   
-   There are no exceptions for producing negative values, which can be
-   useful for taking differences.
-   
-   Example:
-   
-   >>> substract(quarter, eighth)
-   8.0
+      Return the note value for value1 minus value2.
+      
+      There are no exceptions for producing negative values, which can be
+      useful for taking differences.
+      
+      Example:
+      
+      >>> substract(quarter, eighth)
+      8.0
 
 
 ----
 
 .. function:: triplet(value)
 
-   Return the triplet note value.
-   
-   A triplet divides the base value above into three parts. So a triplet
-   eighth note is a third of a quarter note.
-   
-   Examples:
-   
-   >>> triplet(eighth)
-   12
-   >>> triplet(4)
-   6
+      Return the triplet note value.
+      
+      A triplet divides the base value above into three parts. So a triplet
+      eighth note is a third of a quarter note.
+      
+      Examples:
+      
+      >>> triplet(eighth)
+      12
+      >>> triplet(4)
+      6
 
 
 ----
 
 .. function:: tuplet(value, rat1, rat2)
 
-   Return a tuplet.
-   
-   A tuplet can be written as a ratio. For example: 5:4 means that you play
-   5 notes in the duration of 4 (a quintuplet), 3:2 means that you play 3
-   notes in the duration of 2 (a triplet), etc. This function calculates
-   the note value when playing in rat1:rat2.
-   
-   Example:
-   
-   >>> tuplet(8, 3, 2)
-   12
+      Return a tuplet.
+      
+      A tuplet can be written as a ratio. For example: 5:4 means that you play
+      5 notes in the duration of 4 (a quintuplet), 3:2 means that you play 3
+      notes in the duration of 2 (a triplet), etc. This function calculates
+      the note value when playing in rat1:rat2.
+      
+      Example:
+      
+      >>> tuplet(8, 3, 2)
+      12
 
 ----
+
+
 
 :doc:`Back to Index</index>`

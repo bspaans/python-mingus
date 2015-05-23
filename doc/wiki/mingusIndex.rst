@@ -87,6 +87,7 @@ API docs
    doc/wiki/refMingusCoreIntervals
    doc/wiki/refMingusCoreChords
    doc/wiki/refMingusCoreScales
+   doc/wiki/refMingusCoreKeys
    doc/wiki/refMingusCoreMeter
    doc/wiki/refMingusCoreValue
    doc/wiki/refMingusCoreProgressions
@@ -96,12 +97,9 @@ API docs
    :caption: mingus.containers
 
    doc/wiki/refMingusContainersNote
-   doc/wiki/refMingusContainersNotecontainer
+   doc/wiki/refMingusContainersNote_container
    doc/wiki/refMingusContainersBar
    doc/wiki/refMingusContainersInstrument
-   doc/wiki/refMingusContainersPiano 
-   doc/wiki/refMingusContainersGuitar
-   doc/wiki/refMingusContainersMidiinstrument 
    doc/wiki/refMingusContainersTrack
    doc/wiki/refMingusContainersComposition
    doc/wiki/refMingusContainersSuite
@@ -112,10 +110,12 @@ API docs
 
    doc/wiki/refMingusMidiSequencer
    doc/wiki/refMingusMidiSequencerobserver
+   doc/wiki/refMingusMidiMidi_events
    doc/wiki/refMingusMidiFluidsynth
-   doc/wiki/refMingusMidiMiditrack
-   doc/wiki/refMingusMidiMidifileout
-   doc/wiki/refMingusMidiMidifilein
+   doc/wiki/refMingusMidiPyfluidsynth
+   doc/wiki/refMingusMidiMidi_track
+   doc/wiki/refMingusMidiMidi_file_out
+   doc/wiki/refMingusMidiMidi_file_in
 
 .. toctree::
    :maxdepth: 1

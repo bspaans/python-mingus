@@ -1,17 +1,15 @@
-.. module:: mingus.extra.tunings
+.. module:: mingus.extra.StringTuning
 
-====================
-mingus.extra.tunings
-====================
+=========================
+mingus.extra.StringTuning
+=========================
 
-Dozens of standard tunings, a StringTuning class and some functions to help
-you search through them.
-
-
-.. class:: StringTuning
+A class to store and work with tunings and fingerings.
 
 
-   .. method:: __init__(self, instrument, description, tuning)
+----
+
+.. function:: __init__(self, instrument, description, tuning)
 
       Create a new StringTuning instance.
       
@@ -22,17 +20,23 @@ you search through them.
       See tunings.add_tuning for examples.
 
 
-   .. method:: count_courses(self)
+----
+
+.. function:: count_courses(self)
 
       Return the average number of courses per string.
 
 
-   .. method:: count_strings(self)
+----
+
+.. function:: count_strings(self)
 
       Return the number of strings.
 
 
-   .. method:: find_chord_fingering(self, notes, max_distance=4, maxfret=18, max_fingers=4, return_best_as_NoteContainer=False)
+----
+
+.. function:: find_chord_fingering(self, notes, max_distance=4, maxfret=18, max_fingers=4, return_best_as_NoteContainer=False)
 
       Return a list of fret lists that are considered possible fingerings.
       
@@ -46,7 +50,9 @@ you search through them.
       [[0, 0, 2, 2, 1, 0], [0, 3, 2, 2, 1, 0], ......]
 
 
-   .. method:: find_fingering(self, notes, max_distance=4, not_strings=[])
+----
+
+.. function:: find_fingering(self, notes, max_distance=4, not_strings=[])
 
       Return a list [(string, fret)] of possible fingerings for
       'notes'.
@@ -63,7 +69,9 @@ you search through them.
       [[(0, 7), (1, 7)], [(1, 0), (0, 14)]]
 
 
-   .. method:: find_frets(self, note, maxfret=24)
+----
+
+.. function:: find_frets(self, note, maxfret=24)
 
       Return a list with for each string the fret on which the note is
       played or None if it can't be played on that particular string.
@@ -80,7 +88,9 @@ you search through them.
       [12, 5]
 
 
-   .. method:: find_note_names(self, notelist, string=0, maxfret=24)
+----
+
+.. function:: find_note_names(self, notelist, string=0, maxfret=24)
 
       Return a list [(fret, notename)] in ascending order.
       
@@ -93,12 +103,16 @@ you search through them.
       [(0, 'E'), (5, 'A'), (8, 'C'), (12, 'E')]
 
 
-   .. method:: frets_to_NoteContainer(self, fingering)
+----
+
+.. function:: frets_to_NoteContainer(self, fingering)
 
       Convert a list such as returned by find_fret to a NoteContainer.
 
 
-   .. method:: get_Note(self, string=0, fret=0, maxfret=24)
+----
+
+.. function:: get_Note(self, string=0, fret=0, maxfret=24)
 
       Return the Note on 'string', 'fret'.
       
@@ -113,70 +127,6 @@ you search through them.
       'A#-3'
       >>> t.get_Note(1, 0)
       'A-4'
-
-
-----
-
-.. function:: add_tuning(instrument, description, tuning)
-
-      Add a new tuning to the index.
-      
-      The instrument and description parameters should be strings; tuning
-      should be a list of strings or a list of lists to denote courses.
-      
-      Example:
-      
-      >>> std_strings = ['E-2', 'A-2', 'D-3', 'G-3', 'B-3', 'E-4']
-      >>> tuning.add_tuning('Guitar', 'standard', std_strings)
-      >>> tw_strings = [['E-2', 'E-3'], ['A-2', 'A-3'], ...........]
-      >>> tuning.add_tuning('Guitar', 'twelve string', tw_string)
-
-
-----
-
-.. function:: fingers_needed(fingering)
-
-      Return the number of fingers needed to play the given fingering.
-
-
-----
-
-.. function:: get_instruments()
-
-      Return a sorted list of instruments that have string tunings defined
-      for them.
-
-
-----
-
-.. function:: get_tuning(instrument, description, nr_of_strings=None, nr_of_courses=None)
-
-      Get the first tuning that satisfies the constraints.
-      
-      The instrument and description arguments are treated like
-      case-insensitive prefixes. So search for 'bass' is the same is
-      'Bass Guitar'.
-      
-      Example:
-      
-      >>> tunings.get_tuning('guitar', 'standard')
-      <tunings.StringTuning instance at 0x139ac20>
-
-
-----
-
-.. function:: get_tunings(instrument=None, nr_of_strings=None, nr_of_courses=None)
-
-      Search tunings on instrument, strings, courses or a combination.
-      
-      The instrument is actually treated like a case-insensitive prefix. So
-      asking for 'bass' yields the same tunings as 'Bass Guitar'; the string
-      'ba' yields all the instruments starting with 'ba'.
-      
-      Example:
-      
-      >>> tunings.get_tunings(nr_of_string = 4)
-      >>> tunings.get_tunings('bass')
 
 ----
 

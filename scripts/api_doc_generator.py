@@ -45,64 +45,79 @@ class Documize(object):
     def __init__(self, module_string=''):
         self.set_module(module_string)
 
-    def format_code_examples(self, text):
-        pass
+    def process_element_recursively(self, element_string, element_evaled, is_class = False):
+        for element in dir(element_evaled):
+            e = eval('{0}.{1}'.format(element_string, element))
+            if not callable(e):
+                self.generate_non_callable_docs(element_string, element, e, is_class)
+            else:
+                self.generate_callable_wikidocs(element_string, element, e, is_class)
 
     def generate_module_wikidocs(self):
         self.reset()
         header = '=' * len(self.module_string)
-        res = '%s\n%s\n%s\n\n' % (header, self.module_string, header)
+        res = '.. module:: %s\n\n' % self.module_string
+        res += '%s\n%s\n%s\n\n' % (header, self.module_string, header)
 
         if self.module.__doc__ is not None:
             res += self.module.__doc__ + '\n\n'
 
         # Gather all the documentation
-        for element in dir(self.module):
-            e = eval('{0}.{1}'.format(self.module_string, element))
-            if not callable(e):
-                self.generate_non_callable_docs(element, e)
-            else:
-                self.generate_callable_wikidocs(element, e)
+        self.process_element_recursively(self.module_string, self.module)
 
         # Order it
         self.functions.sort()
-        self.classes.sort()
         self.attributes.sort()
 
+        # Present classes
+        for c in self.classes:
+            res += c
+
         # Present attributes
-        if len(self.attributes) != 0:
-            for a in self.attributes:
-                res += a
+        for a in self.attributes:
+            res += a
 
         # Present functions
-        if len(self.functions) != 0:
-            for f in self.functions:
-                res += f
-            res += '----\n\n'
-        res += ':doc:`Back to Index</index>`\n'
+        for f in self.functions:
+            res += f
+        res += '----\n\n'
+        res += '\n\n:doc:`Back to Index</index>`\n'
         return res
 
-    def generate_non_callable_docs(self, element_string, evaled):
+    def generate_non_callable_docs(self, module_string, element_string, evaled, is_class = False):
         if element_string[0] != '_' and type(evaled) != types.ModuleType:
             t = str(type(evaled))
             t = t.split("'")
-            res = '\n----\n\n.. attribute:: ' + element_string + '\n\n'
-            res += '   Attribute of type: {0}\n'.format(t[1])
-            res += '   ``{0}``\n'.format(repr(evaled))
-            self.attributes.append(res)
+            directive = "----\n\n.. data" if not is_class else "   .. attribute"
+            res = '\n{0}:: {1}\n\n'.format(directive , element_string)
+            res += '      Attribute of type: {0}\n'.format(t[1])
+            res += '      ``{0}``\n'.format(repr(evaled))
+            if not is_class:
+                self.attributes.append(res)
+            else:
+                self.classes.append(res)
 
-    def generate_callable_wikidocs(self, element_string, evaled):
+    def generate_callable_wikidocs(self, module_string, element_string, evaled, is_class = False):
         if type(evaled) in [types.FunctionType, types.MethodType]:
-            self.functions.append(self.generate_function_wikidocs(
-                element_string, evaled))
+            docs = self.generate_function_wikidocs(element_string, evaled, is_class)
+            if not is_class:
+                self.functions.append(docs)
+            else:
+                self.classes.append(docs)
         elif type(evaled) == types.ClassType:
-            print 'CLASS'
+            self.classes.append('\n.. class:: ' + element_string + '\n\n')
+            module_string = module_string + "." + element_string
+            self.process_element_recursively(module_string, evaled, True)
+        elif hasattr(evaled, '__module__') and evaled.__module__ is not None and evaled.__module__.startswith(module_string):
+            self.classes.append('\n.. class:: ' + element_string + '\n\n')
+            module_string = module_string + "." + element_string
+            self.process_element_recursively(module_string, evaled, True)
         else:
-            # print "Unknown callable object %s " % element_string
             pass
 
-    def generate_function_wikidocs(self, func_string, func):
-        res = '\n----\n\n.. function:: {0}('.format(func_string)
+    def generate_function_wikidocs(self, func_string, func, is_class = False):
+        directive = '----\n\n.. function' if not is_class else '   .. method'
+        res = '\n{0}:: {1}('.format(directive, func_string)
         argspec = inspect.getargspec(func)
         args = argspec[0]
         defaults = argspec[3]
@@ -133,13 +148,13 @@ class Documize(object):
             l = []
             for line in doc.splitlines():
                 if line.startswith('>>>') and not seen_code:
-                    l.append('\n   ' + line)
+                    l.append('\n      ' + line)
                     seen_code = True
                 else:
                     l.append(line)
-            doc = '\n   '.join(l)
+            doc = '\n      '.join(l)
 
-            res += '   {0}\n\n'.format(doc)
+            res += '      {0}\n\n'.format(doc)
         return res
 
     def reset(self):
@@ -163,27 +178,27 @@ def generate_package_wikidocs(package_string, file_prefix='ref',
     package = eval(package_string)
     print '\nGenerating documentation for package {0}'.format(package_string)
     for element in dir(package):
-        if not callable(element):
+        if not callable(element) and not element.startswith('__'):
             fullname = '{0}.{1}'.format(package_string, element)
-            if (type(eval(fullname)) == types.ModuleType or
-                    type(eval(fullname)) == types.ClassType):
-                d.set_module(fullname)
-                wikiname = file_prefix
-                for parts in fullname.split('.'):
-                    wikiname += parts.capitalize()
-                wikiname += file_suffix
-                print 'Writing {0}...'.format(wikiname),
-                result = d.output_wiki()
+            e = eval(fullname)
+            typ = type(eval(fullname))
+            d.set_module(fullname)
+            wikiname = file_prefix
+            for parts in fullname.split('.'):
+                wikiname += parts.capitalize()
+            wikiname += file_suffix
+            print 'Writing {0}...'.format(wikiname),
+            result = d.output_wiki()
+            try:
+                f = open(os.path.join(sys.argv[1], wikiname), 'w')
                 try:
-                    f = open(os.path.join(sys.argv[1], wikiname), 'w')
-                    try:
-                        f.write(result)
-                        print 'OK'
-                    except:
-                        print "ERROR. Couldn't write to file."
-                    f.close()
+                    f.write(result)
+                    print 'OK'
                 except:
-                    print "ERROR. Couldn't open file for writing."
+                    print "ERROR. Couldn't write to file."
+                f.close()
+            except:
+                print "ERROR. Couldn't open file for writing."
 
 def main():
     print 'mingus version 0.5, Copyright (C) 2008-2015, Bart Spaans\n'

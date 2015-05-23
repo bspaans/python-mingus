@@ -1,3 +1,5 @@
+.. module:: mingus.midi.midi_track
+
 ======================
 mingus.midi.midi_track
 ======================
@@ -9,269 +11,467 @@ http://www.sonicspot.com/guide/midifiles.html
 
 
 
-----
+.. class:: MidiTrack
 
-.. attribute:: BALANCE
 
-   Attribute of type: int
-   ``8``
+   .. method:: __init__(self, start_bpm=120)
 
-----
 
-.. attribute:: BANK_SELECT
+   .. attribute:: bpm
 
-   Attribute of type: int
-   ``0``
+      Attribute of type: int
+      ``120``
 
-----
+   .. attribute:: change_instrument
 
-.. attribute:: BREATH_CONTROLLER
+      Attribute of type: bool
+      ``False``
 
-   Attribute of type: int
-   ``2``
+   .. method:: controller_event(self, channel, contr_nr, contr_val)
 
-----
+      Return the bytes for a MIDI controller event.
 
-.. attribute:: CHANNEL_AFTERTOUCH
 
-   Attribute of type: int
-   ``13``
+   .. attribute:: delay
 
-----
+      Attribute of type: int
+      ``0``
 
-.. attribute:: CONTROLLER
+   .. attribute:: delta_time
 
-   Attribute of type: int
-   ``11``
+      Attribute of type: str
+      ``'\x00'``
 
-----
+   .. method:: end_of_track(self)
 
-.. attribute:: COPYRIGHT_NOTICE
+      Return the bytes for an end of track meta event.
 
-   Attribute of type: str
-   ``'\x02'``
 
-----
+   .. method:: get_midi_data(self)
 
-.. attribute:: CUE_POINT
+      Return the MIDI data in bytes for this track.
+      
+      Include header, track_data and the end of track meta event.
 
-   Attribute of type: str
-   ``'\x07'``
 
-----
+   .. method:: header(self)
 
-.. attribute:: DATA_ENTRY_MSB
+      Return the bytes for the header of track.
+      
+      The header contains the length of the track_data, so you'll have to
+      call this function when you're done adding data (when you're not
+      using get_midi_data).
 
-   Attribute of type: int
-   ``6``
 
-----
+   .. attribute:: instrument
 
-.. attribute:: EFFECT_CONTROL_1
+      Attribute of type: int
+      ``1``
 
-   Attribute of type: int
-   ``12``
+   .. method:: int_to_varbyte(self, value)
 
-----
+      Convert an integer into a variable length byte.
+      
+      How it works: the bytes are stored in big-endian (significant bit
+      first), the highest bit of the byte (mask 0x80) is set when there
+      are more bytes following. The remaining 7 bits (mask 0x7F) are used
+      to store the value.
 
-.. attribute:: EFFECT_CONTROL_2
 
-   Attribute of type: int
-   ``13``
+   .. method:: key_signature_event(self, key=C)
 
-----
+      Return the bytes for a key signature event.
 
-.. attribute:: END_OF_TRACK
 
-   Attribute of type: str
-   ``'/'``
+   .. method:: midi_event(self, event_type, channel, param1, param2=None)
 
-----
+      Convert and return the paraters as a MIDI event in bytes.
 
-.. attribute:: EXPRESSION_CONTROLLER
 
-   Attribute of type: int
-   ``11``
+   .. method:: note_off(self, channel, note, velocity)
 
-----
+      Return bytes for a 'note off' event.
 
-.. attribute:: FILE_HEADER
 
-   Attribute of type: str
-   ``'MThd'``
+   .. method:: note_on(self, channel, note, velocity)
 
-----
+      Return bytes for a 'note_on' event.
 
-.. attribute:: FOOT_CONTROLLER
 
-   Attribute of type: int
-   ``4``
+   .. method:: play_Bar(self, bar)
 
-----
+      Convert a Bar object to MIDI events and write them to the
+      track_data.
 
-.. attribute:: INSTRUMENT_NAME
 
-   Attribute of type: str
-   ``'\x04'``
+   .. method:: play_Note(self, note)
 
-----
+      Convert a Note object to a midi event and adds it to the
+      track_data.
+      
+      To set the channel on which to play this note, set Note.channel, the
+      same goes for Note.velocity.
 
-.. attribute:: KEY_SIGNATURE
 
-   Attribute of type: str
-   ``'Y'``
+   .. method:: play_NoteContainer(self, notecontainer)
 
-----
+      Convert a mingus.containers.NoteContainer to the equivalent MIDI
+      events and add it to the track_data.
+      
+      Note.channel and Note.velocity can be set as well.
 
-.. attribute:: LYRICS
 
-   Attribute of type: str
-   ``'\x05'``
+   .. method:: play_Track(self, track)
 
-----
+      Convert a Track object to MIDI events and write them to the
+      track_data.
 
-.. attribute:: MAIN_VOLUME
 
-   Attribute of type: int
-   ``7``
+   .. method:: program_change_event(self, channel, instr)
 
-----
+      Return the bytes for a program change controller event.
 
-.. attribute:: MARKER
 
-   Attribute of type: str
-   ``'\x06'``
+   .. method:: reset(self)
 
-----
+      Reset track_data and delta_time.
 
-.. attribute:: META_EVENT
 
-   Attribute of type: str
-   ``'\xff'``
+   .. method:: select_bank(self, channel, bank)
 
-----
+      Return the MIDI event for a select bank controller event.
 
-.. attribute:: MIDI_CHANNEL_PREFIX
 
-   Attribute of type: str
-   ``' '``
+   .. method:: set_deltatime(self, delta_time)
 
-----
+      Set the delta_time.
+      
+      Can be an integer or a variable length byte.
 
-.. attribute:: MODULATION
 
-   Attribute of type: int
-   ``1``
+   .. method:: set_instrument(self, channel, instr, bank=1)
 
-----
+      Add a program change and bank select event to the track_data.
 
-.. attribute:: NOTE_AFTERTOUCH
 
-   Attribute of type: int
-   ``10``
+   .. method:: set_key(self, key=C)
 
-----
+      Add a key signature event to the track_data.
 
-.. attribute:: NOTE_OFF
 
-   Attribute of type: int
-   ``8``
+   .. method:: set_meter(self, meter=(4, 4))
 
-----
+      Add a time signature event for meter to track_data.
 
-.. attribute:: NOTE_ON
 
-   Attribute of type: int
-   ``9``
+   .. method:: set_tempo(self, bpm)
 
-----
+      Convert the bpm to a midi event and write it to the track_data.
 
-.. attribute:: PAN
 
-   Attribute of type: int
-   ``10``
+   .. method:: set_tempo_event(self, bpm)
 
-----
+      Calculate the microseconds per quarter note.
 
-.. attribute:: PITCH_BEND
 
-   Attribute of type: int
-   ``14``
+   .. method:: set_track_name(self, name)
 
-----
+      Add a meta event for the track.
 
-.. attribute:: PORTAMENTO_TIME
 
-   Attribute of type: int
-   ``5``
+   .. method:: stop_Note(self, note)
 
-----
+      Add a note_off event for note to event_track.
 
-.. attribute:: PROGRAM_CHANGE
 
-   Attribute of type: int
-   ``12``
+   .. method:: stop_NoteContainer(self, notecontainer)
+
+      Add note_off events for each note in the NoteContainer to the
+      track_data.
+
+
+   .. method:: time_signature_event(self, meter=(4, 4))
+
+      Return a time signature event for meter.
+
+
+   .. attribute:: track_data
+
+      Attribute of type: str
+      ``''``
+
+   .. method:: track_name_event(self, name)
+
+      Return the bytes for a track name meta event.
+
 
 ----
 
-.. attribute:: SEQUENCE_NUMBER
+.. data:: BALANCE
 
-   Attribute of type: str
-   ``'\x00'``
-
-----
-
-.. attribute:: SET_TEMPO
-
-   Attribute of type: str
-   ``'Q'``
+      Attribute of type: int
+      ``8``
 
 ----
 
-.. attribute:: SMPTE_OFFSET
+.. data:: BANK_SELECT
 
-   Attribute of type: str
-   ``'T'``
-
-----
-
-.. attribute:: TEXT_EVENT
-
-   Attribute of type: str
-   ``'\x01'``
+      Attribute of type: int
+      ``0``
 
 ----
 
-.. attribute:: TIME_SIGNATURE
+.. data:: BREATH_CONTROLLER
 
-   Attribute of type: str
-   ``'X'``
-
-----
-
-.. attribute:: TRACK_HEADER
-
-   Attribute of type: str
-   ``'MTrk'``
+      Attribute of type: int
+      ``2``
 
 ----
 
-.. attribute:: TRACK_NAME
+.. data:: CHANNEL_AFTERTOUCH
 
-   Attribute of type: str
-   ``'\x03'``
-
-----
-
-.. attribute:: major_keys
-
-   Attribute of type: list
-   ``['Cb', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#']``
+      Attribute of type: int
+      ``13``
 
 ----
 
-.. attribute:: minor_keys
+.. data:: CONTROLLER
 
-   Attribute of type: list
-   ``['ab', 'eb', 'bb', 'f', 'c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#']``
+      Attribute of type: int
+      ``11``
+
+----
+
+.. data:: COPYRIGHT_NOTICE
+
+      Attribute of type: str
+      ``'\x02'``
+
+----
+
+.. data:: CUE_POINT
+
+      Attribute of type: str
+      ``'\x07'``
+
+----
+
+.. data:: DATA_ENTRY_MSB
+
+      Attribute of type: int
+      ``6``
+
+----
+
+.. data:: EFFECT_CONTROL_1
+
+      Attribute of type: int
+      ``12``
+
+----
+
+.. data:: EFFECT_CONTROL_2
+
+      Attribute of type: int
+      ``13``
+
+----
+
+.. data:: END_OF_TRACK
+
+      Attribute of type: str
+      ``'/'``
+
+----
+
+.. data:: EXPRESSION_CONTROLLER
+
+      Attribute of type: int
+      ``11``
+
+----
+
+.. data:: FILE_HEADER
+
+      Attribute of type: str
+      ``'MThd'``
+
+----
+
+.. data:: FOOT_CONTROLLER
+
+      Attribute of type: int
+      ``4``
+
+----
+
+.. data:: INSTRUMENT_NAME
+
+      Attribute of type: str
+      ``'\x04'``
+
+----
+
+.. data:: KEY_SIGNATURE
+
+      Attribute of type: str
+      ``'Y'``
+
+----
+
+.. data:: LYRICS
+
+      Attribute of type: str
+      ``'\x05'``
+
+----
+
+.. data:: MAIN_VOLUME
+
+      Attribute of type: int
+      ``7``
+
+----
+
+.. data:: MARKER
+
+      Attribute of type: str
+      ``'\x06'``
+
+----
+
+.. data:: META_EVENT
+
+      Attribute of type: str
+      ``'\xff'``
+
+----
+
+.. data:: MIDI_CHANNEL_PREFIX
+
+      Attribute of type: str
+      ``' '``
+
+----
+
+.. data:: MODULATION
+
+      Attribute of type: int
+      ``1``
+
+----
+
+.. data:: NOTE_AFTERTOUCH
+
+      Attribute of type: int
+      ``10``
+
+----
+
+.. data:: NOTE_OFF
+
+      Attribute of type: int
+      ``8``
+
+----
+
+.. data:: NOTE_ON
+
+      Attribute of type: int
+      ``9``
+
+----
+
+.. data:: PAN
+
+      Attribute of type: int
+      ``10``
+
+----
+
+.. data:: PITCH_BEND
+
+      Attribute of type: int
+      ``14``
+
+----
+
+.. data:: PORTAMENTO_TIME
+
+      Attribute of type: int
+      ``5``
+
+----
+
+.. data:: PROGRAM_CHANGE
+
+      Attribute of type: int
+      ``12``
+
+----
+
+.. data:: SEQUENCE_NUMBER
+
+      Attribute of type: str
+      ``'\x00'``
+
+----
+
+.. data:: SET_TEMPO
+
+      Attribute of type: str
+      ``'Q'``
+
+----
+
+.. data:: SMPTE_OFFSET
+
+      Attribute of type: str
+      ``'T'``
+
+----
+
+.. data:: TEXT_EVENT
+
+      Attribute of type: str
+      ``'\x01'``
+
+----
+
+.. data:: TIME_SIGNATURE
+
+      Attribute of type: str
+      ``'X'``
+
+----
+
+.. data:: TRACK_HEADER
+
+      Attribute of type: str
+      ``'MTrk'``
+
+----
+
+.. data:: TRACK_NAME
+
+      Attribute of type: str
+      ``'\x03'``
+
+----
+
+.. data:: major_keys
+
+      Attribute of type: list
+      ``['Cb', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#']``
+
+----
+
+.. data:: minor_keys
+
+      Attribute of type: list
+      ``['ab', 'eb', 'bb', 'f', 'c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#']``
+----
+
+
+
 :doc:`Back to Index</index>`
