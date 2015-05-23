@@ -58,6 +58,186 @@
             
   <span class="target" id="module-mingus.containers.track"></span><div class="section" id="mingus-containers-track">
 <h1>mingus.containers.track<a class="headerlink" href="#mingus-containers-track" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="mingus.containers.track.Track">
+<em class="property">class </em><code class="descclassname">mingus.containers.track.</code><code class="descname">Track</code><a class="reference internal" href="../../_modules/mingus/containers/track.html#Track"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.containers.track.Track" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.containers.track.__add__">
+<code class="descclassname">mingus.containers.track.</code><code class="descname">__add__</code><span class="sig-paren">(</span><em>self</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.track.__add__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable the &#8216;+&#8217; operator for Tracks.</p>
+<p>Notes, notes as string, NoteContainers and Bars accepted.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.containers.track.__eq__">
+<code class="descclassname">mingus.containers.track.</code><code class="descname">__eq__</code><span class="sig-paren">(</span><em>self</em>, <em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.track.__eq__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable the &#8216;==&#8217; operator for tracks.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.containers.track.__getitem__">
+<code class="descclassname">mingus.containers.track.</code><code class="descname">__getitem__</code><span class="sig-paren">(</span><em>self</em>, <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.track.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable the &#8216;[]&#8217; notation for Tracks.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.containers.track.__init__">
+<code class="descclassname">mingus.containers.track.</code><code class="descname">__init__</code><span class="sig-paren">(</span><em>self</em>, <em>instrument=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.track.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.containers.track.__len__">
+<code class="descclassname">mingus.containers.track.</code><code class="descname">__len__</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.track.__len__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable the len() function for Tracks.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.containers.track.__repr__">
+<code class="descclassname">mingus.containers.track.</code><code class="descname">__repr__</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.track.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a string representing the class.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.containers.track.__setitem__">
+<code class="descclassname">mingus.containers.track.</code><code class="descname">__setitem__</code><span class="sig-paren">(</span><em>self</em>, <em>index</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.track.__setitem__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable the &#8216;[] =&#8217; notation for Tracks.</p>
+<p>Throw an UnexpectedObjectError if the value being set is not a
+mingus.containers.Bar object.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.containers.track.add_bar">
+<code class="descclassname">mingus.containers.track.</code><code class="descname">add_bar</code><span class="sig-paren">(</span><em>self</em>, <em>bar</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.track.add_bar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a Bar to the current track.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.containers.track.add_notes">
+<code class="descclassname">mingus.containers.track.</code><code class="descname">add_notes</code><span class="sig-paren">(</span><em>self</em>, <em>note</em>, <em>duration=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.track.add_notes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a Note, note as string or NoteContainer to the last Bar.</p>
+<p>If the Bar is full, a new one will automatically be created.</p>
+<p>If the Bar is not full but the note can&#8217;t fit in, this method will
+return False. True otherwise.</p>
+<p>An InstrumentRangeError exception will be raised if an Instrument is
+attached to the Track, but the note turns out not to be within the
+range of the Instrument.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.containers.track.augment">
+<code class="descclassname">mingus.containers.track.</code><code class="descname">augment</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.track.augment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Augment all the bars in the Track.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="attribute">
+<dt id="mingus.containers.track.bars">
+<code class="descclassname">mingus.containers.track.</code><code class="descname">bars</code><a class="headerlink" href="#mingus.containers.track.bars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: list
+<code class="docutils literal"><span class="pre">[]</span></code></p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.containers.track.diminish">
+<code class="descclassname">mingus.containers.track.</code><code class="descname">diminish</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.track.diminish" title="Permalink to this definition">¶</a></dt>
+<dd><p>Diminish all the bars in the Track.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.containers.track.from_chords">
+<code class="descclassname">mingus.containers.track.</code><code class="descname">from_chords</code><span class="sig-paren">(</span><em>self</em>, <em>chords</em>, <em>duration=1</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.track.from_chords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add chords to the Track.</p>
+<p>The given chords should be a list of shorthand strings or list of
+list of shorthand strings, etc.</p>
+<p>Each sublist divides the value by 2.</p>
+<p>If a tuning is set, chords will be expanded so they have a proper
+fingering.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">Track</span><span class="p">()</span><span class="o">.</span><span class="n">from_chords</span><span class="p">([</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;Am&#39;</span><span class="p">,</span> <span class="s">&#39;Dm&#39;</span><span class="p">],</span> <span class="s">&#39;G7&#39;</span><span class="p">,</span> <span class="s">&#39;C#&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.containers.track.get_notes">
+<code class="descclassname">mingus.containers.track.</code><code class="descname">get_notes</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.track.get_notes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an iterator that iterates through every bar in the this
+track.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.containers.track.get_tuning">
+<code class="descclassname">mingus.containers.track.</code><code class="descname">get_tuning</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.track.get_tuning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a StringTuning object.</p>
+<p>If an instrument is set and has a tuning it will be returned.
+Otherwise the track&#8217;s one will be used.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="attribute">
+<dt id="mingus.containers.track.instrument">
+<code class="descclassname">mingus.containers.track.</code><code class="descname">instrument</code><a class="headerlink" href="#mingus.containers.track.instrument" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: NoneType
+<code class="docutils literal"><span class="pre">None</span></code></p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="attribute">
+<dt id="mingus.containers.track.name">
+<code class="descclassname">mingus.containers.track.</code><code class="descname">name</code><a class="headerlink" href="#mingus.containers.track.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: str
+<code class="docutils literal"><span class="pre">'Untitled'</span></code></p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.containers.track.set_tuning">
+<code class="descclassname">mingus.containers.track.</code><code class="descname">set_tuning</code><span class="sig-paren">(</span><em>self</em>, <em>tuning</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.track.set_tuning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the tuning attribute on both the Track and its instrument (when
+available).</p>
+<p>Tuning should be a StringTuning or derivative object.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.containers.track.test_integrity">
+<code class="descclassname">mingus.containers.track.</code><code class="descname">test_integrity</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.track.test_integrity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test whether all but the last Bars contained in this track are
+full.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.containers.track.transpose">
+<code class="descclassname">mingus.containers.track.</code><code class="descname">transpose</code><span class="sig-paren">(</span><em>self</em>, <em>interval</em>, <em>up=True</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.track.transpose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transpose all the notes in the track up or down the interval.</p>
+<p>Call transpose() on every Bar.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="attribute">
+<dt id="mingus.containers.track.tuning">
+<code class="descclassname">mingus.containers.track.</code><code class="descname">tuning</code><a class="headerlink" href="#mingus.containers.track.tuning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: NoneType
+<code class="docutils literal"><span class="pre">None</span></code></p>
+</dd></dl>
+
 <hr class="docutils" />
 <p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
 </div>

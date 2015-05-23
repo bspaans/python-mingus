@@ -10,6 +10,24 @@ This module provides a simple interface for dealing with keys.
 
 
 
+.. class:: Key
+
+
+----
+
+.. method:: __eq__(self, other)
+
+
+----
+
+.. method:: __init__(self, key=C)
+
+
+----
+
+.. method:: __ne__(self, other)
+
+
 ----
 
 .. data:: base_scale

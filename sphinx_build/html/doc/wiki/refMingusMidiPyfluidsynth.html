@@ -75,183 +75,6 @@ soundcard yourself.</p>
 <dd></dd></dl>
 
 <hr class="docutils" />
-<dl class="data">
-<dt id="mingus.midi.pyfluidsynth.DEFAULT_MODE">
-<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">DEFAULT_MODE</code><a class="headerlink" href="#mingus.midi.pyfluidsynth.DEFAULT_MODE" title="Permalink to this definition">¶</a></dt>
-<dd><p>Attribute of type: int
-<code class="docutils literal"><span class="pre">0</span></code></p>
-</dd></dl>
-
-<hr class="docutils" />
-<dl class="data">
-<dt id="mingus.midi.pyfluidsynth.RTLD_GLOBAL">
-<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">RTLD_GLOBAL</code><a class="headerlink" href="#mingus.midi.pyfluidsynth.RTLD_GLOBAL" title="Permalink to this definition">¶</a></dt>
-<dd><p>Attribute of type: int
-<code class="docutils literal"><span class="pre">256</span></code></p>
-</dd></dl>
-
-<hr class="docutils" />
-<dl class="data">
-<dt id="mingus.midi.pyfluidsynth.RTLD_LOCAL">
-<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">RTLD_LOCAL</code><a class="headerlink" href="#mingus.midi.pyfluidsynth.RTLD_LOCAL" title="Permalink to this definition">¶</a></dt>
-<dd><p>Attribute of type: int
-<code class="docutils literal"><span class="pre">0</span></code></p>
-</dd></dl>
-
-<hr class="docutils" />
-<dl class="data">
-<dt id="mingus.midi.pyfluidsynth.api_version">
-<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">api_version</code><a class="headerlink" href="#mingus.midi.pyfluidsynth.api_version" title="Permalink to this definition">¶</a></dt>
-<dd><p>Attribute of type: str
-<code class="docutils literal"><span class="pre">'1.2'</span></code></p>
-</dd></dl>
-
-<hr class="docutils" />
-<dl class="data">
-<dt id="mingus.midi.pyfluidsynth.cdll">
-<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">cdll</code><a class="headerlink" href="#mingus.midi.pyfluidsynth.cdll" title="Permalink to this definition">¶</a></dt>
-<dd><p>Attribute of type: ctypes.LibraryLoader
-<code class="docutils literal"><span class="pre">&lt;ctypes.LibraryLoader</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7ff4931198d0&gt;</span></code></p>
-</dd></dl>
-
-<hr class="docutils" />
-<dl class="data">
-<dt id="mingus.midi.pyfluidsynth.lib">
-<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">lib</code><a class="headerlink" href="#mingus.midi.pyfluidsynth.lib" title="Permalink to this definition">¶</a></dt>
-<dd><p>Attribute of type: str
-<code class="docutils literal"><span class="pre">'libfluidsynth.so.1'</span></code></p>
-</dd></dl>
-
-<hr class="docutils" />
-<dl class="data">
-<dt id="mingus.midi.pyfluidsynth.pydll">
-<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">pydll</code><a class="headerlink" href="#mingus.midi.pyfluidsynth.pydll" title="Permalink to this definition">¶</a></dt>
-<dd><p>Attribute of type: ctypes.LibraryLoader
-<code class="docutils literal"><span class="pre">&lt;ctypes.LibraryLoader</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7ff493119910&gt;</span></code></p>
-</dd></dl>
-
-<hr class="docutils" />
-<dl class="data">
-<dt id="mingus.midi.pyfluidsynth.pythonapi">
-<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">pythonapi</code><a class="headerlink" href="#mingus.midi.pyfluidsynth.pythonapi" title="Permalink to this definition">¶</a></dt>
-<dd><p>Attribute of type: ctypes.PyDLL
-<code class="docutils literal"><span class="pre">&lt;PyDLL</span> <span class="pre">'None',</span> <span class="pre">handle</span> <span class="pre">7ff496836188</span> <span class="pre">at</span> <span class="pre">7ff493119950&gt;</span></code></p>
-</dd></dl>
-
-<hr class="docutils" />
-<dl class="function">
-<dt id="mingus.midi.pyfluidsynth.ARRAY">
-<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">ARRAY</code><span class="sig-paren">(</span><em>typ</em>, <em>len</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ctypes.html#ARRAY"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.ARRAY" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<hr class="docutils" />
-<dl class="function">
-<dt id="mingus.midi.pyfluidsynth.CFUNCTYPE">
-<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">CFUNCTYPE</code><span class="sig-paren">(</span><em>restype</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ctypes.html#CFUNCTYPE"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.CFUNCTYPE" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>CFUNCTYPE(restype, <a href="#id1"><span class="problematic" id="id2">*</span></a>argtypes,</dt>
-<dd>use_errno=False, use_last_error=False) -&gt; function prototype.</dd>
-</dl>
-<p>restype: the result type
-argtypes: a sequence specifying the argument types</p>
-<p>The function prototype can be called in different ways to create a
-callable object:</p>
-<p>prototype(integer address) -&gt; foreign function
-prototype(callable) -&gt; create and return a C callable function from callable
-prototype(integer index, method name[, paramflags]) -&gt; foreign function calling a COM method
-prototype((ordinal number, dll object)[, paramflags]) -&gt; foreign function exported by ordinal
-prototype((function name, dll object)[, paramflags]) -&gt; foreign function exported by name</p>
-</dd></dl>
-
-<hr class="docutils" />
-<dl class="function">
-<dt id="mingus.midi.pyfluidsynth.PYFUNCTYPE">
-<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">PYFUNCTYPE</code><span class="sig-paren">(</span><em>restype</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ctypes.html#PYFUNCTYPE"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.PYFUNCTYPE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<hr class="docutils" />
-<dl class="function">
-<dt id="mingus.midi.pyfluidsynth.SetPointerType">
-<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">SetPointerType</code><span class="sig-paren">(</span><em>pointer</em>, <em>cls</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ctypes.html#SetPointerType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.SetPointerType" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<hr class="docutils" />
-<dl class="function">
-<dt id="mingus.midi.pyfluidsynth.c_buffer">
-<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">c_buffer</code><span class="sig-paren">(</span><em>init</em>, <em>size=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ctypes.html#c_buffer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.c_buffer" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<hr class="docutils" />
-<dl class="function">
-<dt id="mingus.midi.pyfluidsynth.cast">
-<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">cast</code><span class="sig-paren">(</span><em>obj</em>, <em>typ</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ctypes.html#cast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.cast" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<hr class="docutils" />
-<dl class="function">
-<dt id="mingus.midi.pyfluidsynth.cfunc">
-<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">cfunc</code><span class="sig-paren">(</span><em>name</em>, <em>result</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/pyfluidsynth.html#cfunc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.cfunc" title="Permalink to this definition">¶</a></dt>
-<dd><p>Build and apply a ctypes prototype complete with parameter flags.</p>
-</dd></dl>
-
-<hr class="docutils" />
-<dl class="function">
-<dt id="mingus.midi.pyfluidsynth.create_string_buffer">
-<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">create_string_buffer</code><span class="sig-paren">(</span><em>init</em>, <em>size=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ctypes.html#create_string_buffer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.create_string_buffer" title="Permalink to this definition">¶</a></dt>
-<dd><p>create_string_buffer(aString) -&gt; character array
-create_string_buffer(anInteger) -&gt; character array
-create_string_buffer(aString, anInteger) -&gt; character array</p>
-</dd></dl>
-
-<hr class="docutils" />
-<dl class="function">
-<dt id="mingus.midi.pyfluidsynth.create_unicode_buffer">
-<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">create_unicode_buffer</code><span class="sig-paren">(</span><em>init</em>, <em>size=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ctypes.html#create_unicode_buffer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.create_unicode_buffer" title="Permalink to this definition">¶</a></dt>
-<dd><p>create_unicode_buffer(aString) -&gt; character array
-create_unicode_buffer(anInteger) -&gt; character array
-create_unicode_buffer(aString, anInteger) -&gt; character array</p>
-</dd></dl>
-
-<hr class="docutils" />
-<dl class="function">
-<dt id="mingus.midi.pyfluidsynth.find_library">
-<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">find_library</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ctypes/util.html#find_library"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.find_library" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<hr class="docutils" />
-<dl class="function">
-<dt id="mingus.midi.pyfluidsynth.fluid_synth_write_s16_stereo">
-<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">fluid_synth_write_s16_stereo</code><span class="sig-paren">(</span><em>synth</em>, <em>len</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/pyfluidsynth.html#fluid_synth_write_s16_stereo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.fluid_synth_write_s16_stereo" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return generated samples in stereo 16-bit format.</p>
-<p>Return value is a Numpy array of samples.</p>
-</dd></dl>
-
-<hr class="docutils" />
-<dl class="function">
-<dt id="mingus.midi.pyfluidsynth.raw_audio_string">
-<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">raw_audio_string</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/pyfluidsynth.html#raw_audio_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.raw_audio_string" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a string of bytes to send to soundcard.</p>
-<p>Input is a numpy array of samples. Default output format is 16-bit
-signed (other formats not currently supported).</p>
-</dd></dl>
-
-<hr class="docutils" />
-<dl class="function">
-<dt id="mingus.midi.pyfluidsynth.string_at">
-<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">string_at</code><span class="sig-paren">(</span><em>ptr</em>, <em>size=-1</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ctypes.html#string_at"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.string_at" title="Permalink to this definition">¶</a></dt>
-<dd><p>string_at(addr[, size]) -&gt; string</p>
-<p>Return the string at addr.</p>
-</dd></dl>
-
-<hr class="docutils" />
-<dl class="function">
-<dt id="mingus.midi.pyfluidsynth.wstring_at">
-<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">wstring_at</code><span class="sig-paren">(</span><em>ptr</em>, <em>size=-1</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ctypes.html#wstring_at"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.wstring_at" title="Permalink to this definition">¶</a></dt>
-<dd><p>wstring_at(addr[, size]) -&gt; string</p>
-<p>Return the string at addr.</p>
-</dd></dl>
-
-<hr class="docutils" />
 <dl class="method">
 <dt id="mingus.midi.pyfluidsynth.__init__">
 <code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">__init__</code><span class="sig-paren">(</span><em>self</em>, <em>gain=0.2</em>, <em>samplerate=44100</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.pyfluidsynth.__init__" title="Permalink to this definition">¶</a></dt>
@@ -406,6 +229,183 @@ which drivers were compiled into FluidSynth for your platform.</p>
 <dt id="mingus.midi.pyfluidsynth.system_reset">
 <code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">system_reset</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.pyfluidsynth.system_reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Stop all notes and reset all programs.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="data">
+<dt id="mingus.midi.pyfluidsynth.DEFAULT_MODE">
+<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">DEFAULT_MODE</code><a class="headerlink" href="#mingus.midi.pyfluidsynth.DEFAULT_MODE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: int
+<code class="docutils literal"><span class="pre">0</span></code></p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="data">
+<dt id="mingus.midi.pyfluidsynth.RTLD_GLOBAL">
+<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">RTLD_GLOBAL</code><a class="headerlink" href="#mingus.midi.pyfluidsynth.RTLD_GLOBAL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: int
+<code class="docutils literal"><span class="pre">256</span></code></p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="data">
+<dt id="mingus.midi.pyfluidsynth.RTLD_LOCAL">
+<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">RTLD_LOCAL</code><a class="headerlink" href="#mingus.midi.pyfluidsynth.RTLD_LOCAL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: int
+<code class="docutils literal"><span class="pre">0</span></code></p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="data">
+<dt id="mingus.midi.pyfluidsynth.api_version">
+<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">api_version</code><a class="headerlink" href="#mingus.midi.pyfluidsynth.api_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: str
+<code class="docutils literal"><span class="pre">'1.2'</span></code></p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="data">
+<dt id="mingus.midi.pyfluidsynth.cdll">
+<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">cdll</code><a class="headerlink" href="#mingus.midi.pyfluidsynth.cdll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: ctypes.LibraryLoader
+<code class="docutils literal"><span class="pre">&lt;ctypes.LibraryLoader</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7f5399d068d0&gt;</span></code></p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="data">
+<dt id="mingus.midi.pyfluidsynth.lib">
+<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">lib</code><a class="headerlink" href="#mingus.midi.pyfluidsynth.lib" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: str
+<code class="docutils literal"><span class="pre">'libfluidsynth.so.1'</span></code></p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="data">
+<dt id="mingus.midi.pyfluidsynth.pydll">
+<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">pydll</code><a class="headerlink" href="#mingus.midi.pyfluidsynth.pydll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: ctypes.LibraryLoader
+<code class="docutils literal"><span class="pre">&lt;ctypes.LibraryLoader</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7f5399d06910&gt;</span></code></p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="data">
+<dt id="mingus.midi.pyfluidsynth.pythonapi">
+<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">pythonapi</code><a class="headerlink" href="#mingus.midi.pyfluidsynth.pythonapi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: ctypes.PyDLL
+<code class="docutils literal"><span class="pre">&lt;PyDLL</span> <span class="pre">'None',</span> <span class="pre">handle</span> <span class="pre">7f539d422188</span> <span class="pre">at</span> <span class="pre">7f5399d06950&gt;</span></code></p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="mingus.midi.pyfluidsynth.ARRAY">
+<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">ARRAY</code><span class="sig-paren">(</span><em>typ</em>, <em>len</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ctypes.html#ARRAY"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.ARRAY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="mingus.midi.pyfluidsynth.CFUNCTYPE">
+<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">CFUNCTYPE</code><span class="sig-paren">(</span><em>restype</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ctypes.html#CFUNCTYPE"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.CFUNCTYPE" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>CFUNCTYPE(restype, <a href="#id1"><span class="problematic" id="id2">*</span></a>argtypes,</dt>
+<dd>use_errno=False, use_last_error=False) -&gt; function prototype.</dd>
+</dl>
+<p>restype: the result type
+argtypes: a sequence specifying the argument types</p>
+<p>The function prototype can be called in different ways to create a
+callable object:</p>
+<p>prototype(integer address) -&gt; foreign function
+prototype(callable) -&gt; create and return a C callable function from callable
+prototype(integer index, method name[, paramflags]) -&gt; foreign function calling a COM method
+prototype((ordinal number, dll object)[, paramflags]) -&gt; foreign function exported by ordinal
+prototype((function name, dll object)[, paramflags]) -&gt; foreign function exported by name</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="mingus.midi.pyfluidsynth.PYFUNCTYPE">
+<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">PYFUNCTYPE</code><span class="sig-paren">(</span><em>restype</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ctypes.html#PYFUNCTYPE"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.PYFUNCTYPE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="mingus.midi.pyfluidsynth.SetPointerType">
+<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">SetPointerType</code><span class="sig-paren">(</span><em>pointer</em>, <em>cls</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ctypes.html#SetPointerType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.SetPointerType" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="mingus.midi.pyfluidsynth.c_buffer">
+<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">c_buffer</code><span class="sig-paren">(</span><em>init</em>, <em>size=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ctypes.html#c_buffer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.c_buffer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="mingus.midi.pyfluidsynth.cast">
+<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">cast</code><span class="sig-paren">(</span><em>obj</em>, <em>typ</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ctypes.html#cast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.cast" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="mingus.midi.pyfluidsynth.cfunc">
+<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">cfunc</code><span class="sig-paren">(</span><em>name</em>, <em>result</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/pyfluidsynth.html#cfunc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.cfunc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build and apply a ctypes prototype complete with parameter flags.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="mingus.midi.pyfluidsynth.create_string_buffer">
+<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">create_string_buffer</code><span class="sig-paren">(</span><em>init</em>, <em>size=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ctypes.html#create_string_buffer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.create_string_buffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>create_string_buffer(aString) -&gt; character array
+create_string_buffer(anInteger) -&gt; character array
+create_string_buffer(aString, anInteger) -&gt; character array</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="mingus.midi.pyfluidsynth.create_unicode_buffer">
+<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">create_unicode_buffer</code><span class="sig-paren">(</span><em>init</em>, <em>size=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ctypes.html#create_unicode_buffer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.create_unicode_buffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>create_unicode_buffer(aString) -&gt; character array
+create_unicode_buffer(anInteger) -&gt; character array
+create_unicode_buffer(aString, anInteger) -&gt; character array</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="mingus.midi.pyfluidsynth.find_library">
+<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">find_library</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ctypes/util.html#find_library"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.find_library" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="mingus.midi.pyfluidsynth.fluid_synth_write_s16_stereo">
+<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">fluid_synth_write_s16_stereo</code><span class="sig-paren">(</span><em>synth</em>, <em>len</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/pyfluidsynth.html#fluid_synth_write_s16_stereo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.fluid_synth_write_s16_stereo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return generated samples in stereo 16-bit format.</p>
+<p>Return value is a Numpy array of samples.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="mingus.midi.pyfluidsynth.raw_audio_string">
+<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">raw_audio_string</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/pyfluidsynth.html#raw_audio_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.raw_audio_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a string of bytes to send to soundcard.</p>
+<p>Input is a numpy array of samples. Default output format is 16-bit
+signed (other formats not currently supported).</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="mingus.midi.pyfluidsynth.string_at">
+<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">string_at</code><span class="sig-paren">(</span><em>ptr</em>, <em>size=-1</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ctypes.html#string_at"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.string_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>string_at(addr[, size]) -&gt; string</p>
+<p>Return the string at addr.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="mingus.midi.pyfluidsynth.wstring_at">
+<code class="descclassname">mingus.midi.pyfluidsynth.</code><code class="descname">wstring_at</code><span class="sig-paren">(</span><em>ptr</em>, <em>size=-1</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ctypes.html#wstring_at"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.pyfluidsynth.wstring_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>wstring_at(addr[, size]) -&gt; string</p>
+<p>Return the string at addr.</p>
 </dd></dl>
 
 <hr class="docutils" />

@@ -28,174 +28,6 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 
 ----
 
-.. data:: DEFAULT_MODE
-
-   Attribute of type: int
-   ``0``
-
-----
-
-.. data:: RTLD_GLOBAL
-
-   Attribute of type: int
-   ``256``
-
-----
-
-.. data:: RTLD_LOCAL
-
-   Attribute of type: int
-   ``0``
-
-----
-
-.. data:: api_version
-
-   Attribute of type: str
-   ``'1.2'``
-
-----
-
-.. data:: cdll
-
-   Attribute of type: ctypes.LibraryLoader
-   ``<ctypes.LibraryLoader object at 0x7ff4931198d0>``
-
-----
-
-.. data:: lib
-
-   Attribute of type: str
-   ``'libfluidsynth.so.1'``
-
-----
-
-.. data:: pydll
-
-   Attribute of type: ctypes.LibraryLoader
-   ``<ctypes.LibraryLoader object at 0x7ff493119910>``
-
-----
-
-.. data:: pythonapi
-
-   Attribute of type: ctypes.PyDLL
-   ``<PyDLL 'None', handle 7ff496836188 at 7ff493119950>``
-
-----
-
-.. function:: ARRAY(typ, len)
-
-
-----
-
-.. function:: CFUNCTYPE(restype)
-
-   CFUNCTYPE(restype, *argtypes,
-                use_errno=False, use_last_error=False) -> function prototype.
-   
-   restype: the result type
-   argtypes: a sequence specifying the argument types
-   
-   The function prototype can be called in different ways to create a
-   callable object:
-   
-   prototype(integer address) -> foreign function
-   prototype(callable) -> create and return a C callable function from callable
-   prototype(integer index, method name[, paramflags]) -> foreign function calling a COM method
-   prototype((ordinal number, dll object)[, paramflags]) -> foreign function exported by ordinal
-   prototype((function name, dll object)[, paramflags]) -> foreign function exported by name
-
-
-----
-
-.. function:: PYFUNCTYPE(restype)
-
-
-----
-
-.. function:: SetPointerType(pointer, cls)
-
-
-----
-
-.. function:: c_buffer(init, size=None)
-
-
-----
-
-.. function:: cast(obj, typ)
-
-
-----
-
-.. function:: cfunc(name, result)
-
-   Build and apply a ctypes prototype complete with parameter flags.
-
-
-----
-
-.. function:: create_string_buffer(init, size=None)
-
-   create_string_buffer(aString) -> character array
-   create_string_buffer(anInteger) -> character array
-   create_string_buffer(aString, anInteger) -> character array
-
-
-----
-
-.. function:: create_unicode_buffer(init, size=None)
-
-   create_unicode_buffer(aString) -> character array
-   create_unicode_buffer(anInteger) -> character array
-   create_unicode_buffer(aString, anInteger) -> character array
-
-
-----
-
-.. function:: find_library(name)
-
-
-----
-
-.. function:: fluid_synth_write_s16_stereo(synth, len)
-
-   Return generated samples in stereo 16-bit format.
-   
-   Return value is a Numpy array of samples.
-
-
-----
-
-.. function:: raw_audio_string(data)
-
-   Return a string of bytes to send to soundcard.
-   
-   Input is a numpy array of samples. Default output format is 16-bit
-   signed (other formats not currently supported).
-
-
-----
-
-.. function:: string_at(ptr, size=-1)
-
-   string_at(addr[, size]) -> string
-   
-   Return the string at addr.
-
-
-----
-
-.. function:: wstring_at(ptr, size=-1)
-
-   wstring_at(addr[, size]) -> string
-   
-   Return the string at addr.
-
-
-----
-
 .. method:: __init__(self, gain=0.2, samplerate=44100)
 
    Create a new synthesizer object to control sound generation.
@@ -341,6 +173,174 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 .. method:: system_reset(self)
 
    Stop all notes and reset all programs.
+
+
+----
+
+.. data:: DEFAULT_MODE
+
+   Attribute of type: int
+   ``0``
+
+----
+
+.. data:: RTLD_GLOBAL
+
+   Attribute of type: int
+   ``256``
+
+----
+
+.. data:: RTLD_LOCAL
+
+   Attribute of type: int
+   ``0``
+
+----
+
+.. data:: api_version
+
+   Attribute of type: str
+   ``'1.2'``
+
+----
+
+.. data:: cdll
+
+   Attribute of type: ctypes.LibraryLoader
+   ``<ctypes.LibraryLoader object at 0x7f5399d068d0>``
+
+----
+
+.. data:: lib
+
+   Attribute of type: str
+   ``'libfluidsynth.so.1'``
+
+----
+
+.. data:: pydll
+
+   Attribute of type: ctypes.LibraryLoader
+   ``<ctypes.LibraryLoader object at 0x7f5399d06910>``
+
+----
+
+.. data:: pythonapi
+
+   Attribute of type: ctypes.PyDLL
+   ``<PyDLL 'None', handle 7f539d422188 at 7f5399d06950>``
+
+----
+
+.. function:: ARRAY(typ, len)
+
+
+----
+
+.. function:: CFUNCTYPE(restype)
+
+   CFUNCTYPE(restype, *argtypes,
+                use_errno=False, use_last_error=False) -> function prototype.
+   
+   restype: the result type
+   argtypes: a sequence specifying the argument types
+   
+   The function prototype can be called in different ways to create a
+   callable object:
+   
+   prototype(integer address) -> foreign function
+   prototype(callable) -> create and return a C callable function from callable
+   prototype(integer index, method name[, paramflags]) -> foreign function calling a COM method
+   prototype((ordinal number, dll object)[, paramflags]) -> foreign function exported by ordinal
+   prototype((function name, dll object)[, paramflags]) -> foreign function exported by name
+
+
+----
+
+.. function:: PYFUNCTYPE(restype)
+
+
+----
+
+.. function:: SetPointerType(pointer, cls)
+
+
+----
+
+.. function:: c_buffer(init, size=None)
+
+
+----
+
+.. function:: cast(obj, typ)
+
+
+----
+
+.. function:: cfunc(name, result)
+
+   Build and apply a ctypes prototype complete with parameter flags.
+
+
+----
+
+.. function:: create_string_buffer(init, size=None)
+
+   create_string_buffer(aString) -> character array
+   create_string_buffer(anInteger) -> character array
+   create_string_buffer(aString, anInteger) -> character array
+
+
+----
+
+.. function:: create_unicode_buffer(init, size=None)
+
+   create_unicode_buffer(aString) -> character array
+   create_unicode_buffer(anInteger) -> character array
+   create_unicode_buffer(aString, anInteger) -> character array
+
+
+----
+
+.. function:: find_library(name)
+
+
+----
+
+.. function:: fluid_synth_write_s16_stereo(synth, len)
+
+   Return generated samples in stereo 16-bit format.
+   
+   Return value is a Numpy array of samples.
+
+
+----
+
+.. function:: raw_audio_string(data)
+
+   Return a string of bytes to send to soundcard.
+   
+   Input is a numpy array of samples. Default output format is 16-bit
+   signed (other formats not currently supported).
+
+
+----
+
+.. function:: string_at(ptr, size=-1)
+
+   string_at(addr[, size]) -> string
+   
+   Return the string at addr.
+
+
+----
+
+.. function:: wstring_at(ptr, size=-1)
+
+   wstring_at(addr[, size]) -> string
+   
+   Return the string at addr.
 
 ----
 

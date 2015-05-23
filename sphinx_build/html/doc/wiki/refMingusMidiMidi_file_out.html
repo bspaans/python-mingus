@@ -60,6 +60,61 @@
 <h1>mingus.midi.midi_file_out<a class="headerlink" href="#mingus-midi-midi-file-out" title="Permalink to this headline">¶</a></h1>
 <p>Functions that can generate MIDI files from the objects in
 mingus.containers.</p>
+<dl class="class">
+<dt id="mingus.midi.midi_file_out.MidiFile">
+<em class="property">class </em><code class="descclassname">mingus.midi.midi_file_out.</code><code class="descname">MidiFile</code><a class="reference internal" href="../../_modules/mingus/midi/midi_file_out.html#MidiFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.midi_file_out.MidiFile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.midi.midi_file_out.__init__">
+<code class="descclassname">mingus.midi.midi_file_out.</code><code class="descname">__init__</code><span class="sig-paren">(</span><em>self</em>, <em>tracks=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.midi_file_out.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.midi.midi_file_out.get_midi_data">
+<code class="descclassname">mingus.midi.midi_file_out.</code><code class="descname">get_midi_data</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.midi_file_out.get_midi_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collect and return the raw, binary MIDI data from the tracks.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.midi.midi_file_out.header">
+<code class="descclassname">mingus.midi.midi_file_out.</code><code class="descname">header</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.midi_file_out.header" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a header for type 1 MIDI file.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.midi.midi_file_out.reset">
+<code class="descclassname">mingus.midi.midi_file_out.</code><code class="descname">reset</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.midi_file_out.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset every track.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="attribute">
+<dt id="mingus.midi.midi_file_out.time_division">
+<code class="descclassname">mingus.midi.midi_file_out.</code><code class="descname">time_division</code><a class="headerlink" href="#mingus.midi.midi_file_out.time_division" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: str
+<code class="docutils literal"><span class="pre">'\x00H'</span></code></p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="attribute">
+<dt id="mingus.midi.midi_file_out.tracks">
+<code class="descclassname">mingus.midi.midi_file_out.</code><code class="descname">tracks</code><a class="headerlink" href="#mingus.midi.midi_file_out.tracks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: list
+<code class="docutils literal"><span class="pre">[]</span></code></p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.midi.midi_file_out.write_file">
+<code class="descclassname">mingus.midi.midi_file_out.</code><code class="descname">write_file</code><span class="sig-paren">(</span><em>self</em>, <em>file</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.midi_file_out.write_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collect the data from get_midi_data and write to file.</p>
+</dd></dl>
+
 <hr class="docutils" />
 <dl class="function">
 <dt id="mingus.midi.midi_file_out.write_Bar">

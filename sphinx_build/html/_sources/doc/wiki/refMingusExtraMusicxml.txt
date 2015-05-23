@@ -106,249 +106,6 @@ http://www.musicxml.org/xml.html
 
 ----
 
-.. attribute:: actualEncoding
-
-   Attribute of type: NoneType
-   ``None``
-
-----
-
-.. attribute:: async
-
-   Attribute of type: bool
-   ``False``
-
-----
-
-.. attribute:: attributes
-
-   Attribute of type: NoneType
-   ``None``
-
-----
-
-.. attribute:: doctype
-
-   Attribute of type: NoneType
-   ``None``
-
-----
-
-.. attribute:: documentElement
-
-   Attribute of type: property
-   ``<property object at 0x7ff492bf2310>``
-
-----
-
-.. attribute:: documentURI
-
-   Attribute of type: NoneType
-   ``None``
-
-----
-
-.. attribute:: encoding
-
-   Attribute of type: NoneType
-   ``None``
-
-----
-
-.. attribute:: errorHandler
-
-   Attribute of type: NoneType
-   ``None``
-
-----
-
-.. attribute:: firstChild
-
-   Attribute of type: property
-   ``<property object at 0x7ff492c4c680>``
-
-----
-
-.. attribute:: implementation
-
-   Attribute of type: instance
-   ``<xml.dom.minidom.DOMImplementation instance at 0x7ff492bec950>``
-
-----
-
-.. attribute:: lastChild
-
-   Attribute of type: property
-   ``<property object at 0x7ff492c4c788>``
-
-----
-
-.. attribute:: localName
-
-   Attribute of type: property
-   ``<property object at 0x7ff492c4cdb8>``
-
-----
-
-.. attribute:: namespaceURI
-
-   Attribute of type: NoneType
-   ``None``
-
-----
-
-.. attribute:: nextSibling
-
-   Attribute of type: NoneType
-   ``None``
-
-----
-
-.. attribute:: nodeName
-
-   Attribute of type: str
-   ``'#document'``
-
-----
-
-.. attribute:: nodeType
-
-   Attribute of type: int
-   ``9``
-
-----
-
-.. attribute:: nodeValue
-
-   Attribute of type: NoneType
-   ``None``
-
-----
-
-.. attribute:: ownerDocument
-
-   Attribute of type: NoneType
-   ``None``
-
-----
-
-.. attribute:: parentNode
-
-   Attribute of type: NoneType
-   ``None``
-
-----
-
-.. attribute:: prefix
-
-   Attribute of type: NoneType
-   ``None``
-
-----
-
-.. attribute:: previousSibling
-
-   Attribute of type: NoneType
-   ``None``
-
-----
-
-.. attribute:: standalone
-
-   Attribute of type: NoneType
-   ``None``
-
-----
-
-.. attribute:: strictErrorChecking
-
-   Attribute of type: bool
-   ``False``
-
-----
-
-.. attribute:: version
-
-   Attribute of type: NoneType
-   ``None``
-
-----
-
-.. data:: major_keys
-
-   Attribute of type: list
-   ``['Cb', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#']``
-
-----
-
-.. data:: minor_keys
-
-   Attribute of type: list
-   ``['ab', 'eb', 'bb', 'f', 'c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#']``
-
-----
-
-.. function:: _bar2musicxml(bar)
-
-
-----
-
-.. function:: _composition2musicxml(comp)
-
-
-----
-
-.. function:: _gcd(a=None, b=None, terms=None)
-
-   Return greatest common divisor using Euclid's Algorithm.
-
-
-----
-
-.. function:: _lcm(a=None, b=None, terms=None)
-
-   Return lowest common multiple.
-
-
-----
-
-.. function:: _note2musicxml(note)
-
-
-----
-
-.. function:: _track2musicxml(track)
-
-
-----
-
-.. function:: from_Bar(bar)
-
-
-----
-
-.. function:: from_Composition(comp)
-
-
-----
-
-.. function:: from_Note(note)
-
-
-----
-
-.. function:: from_Track(track)
-
-
-----
-
-.. function:: write_Composition(composition, filename, zip=False)
-
-   Create an XML file (or MXL if compressed) for a given composition.
-
-
-----
-
 .. method:: __init__(self)
 
 
@@ -459,8 +216,29 @@ http://www.musicxml.org/xml.html
 
 ----
 
+.. attribute:: actualEncoding
+
+   Attribute of type: NoneType
+   ``None``
+
+----
+
 .. method:: appendChild(self, node)
 
+
+----
+
+.. attribute:: async
+
+   Attribute of type: bool
+   ``False``
+
+----
+
+.. attribute:: attributes
+
+   Attribute of type: NoneType
+   ``None``
 
 ----
 
@@ -514,6 +292,48 @@ http://www.musicxml.org/xml.html
 
 ----
 
+.. attribute:: doctype
+
+   Attribute of type: NoneType
+   ``None``
+
+----
+
+.. attribute:: documentElement
+
+   Attribute of type: property
+   ``<property object at 0x7f53997de2b8>``
+
+----
+
+.. attribute:: documentURI
+
+   Attribute of type: NoneType
+   ``None``
+
+----
+
+.. attribute:: encoding
+
+   Attribute of type: NoneType
+   ``None``
+
+----
+
+.. attribute:: errorHandler
+
+   Attribute of type: NoneType
+   ``None``
+
+----
+
+.. attribute:: firstChild
+
+   Attribute of type: property
+   ``<property object at 0x7f539983a628>``
+
+----
+
 .. method:: getElementById(self, id)
 
 
@@ -544,6 +364,13 @@ http://www.musicxml.org/xml.html
 
 ----
 
+.. attribute:: implementation
+
+   Attribute of type: instance
+   ``<xml.dom.minidom.DOMImplementation instance at 0x7f53997d89e0>``
+
+----
+
 .. method:: importNode(self, node, deep)
 
 
@@ -564,6 +391,13 @@ http://www.musicxml.org/xml.html
 
 ----
 
+.. attribute:: lastChild
+
+   Attribute of type: property
+   ``<property object at 0x7f539983a730>``
+
+----
+
 .. method:: load(self, uri)
 
 
@@ -574,8 +408,78 @@ http://www.musicxml.org/xml.html
 
 ----
 
+.. attribute:: localName
+
+   Attribute of type: property
+   ``<property object at 0x7f539983ad60>``
+
+----
+
+.. attribute:: namespaceURI
+
+   Attribute of type: NoneType
+   ``None``
+
+----
+
+.. attribute:: nextSibling
+
+   Attribute of type: NoneType
+   ``None``
+
+----
+
+.. attribute:: nodeName
+
+   Attribute of type: str
+   ``'#document'``
+
+----
+
+.. attribute:: nodeType
+
+   Attribute of type: int
+   ``9``
+
+----
+
+.. attribute:: nodeValue
+
+   Attribute of type: NoneType
+   ``None``
+
+----
+
 .. method:: normalize(self)
 
+
+----
+
+.. attribute:: ownerDocument
+
+   Attribute of type: NoneType
+   ``None``
+
+----
+
+.. attribute:: parentNode
+
+   Attribute of type: NoneType
+   ``None``
+
+----
+
+.. attribute:: prefix
+
+   Attribute of type: NoneType
+   ``None``
+
+----
+
+.. attribute:: previousSibling
+
+   Attribute of type: NoneType
+   ``None``
 
 ----
 
@@ -604,6 +508,20 @@ http://www.musicxml.org/xml.html
 
 ----
 
+.. attribute:: standalone
+
+   Attribute of type: NoneType
+   ``None``
+
+----
+
+.. attribute:: strictErrorChecking
+
+   Attribute of type: bool
+   ``False``
+
+----
+
 .. method:: toprettyxml(self, indent=	, newl=
 , encoding=None)
 
@@ -620,7 +538,89 @@ http://www.musicxml.org/xml.html
 
 ----
 
+.. attribute:: version
+
+   Attribute of type: NoneType
+   ``None``
+
+----
+
 .. method:: writexml(self, writer, indent=, addindent=, newl=, encoding=None)
+
+
+----
+
+.. data:: major_keys
+
+   Attribute of type: list
+   ``['Cb', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#']``
+
+----
+
+.. data:: minor_keys
+
+   Attribute of type: list
+   ``['ab', 'eb', 'bb', 'f', 'c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#']``
+
+----
+
+.. function:: _bar2musicxml(bar)
+
+
+----
+
+.. function:: _composition2musicxml(comp)
+
+
+----
+
+.. function:: _gcd(a=None, b=None, terms=None)
+
+   Return greatest common divisor using Euclid's Algorithm.
+
+
+----
+
+.. function:: _lcm(a=None, b=None, terms=None)
+
+   Return lowest common multiple.
+
+
+----
+
+.. function:: _note2musicxml(note)
+
+
+----
+
+.. function:: _track2musicxml(track)
+
+
+----
+
+.. function:: from_Bar(bar)
+
+
+----
+
+.. function:: from_Composition(comp)
+
+
+----
+
+.. function:: from_Note(note)
+
+
+----
+
+.. function:: from_Track(track)
+
+
+----
+
+.. function:: write_Composition(composition, filename, zip=False)
+
+   Create an XML file (or MXL if compressed) for a given composition.
 
 ----
 

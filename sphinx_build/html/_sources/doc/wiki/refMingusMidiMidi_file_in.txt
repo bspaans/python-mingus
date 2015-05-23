@@ -7,7 +7,46 @@ mingus.midi.midi_file_in
 Read a MIDI file and convert it into mingus.containers objects.
 
 
+.. class:: FormatError
+
+
+----
+
+.. attribute:: args
+
+   Attribute of type: getset_descriptor
+   ``<attribute 'args' of 'exceptions.BaseException' objects>``
+
+----
+
+.. attribute:: message
+
+   Attribute of type: getset_descriptor
+   ``<attribute 'message' of 'exceptions.BaseException' objects>``
+
+.. class:: HeaderError
+
+
+----
+
+.. attribute:: args
+
+   Attribute of type: getset_descriptor
+   ``<attribute 'args' of 'exceptions.BaseException' objects>``
+
+----
+
+.. attribute:: message
+
+   Attribute of type: getset_descriptor
+   ``<attribute 'message' of 'exceptions.BaseException' objects>``
+
 .. class:: MidiFile
+
+
+----
+
+.. method:: MIDI_to_Composition(self, file)
 
 
 ----
@@ -26,32 +65,15 @@ Read a MIDI file and convert it into mingus.containers objects.
 
 ----
 
+.. method:: bytes_to_int(self, bytes)
+
+
+----
+
 .. attribute:: meter
 
    Attribute of type: tuple
    ``(4, 4)``
-
-----
-
-.. function:: MIDI_to_Composition(file)
-
-   Convert a MIDI file to a mingus.containers.Composition and return it
-   in a tuple with the last used tempo in beats per minute (this will
-   change in the future).
-   
-   This function can raise all kinds of exceptions (IOError, HeaderError,
-   TimeDivisionError, FormatError), so be sure to try and catch.
-
-
-----
-
-.. method:: MIDI_to_Composition(self, file)
-
-
-----
-
-.. method:: bytes_to_int(self, bytes)
-
 
 ----
 
@@ -115,6 +137,35 @@ Read a MIDI file and convert it into mingus.containers objects.
 
    Read a variable length byte from the file and return the
    corresponding integer.
+
+
+.. class:: TimeDivisionError
+
+
+----
+
+.. attribute:: args
+
+   Attribute of type: getset_descriptor
+   ``<attribute 'args' of 'exceptions.BaseException' objects>``
+
+----
+
+.. attribute:: message
+
+   Attribute of type: getset_descriptor
+   ``<attribute 'message' of 'exceptions.BaseException' objects>``
+
+----
+
+.. function:: MIDI_to_Composition(file)
+
+   Convert a MIDI file to a mingus.containers.Composition and return it
+   in a tuple with the last used tempo in beats per minute (this will
+   change in the future).
+   
+   This function can raise all kinds of exceptions (IOError, HeaderError,
+   TimeDivisionError, FormatError), so be sure to try and catch.
 
 ----
 

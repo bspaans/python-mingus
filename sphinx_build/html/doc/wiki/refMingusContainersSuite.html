@@ -58,6 +58,116 @@
             
   <span class="target" id="module-mingus.containers.suite"></span><div class="section" id="mingus-containers-suite">
 <h1>mingus.containers.suite<a class="headerlink" href="#mingus-containers-suite" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="mingus.containers.suite.Suite">
+<em class="property">class </em><code class="descclassname">mingus.containers.suite.</code><code class="descname">Suite</code><a class="reference internal" href="../../_modules/mingus/containers/suite.html#Suite"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.containers.suite.Suite" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.containers.suite.__add__">
+<code class="descclassname">mingus.containers.suite.</code><code class="descname">__add__</code><span class="sig-paren">(</span><em>self</em>, <em>composition</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.suite.__add__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable the &#8216;+&#8217; operator for Compositions.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.containers.suite.__getitem__">
+<code class="descclassname">mingus.containers.suite.</code><code class="descname">__getitem__</code><span class="sig-paren">(</span><em>self</em>, <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.suite.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable the &#8216;[]&#8217; notation.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.containers.suite.__init__">
+<code class="descclassname">mingus.containers.suite.</code><code class="descname">__init__</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.suite.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.containers.suite.__len__">
+<code class="descclassname">mingus.containers.suite.</code><code class="descname">__len__</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.suite.__len__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable the len() function.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.containers.suite.__setitem__">
+<code class="descclassname">mingus.containers.suite.</code><code class="descname">__setitem__</code><span class="sig-paren">(</span><em>self</em>, <em>index</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.suite.__setitem__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable the &#8216;[] =&#8217; notation.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.containers.suite.add_composition">
+<code class="descclassname">mingus.containers.suite.</code><code class="descname">add_composition</code><span class="sig-paren">(</span><em>self</em>, <em>composition</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.suite.add_composition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a composition to the suite.</p>
+<p>Raise an UnexpectedObjectError when the supplied argument is not a
+Composition object.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="attribute">
+<dt id="mingus.containers.suite.author">
+<code class="descclassname">mingus.containers.suite.</code><code class="descname">author</code><a class="headerlink" href="#mingus.containers.suite.author" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: str
+<code class="docutils literal"><span class="pre">''</span></code></p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="attribute">
+<dt id="mingus.containers.suite.compositions">
+<code class="descclassname">mingus.containers.suite.</code><code class="descname">compositions</code><a class="headerlink" href="#mingus.containers.suite.compositions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: list
+<code class="docutils literal"><span class="pre">[]</span></code></p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="attribute">
+<dt id="mingus.containers.suite.description">
+<code class="descclassname">mingus.containers.suite.</code><code class="descname">description</code><a class="headerlink" href="#mingus.containers.suite.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: str
+<code class="docutils literal"><span class="pre">''</span></code></p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="attribute">
+<dt id="mingus.containers.suite.email">
+<code class="descclassname">mingus.containers.suite.</code><code class="descname">email</code><a class="headerlink" href="#mingus.containers.suite.email" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: str
+<code class="docutils literal"><span class="pre">''</span></code></p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.containers.suite.set_author">
+<code class="descclassname">mingus.containers.suite.</code><code class="descname">set_author</code><span class="sig-paren">(</span><em>self</em>, <em>author</em>, <em>email=</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.suite.set_author" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the author of the suite.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="method">
+<dt id="mingus.containers.suite.set_title">
+<code class="descclassname">mingus.containers.suite.</code><code class="descname">set_title</code><span class="sig-paren">(</span><em>self</em>, <em>title</em>, <em>subtitle=</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.suite.set_title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the title and the subtitle of the suite.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="attribute">
+<dt id="mingus.containers.suite.subtitle">
+<code class="descclassname">mingus.containers.suite.</code><code class="descname">subtitle</code><a class="headerlink" href="#mingus.containers.suite.subtitle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: str
+<code class="docutils literal"><span class="pre">''</span></code></p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="attribute">
+<dt id="mingus.containers.suite.title">
+<code class="descclassname">mingus.containers.suite.</code><code class="descname">title</code><a class="headerlink" href="#mingus.containers.suite.title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute of type: str
+<code class="docutils literal"><span class="pre">'Untitled'</span></code></p>
+</dd></dl>
+
 <hr class="docutils" />
 <p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
 </div>

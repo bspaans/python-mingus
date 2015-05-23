@@ -78,7 +78,7 @@
 <span class="kn">from</span> <span class="nn">mingus.core.mt_exceptions</span> <span class="kn">import</span> <span class="n">RangeError</span>
 <span class="kn">import</span> <span class="nn">mingus.core.notes</span> <span class="kn">as</span> <span class="nn">notes</span>
 
-<span class="k">class</span> <span class="nc">StringTuning</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="StringTuning"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraTunings.html#mingus.extra.tablature.StringTuning">[docs]</a><span class="k">class</span> <span class="nc">StringTuning</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;A class to store and work with tunings and fingerings.&quot;&quot;&quot;</span>
 
@@ -386,7 +386,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">RangeError</span><span class="p">(</span><span class="s">&quot;String &#39;</span><span class="si">%d</span><span class="s">&#39; out of range&quot;</span> <span class="o">%</span> <span class="n">string</span><span class="p">)</span>
 
-
+</div>
 <div class="viewcode-block" id="fingers_needed"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraTunings.html#mingus.extra.tablature.fingers_needed">[docs]</a><span class="k">def</span> <span class="nf">fingers_needed</span><span class="p">(</span><span class="n">fingering</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Return the number of fingers needed to play the given fingering.&quot;&quot;&quot;</span>
     <span class="n">split</span> <span class="o">=</span> <span class="bp">False</span> <span class="c"># True if an open string must be played, thereby making any</span>

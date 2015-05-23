@@ -1,0 +1,380 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mingus.midi.midi_track &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">mingus 0.5.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for mingus.midi.midi_track</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="c">#    mingus - Music theory Python package, midi_track module.</span>
+<span class="c">#    Copyright (C) 2008-2009, Bart Spaans</span>
+<span class="c">#    Copyright (C) 2011, Carlo Stemberger</span>
+<span class="c">#</span>
+<span class="c">#    This program is free software: you can redistribute it and/or modify</span>
+<span class="c">#    it under the terms of the GNU General Public License as published by</span>
+<span class="c">#    the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c">#    (at your option) any later version.</span>
+<span class="c">#</span>
+<span class="c">#    This program is distributed in the hope that it will be useful,</span>
+<span class="c">#    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c">#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c">#    GNU General Public License for more details.</span>
+<span class="c">#</span>
+<span class="c">#    You should have received a copy of the GNU General Public License</span>
+<span class="c">#    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="sd">&quot;&quot;&quot;Methods for working with MIDI data as bytes.</span>
+
+<span class="sd">The MIDI file format specification I used can be found here:</span>
+<span class="sd">http://www.sonicspot.com/guide/midifiles.html</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">binascii</span> <span class="kn">import</span> <span class="n">a2b_hex</span>
+<span class="kn">from</span> <span class="nn">struct</span> <span class="kn">import</span> <span class="n">pack</span><span class="p">,</span> <span class="n">unpack</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">log</span>
+<span class="kn">from</span> <span class="nn">midi_events</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">mingus.core.keys</span> <span class="kn">import</span> <span class="n">Key</span><span class="p">,</span> <span class="n">major_keys</span><span class="p">,</span> <span class="n">minor_keys</span>
+<span class="kn">from</span> <span class="nn">mingus.containers.note</span> <span class="kn">import</span> <span class="n">Note</span>
+
+<div class="viewcode-block" id="MidiTrack"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack">[docs]</a><span class="k">class</span> <span class="nc">MidiTrack</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;A class used to generate MIDI events from the objects in</span>
+<span class="sd">    mingus.containers.&quot;&quot;&quot;</span>
+
+    <span class="n">track_data</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+    <span class="n">delta_time</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\x00</span><span class="s">&#39;</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">bpm</span> <span class="o">=</span> <span class="mi">120</span>
+    <span class="n">change_instrument</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">instrument</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_bpm</span><span class="o">=</span><span class="mi">120</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">track_data</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_tempo</span><span class="p">(</span><span class="n">start_bpm</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">end_of_track</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the bytes for an end of track meta event.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s">&quot;</span><span class="se">\x00\xff\x2f\x00</span><span class="s">&quot;</span>
+
+    <span class="k">def</span> <span class="nf">play_Note</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Convert a Note object to a midi event and adds it to the</span>
+<span class="sd">        track_data.</span>
+
+<span class="sd">        To set the channel on which to play this note, set Note.channel, the</span>
+<span class="sd">        same goes for Note.velocity.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">velocity</span> <span class="o">=</span> <span class="mi">64</span>
+        <span class="n">channel</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="s">&#39;dynamics&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s">&#39;velocity&#39;</span> <span class="ow">in</span> <span class="n">note</span><span class="o">.</span><span class="n">dynamics</span><span class="p">:</span>
+                <span class="n">velocity</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">dynamics</span><span class="p">[</span><span class="s">&#39;velocity&#39;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="s">&#39;channel&#39;</span> <span class="ow">in</span> <span class="n">note</span><span class="o">.</span><span class="n">dynamics</span><span class="p">:</span>
+                <span class="n">channel</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">dynamics</span><span class="p">[</span><span class="s">&#39;channel&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="s">&#39;channel&#39;</span><span class="p">):</span>
+            <span class="n">channel</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">channel</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="s">&#39;velocity&#39;</span><span class="p">):</span>
+            <span class="n">velocity</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">velocity</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">change_instrument</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_instrument</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">change_instrument</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">track_data</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">note_on</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="mi">12</span><span class="p">,</span> <span class="n">velocity</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">play_NoteContainer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">notecontainer</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Convert a mingus.containers.NoteContainer to the equivalent MIDI</span>
+<span class="sd">        events and add it to the track_data.</span>
+
+<span class="sd">        Note.channel and Note.velocity can be set as well.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">notecontainer</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">play_Note</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">notecontainer</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">play_Note</span><span class="p">(</span><span class="n">notecontainer</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_deltatime</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">play_Note</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">notecontainer</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
+
+    <span class="k">def</span> <span class="nf">play_Bar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bar</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Convert a Bar object to MIDI events and write them to the</span>
+<span class="sd">        track_data.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_deltatime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delay</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_meter</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">meter</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_deltatime</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_key</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">bar</span><span class="p">:</span>
+            <span class="n">tick</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">((</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="mi">288</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">delay</span> <span class="o">+=</span> <span class="n">tick</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">set_deltatime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delay</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">delay</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s">&#39;bpm&#39;</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">set_deltatime</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">set_tempo</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">bpm</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">play_NoteContainer</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">set_deltatime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">int_to_varbyte</span><span class="p">(</span><span class="n">tick</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">stop_NoteContainer</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">play_Track</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">track</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Convert a Track object to MIDI events and write them to the</span>
+<span class="sd">        track_data.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">track</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_track_name</span><span class="p">(</span><span class="n">track</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">instr</span> <span class="o">=</span> <span class="n">track</span><span class="o">.</span><span class="n">instrument</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">instr</span><span class="p">,</span> <span class="s">&#39;instrument_nr&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">change_instrument</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span> <span class="o">=</span> <span class="n">instr</span><span class="o">.</span><span class="n">instrument_nr</span>
+        <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">track</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">play_Bar</span><span class="p">(</span><span class="n">bar</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">stop_Note</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a note_off event for note to event_track.&quot;&quot;&quot;</span>
+        <span class="n">velocity</span> <span class="o">=</span> <span class="mi">64</span>
+        <span class="n">channel</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="s">&#39;dynamics&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s">&#39;velocity&#39;</span> <span class="ow">in</span> <span class="n">note</span><span class="o">.</span><span class="n">dynamics</span><span class="p">:</span>
+                <span class="n">velocity</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">dynamics</span><span class="p">[</span><span class="s">&#39;velocity&#39;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="s">&#39;channel&#39;</span> <span class="ow">in</span> <span class="n">note</span><span class="o">.</span><span class="n">dynamics</span><span class="p">:</span>
+                <span class="n">channel</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">dynamics</span><span class="p">[</span><span class="s">&#39;channel&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="s">&#39;channel&#39;</span><span class="p">):</span>
+            <span class="n">channel</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">channel</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="s">&#39;velocity&#39;</span><span class="p">):</span>
+            <span class="n">velocity</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">velocity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">track_data</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">note_off</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="mi">12</span><span class="p">,</span> <span class="n">velocity</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">stop_NoteContainer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">notecontainer</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add note_off events for each note in the NoteContainer to the</span>
+<span class="sd">        track_data.&quot;&quot;&quot;</span>
+        <span class="c"># if there is more than one note in the container, the deltatime should</span>
+        <span class="c"># be set back to zero after the first one has been stopped</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">notecontainer</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">stop_Note</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">notecontainer</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stop_Note</span><span class="p">(</span><span class="n">notecontainer</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_deltatime</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">stop_Note</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">notecontainer</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
+
+    <span class="k">def</span> <span class="nf">set_instrument</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">instr</span><span class="p">,</span> <span class="n">bank</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a program change and bank select event to the track_data.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">track_data</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">select_bank</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">bank</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">track_data</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">program_change_event</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">instr</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">header</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the bytes for the header of track.</span>
+
+<span class="sd">        The header contains the length of the track_data, so you&#39;ll have to</span>
+<span class="sd">        call this function when you&#39;re done adding data (when you&#39;re not</span>
+<span class="sd">        using get_midi_data).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">chunk_size</span> <span class="o">=</span> <span class="n">a2b_hex</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%08x</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">track_data</span><span class="p">)</span>
+                              <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">end_of_track</span><span class="p">())))</span>
+        <span class="k">return</span> <span class="n">TRACK_HEADER</span> <span class="o">+</span> <span class="n">chunk_size</span>
+
+    <span class="k">def</span> <span class="nf">get_midi_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the MIDI data in bytes for this track.</span>
+
+<span class="sd">        Include header, track_data and the end of track meta event.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">()</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">track_data</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_of_track</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">midi_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_type</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Convert and return the paraters as a MIDI event in bytes.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">event_type</span> <span class="o">&lt;</span> <span class="mh">0x80</span> <span class="ow">and</span> <span class="n">event_type</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+        <span class="k">assert</span> <span class="n">channel</span> <span class="o">&lt;</span> <span class="mi">16</span> <span class="ow">and</span> <span class="n">channel</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+        <span class="n">tc</span> <span class="o">=</span> <span class="n">a2b_hex</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%x%x</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">event_type</span><span class="p">,</span> <span class="n">channel</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">param2</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span> <span class="o">=</span> <span class="n">a2b_hex</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%02x</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">param1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">params</span> <span class="o">=</span> <span class="n">a2b_hex</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%02x%02x</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">delta_time</span> <span class="o">+</span> <span class="n">tc</span> <span class="o">+</span> <span class="n">params</span>
+
+    <span class="k">def</span> <span class="nf">note_off</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">velocity</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return bytes for a &#39;note off&#39; event.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">midi_event</span><span class="p">(</span><span class="n">NOTE_OFF</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">velocity</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">note_on</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">velocity</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return bytes for a &#39;note_on&#39; event.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">midi_event</span><span class="p">(</span><span class="n">NOTE_ON</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">velocity</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">controller_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">contr_nr</span><span class="p">,</span> <span class="n">contr_val</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the bytes for a MIDI controller event.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">midi_event</span><span class="p">(</span><span class="n">CONTROLLER</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">contr_nr</span><span class="p">,</span> <span class="n">contr_val</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reset track_data and delta_time.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">track_data</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delta_time</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\x00</span><span class="s">&#39;</span>
+
+    <span class="k">def</span> <span class="nf">set_deltatime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">delta_time</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the delta_time.</span>
+
+<span class="sd">        Can be an integer or a variable length byte.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">delta_time</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">:</span>
+            <span class="n">delta_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">int_to_varbyte</span><span class="p">(</span><span class="n">delta_time</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delta_time</span> <span class="o">=</span> <span class="n">delta_time</span>
+
+    <span class="k">def</span> <span class="nf">select_bank</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">bank</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the MIDI event for a select bank controller event.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">controller_event</span><span class="p">(</span><span class="n">BANK_SELECT</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">bank</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">program_change_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">instr</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the bytes for a program change controller event.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">midi_event</span><span class="p">(</span><span class="n">PROGRAM_CHANGE</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">instr</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">set_tempo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bpm</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Convert the bpm to a midi event and write it to the track_data.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bpm</span> <span class="o">=</span> <span class="n">bpm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">track_data</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_tempo_event</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bpm</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">set_tempo_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bpm</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculate the microseconds per quarter note.&quot;&quot;&quot;</span>
+        <span class="n">ms_per_min</span> <span class="o">=</span> <span class="mi">60000000</span>
+        <span class="n">mpqn</span> <span class="o">=</span> <span class="n">a2b_hex</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%06x</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">ms_per_min</span> <span class="o">/</span> <span class="n">bpm</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">delta_time</span> <span class="o">+</span> <span class="n">META_EVENT</span> <span class="o">+</span> <span class="n">SET_TEMPO</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\x03</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">mpqn</span>
+
+    <span class="k">def</span> <span class="nf">set_meter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meter</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)):</span>
+        <span class="sd">&quot;&quot;&quot;Add a time signature event for meter to track_data.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">track_data</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_signature_event</span><span class="p">(</span><span class="n">meter</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">time_signature_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meter</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)):</span>
+        <span class="sd">&quot;&quot;&quot;Return a time signature event for meter.&quot;&quot;&quot;</span>
+        <span class="n">numer</span> <span class="o">=</span> <span class="n">a2b_hex</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%02x</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">meter</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">denom</span> <span class="o">=</span> <span class="n">a2b_hex</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%02x</span><span class="s">&#39;</span> <span class="o">%</span> <span class="nb">int</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">meter</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">2</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">delta_time</span> <span class="o">+</span> <span class="n">META_EVENT</span> <span class="o">+</span> <span class="n">TIME_SIGNATURE</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\x04</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">numer</span>\
+             <span class="o">+</span> <span class="n">denom</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\x18\x08</span><span class="s">&#39;</span>
+
+    <span class="k">def</span> <span class="nf">set_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s">&#39;C&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a key signature event to the track_data.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">Key</span><span class="p">):</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">track_data</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">key_signature_event</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">key_signature_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s">&#39;C&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the bytes for a key signature event.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">islower</span><span class="p">():</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">minor_keys</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">-</span> <span class="mi">7</span>
+            <span class="n">mode</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\x01</span><span class="s">&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">major_keys</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">-</span> <span class="mi">7</span>
+            <span class="n">mode</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\x00</span><span class="s">&#39;</span>
+        <span class="k">if</span> <span class="n">val</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="mi">256</span> <span class="o">+</span> <span class="n">val</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">a2b_hex</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%02x</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">val</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s">&#39;{0}{1}{2}</span><span class="se">\x02</span><span class="s">{3}{4}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delta_time</span><span class="p">,</span> <span class="n">META_EVENT</span><span class="p">,</span>
+                <span class="n">KEY_SIGNATURE</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">set_track_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a meta event for the track.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">track_data</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">track_name_event</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">track_name_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the bytes for a track name meta event.&quot;&quot;&quot;</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">int_to_varbyte</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+        <span class="k">return</span> <span class="s">&#39;</span><span class="se">\x00</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">META_EVENT</span> <span class="o">+</span> <span class="n">TRACK_NAME</span> <span class="o">+</span> <span class="n">l</span> <span class="o">+</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="nf">int_to_varbyte</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Convert an integer into a variable length byte.</span>
+
+<span class="sd">        How it works: the bytes are stored in big-endian (significant bit</span>
+<span class="sd">        first), the highest bit of the byte (mask 0x80) is set when there</span>
+<span class="sd">        are more bytes following. The remaining 7 bits (mask 0x7F) are used</span>
+<span class="sd">        to store the value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># Warning: bit kung-fu ahead. The length of the integer in bytes</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mh">0x80</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="c"># Remove the highest bit and move the bits to the right if length &gt; 1</span>
+        <span class="nb">bytes</span> <span class="o">=</span> <span class="p">[</span><span class="n">value</span> <span class="o">&gt;&gt;</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">7</span> <span class="o">&amp;</span> <span class="mh">0x7F</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">)]</span>
+        <span class="nb">bytes</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+
+        <span class="c"># Set the first bit on every one but the last bit.</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">bytes</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="nb">bytes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">|</span> <span class="mh">0x80</span>
+        <span class="k">return</span> <span class="n">pack</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">B&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="nb">bytes</span><span class="p">),</span> <span class="o">*</span><span class="nb">bytes</span><span class="p">)</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

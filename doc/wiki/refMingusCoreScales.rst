@@ -39,6 +39,1214 @@ Other scales
 
 
 
+.. class:: Aeolian
+
+
+----
+
+.. method:: __eq__(self, other)
+
+
+----
+
+.. method:: __init__(self, note, octaves=1)
+
+   Create the aeolian mode scale starting on the chosen note.
+
+
+----
+
+.. method:: __len__(self)
+
+
+----
+
+.. method:: __ne__(self, other)
+
+
+----
+
+.. method:: __repr__(self)
+
+
+----
+
+.. method:: __str__(self)
+
+
+----
+
+.. method:: ascending(self)
+
+
+----
+
+.. method:: degree(self, degree_number, direction=a)
+
+   Return the asked scale degree.
+   
+   The direction of the scale is 'a' for ascending (default) and 'd'
+   for descending.
+
+
+----
+
+.. method:: descending(self)
+
+   Return the list of descending notes.
+
+
+----
+
+.. attribute:: type
+
+   Attribute of type: str
+   ``'ancient'``
+
+.. class:: Bachian
+
+
+----
+
+.. method:: __eq__(self, other)
+
+
+----
+
+.. method:: __init__(self, note, octaves=1)
+
+   Create the Bachian (also known as "real melodic minor" and "jazz")
+   scale starting on the chosen note.
+
+
+----
+
+.. method:: __len__(self)
+
+
+----
+
+.. method:: __ne__(self, other)
+
+
+----
+
+.. method:: __repr__(self)
+
+
+----
+
+.. method:: __str__(self)
+
+
+----
+
+.. method:: ascending(self)
+
+
+----
+
+.. method:: degree(self, degree_number, direction=a)
+
+   Return the asked scale degree.
+   
+   The direction of the scale is 'a' for ascending (default) and 'd'
+   for descending.
+
+
+----
+
+.. method:: descending(self)
+
+   Return the list of descending notes.
+
+
+----
+
+.. attribute:: type
+
+   Attribute of type: str
+   ``'minor'``
+
+.. class:: Chromatic
+
+
+----
+
+.. method:: __eq__(self, other)
+
+
+----
+
+.. method:: __init__(self, key, octaves=1)
+
+   Create the chromatic scale in the chosen key.
+
+
+----
+
+.. method:: __len__(self)
+
+
+----
+
+.. method:: __ne__(self, other)
+
+
+----
+
+.. method:: __repr__(self)
+
+
+----
+
+.. method:: __str__(self)
+
+
+----
+
+.. method:: ascending(self)
+
+
+----
+
+.. method:: degree(self, degree_number, direction=a)
+
+   Return the asked scale degree.
+   
+   The direction of the scale is 'a' for ascending (default) and 'd'
+   for descending.
+
+
+----
+
+.. method:: descending(self)
+
+
+----
+
+.. attribute:: type
+
+   Attribute of type: str
+   ``'other'``
+
+.. class:: Diatonic
+
+
+----
+
+.. method:: __eq__(self, other)
+
+
+----
+
+.. method:: __init__(self, note, semitones, octaves=1)
+
+   Create the diatonic scale starting on the chosen note.
+   
+   The second parameter is a tuple representing the position of
+   semitones.
+
+
+----
+
+.. method:: __len__(self)
+
+
+----
+
+.. method:: __ne__(self, other)
+
+
+----
+
+.. method:: __repr__(self)
+
+
+----
+
+.. method:: __str__(self)
+
+
+----
+
+.. method:: ascending(self)
+
+
+----
+
+.. method:: degree(self, degree_number, direction=a)
+
+   Return the asked scale degree.
+   
+   The direction of the scale is 'a' for ascending (default) and 'd'
+   for descending.
+
+
+----
+
+.. method:: descending(self)
+
+   Return the list of descending notes.
+
+
+----
+
+.. attribute:: type
+
+   Attribute of type: str
+   ``'diatonic'``
+
+.. class:: Dorian
+
+
+----
+
+.. method:: __eq__(self, other)
+
+
+----
+
+.. method:: __init__(self, note, octaves=1)
+
+   Create the dorian mode scale starting on the chosen note.
+
+
+----
+
+.. method:: __len__(self)
+
+
+----
+
+.. method:: __ne__(self, other)
+
+
+----
+
+.. method:: __repr__(self)
+
+
+----
+
+.. method:: __str__(self)
+
+
+----
+
+.. method:: ascending(self)
+
+
+----
+
+.. method:: degree(self, degree_number, direction=a)
+
+   Return the asked scale degree.
+   
+   The direction of the scale is 'a' for ascending (default) and 'd'
+   for descending.
+
+
+----
+
+.. method:: descending(self)
+
+   Return the list of descending notes.
+
+
+----
+
+.. attribute:: type
+
+   Attribute of type: str
+   ``'ancient'``
+
+.. class:: HarmonicMajor
+
+
+----
+
+.. method:: __eq__(self, other)
+
+
+----
+
+.. method:: __init__(self, note, octaves=1)
+
+   Create the harmonic major scale starting on the chosen note.
+
+
+----
+
+.. method:: __len__(self)
+
+
+----
+
+.. method:: __ne__(self, other)
+
+
+----
+
+.. method:: __repr__(self)
+
+
+----
+
+.. method:: __str__(self)
+
+
+----
+
+.. method:: ascending(self)
+
+
+----
+
+.. method:: degree(self, degree_number, direction=a)
+
+   Return the asked scale degree.
+   
+   The direction of the scale is 'a' for ascending (default) and 'd'
+   for descending.
+
+
+----
+
+.. method:: descending(self)
+
+   Return the list of descending notes.
+
+
+----
+
+.. attribute:: type
+
+   Attribute of type: str
+   ``'major'``
+
+.. class:: HarmonicMinor
+
+
+----
+
+.. method:: __eq__(self, other)
+
+
+----
+
+.. method:: __init__(self, note, octaves=1)
+
+   Create the harmonic minor scale starting on the chosen note.
+
+
+----
+
+.. method:: __len__(self)
+
+
+----
+
+.. method:: __ne__(self, other)
+
+
+----
+
+.. method:: __repr__(self)
+
+
+----
+
+.. method:: __str__(self)
+
+
+----
+
+.. method:: ascending(self)
+
+
+----
+
+.. method:: degree(self, degree_number, direction=a)
+
+   Return the asked scale degree.
+   
+   The direction of the scale is 'a' for ascending (default) and 'd'
+   for descending.
+
+
+----
+
+.. method:: descending(self)
+
+   Return the list of descending notes.
+
+
+----
+
+.. attribute:: type
+
+   Attribute of type: str
+   ``'minor'``
+
+.. class:: Ionian
+
+
+----
+
+.. method:: __eq__(self, other)
+
+
+----
+
+.. method:: __init__(self, note, octaves=1)
+
+   Create the ionian mode scale starting on the chosen note.
+
+
+----
+
+.. method:: __len__(self)
+
+
+----
+
+.. method:: __ne__(self, other)
+
+
+----
+
+.. method:: __repr__(self)
+
+
+----
+
+.. method:: __str__(self)
+
+
+----
+
+.. method:: ascending(self)
+
+
+----
+
+.. method:: degree(self, degree_number, direction=a)
+
+   Return the asked scale degree.
+   
+   The direction of the scale is 'a' for ascending (default) and 'd'
+   for descending.
+
+
+----
+
+.. method:: descending(self)
+
+   Return the list of descending notes.
+
+
+----
+
+.. attribute:: type
+
+   Attribute of type: str
+   ``'ancient'``
+
+.. class:: Locrian
+
+
+----
+
+.. method:: __eq__(self, other)
+
+
+----
+
+.. method:: __init__(self, note, octaves=1)
+
+   Create the locrian mode scale starting on the chosen note.
+
+
+----
+
+.. method:: __len__(self)
+
+
+----
+
+.. method:: __ne__(self, other)
+
+
+----
+
+.. method:: __repr__(self)
+
+
+----
+
+.. method:: __str__(self)
+
+
+----
+
+.. method:: ascending(self)
+
+
+----
+
+.. method:: degree(self, degree_number, direction=a)
+
+   Return the asked scale degree.
+   
+   The direction of the scale is 'a' for ascending (default) and 'd'
+   for descending.
+
+
+----
+
+.. method:: descending(self)
+
+   Return the list of descending notes.
+
+
+----
+
+.. attribute:: type
+
+   Attribute of type: str
+   ``'ancient'``
+
+.. class:: Lydian
+
+
+----
+
+.. method:: __eq__(self, other)
+
+
+----
+
+.. method:: __init__(self, note, octaves=1)
+
+   Create the lydian mode scale starting on the chosen note.
+
+
+----
+
+.. method:: __len__(self)
+
+
+----
+
+.. method:: __ne__(self, other)
+
+
+----
+
+.. method:: __repr__(self)
+
+
+----
+
+.. method:: __str__(self)
+
+
+----
+
+.. method:: ascending(self)
+
+
+----
+
+.. method:: degree(self, degree_number, direction=a)
+
+   Return the asked scale degree.
+   
+   The direction of the scale is 'a' for ascending (default) and 'd'
+   for descending.
+
+
+----
+
+.. method:: descending(self)
+
+   Return the list of descending notes.
+
+
+----
+
+.. attribute:: type
+
+   Attribute of type: str
+   ``'ancient'``
+
+.. class:: Major
+
+
+----
+
+.. method:: __eq__(self, other)
+
+
+----
+
+.. method:: __init__(self, note, octaves=1)
+
+   Create the major scale starting on the chosen note.
+
+
+----
+
+.. method:: __len__(self)
+
+
+----
+
+.. method:: __ne__(self, other)
+
+
+----
+
+.. method:: __repr__(self)
+
+
+----
+
+.. method:: __str__(self)
+
+
+----
+
+.. method:: ascending(self)
+
+
+----
+
+.. method:: degree(self, degree_number, direction=a)
+
+   Return the asked scale degree.
+   
+   The direction of the scale is 'a' for ascending (default) and 'd'
+   for descending.
+
+
+----
+
+.. method:: descending(self)
+
+   Return the list of descending notes.
+
+
+----
+
+.. attribute:: type
+
+   Attribute of type: str
+   ``'major'``
+
+.. class:: MelodicMinor
+
+
+----
+
+.. method:: __eq__(self, other)
+
+
+----
+
+.. method:: __init__(self, note, octaves=1)
+
+   Create the melodic minor scale starting on the chosen note.
+
+
+----
+
+.. method:: __len__(self)
+
+
+----
+
+.. method:: __ne__(self, other)
+
+
+----
+
+.. method:: __repr__(self)
+
+
+----
+
+.. method:: __str__(self)
+
+
+----
+
+.. method:: ascending(self)
+
+
+----
+
+.. method:: degree(self, degree_number, direction=a)
+
+   Return the asked scale degree.
+   
+   The direction of the scale is 'a' for ascending (default) and 'd'
+   for descending.
+
+
+----
+
+.. method:: descending(self)
+
+
+----
+
+.. attribute:: type
+
+   Attribute of type: str
+   ``'minor'``
+
+.. class:: MinorNeapolitan
+
+
+----
+
+.. method:: __eq__(self, other)
+
+
+----
+
+.. method:: __init__(self, note, octaves=1)
+
+   Create the minor Neapolitan scale starting on the chosen note.
+
+
+----
+
+.. method:: __len__(self)
+
+
+----
+
+.. method:: __ne__(self, other)
+
+
+----
+
+.. method:: __repr__(self)
+
+
+----
+
+.. method:: __str__(self)
+
+
+----
+
+.. method:: ascending(self)
+
+
+----
+
+.. method:: degree(self, degree_number, direction=a)
+
+   Return the asked scale degree.
+   
+   The direction of the scale is 'a' for ascending (default) and 'd'
+   for descending.
+
+
+----
+
+.. method:: descending(self)
+
+
+----
+
+.. attribute:: type
+
+   Attribute of type: str
+   ``'minor'``
+
+.. class:: Mixolydian
+
+
+----
+
+.. method:: __eq__(self, other)
+
+
+----
+
+.. method:: __init__(self, note, octaves=1)
+
+   Create the mixolydian mode scale starting on the chosen note.
+
+
+----
+
+.. method:: __len__(self)
+
+
+----
+
+.. method:: __ne__(self, other)
+
+
+----
+
+.. method:: __repr__(self)
+
+
+----
+
+.. method:: __str__(self)
+
+
+----
+
+.. method:: ascending(self)
+
+
+----
+
+.. method:: degree(self, degree_number, direction=a)
+
+   Return the asked scale degree.
+   
+   The direction of the scale is 'a' for ascending (default) and 'd'
+   for descending.
+
+
+----
+
+.. method:: descending(self)
+
+   Return the list of descending notes.
+
+
+----
+
+.. attribute:: type
+
+   Attribute of type: str
+   ``'ancient'``
+
+.. class:: NaturalMinor
+
+
+----
+
+.. method:: __eq__(self, other)
+
+
+----
+
+.. method:: __init__(self, note, octaves=1)
+
+   Return the natural minor scale starting on the chosen note.
+
+
+----
+
+.. method:: __len__(self)
+
+
+----
+
+.. method:: __ne__(self, other)
+
+
+----
+
+.. method:: __repr__(self)
+
+
+----
+
+.. method:: __str__(self)
+
+
+----
+
+.. method:: ascending(self)
+
+
+----
+
+.. method:: degree(self, degree_number, direction=a)
+
+   Return the asked scale degree.
+   
+   The direction of the scale is 'a' for ascending (default) and 'd'
+   for descending.
+
+
+----
+
+.. method:: descending(self)
+
+   Return the list of descending notes.
+
+
+----
+
+.. attribute:: type
+
+   Attribute of type: str
+   ``'minor'``
+
+.. class:: Octatonic
+
+
+----
+
+.. method:: __eq__(self, other)
+
+
+----
+
+.. method:: __init__(self, note, octaves=1)
+
+   Create the octatonic (also known as "diminshed") scale starting
+   on the chosen note.
+
+
+----
+
+.. method:: __len__(self)
+
+
+----
+
+.. method:: __ne__(self, other)
+
+
+----
+
+.. method:: __repr__(self)
+
+
+----
+
+.. method:: __str__(self)
+
+
+----
+
+.. method:: ascending(self)
+
+
+----
+
+.. method:: degree(self, degree_number, direction=a)
+
+   Return the asked scale degree.
+   
+   The direction of the scale is 'a' for ascending (default) and 'd'
+   for descending.
+
+
+----
+
+.. method:: descending(self)
+
+   Return the list of descending notes.
+
+
+----
+
+.. attribute:: type
+
+   Attribute of type: str
+   ``'other'``
+
+.. class:: Phrygian
+
+
+----
+
+.. method:: __eq__(self, other)
+
+
+----
+
+.. method:: __init__(self, note, octaves=1)
+
+   Create the phrygian mode scale starting on the chosen note.
+
+
+----
+
+.. method:: __len__(self)
+
+
+----
+
+.. method:: __ne__(self, other)
+
+
+----
+
+.. method:: __repr__(self)
+
+
+----
+
+.. method:: __str__(self)
+
+
+----
+
+.. method:: ascending(self)
+
+
+----
+
+.. method:: degree(self, degree_number, direction=a)
+
+   Return the asked scale degree.
+   
+   The direction of the scale is 'a' for ascending (default) and 'd'
+   for descending.
+
+
+----
+
+.. method:: descending(self)
+
+   Return the list of descending notes.
+
+
+----
+
+.. attribute:: type
+
+   Attribute of type: str
+   ``'ancient'``
+
+.. class:: WholeTone
+
+
+----
+
+.. method:: __eq__(self, other)
+
+
+----
+
+.. method:: __init__(self, note, octaves=1)
+
+   Create the whole tone scale starting on the chosen note.
+
+
+----
+
+.. method:: __len__(self)
+
+
+----
+
+.. method:: __ne__(self, other)
+
+
+----
+
+.. method:: __repr__(self)
+
+
+----
+
+.. method:: __str__(self)
+
+
+----
+
+.. method:: ascending(self)
+
+
+----
+
+.. method:: degree(self, degree_number, direction=a)
+
+   Return the asked scale degree.
+   
+   The direction of the scale is 'a' for ascending (default) and 'd'
+   for descending.
+
+
+----
+
+.. method:: descending(self)
+
+   Return the list of descending notes.
+
+
+----
+
+.. attribute:: type
+
+   Attribute of type: str
+   ``'other'``
+
+.. class:: _Scale
+
+
+----
+
+.. method:: __eq__(self, other)
+
+
+----
+
+.. method:: __init__(self, note, octaves)
+
+
+----
+
+.. method:: __len__(self)
+
+
+----
+
+.. method:: __ne__(self, other)
+
+
+----
+
+.. method:: __repr__(self)
+
+
+----
+
+.. method:: __str__(self)
+
+
+----
+
+.. method:: ascending(self)
+
+   Return the list of ascending notes.
+
+
+----
+
+.. method:: degree(self, degree_number, direction=a)
+
+   Return the asked scale degree.
+   
+   The direction of the scale is 'a' for ascending (default) and 'd'
+   for descending.
+
+
+----
+
+.. method:: descending(self)
+
+   Return the list of descending notes.
+
+
 ----
 
 .. data:: keys

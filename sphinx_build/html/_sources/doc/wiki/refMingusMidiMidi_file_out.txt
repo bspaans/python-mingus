@@ -8,6 +8,56 @@ Functions that can generate MIDI files from the objects in
 mingus.containers.
 
 
+.. class:: MidiFile
+
+
+----
+
+.. method:: __init__(self, tracks=[])
+
+
+----
+
+.. method:: get_midi_data(self)
+
+   Collect and return the raw, binary MIDI data from the tracks.
+
+
+----
+
+.. method:: header(self)
+
+   Return a header for type 1 MIDI file.
+
+
+----
+
+.. method:: reset(self)
+
+   Reset every track.
+
+
+----
+
+.. attribute:: time_division
+
+   Attribute of type: str
+   ``'\x00H'``
+
+----
+
+.. attribute:: tracks
+
+   Attribute of type: list
+   ``[]``
+
+----
+
+.. method:: write_file(self, file, verbose=False)
+
+   Collect the data from get_midi_data and write to file.
+
+
 ----
 
 .. function:: write_Bar(file, bar, bpm=120, repeat=0, verbose=False)
