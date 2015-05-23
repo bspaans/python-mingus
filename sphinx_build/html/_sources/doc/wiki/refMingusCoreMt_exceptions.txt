@@ -10,14 +10,14 @@ mingus.core.mt_exceptions
 
 ----
 
-.. attribute:: args
+   .. attribute:: args
 
    Attribute of type: getset_descriptor
    ``<attribute 'args' of 'exceptions.BaseException' objects>``
 
 ----
 
-.. attribute:: message
+   .. attribute:: message
 
    Attribute of type: getset_descriptor
    ``<attribute 'message' of 'exceptions.BaseException' objects>``
@@ -27,14 +27,14 @@ mingus.core.mt_exceptions
 
 ----
 
-.. attribute:: args
+   .. attribute:: args
 
    Attribute of type: getset_descriptor
    ``<attribute 'args' of 'exceptions.BaseException' objects>``
 
 ----
 
-.. attribute:: message
+   .. attribute:: message
 
    Attribute of type: getset_descriptor
    ``<attribute 'message' of 'exceptions.BaseException' objects>``
@@ -44,14 +44,14 @@ mingus.core.mt_exceptions
 
 ----
 
-.. attribute:: args
+   .. attribute:: args
 
    Attribute of type: getset_descriptor
    ``<attribute 'args' of 'exceptions.BaseException' objects>``
 
 ----
 
-.. attribute:: message
+   .. attribute:: message
 
    Attribute of type: getset_descriptor
    ``<attribute 'message' of 'exceptions.BaseException' objects>``
@@ -61,14 +61,14 @@ mingus.core.mt_exceptions
 
 ----
 
-.. attribute:: args
+   .. attribute:: args
 
    Attribute of type: getset_descriptor
    ``<attribute 'args' of 'exceptions.BaseException' objects>``
 
 ----
 
-.. attribute:: message
+   .. attribute:: message
 
    Attribute of type: getset_descriptor
    ``<attribute 'message' of 'exceptions.BaseException' objects>``
@@ -78,14 +78,14 @@ mingus.core.mt_exceptions
 
 ----
 
-.. attribute:: args
+   .. attribute:: args
 
    Attribute of type: getset_descriptor
    ``<attribute 'args' of 'exceptions.BaseException' objects>``
 
 ----
 
-.. attribute:: message
+   .. attribute:: message
 
    Attribute of type: getset_descriptor
    ``<attribute 'message' of 'exceptions.BaseException' objects>``
@@ -95,14 +95,14 @@ mingus.core.mt_exceptions
 
 ----
 
-.. attribute:: args
+   .. attribute:: args
 
    Attribute of type: getset_descriptor
    ``<attribute 'args' of 'exceptions.BaseException' objects>``
 
 ----
 
-.. attribute:: message
+   .. attribute:: message
 
    Attribute of type: getset_descriptor
    ``<attribute 'message' of 'exceptions.BaseException' objects>``

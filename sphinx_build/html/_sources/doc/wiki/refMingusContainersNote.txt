@@ -10,29 +10,29 @@ mingus.containers.note
 
 ----
 
-.. method:: __eq__(self, other)
+   .. method:: __eq__(self, other)
 
    Compare Notes for equality by comparing their note values.
 
 
 ----
 
-.. method:: __ge__(self, other)
+   .. method:: __ge__(self, other)
 
 
 ----
 
-.. method:: __gt__(self, other)
+   .. method:: __gt__(self, other)
 
 
 ----
 
-.. method:: __init__(self, name=C, octave=4, dynamics={})
+   .. method:: __init__(self, name=C, octave=4, dynamics={})
 
 
 ----
 
-.. method:: __int__(self)
+   .. method:: __int__(self)
 
    Return the current octave multiplied by twelve and add
    notes.note_to_int to it.
@@ -43,12 +43,12 @@ mingus.containers.note
 
 ----
 
-.. method:: __le__(self, other)
+   .. method:: __le__(self, other)
 
 
 ----
 
-.. method:: __lt__(self, other)
+   .. method:: __lt__(self, other)
 
    Enable the comparing operators on Notes (>, <, \ ==, !=, >= and <=).
    
@@ -64,54 +64,54 @@ mingus.containers.note
 
 ----
 
-.. method:: __ne__(self, other)
+   .. method:: __ne__(self, other)
 
 
 ----
 
-.. method:: __repr__(self)
+   .. method:: __repr__(self)
 
    Return a helpful representation for printing Note classes.
 
 
 ----
 
-.. method:: augment(self)
+   .. method:: augment(self)
 
    Call notes.augment with this note as argument.
 
 
 ----
 
-.. method:: change_octave(self, diff)
+   .. method:: change_octave(self, diff)
 
    Change the octave of the note to the current octave + diff.
 
 
 ----
 
-.. method:: diminish(self)
+   .. method:: diminish(self)
 
    Call notes.diminish with this note as argument.
 
 
 ----
 
-.. attribute:: dynamics
+   .. attribute:: dynamics
 
    Attribute of type: dict
    ``{}``
 
 ----
 
-.. method:: empty(self)
+   .. method:: empty(self)
 
    Remove the data in the instance.
 
 
 ----
 
-.. method:: from_hertz(self, hertz, standard_pitch=440)
+   .. method:: from_hertz(self, hertz, standard_pitch=440)
 
    Set the Note name and pitch, calculated from the hertz value.
    
@@ -121,7 +121,7 @@ mingus.containers.note
 
 ----
 
-.. method:: from_int(self, integer)
+   .. method:: from_int(self, integer)
 
    Set the Note corresponding to the integer.
    
@@ -135,7 +135,7 @@ mingus.containers.note
 
 ----
 
-.. method:: from_shorthand(self, shorthand)
+   .. method:: from_shorthand(self, shorthand)
 
    Convert from traditional Helmhotz pitch notation.
    
@@ -151,7 +151,7 @@ mingus.containers.note
 
 ----
 
-.. method:: measure(self, other)
+   .. method:: measure(self, other)
 
    Return the number of semitones between this Note and the other.
    
@@ -165,42 +165,42 @@ mingus.containers.note
 
 ----
 
-.. attribute:: name
+   .. attribute:: name
 
    Attribute of type: str
    ``'C'``
 
 ----
 
-.. attribute:: octave
+   .. attribute:: octave
 
    Attribute of type: int
    ``4``
 
 ----
 
-.. method:: octave_down(self)
+   .. method:: octave_down(self)
 
    Decrement the current octave with 1.
 
 
 ----
 
-.. method:: octave_up(self)
+   .. method:: octave_up(self)
 
    Increment the current octave with 1.
 
 
 ----
 
-.. method:: remove_redundant_accidentals(self)
+   .. method:: remove_redundant_accidentals(self)
 
    Call notes.remove_redundant_accidentals on this note's name.
 
 
 ----
 
-.. method:: set_note(self, name=C, octave=4, dynamics={})
+   .. method:: set_note(self, name=C, octave=4, dynamics={})
 
    Set the note to name in octave with dynamics.
    
@@ -210,7 +210,7 @@ mingus.containers.note
 
 ----
 
-.. method:: to_hertz(self, standard_pitch=440)
+   .. method:: to_hertz(self, standard_pitch=440)
 
    Return the Note in Hz.
    
@@ -220,7 +220,7 @@ mingus.containers.note
 
 ----
 
-.. method:: to_shorthand(self)
+   .. method:: to_shorthand(self)
 
    Give the traditional Helmhotz pitch notation.
    
@@ -238,7 +238,7 @@ mingus.containers.note
 
 ----
 
-.. method:: transpose(self, interval, up=True)
+   .. method:: transpose(self, interval, up=True)
 
    Transpose the note up or down the interval.
    

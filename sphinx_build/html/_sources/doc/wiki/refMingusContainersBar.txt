@@ -10,47 +10,47 @@ mingus.containers.bar
 
 ----
 
-.. method:: __add__(self, note_container)
+   .. method:: __add__(self, note_container)
 
    Enable the '+' operator on Bars.
 
 
 ----
 
-.. method:: __eq__(self, other)
+   .. method:: __eq__(self, other)
 
    Enable the '==' operator for Bars.
 
 
 ----
 
-.. method:: __getitem__(self, index)
+   .. method:: __getitem__(self, index)
 
    Enable the  '[]' notation on Bars to get the item at the index.
 
 
 ----
 
-.. method:: __init__(self, key=C, meter=(4, 4))
+   .. method:: __init__(self, key=C, meter=(4, 4))
 
 
 ----
 
-.. method:: __len__(self)
+   .. method:: __len__(self)
 
    Enable the len() method for Bars.
 
 
 ----
 
-.. method:: __repr__(self)
+   .. method:: __repr__(self)
 
    Enable str() and repr() for Bars.
 
 
 ----
 
-.. method:: __setitem__(self, index, value)
+   .. method:: __setitem__(self, index, value)
 
    Enable the use of [] = notation on Bars.
    
@@ -60,21 +60,21 @@ mingus.containers.bar
 
 ----
 
-.. method:: augment(self)
+   .. method:: augment(self)
 
    Augment the NoteContainers in Bar.
 
 
 ----
 
-.. attribute:: bar
+   .. attribute:: bar
 
    Attribute of type: list
    ``[]``
 
 ----
 
-.. method:: change_note_duration(self, at, to)
+   .. method:: change_note_duration(self, at, to)
 
    Change the note duration at the given index to the given
    duration.
@@ -82,56 +82,56 @@ mingus.containers.bar
 
 ----
 
-.. attribute:: current_beat
+   .. attribute:: current_beat
 
    Attribute of type: float
    ``0.0``
 
 ----
 
-.. method:: determine_chords(self, shorthand=False)
+   .. method:: determine_chords(self, shorthand=False)
 
    Return a list of lists [place_in_beat, possible_chords].
 
 
 ----
 
-.. method:: determine_progression(self, shorthand=False)
+   .. method:: determine_progression(self, shorthand=False)
 
    Return a list of lists [place_in_beat, possible_progressions].
 
 
 ----
 
-.. method:: diminish(self)
+   .. method:: diminish(self)
 
    Diminish the NoteContainers in Bar.
 
 
 ----
 
-.. method:: empty(self)
+   .. method:: empty(self)
 
    Empty the Bar, remove all the NoteContainers.
 
 
 ----
 
-.. method:: get_note_names(self)
+   .. method:: get_note_names(self)
 
    Return a list of unique note names in the Bar.
 
 
 ----
 
-.. method:: get_range(self)
+   .. method:: get_range(self)
 
    Return the highest and the lowest note in a tuple.
 
 
 ----
 
-.. method:: is_full(self)
+   .. method:: is_full(self)
 
    Return False if there is room in this Bar for another
    NoteContainer, True otherwise.
@@ -139,28 +139,28 @@ mingus.containers.bar
 
 ----
 
-.. attribute:: key
+   .. attribute:: key
 
    Attribute of type: str
    ``'C'``
 
 ----
 
-.. attribute:: length
+   .. attribute:: length
 
    Attribute of type: float
    ``0.0``
 
 ----
 
-.. attribute:: meter
+   .. attribute:: meter
 
    Attribute of type: tuple
    ``(4, 4)``
 
 ----
 
-.. method:: place_notes(self, notes, duration)
+   .. method:: place_notes(self, notes, duration)
 
    Place the notes on the current_beat.
    
@@ -175,14 +175,14 @@ mingus.containers.bar
 
 ----
 
-.. method:: place_notes_at(self, notes, at)
+   .. method:: place_notes_at(self, notes, at)
 
    Place notes at the given index.
 
 
 ----
 
-.. method:: place_rest(self, duration)
+   .. method:: place_rest(self, duration)
 
    Place a rest of given duration on the current_beat.
    
@@ -191,14 +191,14 @@ mingus.containers.bar
 
 ----
 
-.. method:: remove_last_entry(self)
+   .. method:: remove_last_entry(self)
 
    Remove the last NoteContainer in the Bar.
 
 
 ----
 
-.. method:: set_meter(self, meter)
+   .. method:: set_meter(self, meter)
 
    Set the meter of this bar.
    
@@ -210,14 +210,14 @@ mingus.containers.bar
 
 ----
 
-.. method:: space_left(self)
+   .. method:: space_left(self)
 
    Return the space left on the Bar.
 
 
 ----
 
-.. method:: transpose(self, interval, up=True)
+   .. method:: transpose(self, interval, up=True)
 
    Transpose the notes in the bar up or down the interval.
    
@@ -226,7 +226,7 @@ mingus.containers.bar
 
 ----
 
-.. method:: value_left(self)
+   .. method:: value_left(self)
 
    Return the value left on the Bar.
 

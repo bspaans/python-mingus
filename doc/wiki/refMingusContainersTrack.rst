@@ -10,7 +10,7 @@ mingus.containers.track
 
 ----
 
-.. method:: __add__(self, value)
+   .. method:: __add__(self, value)
 
    Enable the '+' operator for Tracks.
    
@@ -19,40 +19,40 @@ mingus.containers.track
 
 ----
 
-.. method:: __eq__(self, other)
+   .. method:: __eq__(self, other)
 
    Enable the '==' operator for tracks.
 
 
 ----
 
-.. method:: __getitem__(self, index)
+   .. method:: __getitem__(self, index)
 
    Enable the '[]' notation for Tracks.
 
 
 ----
 
-.. method:: __init__(self, instrument=None)
+   .. method:: __init__(self, instrument=None)
 
 
 ----
 
-.. method:: __len__(self)
+   .. method:: __len__(self)
 
    Enable the len() function for Tracks.
 
 
 ----
 
-.. method:: __repr__(self)
+   .. method:: __repr__(self)
 
    Return a string representing the class.
 
 
 ----
 
-.. method:: __setitem__(self, index, value)
+   .. method:: __setitem__(self, index, value)
 
    Enable the '[] =' notation for Tracks.
    
@@ -62,14 +62,14 @@ mingus.containers.track
 
 ----
 
-.. method:: add_bar(self, bar)
+   .. method:: add_bar(self, bar)
 
    Add a Bar to the current track.
 
 
 ----
 
-.. method:: add_notes(self, note, duration=None)
+   .. method:: add_notes(self, note, duration=None)
 
    Add a Note, note as string or NoteContainer to the last Bar.
    
@@ -85,28 +85,28 @@ mingus.containers.track
 
 ----
 
-.. method:: augment(self)
+   .. method:: augment(self)
 
    Augment all the bars in the Track.
 
 
 ----
 
-.. attribute:: bars
+   .. attribute:: bars
 
    Attribute of type: list
    ``[]``
 
 ----
 
-.. method:: diminish(self)
+   .. method:: diminish(self)
 
    Diminish all the bars in the Track.
 
 
 ----
 
-.. method:: from_chords(self, chords, duration=1)
+   .. method:: from_chords(self, chords, duration=1)
 
    Add chords to the Track.
    
@@ -125,7 +125,7 @@ mingus.containers.track
 
 ----
 
-.. method:: get_notes(self)
+   .. method:: get_notes(self)
 
    Return an iterator that iterates through every bar in the this
    track.
@@ -133,7 +133,7 @@ mingus.containers.track
 
 ----
 
-.. method:: get_tuning(self)
+   .. method:: get_tuning(self)
 
    Return a StringTuning object.
    
@@ -143,21 +143,21 @@ mingus.containers.track
 
 ----
 
-.. attribute:: instrument
+   .. attribute:: instrument
 
    Attribute of type: NoneType
    ``None``
 
 ----
 
-.. attribute:: name
+   .. attribute:: name
 
    Attribute of type: str
    ``'Untitled'``
 
 ----
 
-.. method:: set_tuning(self, tuning)
+   .. method:: set_tuning(self, tuning)
 
    Set the tuning attribute on both the Track and its instrument (when
    available).
@@ -167,7 +167,7 @@ mingus.containers.track
 
 ----
 
-.. method:: test_integrity(self)
+   .. method:: test_integrity(self)
 
    Test whether all but the last Bars contained in this track are
    full.
@@ -175,7 +175,7 @@ mingus.containers.track
 
 ----
 
-.. method:: transpose(self, interval, up=True)
+   .. method:: transpose(self, interval, up=True)
 
    Transpose all the notes in the track up or down the interval.
    
@@ -184,7 +184,7 @@ mingus.containers.track
 
 ----
 
-.. attribute:: tuning
+   .. attribute:: tuning
 
    Attribute of type: NoneType
    ``None``

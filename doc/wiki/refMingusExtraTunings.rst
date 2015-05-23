@@ -13,7 +13,7 @@ you search through them.
 
 ----
 
-.. method:: __init__(self, instrument, description, tuning)
+   .. method:: __init__(self, instrument, description, tuning)
 
    Create a new StringTuning instance.
    
@@ -26,21 +26,21 @@ you search through them.
 
 ----
 
-.. method:: count_courses(self)
+   .. method:: count_courses(self)
 
    Return the average number of courses per string.
 
 
 ----
 
-.. method:: count_strings(self)
+   .. method:: count_strings(self)
 
    Return the number of strings.
 
 
 ----
 
-.. method:: find_chord_fingering(self, notes, max_distance=4, maxfret=18, max_fingers=4, return_best_as_NoteContainer=False)
+   .. method:: find_chord_fingering(self, notes, max_distance=4, maxfret=18, max_fingers=4, return_best_as_NoteContainer=False)
 
    Return a list of fret lists that are considered possible fingerings.
    
@@ -56,7 +56,7 @@ you search through them.
 
 ----
 
-.. method:: find_fingering(self, notes, max_distance=4, not_strings=[])
+   .. method:: find_fingering(self, notes, max_distance=4, not_strings=[])
 
    Return a list [(string, fret)] of possible fingerings for
    'notes'.
@@ -75,7 +75,7 @@ you search through them.
 
 ----
 
-.. method:: find_frets(self, note, maxfret=24)
+   .. method:: find_frets(self, note, maxfret=24)
 
    Return a list with for each string the fret on which the note is
    played or None if it can't be played on that particular string.
@@ -94,7 +94,7 @@ you search through them.
 
 ----
 
-.. method:: find_note_names(self, notelist, string=0, maxfret=24)
+   .. method:: find_note_names(self, notelist, string=0, maxfret=24)
 
    Return a list [(fret, notename)] in ascending order.
    
@@ -109,14 +109,14 @@ you search through them.
 
 ----
 
-.. method:: frets_to_NoteContainer(self, fingering)
+   .. method:: frets_to_NoteContainer(self, fingering)
 
    Convert a list such as returned by find_fret to a NoteContainer.
 
 
 ----
 
-.. method:: get_Note(self, string=0, fret=0, maxfret=24)
+   .. method:: get_Note(self, string=0, fret=0, maxfret=24)
 
    Return the Note on 'string', 'fret'.
    

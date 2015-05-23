@@ -12,14 +12,14 @@ Read a MIDI file and convert it into mingus.containers objects.
 
 ----
 
-.. attribute:: args
+   .. attribute:: args
 
    Attribute of type: getset_descriptor
    ``<attribute 'args' of 'exceptions.BaseException' objects>``
 
 ----
 
-.. attribute:: message
+   .. attribute:: message
 
    Attribute of type: getset_descriptor
    ``<attribute 'message' of 'exceptions.BaseException' objects>``
@@ -29,14 +29,14 @@ Read a MIDI file and convert it into mingus.containers objects.
 
 ----
 
-.. attribute:: args
+   .. attribute:: args
 
    Attribute of type: getset_descriptor
    ``<attribute 'args' of 'exceptions.BaseException' objects>``
 
 ----
 
-.. attribute:: message
+   .. attribute:: message
 
    Attribute of type: getset_descriptor
    ``<attribute 'message' of 'exceptions.BaseException' objects>``
@@ -46,38 +46,38 @@ Read a MIDI file and convert it into mingus.containers objects.
 
 ----
 
-.. method:: MIDI_to_Composition(self, file)
+   .. method:: MIDI_to_Composition(self, file)
 
 
 ----
 
-.. attribute:: bpm
+   .. attribute:: bpm
 
    Attribute of type: int
    ``120``
 
 ----
 
-.. attribute:: bytes_read
+   .. attribute:: bytes_read
 
    Attribute of type: int
    ``0``
 
 ----
 
-.. method:: bytes_to_int(self, bytes)
+   .. method:: bytes_to_int(self, bytes)
 
 
 ----
 
-.. attribute:: meter
+   .. attribute:: meter
 
    Attribute of type: tuple
    ``(4, 4)``
 
 ----
 
-.. method:: parse_midi_event(self, fp)
+   .. method:: parse_midi_event(self, fp)
 
    Parse a MIDI event.
    
@@ -86,7 +86,7 @@ Read a MIDI file and convert it into mingus.containers objects.
 
 ----
 
-.. method:: parse_midi_file(self, file)
+   .. method:: parse_midi_file(self, file)
 
    Parse a MIDI file.
    
@@ -97,7 +97,7 @@ Read a MIDI file and convert it into mingus.containers objects.
 
 ----
 
-.. method:: parse_midi_file_header(self, fp)
+   .. method:: parse_midi_file_header(self, fp)
 
    Read the header of a MIDI file and return a tuple containing the
    format type, number of tracks and parsed time division information.
@@ -105,7 +105,7 @@ Read a MIDI file and convert it into mingus.containers objects.
 
 ----
 
-.. method:: parse_time_division(self, bytes)
+   .. method:: parse_time_division(self, bytes)
 
    Parse the time division found in the header of a MIDI file and
    return a dictionary with the boolean fps set to indicate whether to
@@ -117,7 +117,7 @@ Read a MIDI file and convert it into mingus.containers objects.
 
 ----
 
-.. method:: parse_track(self, fp)
+   .. method:: parse_track(self, fp)
 
    Parse a MIDI track from its header to its events.
    
@@ -126,14 +126,14 @@ Read a MIDI file and convert it into mingus.containers objects.
 
 ----
 
-.. method:: parse_track_header(self, fp)
+   .. method:: parse_track_header(self, fp)
 
    Return the size of the track chunk.
 
 
 ----
 
-.. method:: parse_varbyte_as_int(self, fp, return_bytes_read=True)
+   .. method:: parse_varbyte_as_int(self, fp, return_bytes_read=True)
 
    Read a variable length byte from the file and return the
    corresponding integer.
@@ -144,14 +144,14 @@ Read a MIDI file and convert it into mingus.containers objects.
 
 ----
 
-.. attribute:: args
+   .. attribute:: args
 
    Attribute of type: getset_descriptor
    ``<attribute 'args' of 'exceptions.BaseException' objects>``
 
 ----
 
-.. attribute:: message
+   .. attribute:: message
 
    Attribute of type: getset_descriptor
    ``<attribute 'message' of 'exceptions.BaseException' objects>``

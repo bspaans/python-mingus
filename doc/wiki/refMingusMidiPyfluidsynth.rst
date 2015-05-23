@@ -28,7 +28,7 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 
 ----
 
-.. method:: __init__(self, gain=0.2, samplerate=44100)
+   .. method:: __init__(self, gain=0.2, samplerate=44100)
 
    Create a new synthesizer object to control sound generation.
    
@@ -40,14 +40,14 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 
 ----
 
-.. method:: bank_select(self, chan, bank)
+   .. method:: bank_select(self, chan, bank)
 
    Choose a bank.
 
 
 ----
 
-.. method:: cc(self, chan, ctrl, val)
+   .. method:: cc(self, chan, ctrl, val)
 
    Send control change value.
    
@@ -65,12 +65,12 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 
 ----
 
-.. method:: delete(self)
+   .. method:: delete(self)
 
 
 ----
 
-.. method:: get_samples(self, len=1024)
+   .. method:: get_samples(self, len=1024)
 
    Generate audio samples.
    
@@ -81,21 +81,21 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 
 ----
 
-.. method:: noteoff(self, chan, key)
+   .. method:: noteoff(self, chan, key)
 
    Stop a note.
 
 
 ----
 
-.. method:: noteon(self, chan, key, vel)
+   .. method:: noteon(self, chan, key, vel)
 
    Play a note.
 
 
 ----
 
-.. method:: pitch_bend(self, chan, val)
+   .. method:: pitch_bend(self, chan, val)
 
    Adjust pitch of a playing channel by small amounts.
    
@@ -107,49 +107,49 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 
 ----
 
-.. method:: program_change(self, chan, prg)
+   .. method:: program_change(self, chan, prg)
 
    Change the program.
 
 
 ----
 
-.. method:: program_reset(self)
+   .. method:: program_reset(self)
 
    Reset the programs on all channels.
 
 
 ----
 
-.. method:: program_select(self, chan, sfid, bank, preset)
+   .. method:: program_select(self, chan, sfid, bank, preset)
 
    Select a program.
 
 
 ----
 
-.. method:: sfload(self, filename, update_midi_preset=0)
+   .. method:: sfload(self, filename, update_midi_preset=0)
 
    Load SoundFont and return its IDi.
 
 
 ----
 
-.. method:: sfont_select(self, chan, sfid)
+   .. method:: sfont_select(self, chan, sfid)
 
    Choose a SoundFont.
 
 
 ----
 
-.. method:: sfunload(self, sfid, update_midi_preset=0)
+   .. method:: sfunload(self, sfid, update_midi_preset=0)
 
    Unload a SoundFont and free memory it used.
 
 
 ----
 
-.. method:: start(self, driver=None)
+   .. method:: start(self, driver=None)
 
    Start audio output driver in separate background thread.
    
@@ -170,7 +170,7 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 
 ----
 
-.. method:: system_reset(self)
+   .. method:: system_reset(self)
 
    Stop all notes and reset all programs.
 
@@ -208,7 +208,7 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 .. data:: cdll
 
    Attribute of type: ctypes.LibraryLoader
-   ``<ctypes.LibraryLoader object at 0x7f5399d068d0>``
+   ``<ctypes.LibraryLoader object at 0x7f79e0c978d0>``
 
 ----
 
@@ -222,14 +222,14 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 .. data:: pydll
 
    Attribute of type: ctypes.LibraryLoader
-   ``<ctypes.LibraryLoader object at 0x7f5399d06910>``
+   ``<ctypes.LibraryLoader object at 0x7f79e0c97910>``
 
 ----
 
 .. data:: pythonapi
 
    Attribute of type: ctypes.PyDLL
-   ``<PyDLL 'None', handle 7f539d422188 at 7f5399d06950>``
+   ``<PyDLL 'None', handle 7f79e43b3188 at 7f79e0c97950>``
 
 ----
 

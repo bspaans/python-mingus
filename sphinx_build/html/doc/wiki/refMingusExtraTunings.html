@@ -66,35 +66,44 @@ you search through them.</p>
 <dd></dd></dl>
 
 <hr class="docutils" />
-<dl class="method">
+<blockquote>
+<div><dl class="method">
 <dt id="mingus.extra.tunings.__init__">
 <code class="descclassname">mingus.extra.tunings.</code><code class="descname">__init__</code><span class="sig-paren">(</span><em>self</em>, <em>instrument</em>, <em>description</em>, <em>tuning</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.extra.tunings.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a new StringTuning instance.</p>
+<dd></dd></dl>
+
+<p>Create a new StringTuning instance.</p>
 <p>The instrument and description parameters should be strings; tuning
 should be a list of strings or a list of lists of strings that
 denote courses.</p>
 <p>See tunings.add_tuning for examples.</p>
-</dd></dl>
-
+</div></blockquote>
 <hr class="docutils" />
-<dl class="method">
+<blockquote>
+<div><dl class="method">
 <dt id="mingus.extra.tunings.count_courses">
 <code class="descclassname">mingus.extra.tunings.</code><code class="descname">count_courses</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.extra.tunings.count_courses" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the average number of courses per string.</p>
-</dd></dl>
+<dd></dd></dl>
 
+<p>Return the average number of courses per string.</p>
+</div></blockquote>
 <hr class="docutils" />
-<dl class="method">
+<blockquote>
+<div><dl class="method">
 <dt id="mingus.extra.tunings.count_strings">
 <code class="descclassname">mingus.extra.tunings.</code><code class="descname">count_strings</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.extra.tunings.count_strings" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the number of strings.</p>
-</dd></dl>
+<dd></dd></dl>
 
+<p>Return the number of strings.</p>
+</div></blockquote>
 <hr class="docutils" />
-<dl class="method">
+<blockquote>
+<div><dl class="method">
 <dt id="mingus.extra.tunings.find_chord_fingering">
 <code class="descclassname">mingus.extra.tunings.</code><code class="descname">find_chord_fingering</code><span class="sig-paren">(</span><em>self</em>, <em>notes</em>, <em>max_distance=4</em>, <em>maxfret=18</em>, <em>max_fingers=4</em>, <em>return_best_as_NoteContainer=False</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.extra.tunings.find_chord_fingering" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a list of fret lists that are considered possible fingerings.</p>
+<dd></dd></dl>
+
+<p>Return a list of fret lists that are considered possible fingerings.</p>
 <p>This function only looks at and matches on the note _names_ so it
 does more than find_fingering.</p>
 <p>Example:</p>
@@ -103,13 +112,15 @@ does more than find_fingering.</p>
 <span class="go">[[0, 0, 2, 2, 1, 0], [0, 3, 2, 2, 1, 0], ......]</span>
 </pre></div>
 </div>
-</dd></dl>
-
+</div></blockquote>
 <hr class="docutils" />
-<dl class="method">
+<blockquote>
+<div><dl class="method">
 <dt id="mingus.extra.tunings.find_fingering">
 <code class="descclassname">mingus.extra.tunings.</code><code class="descname">find_fingering</code><span class="sig-paren">(</span><em>self</em>, <em>notes</em>, <em>max_distance=4</em>, <em>not_strings=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.extra.tunings.find_fingering" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a list [(string, fret)] of possible fingerings for
+<dd></dd></dl>
+
+<p>Return a list [(string, fret)] of possible fingerings for
 &#8216;notes&#8217;.</p>
 <p>The notes parameter should be a list of strings or Notes or a
 NoteContainer; max_distance denotes the maximum distance between
@@ -121,13 +132,15 @@ used internally to recurse.</p>
 <span class="go">[[(0, 7), (1, 7)], [(1, 0), (0, 14)]]</span>
 </pre></div>
 </div>
-</dd></dl>
-
+</div></blockquote>
 <hr class="docutils" />
-<dl class="method">
+<blockquote>
+<div><dl class="method">
 <dt id="mingus.extra.tunings.find_frets">
 <code class="descclassname">mingus.extra.tunings.</code><code class="descname">find_frets</code><span class="sig-paren">(</span><em>self</em>, <em>note</em>, <em>maxfret=24</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.extra.tunings.find_frets" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a list with for each string the fret on which the note is
+<dd></dd></dl>
+
+<p>Return a list with for each string the fret on which the note is
 played or None if it can&#8217;t be played on that particular string.</p>
 <p>The maxfret parameter is the highest fret that can be played; note
 should either be a string or a Note object.</p>
@@ -139,13 +152,15 @@ should either be a string or a Note object.</p>
 <span class="go">[12, 5]</span>
 </pre></div>
 </div>
-</dd></dl>
-
+</div></blockquote>
 <hr class="docutils" />
-<dl class="method">
+<blockquote>
+<div><dl class="method">
 <dt id="mingus.extra.tunings.find_note_names">
 <code class="descclassname">mingus.extra.tunings.</code><code class="descname">find_note_names</code><span class="sig-paren">(</span><em>self</em>, <em>notelist</em>, <em>string=0</em>, <em>maxfret=24</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.extra.tunings.find_note_names" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a list [(fret, notename)] in ascending order.</p>
+<dd></dd></dl>
+
+<p>Return a list [(fret, notename)] in ascending order.</p>
 <p>Notelist should be a list of Notes, note-strings or a NoteContainer.</p>
 <p>Example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">tunings</span><span class="o">.</span><span class="n">StringTuning</span><span class="p">(</span><span class="s">&#39;test&#39;</span><span class="p">,</span> <span class="s">&#39;test&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;A-3&#39;</span><span class="p">,</span> <span class="s">&#39;A-4&#39;</span><span class="p">])</span>
@@ -153,20 +168,24 @@ should either be a string or a Note object.</p>
 <span class="go">[(0, &#39;E&#39;), (5, &#39;A&#39;), (8, &#39;C&#39;), (12, &#39;E&#39;)]</span>
 </pre></div>
 </div>
-</dd></dl>
-
+</div></blockquote>
 <hr class="docutils" />
-<dl class="method">
+<blockquote>
+<div><dl class="method">
 <dt id="mingus.extra.tunings.frets_to_NoteContainer">
 <code class="descclassname">mingus.extra.tunings.</code><code class="descname">frets_to_NoteContainer</code><span class="sig-paren">(</span><em>self</em>, <em>fingering</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.extra.tunings.frets_to_NoteContainer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a list such as returned by find_fret to a NoteContainer.</p>
-</dd></dl>
+<dd></dd></dl>
 
+<p>Convert a list such as returned by find_fret to a NoteContainer.</p>
+</div></blockquote>
 <hr class="docutils" />
-<dl class="method">
+<blockquote>
+<div><dl class="method">
 <dt id="mingus.extra.tunings.get_Note">
 <code class="descclassname">mingus.extra.tunings.</code><code class="descname">get_Note</code><span class="sig-paren">(</span><em>self</em>, <em>string=0</em>, <em>fret=0</em>, <em>maxfret=24</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.extra.tunings.get_Note" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the Note on &#8216;string&#8217;, &#8216;fret&#8217;.</p>
+<dd></dd></dl>
+
+<p>Return the Note on &#8216;string&#8217;, &#8216;fret&#8217;.</p>
 <p>Throw a RangeError if either the fret or string is unplayable.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">tunings</span><span class="o">.</span><span class="n">StringTuning</span><span class="p">(</span><span class="s">&#39;test&#39;</span><span class="p">,</span> <span class="s">&#39;test&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;A-3&#39;</span><span class="p">,</span> <span class="s">&#39;A-4&#39;</span><span class="p">])</span>
@@ -178,8 +197,7 @@ should either be a string or a Note object.</p>
 <span class="go">&#39;A-4&#39;</span>
 </pre></div>
 </div>
-</dd></dl>
-
+</div></blockquote>
 <hr class="docutils" />
 <dl class="function">
 <dt id="mingus.extra.tunings.add_tuning">

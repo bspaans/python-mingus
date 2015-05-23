@@ -22,530 +22,530 @@ http://www.musicxml.org/xml.html
 
 ----
 
-.. attribute:: ATTRIBUTE_NODE
+   .. attribute:: ATTRIBUTE_NODE
 
    Attribute of type: int
    ``2``
 
 ----
 
-.. attribute:: CDATA_SECTION_NODE
+   .. attribute:: CDATA_SECTION_NODE
 
    Attribute of type: int
    ``4``
 
 ----
 
-.. attribute:: COMMENT_NODE
+   .. attribute:: COMMENT_NODE
 
    Attribute of type: int
    ``8``
 
 ----
 
-.. attribute:: DOCUMENT_FRAGMENT_NODE
+   .. attribute:: DOCUMENT_FRAGMENT_NODE
 
    Attribute of type: int
    ``11``
 
 ----
 
-.. attribute:: DOCUMENT_NODE
+   .. attribute:: DOCUMENT_NODE
 
    Attribute of type: int
    ``9``
 
 ----
 
-.. attribute:: DOCUMENT_TYPE_NODE
+   .. attribute:: DOCUMENT_TYPE_NODE
 
    Attribute of type: int
    ``10``
 
 ----
 
-.. attribute:: ELEMENT_NODE
+   .. attribute:: ELEMENT_NODE
 
    Attribute of type: int
    ``1``
 
 ----
 
-.. attribute:: ENTITY_NODE
+   .. attribute:: ENTITY_NODE
 
    Attribute of type: int
    ``6``
 
 ----
 
-.. attribute:: ENTITY_REFERENCE_NODE
+   .. attribute:: ENTITY_REFERENCE_NODE
 
    Attribute of type: int
    ``5``
 
 ----
 
-.. attribute:: NOTATION_NODE
+   .. attribute:: NOTATION_NODE
 
    Attribute of type: int
    ``12``
 
 ----
 
-.. attribute:: PROCESSING_INSTRUCTION_NODE
+   .. attribute:: PROCESSING_INSTRUCTION_NODE
 
    Attribute of type: int
    ``7``
 
 ----
 
-.. attribute:: TEXT_NODE
+   .. attribute:: TEXT_NODE
 
    Attribute of type: int
    ``3``
 
 ----
 
-.. method:: __init__(self)
+   .. method:: __init__(self)
 
 
 ----
 
-.. method:: __nonzero__(self)
+   .. method:: __nonzero__(self)
 
 
 ----
 
-.. method:: _call_user_data_handler(self, operation, src, dst)
+   .. method:: _call_user_data_handler(self, operation, src, dst)
 
 
 ----
 
-.. method:: _create_entity(self, name, publicId, systemId, notationName)
+   .. method:: _create_entity(self, name, publicId, systemId, notationName)
 
 
 ----
 
-.. method:: _create_notation(self, name, publicId, systemId)
+   .. method:: _create_notation(self, name, publicId, systemId)
 
 
 ----
 
-.. method:: _get_actualEncoding(self)
+   .. method:: _get_actualEncoding(self)
 
 
 ----
 
-.. method:: _get_async(self)
+   .. method:: _get_async(self)
 
 
 ----
 
-.. method:: _get_childNodes(self)
+   .. method:: _get_childNodes(self)
 
 
 ----
 
-.. method:: _get_doctype(self)
+   .. method:: _get_doctype(self)
 
 
 ----
 
-.. method:: _get_documentElement(self)
+   .. method:: _get_documentElement(self)
 
 
 ----
 
-.. method:: _get_documentURI(self)
+   .. method:: _get_documentURI(self)
 
 
 ----
 
-.. method:: _get_elem_info(self, element)
+   .. method:: _get_elem_info(self, element)
 
 
 ----
 
-.. method:: _get_encoding(self)
+   .. method:: _get_encoding(self)
 
 
 ----
 
-.. method:: _get_errorHandler(self)
+   .. method:: _get_errorHandler(self)
 
 
 ----
 
-.. method:: _get_firstChild(self)
+   .. method:: _get_firstChild(self)
 
 
 ----
 
-.. method:: _get_lastChild(self)
+   .. method:: _get_lastChild(self)
 
 
 ----
 
-.. method:: _get_localName(self)
+   .. method:: _get_localName(self)
 
 
 ----
 
-.. method:: _get_standalone(self)
+   .. method:: _get_standalone(self)
 
 
 ----
 
-.. method:: _get_strictErrorChecking(self)
+   .. method:: _get_strictErrorChecking(self)
 
 
 ----
 
-.. method:: _get_version(self)
+   .. method:: _get_version(self)
 
 
 ----
 
-.. method:: _set_async(self, async)
+   .. method:: _set_async(self, async)
 
 
 ----
 
-.. method:: abort(self)
+   .. method:: abort(self)
 
 
 ----
 
-.. attribute:: actualEncoding
+   .. attribute:: actualEncoding
 
    Attribute of type: NoneType
    ``None``
 
 ----
 
-.. method:: appendChild(self, node)
+   .. method:: appendChild(self, node)
 
 
 ----
 
-.. attribute:: async
+   .. attribute:: async
 
    Attribute of type: bool
    ``False``
 
 ----
 
-.. attribute:: attributes
+   .. attribute:: attributes
 
    Attribute of type: NoneType
    ``None``
 
 ----
 
-.. method:: cloneNode(self, deep)
+   .. method:: cloneNode(self, deep)
 
 
 ----
 
-.. method:: createAttribute(self, qName)
+   .. method:: createAttribute(self, qName)
 
 
 ----
 
-.. method:: createAttributeNS(self, namespaceURI, qualifiedName)
+   .. method:: createAttributeNS(self, namespaceURI, qualifiedName)
 
 
 ----
 
-.. method:: createCDATASection(self, data)
+   .. method:: createCDATASection(self, data)
 
 
 ----
 
-.. method:: createComment(self, data)
+   .. method:: createComment(self, data)
 
 
 ----
 
-.. method:: createDocumentFragment(self)
+   .. method:: createDocumentFragment(self)
 
 
 ----
 
-.. method:: createElement(self, tagName)
+   .. method:: createElement(self, tagName)
 
 
 ----
 
-.. method:: createElementNS(self, namespaceURI, qualifiedName)
+   .. method:: createElementNS(self, namespaceURI, qualifiedName)
 
 
 ----
 
-.. method:: createProcessingInstruction(self, target, data)
+   .. method:: createProcessingInstruction(self, target, data)
 
 
 ----
 
-.. method:: createTextNode(self, data)
+   .. method:: createTextNode(self, data)
 
 
 ----
 
-.. attribute:: doctype
+   .. attribute:: doctype
 
    Attribute of type: NoneType
    ``None``
 
 ----
 
-.. attribute:: documentElement
+   .. attribute:: documentElement
 
    Attribute of type: property
-   ``<property object at 0x7f53997de2b8>``
+   ``<property object at 0x7f79e076f2b8>``
 
 ----
 
-.. attribute:: documentURI
+   .. attribute:: documentURI
 
    Attribute of type: NoneType
    ``None``
 
 ----
 
-.. attribute:: encoding
+   .. attribute:: encoding
 
    Attribute of type: NoneType
    ``None``
 
 ----
 
-.. attribute:: errorHandler
+   .. attribute:: errorHandler
 
    Attribute of type: NoneType
    ``None``
 
 ----
 
-.. attribute:: firstChild
+   .. attribute:: firstChild
 
    Attribute of type: property
-   ``<property object at 0x7f539983a628>``
+   ``<property object at 0x7f79e07cb628>``
 
 ----
 
-.. method:: getElementById(self, id)
-
-
-----
-
-.. method:: getElementsByTagName(self, name)
+   .. method:: getElementById(self, id)
 
 
 ----
 
-.. method:: getElementsByTagNameNS(self, namespaceURI, localName)
+   .. method:: getElementsByTagName(self, name)
 
 
 ----
 
-.. method:: getInterface(self, feature)
+   .. method:: getElementsByTagNameNS(self, namespaceURI, localName)
 
 
 ----
 
-.. method:: getUserData(self, key)
+   .. method:: getInterface(self, feature)
 
 
 ----
 
-.. method:: hasChildNodes(self)
+   .. method:: getUserData(self, key)
 
 
 ----
 
-.. attribute:: implementation
+   .. method:: hasChildNodes(self)
+
+
+----
+
+   .. attribute:: implementation
 
    Attribute of type: instance
-   ``<xml.dom.minidom.DOMImplementation instance at 0x7f53997d89e0>``
+   ``<xml.dom.minidom.DOMImplementation instance at 0x7f79e07699e0>``
 
 ----
 
-.. method:: importNode(self, node, deep)
-
-
-----
-
-.. method:: insertBefore(self, newChild, refChild)
+   .. method:: importNode(self, node, deep)
 
 
 ----
 
-.. method:: isSameNode(self, other)
+   .. method:: insertBefore(self, newChild, refChild)
 
 
 ----
 
-.. method:: isSupported(self, feature, version)
+   .. method:: isSameNode(self, other)
 
 
 ----
 
-.. attribute:: lastChild
+   .. method:: isSupported(self, feature, version)
+
+
+----
+
+   .. attribute:: lastChild
 
    Attribute of type: property
-   ``<property object at 0x7f539983a730>``
+   ``<property object at 0x7f79e07cb730>``
 
 ----
 
-.. method:: load(self, uri)
-
-
-----
-
-.. method:: loadXML(self, source)
+   .. method:: load(self, uri)
 
 
 ----
 
-.. attribute:: localName
+   .. method:: loadXML(self, source)
+
+
+----
+
+   .. attribute:: localName
 
    Attribute of type: property
-   ``<property object at 0x7f539983ad60>``
+   ``<property object at 0x7f79e07cbd60>``
 
 ----
 
-.. attribute:: namespaceURI
+   .. attribute:: namespaceURI
 
    Attribute of type: NoneType
    ``None``
 
 ----
 
-.. attribute:: nextSibling
+   .. attribute:: nextSibling
 
    Attribute of type: NoneType
    ``None``
 
 ----
 
-.. attribute:: nodeName
+   .. attribute:: nodeName
 
    Attribute of type: str
    ``'#document'``
 
 ----
 
-.. attribute:: nodeType
+   .. attribute:: nodeType
 
    Attribute of type: int
    ``9``
 
 ----
 
-.. attribute:: nodeValue
+   .. attribute:: nodeValue
 
    Attribute of type: NoneType
    ``None``
 
 ----
 
-.. method:: normalize(self)
+   .. method:: normalize(self)
 
 
 ----
 
-.. attribute:: ownerDocument
+   .. attribute:: ownerDocument
 
    Attribute of type: NoneType
    ``None``
 
 ----
 
-.. attribute:: parentNode
+   .. attribute:: parentNode
 
    Attribute of type: NoneType
    ``None``
 
 ----
 
-.. attribute:: prefix
+   .. attribute:: prefix
 
    Attribute of type: NoneType
    ``None``
 
 ----
 
-.. attribute:: previousSibling
+   .. attribute:: previousSibling
 
    Attribute of type: NoneType
    ``None``
 
 ----
 
-.. method:: removeChild(self, oldChild)
+   .. method:: removeChild(self, oldChild)
 
 
 ----
 
-.. method:: renameNode(self, n, namespaceURI, name)
+   .. method:: renameNode(self, n, namespaceURI, name)
 
 
 ----
 
-.. method:: replaceChild(self, newChild, oldChild)
+   .. method:: replaceChild(self, newChild, oldChild)
 
 
 ----
 
-.. method:: saveXML(self, snode)
+   .. method:: saveXML(self, snode)
 
 
 ----
 
-.. method:: setUserData(self, key, data, handler)
+   .. method:: setUserData(self, key, data, handler)
 
 
 ----
 
-.. attribute:: standalone
+   .. attribute:: standalone
 
    Attribute of type: NoneType
    ``None``
 
 ----
 
-.. attribute:: strictErrorChecking
+   .. attribute:: strictErrorChecking
 
    Attribute of type: bool
    ``False``
 
 ----
 
-.. method:: toprettyxml(self, indent=	, newl=
+   .. method:: toprettyxml(self, indent=	, newl=
 , encoding=None)
 
 
 ----
 
-.. method:: toxml(self, encoding=None)
+   .. method:: toxml(self, encoding=None)
 
 
 ----
 
-.. method:: unlink(self)
+   .. method:: unlink(self)
 
 
 ----
 
-.. attribute:: version
+   .. attribute:: version
 
    Attribute of type: NoneType
    ``None``
 
 ----
 
-.. method:: writexml(self, writer, indent=, addindent=, newl=, encoding=None)
+   .. method:: writexml(self, writer, indent=, addindent=, newl=, encoding=None)
 
 
 ----

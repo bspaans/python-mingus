@@ -21,110 +21,110 @@ attached to the Sequencer.
 
 ----
 
-.. attribute:: MSG_CC
+   .. attribute:: MSG_CC
 
    Attribute of type: int
    ``2``
 
 ----
 
-.. attribute:: MSG_INSTR
+   .. attribute:: MSG_INSTR
 
    Attribute of type: int
    ``3``
 
 ----
 
-.. attribute:: MSG_PLAY_BAR
+   .. attribute:: MSG_PLAY_BAR
 
    Attribute of type: int
    ``9``
 
 ----
 
-.. attribute:: MSG_PLAY_BARS
+   .. attribute:: MSG_PLAY_BARS
 
    Attribute of type: int
    ``10``
 
 ----
 
-.. attribute:: MSG_PLAY_COMPOSITION
+   .. attribute:: MSG_PLAY_COMPOSITION
 
    Attribute of type: int
    ``13``
 
 ----
 
-.. attribute:: MSG_PLAY_INT
+   .. attribute:: MSG_PLAY_INT
 
    Attribute of type: int
    ``0``
 
 ----
 
-.. attribute:: MSG_PLAY_NC
+   .. attribute:: MSG_PLAY_NC
 
    Attribute of type: int
    ``7``
 
 ----
 
-.. attribute:: MSG_PLAY_NOTE
+   .. attribute:: MSG_PLAY_NOTE
 
    Attribute of type: int
    ``5``
 
 ----
 
-.. attribute:: MSG_PLAY_TRACK
+   .. attribute:: MSG_PLAY_TRACK
 
    Attribute of type: int
    ``11``
 
 ----
 
-.. attribute:: MSG_PLAY_TRACKS
+   .. attribute:: MSG_PLAY_TRACKS
 
    Attribute of type: int
    ``12``
 
 ----
 
-.. attribute:: MSG_SLEEP
+   .. attribute:: MSG_SLEEP
 
    Attribute of type: int
    ``4``
 
 ----
 
-.. attribute:: MSG_STOP_INT
+   .. attribute:: MSG_STOP_INT
 
    Attribute of type: int
    ``1``
 
 ----
 
-.. attribute:: MSG_STOP_NC
+   .. attribute:: MSG_STOP_NC
 
    Attribute of type: int
    ``8``
 
 ----
 
-.. attribute:: MSG_STOP_NOTE
+   .. attribute:: MSG_STOP_NOTE
 
    Attribute of type: int
    ``6``
 
 ----
 
-.. method:: __init__(self)
+   .. method:: __init__(self)
 
 
 ----
 
-.. method:: attach(self, listener)
+   .. method:: attach(self, listener)
 
    Attach an object that should be notified of events.
    
@@ -133,12 +133,12 @@ attached to the Sequencer.
 
 ----
 
-.. method:: cc_event(self, channel, control, value)
+   .. method:: cc_event(self, channel, control, value)
 
 
 ----
 
-.. method:: control_change(self, channel, control, value)
+   .. method:: control_change(self, channel, control, value)
 
    Send a control change message.
    
@@ -147,7 +147,7 @@ attached to the Sequencer.
 
 ----
 
-.. method:: detach(self, listener)
+   .. method:: detach(self, listener)
 
    Detach a listening object so that it won't receive any events
    anymore.
@@ -155,52 +155,52 @@ attached to the Sequencer.
 
 ----
 
-.. method:: init(self)
+   .. method:: init(self)
 
 
 ----
 
-.. method:: instr_event(self, channel, instr, bank)
+   .. method:: instr_event(self, channel, instr, bank)
 
 
 ----
 
-.. method:: main_volume(self, channel, value)
+   .. method:: main_volume(self, channel, value)
 
    Set the main volume.
 
 
 ----
 
-.. method:: modulation(self, channel, value)
+   .. method:: modulation(self, channel, value)
 
    Set the modulation.
 
 
 ----
 
-.. method:: notify_listeners(self, msg_type, params)
+   .. method:: notify_listeners(self, msg_type, params)
 
    Send a message to all the observers.
 
 
 ----
 
-.. attribute:: output
+   .. attribute:: output
 
    Attribute of type: NoneType
    ``None``
 
 ----
 
-.. method:: pan(self, channel, value)
+   .. method:: pan(self, channel, value)
 
    Set the panning.
 
 
 ----
 
-.. method:: play_Bar(self, bar, channel=1, bpm=120)
+   .. method:: play_Bar(self, bar, channel=1, bpm=120)
 
    Play a Bar object.
    
@@ -213,7 +213,7 @@ attached to the Sequencer.
 
 ----
 
-.. method:: play_Bars(self, bars, channels, bpm=120)
+   .. method:: play_Bars(self, bars, channels, bpm=120)
 
    Play several bars (a list of Bar objects) at the same time.
    
@@ -223,14 +223,14 @@ attached to the Sequencer.
 
 ----
 
-.. method:: play_Composition(self, composition, channels=None, bpm=120)
+   .. method:: play_Composition(self, composition, channels=None, bpm=120)
 
    Play a Composition object.
 
 
 ----
 
-.. method:: play_Note(self, note, channel=1, velocity=100)
+   .. method:: play_Note(self, note, channel=1, velocity=100)
 
    Play a Note object on a channel with a velocity[0-127].
    
@@ -241,21 +241,21 @@ attached to the Sequencer.
 
 ----
 
-.. method:: play_NoteContainer(self, nc, channel=1, velocity=100)
+   .. method:: play_NoteContainer(self, nc, channel=1, velocity=100)
 
    Play the Notes in the NoteContainer nc.
 
 
 ----
 
-.. method:: play_Track(self, track, channel=1, bpm=120)
+   .. method:: play_Track(self, track, channel=1, bpm=120)
 
    Play a Track object.
 
 
 ----
 
-.. method:: play_Tracks(self, tracks, channels, bpm=120)
+   .. method:: play_Tracks(self, tracks, channels, bpm=120)
 
    Play a list of Tracks.
    
@@ -265,24 +265,24 @@ attached to the Sequencer.
 
 ----
 
-.. method:: play_event(self, note, channel, velocity)
+   .. method:: play_event(self, note, channel, velocity)
 
 
 ----
 
-.. method:: set_instrument(self, channel, instr, bank=0)
+   .. method:: set_instrument(self, channel, instr, bank=0)
 
    Set the channel to the instrument _instr_.
 
 
 ----
 
-.. method:: sleep(self, seconds)
+   .. method:: sleep(self, seconds)
 
 
 ----
 
-.. method:: stop_Note(self, note, channel=1)
+   .. method:: stop_Note(self, note, channel=1)
 
    Stop a note on a channel.
    
@@ -292,19 +292,19 @@ attached to the Sequencer.
 
 ----
 
-.. method:: stop_NoteContainer(self, nc, channel=1)
+   .. method:: stop_NoteContainer(self, nc, channel=1)
 
    Stop playing the notes in NoteContainer nc.
 
 
 ----
 
-.. method:: stop_event(self, note, channel)
+   .. method:: stop_event(self, note, channel)
 
 
 ----
 
-.. method:: stop_everything(self)
+   .. method:: stop_everything(self)
 
    Stop all the notes on all channels.
 

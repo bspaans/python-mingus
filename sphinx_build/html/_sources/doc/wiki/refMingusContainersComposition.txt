@@ -10,7 +10,7 @@ mingus.containers.composition
 
 ----
 
-.. method:: __add__(self, value)
+   .. method:: __add__(self, value)
 
    Enable the '+' operator for Compositions.
    
@@ -19,40 +19,40 @@ mingus.containers.composition
 
 ----
 
-.. method:: __getitem__(self, index)
+   .. method:: __getitem__(self, index)
 
    Enable the '[]' notation.
 
 
 ----
 
-.. method:: __init__(self)
+   .. method:: __init__(self)
 
 
 ----
 
-.. method:: __len__(self)
+   .. method:: __len__(self)
 
    Enable the len() function.
 
 
 ----
 
-.. method:: __repr__(self)
+   .. method:: __repr__(self)
 
    Return a string representing the class.
 
 
 ----
 
-.. method:: __setitem__(self, index, value)
+   .. method:: __setitem__(self, index, value)
 
    Enable the '[] =' notation.
 
 
 ----
 
-.. method:: add_note(self, note)
+   .. method:: add_note(self, note)
 
    Add a note to the selected tracks.
    
@@ -61,7 +61,7 @@ mingus.containers.composition
 
 ----
 
-.. method:: add_track(self, track)
+   .. method:: add_track(self, track)
 
    Add a track to the composition.
    
@@ -71,35 +71,35 @@ mingus.containers.composition
 
 ----
 
-.. attribute:: author
+   .. attribute:: author
 
    Attribute of type: str
    ``''``
 
 ----
 
-.. attribute:: description
+   .. attribute:: description
 
    Attribute of type: str
    ``''``
 
 ----
 
-.. attribute:: email
+   .. attribute:: email
 
    Attribute of type: str
    ``''``
 
 ----
 
-.. method:: empty(self)
+   .. method:: empty(self)
 
    Remove all the tracks from this class.
 
 
 ----
 
-.. method:: reset(self)
+   .. method:: reset(self)
 
    Reset the information in this class.
    
@@ -108,42 +108,42 @@ mingus.containers.composition
 
 ----
 
-.. attribute:: selected_tracks
+   .. attribute:: selected_tracks
 
    Attribute of type: list
    ``[]``
 
 ----
 
-.. method:: set_author(self, author=, email=)
+   .. method:: set_author(self, author=, email=)
 
    Set the title and author of the piece.
 
 
 ----
 
-.. method:: set_title(self, title=Untitled, subtitle=)
+   .. method:: set_title(self, title=Untitled, subtitle=)
 
    Set the title and subtitle of the piece.
 
 
 ----
 
-.. attribute:: subtitle
+   .. attribute:: subtitle
 
    Attribute of type: str
    ``''``
 
 ----
 
-.. attribute:: title
+   .. attribute:: title
 
    Attribute of type: str
    ``'Untitled'``
 
 ----
 
-.. attribute:: tracks
+   .. attribute:: tracks
 
    Attribute of type: list
    ``[]``
