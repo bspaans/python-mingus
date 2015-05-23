@@ -1,158 +1,257 @@
-#summary Reference documentation for `mingus.midi.midi_events`.
-
-----
-
-= mingus.midi.midi_events =
-None
-
-----
-
-== Attributes ==
-=== `BALANCE` ===
-  * *Type*: int
-  * *Value*: `8`
-
-=== `BANK_SELECT` ===
-  * *Type*: int
-  * *Value*: `0`
-
-=== `BREATH_CONTROLLER` ===
-  * *Type*: int
-  * *Value*: `2`
-
-=== `CHANNEL_AFTERTOUCH` ===
-  * *Type*: int
-  * *Value*: `13`
-
-=== `CONTROLLER` ===
-  * *Type*: int
-  * *Value*: `11`
-
-=== `COPYRIGHT_NOTICE` ===
-  * *Type*: str
-  * *Value*: `'\x02'`
-
-=== `CUE_POINT` ===
-  * *Type*: str
-  * *Value*: `'\x07'`
-
-=== `DATA_ENTRY_MSB` ===
-  * *Type*: int
-  * *Value*: `6`
-
-=== `EFFECT_CONTROL_1` ===
-  * *Type*: int
-  * *Value*: `12`
-
-=== `EFFECT_CONTROL_2` ===
-  * *Type*: int
-  * *Value*: `13`
-
-=== `END_OF_TRACK` ===
-  * *Type*: str
-  * *Value*: `'/'`
-
-=== `EXPRESSION_CONTROLLER` ===
-  * *Type*: int
-  * *Value*: `11`
-
-=== `FILE_HEADER` ===
-  * *Type*: str
-  * *Value*: `'MThd'`
-
-=== `FOOT_CONTROLLER` ===
-  * *Type*: int
-  * *Value*: `4`
-
-=== `INSTRUMENT_NAME` ===
-  * *Type*: str
-  * *Value*: `'\x04'`
-
-=== `KEY_SIGNATURE` ===
-  * *Type*: str
-  * *Value*: `'Y'`
-
-=== `LYRICS` ===
-  * *Type*: str
-  * *Value*: `'\x05'`
-
-=== `MAIN_VOLUME` ===
-  * *Type*: int
-  * *Value*: `7`
-
-=== `MARKER` ===
-  * *Type*: str
-  * *Value*: `'\x06'`
-
-=== `META_EVENT` ===
-  * *Type*: str
-  * *Value*: `'\xff'`
-
-=== `MIDI_CHANNEL_PREFIX` ===
-  * *Type*: str
-  * *Value*: `' '`
-
-=== `MODULATION` ===
-  * *Type*: int
-  * *Value*: `1`
-
-=== `NOTE_AFTERTOUCH` ===
-  * *Type*: int
-  * *Value*: `10`
-
-=== `NOTE_OFF` ===
-  * *Type*: int
-  * *Value*: `8`
-
-=== `NOTE_ON` ===
-  * *Type*: int
-  * *Value*: `9`
-
-=== `PAN` ===
-  * *Type*: int
-  * *Value*: `10`
-
-=== `PITCH_BEND` ===
-  * *Type*: int
-  * *Value*: `14`
-
-=== `PORTAMENTO_TIME` ===
-  * *Type*: int
-  * *Value*: `5`
-
-=== `PROGRAM_CHANGE` ===
-  * *Type*: int
-  * *Value*: `12`
-
-=== `SEQUENCE_NUMBER` ===
-  * *Type*: str
-  * *Value*: `'\x00'`
-
-=== `SET_TEMPO` ===
-  * *Type*: str
-  * *Value*: `'Q'`
-
-=== `SMPTE_OFFSET` ===
-  * *Type*: str
-  * *Value*: `'T'`
-
-=== `TEXT_EVENT` ===
-  * *Type*: str
-  * *Value*: `'\x01'`
-
-=== `TIME_SIGNATURE` ===
-  * *Type*: str
-  * *Value*: `'X'`
-
-=== `TRACK_HEADER` ===
-  * *Type*: str
-  * *Value*: `'MTrk'`
-
-=== `TRACK_NAME` ===
-  * *Type*: str
-  * *Value*: `'\x03'`
+=======================
+mingus.midi.midi_events
+=======================
 
 
 ----
 
-[mingusIndex Back to Index]
+.. attribute:: BALANCE
+
+   Attribute of type: int
+   ``8``
+
+----
+
+.. attribute:: BANK_SELECT
+
+   Attribute of type: int
+   ``0``
+
+----
+
+.. attribute:: BREATH_CONTROLLER
+
+   Attribute of type: int
+   ``2``
+
+----
+
+.. attribute:: CHANNEL_AFTERTOUCH
+
+   Attribute of type: int
+   ``13``
+
+----
+
+.. attribute:: CONTROLLER
+
+   Attribute of type: int
+   ``11``
+
+----
+
+.. attribute:: COPYRIGHT_NOTICE
+
+   Attribute of type: str
+   ``'\x02'``
+
+----
+
+.. attribute:: CUE_POINT
+
+   Attribute of type: str
+   ``'\x07'``
+
+----
+
+.. attribute:: DATA_ENTRY_MSB
+
+   Attribute of type: int
+   ``6``
+
+----
+
+.. attribute:: EFFECT_CONTROL_1
+
+   Attribute of type: int
+   ``12``
+
+----
+
+.. attribute:: EFFECT_CONTROL_2
+
+   Attribute of type: int
+   ``13``
+
+----
+
+.. attribute:: END_OF_TRACK
+
+   Attribute of type: str
+   ``'/'``
+
+----
+
+.. attribute:: EXPRESSION_CONTROLLER
+
+   Attribute of type: int
+   ``11``
+
+----
+
+.. attribute:: FILE_HEADER
+
+   Attribute of type: str
+   ``'MThd'``
+
+----
+
+.. attribute:: FOOT_CONTROLLER
+
+   Attribute of type: int
+   ``4``
+
+----
+
+.. attribute:: INSTRUMENT_NAME
+
+   Attribute of type: str
+   ``'\x04'``
+
+----
+
+.. attribute:: KEY_SIGNATURE
+
+   Attribute of type: str
+   ``'Y'``
+
+----
+
+.. attribute:: LYRICS
+
+   Attribute of type: str
+   ``'\x05'``
+
+----
+
+.. attribute:: MAIN_VOLUME
+
+   Attribute of type: int
+   ``7``
+
+----
+
+.. attribute:: MARKER
+
+   Attribute of type: str
+   ``'\x06'``
+
+----
+
+.. attribute:: META_EVENT
+
+   Attribute of type: str
+   ``'\xff'``
+
+----
+
+.. attribute:: MIDI_CHANNEL_PREFIX
+
+   Attribute of type: str
+   ``' '``
+
+----
+
+.. attribute:: MODULATION
+
+   Attribute of type: int
+   ``1``
+
+----
+
+.. attribute:: NOTE_AFTERTOUCH
+
+   Attribute of type: int
+   ``10``
+
+----
+
+.. attribute:: NOTE_OFF
+
+   Attribute of type: int
+   ``8``
+
+----
+
+.. attribute:: NOTE_ON
+
+   Attribute of type: int
+   ``9``
+
+----
+
+.. attribute:: PAN
+
+   Attribute of type: int
+   ``10``
+
+----
+
+.. attribute:: PITCH_BEND
+
+   Attribute of type: int
+   ``14``
+
+----
+
+.. attribute:: PORTAMENTO_TIME
+
+   Attribute of type: int
+   ``5``
+
+----
+
+.. attribute:: PROGRAM_CHANGE
+
+   Attribute of type: int
+   ``12``
+
+----
+
+.. attribute:: SEQUENCE_NUMBER
+
+   Attribute of type: str
+   ``'\x00'``
+
+----
+
+.. attribute:: SET_TEMPO
+
+   Attribute of type: str
+   ``'Q'``
+
+----
+
+.. attribute:: SMPTE_OFFSET
+
+   Attribute of type: str
+   ``'T'``
+
+----
+
+.. attribute:: TEXT_EVENT
+
+   Attribute of type: str
+   ``'\x01'``
+
+----
+
+.. attribute:: TIME_SIGNATURE
+
+   Attribute of type: str
+   ``'X'``
+
+----
+
+.. attribute:: TRACK_HEADER
+
+   Attribute of type: str
+   ``'MTrk'``
+
+----
+
+.. attribute:: TRACK_NAME
+
+   Attribute of type: str
+   ``'\x03'``
+:doc:`Back to Index</index>`

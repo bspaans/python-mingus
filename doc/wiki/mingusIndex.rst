@@ -74,9 +74,9 @@ Tutorials
 ----
 
 
-=========
-Reference
-=========
+========
+API docs
+========
 
 .. toctree::
    :maxdepth: 1

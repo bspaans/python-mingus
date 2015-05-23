@@ -1,8 +1,7 @@
-#summary Reference documentation for `mingus.extra.musicxml`.
+=====================
+mingus.extra.musicxml
+=====================
 
-----
-
-= mingus.extra.musicxml =
 Convert mingus.containers to MusicXML files.
 
 The MusicXML format represents common Western musical notation from the 17th
@@ -15,42 +14,81 @@ and is supported by over 100 applications.
 http://www.musicxml.org/xml.html
 
 
-----
-
-== Attributes ==
-=== `major_keys` ===
-  * *Type*: list
-  * *Value*: `['Cb', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#']`
-
-=== `minor_keys` ===
-  * *Type*: list
-  * *Value*: `['ab', 'eb', 'bb', 'f', 'c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#']`
-
 
 ----
 
-== Functions ==
-=== `_bar2musicxml(bar)` ===
-=== `_composition2musicxml(comp)` ===
-=== `_gcd(a, b, terms)` ===
-  * *Default values*: a = None, b = None, terms = None
-Return greatest common divisor using Euclid's Algorithm.
+.. attribute:: major_keys
 
-=== `_lcm(a, b, terms)` ===
-  * *Default values*: a = None, b = None, terms = None
-Return lowest common multiple.
+   Attribute of type: list
+   ``['Cb', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#']``
 
-=== `_note2musicxml(note)` ===
-=== `_track2musicxml(track)` ===
-=== `from_Bar(bar)` ===
-=== `from_Composition(comp)` ===
-=== `from_Note(note)` ===
-=== `from_Track(track)` ===
-=== `write_Composition(composition, filename, zip)` ===
-  * *Default values*: zip = False
-Create an XML file (or MXL if compressed) for a given composition.
+----
+
+.. attribute:: minor_keys
+
+   Attribute of type: list
+   ``['ab', 'eb', 'bb', 'f', 'c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#']``
+
+----
+
+.. function:: _bar2musicxml(bar)
 
 
 ----
 
-[mingusIndex Back to Index]
+.. function:: _composition2musicxml(comp)
+
+
+----
+
+.. function:: _gcd(a=None, b=None, terms=None)
+
+   Return greatest common divisor using Euclid's Algorithm.
+
+
+----
+
+.. function:: _lcm(a=None, b=None, terms=None)
+
+   Return lowest common multiple.
+
+
+----
+
+.. function:: _note2musicxml(note)
+
+
+----
+
+.. function:: _track2musicxml(track)
+
+
+----
+
+.. function:: from_Bar(bar)
+
+
+----
+
+.. function:: from_Composition(comp)
+
+
+----
+
+.. function:: from_Note(note)
+
+
+----
+
+.. function:: from_Track(track)
+
+
+----
+
+.. function:: write_Composition(composition, filename, zip=False)
+
+   Create an XML file (or MXL if compressed) for a given composition.
+
+----
+
+:doc:`Back to Index</index>`

@@ -1,8 +1,7 @@
-#summary Reference documentation for `mingus.midi.sequencer`.
+=====================
+mingus.midi.sequencer
+=====================
 
-----
-
-= mingus.midi.sequencer =
 A general purpose sequencer for the objects in mingus.containers.
 
 You can use the Sequencer object either by creating a subclass and
@@ -14,6 +13,4 @@ See SequencerObserver for a pre made, easy to extend base class that can be
 attached to the Sequencer.
 
 
-----
-
-[mingusIndex Back to Index]
+:doc:`Back to Index</index>`

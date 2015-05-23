@@ -1,8 +1,7 @@
-#summary Reference documentation for `mingus.midi.pyfluidsynth`.
+========================
+mingus.midi.pyfluidsynth
+========================
 
-----
-
-= mingus.midi.pyfluidsynth =
 Python bindings for FluidSynth.
 
 FluidSynth is a software synthesizer for generating music.  It works like a
@@ -21,107 +20,174 @@ soundcard yourself.
 FluidSynth works on all major platforms, so pyFluidSynth should also.
 
 
-----
-
-== Attributes ==
-=== `DEFAULT_MODE` ===
-  * *Type*: int
-  * *Value*: `4`
-
-=== `RTLD_GLOBAL` ===
-  * *Type*: int
-  * *Value*: `8`
-
-=== `RTLD_LOCAL` ===
-  * *Type*: int
-  * *Value*: `4`
-
-=== `api_version` ===
-  * *Type*: str
-  * *Value*: `'1.2'`
-
-=== `cdll` ===
-  * *Type*: ctypes.LibraryLoader
-  * *Value*: `<ctypes.LibraryLoader object at 0x1008c48d0>`
-
-=== `lib` ===
-  * *Type*: str
-  * *Value*: `'/usr/local/lib/libfluidsynth.dylib'`
-
-=== `pydll` ===
-  * *Type*: ctypes.LibraryLoader
-  * *Value*: `<ctypes.LibraryLoader object at 0x1008c4910>`
-
-=== `pythonapi` ===
-  * *Type*: ctypes.PyDLL
-  * *Value*: `<PyDLL 'None', handle fffffffffffffffe at 1008c4950>`
-
 
 ----
 
-== Functions ==
-=== `ARRAY(typ, len)` ===
-=== `CFUNCTYPE(restype)` ===
-CFUNCTYPE(restype, *argtypes,
-             use_errno=False, use_last_error=False) -> function prototype.
+.. attribute:: DEFAULT_MODE
 
-restype: the result type
-argtypes: a sequence specifying the argument types
+   Attribute of type: int
+   ``0``
 
-The function prototype can be called in different ways to create a
-callable object:
+----
 
-prototype(integer address) -> foreign function
-prototype(callable) -> create and return a C callable function from callable
-prototype(integer index, method name[, paramflags]) -> foreign function calling a COM method
-prototype((ordinal number, dll object)[, paramflags]) -> foreign function exported by ordinal
-prototype((function name, dll object)[, paramflags]) -> foreign function exported by name
+.. attribute:: RTLD_GLOBAL
 
-=== `PYFUNCTYPE(restype)` ===
-=== `SetPointerType(pointer, cls)` ===
-=== `c_buffer(init, size)` ===
-  * *Default values*: size = None
-=== `cast(obj, typ)` ===
-=== `cfunc(name, result)` ===
-Build and apply a ctypes prototype complete with parameter flags.
+   Attribute of type: int
+   ``256``
 
-=== `create_string_buffer(init, size)` ===
-  * *Default values*: size = None
-create_string_buffer(aString) -> character array
-create_string_buffer(anInteger) -> character array
-create_string_buffer(aString, anInteger) -> character array
+----
 
-=== `create_unicode_buffer(init, size)` ===
-  * *Default values*: size = None
-create_unicode_buffer(aString) -> character array
-create_unicode_buffer(anInteger) -> character array
-create_unicode_buffer(aString, anInteger) -> character array
+.. attribute:: RTLD_LOCAL
 
-=== `find_library(name)` ===
-=== `fluid_synth_write_s16_stereo(synth, len)` ===
-Return generated samples in stereo 16-bit format.
+   Attribute of type: int
+   ``0``
 
-Return value is a Numpy array of samples.
+----
 
-=== `raw_audio_string(data)` ===
-Return a string of bytes to send to soundcard.
+.. attribute:: api_version
 
-Input is a numpy array of samples. Default output format is 16-bit
-signed (other formats not currently supported).
+   Attribute of type: str
+   ``'1.2'``
 
-=== `string_at(ptr, size)` ===
-  * *Default values*: size = -1
-string_at(addr[, size]) -> string
+----
 
-Return the string at addr.
+.. attribute:: cdll
 
-=== `wstring_at(ptr, size)` ===
-  * *Default values*: size = -1
-wstring_at(addr[, size]) -> string
+   Attribute of type: ctypes.LibraryLoader
+   ``<ctypes.LibraryLoader object at 0x7f8d611038d0>``
 
-Return the string at addr.
+----
+
+.. attribute:: lib
+
+   Attribute of type: str
+   ``'libfluidsynth.so.1'``
+
+----
+
+.. attribute:: pydll
+
+   Attribute of type: ctypes.LibraryLoader
+   ``<ctypes.LibraryLoader object at 0x7f8d61103910>``
+
+----
+
+.. attribute:: pythonapi
+
+   Attribute of type: ctypes.PyDLL
+   ``<PyDLL 'None', handle 7f8d64820188 at 7f8d61103950>``
+
+----
+
+.. function:: ARRAY(typ, len)
 
 
 ----
 
-[mingusIndex Back to Index]
+.. function:: CFUNCTYPE(restype)
+
+   CFUNCTYPE(restype, *argtypes,
+                use_errno=False, use_last_error=False) -> function prototype.
+   
+   restype: the result type
+   argtypes: a sequence specifying the argument types
+   
+   The function prototype can be called in different ways to create a
+   callable object:
+   
+   prototype(integer address) -> foreign function
+   prototype(callable) -> create and return a C callable function from callable
+   prototype(integer index, method name[, paramflags]) -> foreign function calling a COM method
+   prototype((ordinal number, dll object)[, paramflags]) -> foreign function exported by ordinal
+   prototype((function name, dll object)[, paramflags]) -> foreign function exported by name
+
+
+----
+
+.. function:: PYFUNCTYPE(restype)
+
+
+----
+
+.. function:: SetPointerType(pointer, cls)
+
+
+----
+
+.. function:: c_buffer(init, size=None)
+
+
+----
+
+.. function:: cast(obj, typ)
+
+
+----
+
+.. function:: cfunc(name, result)
+
+   Build and apply a ctypes prototype complete with parameter flags.
+
+
+----
+
+.. function:: create_string_buffer(init, size=None)
+
+   create_string_buffer(aString) -> character array
+   create_string_buffer(anInteger) -> character array
+   create_string_buffer(aString, anInteger) -> character array
+
+
+----
+
+.. function:: create_unicode_buffer(init, size=None)
+
+   create_unicode_buffer(aString) -> character array
+   create_unicode_buffer(anInteger) -> character array
+   create_unicode_buffer(aString, anInteger) -> character array
+
+
+----
+
+.. function:: find_library(name)
+
+
+----
+
+.. function:: fluid_synth_write_s16_stereo(synth, len)
+
+   Return generated samples in stereo 16-bit format.
+   
+   Return value is a Numpy array of samples.
+
+
+----
+
+.. function:: raw_audio_string(data)
+
+   Return a string of bytes to send to soundcard.
+   
+   Input is a numpy array of samples. Default output format is 16-bit
+   signed (other formats not currently supported).
+
+
+----
+
+.. function:: string_at(ptr, size=-1)
+
+   string_at(addr[, size]) -> string
+   
+   Return the string at addr.
+
+
+----
+
+.. function:: wstring_at(ptr, size=-1)
+
+   wstring_at(addr[, size]) -> string
+   
+   Return the string at addr.
+
+----
+
+:doc:`Back to Index</index>`

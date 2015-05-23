@@ -71,16 +71,11 @@ class Documize(object):
 
         # Present attributes
         if len(self.attributes) != 0:
-            res += 'Attributes\n'
-            res += '----------\n\n'
             for a in self.attributes:
                 res += a
-            res += '----\n\n'
 
         # Present functions
         if len(self.functions) != 0:
-            res += 'Functions\n'
-            res += '---------\n\n'
             for f in self.functions:
                 res += f
             res += '----\n\n'
@@ -91,10 +86,9 @@ class Documize(object):
         if element_string[0] != '_' and type(evaled) != types.ModuleType:
             t = str(type(evaled))
             t = t.split("'")
-            res = element_string + '\n'
-            res += '^' * len(element_string) + '\n\n'
-            res += '  * *Type*: {0}\n'.format(t[1])
-            res += '  * *Value*: `{0}`\n\n'.format(repr(evaled))
+            res = '\n----\n\n.. attribute:: ' + element_string + '\n\n'
+            res += '   Attribute of type: {0}\n'.format(t[1])
+            res += '   ``{0}``\n'.format(repr(evaled))
             self.attributes.append(res)
 
     def generate_callable_wikidocs(self, element_string, evaled):
@@ -108,7 +102,7 @@ class Documize(object):
             pass
 
     def generate_function_wikidocs(self, func_string, func):
-        res = '{0}('.format(func_string)
+        res = '\n----\n\n.. function:: {0}('.format(func_string)
         argspec = inspect.getargspec(func)
         args = argspec[0]
         defaults = argspec[3]
@@ -118,51 +112,34 @@ class Documize(object):
         for n in range(0, len(args)):
             try:
                 if defaults != None and len(defaults) >= len(args) - n:
-                    def_values.append((args[n], defaults[n - (len(args)
-                                       - len(defaults))]))
-                res += '{0}, '.format(args[n])
+                    res += '{0}={1}, '.format(args[n], defaults[n - (len(args) - len(defaults))])
+                    
+                    def_values.append((args[n], defaults[n - (len(args) - len(defaults))]))
+                else:
+                    res += '{0}, '.format(args[n])
             except:
                 res += '{0}, '.format(args[n])
         if res[-1] != '(':
             res = res[:-2]
-        res += ')'
-
-        reslen = len(res)
-        res = res + '\n'
-        res += '^' * reslen + '\n\n'
-
-        # Add default values (wiki doesn't allow '=' in headers)
-        if len(def_values) != 0:
-            res += '  * *Default values*: '
-            for n in def_values:
-                res += '{0} = {1}, '.format(n[0], repr(n[1]))
-            res = res[:-2] + '\n'
+        res += ')\n\n'
 
         # Add docstring
         if func.__doc__ != None:
             # Remove indentation
             doc = inspect.cleandoc(func.__doc__)
+            seen_code = False
 
             # Add wiki syntax for code
             l = []
-            brackets = False
             for line in doc.splitlines():
-                if line.startswith('>>>') and brackets == False:
-                    l.append('{{{')
-                    l.append(line)
-                    brackets = True
-                elif line == '' and brackets == True:
-                    l.append('}}}')
-                    l.append(line)
-                    brackets = False
+                if line.startswith('>>>') and not seen_code:
+                    l.append('\n   ' + line)
+                    seen_code = True
                 else:
                     l.append(line)
-            if brackets == True:
-                l.append('}}}')
-                brackets = False
-            doc = '\n'.join(l)
+            doc = '\n   '.join(l)
 
-            res += '{0}\n\n'.format(doc)
+            res += '   {0}\n\n'.format(doc)
         return res
 
     def reset(self):
