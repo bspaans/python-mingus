@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>&lt;no title&gt; &mdash; mingus 0.5.1 documentation</title>
+    <title>mingus.core.progressions &mdash; mingus 0.5.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
-    <link rel="next" title="&lt;no title&gt;" href="refMingusContainersNote.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="refMingusCoreValue.html" />
+    <link rel="next" title="mingus.containers.note" href="refMingusContainersNote.html" />
+    <link rel="prev" title="mingus.core.value" href="refMingusCoreValue.html" />
    
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
@@ -39,10 +39,10 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="refMingusContainersNote.html" title="&lt;no title&gt;"
+          <a href="refMingusContainersNote.html" title="mingus.containers.note"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="refMingusCoreValue.html" title="&lt;no title&gt;"
+          <a href="refMingusCoreValue.html" title="mingus.core.value"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
       </ul>
@@ -53,10 +53,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>#summary Reference documentation for <cite>mingus.core.progressions</cite>.</p>
-<hr class="docutils" />
-<p>= mingus.core.progressions =
-Module for dealing with progressions.</p>
+  <div class="section" id="mingus-core-progressions">
+<h1>mingus.core.progressions<a class="headerlink" href="#mingus-core-progressions" title="Permalink to this headline">¶</a></h1>
+<p>Module for dealing with progressions.</p>
 <p>In music and music theory you often deal with sequencesi of chords. These
 chord sequences are called progressions and are often written down using
 roman numerals. In this system the &#8216;I&#8217; refers to the first natural triad in
@@ -64,26 +63,32 @@ a key, the II to the second, etc. We can add prefixes and suffixes to denote
 more complex progressions, like: #V7, bIIdim7, etc.</p>
 <p>This module provides methods which can convert progressions to chords and
 vice versa.</p>
-<hr class="docutils" />
-<p>== Attributes ==
-=== <cite>numeral_intervals</cite> ===</p>
+<div class="section" id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="numeral-intervals">
+<h3>numeral_intervals<a class="headerlink" href="#numeral-intervals" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><em>Type</em>: list</li>
 <li><em>Value</em>: <cite>[0, 2, 4, 5, 7, 9, 11]</cite></li>
 </ul>
 </div></blockquote>
-<dl class="docutils">
-<dt>=== <cite>numerals</cite> ===</dt>
-<dd><ul class="first last simple">
+</div>
+<div class="section" id="numerals">
+<h3>numerals<a class="headerlink" href="#numerals" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: list</li>
 <li><em>Value</em>: <cite>[&#8216;I&#8217;, &#8216;II&#8217;, &#8216;III&#8217;, &#8216;IV&#8217;, &#8216;V&#8217;, &#8216;VI&#8217;, &#8216;VII&#8217;]</cite></li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
+</div>
+</div>
 <hr class="docutils" />
-<p>== Functions ==
-=== <cite>determine(chord, key, shorthand)</cite> ===</p>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="determine-chord-key-shorthand">
+<h3>determine(chord, key, shorthand)<a class="headerlink" href="#determine-chord-key-shorthand" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><em>Default values</em>: shorthand = False</li>
@@ -91,88 +96,99 @@ vice versa.</p>
 </div></blockquote>
 <p>Determine the harmonic function of chord in key.</p>
 <p>This function can also deal with lists of chords.</p>
-<p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">([</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">],</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">[&#39;tonic&#39;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">([</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">],</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">[&#39;dominant&#39;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">([</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;F&#39;</span><span class="p">],</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
-<span class="go">[&#39;V7&#39;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">([[</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">]],</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
-<span class="go">[[&#39;I&#39;], [&#39;V&#39;]]</span>
-</pre></div>
+<p>Examples:
+{{{
+&gt;&gt;&gt; determine([&#8216;C&#8217;, &#8216;E&#8217;, &#8216;G&#8217;], &#8216;C&#8217;)
+[&#8216;tonic&#8217;]
+&gt;&gt;&gt; determine([&#8216;G&#8217;, &#8216;B&#8217;, &#8216;D&#8217;], &#8216;C&#8217;)
+[&#8216;dominant&#8217;]
+&gt;&gt;&gt; determine([&#8216;G&#8217;, &#8216;B&#8217;, &#8216;D&#8217;, &#8216;F&#8217;], &#8216;C&#8217;, True)
+[&#8216;V7&#8217;]
+&gt;&gt;&gt; determine([[&#8216;C&#8217;, &#8216;E&#8217;, &#8216;G&#8217;], [&#8216;G&#8217;, &#8216;B&#8217;, &#8216;D&#8217;]], &#8216;C&#8217;, True)
+[[&#8216;I&#8217;], [&#8216;V&#8217;]]
+}}}</p>
 </div>
-<p>=== <cite>interval_diff(progression1, progression2, interval)</cite> ===
-Return the number of half steps progression2 needs to be diminished or
+<div class="section" id="interval-diff-progression1-progression2-interval">
+<h3>interval_diff(progression1, progression2, interval)<a class="headerlink" href="#interval-diff-progression1-progression2-interval" title="Permalink to this headline">¶</a></h3>
+<p>Return the number of half steps progression2 needs to be diminished or
 augmented until the interval between progression1 and progression2 is
 interval.</p>
-<p>=== <cite>parse_string(progression)</cite> ===
-Return a tuple (roman numeral, accidentals, chord suffix).</p>
-<p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">parse_string</span><span class="p">(</span><span class="s">&#39;I&#39;</span><span class="p">)</span>
-<span class="go">(&#39;I&#39;, 0, &#39;&#39;)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">parse_string</span><span class="p">(</span><span class="s">&#39;bIM7&#39;</span><span class="p">)</span>
-<span class="go">(&#39;I&#39;, -1, &#39;M7&#39;)</span>
-</pre></div>
 </div>
-<dl class="docutils">
-<dt>=== <cite>skip(roman_numeral, skip)</cite> ===</dt>
-<dd><ul class="first last simple">
+<div class="section" id="parse-string-progression">
+<h3>parse_string(progression)<a class="headerlink" href="#parse-string-progression" title="Permalink to this headline">¶</a></h3>
+<p>Return a tuple (roman numeral, accidentals, chord suffix).</p>
+<p>Examples:
+{{{
+&gt;&gt;&gt; parse_string(&#8216;I&#8217;)
+(&#8216;I&#8217;, 0, &#8216;&#8217;)
+&gt;&gt;&gt; parse_string(&#8216;bIM7&#8217;)
+(&#8216;I&#8217;, -1, &#8216;M7&#8217;)
+}}}</p>
+</div>
+<div class="section" id="skip-roman-numeral-skip">
+<h3>skip(roman_numeral, skip)<a class="headerlink" href="#skip-roman-numeral-skip" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: skip = 1</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Skip the given places to the next roman numeral.</p>
-<p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">skip</span><span class="p">(</span><span class="s">&#39;I&#39;</span><span class="p">)</span>
-<span class="go">&#39;II&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">skip</span><span class="p">(</span><span class="s">&#39;VII&#39;</span><span class="p">)</span>
-<span class="go">&#39;I&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">skip</span><span class="p">(</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="go">&#39;III&#39;</span>
-</pre></div>
+<p>Examples:
+{{{
+&gt;&gt;&gt; skip(&#8216;I&#8217;)
+&#8216;II&#8217;
+&gt;&gt;&gt; skip(&#8216;VII&#8217;)
+&#8216;I&#8217;
+&gt;&gt;&gt; skip(&#8216;I&#8217;, 2)
+&#8216;III&#8217;
+}}}</p>
 </div>
-<dl class="docutils">
-<dt>=== <cite>substitute(progression, substitute_index, depth)</cite> ===</dt>
-<dd><ul class="first last simple">
+<div class="section" id="substitute-progression-substitute-index-depth">
+<h3>substitute(progression, substitute_index, depth)<a class="headerlink" href="#substitute-progression-substitute-index-depth" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: depth = 0</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Give a list of possible substitutions for progression[substitute_index].</p>
 <p>If depth &gt; 0 the substitutions of each result will be recursively added
 as well.</p>
-<p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">substitute</span><span class="p">([</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;IV&#39;</span><span class="p">,</span> <span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="s">&#39;I&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
-<span class="go">[&#39;III&#39;, &#39;III7&#39;, &#39;VI&#39;, &#39;VI7&#39;, &#39;I7&#39;]</span>
-</pre></div>
+<p>Example:
+{{{
+&gt;&gt;&gt; substitute([&#8216;I&#8217;, &#8216;IV&#8217;, &#8216;V&#8217;, &#8216;I&#8217;], 0)
+[&#8216;III&#8217;, &#8216;III7&#8217;, &#8216;VI&#8217;, &#8216;VI7&#8217;, &#8216;I7&#8217;]
+}}}</p>
 </div>
-<dl class="docutils">
-<dt>=== <cite>substitute_diminished_for_diminished(progression, substitute_index, ignore_suffix)</cite> ===</dt>
-<dd><ul class="first last simple">
+<div class="section" id="substitute-diminished-for-diminished-progression-substitute-index-ignore-suffix">
+<h3>substitute_diminished_for_diminished(progression, substitute_index, ignore_suffix)<a class="headerlink" href="#substitute-diminished-for-diminished-progression-substitute-index-ignore-suffix" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: ignore_suffix = False</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Substitute a diminished chord for another diminished chord.</p>
 <p>&#8216;dim&#8217; and &#8216;dim7&#8217; suffixes recognized, and &#8216;VI&#8217; if there is no suffix.</p>
-<p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_diminished_for_diminished</span><span class="p">([</span><span class="s">&#39;VII&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
-<span class="go">[&#39;IIdim&#39;, &#39;bIVdim&#39;, &#39;bbVIdim&#39;]</span>
-</pre></div>
+<p>Example:
+{{{
+&gt;&gt;&gt; substitute_diminished_for_diminished([&#8216;VII&#8217;], 0)
+[&#8216;IIdim&#8217;, &#8216;bIVdim&#8217;, &#8216;bbVIdim&#8217;]
+}}}</p>
 </div>
-<dl class="docutils">
-<dt>=== <cite>substitute_diminished_for_dominant(progression, substitute_index, ignore_suffix)</cite> ===</dt>
-<dd><ul class="first last simple">
+<div class="section" id="substitute-diminished-for-dominant-progression-substitute-index-ignore-suffix">
+<h3>substitute_diminished_for_dominant(progression, substitute_index, ignore_suffix)<a class="headerlink" href="#substitute-diminished-for-dominant-progression-substitute-index-ignore-suffix" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: ignore_suffix = False</li>
 </ul>
-</dd>
-<dt>=== <cite>substitute_harmonic(progression, substitute_index, ignore_suffix)</cite> ===</dt>
-<dd><ul class="first last simple">
+</div></blockquote>
+</div>
+<div class="section" id="substitute-harmonic-progression-substitute-index-ignore-suffix">
+<h3>substitute_harmonic(progression, substitute_index, ignore_suffix)<a class="headerlink" href="#substitute-harmonic-progression-substitute-index-ignore-suffix" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: ignore_suffix = False</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Do simple harmonic substitutions. Return a list of possible substitions
 for progression[substitute_index].</p>
 <p>If ignore_suffix is set to True the suffix of the chord being
@@ -184,57 +200,60 @@ suffix, or with suffix &#8216;7&#8217; will be substituted.</p>
 || IV || II ||
 || IV || VI ||
 || V || VII ||</p>
-<dl class="docutils">
-<dt>=== <cite>substitute_major_for_minor(progression, substitute_index, ignore_suffix)</cite> ===</dt>
-<dd><ul class="first last simple">
+</div>
+<div class="section" id="substitute-major-for-minor-progression-substitute-index-ignore-suffix">
+<h3>substitute_major_for_minor(progression, substitute_index, ignore_suffix)<a class="headerlink" href="#substitute-major-for-minor-progression-substitute-index-ignore-suffix" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: ignore_suffix = False</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Substitute major chords for their minor equivalent.</p>
 <p>&#8216;M&#8217; and &#8216;M7&#8217; suffixes recognized, and [&#8216;I&#8217;, &#8216;IV&#8217;, &#8216;V&#8217;] if there is no
 suffix.</p>
-<p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_major_for_minor</span><span class="p">([</span><span class="s">&#39;I&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
-<span class="go">[&#39;VI&#39;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_major_for_minor</span><span class="p">([</span><span class="s">&#39;VM7&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
-<span class="go">[&#39;IIIm7&#39;]</span>
-</pre></div>
+<p>Examples:
+{{{
+&gt;&gt;&gt; substitute_major_for_minor([&#8216;I&#8217;], 0)
+[&#8216;VI&#8217;]
+&gt;&gt;&gt; substitute_major_for_minor([&#8216;VM7&#8217;], 0)
+[&#8216;IIIm7&#8217;]
+}}}</p>
 </div>
-<dl class="docutils">
-<dt>=== <cite>substitute_minor_for_major(progression, substitute_index, ignore_suffix)</cite> ===</dt>
-<dd><ul class="first last simple">
+<div class="section" id="substitute-minor-for-major-progression-substitute-index-ignore-suffix">
+<h3>substitute_minor_for_major(progression, substitute_index, ignore_suffix)<a class="headerlink" href="#substitute-minor-for-major-progression-substitute-index-ignore-suffix" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: ignore_suffix = False</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Substitute minor chords for its major equivalent.</p>
 <p>&#8216;m&#8217; and &#8216;m7&#8217; suffixes recognized, and [&#8216;II&#8217;, &#8216;III&#8217;, &#8216;VI&#8217;] if there is no
 suffix.</p>
-<p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_minor_for_major</span><span class="p">([</span><span class="s">&#39;VI&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
-<span class="go">[&#39;I&#39;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_minor_for_major</span><span class="p">([</span><span class="s">&#39;Vm&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
-<span class="go">[&#39;bVIIM&#39;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_minor_for_major</span><span class="p">([</span><span class="s">&#39;VIm7&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
-<span class="go">[&#39;IM7&#39;]</span>
-</pre></div>
+<p>Examples:
+{{{
+&gt;&gt;&gt; substitute_minor_for_major([&#8216;VI&#8217;], 0)
+[&#8216;I&#8217;]
+&gt;&gt;&gt; substitute_minor_for_major([&#8216;Vm&#8217;], 0)
+[&#8216;bVIIM&#8217;]
+&gt;&gt;&gt; substitute_minor_for_major([&#8216;VIm7&#8217;], 0)
+[&#8216;IM7&#8217;]
+}}}</p>
 </div>
-<dl class="docutils">
-<dt>=== <cite>to_chords(progression, key)</cite> ===</dt>
-<dd><ul class="first last simple">
+<div class="section" id="to-chords-progression-key">
+<h3>to_chords(progression, key)<a class="headerlink" href="#to-chords-progression-key" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: key = &#8216;C&#8217;</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Convert a list of chord functions or a string to a list of chords.</p>
-<p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">to_chords</span><span class="p">([</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;V7&#39;</span><span class="p">])</span>
-<span class="go">[[&#39;C&#39;, &#39;E&#39;, &#39;G&#39;], [&#39;G&#39;, &#39;B&#39;, &#39;D&#39;, &#39;F&#39;]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">to_chords</span><span class="p">(</span><span class="s">&#39;I7&#39;</span><span class="p">)</span>
-<span class="go">[[&#39;C&#39;, &#39;E&#39;, &#39;G&#39;, &#39;B&#39;]]</span>
-</pre></div>
-</div>
+<p>Examples:
+{{{
+&gt;&gt;&gt; to_chords([&#8216;I&#8217;, &#8216;V7&#8217;])
+[[&#8216;C&#8217;, &#8216;E&#8217;, &#8216;G&#8217;], [&#8216;G&#8217;, &#8216;B&#8217;, &#8216;D&#8217;, &#8216;F&#8217;]]
+&gt;&gt;&gt; to_chords(&#8216;I7&#8217;)
+[[&#8216;C&#8217;, &#8216;E&#8217;, &#8216;G&#8217;, &#8216;B&#8217;]]
+}}}</p>
 <p>Any number of accidentals can be used as prefix to augment or diminish;
 for example: bIV or #I.</p>
 <p>All the chord abbreviations in the chord module can be used as suffixes;
@@ -246,10 +265,15 @@ seventh chord when talking about progressions instead of just the
 dominant seventh chord. We have taken the classic route; I7 will get
 you a major seventh chord. If you specifically want a dominanth seventh,
 use Idom7.</p>
-<p>=== <cite>tuple_to_string(prog_tuple)</cite> ===
-Create a string from tuples returned by parse_string.</p>
+</div>
+<div class="section" id="tuple-to-string-prog-tuple">
+<h3>tuple_to_string(prog_tuple)<a class="headerlink" href="#tuple-to-string-prog-tuple" title="Permalink to this headline">¶</a></h3>
+<p>Create a string from tuples returned by parse_string.</p>
 <hr class="docutils" />
-<p>[mingusIndex Back to Index]</p>
+<p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
+</div>
+</div>
+</div>
 
 
           </div>
@@ -257,12 +281,39 @@ Create a string from tuples returned by parse_string.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">mingus.core.progressions</a><ul>
+<li><a class="reference internal" href="#attributes">Attributes</a><ul>
+<li><a class="reference internal" href="#numeral-intervals">numeral_intervals</a></li>
+<li><a class="reference internal" href="#numerals">numerals</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#determine-chord-key-shorthand">determine(chord, key, shorthand)</a></li>
+<li><a class="reference internal" href="#interval-diff-progression1-progression2-interval">interval_diff(progression1, progression2, interval)</a></li>
+<li><a class="reference internal" href="#parse-string-progression">parse_string(progression)</a></li>
+<li><a class="reference internal" href="#skip-roman-numeral-skip">skip(roman_numeral, skip)</a></li>
+<li><a class="reference internal" href="#substitute-progression-substitute-index-depth">substitute(progression, substitute_index, depth)</a></li>
+<li><a class="reference internal" href="#substitute-diminished-for-diminished-progression-substitute-index-ignore-suffix">substitute_diminished_for_diminished(progression, substitute_index, ignore_suffix)</a></li>
+<li><a class="reference internal" href="#substitute-diminished-for-dominant-progression-substitute-index-ignore-suffix">substitute_diminished_for_dominant(progression, substitute_index, ignore_suffix)</a></li>
+<li><a class="reference internal" href="#substitute-harmonic-progression-substitute-index-ignore-suffix">substitute_harmonic(progression, substitute_index, ignore_suffix)</a></li>
+<li><a class="reference internal" href="#substitute-major-for-minor-progression-substitute-index-ignore-suffix">substitute_major_for_minor(progression, substitute_index, ignore_suffix)</a></li>
+<li><a class="reference internal" href="#substitute-minor-for-major-progression-substitute-index-ignore-suffix">substitute_minor_for_major(progression, substitute_index, ignore_suffix)</a></li>
+<li><a class="reference internal" href="#to-chords-progression-key">to_chords(progression, key)</a></li>
+<li><a class="reference internal" href="#tuple-to-string-prog-tuple">tuple_to_string(prog_tuple)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="refMingusCoreValue.html"
-                        title="previous chapter">&lt;no title&gt;</a></p>
+                        title="previous chapter">mingus.core.value</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="refMingusContainersNote.html"
-                        title="next chapter">&lt;no title&gt;</a></p>
+                        title="next chapter">mingus.containers.note</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>&lt;no title&gt; &mdash; mingus 0.5.1 documentation</title>
+    <title>mingus.core.value &mdash; mingus 0.5.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
-    <link rel="next" title="&lt;no title&gt;" href="refMingusCoreProgressions.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="refMingusCoreMeter.html" />
+    <link rel="next" title="mingus.core.progressions" href="refMingusCoreProgressions.html" />
+    <link rel="prev" title="mingus.core.meter" href="refMingusCoreMeter.html" />
    
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
@@ -39,10 +39,10 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="refMingusCoreProgressions.html" title="&lt;no title&gt;"
+          <a href="refMingusCoreProgressions.html" title="mingus.core.progressions"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="refMingusCoreMeter.html" title="&lt;no title&gt;"
+          <a href="refMingusCoreMeter.html" title="mingus.core.meter"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
       </ul>
@@ -53,10 +53,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>#summary Reference documentation for <cite>mingus.core.value</cite>.</p>
-<hr class="docutils" />
-<p>= mingus.core.value =
-Module for dealing with values.</p>
+  <div class="section" id="mingus-core-value">
+<h1>mingus.core.value<a class="headerlink" href="#mingus-core-value" title="Permalink to this headline">¶</a></h1>
+<p>Module for dealing with values.</p>
 <p>A note value indicates the relative duration of a note.</p>
 <p>In mingus, note values are represented by floating point numbers.
 A quarter note is 4, because it stands for 1/4 note, an eighth note is 8
@@ -70,268 +69,355 @@ So 16/3 is the number we are looking for.</p>
 <p>As you can see these calculations can be quite tiresome and can clutter
 up your code. This module is here to help do the conversion.</p>
 <p>Medieval backwards compatibility privided.</p>
-<hr class="docutils" />
-<p>== Attributes ==
-=== <cite>base_quintuplets</cite> ===</p>
+<div class="section" id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="base-quintuplets">
+<h3>base_quintuplets<a class="headerlink" href="#base-quintuplets" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><em>Type</em>: list</li>
 <li><em>Value</em>: <cite>[0.3125, 0.625, 1.25, 2.5, 5, 10, 20, 40, 80, 160]</cite></li>
 </ul>
 </div></blockquote>
-<dl class="docutils">
-<dt>=== <cite>base_septuplets</cite> ===</dt>
-<dd><ul class="first last simple">
+</div>
+<div class="section" id="base-septuplets">
+<h3>base_septuplets<a class="headerlink" href="#base-septuplets" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: list</li>
 <li><em>Value</em>: <cite>[0.4375, 0.875, 1.75, 3.5, 7, 14, 28, 56, 112, 224]</cite></li>
 </ul>
-</dd>
-<dt>=== <cite>base_triplets</cite> ===</dt>
-<dd><ul class="first last simple">
+</div></blockquote>
+</div>
+<div class="section" id="base-triplets">
+<h3>base_triplets<a class="headerlink" href="#base-triplets" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: list</li>
 <li><em>Value</em>: <cite>[0.375, 0.75, 1.5, 3, 6, 12, 24, 48, 96, 192]</cite></li>
 </ul>
-</dd>
-<dt>=== <cite>base_values</cite> ===</dt>
-<dd><ul class="first last simple">
+</div></blockquote>
+</div>
+<div class="section" id="base-values">
+<h3>base_values<a class="headerlink" href="#base-values" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: list</li>
 <li><em>Value</em>: <cite>[0.25, 0.5, 1, 2, 4, 8, 16, 32, 64, 128]</cite></li>
 </ul>
-</dd>
-<dt>=== <cite>breve</cite> ===</dt>
-<dd><ul class="first last simple">
+</div></blockquote>
+</div>
+<div class="section" id="breve">
+<h3>breve<a class="headerlink" href="#breve" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: float</li>
 <li><em>Value</em>: <cite>0.5</cite></li>
 </ul>
-</dd>
-<dt>=== <cite>crotchet</cite> ===</dt>
-<dd><ul class="first last simple">
+</div></blockquote>
+</div>
+<div class="section" id="crotchet">
+<h3>crotchet<a class="headerlink" href="#crotchet" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: int</li>
 <li><em>Value</em>: <cite>4</cite></li>
 </ul>
-</dd>
-<dt>=== <cite>demisemiquaver</cite> ===</dt>
-<dd><ul class="first last simple">
+</div></blockquote>
+</div>
+<div class="section" id="demisemiquaver">
+<h3>demisemiquaver<a class="headerlink" href="#demisemiquaver" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: int</li>
 <li><em>Value</em>: <cite>32</cite></li>
 </ul>
-</dd>
-<dt>=== <cite>eighth</cite> ===</dt>
-<dd><ul class="first last simple">
+</div></blockquote>
+</div>
+<div class="section" id="eighth">
+<h3>eighth<a class="headerlink" href="#eighth" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: int</li>
 <li><em>Value</em>: <cite>8</cite></li>
 </ul>
-</dd>
-<dt>=== <cite>half</cite> ===</dt>
-<dd><ul class="first last simple">
+</div></blockquote>
+</div>
+<div class="section" id="half">
+<h3>half<a class="headerlink" href="#half" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: int</li>
 <li><em>Value</em>: <cite>2</cite></li>
 </ul>
-</dd>
-<dt>=== <cite>hemidemisemiquaver</cite> ===</dt>
-<dd><ul class="first last simple">
+</div></blockquote>
+</div>
+<div class="section" id="hemidemisemiquaver">
+<h3>hemidemisemiquaver<a class="headerlink" href="#hemidemisemiquaver" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: int</li>
 <li><em>Value</em>: <cite>64</cite></li>
 </ul>
-</dd>
-<dt>=== <cite>hundred_twenty_eighth</cite> ===</dt>
-<dd><ul class="first last simple">
+</div></blockquote>
+</div>
+<div class="section" id="hundred-twenty-eighth">
+<h3>hundred_twenty_eighth<a class="headerlink" href="#hundred-twenty-eighth" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: int</li>
 <li><em>Value</em>: <cite>128</cite></li>
 </ul>
-</dd>
-<dt>=== <cite>longa</cite> ===</dt>
-<dd><ul class="first last simple">
+</div></blockquote>
+</div>
+<div class="section" id="longa">
+<h3>longa<a class="headerlink" href="#longa" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: float</li>
 <li><em>Value</em>: <cite>0.25</cite></li>
 </ul>
-</dd>
-<dt>=== <cite>minim</cite> ===</dt>
-<dd><ul class="first last simple">
+</div></blockquote>
+</div>
+<div class="section" id="minim">
+<h3>minim<a class="headerlink" href="#minim" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: int</li>
 <li><em>Value</em>: <cite>2</cite></li>
 </ul>
-</dd>
-<dt>=== <cite>musicxml</cite> ===</dt>
-<dd><ul class="first last simple">
+</div></blockquote>
+</div>
+<div class="section" id="musicxml">
+<h3>musicxml<a class="headerlink" href="#musicxml" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: dict</li>
 <li><em>Value</em>: <cite>{16: &#8216;16th&#8217;, 1: &#8216;whole&#8217;, 2: &#8216;half&#8217;, 4: &#8216;quarter&#8217;, 32: &#8216;32th&#8217;, 8: &#8216;eighth&#8217;, 64: &#8216;64th&#8217;, 128: &#8216;128th&#8217;}</cite></li>
 </ul>
-</dd>
-<dt>=== <cite>quarter</cite> ===</dt>
-<dd><ul class="first last simple">
+</div></blockquote>
+</div>
+<div class="section" id="quarter">
+<h3>quarter<a class="headerlink" href="#quarter" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: int</li>
 <li><em>Value</em>: <cite>4</cite></li>
 </ul>
-</dd>
-<dt>=== <cite>quasihemidemisemiquaver</cite> ===</dt>
-<dd><ul class="first last simple">
+</div></blockquote>
+</div>
+<div class="section" id="quasihemidemisemiquaver">
+<h3>quasihemidemisemiquaver<a class="headerlink" href="#quasihemidemisemiquaver" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: int</li>
 <li><em>Value</em>: <cite>128</cite></li>
 </ul>
-</dd>
-<dt>=== <cite>quaver</cite> ===</dt>
-<dd><ul class="first last simple">
+</div></blockquote>
+</div>
+<div class="section" id="quaver">
+<h3>quaver<a class="headerlink" href="#quaver" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: int</li>
 <li><em>Value</em>: <cite>8</cite></li>
 </ul>
-</dd>
-<dt>=== <cite>semibreve</cite> ===</dt>
-<dd><ul class="first last simple">
+</div></blockquote>
+</div>
+<div class="section" id="semibreve">
+<h3>semibreve<a class="headerlink" href="#semibreve" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: int</li>
 <li><em>Value</em>: <cite>1</cite></li>
 </ul>
-</dd>
-<dt>=== <cite>semihemidemisemiquaver</cite> ===</dt>
-<dd><ul class="first last simple">
+</div></blockquote>
+</div>
+<div class="section" id="semihemidemisemiquaver">
+<h3>semihemidemisemiquaver<a class="headerlink" href="#semihemidemisemiquaver" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: int</li>
 <li><em>Value</em>: <cite>128</cite></li>
 </ul>
-</dd>
-<dt>=== <cite>semiquaver</cite> ===</dt>
-<dd><ul class="first last simple">
+</div></blockquote>
+</div>
+<div class="section" id="semiquaver">
+<h3>semiquaver<a class="headerlink" href="#semiquaver" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: int</li>
 <li><em>Value</em>: <cite>16</cite></li>
 </ul>
-</dd>
-<dt>=== <cite>sixteenth</cite> ===</dt>
-<dd><ul class="first last simple">
+</div></blockquote>
+</div>
+<div class="section" id="sixteenth">
+<h3>sixteenth<a class="headerlink" href="#sixteenth" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: int</li>
 <li><em>Value</em>: <cite>16</cite></li>
 </ul>
-</dd>
-<dt>=== <cite>sixty_fourth</cite> ===</dt>
-<dd><ul class="first last simple">
+</div></blockquote>
+</div>
+<div class="section" id="sixty-fourth">
+<h3>sixty_fourth<a class="headerlink" href="#sixty-fourth" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: int</li>
 <li><em>Value</em>: <cite>64</cite></li>
 </ul>
-</dd>
-<dt>=== <cite>thirty_second</cite> ===</dt>
-<dd><ul class="first last simple">
+</div></blockquote>
+</div>
+<div class="section" id="thirty-second">
+<h3>thirty_second<a class="headerlink" href="#thirty-second" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: int</li>
 <li><em>Value</em>: <cite>32</cite></li>
 </ul>
-</dd>
-<dt>=== <cite>whole</cite> ===</dt>
-<dd><ul class="first last simple">
+</div></blockquote>
+</div>
+<div class="section" id="whole">
+<h3>whole<a class="headerlink" href="#whole" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: int</li>
 <li><em>Value</em>: <cite>1</cite></li>
 </ul>
-</dd>
-</dl>
-<hr class="docutils" />
-<p>== Functions ==
-=== <cite>add(value1, value2)</cite> ===
-Return the value of the two combined.</p>
-<p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">add</span><span class="p">(</span><span class="n">eighth</span><span class="p">,</span> <span class="n">quarter</span><span class="p">)</span>
-<span class="go">2.6666666666666665</span>
-</pre></div>
+</div></blockquote>
 </div>
-<p>=== <cite>determine(value)</cite> ===
-Analyse the value and return a tuple containing the parts it&#8217;s made of.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="add-value1-value2">
+<h3>add(value1, value2)<a class="headerlink" href="#add-value1-value2" title="Permalink to this headline">¶</a></h3>
+<p>Return the value of the two combined.</p>
+<p>Example:
+{{{
+&gt;&gt;&gt; add(eighth, quarter)
+2.6666666666666665
+}}}</p>
+</div>
+<div class="section" id="determine-value">
+<h3>determine(value)<a class="headerlink" href="#determine-value" title="Permalink to this headline">¶</a></h3>
+<p>Analyse the value and return a tuple containing the parts it&#8217;s made of.</p>
 <p>The tuple respectively consists of the base note value, the number of
 dots, and the ratio (see tuplet).</p>
-<p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
-<span class="go">(8, 0, 1, 1)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
-<span class="go">(8, 0, 3, 2)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="mi">14</span><span class="p">)</span>
-<span class="go">(8, 0, 7, 4)</span>
-</pre></div>
-</div>
+<p>Examples:
+{{{
+&gt;&gt;&gt; determine(8)
+(8, 0, 1, 1)
+&gt;&gt;&gt; determine(12)
+(8, 0, 3, 2)
+&gt;&gt;&gt; determine(14)
+(8, 0, 7, 4)
+}}}</p>
 <p>This function recognizes all the base values, triplets, quintuplets,
 septuplets and up to four dots. The values are matched on range.</p>
-<dl class="docutils">
-<dt>=== <cite>dots(value, nr)</cite> ===</dt>
-<dd><ul class="first last simple">
+</div>
+<div class="section" id="dots-value-nr">
+<h3>dots(value, nr)<a class="headerlink" href="#dots-value-nr" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: nr = 1</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Return the dotted note value.</p>
 <p>A dot adds half the duration of the note. A second dot adds half of what
 was added before, etc. So a dotted eighth note has the length of three
 sixteenth notes. An eighth note with two dots has the length of seven
 thirty second notes.</p>
-<p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">dots</span><span class="p">(</span><span class="n">eighth</span><span class="p">)</span>
-<span class="go">5.3333333333333333</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">dots</span><span class="p">(</span><span class="n">eighth</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="go">4.5714285714285712</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">dots</span><span class="p">(</span><span class="n">quarter</span><span class="p">)</span>
-<span class="go">2.6666666666666665</span>
-</pre></div>
+<p>Examples:
+{{{
+&gt;&gt;&gt; dots(eighth)
+5.3333333333333333
+&gt;&gt;&gt; dots(eighth, 2)
+4.5714285714285712
+&gt;&gt;&gt; dots(quarter)
+2.6666666666666665
+}}}</p>
 </div>
-<p>=== <cite>quintuplet(value)</cite> ===
-Return the quintuplet note value.</p>
+<div class="section" id="quintuplet-value">
+<h3>quintuplet(value)<a class="headerlink" href="#quintuplet-value" title="Permalink to this headline">¶</a></h3>
+<p>Return the quintuplet note value.</p>
 <p>A quintuplet divides the base value two above into five parts. So a
 quintuplet eighth note is a fifth of a half note.</p>
-<p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">quintuplet</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
-<span class="go">10</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">quintuplet</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-<span class="go">5</span>
-</pre></div>
+<p>Examples:
+{{{
+&gt;&gt;&gt; quintuplet(8)
+10
+&gt;&gt;&gt; quintuplet(4)
+5
+}}}</p>
 </div>
-<dl class="docutils">
-<dt>=== <cite>septuplet(value, in_fourths)</cite> ===</dt>
-<dd><ul class="first last simple">
+<div class="section" id="septuplet-value-in-fourths">
+<h3>septuplet(value, in_fourths)<a class="headerlink" href="#septuplet-value-in-fourths" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: in_fourths = True</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Return the septuplet note value.</p>
 <p>The usage of a septuplet is ambigious: seven notes can be played either
 in the duration of four or eighth notes.</p>
 <p>If in_fourths is set to True, this function will use 4, otherwise 8
 notes. So a septuplet eighth note is respectively either 14 or 7.</p>
-<p>Notice how</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">septuplet</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span> <span class="o">==</span> <span class="n">septuplet</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
-<span class="go">True</span>
-</pre></div>
+<p>Notice how
+{{{
+&gt;&gt;&gt; septuplet(8, False) == septuplet(4, True)
+True
+}}}</p>
+<p>Examples:
+{{{
+&gt;&gt;&gt; septuplet(8)
+14
+&gt;&gt;&gt; septuplet(8, False)
+7
+}}}</p>
 </div>
-<p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">septuplet</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
-<span class="go">14</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">septuplet</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
-<span class="go">7</span>
-</pre></div>
-</div>
-<p>=== <cite>subtract(value1, value2)</cite> ===
-Return the note value for value1 minus value2.</p>
+<div class="section" id="subtract-value1-value2">
+<h3>subtract(value1, value2)<a class="headerlink" href="#subtract-value1-value2" title="Permalink to this headline">¶</a></h3>
+<p>Return the note value for value1 minus value2.</p>
 <p>There are no exceptions for producing negative values, which can be
 useful for taking differences.</p>
-<p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">substract</span><span class="p">(</span><span class="n">quarter</span><span class="p">,</span> <span class="n">eighth</span><span class="p">)</span>
-<span class="go">8.0</span>
-</pre></div>
+<p>Example:
+{{{
+&gt;&gt;&gt; substract(quarter, eighth)
+8.0
+}}}</p>
 </div>
-<p>=== <cite>triplet(value)</cite> ===
-Return the triplet note value.</p>
+<div class="section" id="triplet-value">
+<h3>triplet(value)<a class="headerlink" href="#triplet-value" title="Permalink to this headline">¶</a></h3>
+<p>Return the triplet note value.</p>
 <p>A triplet divides the base value above into three parts. So a triplet
 eighth note is a third of a quarter note.</p>
-<p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">triplet</span><span class="p">(</span><span class="n">eighth</span><span class="p">)</span>
-<span class="go">12</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">triplet</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-<span class="go">6</span>
-</pre></div>
+<p>Examples:
+{{{
+&gt;&gt;&gt; triplet(eighth)
+12
+&gt;&gt;&gt; triplet(4)
+6
+}}}</p>
 </div>
-<p>=== <cite>tuplet(value, rat1, rat2)</cite> ===
-Return a tuplet.</p>
+<div class="section" id="tuplet-value-rat1-rat2">
+<h3>tuplet(value, rat1, rat2)<a class="headerlink" href="#tuplet-value-rat1-rat2" title="Permalink to this headline">¶</a></h3>
+<p>Return a tuplet.</p>
 <p>A tuplet can be written as a ratio. For example: 5:4 means that you play
 5 notes in the duration of 4 (a quintuplet), 3:2 means that you play 3
 notes in the duration of 2 (a triplet), etc. This function calculates
 the note value when playing in rat1:rat2.</p>
-<p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tuplet</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="go">12</span>
-</pre></div>
-</div>
+<p>Example:
+{{{
+&gt;&gt;&gt; tuplet(8, 3, 2)
+12
+}}}</p>
 <hr class="docutils" />
-<p>[mingusIndex Back to Index]</p>
+<p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
+</div>
+</div>
+</div>
 
 
           </div>
@@ -339,12 +425,57 @@ the note value when playing in rat1:rat2.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">mingus.core.value</a><ul>
+<li><a class="reference internal" href="#attributes">Attributes</a><ul>
+<li><a class="reference internal" href="#base-quintuplets">base_quintuplets</a></li>
+<li><a class="reference internal" href="#base-septuplets">base_septuplets</a></li>
+<li><a class="reference internal" href="#base-triplets">base_triplets</a></li>
+<li><a class="reference internal" href="#base-values">base_values</a></li>
+<li><a class="reference internal" href="#breve">breve</a></li>
+<li><a class="reference internal" href="#crotchet">crotchet</a></li>
+<li><a class="reference internal" href="#demisemiquaver">demisemiquaver</a></li>
+<li><a class="reference internal" href="#eighth">eighth</a></li>
+<li><a class="reference internal" href="#half">half</a></li>
+<li><a class="reference internal" href="#hemidemisemiquaver">hemidemisemiquaver</a></li>
+<li><a class="reference internal" href="#hundred-twenty-eighth">hundred_twenty_eighth</a></li>
+<li><a class="reference internal" href="#longa">longa</a></li>
+<li><a class="reference internal" href="#minim">minim</a></li>
+<li><a class="reference internal" href="#musicxml">musicxml</a></li>
+<li><a class="reference internal" href="#quarter">quarter</a></li>
+<li><a class="reference internal" href="#quasihemidemisemiquaver">quasihemidemisemiquaver</a></li>
+<li><a class="reference internal" href="#quaver">quaver</a></li>
+<li><a class="reference internal" href="#semibreve">semibreve</a></li>
+<li><a class="reference internal" href="#semihemidemisemiquaver">semihemidemisemiquaver</a></li>
+<li><a class="reference internal" href="#semiquaver">semiquaver</a></li>
+<li><a class="reference internal" href="#sixteenth">sixteenth</a></li>
+<li><a class="reference internal" href="#sixty-fourth">sixty_fourth</a></li>
+<li><a class="reference internal" href="#thirty-second">thirty_second</a></li>
+<li><a class="reference internal" href="#whole">whole</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#add-value1-value2">add(value1, value2)</a></li>
+<li><a class="reference internal" href="#determine-value">determine(value)</a></li>
+<li><a class="reference internal" href="#dots-value-nr">dots(value, nr)</a></li>
+<li><a class="reference internal" href="#quintuplet-value">quintuplet(value)</a></li>
+<li><a class="reference internal" href="#septuplet-value-in-fourths">septuplet(value, in_fourths)</a></li>
+<li><a class="reference internal" href="#subtract-value1-value2">subtract(value1, value2)</a></li>
+<li><a class="reference internal" href="#triplet-value">triplet(value)</a></li>
+<li><a class="reference internal" href="#tuplet-value-rat1-rat2">tuplet(value, rat1, rat2)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="refMingusCoreMeter.html"
-                        title="previous chapter">&lt;no title&gt;</a></p>
+                        title="previous chapter">mingus.core.meter</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="refMingusCoreProgressions.html"
-                        title="next chapter">&lt;no title&gt;</a></p>
+                        title="next chapter">mingus.core.progressions</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>&lt;no title&gt; &mdash; mingus 0.5.1 documentation</title>
+    <title>mingus.extra.fft &mdash; mingus 0.5.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="refMingusExtraTablature.html" />
+    <link rel="prev" title="mingus.extra.tablature" href="refMingusExtraTablature.html" />
    
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
@@ -38,7 +38,7 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="refMingusExtraTablature.html" title="&lt;no title&gt;"
+          <a href="refMingusExtraTablature.html" title="mingus.extra.tablature"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
       </ul>
@@ -49,24 +49,28 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>#summary Reference documentation for <cite>mingus.extra.fft</cite>.</p>
-<hr class="docutils" />
-<p>= mingus.extra.fft =
-Find the frequencies in raw audio data by using fast Fourier transformations
+  <div class="section" id="mingus-extra-fft">
+<h1>mingus.extra.fft<a class="headerlink" href="#mingus-extra-fft" title="Permalink to this headline">¶</a></h1>
+<p>Find the frequencies in raw audio data by using fast Fourier transformations
 (supplied by numpy).</p>
 <p>This module can also convert the found frequencies to Note objects.</p>
-<hr class="docutils" />
-<p>== Attributes ==
-=== <cite>x</cite> ===</p>
+<div class="section" id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="x">
+<h3>x<a class="headerlink" href="#x" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><em>Type</em>: int</li>
 <li><em>Value</em>: <cite>128</cite></li>
 </ul>
 </div></blockquote>
+</div>
+</div>
 <hr class="docutils" />
-<p>== Functions ==
-=== <cite>_fft(a, n, axis)</cite> ===</p>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="fft-a-n-axis">
+<h3>_fft(a, n, axis)<a class="headerlink" href="#fft-a-n-axis" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><em>Default values</em>: n = None, axis = -1</li>
@@ -76,8 +80,10 @@ Find the frequencies in raw audio data by using fast Fourier transformations
 <p>This function computes the one-dimensional <em>n</em>-point discrete Fourier
 Transform (DFT) with the efficient Fast Fourier Transform (FFT)
 algorithm [CT].</p>
-<p>Parameters</p>
-<hr class="docutils" />
+</div>
+</div>
+<div class="section" id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
 <dt>a <span class="classifier-delimiter">:</span> <span class="classifier">array_like</span></dt>
 <dd>Input array, can be complex.</dd>
@@ -85,40 +91,47 @@ algorithm [CT].</p>
 <dd>Length of the transformed axis of the output.
 If <cite>n</cite> is smaller than the length of the input, the input is cropped.
 If it is larger, the input is padded with zeros.  If <cite>n</cite> is not given,
-the length of the input (along the axis specified by <cite>axis</cite>) is used.</dd>
+the length of the input along the axis specified by <cite>axis</cite> is used.</dd>
 <dt>axis <span class="classifier-delimiter">:</span> <span class="classifier">int, optional</span></dt>
 <dd>Axis over which to compute the FFT.  If not given, the last axis is
 used.</dd>
 </dl>
-<p>Returns</p>
+</div>
+<div class="section" id="returns">
+<h2>Returns<a class="headerlink" href="#returns" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
 <dt>out <span class="classifier-delimiter">:</span> <span class="classifier">complex ndarray</span></dt>
 <dd>The truncated or zero-padded input, transformed along the axis
 indicated by <cite>axis</cite>, or the last one if <cite>axis</cite> is not specified.</dd>
 </dl>
-<p>Raises</p>
+</div>
+<div class="section" id="raises">
+<h2>Raises<a class="headerlink" href="#raises" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
 <dt>IndexError</dt>
 <dd>if <cite>axes</cite> is larger than the last axis of <cite>a</cite>.</dd>
 </dl>
-<p>See Also</p>
-<hr class="docutils" />
-<hr class="docutils" />
+</div>
+<div class="section" id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
 <p>numpy.fft : for definition of the DFT and conventions used.
 ifft : The inverse of <cite>fft</cite>.
 fft2 : The two-dimensional FFT.
 fftn : The <em>n</em>-dimensional FFT.
 rfftn : The <em>n</em>-dimensional FFT of real input.
 fftfreq : Frequency bins for given FFT parameters.</p>
-<p>Notes</p>
+</div>
+<div class="section" id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
 <p>FFT (Fast Fourier Transform) refers to a way the discrete Fourier
 Transform (DFT) can be calculated efficiently, by using symmetries in the
 calculated terms.  The symmetry is highest when <cite>n</cite> is a power of 2, and
 the transform is therefore most efficient for these sizes.</p>
 <p>The DFT is defined, with the conventions used in this implementation, in
 the documentation for the <cite>numpy.fft</cite> module.</p>
-<p>References</p>
-<hr class="docutils" />
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <table class="docutils citation" frame="void" id="ct" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
@@ -127,84 +140,97 @@ machine calculation of complex Fourier series,&#8221; <em>Math. Comput.</em>
 19: 297-301.</td></tr>
 </tbody>
 </table>
-<p>Examples</p>
-<hr class="docutils" />
-<hr class="docutils" />
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2j</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="o">/</span> <span class="mi">8</span><span class="p">))</span>
-<span class="go">array([ -3.44505240e-16 +1.14383329e-17j,</span>
-<span class="go">         8.00000000e+00 -5.71092652e-15j,</span>
-<span class="go">         2.33482938e-16 +1.22460635e-16j,</span>
-<span class="go">         1.64863782e-15 +1.77635684e-15j,</span>
-<span class="go">         9.95839695e-17 +2.33482938e-16j,</span>
-<span class="go">         0.00000000e+00 +1.66837030e-15j,</span>
-<span class="go">         1.14383329e-17 +1.22460635e-16j,</span>
-<span class="go">         -1.64863782e-15 +1.77635684e-15j])</span>
-</pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">sp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">freq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">imag</span><span class="p">)</span>
-<span class="go">[&lt;matplotlib.lines.Line2D object at 0x...&gt;, &lt;matplotlib.lines.Line2D object at 0x...&gt;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>{{{
+&gt;&gt;&gt; np.fft.fft(np.exp(2j * np.pi * np.arange(8) / 8))
+array([ -3.44505240e-16 +1.14383329e-17j,</p>
+<blockquote>
+<div>8.00000000e+00 -5.71092652e-15j,
+2.33482938e-16 +1.22460635e-16j,
+1.64863782e-15 +1.77635684e-15j,
+9.95839695e-17 +2.33482938e-16j,
+0.00000000e+00 +1.66837030e-15j,
+1.14383329e-17 +1.22460635e-16j,
+-1.64863782e-15 +1.77635684e-15j])</div></blockquote>
+<p>}}}</p>
+<p>{{{
+&gt;&gt;&gt; import matplotlib.pyplot as plt
+&gt;&gt;&gt; t = np.arange(256)
+&gt;&gt;&gt; sp = np.fft.fft(np.sin(t))
+&gt;&gt;&gt; freq = np.fft.fftfreq(t.shape[-1])
+&gt;&gt;&gt; plt.plot(freq, sp.real, freq, sp.imag)
+[&lt;matplotlib.lines.Line2D object at 0x...&gt;, &lt;matplotlib.lines.Line2D object at 0x...&gt;]
+&gt;&gt;&gt; plt.show()
+}}}</p>
 <p>In this example, real input has an FFT which is Hermitian, i.e., symmetric
 in the real part and anti-symmetric in the imaginary part, as described in
 the <cite>numpy.fft</cite> documentation.</p>
-<p>=== <cite>_find_log_index(f)</cite> ===
-Look up the index of the frequency f in the frequency table.</p>
+<div class="section" id="find-log-index-f">
+<h3>_find_log_index(f)<a class="headerlink" href="#find-log-index-f" title="Permalink to this headline">¶</a></h3>
+<p>Look up the index of the frequency f in the frequency table.</p>
 <p>Return the nearest index.</p>
-<dl class="docutils">
-<dt>=== <cite>analyze_chunks(data, freq, bits, chunksize)</cite> ===</dt>
-<dd><ul class="first last simple">
+</div>
+<div class="section" id="analyze-chunks-data-freq-bits-chunksize">
+<h3>analyze_chunks(data, freq, bits, chunksize)<a class="headerlink" href="#analyze-chunks-data-freq-bits-chunksize" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: chunksize = 512</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Cut the one channel data in chunks and analyzes them separately.</p>
 <p>Making the chunksize a power of two works fastest.</p>
-<p>=== <cite>data_from_file(file)</cite> ===
-Return (first channel data, sample frequency, sample width) from a .wav
+</div>
+<div class="section" id="data-from-file-file">
+<h3>data_from_file(file)<a class="headerlink" href="#data-from-file-file" title="Permalink to this headline">¶</a></h3>
+<p>Return (first channel data, sample frequency, sample width) from a .wav
 file.</p>
-<p>=== <cite>find_Note(data, freq, bits)</cite> ===
-Get the frequencies, feed them to find_notes and the return the Note
+</div>
+<div class="section" id="find-note-data-freq-bits">
+<h3>find_Note(data, freq, bits)<a class="headerlink" href="#find-note-data-freq-bits" title="Permalink to this headline">¶</a></h3>
+<p>Get the frequencies, feed them to find_notes and the return the Note
 with the highest amplitude.</p>
-<dl class="docutils">
-<dt>=== <cite>find_frequencies(data, freq, bits)</cite> ===</dt>
-<dd><ul class="first last simple">
+</div>
+<div class="section" id="find-frequencies-data-freq-bits">
+<h3>find_frequencies(data, freq, bits)<a class="headerlink" href="#find-frequencies-data-freq-bits" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: freq = 44100, bits = 16</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Convert audio data into a frequency-amplitude table using fast fourier
 transformation.</p>
 <p>Return a list of tuples (frequency, amplitude).</p>
 <p>Data should only contain one channel of audio.</p>
-<dl class="docutils">
-<dt>=== <cite>find_melody(file, chunksize)</cite> ===</dt>
-<dd><ul class="first last simple">
+</div>
+<div class="section" id="find-melody-file-chunksize">
+<h3>find_melody(file, chunksize)<a class="headerlink" href="#find-melody-file-chunksize" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: file = &#8216;440_480_clean.wav&#8217;, chunksize = 512</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Cut the sample into chunks and analyze each chunk.</p>
 <p>Return a list [(Note, chunks)] where chunks is the number of chunks
 where that note is the most dominant.</p>
 <p>If two consequent chunks turn out to return the same Note they are
 grouped together.</p>
 <p>This is an experimental function.</p>
-<dl class="docutils">
-<dt>=== <cite>find_notes(freqTable, maxNote)</cite> ===</dt>
-<dd><ul class="first last simple">
+</div>
+<div class="section" id="find-notes-freqtable-maxnote">
+<h3>find_notes(freqTable, maxNote)<a class="headerlink" href="#find-notes-freqtable-maxnote" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: maxNote = 100</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Convert the (frequencies, amplitude) list to a (Note, amplitude) list.</p>
 <hr class="docutils" />
-<p>[mingusIndex Back to Index]</p>
+<p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
+</div>
+</div>
+</div>
 
 
           </div>
@@ -212,9 +238,40 @@ grouped together.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">mingus.extra.fft</a><ul>
+<li><a class="reference internal" href="#attributes">Attributes</a><ul>
+<li><a class="reference internal" href="#x">x</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#fft-a-n-axis">_fft(a, n, axis)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#parameters">Parameters</a></li>
+<li><a class="reference internal" href="#returns">Returns</a></li>
+<li><a class="reference internal" href="#raises">Raises</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+<li><a class="reference internal" href="#notes">Notes</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+<li><a class="reference internal" href="#examples">Examples</a><ul>
+<li><a class="reference internal" href="#find-log-index-f">_find_log_index(f)</a></li>
+<li><a class="reference internal" href="#analyze-chunks-data-freq-bits-chunksize">analyze_chunks(data, freq, bits, chunksize)</a></li>
+<li><a class="reference internal" href="#data-from-file-file">data_from_file(file)</a></li>
+<li><a class="reference internal" href="#find-note-data-freq-bits">find_Note(data, freq, bits)</a></li>
+<li><a class="reference internal" href="#find-frequencies-data-freq-bits">find_frequencies(data, freq, bits)</a></li>
+<li><a class="reference internal" href="#find-melody-file-chunksize">find_melody(file, chunksize)</a></li>
+<li><a class="reference internal" href="#find-notes-freqtable-maxnote">find_notes(freqTable, maxNote)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="refMingusExtraTablature.html"
-                        title="previous chapter">&lt;no title&gt;</a></p>
+                        title="previous chapter">mingus.extra.tablature</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">

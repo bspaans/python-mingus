@@ -1,10 +1,5 @@
-#summary Reference documentation for `mingus.containers.composition`.
+=============================
+mingus.containers.composition
+=============================
 
-----
-
-= mingus.containers.composition =
-None
-
-----
-
-[mingusIndex Back to Index]
+:doc:`Back to Index</index>`

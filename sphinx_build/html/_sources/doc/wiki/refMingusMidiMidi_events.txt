@@ -1,158 +1,226 @@
-#summary Reference documentation for `mingus.midi.midi_events`.
+=======================
+mingus.midi.midi_events
+=======================
 
-----
+Attributes
+----------
 
-= mingus.midi.midi_events =
-None
+BALANCE
+^^^^^^^
 
-----
-
-== Attributes ==
-=== `BALANCE` ===
   * *Type*: int
   * *Value*: `8`
 
-=== `BANK_SELECT` ===
+BANK_SELECT
+^^^^^^^^^^^
+
   * *Type*: int
   * *Value*: `0`
 
-=== `BREATH_CONTROLLER` ===
+BREATH_CONTROLLER
+^^^^^^^^^^^^^^^^^
+
   * *Type*: int
   * *Value*: `2`
 
-=== `CHANNEL_AFTERTOUCH` ===
+CHANNEL_AFTERTOUCH
+^^^^^^^^^^^^^^^^^^
+
   * *Type*: int
   * *Value*: `13`
 
-=== `CONTROLLER` ===
+CONTROLLER
+^^^^^^^^^^
+
   * *Type*: int
   * *Value*: `11`
 
-=== `COPYRIGHT_NOTICE` ===
+COPYRIGHT_NOTICE
+^^^^^^^^^^^^^^^^
+
   * *Type*: str
   * *Value*: `'\x02'`
 
-=== `CUE_POINT` ===
+CUE_POINT
+^^^^^^^^^
+
   * *Type*: str
   * *Value*: `'\x07'`
 
-=== `DATA_ENTRY_MSB` ===
+DATA_ENTRY_MSB
+^^^^^^^^^^^^^^
+
   * *Type*: int
   * *Value*: `6`
 
-=== `EFFECT_CONTROL_1` ===
+EFFECT_CONTROL_1
+^^^^^^^^^^^^^^^^
+
   * *Type*: int
   * *Value*: `12`
 
-=== `EFFECT_CONTROL_2` ===
+EFFECT_CONTROL_2
+^^^^^^^^^^^^^^^^
+
   * *Type*: int
   * *Value*: `13`
 
-=== `END_OF_TRACK` ===
+END_OF_TRACK
+^^^^^^^^^^^^
+
   * *Type*: str
   * *Value*: `'/'`
 
-=== `EXPRESSION_CONTROLLER` ===
+EXPRESSION_CONTROLLER
+^^^^^^^^^^^^^^^^^^^^^
+
   * *Type*: int
   * *Value*: `11`
 
-=== `FILE_HEADER` ===
+FILE_HEADER
+^^^^^^^^^^^
+
   * *Type*: str
   * *Value*: `'MThd'`
 
-=== `FOOT_CONTROLLER` ===
+FOOT_CONTROLLER
+^^^^^^^^^^^^^^^
+
   * *Type*: int
   * *Value*: `4`
 
-=== `INSTRUMENT_NAME` ===
+INSTRUMENT_NAME
+^^^^^^^^^^^^^^^
+
   * *Type*: str
   * *Value*: `'\x04'`
 
-=== `KEY_SIGNATURE` ===
+KEY_SIGNATURE
+^^^^^^^^^^^^^
+
   * *Type*: str
   * *Value*: `'Y'`
 
-=== `LYRICS` ===
+LYRICS
+^^^^^^
+
   * *Type*: str
   * *Value*: `'\x05'`
 
-=== `MAIN_VOLUME` ===
+MAIN_VOLUME
+^^^^^^^^^^^
+
   * *Type*: int
   * *Value*: `7`
 
-=== `MARKER` ===
+MARKER
+^^^^^^
+
   * *Type*: str
   * *Value*: `'\x06'`
 
-=== `META_EVENT` ===
+META_EVENT
+^^^^^^^^^^
+
   * *Type*: str
   * *Value*: `'\xff'`
 
-=== `MIDI_CHANNEL_PREFIX` ===
+MIDI_CHANNEL_PREFIX
+^^^^^^^^^^^^^^^^^^^
+
   * *Type*: str
   * *Value*: `' '`
 
-=== `MODULATION` ===
+MODULATION
+^^^^^^^^^^
+
   * *Type*: int
   * *Value*: `1`
 
-=== `NOTE_AFTERTOUCH` ===
+NOTE_AFTERTOUCH
+^^^^^^^^^^^^^^^
+
   * *Type*: int
   * *Value*: `10`
 
-=== `NOTE_OFF` ===
+NOTE_OFF
+^^^^^^^^
+
   * *Type*: int
   * *Value*: `8`
 
-=== `NOTE_ON` ===
+NOTE_ON
+^^^^^^^
+
   * *Type*: int
   * *Value*: `9`
 
-=== `PAN` ===
+PAN
+^^^
+
   * *Type*: int
   * *Value*: `10`
 
-=== `PITCH_BEND` ===
+PITCH_BEND
+^^^^^^^^^^
+
   * *Type*: int
   * *Value*: `14`
 
-=== `PORTAMENTO_TIME` ===
+PORTAMENTO_TIME
+^^^^^^^^^^^^^^^
+
   * *Type*: int
   * *Value*: `5`
 
-=== `PROGRAM_CHANGE` ===
+PROGRAM_CHANGE
+^^^^^^^^^^^^^^
+
   * *Type*: int
   * *Value*: `12`
 
-=== `SEQUENCE_NUMBER` ===
+SEQUENCE_NUMBER
+^^^^^^^^^^^^^^^
+
   * *Type*: str
   * *Value*: `'\x00'`
 
-=== `SET_TEMPO` ===
+SET_TEMPO
+^^^^^^^^^
+
   * *Type*: str
   * *Value*: `'Q'`
 
-=== `SMPTE_OFFSET` ===
+SMPTE_OFFSET
+^^^^^^^^^^^^
+
   * *Type*: str
   * *Value*: `'T'`
 
-=== `TEXT_EVENT` ===
+TEXT_EVENT
+^^^^^^^^^^
+
   * *Type*: str
   * *Value*: `'\x01'`
 
-=== `TIME_SIGNATURE` ===
+TIME_SIGNATURE
+^^^^^^^^^^^^^^
+
   * *Type*: str
   * *Value*: `'X'`
 
-=== `TRACK_HEADER` ===
+TRACK_HEADER
+^^^^^^^^^^^^
+
   * *Type*: str
   * *Value*: `'MTrk'`
 
-=== `TRACK_NAME` ===
+TRACK_NAME
+^^^^^^^^^^
+
   * *Type*: str
   * *Value*: `'\x03'`
 
-
 ----
 
-[mingusIndex Back to Index]
+:doc:`Back to Index</index>`

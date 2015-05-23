@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>&lt;no title&gt; &mdash; mingus 0.5.1 documentation</title>
+    <title>mingus.midi.pyfluidsynth &mdash; mingus 0.5.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -45,10 +45,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>#summary Reference documentation for <cite>mingus.midi.pyfluidsynth</cite>.</p>
-<hr class="docutils" />
-<p>= mingus.midi.pyfluidsynth =
-Python bindings for FluidSynth.</p>
+  <div class="section" id="mingus-midi-pyfluidsynth">
+<h1>mingus.midi.pyfluidsynth<a class="headerlink" href="#mingus-midi-pyfluidsynth" title="Permalink to this headline">¶</a></h1>
+<p>Python bindings for FluidSynth.</p>
 <p>FluidSynth is a software synthesizer for generating music.  It works like a
 MIDI synthesizer.</p>
 <p>You load patches, set parameters, then send NOTEON and NOTEOFF events to
@@ -59,66 +58,93 @@ SF2.</p>
 function that returns chunks of audio data and output the data to the
 soundcard yourself.</p>
 <p>FluidSynth works on all major platforms, so pyFluidSynth should also.</p>
-<hr class="docutils" />
-<p>== Attributes ==
-=== <cite>DEFAULT_MODE</cite> ===</p>
+<div class="section" id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="default-mode">
+<h3>DEFAULT_MODE<a class="headerlink" href="#default-mode" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>4</cite></li>
+<li><em>Value</em>: <cite>0</cite></li>
 </ul>
 </div></blockquote>
-<dl class="docutils">
-<dt>=== <cite>RTLD_GLOBAL</cite> ===</dt>
-<dd><ul class="first last simple">
+</div>
+<div class="section" id="rtld-global">
+<h3>RTLD_GLOBAL<a class="headerlink" href="#rtld-global" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>8</cite></li>
+<li><em>Value</em>: <cite>256</cite></li>
 </ul>
-</dd>
-<dt>=== <cite>RTLD_LOCAL</cite> ===</dt>
-<dd><ul class="first last simple">
+</div></blockquote>
+</div>
+<div class="section" id="rtld-local">
+<h3>RTLD_LOCAL<a class="headerlink" href="#rtld-local" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: int</li>
-<li><em>Value</em>: <cite>4</cite></li>
+<li><em>Value</em>: <cite>0</cite></li>
 </ul>
-</dd>
-<dt>=== <cite>api_version</cite> ===</dt>
-<dd><ul class="first last simple">
+</div></blockquote>
+</div>
+<div class="section" id="api-version">
+<h3>api_version<a class="headerlink" href="#api-version" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: str</li>
 <li><em>Value</em>: <cite>&#8216;1.2&#8217;</cite></li>
 </ul>
-</dd>
-<dt>=== <cite>cdll</cite> ===</dt>
-<dd><ul class="first last simple">
-<li><em>Type</em>: ctypes.LibraryLoader</li>
-<li><em>Value</em>: <cite>&lt;ctypes.LibraryLoader object at 0x1008c48d0&gt;</cite></li>
-</ul>
-</dd>
-<dt>=== <cite>lib</cite> ===</dt>
-<dd><ul class="first last simple">
-<li><em>Type</em>: str</li>
-<li><em>Value</em>: <cite>&#8216;/usr/local/lib/libfluidsynth.dylib&#8217;</cite></li>
-</ul>
-</dd>
-<dt>=== <cite>pydll</cite> ===</dt>
-<dd><ul class="first last simple">
-<li><em>Type</em>: ctypes.LibraryLoader</li>
-<li><em>Value</em>: <cite>&lt;ctypes.LibraryLoader object at 0x1008c4910&gt;</cite></li>
-</ul>
-</dd>
-<dt>=== <cite>pythonapi</cite> ===</dt>
-<dd><ul class="first last simple">
-<li><em>Type</em>: ctypes.PyDLL</li>
-<li><em>Value</em>: <cite>&lt;PyDLL &#8216;None&#8217;, handle fffffffffffffffe at 1008c4950&gt;</cite></li>
-</ul>
-</dd>
-</dl>
-<hr class="docutils" />
-<p>== Functions ==
-=== <cite>ARRAY(typ, len)</cite> ===
-=== <cite>CFUNCTYPE(restype)</cite> ===
-CFUNCTYPE(restype, <a href="#id1"><span class="problematic" id="id2">*</span></a>argtypes,</p>
+</div></blockquote>
+</div>
+<div class="section" id="cdll">
+<h3>cdll<a class="headerlink" href="#cdll" title="Permalink to this headline">¶</a></h3>
 <blockquote>
-<div>use_errno=False, use_last_error=False) -&gt; function prototype.</div></blockquote>
+<div><ul class="simple">
+<li><em>Type</em>: ctypes.LibraryLoader</li>
+<li><em>Value</em>: <cite>&lt;ctypes.LibraryLoader object at 0x7fbe4c7898d0&gt;</cite></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="lib">
+<h3>lib<a class="headerlink" href="#lib" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><em>Type</em>: str</li>
+<li><em>Value</em>: <cite>&#8216;libfluidsynth.so.1&#8217;</cite></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="pydll">
+<h3>pydll<a class="headerlink" href="#pydll" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><em>Type</em>: ctypes.LibraryLoader</li>
+<li><em>Value</em>: <cite>&lt;ctypes.LibraryLoader object at 0x7fbe4c789910&gt;</cite></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="pythonapi">
+<h3>pythonapi<a class="headerlink" href="#pythonapi" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><em>Type</em>: ctypes.PyDLL</li>
+<li><em>Value</em>: <cite>&lt;PyDLL &#8216;None&#8217;, handle 7fbe4fea7188 at 7fbe4c789950&gt;</cite></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="array-typ-len">
+<h3>ARRAY(typ, len)<a class="headerlink" href="#array-typ-len" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="cfunctype-restype">
+<h3>CFUNCTYPE(restype)<a class="headerlink" href="#cfunctype-restype" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>CFUNCTYPE(restype, <a href="#id1"><span class="problematic" id="id2">*</span></a>argtypes,</dt>
+<dd>use_errno=False, use_last_error=False) -&gt; function prototype.</dd>
+</dl>
 <p>restype: the result type
 argtypes: a sequence specifying the argument types</p>
 <p>The function prototype can be called in different ways to create a
@@ -128,65 +154,88 @@ prototype(callable) -&gt; create and return a C callable function from callable
 prototype(integer index, method name[, paramflags]) -&gt; foreign function calling a COM method
 prototype((ordinal number, dll object)[, paramflags]) -&gt; foreign function exported by ordinal
 prototype((function name, dll object)[, paramflags]) -&gt; foreign function exported by name</p>
-<p>=== <cite>PYFUNCTYPE(restype)</cite> ===
-=== <cite>SetPointerType(pointer, cls)</cite> ===
-=== <cite>c_buffer(init, size)</cite> ===</p>
+</div>
+<div class="section" id="pyfunctype-restype">
+<h3>PYFUNCTYPE(restype)<a class="headerlink" href="#pyfunctype-restype" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="setpointertype-pointer-cls">
+<h3>SetPointerType(pointer, cls)<a class="headerlink" href="#setpointertype-pointer-cls" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="c-buffer-init-size">
+<h3>c_buffer(init, size)<a class="headerlink" href="#c-buffer-init-size" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><em>Default values</em>: size = None</li>
 </ul>
 </div></blockquote>
-<p>=== <cite>cast(obj, typ)</cite> ===
-=== <cite>cfunc(name, result)</cite> ===
-Build and apply a ctypes prototype complete with parameter flags.</p>
-<dl class="docutils">
-<dt>=== <cite>create_string_buffer(init, size)</cite> ===</dt>
-<dd><ul class="first last simple">
+</div>
+<div class="section" id="cast-obj-typ">
+<h3>cast(obj, typ)<a class="headerlink" href="#cast-obj-typ" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="cfunc-name-result">
+<h3>cfunc(name, result)<a class="headerlink" href="#cfunc-name-result" title="Permalink to this headline">¶</a></h3>
+<p>Build and apply a ctypes prototype complete with parameter flags.</p>
+</div>
+<div class="section" id="create-string-buffer-init-size">
+<h3>create_string_buffer(init, size)<a class="headerlink" href="#create-string-buffer-init-size" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: size = None</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>create_string_buffer(aString) -&gt; character array
 create_string_buffer(anInteger) -&gt; character array
 create_string_buffer(aString, anInteger) -&gt; character array</p>
-<dl class="docutils">
-<dt>=== <cite>create_unicode_buffer(init, size)</cite> ===</dt>
-<dd><ul class="first last simple">
+</div>
+<div class="section" id="create-unicode-buffer-init-size">
+<h3>create_unicode_buffer(init, size)<a class="headerlink" href="#create-unicode-buffer-init-size" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: size = None</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>create_unicode_buffer(aString) -&gt; character array
 create_unicode_buffer(anInteger) -&gt; character array
 create_unicode_buffer(aString, anInteger) -&gt; character array</p>
-<p>=== <cite>find_library(name)</cite> ===
-=== <cite>fluid_synth_write_s16_stereo(synth, len)</cite> ===
-Return generated samples in stereo 16-bit format.</p>
+</div>
+<div class="section" id="find-library-name">
+<h3>find_library(name)<a class="headerlink" href="#find-library-name" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="fluid-synth-write-s16-stereo-synth-len">
+<h3>fluid_synth_write_s16_stereo(synth, len)<a class="headerlink" href="#fluid-synth-write-s16-stereo-synth-len" title="Permalink to this headline">¶</a></h3>
+<p>Return generated samples in stereo 16-bit format.</p>
 <p>Return value is a Numpy array of samples.</p>
-<p>=== <cite>raw_audio_string(data)</cite> ===
-Return a string of bytes to send to soundcard.</p>
+</div>
+<div class="section" id="raw-audio-string-data">
+<h3>raw_audio_string(data)<a class="headerlink" href="#raw-audio-string-data" title="Permalink to this headline">¶</a></h3>
+<p>Return a string of bytes to send to soundcard.</p>
 <p>Input is a numpy array of samples. Default output format is 16-bit
 signed (other formats not currently supported).</p>
-<dl class="docutils">
-<dt>=== <cite>string_at(ptr, size)</cite> ===</dt>
-<dd><ul class="first last simple">
+</div>
+<div class="section" id="string-at-ptr-size">
+<h3>string_at(ptr, size)<a class="headerlink" href="#string-at-ptr-size" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: size = -1</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>string_at(addr[, size]) -&gt; string</p>
 <p>Return the string at addr.</p>
-<dl class="docutils">
-<dt>=== <cite>wstring_at(ptr, size)</cite> ===</dt>
-<dd><ul class="first last simple">
+</div>
+<div class="section" id="wstring-at-ptr-size">
+<h3>wstring_at(ptr, size)<a class="headerlink" href="#wstring-at-ptr-size" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: size = -1</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>wstring_at(addr[, size]) -&gt; string</p>
 <p>Return the string at addr.</p>
 <hr class="docutils" />
-<p>[mingusIndex Back to Index]</p>
+<p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
+</div>
+</div>
+</div>
 
 
           </div>
@@ -194,6 +243,41 @@ signed (other formats not currently supported).</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">mingus.midi.pyfluidsynth</a><ul>
+<li><a class="reference internal" href="#attributes">Attributes</a><ul>
+<li><a class="reference internal" href="#default-mode">DEFAULT_MODE</a></li>
+<li><a class="reference internal" href="#rtld-global">RTLD_GLOBAL</a></li>
+<li><a class="reference internal" href="#rtld-local">RTLD_LOCAL</a></li>
+<li><a class="reference internal" href="#api-version">api_version</a></li>
+<li><a class="reference internal" href="#cdll">cdll</a></li>
+<li><a class="reference internal" href="#lib">lib</a></li>
+<li><a class="reference internal" href="#pydll">pydll</a></li>
+<li><a class="reference internal" href="#pythonapi">pythonapi</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#array-typ-len">ARRAY(typ, len)</a></li>
+<li><a class="reference internal" href="#cfunctype-restype">CFUNCTYPE(restype)</a></li>
+<li><a class="reference internal" href="#pyfunctype-restype">PYFUNCTYPE(restype)</a></li>
+<li><a class="reference internal" href="#setpointertype-pointer-cls">SetPointerType(pointer, cls)</a></li>
+<li><a class="reference internal" href="#c-buffer-init-size">c_buffer(init, size)</a></li>
+<li><a class="reference internal" href="#cast-obj-typ">cast(obj, typ)</a></li>
+<li><a class="reference internal" href="#cfunc-name-result">cfunc(name, result)</a></li>
+<li><a class="reference internal" href="#create-string-buffer-init-size">create_string_buffer(init, size)</a></li>
+<li><a class="reference internal" href="#create-unicode-buffer-init-size">create_unicode_buffer(init, size)</a></li>
+<li><a class="reference internal" href="#find-library-name">find_library(name)</a></li>
+<li><a class="reference internal" href="#fluid-synth-write-s16-stereo-synth-len">fluid_synth_write_s16_stereo(synth, len)</a></li>
+<li><a class="reference internal" href="#raw-audio-string-data">raw_audio_string(data)</a></li>
+<li><a class="reference internal" href="#string-at-ptr-size">string_at(ptr, size)</a></li>
+<li><a class="reference internal" href="#wstring-at-ptr-size">wstring_at(ptr, size)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">

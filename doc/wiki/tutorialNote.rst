@@ -1,7 +1,10 @@
 ﻿Tutorial 1 - Working with notes
 ===============================
 
-mingus was written out of a desire to have a pythonic way of working with music: simple but also correct. This module lies at the heart of the package and introduces the first building blocks: note names, accidentals and an int-to-note converter (and vice versa).
+mingus was written out of a desire to have a pythonic way of working with
+music: simple but also correct. This module lies at the heart of the package
+and introduces the first building blocks: note names, accidentals and an
+int-to-note converter (and vice versa).
 
 
 To start this tutorial, open up a python shell and enter:
@@ -19,7 +22,10 @@ Now we are ready to work with notes.
 Notes as Strings
 ----------------
 
-A note in mingus is represented by a name (A...G) and some or no accidentals ('#' and 'b'); where 'b' lowers and '#' raises the note by one half note step. To test whether an arbitrary string is a valid note we can use `notes.is_valid_note(str)`.
+A note in mingus is represented by a name (A...G) and some or no accidentals
+('#' and 'b'); where 'b' lowers and '#' raises the note by one half note step.
+To test whether an arbitrary string is a valid note we can use
+`notes.is_valid_note(str)`.
 
 Some examples of valid notes:
 
@@ -55,7 +61,10 @@ True
 True
 
 
-As you can see, mingus can handle any number of accidentals, whether it is the sensible thing to do or not. If you want to clean up messy accidentals, you can use remove_redundant_accidentals(note). Because it's all fun and games until someone gets hurt.
+As you can see, mingus can handle any number of accidentals, whether it is the
+sensible thing to do or not. If you want to clean up messy accidentals, you can
+use remove_redundant_accidentals(note). Because it's all fun and games until
+someone gets hurt.
 
 
 >>> notes.remove_redundant_accidentals("C##b")

@@ -1,8 +1,7 @@
-#summary Reference documentation for `mingus.midi.pyfluidsynth`.
+========================
+mingus.midi.pyfluidsynth
+========================
 
-----
-
-= mingus.midi.pyfluidsynth =
 Python bindings for FluidSynth.
 
 FluidSynth is a software synthesizer for generating music.  It works like a
@@ -21,47 +20,68 @@ soundcard yourself.
 FluidSynth works on all major platforms, so pyFluidSynth should also.
 
 
-----
+Attributes
+----------
 
-== Attributes ==
-=== `DEFAULT_MODE` ===
+DEFAULT_MODE
+^^^^^^^^^^^^
+
   * *Type*: int
-  * *Value*: `4`
+  * *Value*: `0`
 
-=== `RTLD_GLOBAL` ===
+RTLD_GLOBAL
+^^^^^^^^^^^
+
   * *Type*: int
-  * *Value*: `8`
+  * *Value*: `256`
 
-=== `RTLD_LOCAL` ===
+RTLD_LOCAL
+^^^^^^^^^^
+
   * *Type*: int
-  * *Value*: `4`
+  * *Value*: `0`
 
-=== `api_version` ===
+api_version
+^^^^^^^^^^^
+
   * *Type*: str
   * *Value*: `'1.2'`
 
-=== `cdll` ===
-  * *Type*: ctypes.LibraryLoader
-  * *Value*: `<ctypes.LibraryLoader object at 0x1008c48d0>`
+cdll
+^^^^
 
-=== `lib` ===
+  * *Type*: ctypes.LibraryLoader
+  * *Value*: `<ctypes.LibraryLoader object at 0x7fbe4c7898d0>`
+
+lib
+^^^
+
   * *Type*: str
-  * *Value*: `'/usr/local/lib/libfluidsynth.dylib'`
+  * *Value*: `'libfluidsynth.so.1'`
 
-=== `pydll` ===
+pydll
+^^^^^
+
   * *Type*: ctypes.LibraryLoader
-  * *Value*: `<ctypes.LibraryLoader object at 0x1008c4910>`
+  * *Value*: `<ctypes.LibraryLoader object at 0x7fbe4c789910>`
 
-=== `pythonapi` ===
+pythonapi
+^^^^^^^^^
+
   * *Type*: ctypes.PyDLL
-  * *Value*: `<PyDLL 'None', handle fffffffffffffffe at 1008c4950>`
-
+  * *Value*: `<PyDLL 'None', handle 7fbe4fea7188 at 7fbe4c789950>`
 
 ----
 
-== Functions ==
-=== `ARRAY(typ, len)` ===
-=== `CFUNCTYPE(restype)` ===
+Functions
+---------
+
+ARRAY(typ, len)
+^^^^^^^^^^^^^^^
+
+CFUNCTYPE(restype)
+^^^^^^^^^^^^^^^^^^
+
 CFUNCTYPE(restype, *argtypes,
              use_errno=False, use_last_error=False) -> function prototype.
 
@@ -77,51 +97,74 @@ prototype(integer index, method name[, paramflags]) -> foreign function calling 
 prototype((ordinal number, dll object)[, paramflags]) -> foreign function exported by ordinal
 prototype((function name, dll object)[, paramflags]) -> foreign function exported by name
 
-=== `PYFUNCTYPE(restype)` ===
-=== `SetPointerType(pointer, cls)` ===
-=== `c_buffer(init, size)` ===
+PYFUNCTYPE(restype)
+^^^^^^^^^^^^^^^^^^^
+
+SetPointerType(pointer, cls)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+c_buffer(init, size)
+^^^^^^^^^^^^^^^^^^^^
+
   * *Default values*: size = None
-=== `cast(obj, typ)` ===
-=== `cfunc(name, result)` ===
+cast(obj, typ)
+^^^^^^^^^^^^^^
+
+cfunc(name, result)
+^^^^^^^^^^^^^^^^^^^
+
 Build and apply a ctypes prototype complete with parameter flags.
 
-=== `create_string_buffer(init, size)` ===
+create_string_buffer(init, size)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
   * *Default values*: size = None
 create_string_buffer(aString) -> character array
 create_string_buffer(anInteger) -> character array
 create_string_buffer(aString, anInteger) -> character array
 
-=== `create_unicode_buffer(init, size)` ===
+create_unicode_buffer(init, size)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
   * *Default values*: size = None
 create_unicode_buffer(aString) -> character array
 create_unicode_buffer(anInteger) -> character array
 create_unicode_buffer(aString, anInteger) -> character array
 
-=== `find_library(name)` ===
-=== `fluid_synth_write_s16_stereo(synth, len)` ===
+find_library(name)
+^^^^^^^^^^^^^^^^^^
+
+fluid_synth_write_s16_stereo(synth, len)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Return generated samples in stereo 16-bit format.
 
 Return value is a Numpy array of samples.
 
-=== `raw_audio_string(data)` ===
+raw_audio_string(data)
+^^^^^^^^^^^^^^^^^^^^^^
+
 Return a string of bytes to send to soundcard.
 
 Input is a numpy array of samples. Default output format is 16-bit
 signed (other formats not currently supported).
 
-=== `string_at(ptr, size)` ===
+string_at(ptr, size)
+^^^^^^^^^^^^^^^^^^^^
+
   * *Default values*: size = -1
 string_at(addr[, size]) -> string
 
 Return the string at addr.
 
-=== `wstring_at(ptr, size)` ===
+wstring_at(ptr, size)
+^^^^^^^^^^^^^^^^^^^^^
+
   * *Default values*: size = -1
 wstring_at(addr[, size]) -> string
 
 Return the string at addr.
 
-
 ----
 
-[mingusIndex Back to Index]
+:doc:`Back to Index</index>`

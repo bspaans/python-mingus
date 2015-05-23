@@ -1,8 +1,7 @@
-#summary Reference documentation for `mingus.core.progressions`.
+========================
+mingus.core.progressions
+========================
 
-----
-
-= mingus.core.progressions =
 Module for dealing with progressions.
 
 In music and music theory you often deal with sequencesi of chords. These
@@ -15,29 +14,36 @@ This module provides methods which can convert progressions to chords and
 vice versa.
 
 
-----
+Attributes
+----------
 
-== Attributes ==
-=== `numeral_intervals` ===
+numeral_intervals
+^^^^^^^^^^^^^^^^^
+
   * *Type*: list
   * *Value*: `[0, 2, 4, 5, 7, 9, 11]`
 
-=== `numerals` ===
+numerals
+^^^^^^^^
+
   * *Type*: list
   * *Value*: `['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']`
 
-
 ----
 
-== Functions ==
-=== `determine(chord, key, shorthand)` ===
+Functions
+---------
+
+determine(chord, key, shorthand)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
   * *Default values*: shorthand = False
 Determine the harmonic function of chord in key.
 
 This function can also deal with lists of chords.
 
 Examples:
-
+{{{
 >>> determine(['C', 'E', 'G'], 'C')
 ['tonic']
 >>> determine(['G', 'B', 'D'], 'C')
@@ -46,39 +52,47 @@ Examples:
 ['V7']
 >>> determine([['C', 'E', 'G'], ['G', 'B', 'D']], 'C', True)
 [['I'], ['V']]
+}}}
 
+interval_diff(progression1, progression2, interval)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-=== `interval_diff(progression1, progression2, interval)` ===
 Return the number of half steps progression2 needs to be diminished or
 augmented until the interval between progression1 and progression2 is
 interval.
 
-=== `parse_string(progression)` ===
+parse_string(progression)
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Return a tuple (roman numeral, accidentals, chord suffix).
 
 Examples:
-
+{{{
 >>> parse_string('I')
 ('I', 0, '')
 >>> parse_string('bIM7')
 ('I', -1, 'M7')
+}}}
 
+skip(roman_numeral, skip)
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
-=== `skip(roman_numeral, skip)` ===
   * *Default values*: skip = 1
 Skip the given places to the next roman numeral.
 
 Examples:
-
+{{{
 >>> skip('I')
 'II'
 >>> skip('VII')
 'I'
 >>> skip('I', 2)
 'III'
+}}}
 
+substitute(progression, substitute_index, depth)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-=== `substitute(progression, substitute_index, depth)` ===
   * *Default values*: depth = 0
 Give a list of possible substitutions for progression[substitute_index].
 
@@ -86,26 +100,32 @@ If depth > 0 the substitutions of each result will be recursively added
 as well.
 
 Example:
-
+{{{
 >>> substitute(['I', 'IV', 'V', 'I'], 0)
 ['III', 'III7', 'VI', 'VI7', 'I7']
+}}}
 
+substitute_diminished_for_diminished(progression, substitute_index, ignore_suffix)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-=== `substitute_diminished_for_diminished(progression, substitute_index, ignore_suffix)` ===
   * *Default values*: ignore_suffix = False
 Substitute a diminished chord for another diminished chord.
 
 'dim' and 'dim7' suffixes recognized, and 'VI' if there is no suffix.
 
 Example:
-
+{{{
 >>> substitute_diminished_for_diminished(['VII'], 0)
 ['IIdim', 'bIVdim', 'bbVIdim']
+}}}
 
+substitute_diminished_for_dominant(progression, substitute_index, ignore_suffix)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-=== `substitute_diminished_for_dominant(progression, substitute_index, ignore_suffix)` ===
   * *Default values*: ignore_suffix = False
-=== `substitute_harmonic(progression, substitute_index, ignore_suffix)` ===
+substitute_harmonic(progression, substitute_index, ignore_suffix)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
   * *Default values*: ignore_suffix = False
 Do simple harmonic substitutions. Return a list of possible substitions
 for progression[substitute_index].
@@ -121,7 +141,9 @@ The following table is used to convert progressions:
 || IV || VI ||
 || V || VII ||
 
-=== `substitute_major_for_minor(progression, substitute_index, ignore_suffix)` ===
+substitute_major_for_minor(progression, substitute_index, ignore_suffix)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
   * *Default values*: ignore_suffix = False
 Substitute major chords for their minor equivalent.
 
@@ -129,14 +151,16 @@ Substitute major chords for their minor equivalent.
 suffix.
 
 Examples:
-
+{{{
 >>> substitute_major_for_minor(['I'], 0)
 ['VI']
 >>> substitute_major_for_minor(['VM7'], 0)
 ['IIIm7']
+}}}
 
+substitute_minor_for_major(progression, substitute_index, ignore_suffix)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-=== `substitute_minor_for_major(progression, substitute_index, ignore_suffix)` ===
   * *Default values*: ignore_suffix = False
 Substitute minor chords for its major equivalent.
 
@@ -144,26 +168,28 @@ Substitute minor chords for its major equivalent.
 suffix.
 
 Examples:
-
+{{{
 >>> substitute_minor_for_major(['VI'], 0)
 ['I']
 >>> substitute_minor_for_major(['Vm'], 0)
 ['bVIIM']
 >>> substitute_minor_for_major(['VIm7'], 0)
 ['IM7']
+}}}
 
+to_chords(progression, key)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-=== `to_chords(progression, key)` ===
   * *Default values*: key = 'C'
 Convert a list of chord functions or a string to a list of chords.
 
 Examples:
-
+{{{
 >>> to_chords(['I', 'V7'])
 [['C', 'E', 'G'], ['G', 'B', 'D', 'F']]
 >>> to_chords('I7')
 [['C', 'E', 'G', 'B']]
-
+}}}
 
 Any number of accidentals can be used as prefix to augment or diminish;
 for example: bIV or #I.
@@ -180,10 +206,11 @@ dominant seventh chord. We have taken the classic route; I7 will get
 you a major seventh chord. If you specifically want a dominanth seventh,
 use Idom7.
 
-=== `tuple_to_string(prog_tuple)` ===
-Create a string from tuples returned by parse_string.
+tuple_to_string(prog_tuple)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Create a string from tuples returned by parse_string.
 
 ----
 
-[mingusIndex Back to Index]
+:doc:`Back to Index</index>`

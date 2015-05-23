@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>&lt;no title&gt; &mdash; mingus 0.5.1 documentation</title>
+    <title>mingus.core.scales &mdash; mingus 0.5.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
-    <link rel="next" title="&lt;no title&gt;" href="refMingusCoreMeter.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="refMingusCoreChords.html" />
+    <link rel="next" title="mingus.core.meter" href="refMingusCoreMeter.html" />
+    <link rel="prev" title="mingus.core.chords" href="refMingusCoreChords.html" />
    
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
@@ -39,10 +39,10 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="refMingusCoreMeter.html" title="&lt;no title&gt;"
+          <a href="refMingusCoreMeter.html" title="mingus.core.meter"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="refMingusCoreChords.html" title="&lt;no title&gt;"
+          <a href="refMingusCoreChords.html" title="mingus.core.chords"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
       </ul>
@@ -53,10 +53,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>#summary Reference documentation for <cite>mingus.core.scales</cite>.</p>
-<hr class="docutils" />
-<p>= mingus.core.scales =
-Module for dealing with scales.</p>
+  <div class="section" id="mingus-core-scales">
+<h1>mingus.core.scales<a class="headerlink" href="#mingus-core-scales" title="Permalink to this headline">¶</a></h1>
+<p>Module for dealing with scales.</p>
 <p>The scales module allows you to create a plethora of scales. Here&#8217;s a
 little overview:</p>
 <dl class="docutils">
@@ -99,67 +98,82 @@ little overview:</p>
 </ul>
 </dd>
 </dl>
-<hr class="docutils" />
-<p>== Attributes ==
-=== <cite>keys</cite> ===</p>
+<div class="section" id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="keys">
+<h3>keys<a class="headerlink" href="#keys" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><em>Type</em>: list</li>
 <li><em>Value</em>: <cite>[(&#8216;Cb&#8217;, &#8216;ab&#8217;), (&#8216;Gb&#8217;, &#8216;eb&#8217;), (&#8216;Db&#8217;, &#8216;bb&#8217;), (&#8216;Ab&#8217;, &#8216;f&#8217;), (&#8216;Eb&#8217;, &#8216;c&#8217;), (&#8216;Bb&#8217;, &#8216;g&#8217;), (&#8216;F&#8217;, &#8216;d&#8217;), (&#8216;C&#8217;, &#8216;a&#8217;), (&#8216;G&#8217;, &#8216;e&#8217;), (&#8216;D&#8217;, &#8216;b&#8217;), (&#8216;A&#8217;, &#8216;f#&#8217;), (&#8216;E&#8217;, &#8216;c#&#8217;), (&#8216;B&#8217;, &#8216;g#&#8217;), (&#8216;F#&#8217;, &#8216;d#&#8217;), (&#8216;C#&#8217;, &#8216;a#&#8217;)]</cite></li>
 </ul>
 </div></blockquote>
+</div>
+</div>
 <hr class="docutils" />
-<p>== Functions ==
-=== <cite>augment(note)</cite> ===
-Augment a given note.</p>
-<p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">augment</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">&#39;C#&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">augment</span><span class="p">(</span><span class="s">&#39;Cb&#39;</span><span class="p">)</span>
-<span class="go">&#39;C&#39;</span>
-</pre></div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="augment-note">
+<h3>augment(note)<a class="headerlink" href="#augment-note" title="Permalink to this headline">¶</a></h3>
+<p>Augment a given note.</p>
+<p>Examples:
+{{{
+&gt;&gt;&gt; augment(&#8216;C&#8217;)
+&#8216;C#&#8217;
+&gt;&gt;&gt; augment(&#8216;Cb&#8217;)
+&#8216;C&#8217;
+}}}</p>
 </div>
-<p>=== <cite>determine(notes)</cite> ===
-Determine the scales containing the notes.</p>
+<div class="section" id="determine-notes">
+<h3>determine(notes)<a class="headerlink" href="#determine-notes" title="Permalink to this headline">¶</a></h3>
+<p>Determine the scales containing the notes.</p>
 <p>All major and minor scales are recognized.</p>
-<p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">([</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;Bb&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;F#&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">])</span>
-<span class="go">[&#39;G melodic minor&#39;, &#39;G Bachian&#39;, &#39;D harmonic major&#39;]</span>
-</pre></div>
+<p>Example:
+{{{
+&gt;&gt;&gt; determine([&#8216;A&#8217;, &#8216;Bb&#8217;, &#8216;E&#8217;, &#8216;F#&#8217;, &#8216;G&#8217;])
+[&#8216;G melodic minor&#8217;, &#8216;G Bachian&#8217;, &#8216;D harmonic major&#8217;]
+}}}</p>
 </div>
-<p>=== <cite>diminish(note)</cite> ===
-Diminish a given note.</p>
-<p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diminish</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">&#39;Cb&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">diminish</span><span class="p">(</span><span class="s">&#39;C#&#39;</span><span class="p">)</span>
-<span class="go">&#39;C&#39;</span>
-</pre></div>
+<div class="section" id="diminish-note">
+<h3>diminish(note)<a class="headerlink" href="#diminish-note" title="Permalink to this headline">¶</a></h3>
+<p>Diminish a given note.</p>
+<p>Examples:
+{{{
+&gt;&gt;&gt; diminish(&#8216;C&#8217;)
+&#8216;Cb&#8217;
+&gt;&gt;&gt; diminish(&#8216;C#&#8217;)
+&#8216;C&#8217;
+}}}</p>
 </div>
-<dl class="docutils">
-<dt>=== <cite>get_notes(key)</cite> ===</dt>
-<dd><ul class="first last simple">
+<div class="section" id="get-notes-key">
+<h3>get_notes(key)<a class="headerlink" href="#get-notes-key" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: key = &#8216;C&#8217;</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Return an ordered list of the notes in this natural key.</p>
-<p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">get_notes</span><span class="p">(</span><span class="s">&#39;F&#39;</span><span class="p">)</span>
-<span class="go">[&#39;F&#39;, &#39;G&#39;, &#39;A&#39;, &#39;Bb&#39;, &#39;C&#39;, &#39;D&#39;, &#39;E&#39;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">get_notes</span><span class="p">(</span><span class="s">&#39;c&#39;</span><span class="p">)</span>
-<span class="go">[&#39;C&#39;, &#39;D&#39;, &#39;Eb&#39;, &#39;F&#39;, &#39;G&#39;, &#39;Ab&#39;, &#39;Bb&#39;]</span>
-</pre></div>
+<p>Examples:
+{{{
+&gt;&gt;&gt; get_notes(&#8216;F&#8217;)
+[&#8216;F&#8217;, &#8216;G&#8217;, &#8216;A&#8217;, &#8216;Bb&#8217;, &#8216;C&#8217;, &#8216;D&#8217;, &#8216;E&#8217;]
+&gt;&gt;&gt; get_notes(&#8216;c&#8217;)
+[&#8216;C&#8217;, &#8216;D&#8217;, &#8216;Eb&#8217;, &#8216;F&#8217;, &#8216;G&#8217;, &#8216;Ab&#8217;, &#8216;Bb&#8217;]
+}}}</p>
 </div>
-<p>=== <cite>reduce_accidentals(note)</cite> ===
-Reduce any extra accidentals to proper notes.</p>
-<p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">reduce_accidentals</span><span class="p">(</span><span class="s">&#39;C####&#39;</span><span class="p">)</span>
-<span class="go">&#39;E&#39;</span>
-</pre></div>
-</div>
+<div class="section" id="reduce-accidentals-note">
+<h3>reduce_accidentals(note)<a class="headerlink" href="#reduce-accidentals-note" title="Permalink to this headline">¶</a></h3>
+<p>Reduce any extra accidentals to proper notes.</p>
+<p>Example:
+{{{
+&gt;&gt;&gt; reduce_accidentals(&#8216;C####&#8217;)
+&#8216;E&#8217;
+}}}</p>
 <hr class="docutils" />
-<p>[mingusIndex Back to Index]</p>
+<p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
+</div>
+</div>
+</div>
 
 
           </div>
@@ -167,12 +181,31 @@ Reduce any extra accidentals to proper notes.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">mingus.core.scales</a><ul>
+<li><a class="reference internal" href="#attributes">Attributes</a><ul>
+<li><a class="reference internal" href="#keys">keys</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#augment-note">augment(note)</a></li>
+<li><a class="reference internal" href="#determine-notes">determine(notes)</a></li>
+<li><a class="reference internal" href="#diminish-note">diminish(note)</a></li>
+<li><a class="reference internal" href="#get-notes-key">get_notes(key)</a></li>
+<li><a class="reference internal" href="#reduce-accidentals-note">reduce_accidentals(note)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="refMingusCoreChords.html"
-                        title="previous chapter">&lt;no title&gt;</a></p>
+                        title="previous chapter">mingus.core.chords</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="refMingusCoreMeter.html"
-                        title="next chapter">&lt;no title&gt;</a></p>
+                        title="next chapter">mingus.core.meter</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">

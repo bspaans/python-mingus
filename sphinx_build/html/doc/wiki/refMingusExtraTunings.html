@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>&lt;no title&gt; &mdash; mingus 0.5.1 documentation</title>
+    <title>mingus.extra.tunings &mdash; mingus 0.5.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
-    <link rel="next" title="&lt;no title&gt;" href="refMingusExtraTablature.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="refMingusExtraLilypond.html" />
+    <link rel="next" title="mingus.extra.tablature" href="refMingusExtraTablature.html" />
+    <link rel="prev" title="mingus.extra.lilypond" href="refMingusExtraLilypond.html" />
    
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
@@ -39,10 +39,10 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="refMingusExtraTablature.html" title="&lt;no title&gt;"
+          <a href="refMingusExtraTablature.html" title="mingus.extra.tablature"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="refMingusExtraLilypond.html" title="&lt;no title&gt;"
+          <a href="refMingusExtraLilypond.html" title="mingus.extra.lilypond"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
       </ul>
@@ -53,63 +53,72 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>#summary Reference documentation for <cite>mingus.extra.tunings</cite>.</p>
-<hr class="docutils" />
-<p>= mingus.extra.tunings =
-Dozens of standard tunings, a StringTuning class and some functions to help
+  <div class="section" id="mingus-extra-tunings">
+<h1>mingus.extra.tunings<a class="headerlink" href="#mingus-extra-tunings" title="Permalink to this headline">¶</a></h1>
+<p>Dozens of standard tunings, a StringTuning class and some functions to help
 you search through them.</p>
-<hr class="docutils" />
-<p>== Functions ==
-=== <cite>add_tuning(instrument, description, tuning)</cite> ===
-Add a new tuning to the index.</p>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="add-tuning-instrument-description-tuning">
+<h3>add_tuning(instrument, description, tuning)<a class="headerlink" href="#add-tuning-instrument-description-tuning" title="Permalink to this headline">¶</a></h3>
+<p>Add a new tuning to the index.</p>
 <p>The instrument and description parameters should be strings; tuning
 should be a list of strings or a list of lists to denote courses.</p>
-<p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">std_strings</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;E-2&#39;</span><span class="p">,</span> <span class="s">&#39;A-2&#39;</span><span class="p">,</span> <span class="s">&#39;D-3&#39;</span><span class="p">,</span> <span class="s">&#39;G-3&#39;</span><span class="p">,</span> <span class="s">&#39;B-3&#39;</span><span class="p">,</span> <span class="s">&#39;E-4&#39;</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tuning</span><span class="o">.</span><span class="n">add_tuning</span><span class="p">(</span><span class="s">&#39;Guitar&#39;</span><span class="p">,</span> <span class="s">&#39;standard&#39;</span><span class="p">,</span> <span class="n">std_strings</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tw_strings</span> <span class="o">=</span> <span class="p">[[</span><span class="s">&#39;E-2&#39;</span><span class="p">,</span> <span class="s">&#39;E-3&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;A-2&#39;</span><span class="p">,</span> <span class="s">&#39;A-3&#39;</span><span class="p">],</span> <span class="o">...........</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tuning</span><span class="o">.</span><span class="n">add_tuning</span><span class="p">(</span><span class="s">&#39;Guitar&#39;</span><span class="p">,</span> <span class="s">&#39;twelve string&#39;</span><span class="p">,</span> <span class="n">tw_string</span><span class="p">)</span>
-</pre></div>
+<p>Example:
+{{{
+&gt;&gt;&gt; std_strings = [&#8216;E-2&#8217;, &#8216;A-2&#8217;, &#8216;D-3&#8217;, &#8216;G-3&#8217;, &#8216;B-3&#8217;, &#8216;E-4&#8217;]
+&gt;&gt;&gt; tuning.add_tuning(&#8216;Guitar&#8217;, &#8216;standard&#8217;, std_strings)
+&gt;&gt;&gt; tw_strings = [[&#8216;E-2&#8217;, &#8216;E-3&#8217;], [&#8216;A-2&#8217;, &#8216;A-3&#8217;], ...........]
+&gt;&gt;&gt; tuning.add_tuning(&#8216;Guitar&#8217;, &#8216;twelve string&#8217;, tw_string)
+}}}</p>
 </div>
-<p>=== <cite>fingers_needed(fingering)</cite> ===
-Return the number of fingers needed to play the given fingering.</p>
-<p>=== <cite>get_instruments()</cite> ===
-Return a sorted list of instruments that have string tunings defined
+<div class="section" id="fingers-needed-fingering">
+<h3>fingers_needed(fingering)<a class="headerlink" href="#fingers-needed-fingering" title="Permalink to this headline">¶</a></h3>
+<p>Return the number of fingers needed to play the given fingering.</p>
+</div>
+<div class="section" id="get-instruments">
+<h3>get_instruments()<a class="headerlink" href="#get-instruments" title="Permalink to this headline">¶</a></h3>
+<p>Return a sorted list of instruments that have string tunings defined
 for them.</p>
-<dl class="docutils">
-<dt>=== <cite>get_tuning(instrument, description, nr_of_strings, nr_of_courses)</cite> ===</dt>
-<dd><ul class="first last simple">
+</div>
+<div class="section" id="get-tuning-instrument-description-nr-of-strings-nr-of-courses">
+<h3>get_tuning(instrument, description, nr_of_strings, nr_of_courses)<a class="headerlink" href="#get-tuning-instrument-description-nr-of-strings-nr-of-courses" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: nr_of_strings = None, nr_of_courses = None</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Get the first tuning that satisfies the constraints.</p>
 <p>The instrument and description arguments are treated like
 case-insensitive prefixes. So search for &#8216;bass&#8217; is the same is
 &#8216;Bass Guitar&#8217;.</p>
-<p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tunings</span><span class="o">.</span><span class="n">get_tuning</span><span class="p">(</span><span class="s">&#39;guitar&#39;</span><span class="p">,</span> <span class="s">&#39;standard&#39;</span><span class="p">)</span>
-<span class="go">&lt;tunings.StringTuning instance at 0x139ac20&gt;</span>
-</pre></div>
+<p>Example:
+{{{
+&gt;&gt;&gt; tunings.get_tuning(&#8216;guitar&#8217;, &#8216;standard&#8217;)
+&lt;tunings.StringTuning instance at 0x139ac20&gt;
+}}}</p>
 </div>
-<dl class="docutils">
-<dt>=== <cite>get_tunings(instrument, nr_of_strings, nr_of_courses)</cite> ===</dt>
-<dd><ul class="first last simple">
+<div class="section" id="get-tunings-instrument-nr-of-strings-nr-of-courses">
+<h3>get_tunings(instrument, nr_of_strings, nr_of_courses)<a class="headerlink" href="#get-tunings-instrument-nr-of-strings-nr-of-courses" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: instrument = None, nr_of_strings = None, nr_of_courses = None</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Search tunings on instrument, strings, courses or a combination.</p>
 <p>The instrument is actually treated like a case-insensitive prefix. So
 asking for &#8216;bass&#8217; yields the same tunings as &#8216;Bass Guitar&#8217;; the string
 &#8216;ba&#8217; yields all the instruments starting with &#8216;ba&#8217;.</p>
-<p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tunings</span><span class="o">.</span><span class="n">get_tunings</span><span class="p">(</span><span class="n">nr_of_string</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tunings</span><span class="o">.</span><span class="n">get_tunings</span><span class="p">(</span><span class="s">&#39;bass&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
+<p>Example:
+{{{
+&gt;&gt;&gt; tunings.get_tunings(nr_of_string = 4)
+&gt;&gt;&gt; tunings.get_tunings(&#8216;bass&#8217;)
+}}}</p>
 <hr class="docutils" />
-<p>[mingusIndex Back to Index]</p>
+<p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
+</div>
+</div>
+</div>
 
 
           </div>
@@ -117,12 +126,27 @@ asking for &#8216;bass&#8217; yields the same tunings as &#8216;Bass Guitar&#821
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">mingus.extra.tunings</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#add-tuning-instrument-description-tuning">add_tuning(instrument, description, tuning)</a></li>
+<li><a class="reference internal" href="#fingers-needed-fingering">fingers_needed(fingering)</a></li>
+<li><a class="reference internal" href="#get-instruments">get_instruments()</a></li>
+<li><a class="reference internal" href="#get-tuning-instrument-description-nr-of-strings-nr-of-courses">get_tuning(instrument, description, nr_of_strings, nr_of_courses)</a></li>
+<li><a class="reference internal" href="#get-tunings-instrument-nr-of-strings-nr-of-courses">get_tunings(instrument, nr_of_strings, nr_of_courses)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="refMingusExtraLilypond.html"
-                        title="previous chapter">&lt;no title&gt;</a></p>
+                        title="previous chapter">mingus.extra.lilypond</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="refMingusExtraTablature.html"
-                        title="next chapter">&lt;no title&gt;</a></p>
+                        title="next chapter">mingus.extra.tablature</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">

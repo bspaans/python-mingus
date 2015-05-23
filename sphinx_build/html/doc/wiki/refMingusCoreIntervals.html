@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>&lt;no title&gt; &mdash; mingus 0.5.1 documentation</title>
+    <title>mingus.core.intervals &mdash; mingus 0.5.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
-    <link rel="next" title="&lt;no title&gt;" href="refMingusCoreChords.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="refMingusCoreNotes.html" />
+    <link rel="next" title="mingus.core.chords" href="refMingusCoreChords.html" />
+    <link rel="prev" title="mingus.core.notes" href="refMingusCoreNotes.html" />
    
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
@@ -39,10 +39,10 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="refMingusCoreChords.html" title="&lt;no title&gt;"
+          <a href="refMingusCoreChords.html" title="mingus.core.chords"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="refMingusCoreNotes.html" title="&lt;no title&gt;"
+          <a href="refMingusCoreNotes.html" title="mingus.core.notes"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
       </ul>
@@ -53,10 +53,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>#summary Reference documentation for <cite>mingus.core.intervals</cite>.</p>
-<hr class="docutils" />
-<p>= mingus.core.intervals =
-Module to create intervals from notes.</p>
+  <div class="section" id="mingus-core-intervals">
+<h1>mingus.core.intervals<a class="headerlink" href="#mingus-core-intervals" title="Permalink to this headline">¶</a></h1>
+<p>Module to create intervals from notes.</p>
 <p>When you are working in a key (for instance &#8216;F&#8217;), you can use the functions
 second (&#8216;G&#8217;), third (&#8216;A&#8217;), fourth (&#8216;Bb&#8217;), fifth (&#8216;C&#8217;), sixth (&#8216;D&#8217;) and
 seventh (&#8216;E&#8217;) to get to the respective natural intervals of that note.</p>
@@ -65,108 +64,124 @@ functions. For example: minor_third(&#8216;F&#8217;) returns &#8216;Ab&#8217; wh
 returns &#8216;A&#8217;.</p>
 <p>This modules also contains other useful helper functions like measure,
 determine, invert, is_consonant and is_dissonant.</p>
-<hr class="docutils" />
-<p>== Functions ==
-=== <cite>augment_or_diminish_until_the_interval_is_right(note1, note2, interval)</cite> ===
-A helper function for the minor and major functions.</p>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="augment-or-diminish-until-the-interval-is-right-note1-note2-interval">
+<h3>augment_or_diminish_until_the_interval_is_right(note1, note2, interval)<a class="headerlink" href="#augment-or-diminish-until-the-interval-is-right-note1-note2-interval" title="Permalink to this headline">¶</a></h3>
+<p>A helper function for the minor and major functions.</p>
 <p>You should probably not use this directly.</p>
-<p>=== <cite>augmented_unison(note)</cite> ===
-=== <cite>determine(note1, note2, shorthand)</cite> ===</p>
+</div>
+<div class="section" id="augmented-unison-note">
+<h3>augmented_unison(note)<a class="headerlink" href="#augmented-unison-note" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="determine-note1-note2-shorthand">
+<h3>determine(note1, note2, shorthand)<a class="headerlink" href="#determine-note1-note2-shorthand" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><em>Default values</em>: shorthand = False</li>
 </ul>
 </div></blockquote>
 <p>Name the interval between note1 and note2.</p>
-<p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">)</span>
-<span class="go">&#39;major third&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;Eb&#39;</span><span class="p">)</span>
-<span class="go">&#39;minor third&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E#&#39;</span><span class="p">)</span>
-<span class="go">&#39;augmented third&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;Ebb&#39;</span><span class="p">)</span>
-<span class="go">&#39;diminished third&#39;</span>
-</pre></div>
-</div>
+<p>Examples:
+{{{
+&gt;&gt;&gt; determine(&#8216;C&#8217;, &#8216;E&#8217;)
+&#8216;major third&#8217;
+&gt;&gt;&gt; determine(&#8216;C&#8217;, &#8216;Eb&#8217;)
+&#8216;minor third&#8217;
+&gt;&gt;&gt; determine(&#8216;C&#8217;, &#8216;E#&#8217;)
+&#8216;augmented third&#8217;
+&gt;&gt;&gt; determine(&#8216;C&#8217;, &#8216;Ebb&#8217;)
+&#8216;diminished third&#8217;
+}}}</p>
 <p>This works for all intervals. Note that there are corner cases for major
-fifths and fourths:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">)</span>
-<span class="go">&#39;perfect fifth&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;F&#39;</span><span class="p">)</span>
-<span class="go">&#39;perfect fourth&#39;</span>
-</pre></div>
+fifths and fourths:
+{{{
+&gt;&gt;&gt; determine(&#8216;C&#8217;, &#8216;G&#8217;)
+&#8216;perfect fifth&#8217;
+&gt;&gt;&gt; determine(&#8216;C&#8217;, &#8216;F&#8217;)
+&#8216;perfect fourth&#8217;
+}}}</p>
 </div>
-<p>=== <cite>fifth(note, key)</cite> ===
-Take the diatonic fifth of note in key.</p>
+<div class="section" id="fifth-note-key">
+<h3>fifth(note, key)<a class="headerlink" href="#fifth-note-key" title="Permalink to this headline">¶</a></h3>
+<p>Take the diatonic fifth of note in key.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
-<p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fifth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">&#39;B&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">fifth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;F&#39;</span><span class="p">)</span>
-<span class="go">&#39;Bb&#39;</span>
-</pre></div>
+<p>Examples:
+{{{
+&gt;&gt;&gt; fifth(&#8216;E&#8217;, &#8216;C&#8217;)
+&#8216;B&#8217;
+&gt;&gt;&gt; fifth(&#8216;E&#8217;, &#8216;F&#8217;)
+&#8216;Bb&#8217;
+}}}</p>
 </div>
-<p>=== <cite>fourth(note, key)</cite> ===
-Take the diatonic fourth of note in key.</p>
+<div class="section" id="fourth-note-key">
+<h3>fourth(note, key)<a class="headerlink" href="#fourth-note-key" title="Permalink to this headline">¶</a></h3>
+<p>Take the diatonic fourth of note in key.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
-<p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fourth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">&#39;A&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">fourth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">)</span>
-<span class="go">&#39;A#&#39;</span>
-</pre></div>
+<p>Examples:
+{{{
+&gt;&gt;&gt; fourth(&#8216;E&#8217;, &#8216;C&#8217;)
+&#8216;A&#8217;
+&gt;&gt;&gt; fourth(&#8216;E&#8217;, &#8216;B&#8217;)
+&#8216;A#&#8217;
+}}}</p>
 </div>
-<dl class="docutils">
-<dt>=== <cite>from_shorthand(note, interval, up)</cite> ===</dt>
-<dd><ul class="first last simple">
+<div class="section" id="from-shorthand-note-interval-up">
+<h3>from_shorthand(note, interval, up)<a class="headerlink" href="#from-shorthand-note-interval-up" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: up = True</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Return the note on interval up or down.</p>
-<p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;b3&#39;</span><span class="p">)</span>
-<span class="go">&#39;C&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;2&#39;</span><span class="p">)</span>
-<span class="go">&#39;E&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;2&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
-<span class="go">&#39;D&#39;</span>
-</pre></div>
+<p>Examples:
+{{{
+&gt;&gt;&gt; from_shorthand(&#8216;A&#8217;, &#8216;b3&#8217;)
+&#8216;C&#8217;
+&gt;&gt;&gt; from_shorthand(&#8216;D&#8217;, &#8216;2&#8217;)
+&#8216;E&#8217;
+&gt;&gt;&gt; from_shorthand(&#8216;E&#8217;, &#8216;2&#8217;, False)
+&#8216;D&#8217;
+}}}</p>
 </div>
-<dl class="docutils">
-<dt>=== <cite>get_interval(note, interval, key)</cite> ===</dt>
-<dd><ul class="first last simple">
+<div class="section" id="get-interval-note-interval-key">
+<h3>get_interval(note, interval, key)<a class="headerlink" href="#get-interval-note-interval-key" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: key = &#8216;C&#8217;</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Return the note an interval (in half notes) away from the given note.</p>
 <p>This will produce mostly theoretical sound results, but you should use
 the minor and major functions to work around the corner cases.</p>
-<p>=== <cite>interval(key, start_note, interval)</cite> ===
-Return the note found at the interval starting from start_note in the
+</div>
+<div class="section" id="interval-key-start-note-interval">
+<h3>interval(key, start_note, interval)<a class="headerlink" href="#interval-key-start-note-interval" title="Permalink to this headline">¶</a></h3>
+<p>Return the note found at the interval starting from start_note in the
 given key.</p>
 <p>Raise a KeyError exception if start_note is not a valid note.</p>
-<p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">interval</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="go">&#39;E&#39;</span>
-</pre></div>
+<p>Example:
+{{{
+&gt;&gt;&gt; interval(&#8216;C&#8217;, &#8216;D&#8217;, 1)
+&#8216;E&#8217;
+}}}</p>
 </div>
-<p>=== <cite>invert(interval)</cite> ===
-Invert an interval.</p>
-<p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">invert</span><span class="p">([</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">])</span>
-<span class="go">[&#39;E&#39;, &#39;C&#39;]</span>
-</pre></div>
+<div class="section" id="invert-interval">
+<h3>invert(interval)<a class="headerlink" href="#invert-interval" title="Permalink to this headline">¶</a></h3>
+<p>Invert an interval.</p>
+<p>Example:
+{{{
+&gt;&gt;&gt; invert([&#8216;C&#8217;, &#8216;E&#8217;])
+[&#8216;E&#8217;, &#8216;C&#8217;]
+}}}</p>
 </div>
-<dl class="docutils">
-<dt>=== <cite>is_consonant(note1, note2, include_fourths)</cite> ===</dt>
-<dd><ul class="first last simple">
+<div class="section" id="is-consonant-note1-note2-include-fourths">
+<h3>is_consonant(note1, note2, include_fourths)<a class="headerlink" href="#is-consonant-note1-note2-include-fourths" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: include_fourths = True</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Return True if the interval is consonant.</p>
 <p>A consonance is a harmony, chord, or interval considered stable, as
 opposed to a dissonance.</p>
@@ -175,118 +190,168 @@ basically means that it checks whether the interval is (or sounds like)
 a unison, third, sixth, perfect fourth or perfect fifth.</p>
 <p>In classical music the fourth is considered dissonant when used
 contrapuntal, which is why you can choose to exclude it.</p>
-<dl class="docutils">
-<dt>=== <cite>is_dissonant(note1, note2, include_fourths)</cite> ===</dt>
-<dd><ul class="first last simple">
+</div>
+<div class="section" id="is-dissonant-note1-note2-include-fourths">
+<h3>is_dissonant(note1, note2, include_fourths)<a class="headerlink" href="#is-dissonant-note1-note2-include-fourths" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: include_fourths = False</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Return True if the insterval is dissonant.</p>
 <p>This function tests whether an interval is considered unstable,
 dissonant.</p>
 <p>In the default case perfect fourths are considered consonant, but this
 can be changed by setting exclude_fourths to True.</p>
-<p>=== <cite>is_imperfect_consonant(note1, note2)</cite> ===
-Return True id the interval is an imperfect consonant one.</p>
+</div>
+<div class="section" id="is-imperfect-consonant-note1-note2">
+<h3>is_imperfect_consonant(note1, note2)<a class="headerlink" href="#is-imperfect-consonant-note1-note2" title="Permalink to this headline">¶</a></h3>
+<p>Return True id the interval is an imperfect consonant one.</p>
 <p>Imperfect consonances are either minor or major thirds or minor or major
 sixths.</p>
-<dl class="docutils">
-<dt>=== <cite>is_perfect_consonant(note1, note2, include_fourths)</cite> ===</dt>
-<dd><ul class="first last simple">
+</div>
+<div class="section" id="is-perfect-consonant-note1-note2-include-fourths">
+<h3>is_perfect_consonant(note1, note2, include_fourths)<a class="headerlink" href="#is-perfect-consonant-note1-note2-include-fourths" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: include_fourths = True</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Return True if the interval is a perfect consonant one.</p>
 <p>Perfect consonances are either unisons, perfect fourths or fifths, or
 octaves (which is the same as a unison in this model).</p>
 <p>Perfect fourths are usually included as well, but are considered
 dissonant when used contrapuntal, which is why you can exclude them.</p>
-<p>=== <cite>major_fifth(note)</cite> ===
-=== <cite>major_fourth(note)</cite> ===
-=== <cite>major_second(note)</cite> ===
-=== <cite>major_seventh(note)</cite> ===
-=== <cite>major_sixth(note)</cite> ===
-=== <cite>major_third(note)</cite> ===
-=== <cite>major_unison(note)</cite> ===
-=== <cite>measure(note1, note2)</cite> ===
-Return an integer in the range of 0-11, determining the half note steps
+</div>
+<div class="section" id="major-fifth-note">
+<h3>major_fifth(note)<a class="headerlink" href="#major-fifth-note" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="major-fourth-note">
+<h3>major_fourth(note)<a class="headerlink" href="#major-fourth-note" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="major-second-note">
+<h3>major_second(note)<a class="headerlink" href="#major-second-note" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="major-seventh-note">
+<h3>major_seventh(note)<a class="headerlink" href="#major-seventh-note" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="major-sixth-note">
+<h3>major_sixth(note)<a class="headerlink" href="#major-sixth-note" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="major-third-note">
+<h3>major_third(note)<a class="headerlink" href="#major-third-note" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="major-unison-note">
+<h3>major_unison(note)<a class="headerlink" href="#major-unison-note" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="measure-note1-note2">
+<h3>measure(note1, note2)<a class="headerlink" href="#measure-note1-note2" title="Permalink to this headline">¶</a></h3>
+<p>Return an integer in the range of 0-11, determining the half note steps
 between note1 and note2.</p>
-<p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">measure</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">)</span>
-<span class="go">2</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">measure</span><span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">10</span>
-</pre></div>
+<p>Examples:
+{{{
+&gt;&gt;&gt; measure(&#8216;C&#8217;, &#8216;D&#8217;)
+2
+&gt;&gt;&gt; measure(&#8216;D&#8217;, &#8216;C&#8217;)
+10
+}}}</p>
 </div>
-<p>=== <cite>minor_fifth(note)</cite> ===
-=== <cite>minor_fourth(note)</cite> ===
-=== <cite>minor_second(note)</cite> ===
-=== <cite>minor_seventh(note)</cite> ===
-=== <cite>minor_sixth(note)</cite> ===
-=== <cite>minor_third(note)</cite> ===
-=== <cite>minor_unison(note)</cite> ===
-=== <cite>perfect_fifth(note)</cite> ===
-=== <cite>perfect_fourth(note)</cite> ===
-=== <cite>second(note, key)</cite> ===
-Take the diatonic second of note in key.</p>
+<div class="section" id="minor-fifth-note">
+<h3>minor_fifth(note)<a class="headerlink" href="#minor-fifth-note" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="minor-fourth-note">
+<h3>minor_fourth(note)<a class="headerlink" href="#minor-fourth-note" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="minor-second-note">
+<h3>minor_second(note)<a class="headerlink" href="#minor-second-note" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="minor-seventh-note">
+<h3>minor_seventh(note)<a class="headerlink" href="#minor-seventh-note" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="minor-sixth-note">
+<h3>minor_sixth(note)<a class="headerlink" href="#minor-sixth-note" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="minor-third-note">
+<h3>minor_third(note)<a class="headerlink" href="#minor-third-note" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="minor-unison-note">
+<h3>minor_unison(note)<a class="headerlink" href="#minor-unison-note" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="perfect-fifth-note">
+<h3>perfect_fifth(note)<a class="headerlink" href="#perfect-fifth-note" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="perfect-fourth-note">
+<h3>perfect_fourth(note)<a class="headerlink" href="#perfect-fourth-note" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="second-note-key">
+<h3>second(note, key)<a class="headerlink" href="#second-note-key" title="Permalink to this headline">¶</a></h3>
+<p>Take the diatonic second of note in key.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
-<p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">second</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">&#39;F&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">second</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">)</span>
-<span class="go">&#39;F#&#39;</span>
-</pre></div>
+<p>Examples:
+{{{
+&gt;&gt;&gt; second(&#8216;E&#8217;, &#8216;C&#8217;)
+&#8216;F&#8217;
+&gt;&gt;&gt; second(&#8216;E&#8217;, &#8216;D&#8217;)
+&#8216;F#&#8217;
+}}}</p>
 </div>
-<p>=== <cite>seventh(note, key)</cite> ===
-Take the diatonic seventh of note in key.</p>
+<div class="section" id="seventh-note-key">
+<h3>seventh(note, key)<a class="headerlink" href="#seventh-note-key" title="Permalink to this headline">¶</a></h3>
+<p>Take the diatonic seventh of note in key.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
-<p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">seventh</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">&#39;D&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">seventh</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">)</span>
-<span class="go">&#39;D#&#39;</span>
-</pre></div>
+<p>Examples:
+{{{
+&gt;&gt;&gt; seventh(&#8216;E&#8217;, &#8216;C&#8217;)
+&#8216;D&#8217;
+&gt;&gt;&gt; seventh(&#8216;E&#8217;, &#8216;B&#8217;)
+&#8216;D#&#8217;
+}}}</p>
 </div>
-<p>=== <cite>sixth(note, key)</cite> ===
-Take the diatonic sixth of note in key.</p>
+<div class="section" id="sixth-note-key">
+<h3>sixth(note, key)<a class="headerlink" href="#sixth-note-key" title="Permalink to this headline">¶</a></h3>
+<p>Take the diatonic sixth of note in key.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
-<p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sixth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">&#39;C&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">sixth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">)</span>
-<span class="go">&#39;C#&#39;</span>
-</pre></div>
+<p>Examples:
+{{{
+&gt;&gt;&gt; sixth(&#8216;E&#8217;, &#8216;C&#8217;)
+&#8216;C&#8217;
+&gt;&gt;&gt; sixth(&#8216;E&#8217;, &#8216;B&#8217;)
+&#8216;C#&#8217;
+}}}</p>
 </div>
-<p>=== <cite>third(note, key)</cite> ===
-Take the diatonic third of note in key.</p>
+<div class="section" id="third-note-key">
+<h3>third(note, key)<a class="headerlink" href="#third-note-key" title="Permalink to this headline">¶</a></h3>
+<p>Take the diatonic third of note in key.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
-<p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">third</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">&#39;G&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">third</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">)</span>
-<span class="go">&#39;G#&#39;</span>
-</pre></div>
+<p>Examples:
+{{{
+&gt;&gt;&gt; third(&#8216;E&#8217;, &#8216;C&#8217;)
+&#8216;G&#8217;
+&gt;&gt;&gt; third(&#8216;E&#8217;, &#8216;E&#8217;)
+&#8216;G#&#8217;
+}}}</p>
 </div>
-<dl class="docutils">
-<dt>=== <cite>unison(note, key)</cite> ===</dt>
-<dd><ul class="first last simple">
+<div class="section" id="unison-note-key">
+<h3>unison(note, key)<a class="headerlink" href="#unison-note-key" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: key = None</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Return the unison of note.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>The key is not at all important, but is here for consistency reasons
 only.</p>
-<p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">unison</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">&#39;C&#39;</span>
-</pre></div>
-</div>
+<p>Example:
+{{{
+&gt;&gt;&gt; unison(&#8216;C&#8217;)
+&#8216;C&#8217;
+}}}</p>
 <hr class="docutils" />
-<p>[mingusIndex Back to Index]</p>
+<p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
+</div>
+</div>
+</div>
 
 
           </div>
@@ -294,12 +359,57 @@ only.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">mingus.core.intervals</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#augment-or-diminish-until-the-interval-is-right-note1-note2-interval">augment_or_diminish_until_the_interval_is_right(note1, note2, interval)</a></li>
+<li><a class="reference internal" href="#augmented-unison-note">augmented_unison(note)</a></li>
+<li><a class="reference internal" href="#determine-note1-note2-shorthand">determine(note1, note2, shorthand)</a></li>
+<li><a class="reference internal" href="#fifth-note-key">fifth(note, key)</a></li>
+<li><a class="reference internal" href="#fourth-note-key">fourth(note, key)</a></li>
+<li><a class="reference internal" href="#from-shorthand-note-interval-up">from_shorthand(note, interval, up)</a></li>
+<li><a class="reference internal" href="#get-interval-note-interval-key">get_interval(note, interval, key)</a></li>
+<li><a class="reference internal" href="#interval-key-start-note-interval">interval(key, start_note, interval)</a></li>
+<li><a class="reference internal" href="#invert-interval">invert(interval)</a></li>
+<li><a class="reference internal" href="#is-consonant-note1-note2-include-fourths">is_consonant(note1, note2, include_fourths)</a></li>
+<li><a class="reference internal" href="#is-dissonant-note1-note2-include-fourths">is_dissonant(note1, note2, include_fourths)</a></li>
+<li><a class="reference internal" href="#is-imperfect-consonant-note1-note2">is_imperfect_consonant(note1, note2)</a></li>
+<li><a class="reference internal" href="#is-perfect-consonant-note1-note2-include-fourths">is_perfect_consonant(note1, note2, include_fourths)</a></li>
+<li><a class="reference internal" href="#major-fifth-note">major_fifth(note)</a></li>
+<li><a class="reference internal" href="#major-fourth-note">major_fourth(note)</a></li>
+<li><a class="reference internal" href="#major-second-note">major_second(note)</a></li>
+<li><a class="reference internal" href="#major-seventh-note">major_seventh(note)</a></li>
+<li><a class="reference internal" href="#major-sixth-note">major_sixth(note)</a></li>
+<li><a class="reference internal" href="#major-third-note">major_third(note)</a></li>
+<li><a class="reference internal" href="#major-unison-note">major_unison(note)</a></li>
+<li><a class="reference internal" href="#measure-note1-note2">measure(note1, note2)</a></li>
+<li><a class="reference internal" href="#minor-fifth-note">minor_fifth(note)</a></li>
+<li><a class="reference internal" href="#minor-fourth-note">minor_fourth(note)</a></li>
+<li><a class="reference internal" href="#minor-second-note">minor_second(note)</a></li>
+<li><a class="reference internal" href="#minor-seventh-note">minor_seventh(note)</a></li>
+<li><a class="reference internal" href="#minor-sixth-note">minor_sixth(note)</a></li>
+<li><a class="reference internal" href="#minor-third-note">minor_third(note)</a></li>
+<li><a class="reference internal" href="#minor-unison-note">minor_unison(note)</a></li>
+<li><a class="reference internal" href="#perfect-fifth-note">perfect_fifth(note)</a></li>
+<li><a class="reference internal" href="#perfect-fourth-note">perfect_fourth(note)</a></li>
+<li><a class="reference internal" href="#second-note-key">second(note, key)</a></li>
+<li><a class="reference internal" href="#seventh-note-key">seventh(note, key)</a></li>
+<li><a class="reference internal" href="#sixth-note-key">sixth(note, key)</a></li>
+<li><a class="reference internal" href="#third-note-key">third(note, key)</a></li>
+<li><a class="reference internal" href="#unison-note-key">unison(note, key)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="refMingusCoreNotes.html"
-                        title="previous chapter">&lt;no title&gt;</a></p>
+                        title="previous chapter">mingus.core.notes</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="refMingusCoreChords.html"
-                        title="next chapter">&lt;no title&gt;</a></p>
+                        title="next chapter">mingus.core.chords</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">

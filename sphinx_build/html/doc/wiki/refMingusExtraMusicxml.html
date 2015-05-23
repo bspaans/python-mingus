@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>&lt;no title&gt; &mdash; mingus 0.5.1 documentation</title>
+    <title>mingus.extra.musicxml &mdash; mingus 0.5.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -45,59 +45,83 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>#summary Reference documentation for <cite>mingus.extra.musicxml</cite>.</p>
-<hr class="docutils" />
-<p>= mingus.extra.musicxml =
-Convert mingus.containers to MusicXML files.</p>
+  <div class="section" id="mingus-extra-musicxml">
+<h1>mingus.extra.musicxml<a class="headerlink" href="#mingus-extra-musicxml" title="Permalink to this headline">¶</a></h1>
+<p>Convert mingus.containers to MusicXML files.</p>
 <p>The MusicXML format represents common Western musical notation from the 17th
 century onwards. It lets you distribute interactive sheet music online, and
 use sheet music files with a wide variety of musical applications.</p>
 <p>The MusicXML format is open for use by anyone under a royalty-free license,
 and is supported by over 100 applications.</p>
 <p><a class="reference external" href="http://www.musicxml.org/xml.html">http://www.musicxml.org/xml.html</a></p>
-<hr class="docutils" />
-<p>== Attributes ==
-=== <cite>major_keys</cite> ===</p>
+<div class="section" id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="major-keys">
+<h3>major_keys<a class="headerlink" href="#major-keys" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><em>Type</em>: list</li>
 <li><em>Value</em>: <cite>[&#8216;Cb&#8217;, &#8216;Gb&#8217;, &#8216;Db&#8217;, &#8216;Ab&#8217;, &#8216;Eb&#8217;, &#8216;Bb&#8217;, &#8216;F&#8217;, &#8216;C&#8217;, &#8216;G&#8217;, &#8216;D&#8217;, &#8216;A&#8217;, &#8216;E&#8217;, &#8216;B&#8217;, &#8216;F#&#8217;, &#8216;C#&#8217;]</cite></li>
 </ul>
 </div></blockquote>
-<dl class="docutils">
-<dt>=== <cite>minor_keys</cite> ===</dt>
-<dd><ul class="first last simple">
+</div>
+<div class="section" id="minor-keys">
+<h3>minor_keys<a class="headerlink" href="#minor-keys" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Type</em>: list</li>
 <li><em>Value</em>: <cite>[&#8216;ab&#8217;, &#8216;eb&#8217;, &#8216;bb&#8217;, &#8216;f&#8217;, &#8216;c&#8217;, &#8216;g&#8217;, &#8216;d&#8217;, &#8216;a&#8217;, &#8216;e&#8217;, &#8216;b&#8217;, &#8216;f#&#8217;, &#8216;c#&#8217;, &#8216;g#&#8217;, &#8216;d#&#8217;, &#8216;a#&#8217;]</cite></li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
+</div>
+</div>
 <hr class="docutils" />
-<p>== Functions ==
-=== <cite>_bar2musicxml(bar)</cite> ===
-=== <cite>_composition2musicxml(comp)</cite> ===
-=== <cite>_gcd(a, b, terms)</cite> ===</p>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="bar2musicxml-bar">
+<h3>_bar2musicxml(bar)<a class="headerlink" href="#bar2musicxml-bar" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="composition2musicxml-comp">
+<h3>_composition2musicxml(comp)<a class="headerlink" href="#composition2musicxml-comp" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="gcd-a-b-terms">
+<h3>_gcd(a, b, terms)<a class="headerlink" href="#gcd-a-b-terms" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><em>Default values</em>: a = None, b = None, terms = None</li>
 </ul>
 </div></blockquote>
 <p>Return greatest common divisor using Euclid&#8217;s Algorithm.</p>
-<dl class="docutils">
-<dt>=== <cite>_lcm(a, b, terms)</cite> ===</dt>
-<dd><ul class="first last simple">
+</div>
+<div class="section" id="lcm-a-b-terms">
+<h3>_lcm(a, b, terms)<a class="headerlink" href="#lcm-a-b-terms" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: a = None, b = None, terms = None</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Return lowest common multiple.</p>
-<p>=== <cite>_note2musicxml(note)</cite> ===
-=== <cite>_track2musicxml(track)</cite> ===
-=== <cite>from_Bar(bar)</cite> ===
-=== <cite>from_Composition(comp)</cite> ===
-=== <cite>from_Note(note)</cite> ===
-=== <cite>from_Track(track)</cite> ===
-=== <cite>write_Composition(composition, filename, zip)</cite> ===</p>
+</div>
+<div class="section" id="note2musicxml-note">
+<h3>_note2musicxml(note)<a class="headerlink" href="#note2musicxml-note" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="track2musicxml-track">
+<h3>_track2musicxml(track)<a class="headerlink" href="#track2musicxml-track" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="from-bar-bar">
+<h3>from_Bar(bar)<a class="headerlink" href="#from-bar-bar" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="from-composition-comp">
+<h3>from_Composition(comp)<a class="headerlink" href="#from-composition-comp" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="from-note-note">
+<h3>from_Note(note)<a class="headerlink" href="#from-note-note" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="from-track-track">
+<h3>from_Track(track)<a class="headerlink" href="#from-track-track" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="write-composition-composition-filename-zip">
+<h3>write_Composition(composition, filename, zip)<a class="headerlink" href="#write-composition-composition-filename-zip" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><em>Default values</em>: zip = False</li>
@@ -105,7 +129,10 @@ and is supported by over 100 applications.</p>
 </div></blockquote>
 <p>Create an XML file (or MXL if compressed) for a given composition.</p>
 <hr class="docutils" />
-<p>[mingusIndex Back to Index]</p>
+<p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
+</div>
+</div>
+</div>
 
 
           </div>
@@ -113,6 +140,32 @@ and is supported by over 100 applications.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">mingus.extra.musicxml</a><ul>
+<li><a class="reference internal" href="#attributes">Attributes</a><ul>
+<li><a class="reference internal" href="#major-keys">major_keys</a></li>
+<li><a class="reference internal" href="#minor-keys">minor_keys</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#bar2musicxml-bar">_bar2musicxml(bar)</a></li>
+<li><a class="reference internal" href="#composition2musicxml-comp">_composition2musicxml(comp)</a></li>
+<li><a class="reference internal" href="#gcd-a-b-terms">_gcd(a, b, terms)</a></li>
+<li><a class="reference internal" href="#lcm-a-b-terms">_lcm(a, b, terms)</a></li>
+<li><a class="reference internal" href="#note2musicxml-note">_note2musicxml(note)</a></li>
+<li><a class="reference internal" href="#track2musicxml-track">_track2musicxml(track)</a></li>
+<li><a class="reference internal" href="#from-bar-bar">from_Bar(bar)</a></li>
+<li><a class="reference internal" href="#from-composition-comp">from_Composition(comp)</a></li>
+<li><a class="reference internal" href="#from-note-note">from_Note(note)</a></li>
+<li><a class="reference internal" href="#from-track-track">from_Track(track)</a></li>
+<li><a class="reference internal" href="#write-composition-composition-filename-zip">write_Composition(composition, filename, zip)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">

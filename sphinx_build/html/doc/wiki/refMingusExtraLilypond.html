@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>&lt;no title&gt; &mdash; mingus 0.5.1 documentation</title>
+    <title>mingus.extra.lilypond &mdash; mingus 0.5.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
-    <link rel="next" title="&lt;no title&gt;" href="refMingusExtraTunings.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="refMingusMidiFluidsynth.html" />
+    <link rel="next" title="mingus.extra.tunings" href="refMingusExtraTunings.html" />
+    <link rel="prev" title="mingus.midi.fluidsynth" href="refMingusMidiFluidsynth.html" />
    
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
@@ -39,10 +39,10 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="refMingusExtraTunings.html" title="&lt;no title&gt;"
+          <a href="refMingusExtraTunings.html" title="mingus.extra.tunings"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="refMingusMidiFluidsynth.html" title="&lt;no title&gt;"
+          <a href="refMingusMidiFluidsynth.html" title="mingus.midi.fluidsynth"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
       </ul>
@@ -53,15 +53,15 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>#summary Reference documentation for <cite>mingus.extra.lilypond</cite>.</p>
-<hr class="docutils" />
-<p>= mingus.extra.lilypond =
-Functions to generate files in the LilyPond format.</p>
+  <div class="section" id="mingus-extra-lilypond">
+<h1>mingus.extra.lilypond<a class="headerlink" href="#mingus-extra-lilypond" title="Permalink to this headline">¶</a></h1>
+<p>Functions to generate files in the LilyPond format.</p>
 <p>This allows you to create sheet music from some of the objects in
 mingus.containers.</p>
-<hr class="docutils" />
-<p>== Functions ==
-=== <cite>from_Bar(bar, showkey, showtime)</cite> ===</p>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="from-bar-bar-showkey-showtime">
+<h3>from_Bar(bar, showkey, showtime)<a class="headerlink" href="#from-bar-bar-showkey-showtime" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><em>Default values</em>: showkey = True, showtime = True</li>
@@ -70,46 +70,63 @@ mingus.containers.</p>
 <p>Get a Bar object and return the LilyPond equivalent in a string.</p>
 <p>The showkey and showtime parameters can be set to determine whether the
 key and the time should be shown.</p>
-<p>=== <cite>from_Composition(composition)</cite> ===
-Return the LilyPond equivalent of a Composition in a string.</p>
-<dl class="docutils">
-<dt>=== <cite>from_Note(note, process_octaves, standalone)</cite> ===</dt>
-<dd><ul class="first last simple">
+</div>
+<div class="section" id="from-composition-composition">
+<h3>from_Composition(composition)<a class="headerlink" href="#from-composition-composition" title="Permalink to this headline">¶</a></h3>
+<p>Return the LilyPond equivalent of a Composition in a string.</p>
+</div>
+<div class="section" id="from-note-note-process-octaves-standalone">
+<h3>from_Note(note, process_octaves, standalone)<a class="headerlink" href="#from-note-note-process-octaves-standalone" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: process_octaves = True, standalone = True</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Get a Note object and return the LilyPond equivalent in a string.</p>
 <p>If process_octaves is set to False, all data regarding octaves will be
 ignored. If standalone is True, the result can be used by functions
 like to_png and will produce a valid output. The argument is mostly here
 to let from_NoteContainer make use of this function.</p>
-<dl class="docutils">
-<dt>=== <cite>from_NoteContainer(nc, duration, standalone)</cite> ===</dt>
-<dd><ul class="first last simple">
+</div>
+<div class="section" id="from-notecontainer-nc-duration-standalone">
+<h3>from_NoteContainer(nc, duration, standalone)<a class="headerlink" href="#from-notecontainer-nc-duration-standalone" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: duration = None, standalone = True</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Get a NoteContainer object and return the LilyPond equivalent in a
 string.</p>
 <p>The second argument determining the duration of the NoteContainer is
 optional. When the standalone argument is True the result of this
 function can be used directly by functions like to_png. It is mostly
 here to be used by from_Bar.</p>
-<p>=== <cite>from_Suite(suite)</cite> ===
-=== <cite>from_Track(track)</cite> ===
-Process a Track object and return the LilyPond equivalent in a string.</p>
-<p>=== <cite>save_string_and_execute_LilyPond(ly_string, filename, command)</cite> ===
-A helper function for to_png and to_pdf. Should not be used directly.</p>
-<p>=== <cite>to_pdf(ly_string, filename)</cite> ===
-Save a string in LilyPond format to a PDF.</p>
+</div>
+<div class="section" id="from-suite-suite">
+<h3>from_Suite(suite)<a class="headerlink" href="#from-suite-suite" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="from-track-track">
+<h3>from_Track(track)<a class="headerlink" href="#from-track-track" title="Permalink to this headline">¶</a></h3>
+<p>Process a Track object and return the LilyPond equivalent in a string.</p>
+</div>
+<div class="section" id="save-string-and-execute-lilypond-ly-string-filename-command">
+<h3>save_string_and_execute_LilyPond(ly_string, filename, command)<a class="headerlink" href="#save-string-and-execute-lilypond-ly-string-filename-command" title="Permalink to this headline">¶</a></h3>
+<p>A helper function for to_png and to_pdf. Should not be used directly.</p>
+</div>
+<div class="section" id="to-pdf-ly-string-filename">
+<h3>to_pdf(ly_string, filename)<a class="headerlink" href="#to-pdf-ly-string-filename" title="Permalink to this headline">¶</a></h3>
+<p>Save a string in LilyPond format to a PDF.</p>
 <p>LilyPond in the $PATH is needed.</p>
-<p>=== <cite>to_png(ly_string, filename)</cite> ===
-Save a string in LilyPond format to a PNG.</p>
+</div>
+<div class="section" id="to-png-ly-string-filename">
+<h3>to_png(ly_string, filename)<a class="headerlink" href="#to-png-ly-string-filename" title="Permalink to this headline">¶</a></h3>
+<p>Save a string in LilyPond format to a PNG.</p>
 <p>LilyPond in the $PATH is needed.</p>
 <hr class="docutils" />
-<p>[mingusIndex Back to Index]</p>
+<p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
+</div>
+</div>
+</div>
 
 
           </div>
@@ -117,12 +134,31 @@ Save a string in LilyPond format to a PNG.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">mingus.extra.lilypond</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#from-bar-bar-showkey-showtime">from_Bar(bar, showkey, showtime)</a></li>
+<li><a class="reference internal" href="#from-composition-composition">from_Composition(composition)</a></li>
+<li><a class="reference internal" href="#from-note-note-process-octaves-standalone">from_Note(note, process_octaves, standalone)</a></li>
+<li><a class="reference internal" href="#from-notecontainer-nc-duration-standalone">from_NoteContainer(nc, duration, standalone)</a></li>
+<li><a class="reference internal" href="#from-suite-suite">from_Suite(suite)</a></li>
+<li><a class="reference internal" href="#from-track-track">from_Track(track)</a></li>
+<li><a class="reference internal" href="#save-string-and-execute-lilypond-ly-string-filename-command">save_string_and_execute_LilyPond(ly_string, filename, command)</a></li>
+<li><a class="reference internal" href="#to-pdf-ly-string-filename">to_pdf(ly_string, filename)</a></li>
+<li><a class="reference internal" href="#to-png-ly-string-filename">to_png(ly_string, filename)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="refMingusMidiFluidsynth.html"
-                        title="previous chapter">&lt;no title&gt;</a></p>
+                        title="previous chapter">mingus.midi.fluidsynth</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="refMingusExtraTunings.html"
-                        title="next chapter">&lt;no title&gt;</a></p>
+                        title="next chapter">mingus.extra.tunings</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">

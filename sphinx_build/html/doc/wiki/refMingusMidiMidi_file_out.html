@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>&lt;no title&gt; &mdash; mingus 0.5.1 documentation</title>
+    <title>mingus.midi.midi_file_out &mdash; mingus 0.5.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -45,14 +45,14 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>#summary Reference documentation for <cite>mingus.midi.midi_file_out</cite>.</p>
-<hr class="docutils" />
-<p>= mingus.midi.midi_file_out =
-Functions that can generate MIDI files from the objects in
+  <div class="section" id="mingus-midi-midi-file-out">
+<h1>mingus.midi.midi_file_out<a class="headerlink" href="#mingus-midi-midi-file-out" title="Permalink to this headline">¶</a></h1>
+<p>Functions that can generate MIDI files from the objects in
 mingus.containers.</p>
-<hr class="docutils" />
-<p>== Functions ==
-=== <cite>write_Bar(file, bar, bpm, repeat, verbose)</cite> ===</p>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="write-bar-file-bar-bpm-repeat-verbose">
+<h3>write_Bar(file, bar, bpm, repeat, verbose)<a class="headerlink" href="#write-bar-file-bar-bpm-repeat-verbose" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><em>Default values</em>: bpm = 120, repeat = 0, verbose = False</li>
@@ -60,46 +60,53 @@ mingus.containers.</p>
 </div></blockquote>
 <p>Write a mingus.Bar to a MIDI file.</p>
 <p>Both the key and the meter are written to the file as well.</p>
-<dl class="docutils">
-<dt>=== <cite>write_Composition(file, composition, bpm, repeat, verbose)</cite> ===</dt>
-<dd><ul class="first last simple">
+</div>
+<div class="section" id="write-composition-file-composition-bpm-repeat-verbose">
+<h3>write_Composition(file, composition, bpm, repeat, verbose)<a class="headerlink" href="#write-composition-file-composition-bpm-repeat-verbose" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: bpm = 120, repeat = 0, verbose = False</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Write a mingus.Composition to a MIDI file.</p>
-<dl class="docutils">
-<dt>=== <cite>write_Note(file, note, bpm, repeat, verbose)</cite> ===</dt>
-<dd><ul class="first last simple">
+</div>
+<div class="section" id="write-note-file-note-bpm-repeat-verbose">
+<h3>write_Note(file, note, bpm, repeat, verbose)<a class="headerlink" href="#write-note-file-note-bpm-repeat-verbose" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: bpm = 120, repeat = 0, verbose = False</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Expect a Note object from mingus.containers and save it into a MIDI
 file, specified in file.</p>
 <p>You can set the velocity and channel in Note.velocity and Note.channel.</p>
-<dl class="docutils">
-<dt>=== <cite>write_NoteContainer(file, notecontainer, bpm, repeat, verbose)</cite> ===</dt>
-<dd><ul class="first last simple">
+</div>
+<div class="section" id="write-notecontainer-file-notecontainer-bpm-repeat-verbose">
+<h3>write_NoteContainer(file, notecontainer, bpm, repeat, verbose)<a class="headerlink" href="#write-notecontainer-file-notecontainer-bpm-repeat-verbose" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: bpm = 120, repeat = 0, verbose = False</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Write a mingus.NoteContainer to a MIDI file.</p>
-<dl class="docutils">
-<dt>=== <cite>write_Track(file, track, bpm, repeat, verbose)</cite> ===</dt>
-<dd><ul class="first last simple">
+</div>
+<div class="section" id="write-track-file-track-bpm-repeat-verbose">
+<h3>write_Track(file, track, bpm, repeat, verbose)<a class="headerlink" href="#write-track-file-track-bpm-repeat-verbose" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><em>Default values</em>: bpm = 120, repeat = 0, verbose = False</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Write a mingus.Track to a MIDI file.</p>
 <p>Write the name to the file and set the instrument if the instrument has
 the attribute instrument_nr, which represents the MIDI instrument
 number. The class MidiInstrument in mingus.containers.Instrument has
 this attribute by default.</p>
 <hr class="docutils" />
-<p>[mingusIndex Back to Index]</p>
+<p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
+</div>
+</div>
+</div>
 
 
           </div>
@@ -107,6 +114,21 @@ this attribute by default.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">mingus.midi.midi_file_out</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#write-bar-file-bar-bpm-repeat-verbose">write_Bar(file, bar, bpm, repeat, verbose)</a></li>
+<li><a class="reference internal" href="#write-composition-file-composition-bpm-repeat-verbose">write_Composition(file, composition, bpm, repeat, verbose)</a></li>
+<li><a class="reference internal" href="#write-note-file-note-bpm-repeat-verbose">write_Note(file, note, bpm, repeat, verbose)</a></li>
+<li><a class="reference internal" href="#write-notecontainer-file-notecontainer-bpm-repeat-verbose">write_NoteContainer(file, notecontainer, bpm, repeat, verbose)</a></li>
+<li><a class="reference internal" href="#write-track-file-track-bpm-repeat-verbose">write_Track(file, track, bpm, repeat, verbose)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
