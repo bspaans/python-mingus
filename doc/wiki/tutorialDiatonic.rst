@@ -92,4 +92,4 @@ You can learn more about `mingus.core.diatonic <refMingusCoreDiatonic>`_ in the 
   * `Tutorial 1 - Working with Notes <tutorialNote>`_
   * Tutorial 2 - Keys and the Diatonic Scale
   * `Tutorial 3 - Intervals <tutorialIntervals>`_
-  * `Back to Index </index>`_
+  * :doc:`Back to Index </index>`

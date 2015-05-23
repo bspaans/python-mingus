@@ -123,4 +123,4 @@ You can learn more about `mingus.core.scales in the reference section <refMingus
   * `Tutorial 4 - Triads, Sevenths and Extended Chords <tutorialChords>`_
   * Tutorial 5 - Scales
   * `Tutorial 6 - Note Value and Meter <tutorialMeter>`_
-  * `Back to Index </index>`_
+  * :doc:`Back to Index </index>`

@@ -120,4 +120,4 @@ You can learn more about `mingus.containers.Track in the reference section <refM
   * `Tutorial 4 - Instruments <tutorialInstrumentModule>`_
   * Tutorial 5 - Tracks
   * `Tutorial 6 - Compositions <tutorialCompositionModule>`_
-  * `Back to Index </index>`_
+  * :doc:`Back to Index </index>`

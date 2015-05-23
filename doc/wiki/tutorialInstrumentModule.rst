@@ -104,4 +104,4 @@ You can learn more about `mingus.containers.Instrument <refMingusContainersInstr
   * `Tutorial 3 - Bars <tutorialBarModule>`_
   * Tutorial 4 - Instruments
   * `Tutorial 5 - Tracks <tutorialTrackModule>`_
-  * `Back to Index </index>`_
+  * :doc:`Back to Index </index>`

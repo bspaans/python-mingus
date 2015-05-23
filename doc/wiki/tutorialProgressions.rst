@@ -102,4 +102,4 @@ You can learn more about `mingus.core.progressions <refMingusCoreProgressions>`_
   * `Tutorial 6 - Note Value and Meter <tutorialMeter>`_
   * Tutorial 7 - Progressions
   * `Tutorial 8 - Working the Core <tutorialCore>`_
-  * `Back to Index </index>`_
+  * :doc:`Back to Index </index>`

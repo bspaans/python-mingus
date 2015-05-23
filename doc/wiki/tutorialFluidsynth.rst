@@ -123,4 +123,4 @@ Panning, Modulation and Other Control Change Commands
 You can learn more about `mingus.midi.fluidsynth <refMingusMidiFluidsynth>`_ in the reference section.
 
   * `Saving Containers as Midi File <tutorialMidiFileOut>`_
-  * `Back to Index </index>`_
+  * :doc:`Back to Index </index>`

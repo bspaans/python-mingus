@@ -53,4 +53,4 @@ To do something useful with the strings generated in the previous section, we ca
 
 ----
 
-  * `Back to Index </index>`_
+  * :doc:`Back to Index </index>`

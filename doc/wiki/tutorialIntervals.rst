@@ -161,4 +161,4 @@ You can learn more about `mingus.core.intervals <refMingusCoreIntervals>`_ in th
   * `Tutorial 2 - Keys and the Diatonic Scale <tutorialDiatonic>`_
   * Tutorial 3 - Intervals
   * `Tutorial 4 - Triads, Sevenths and Extended Chords <tutorialChords>`_
-  * `Back to Index </index>`_
+  * :doc:`Back to Index </index>`

@@ -217,4 +217,4 @@ You can learn more about `mingus.containers.NoteContainers <refMingusContainersN
   * `Tutorial 1 - The Note Class <tutorialNoteModule>`_
   * Tutorial 2 - NoteContainers
   * `Tutorial 3 - Bars <tutorialBarModule>`_
-  * `Back to Index </index>`_
+  * :doc:`Back to Index </index>`

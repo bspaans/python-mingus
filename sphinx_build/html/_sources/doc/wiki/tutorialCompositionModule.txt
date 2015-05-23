@@ -106,4 +106,4 @@ You can learn more about `mingus.containers.Composition <refMingusContainersComp
   * `Tutorial 5 - Tracks <tutorialTrackModule>`_
   * Tutorial 6 - Compositions
   * `Tutorial 7 - Suites <tutorialSuiteModule>`_
-  * `Back to Index </index>`_
+  * :doc:`Back to Index </index>`

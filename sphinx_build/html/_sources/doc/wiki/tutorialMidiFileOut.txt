@@ -31,4 +31,4 @@ You can learn more about `mingus.midi.MidiFileOut <refMingusMidiMidifileout>`_ i
 
   * `Playing Containers with FluidSynth <tutorialFluidsynth>`_
   * Saving Containers as Midi File
-  * `Back to Index </index>`_
+  * :doc:`Back to Index </index>`
