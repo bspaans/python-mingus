@@ -9,9 +9,7 @@ Functions to convert mingus.containers to pretty ASCII tablature.
 
 .. attribute:: default_tuning
 
-   Attribute of type: mingus.extra.tunings.StringTuning
-   Value*: `<mingus.extra.tunings.StringTuning object at 0x7f5c1f82fed0>`
-
+   Attribute of type: mingus.extra.tunings.StringTuning (<mingus.extra.tunings.StringTuning object at 0x7f7b238c3e50>)
 
 ----
 

@@ -12,41 +12,31 @@ This module provides a simple interface for dealing with keys.
 
 .. attribute:: base_scale
 
-   Attribute of type: list
-   Value*: `['C', 'D', 'E', 'F', 'G', 'A', 'B']`
-
+   Attribute of type: list (['C', 'D', 'E', 'F', 'G', 'A', 'B'])
 
 ----
 
 .. attribute:: couple
 
-   Attribute of type: tuple
-   Value*: `('C#', 'a#')`
-
+   Attribute of type: tuple (('C#', 'a#'))
 
 ----
 
 .. attribute:: keys
 
-   Attribute of type: list
-   Value*: `[('Cb', 'ab'), ('Gb', 'eb'), ('Db', 'bb'), ('Ab', 'f'), ('Eb', 'c'), ('Bb', 'g'), ('F', 'd'), ('C', 'a'), ('G', 'e'), ('D', 'b'), ('A', 'f#'), ('E', 'c#'), ('B', 'g#'), ('F#', 'd#'), ('C#', 'a#')]`
-
+   Attribute of type: list ([('Cb', 'ab'), ('Gb', 'eb'), ('Db', 'bb'), ('Ab', 'f'), ('Eb', 'c'), ('Bb', 'g'), ('F', 'd'), ('C', 'a'), ('G', 'e'), ('D', 'b'), ('A', 'f#'), ('E', 'c#'), ('B', 'g#'), ('F#', 'd#'), ('C#', 'a#')])
 
 ----
 
 .. attribute:: major_keys
 
-   Attribute of type: list
-   Value*: `['Cb', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#']`
-
+   Attribute of type: list (['Cb', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#'])
 
 ----
 
 .. attribute:: minor_keys
 
-   Attribute of type: list
-   Value*: `['ab', 'eb', 'bb', 'f', 'c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#']`
-
+   Attribute of type: list (['ab', 'eb', 'bb', 'f', 'c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#'])
 
 ----
 

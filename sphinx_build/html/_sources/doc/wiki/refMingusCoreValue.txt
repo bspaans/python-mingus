@@ -28,193 +28,145 @@ Medieval backwards compatibility privided.
 
 .. attribute:: base_quintuplets
 
-   Attribute of type: list
-   Value*: `[0.3125, 0.625, 1.25, 2.5, 5, 10, 20, 40, 80, 160]`
-
+   Attribute of type: list ([0.3125, 0.625, 1.25, 2.5, 5, 10, 20, 40, 80, 160])
 
 ----
 
 .. attribute:: base_septuplets
 
-   Attribute of type: list
-   Value*: `[0.4375, 0.875, 1.75, 3.5, 7, 14, 28, 56, 112, 224]`
-
+   Attribute of type: list ([0.4375, 0.875, 1.75, 3.5, 7, 14, 28, 56, 112, 224])
 
 ----
 
 .. attribute:: base_triplets
 
-   Attribute of type: list
-   Value*: `[0.375, 0.75, 1.5, 3, 6, 12, 24, 48, 96, 192]`
-
+   Attribute of type: list ([0.375, 0.75, 1.5, 3, 6, 12, 24, 48, 96, 192])
 
 ----
 
 .. attribute:: base_values
 
-   Attribute of type: list
-   Value*: `[0.25, 0.5, 1, 2, 4, 8, 16, 32, 64, 128]`
-
+   Attribute of type: list ([0.25, 0.5, 1, 2, 4, 8, 16, 32, 64, 128])
 
 ----
 
 .. attribute:: breve
 
-   Attribute of type: float
-   Value*: `0.5`
-
+   Attribute of type: float (0.5)
 
 ----
 
 .. attribute:: crotchet
 
-   Attribute of type: int
-   Value*: `4`
-
+   Attribute of type: int (4)
 
 ----
 
 .. attribute:: demisemiquaver
 
-   Attribute of type: int
-   Value*: `32`
-
+   Attribute of type: int (32)
 
 ----
 
 .. attribute:: eighth
 
-   Attribute of type: int
-   Value*: `8`
-
+   Attribute of type: int (8)
 
 ----
 
 .. attribute:: half
 
-   Attribute of type: int
-   Value*: `2`
-
+   Attribute of type: int (2)
 
 ----
 
 .. attribute:: hemidemisemiquaver
 
-   Attribute of type: int
-   Value*: `64`
-
+   Attribute of type: int (64)
 
 ----
 
 .. attribute:: hundred_twenty_eighth
 
-   Attribute of type: int
-   Value*: `128`
-
+   Attribute of type: int (128)
 
 ----
 
 .. attribute:: longa
 
-   Attribute of type: float
-   Value*: `0.25`
-
+   Attribute of type: float (0.25)
 
 ----
 
 .. attribute:: minim
 
-   Attribute of type: int
-   Value*: `2`
-
+   Attribute of type: int (2)
 
 ----
 
 .. attribute:: musicxml
 
-   Attribute of type: dict
-   Value*: `{16: '16th', 1: 'whole', 2: 'half', 4: 'quarter', 32: '32th', 8: 'eighth', 64: '64th', 128: '128th'}`
-
+   Attribute of type: dict ({16: '16th', 1: 'whole', 2: 'half', 4: 'quarter', 32: '32th', 8: 'eighth', 64: '64th', 128: '128th'})
 
 ----
 
 .. attribute:: quarter
 
-   Attribute of type: int
-   Value*: `4`
-
+   Attribute of type: int (4)
 
 ----
 
 .. attribute:: quasihemidemisemiquaver
 
-   Attribute of type: int
-   Value*: `128`
-
+   Attribute of type: int (128)
 
 ----
 
 .. attribute:: quaver
 
-   Attribute of type: int
-   Value*: `8`
-
+   Attribute of type: int (8)
 
 ----
 
 .. attribute:: semibreve
 
-   Attribute of type: int
-   Value*: `1`
-
+   Attribute of type: int (1)
 
 ----
 
 .. attribute:: semihemidemisemiquaver
 
-   Attribute of type: int
-   Value*: `128`
-
+   Attribute of type: int (128)
 
 ----
 
 .. attribute:: semiquaver
 
-   Attribute of type: int
-   Value*: `16`
-
+   Attribute of type: int (16)
 
 ----
 
 .. attribute:: sixteenth
 
-   Attribute of type: int
-   Value*: `16`
-
+   Attribute of type: int (16)
 
 ----
 
 .. attribute:: sixty_fourth
 
-   Attribute of type: int
-   Value*: `64`
-
+   Attribute of type: int (64)
 
 ----
 
 .. attribute:: thirty_second
 
-   Attribute of type: int
-   Value*: `32`
-
+   Attribute of type: int (32)
 
 ----
 
 .. attribute:: whole
 
-   Attribute of type: int
-   Value*: `1`
-
+   Attribute of type: int (1)
 
 ----
 
