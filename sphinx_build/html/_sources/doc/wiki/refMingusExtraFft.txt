@@ -23,6 +23,7 @@ Functions
 ---------
 
 
+----
 
 .. function:: _fft(a, n=None, axis=-1)
 
@@ -108,6 +109,7 @@ in the real part and anti-symmetric in the imaginary part, as described in
 the `numpy.fft` documentation.
 
 
+----
 
 .. function:: _find_log_index(f)
 
@@ -116,6 +118,7 @@ the `numpy.fft` documentation.
 Return the nearest index.
 
 
+----
 
 .. function:: analyze_chunks(data, freq, bits, chunksize=512)
 
@@ -124,6 +127,7 @@ Return the nearest index.
 Making the chunksize a power of two works fastest.
 
 
+----
 
 .. function:: data_from_file(file)
 
@@ -131,6 +135,7 @@ Making the chunksize a power of two works fastest.
 file.
 
 
+----
 
 .. function:: find_Note(data, freq, bits)
 
@@ -138,6 +143,7 @@ file.
 with the highest amplitude.
 
 
+----
 
 .. function:: find_frequencies(data, freq=44100, bits=16)
 
@@ -149,6 +155,7 @@ Return a list of tuples (frequency, amplitude).
 Data should only contain one channel of audio.
 
 
+----
 
 .. function:: find_melody(file=440_480_clean.wav, chunksize=512)
 
@@ -163,6 +170,7 @@ grouped together.
 This is an experimental function.
 
 
+----
 
 .. function:: find_notes(freqTable, maxNote=100)
 

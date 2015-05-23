@@ -25,6 +25,7 @@ Functions
 ---------
 
 
+----
 
 .. function:: augment(note)
 
@@ -38,6 +39,7 @@ Examples:
 'C'
 
 
+----
 
 .. function:: diminish(note)
 
@@ -51,6 +53,7 @@ Examples:
 'C'
 
 
+----
 
 .. function:: int_to_note(note_int, accidentals=#)
 
@@ -71,18 +74,21 @@ Examples:
 'Eb'
 
 
+----
 
 .. function:: is_enharmonic(note1, note2)
 
   Test whether note1 and note2 are enharmonic, i.e. they sound the same.
 
 
+----
 
 .. function:: is_valid_note(note)
 
   Return True if note is in a recognised format. False if not.
 
 
+----
 
 .. function:: note_to_int(note)
 
@@ -92,6 +98,7 @@ range of 0-11.
 Throw a NoteFormatError exception if the note format is not recognised.
 
 
+----
 
 .. function:: reduce_accidentals(note)
 
@@ -103,6 +110,7 @@ Example:
 'E'
 
 
+----
 
 .. function:: remove_redundant_accidentals(note)
 

@@ -11,7 +11,7 @@ default_tuning
 ^^^^^^^^^^^^^^
 
   * *Type*: mingus.extra.tunings.StringTuning
-  * *Value*: `<mingus.extra.tunings.StringTuning object at 0x7fccd1f8ce90>`
+  * *Value*: `<mingus.extra.tunings.StringTuning object at 0x7fcdad67ae50>`
 
 ----
 
@@ -19,18 +19,21 @@ Functions
 ---------
 
 
+----
 
 .. function:: _get_qsize(tuning, width)
 
   Return a reasonable quarter note size for 'tuning' and 'width'.
 
 
+----
 
 .. function:: _get_width(maxwidth)
 
   Return the width of a single bar, when width of the page is given.
 
 
+----
 
 .. function:: add_headers(width=80, title=Untitled, subtitle=, author=, email=, description=, tunings=[])
 
@@ -42,12 +45,14 @@ should be an integer and 'tunings' a list of tunings representing the
 instruments.
 
 
+----
 
 .. function:: begin_track(tuning, padding=2)
 
   Helper function that builds the first few characters of every bar.
 
 
+----
 
 .. function:: from_Bar(bar, width=40, tuning=None, collapse=True)
 
@@ -62,6 +67,7 @@ all lines will be concatenated with a newline symbol.
 Use 'string' and 'fret' attributes on Notes to force certain fingerings.
 
 
+----
 
 .. function:: from_Composition(composition, width=80)
 
@@ -75,6 +81,7 @@ Tunings can be set by using the Track.instrument.tuning or Track.tuning
 attribute.
 
 
+----
 
 .. function:: from_Note(note, width=80, tuning=None)
 
@@ -90,6 +97,7 @@ on the Note. If the fingering is valid, it will get used instead of the
 default one.
 
 
+----
 
 .. function:: from_NoteContainer(notes, width=80, tuning=None)
 
@@ -105,6 +113,7 @@ on one or more of the Notes. If the fingering is valid, it will get used
 instead of the default one.
 
 
+----
 
 .. function:: from_Suite(suite, maxwidth=80)
 
@@ -115,6 +124,7 @@ This function makes use of the Suite's title, subtitle, author, email
 and description attributes.
 
 
+----
 
 .. function:: from_Track(track, maxwidth=80, tuning=None)
 

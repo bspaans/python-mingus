@@ -9,6 +9,7 @@ Functions
 ---------
 
 
+----
 
 .. function:: write_Bar(file, bar, bpm=120, repeat=0, verbose=False)
 
@@ -17,12 +18,14 @@ Functions
 Both the key and the meter are written to the file as well.
 
 
+----
 
 .. function:: write_Composition(file, composition, bpm=120, repeat=0, verbose=False)
 
   Write a mingus.Composition to a MIDI file.
 
 
+----
 
 .. function:: write_Note(file, note, bpm=120, repeat=0, verbose=False)
 
@@ -32,12 +35,14 @@ file, specified in file.
 You can set the velocity and channel in Note.velocity and Note.channel.
 
 
+----
 
 .. function:: write_NoteContainer(file, notecontainer, bpm=120, repeat=0, verbose=False)
 
   Write a mingus.NoteContainer to a MIDI file.
 
 
+----
 
 .. function:: write_Track(file, track, bpm=120, repeat=0, verbose=False)
 

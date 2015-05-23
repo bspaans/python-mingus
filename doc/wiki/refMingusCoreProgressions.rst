@@ -35,6 +35,7 @@ Functions
 ---------
 
 
+----
 
 .. function:: determine(chord, key, shorthand=False)
 
@@ -54,6 +55,7 @@ Examples:
 [['I'], ['V']]
 
 
+----
 
 .. function:: interval_diff(progression1, progression2, interval)
 
@@ -62,6 +64,7 @@ augmented until the interval between progression1 and progression2 is
 interval.
 
 
+----
 
 .. function:: parse_string(progression)
 
@@ -75,6 +78,7 @@ Examples:
 ('I', -1, 'M7')
 
 
+----
 
 .. function:: skip(roman_numeral, skip=1)
 
@@ -90,6 +94,7 @@ Examples:
 'III'
 
 
+----
 
 .. function:: substitute(progression, substitute_index, depth=0)
 
@@ -104,6 +109,7 @@ Example:
 ['III', 'III7', 'VI', 'VI7', 'I7']
 
 
+----
 
 .. function:: substitute_diminished_for_diminished(progression, substitute_index, ignore_suffix=False)
 
@@ -117,10 +123,12 @@ Example:
 ['IIdim', 'bIVdim', 'bbVIdim']
 
 
+----
 
 .. function:: substitute_diminished_for_dominant(progression, substitute_index, ignore_suffix=False)
 
 
+----
 
 .. function:: substitute_harmonic(progression, substitute_index, ignore_suffix=False)
 
@@ -139,6 +147,7 @@ The following table is used to convert progressions:
 || V || VII ||
 
 
+----
 
 .. function:: substitute_major_for_minor(progression, substitute_index, ignore_suffix=False)
 
@@ -155,6 +164,7 @@ Examples:
 ['IIIm7']
 
 
+----
 
 .. function:: substitute_minor_for_major(progression, substitute_index, ignore_suffix=False)
 
@@ -173,6 +183,7 @@ Examples:
 ['IM7']
 
 
+----
 
 .. function:: to_chords(progression, key=C)
 
@@ -201,6 +212,7 @@ you a major seventh chord. If you specifically want a dominanth seventh,
 use Idom7.
 
 
+----
 
 .. function:: tuple_to_string(prog_tuple)
 

@@ -80,7 +80,7 @@ need fluidsynth and a nice instrument collection (look here:
 <blockquote>
 <div><ul class="simple">
 <li><em>Type</em>: mingus.midi.fluidsynth.FluidSynthSequencer</li>
-<li><em>Value</em>: <cite>&lt;mingus.midi.fluidsynth.FluidSynthSequencer object at 0x7fcccf7ce950&gt;</cite></li>
+<li><em>Value</em>: <cite>&lt;mingus.midi.fluidsynth.FluidSynthSequencer object at 0x7fcdaaebd910&gt;</cite></li>
 </ul>
 </div></blockquote>
 </div>
@@ -88,12 +88,14 @@ need fluidsynth and a nice instrument collection (look here:
 <hr class="docutils" />
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <dl class="function">
 <dt id="control_change">
 <code class="descname">control_change</code><span class="sig-paren">(</span><em>channel</em>, <em>control</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#control_change" title="Permalink to this definition">¶</a></dt>
 <dd><p>Send a control change event on channel.</p>
 </dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="init">
 <code class="descname">init</code><span class="sig-paren">(</span><em>sf2</em>, <em>driver=None</em>, <em>file=None</em><span class="sig-paren">)</span><a class="headerlink" href="#init" title="Permalink to this definition">¶</a></dt>
@@ -107,21 +109,25 @@ need fluidsynth and a nice instrument collection (look here:
 &#8216;portaudio&#8217;, &#8216;sndmgr&#8217;, &#8216;coreaudio&#8217; or &#8216;Direct Sound&#8217;.</p>
 <p>If the file argument is not None, then instead of loading the driver, a
 new wave file will be initialized to store the audio data.</p>
+<hr class="docutils" />
 <dl class="function">
 <dt id="main_volume">
 <code class="descname">main_volume</code><span class="sig-paren">(</span><em>channel</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#main_volume" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="modulation">
 <code class="descname">modulation</code><span class="sig-paren">(</span><em>channel</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#modulation" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="pan">
 <code class="descname">pan</code><span class="sig-paren">(</span><em>channel</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#pan" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="play_Bar">
 <code class="descname">play_Bar</code><span class="sig-paren">(</span><em>bar</em>, <em>channel=1</em>, <em>bpm=120</em><span class="sig-paren">)</span><a class="headerlink" href="#play_Bar" title="Permalink to this definition">¶</a></dt>
@@ -129,6 +135,7 @@ new wave file will be initialized to store the audio data.</p>
 </dd></dl>
 
 <p>Set a bpm attribute on a NoteContainer to change the tempo.</p>
+<hr class="docutils" />
 <dl class="function">
 <dt id="play_Bars">
 <code class="descname">play_Bars</code><span class="sig-paren">(</span><em>bars</em>, <em>channels</em>, <em>bpm=120</em><span class="sig-paren">)</span><a class="headerlink" href="#play_Bars" title="Permalink to this definition">¶</a></dt>
@@ -136,12 +143,14 @@ new wave file will be initialized to store the audio data.</p>
 </dd></dl>
 
 <p>Set a bpm attribute on a NoteContainer to change the tempo.</p>
+<hr class="docutils" />
 <dl class="function">
 <dt id="play_Composition">
 <code class="descname">play_Composition</code><span class="sig-paren">(</span><em>composition</em>, <em>channels=None</em>, <em>bpm=120</em><span class="sig-paren">)</span><a class="headerlink" href="#play_Composition" title="Permalink to this definition">¶</a></dt>
 <dd><p>Play a composition.</p>
 </dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="play_Note">
 <code class="descname">play_Note</code><span class="sig-paren">(</span><em>note</em>, <em>channel=1</em>, <em>velocity=100</em><span class="sig-paren">)</span><a class="headerlink" href="#play_Note" title="Permalink to this definition">¶</a></dt>
@@ -158,29 +167,34 @@ function arguments.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">FluidSynth</span><span class="o">.</span><span class="n">play_Note</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 </pre></div>
 </div>
+<hr class="docutils" />
 <dl class="function">
 <dt id="play_NoteContainer">
 <code class="descname">play_NoteContainer</code><span class="sig-paren">(</span><em>nc</em>, <em>channel=1</em>, <em>velocity=100</em><span class="sig-paren">)</span><a class="headerlink" href="#play_NoteContainer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Use play_Note to play the Notes in the NoteContainer nc.</p>
 </dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="play_Track">
 <code class="descname">play_Track</code><span class="sig-paren">(</span><em>track</em>, <em>channel=1</em>, <em>bpm=120</em><span class="sig-paren">)</span><a class="headerlink" href="#play_Track" title="Permalink to this definition">¶</a></dt>
 <dd><p>Use play_Bar to play a Track object.</p>
 </dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="play_Tracks">
 <code class="descname">play_Tracks</code><span class="sig-paren">(</span><em>tracks</em>, <em>channels</em>, <em>bpm=120</em><span class="sig-paren">)</span><a class="headerlink" href="#play_Tracks" title="Permalink to this definition">¶</a></dt>
 <dd><p>Use play_Bars to play a list of Tracks on the given list of channels.</p>
 </dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="set_instrument">
 <code class="descname">set_instrument</code><span class="sig-paren">(</span><em>channel</em>, <em>instr</em>, <em>bank=0</em><span class="sig-paren">)</span><a class="headerlink" href="#set_instrument" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="stop_Note">
 <code class="descname">stop_Note</code><span class="sig-paren">(</span><em>note</em>, <em>channel=1</em><span class="sig-paren">)</span><a class="headerlink" href="#stop_Note" title="Permalink to this definition">¶</a></dt>
@@ -188,12 +202,14 @@ function arguments.</p>
 </dd></dl>
 
 <p>If a channel attribute is set on the note, it will take presedence.</p>
+<hr class="docutils" />
 <dl class="function">
 <dt id="stop_NoteContainer">
 <code class="descname">stop_NoteContainer</code><span class="sig-paren">(</span><em>nc</em>, <em>channel=1</em><span class="sig-paren">)</span><a class="headerlink" href="#stop_NoteContainer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Use stop_Note to stop the notes in NoteContainer nc.</p>
 </dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="stop_everything">
 <code class="descname">stop_everything</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#stop_everything" title="Permalink to this definition">¶</a></dt>

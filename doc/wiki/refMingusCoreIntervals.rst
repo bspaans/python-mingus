@@ -20,6 +20,7 @@ Functions
 ---------
 
 
+----
 
 .. function:: augment_or_diminish_until_the_interval_is_right(note1, note2, interval)
 
@@ -28,10 +29,12 @@ Functions
 You should probably not use this directly.
 
 
+----
 
 .. function:: augmented_unison(note)
 
 
+----
 
 .. function:: determine(note1, note2, shorthand=False)
 
@@ -57,6 +60,7 @@ fifths and fourths:
 'perfect fourth'
 
 
+----
 
 .. function:: fifth(note, key)
 
@@ -72,6 +76,7 @@ Examples:
 'Bb'
 
 
+----
 
 .. function:: fourth(note, key)
 
@@ -87,6 +92,7 @@ Examples:
 'A#'
 
 
+----
 
 .. function:: from_shorthand(note, interval, up=True)
 
@@ -102,6 +108,7 @@ Examples:
 'D'
 
 
+----
 
 .. function:: get_interval(note, interval, key=C)
 
@@ -111,6 +118,7 @@ This will produce mostly theoretical sound results, but you should use
 the minor and major functions to work around the corner cases.
 
 
+----
 
 .. function:: interval(key, start_note, interval)
 
@@ -125,6 +133,7 @@ Example:
 'E'
 
 
+----
 
 .. function:: invert(interval)
 
@@ -136,6 +145,7 @@ Example:
 ['E', 'C']
 
 
+----
 
 .. function:: is_consonant(note1, note2, include_fourths=True)
 
@@ -152,6 +162,7 @@ In classical music the fourth is considered dissonant when used
 contrapuntal, which is why you can choose to exclude it.
 
 
+----
 
 .. function:: is_dissonant(note1, note2, include_fourths=False)
 
@@ -164,6 +175,7 @@ In the default case perfect fourths are considered consonant, but this
 can be changed by setting exclude_fourths to True.
 
 
+----
 
 .. function:: is_imperfect_consonant(note1, note2)
 
@@ -173,6 +185,7 @@ Imperfect consonances are either minor or major thirds or minor or major
 sixths.
 
 
+----
 
 .. function:: is_perfect_consonant(note1, note2, include_fourths=True)
 
@@ -185,34 +198,42 @@ Perfect fourths are usually included as well, but are considered
 dissonant when used contrapuntal, which is why you can exclude them.
 
 
+----
 
 .. function:: major_fifth(note)
 
 
+----
 
 .. function:: major_fourth(note)
 
 
+----
 
 .. function:: major_second(note)
 
 
+----
 
 .. function:: major_seventh(note)
 
 
+----
 
 .. function:: major_sixth(note)
 
 
+----
 
 .. function:: major_third(note)
 
 
+----
 
 .. function:: major_unison(note)
 
 
+----
 
 .. function:: measure(note1, note2)
 
@@ -227,42 +248,52 @@ Examples:
 10
 
 
+----
 
 .. function:: minor_fifth(note)
 
 
+----
 
 .. function:: minor_fourth(note)
 
 
+----
 
 .. function:: minor_second(note)
 
 
+----
 
 .. function:: minor_seventh(note)
 
 
+----
 
 .. function:: minor_sixth(note)
 
 
+----
 
 .. function:: minor_third(note)
 
 
+----
 
 .. function:: minor_unison(note)
 
 
+----
 
 .. function:: perfect_fifth(note)
 
 
+----
 
 .. function:: perfect_fourth(note)
 
 
+----
 
 .. function:: second(note, key)
 
@@ -278,6 +309,7 @@ Examples:
 'F#'
 
 
+----
 
 .. function:: seventh(note, key)
 
@@ -293,6 +325,7 @@ Examples:
 'D#'
 
 
+----
 
 .. function:: sixth(note, key)
 
@@ -308,6 +341,7 @@ Examples:
 'C#'
 
 
+----
 
 .. function:: third(note, key)
 
@@ -323,6 +357,7 @@ Examples:
 'G#'
 
 
+----
 
 .. function:: unison(note, key=None)
 

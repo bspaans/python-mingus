@@ -63,7 +63,7 @@
 <blockquote>
 <div><ul class="simple">
 <li><em>Type</em>: mingus.extra.tunings.StringTuning</li>
-<li><em>Value</em>: <cite>&lt;mingus.extra.tunings.StringTuning object at 0x7fccd1f8ce90&gt;</cite></li>
+<li><em>Value</em>: <cite>&lt;mingus.extra.tunings.StringTuning object at 0x7fcdad67ae50&gt;</cite></li>
 </ul>
 </div></blockquote>
 </div>
@@ -71,18 +71,21 @@
 <hr class="docutils" />
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <dl class="function">
 <dt id="_get_qsize">
 <code class="descname">_get_qsize</code><span class="sig-paren">(</span><em>tuning</em>, <em>width</em><span class="sig-paren">)</span><a class="headerlink" href="#_get_qsize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a reasonable quarter note size for &#8216;tuning&#8217; and &#8216;width&#8217;.</p>
 </dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="_get_width">
 <code class="descname">_get_width</code><span class="sig-paren">(</span><em>maxwidth</em><span class="sig-paren">)</span><a class="headerlink" href="#_get_width" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the width of a single bar, when width of the page is given.</p>
 </dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="add_headers">
 <code class="descname">add_headers</code><span class="sig-paren">(</span><em>width=80</em>, <em>title=Untitled</em>, <em>subtitle=</em>, <em>author=</em>, <em>email=</em>, <em>description=</em>, <em>tunings=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#add_headers" title="Permalink to this definition">¶</a></dt>
@@ -93,12 +96,14 @@
 <p>All arguments except &#8216;width&#8217; and &#8216;tunings&#8217; should be strings. &#8216;width&#8217;
 should be an integer and &#8216;tunings&#8217; a list of tunings representing the
 instruments.</p>
+<hr class="docutils" />
 <dl class="function">
 <dt id="begin_track">
 <code class="descname">begin_track</code><span class="sig-paren">(</span><em>tuning</em>, <em>padding=2</em><span class="sig-paren">)</span><a class="headerlink" href="#begin_track" title="Permalink to this definition">¶</a></dt>
 <dd><p>Helper function that builds the first few characters of every bar.</p>
 </dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="from_Bar">
 <code class="descname">from_Bar</code><span class="sig-paren">(</span><em>bar</em>, <em>width=40</em>, <em>tuning=None</em>, <em>collapse=True</em><span class="sig-paren">)</span><a class="headerlink" href="#from_Bar" title="Permalink to this definition">¶</a></dt>
@@ -110,6 +115,7 @@ instruments.</p>
 If &#8216;collapse&#8217; is False this will return a list of lines, if it&#8217;s True
 all lines will be concatenated with a newline symbol.</p>
 <p>Use &#8216;string&#8217; and &#8216;fret&#8217; attributes on Notes to force certain fingerings.</p>
+<hr class="docutils" />
 <dl class="function">
 <dt id="from_Composition">
 <code class="descname">from_Composition</code><span class="sig-paren">(</span><em>composition</em>, <em>width=80</em><span class="sig-paren">)</span><a class="headerlink" href="#from_Composition" title="Permalink to this definition">¶</a></dt>
@@ -121,6 +127,7 @@ and description attributes. An extra description of the piece can also
 be given.</p>
 <p>Tunings can be set by using the Track.instrument.tuning or Track.tuning
 attribute.</p>
+<hr class="docutils" />
 <dl class="function">
 <dt id="from_Note">
 <code class="descname">from_Note</code><span class="sig-paren">(</span><em>note</em>, <em>width=80</em>, <em>tuning=None</em><span class="sig-paren">)</span><a class="headerlink" href="#from_Note" title="Permalink to this definition">¶</a></dt>
@@ -133,6 +140,7 @@ attribute.</p>
 <p>To force a certain fingering you can use a &#8216;string&#8217; and &#8216;fret&#8217; attribute
 on the Note. If the fingering is valid, it will get used instead of the
 default one.</p>
+<hr class="docutils" />
 <dl class="function">
 <dt id="from_NoteContainer">
 <code class="descname">from_NoteContainer</code><span class="sig-paren">(</span><em>notes</em>, <em>width=80</em>, <em>tuning=None</em><span class="sig-paren">)</span><a class="headerlink" href="#from_NoteContainer" title="Permalink to this definition">¶</a></dt>
@@ -145,6 +153,7 @@ default one.</p>
 <p>To force a certain fingering you can use a &#8216;string&#8217; and &#8216;fret&#8217; attribute
 on one or more of the Notes. If the fingering is valid, it will get used
 instead of the default one.</p>
+<hr class="docutils" />
 <dl class="function">
 <dt id="from_Suite">
 <code class="descname">from_Suite</code><span class="sig-paren">(</span><em>suite</em>, <em>maxwidth=80</em><span class="sig-paren">)</span><a class="headerlink" href="#from_Suite" title="Permalink to this definition">¶</a></dt>
@@ -154,6 +163,7 @@ instead of the default one.</p>
 <p>with headers.</p>
 <p>This function makes use of the Suite&#8217;s title, subtitle, author, email
 and description attributes.</p>
+<hr class="docutils" />
 <dl class="function">
 <dt id="from_Track">
 <code class="descname">from_Track</code><span class="sig-paren">(</span><em>track</em>, <em>maxwidth=80</em>, <em>tuning=None</em><span class="sig-paren">)</span><a class="headerlink" href="#from_Track" title="Permalink to this definition">¶</a></dt>

@@ -87,6 +87,7 @@ vice versa.</p>
 <hr class="docutils" />
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <dl class="function">
 <dt id="determine">
 <code class="descname">determine</code><span class="sig-paren">(</span><em>chord</em>, <em>key</em>, <em>shorthand=False</em><span class="sig-paren">)</span><a class="headerlink" href="#determine" title="Permalink to this definition">¶</a></dt>
@@ -105,6 +106,7 @@ vice versa.</p>
 <span class="go">[[&#39;I&#39;], [&#39;V&#39;]]</span>
 </pre></div>
 </div>
+<hr class="docutils" />
 <dl class="function">
 <dt id="interval_diff">
 <code class="descname">interval_diff</code><span class="sig-paren">(</span><em>progression1</em>, <em>progression2</em>, <em>interval</em><span class="sig-paren">)</span><a class="headerlink" href="#interval_diff" title="Permalink to this definition">¶</a></dt>
@@ -113,6 +115,7 @@ vice versa.</p>
 
 <p>augmented until the interval between progression1 and progression2 is
 interval.</p>
+<hr class="docutils" />
 <dl class="function">
 <dt id="parse_string">
 <code class="descname">parse_string</code><span class="sig-paren">(</span><em>progression</em><span class="sig-paren">)</span><a class="headerlink" href="#parse_string" title="Permalink to this definition">¶</a></dt>
@@ -126,6 +129,7 @@ interval.</p>
 <span class="go">(&#39;I&#39;, -1, &#39;M7&#39;)</span>
 </pre></div>
 </div>
+<hr class="docutils" />
 <dl class="function">
 <dt id="skip">
 <code class="descname">skip</code><span class="sig-paren">(</span><em>roman_numeral</em>, <em>skip=1</em><span class="sig-paren">)</span><a class="headerlink" href="#skip" title="Permalink to this definition">¶</a></dt>
@@ -141,6 +145,7 @@ interval.</p>
 <span class="go">&#39;III&#39;</span>
 </pre></div>
 </div>
+<hr class="docutils" />
 <dl class="function">
 <dt id="substitute">
 <code class="descname">substitute</code><span class="sig-paren">(</span><em>progression</em>, <em>substitute_index</em>, <em>depth=0</em><span class="sig-paren">)</span><a class="headerlink" href="#substitute" title="Permalink to this definition">¶</a></dt>
@@ -154,6 +159,7 @@ as well.</p>
 <span class="go">[&#39;III&#39;, &#39;III7&#39;, &#39;VI&#39;, &#39;VI7&#39;, &#39;I7&#39;]</span>
 </pre></div>
 </div>
+<hr class="docutils" />
 <dl class="function">
 <dt id="substitute_diminished_for_diminished">
 <code class="descname">substitute_diminished_for_diminished</code><span class="sig-paren">(</span><em>progression</em>, <em>substitute_index</em>, <em>ignore_suffix=False</em><span class="sig-paren">)</span><a class="headerlink" href="#substitute_diminished_for_diminished" title="Permalink to this definition">¶</a></dt>
@@ -166,11 +172,13 @@ as well.</p>
 <span class="go">[&#39;IIdim&#39;, &#39;bIVdim&#39;, &#39;bbVIdim&#39;]</span>
 </pre></div>
 </div>
+<hr class="docutils" />
 <dl class="function">
 <dt id="substitute_diminished_for_dominant">
 <code class="descname">substitute_diminished_for_dominant</code><span class="sig-paren">(</span><em>progression</em>, <em>substitute_index</em>, <em>ignore_suffix=False</em><span class="sig-paren">)</span><a class="headerlink" href="#substitute_diminished_for_dominant" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="substitute_harmonic">
 <code class="descname">substitute_harmonic</code><span class="sig-paren">(</span><em>progression</em>, <em>substitute_index</em>, <em>ignore_suffix=False</em><span class="sig-paren">)</span><a class="headerlink" href="#substitute_harmonic" title="Permalink to this definition">¶</a></dt>
@@ -187,6 +195,7 @@ suffix, or with suffix &#8216;7&#8217; will be substituted.</p>
 || IV || II ||
 || IV || VI ||
 || V || VII ||</p>
+<hr class="docutils" />
 <dl class="function">
 <dt id="substitute_major_for_minor">
 <code class="descname">substitute_major_for_minor</code><span class="sig-paren">(</span><em>progression</em>, <em>substitute_index</em>, <em>ignore_suffix=False</em><span class="sig-paren">)</span><a class="headerlink" href="#substitute_major_for_minor" title="Permalink to this definition">¶</a></dt>
@@ -202,6 +211,7 @@ suffix.</p>
 <span class="go">[&#39;IIIm7&#39;]</span>
 </pre></div>
 </div>
+<hr class="docutils" />
 <dl class="function">
 <dt id="substitute_minor_for_major">
 <code class="descname">substitute_minor_for_major</code><span class="sig-paren">(</span><em>progression</em>, <em>substitute_index</em>, <em>ignore_suffix=False</em><span class="sig-paren">)</span><a class="headerlink" href="#substitute_minor_for_major" title="Permalink to this definition">¶</a></dt>
@@ -219,6 +229,7 @@ suffix.</p>
 <span class="go">[&#39;IM7&#39;]</span>
 </pre></div>
 </div>
+<hr class="docutils" />
 <dl class="function">
 <dt id="to_chords">
 <code class="descname">to_chords</code><span class="sig-paren">(</span><em>progression</em>, <em>key=C</em><span class="sig-paren">)</span><a class="headerlink" href="#to_chords" title="Permalink to this definition">¶</a></dt>
@@ -243,6 +254,7 @@ seventh chord when talking about progressions instead of just the
 dominant seventh chord. We have taken the classic route; I7 will get
 you a major seventh chord. If you specifically want a dominanth seventh,
 use Idom7.</p>
+<hr class="docutils" />
 <dl class="function">
 <dt id="tuple_to_string">
 <code class="descname">tuple_to_string</code><span class="sig-paren">(</span><em>prog_tuple</em><span class="sig-paren">)</span><a class="headerlink" href="#tuple_to_string" title="Permalink to this definition">¶</a></dt>

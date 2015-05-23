@@ -9,6 +9,7 @@ Functions
 ---------
 
 
+----
 
 .. function:: add_tuning(instrument, description, tuning)
 
@@ -25,12 +26,14 @@ Example:
 >>> tuning.add_tuning('Guitar', 'twelve string', tw_string)
 
 
+----
 
 .. function:: fingers_needed(fingering)
 
   Return the number of fingers needed to play the given fingering.
 
 
+----
 
 .. function:: get_instruments()
 
@@ -38,6 +41,7 @@ Example:
 for them.
 
 
+----
 
 .. function:: get_tuning(instrument, description, nr_of_strings=None, nr_of_courses=None)
 
@@ -53,6 +57,7 @@ Example:
 <tunings.StringTuning instance at 0x139ac20>
 
 
+----
 
 .. function:: get_tunings(instrument=None, nr_of_strings=None, nr_of_courses=None)
 

@@ -12,6 +12,7 @@ Functions
 ---------
 
 
+----
 
 .. function:: from_Bar(bar, showkey=True, showtime=True)
 
@@ -21,12 +22,14 @@ The showkey and showtime parameters can be set to determine whether the
 key and the time should be shown.
 
 
+----
 
 .. function:: from_Composition(composition)
 
   Return the LilyPond equivalent of a Composition in a string.
 
 
+----
 
 .. function:: from_Note(note, process_octaves=True, standalone=True)
 
@@ -38,6 +41,7 @@ like to_png and will produce a valid output. The argument is mostly here
 to let from_NoteContainer make use of this function.
 
 
+----
 
 .. function:: from_NoteContainer(nc, duration=None, standalone=True)
 
@@ -50,22 +54,26 @@ function can be used directly by functions like to_png. It is mostly
 here to be used by from_Bar.
 
 
+----
 
 .. function:: from_Suite(suite)
 
 
+----
 
 .. function:: from_Track(track)
 
   Process a Track object and return the LilyPond equivalent in a string.
 
 
+----
 
 .. function:: save_string_and_execute_LilyPond(ly_string, filename, command)
 
   A helper function for to_png and to_pdf. Should not be used directly.
 
 
+----
 
 .. function:: to_pdf(ly_string, filename)
 
@@ -74,6 +82,7 @@ here to be used by from_Bar.
 LilyPond in the $PATH is needed.
 
 
+----
 
 .. function:: to_png(ly_string, filename)
 

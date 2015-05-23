@@ -51,6 +51,7 @@ Functions
 ---------
 
 
+----
 
 .. function:: augment(note)
 
@@ -64,6 +65,7 @@ Examples:
 'C'
 
 
+----
 
 .. function:: determine(notes)
 
@@ -77,6 +79,7 @@ Example:
 ['G melodic minor', 'G Bachian', 'D harmonic major']
 
 
+----
 
 .. function:: diminish(note)
 
@@ -90,6 +93,7 @@ Examples:
 'C'
 
 
+----
 
 .. function:: get_notes(key=C)
 
@@ -103,6 +107,7 @@ Examples:
 ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb']
 
 
+----
 
 .. function:: reduce_accidentals(note)
 

@@ -66,6 +66,7 @@ returns &#8216;A&#8217;.</p>
 determine, invert, is_consonant and is_dissonant.</p>
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <dl class="function">
 <dt id="augment_or_diminish_until_the_interval_is_right">
 <code class="descname">augment_or_diminish_until_the_interval_is_right</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em>, <em>interval</em><span class="sig-paren">)</span><a class="headerlink" href="#augment_or_diminish_until_the_interval_is_right" title="Permalink to this definition">¶</a></dt>
@@ -73,11 +74,13 @@ determine, invert, is_consonant and is_dissonant.</p>
 </dd></dl>
 
 <p>You should probably not use this directly.</p>
+<hr class="docutils" />
 <dl class="function">
 <dt id="augmented_unison">
 <code class="descname">augmented_unison</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#augmented_unison" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="determine">
 <code class="descname">determine</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em>, <em>shorthand=False</em><span class="sig-paren">)</span><a class="headerlink" href="#determine" title="Permalink to this definition">¶</a></dt>
@@ -103,6 +106,7 @@ fifths and fourths:</p>
 <span class="go">&#39;perfect fourth&#39;</span>
 </pre></div>
 </div>
+<hr class="docutils" />
 <dl class="function">
 <dt id="fifth">
 <code class="descname">fifth</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#fifth" title="Permalink to this definition">¶</a></dt>
@@ -117,6 +121,7 @@ fifths and fourths:</p>
 <span class="go">&#39;Bb&#39;</span>
 </pre></div>
 </div>
+<hr class="docutils" />
 <dl class="function">
 <dt id="fourth">
 <code class="descname">fourth</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#fourth" title="Permalink to this definition">¶</a></dt>
@@ -131,6 +136,7 @@ fifths and fourths:</p>
 <span class="go">&#39;A#&#39;</span>
 </pre></div>
 </div>
+<hr class="docutils" />
 <dl class="function">
 <dt id="from_shorthand">
 <code class="descname">from_shorthand</code><span class="sig-paren">(</span><em>note</em>, <em>interval</em>, <em>up=True</em><span class="sig-paren">)</span><a class="headerlink" href="#from_shorthand" title="Permalink to this definition">¶</a></dt>
@@ -146,6 +152,7 @@ fifths and fourths:</p>
 <span class="go">&#39;D&#39;</span>
 </pre></div>
 </div>
+<hr class="docutils" />
 <dl class="function">
 <dt id="get_interval">
 <code class="descname">get_interval</code><span class="sig-paren">(</span><em>note</em>, <em>interval</em>, <em>key=C</em><span class="sig-paren">)</span><a class="headerlink" href="#get_interval" title="Permalink to this definition">¶</a></dt>
@@ -154,6 +161,7 @@ fifths and fourths:</p>
 
 <p>This will produce mostly theoretical sound results, but you should use
 the minor and major functions to work around the corner cases.</p>
+<hr class="docutils" />
 <dl class="function">
 <dt id="interval">
 <code class="descname">interval</code><span class="sig-paren">(</span><em>key</em>, <em>start_note</em>, <em>interval</em><span class="sig-paren">)</span><a class="headerlink" href="#interval" title="Permalink to this definition">¶</a></dt>
@@ -167,6 +175,7 @@ the minor and major functions to work around the corner cases.</p>
 <span class="go">&#39;E&#39;</span>
 </pre></div>
 </div>
+<hr class="docutils" />
 <dl class="function">
 <dt id="invert">
 <code class="descname">invert</code><span class="sig-paren">(</span><em>interval</em><span class="sig-paren">)</span><a class="headerlink" href="#invert" title="Permalink to this definition">¶</a></dt>
@@ -178,6 +187,7 @@ the minor and major functions to work around the corner cases.</p>
 <span class="go">[&#39;E&#39;, &#39;C&#39;]</span>
 </pre></div>
 </div>
+<hr class="docutils" />
 <dl class="function">
 <dt id="is_consonant">
 <code class="descname">is_consonant</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em>, <em>include_fourths=True</em><span class="sig-paren">)</span><a class="headerlink" href="#is_consonant" title="Permalink to this definition">¶</a></dt>
@@ -191,6 +201,7 @@ basically means that it checks whether the interval is (or sounds like)
 a unison, third, sixth, perfect fourth or perfect fifth.</p>
 <p>In classical music the fourth is considered dissonant when used
 contrapuntal, which is why you can choose to exclude it.</p>
+<hr class="docutils" />
 <dl class="function">
 <dt id="is_dissonant">
 <code class="descname">is_dissonant</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em>, <em>include_fourths=False</em><span class="sig-paren">)</span><a class="headerlink" href="#is_dissonant" title="Permalink to this definition">¶</a></dt>
@@ -201,6 +212,7 @@ contrapuntal, which is why you can choose to exclude it.</p>
 dissonant.</p>
 <p>In the default case perfect fourths are considered consonant, but this
 can be changed by setting exclude_fourths to True.</p>
+<hr class="docutils" />
 <dl class="function">
 <dt id="is_imperfect_consonant">
 <code class="descname">is_imperfect_consonant</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em><span class="sig-paren">)</span><a class="headerlink" href="#is_imperfect_consonant" title="Permalink to this definition">¶</a></dt>
@@ -209,6 +221,7 @@ can be changed by setting exclude_fourths to True.</p>
 
 <p>Imperfect consonances are either minor or major thirds or minor or major
 sixths.</p>
+<hr class="docutils" />
 <dl class="function">
 <dt id="is_perfect_consonant">
 <code class="descname">is_perfect_consonant</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em>, <em>include_fourths=True</em><span class="sig-paren">)</span><a class="headerlink" href="#is_perfect_consonant" title="Permalink to this definition">¶</a></dt>
@@ -219,41 +232,49 @@ sixths.</p>
 octaves (which is the same as a unison in this model).</p>
 <p>Perfect fourths are usually included as well, but are considered
 dissonant when used contrapuntal, which is why you can exclude them.</p>
+<hr class="docutils" />
 <dl class="function">
 <dt id="major_fifth">
 <code class="descname">major_fifth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#major_fifth" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="major_fourth">
 <code class="descname">major_fourth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#major_fourth" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="major_second">
 <code class="descname">major_second</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#major_second" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="major_seventh">
 <code class="descname">major_seventh</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#major_seventh" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="major_sixth">
 <code class="descname">major_sixth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#major_sixth" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="major_third">
 <code class="descname">major_third</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#major_third" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="major_unison">
 <code class="descname">major_unison</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#major_unison" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="measure">
 <code class="descname">measure</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em><span class="sig-paren">)</span><a class="headerlink" href="#measure" title="Permalink to this definition">¶</a></dt>
@@ -268,51 +289,61 @@ dissonant when used contrapuntal, which is why you can exclude them.</p>
 <span class="go">10</span>
 </pre></div>
 </div>
+<hr class="docutils" />
 <dl class="function">
 <dt id="minor_fifth">
 <code class="descname">minor_fifth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#minor_fifth" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="minor_fourth">
 <code class="descname">minor_fourth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#minor_fourth" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="minor_second">
 <code class="descname">minor_second</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#minor_second" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="minor_seventh">
 <code class="descname">minor_seventh</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#minor_seventh" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="minor_sixth">
 <code class="descname">minor_sixth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#minor_sixth" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="minor_third">
 <code class="descname">minor_third</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#minor_third" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="minor_unison">
 <code class="descname">minor_unison</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#minor_unison" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="perfect_fifth">
 <code class="descname">perfect_fifth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#perfect_fifth" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="perfect_fourth">
 <code class="descname">perfect_fourth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#perfect_fourth" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<hr class="docutils" />
 <dl class="function">
 <dt id="second">
 <code class="descname">second</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#second" title="Permalink to this definition">¶</a></dt>
@@ -327,6 +358,7 @@ dissonant when used contrapuntal, which is why you can exclude them.</p>
 <span class="go">&#39;F#&#39;</span>
 </pre></div>
 </div>
+<hr class="docutils" />
 <dl class="function">
 <dt id="seventh">
 <code class="descname">seventh</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#seventh" title="Permalink to this definition">¶</a></dt>
@@ -341,6 +373,7 @@ dissonant when used contrapuntal, which is why you can exclude them.</p>
 <span class="go">&#39;D#&#39;</span>
 </pre></div>
 </div>
+<hr class="docutils" />
 <dl class="function">
 <dt id="sixth">
 <code class="descname">sixth</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#sixth" title="Permalink to this definition">¶</a></dt>
@@ -355,6 +388,7 @@ dissonant when used contrapuntal, which is why you can exclude them.</p>
 <span class="go">&#39;C#&#39;</span>
 </pre></div>
 </div>
+<hr class="docutils" />
 <dl class="function">
 <dt id="third">
 <code class="descname">third</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#third" title="Permalink to this definition">¶</a></dt>
@@ -369,6 +403,7 @@ dissonant when used contrapuntal, which is why you can exclude them.</p>
 <span class="go">&#39;G#&#39;</span>
 </pre></div>
 </div>
+<hr class="docutils" />
 <dl class="function">
 <dt id="unison">
 <code class="descname">unison</code><span class="sig-paren">(</span><em>note</em>, <em>key=None</em><span class="sig-paren">)</span><a class="headerlink" href="#unison" title="Permalink to this definition">¶</a></dt>

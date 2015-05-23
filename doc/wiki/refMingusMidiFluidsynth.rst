@@ -29,7 +29,7 @@ midi
 ^^^^
 
   * *Type*: mingus.midi.fluidsynth.FluidSynthSequencer
-  * *Value*: `<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x7fcccf7ce950>`
+  * *Value*: `<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x7fcdaaebd910>`
 
 ----
 
@@ -37,12 +37,14 @@ Functions
 ---------
 
 
+----
 
 .. function:: control_change(channel, control, value)
 
   Send a control change event on channel.
 
 
+----
 
 .. function:: init(sf2, driver=None, file=None)
 
@@ -61,18 +63,22 @@ If the file argument is not None, then instead of loading the driver, a
 new wave file will be initialized to store the audio data.
 
 
+----
 
 .. function:: main_volume(channel, value)
 
 
+----
 
 .. function:: modulation(channel, value)
 
 
+----
 
 .. function:: pan(channel, value)
 
 
+----
 
 .. function:: play_Bar(bar, channel=1, bpm=120)
 
@@ -81,6 +87,7 @@ new wave file will be initialized to store the audio data.
 Set a bpm attribute on a NoteContainer to change the tempo.
 
 
+----
 
 .. function:: play_Bars(bars, channels, bpm=120)
 
@@ -89,12 +96,14 @@ Set a bpm attribute on a NoteContainer to change the tempo.
 Set a bpm attribute on a NoteContainer to change the tempo.
 
 
+----
 
 .. function:: play_Composition(composition, channels=None, bpm=120)
 
   Play a composition.
 
 
+----
 
 .. function:: play_Note(note, channel=1, velocity=100)
 
@@ -112,28 +121,33 @@ Example:
 >>> FluidSynth.play_Note(n)
 
 
+----
 
 .. function:: play_NoteContainer(nc, channel=1, velocity=100)
 
   Use play_Note to play the Notes in the NoteContainer nc.
 
 
+----
 
 .. function:: play_Track(track, channel=1, bpm=120)
 
   Use play_Bar to play a Track object.
 
 
+----
 
 .. function:: play_Tracks(tracks, channels, bpm=120)
 
   Use play_Bars to play a list of Tracks on the given list of channels.
 
 
+----
 
 .. function:: set_instrument(channel, instr, bank=0)
 
 
+----
 
 .. function:: stop_Note(note, channel=1)
 
@@ -142,12 +156,14 @@ Example:
 If a channel attribute is set on the note, it will take presedence.
 
 
+----
 
 .. function:: stop_NoteContainer(nc, channel=1)
 
   Use stop_Note to stop the notes in NoteContainer nc.
 
 
+----
 
 .. function:: stop_everything()
 

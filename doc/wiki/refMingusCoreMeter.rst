@@ -29,6 +29,7 @@ Functions
 ---------
 
 
+----
 
 .. function:: is_asymmetrical(meter)
 
@@ -42,6 +43,7 @@ True
 False
 
 
+----
 
 .. function:: is_compound(meter)
 
@@ -55,6 +57,7 @@ True
 False
 
 
+----
 
 .. function:: is_simple(meter)
 
@@ -68,6 +71,7 @@ True
 True
 
 
+----
 
 .. function:: is_valid(meter)
 
@@ -76,6 +80,7 @@ True
 Examples for meters are (3,4) for 3/4, (4,4) for 4/4, etc.
 
 
+----
 
 .. function:: valid_beat_duration(duration)
 

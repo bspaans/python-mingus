@@ -176,6 +176,7 @@ Functions
 ---------
 
 
+----
 
 .. function:: add(value1, value2)
 
@@ -187,6 +188,7 @@ Example:
 2.6666666666666665
 
 
+----
 
 .. function:: determine(value)
 
@@ -208,6 +210,7 @@ This function recognizes all the base values, triplets, quintuplets,
 septuplets and up to four dots. The values are matched on range.
 
 
+----
 
 .. function:: dots(value, nr=1)
 
@@ -228,6 +231,7 @@ Examples:
 2.6666666666666665
 
 
+----
 
 .. function:: quintuplet(value)
 
@@ -244,6 +248,7 @@ Examples:
 5
 
 
+----
 
 .. function:: septuplet(value, in_fourths=True)
 
@@ -268,6 +273,7 @@ Examples:
 7
 
 
+----
 
 .. function:: subtract(value1, value2)
 
@@ -282,6 +288,7 @@ Example:
 8.0
 
 
+----
 
 .. function:: triplet(value)
 
@@ -298,6 +305,7 @@ Examples:
 6
 
 
+----
 
 .. function:: tuplet(value, rat1, rat2)
 

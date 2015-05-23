@@ -8,6 +8,7 @@ Functions
 ---------
 
 
+----
 
 .. function:: MIDI_to_Composition(file)
 

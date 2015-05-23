@@ -46,6 +46,7 @@ Functions
 ---------
 
 
+----
 
 .. function:: get_key(accidentals=0)
 
@@ -56,6 +57,7 @@ accidentals put as input, and his relative minor; negative numbers for
 flats, positive numbers for sharps.
 
 
+----
 
 .. function:: get_key_signature(key=C)
 
@@ -65,12 +67,14 @@ flats, positive numbers for sharps.
 for sharp key signatures.
 
 
+----
 
 .. function:: get_key_signature_accidentals(key=C)
 
   Return the list of accidentals present into the key signature.
 
 
+----
 
 .. function:: get_notes(key=C)
 
@@ -84,12 +88,14 @@ Examples:
 ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb']
 
 
+----
 
 .. function:: is_valid_key(key)
 
   Return True if key is in a recognized format. False if not.
 
 
+----
 
 .. function:: relative_major(key)
 
@@ -101,6 +107,7 @@ Example:
 'C'
 
 
+----
 
 .. function:: relative_minor(key)
 
