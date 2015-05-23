@@ -25,10 +25,10 @@ Additionally, you can install fluidsynth for realtime MIDI playback support: htt
 
 Another option is to let your platform's package manager handle the installation. mingus is available as package under the following distributions / platforms:
 
-  * [http://aur.archlinux.org/packages.php?ID=23101 Arch]
-  * [http://trac.macports.org/browser/trunk/dports/python/py26-mingus Mac Ports]
-  * [https://launchpad.net/~stefan-canta-game/+archive/ppa Ubuntu (PPA)]
-  * SuSE
+  * `Arch <https://aur.archlinux.org/packages/?K=mingus>`_ 
+  * `Mac Ports <http://trac.macports.org/browser/trunk/dports/python/py26-mingus>`_
+  * `Ubuntu (PPA) <https://launchpad.net/~stefan-canta-game/+archive/ppa>`_
+  * `SuSE`
 
 
 Feel free to send a message to the google group if you have packaged mingus for another distribution.
@@ -38,5 +38,5 @@ Feel free to send a message to the google group if you have packaged mingus for 
 ----
 
 
-  * [tutorialSetup Setup]
-  * [mingusIndex Back to Index]
+  * :doc:`Setup <tutorialSetup>`
+  * :doc:`Back to Index </index>`
