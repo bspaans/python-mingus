@@ -97,12 +97,9 @@ API docs
    :caption: mingus.containers
 
    doc/wiki/refMingusContainersNote
-   doc/wiki/refMingusContainersNotecontainer
+   doc/wiki/refMingusContainersNote_container
    doc/wiki/refMingusContainersBar
    doc/wiki/refMingusContainersInstrument
-   doc/wiki/refMingusContainersPiano 
-   doc/wiki/refMingusContainersGuitar
-   doc/wiki/refMingusContainersMidiinstrument 
    doc/wiki/refMingusContainersTrack
    doc/wiki/refMingusContainersComposition
    doc/wiki/refMingusContainersSuite
