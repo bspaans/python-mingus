@@ -57,7 +57,7 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 .. data:: cdll
 
    Attribute of type: ctypes.LibraryLoader
-   ``<ctypes.LibraryLoader object at 0x7fe9110cf8d0>``
+   ``<ctypes.LibraryLoader object at 0x7f50c0ae08d0>``
 
 ----
 
@@ -71,14 +71,14 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 .. data:: pydll
 
    Attribute of type: ctypes.LibraryLoader
-   ``<ctypes.LibraryLoader object at 0x7fe9110cf910>``
+   ``<ctypes.LibraryLoader object at 0x7f50c0ae0910>``
 
 ----
 
 .. data:: pythonapi
 
    Attribute of type: ctypes.PyDLL
-   ``<PyDLL 'None', handle 7fe9147ec188 at 7fe9110cf950>``
+   ``<PyDLL 'None', handle 7f50c41fd188 at 7f50c0ae0950>``
 
 ----
 

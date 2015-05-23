@@ -29,7 +29,7 @@ Now you are ready to play Notes, NoteContainers, etc.
 .. data:: midi
 
    Attribute of type: mingus.midi.fluidsynth.FluidSynthSequencer
-   ``<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x7fe910bd0950>``
+   ``<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x7f50c05e1950>``
 
 ----
 

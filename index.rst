@@ -87,6 +87,7 @@ API docs
    doc/wiki/refMingusCoreIntervals
    doc/wiki/refMingusCoreChords
    doc/wiki/refMingusCoreScales
+   doc/wiki/refMingusCoreKeys
    doc/wiki/refMingusCoreMeter
    doc/wiki/refMingusCoreValue
    doc/wiki/refMingusCoreProgressions
@@ -112,6 +113,7 @@ API docs
 
    doc/wiki/refMingusMidiSequencer
    doc/wiki/refMingusMidiSequencerobserver
+   doc/wiki/refMingusMidiMidi_events
    doc/wiki/refMingusMidiFluidsynth
    doc/wiki/refMingusMidiMiditrack
    doc/wiki/refMingusMidiMidifileout
