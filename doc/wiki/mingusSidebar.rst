@@ -1,6 +1,0 @@
-* [mingusIndex Index]
-  * [mingusFeatures Features]
-  * [tutorialGettingmingus Getting mingus]
-  * [tutorialSetup Setup]
-  * [mingusApplications Applications Using mingus]
-  * [mingusContact Contact]
