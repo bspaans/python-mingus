@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial 5 - Scales &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
+    <link rel="next" title="Tutorial 6 - Note Value and Meter" href="tutorialMeter.html" />
+    <link rel="prev" title="Tutorial 4 - Triads, Sevenths and Extended Chords" href="tutorialChords.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tutorialMeter.html" title="Tutorial 6 - Note Value and Meter"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tutorialChords.html" title="Tutorial 4 - Triads, Sevenths and Extended Chords"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tutorial-5-scales">
+<h1>Tutorial 5 - Scales<a class="headerlink" href="#tutorial-5-scales" title="Permalink to this headline">¶</a></h1>
+<p>This module isn&#8217;t 100% complete yet, but might already be of use to you.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mingus.core.scales</span> <span class="kn">as</span> <span class="nn">scales</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<div class="section" id="the-diatonic-scale-and-its-modes">
+<h2>The Diatonic Scale and Its Modes<a class="headerlink" href="#the-diatonic-scale-and-its-modes" title="Permalink to this headline">¶</a></h2>
+<p>Throughout these tutorials we have been using a sequence of notes called the diatonic scale. You can already get it from the <cite>diatonic</cite> module, but it&#8217;s also linked here for completeness:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">scales</span><span class="o">.</span><span class="n">diatonic</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;, &quot;G&quot;, &quot;A&quot;, &quot;B&quot;]</span>
+</pre></div>
+</div>
+<p>Sometimes we want to refer to a particular mode of the diatonic scale. This means that you start the scale on another note. The ionian mode, which is the same as the diatonic, starts on C, the dorian mode starts on D, etc.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">scales</span><span class="o">.</span><span class="n">ionian</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;, &quot;G&quot;, &quot;A&quot;, &quot;B&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scales</span><span class="o">.</span><span class="n">dorian</span><span class="p">(</span><span class="s">&quot;D&quot;</span><span class="p">)</span>
+<span class="go">[&quot;D&quot;, &quot;E&quot;, &quot;F&quot;, &quot;G&quot;, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scales</span><span class="o">.</span><span class="n">phrygian</span><span class="p">(</span><span class="s">&quot;E&quot;</span><span class="p">)</span>
+<span class="go">[&quot;E&quot;, &quot;F&quot;, &quot;G&quot;, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scales</span><span class="o">.</span><span class="n">lydian</span><span class="p">(</span><span class="s">&quot;F&quot;</span><span class="p">)</span>
+<span class="go">[&quot;F&quot;, &quot;G&quot;, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scales</span><span class="o">.</span><span class="n">mixolydian</span><span class="p">(</span><span class="s">&quot;G&quot;</span><span class="p">)</span>
+<span class="go">[&quot;G&quot;, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scales</span><span class="o">.</span><span class="n">aeolian</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">)</span>
+<span class="go">[&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;, &quot;G&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scales</span><span class="o">.</span><span class="n">locrian</span><span class="p">(</span><span class="s">&quot;B&quot;</span><span class="p">)</span>
+<span class="go">[&quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;, &quot;G&quot;, &quot;A&quot;]</span>
+</pre></div>
+</div>
+<p>For more on modes, see <a class="reference external" href="http://en.wikipedia.org/wiki/Musical_mode">wikipedia</a></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="the-minor-scales">
+<h2>The Minor Scales<a class="headerlink" href="#the-minor-scales" title="Permalink to this headline">¶</a></h2>
+<p>The natural minor scale is the scale starting on the minor of a key and is thus the same as the aeolian mode:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">scales</span><span class="o">.</span><span class="n">natural_minor</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">)</span>
+<span class="go">[&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;, &quot;G&quot;]</span>
+</pre></div>
+</div>
+<p>The harmonic minor differentiates from the natural minor in its raised seventh, which gives the scale a dominant seventh chord.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">scales</span><span class="o">.</span><span class="n">harmonic_minor</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">)</span>
+<span class="go">[&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;, &quot;G#&quot;]</span>
+</pre></div>
+</div>
+<p>The melodic minor also has a raised sixth to fill the gap, but &#8216;officially&#8217; only when it&#8217;s used in an ascending order. When descending, the scale to use is a minor scale. I use the word officially lightly, because this rule has been used rather inconsistently.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">scales</span><span class="o">.</span><span class="n">melodic_minor</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">)</span>
+<span class="go">[&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F#&quot;, &quot;G#&quot;]</span>
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="other-scales">
+<h2>Other Scales<a class="headerlink" href="#other-scales" title="Permalink to this headline">¶</a></h2>
+<p>Some other common scales are the chromatic and whole note ones. The chromatic scale basically consists of twelve notes each a minor second step apart (there are some notational differences (<a class="reference external" href="http://en.wikipedia.org/wiki/Chromatic_scale">source</a>), but they are not supported at this point).</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">scales</span><span class="o">.</span><span class="n">chromatic</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;C&quot;, &quot;Db&quot;, &quot;D&quot;, &quot;Eb&quot;, &quot;E&quot;, &quot;F&quot;, &quot;Gb&quot;, &quot;G&quot;, &quot;Ab&quot;, &quot;A&quot;, &quot;Bb&quot;, &quot;B&quot;]</span>
+</pre></div>
+</div>
+<p>The whole note scale consists of six notes each a major second apart:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">scales</span><span class="o">.</span><span class="n">whole_note</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="go">[&quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F#&quot;, &quot;G#&quot;, &quot;A#&quot;]</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>As stated before, the scales module isn&#8217;t 100% finished. There has been some work done on a scale recognition function (scales.determine), but that hasn&#8217;t been completed yet (see issue #17). It can do exact matches on scales that are known, but it should be able to do fuzzy matches so that it can also return possible scales over a given chord (see issue #14).</p>
+<hr class="docutils" />
+<p>You can learn more about <a class="reference external" href="refMingusCoreScales">mingus.core.scales in the reference section</a>.</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="tutorialNote">Tutorial 1 - Working with Notes</a></li>
+<li><a class="reference external" href="tutorialDiatonic">Tutorial 2 - Keys and the Diatonic Scale</a></li>
+<li><a class="reference external" href="tutorialIntervals">Tutorial 3 - Intervals</a></li>
+<li><a class="reference external" href="tutorialChords">Tutorial 4 - Triads, Sevenths and Extended Chords</a></li>
+<li>Tutorial 5 - Scales</li>
+<li><a class="reference external" href="tutorialMeter">Tutorial 6 - Note Value and Meter</a></li>
+<li><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">mingus</a></h1>
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=bspaans&repo=python-mingus&type=watch&count=true&size=large"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/bspaans/python-mingus" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

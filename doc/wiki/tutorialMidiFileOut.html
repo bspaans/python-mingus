@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial 2 - Saving Containers as Midi Files &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
+    <link rel="next" title="Tutorial 1 - Generating Sheet Music with LilyPond" href="tutorialExtraLilypond.html" />
+    <link rel="prev" title="Tutorial 1 - Playing Containers with FluidSynth" href="tutorialFluidsynth.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tutorialExtraLilypond.html" title="Tutorial 1 - Generating Sheet Music with LilyPond"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tutorialFluidsynth.html" title="Tutorial 1 - Playing Containers with FluidSynth"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tutorial-2-saving-containers-as-midi-files">
+<h1>Tutorial 2 - Saving Containers as Midi Files<a class="headerlink" href="#tutorial-2-saving-containers-as-midi-files" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mingus.midi</span> <span class="kn">import</span> <span class="n">MidiFileOut</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<div class="section" id="saving-notes-notecontainers-bars-tracks-and-compositions">
+<h2>Saving Notes, NoteContainers, Bars, Tracks and Compositions<a class="headerlink" href="#saving-notes-notecontainers-bars-tracks-and-compositions" title="Permalink to this headline">¶</a></h2>
+<p>The functions in this module all work the same and are very simple to use. <cite>write_Note</cite>, <cite>write_NoteContainer</cite>, <cite>write_Bar</cite>, <cite>write_Track</cite> and <cite>write_Composition</cite> all take four arguments, from which the last two are optional. The first argument specifies the filename, the second is the object itself, the third argument is the number of beats per minute (default = 120) and the last argument specifies the number of times the object should be repeated (default = 0).</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">nc</span> <span class="o">=</span> <span class="n">NoteContainer</span><span class="p">([</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">MidiFileOut</span><span class="o">.</span><span class="n">write_NoteContainer</span><span class="p">(</span><span class="s">&quot;test.mid&quot;</span><span class="p">,</span> <span class="n">nc</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>As in the FluidSynth module you can set the channel and velocity on Notes by setting the <cite>channel</cite> and <cite>velocity</cite> attributes. And again, to change the tempo you can set the <cite>bpm</cite> attribute on a NoteContainer.</p>
+<hr class="docutils" />
+<p>You can learn more about <a class="reference external" href="refMingusMidiMidifileout">mingus.midi.MidiFileOut</a> in the reference section.</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="tutorialFluidsynth">Playing Containers with FluidSynth</a></li>
+<li>Saving Containers as Midi File</li>
+<li><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">mingus</a></h1>
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=bspaans&repo=python-mingus&type=watch&count=true&size=large"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/bspaans/python-mingus" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
