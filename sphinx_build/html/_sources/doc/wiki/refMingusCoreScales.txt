@@ -36,89 +36,81 @@ Other scales
  * Octatonic(note)
 
 
-Attributes
-----------
-
 
 ----
 
 .. attribute::keys
 
-  * *Type*: list
-  * *Value*: `[('Cb', 'ab'), ('Gb', 'eb'), ('Db', 'bb'), ('Ab', 'f'), ('Eb', 'c'), ('Bb', 'g'), ('F', 'd'), ('C', 'a'), ('G', 'e'), ('D', 'b'), ('A', 'f#'), ('E', 'c#'), ('B', 'g#'), ('F#', 'd#'), ('C#', 'a#')]`
-
-----
-
-Functions
----------
+   Attribute of type: list
+   Value*: `[('Cb', 'ab'), ('Gb', 'eb'), ('Db', 'bb'), ('Ab', 'f'), ('Eb', 'c'), ('Bb', 'g'), ('F', 'd'), ('C', 'a'), ('G', 'e'), ('D', 'b'), ('A', 'f#'), ('E', 'c#'), ('B', 'g#'), ('F#', 'd#'), ('C#', 'a#')]`
 
 
 ----
 
 .. function:: augment(note)
 
-  Augment a given note.
-  
-  Examples:
-  
-  >>> augment('C')
-  'C#'
-  >>> augment('Cb')
-  'C'
+   Augment a given note.
+   
+   Examples:
+   
+   >>> augment('C')
+   'C#'
+   >>> augment('Cb')
+   'C'
 
 
 ----
 
 .. function:: determine(notes)
 
-  Determine the scales containing the notes.
-  
-  All major and minor scales are recognized.
-  
-  Example:
-  
-  >>> determine(['A', 'Bb', 'E', 'F#', 'G'])
-  ['G melodic minor', 'G Bachian', 'D harmonic major']
+   Determine the scales containing the notes.
+   
+   All major and minor scales are recognized.
+   
+   Example:
+   
+   >>> determine(['A', 'Bb', 'E', 'F#', 'G'])
+   ['G melodic minor', 'G Bachian', 'D harmonic major']
 
 
 ----
 
 .. function:: diminish(note)
 
-  Diminish a given note.
-  
-  Examples:
-  
-  >>> diminish('C')
-  'Cb'
-  >>> diminish('C#')
-  'C'
+   Diminish a given note.
+   
+   Examples:
+   
+   >>> diminish('C')
+   'Cb'
+   >>> diminish('C#')
+   'C'
 
 
 ----
 
 .. function:: get_notes(key=C)
 
-  Return an ordered list of the notes in this natural key.
-  
-  Examples:
-  
-  >>> get_notes('F')
-  ['F', 'G', 'A', 'Bb', 'C', 'D', 'E']
-  >>> get_notes('c')
-  ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb']
+   Return an ordered list of the notes in this natural key.
+   
+   Examples:
+   
+   >>> get_notes('F')
+   ['F', 'G', 'A', 'Bb', 'C', 'D', 'E']
+   >>> get_notes('c')
+   ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb']
 
 
 ----
 
 .. function:: reduce_accidentals(note)
 
-  Reduce any extra accidentals to proper notes.
-  
-  Example:
-  
-  >>> reduce_accidentals('C####')
-  'E'
+   Reduce any extra accidentals to proper notes.
+   
+   Example:
+   
+   >>> reduce_accidentals('C####')
+   'E'
 
 ----
 

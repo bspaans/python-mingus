@@ -14,29 +14,21 @@ and is supported by over 100 applications.
 http://www.musicxml.org/xml.html
 
 
-Attributes
-----------
-
 
 ----
 
 .. attribute::major_keys
 
-  * *Type*: list
-  * *Value*: `['Cb', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#']`
+   Attribute of type: list
+   Value*: `['Cb', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#']`
 
 
 ----
 
 .. attribute::minor_keys
 
-  * *Type*: list
-  * *Value*: `['ab', 'eb', 'bb', 'f', 'c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#']`
-
-----
-
-Functions
----------
+   Attribute of type: list
+   Value*: `['ab', 'eb', 'bb', 'f', 'c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#']`
 
 
 ----
@@ -53,14 +45,14 @@ Functions
 
 .. function:: _gcd(a=None, b=None, terms=None)
 
-  Return greatest common divisor using Euclid's Algorithm.
+   Return greatest common divisor using Euclid's Algorithm.
 
 
 ----
 
 .. function:: _lcm(a=None, b=None, terms=None)
 
-  Return lowest common multiple.
+   Return lowest common multiple.
 
 
 ----
@@ -97,7 +89,7 @@ Functions
 
 .. function:: write_Composition(composition, filename, zip=False)
 
-  Create an XML file (or MXL if compressed) for a given composition.
+   Create an XML file (or MXL if compressed) for a given composition.
 
 ----
 
