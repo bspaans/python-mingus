@@ -34,6 +34,8 @@ numerals
 Functions
 ---------
 
+
+
 .. function:: determine(chord, key, shorthand=False)
 
   Determine the harmonic function of chord in key.
@@ -51,11 +53,15 @@ Examples:
 >>> determine([['C', 'E', 'G'], ['G', 'B', 'D']], 'C', True)
 [['I'], ['V']]
 
+
+
 .. function:: interval_diff(progression1, progression2, interval)
 
   Return the number of half steps progression2 needs to be diminished or
 augmented until the interval between progression1 and progression2 is
 interval.
+
+
 
 .. function:: parse_string(progression)
 
@@ -67,6 +73,8 @@ Examples:
 ('I', 0, '')
 >>> parse_string('bIM7')
 ('I', -1, 'M7')
+
+
 
 .. function:: skip(roman_numeral, skip=1)
 
@@ -81,6 +89,8 @@ Examples:
 >>> skip('I', 2)
 'III'
 
+
+
 .. function:: substitute(progression, substitute_index, depth=0)
 
   Give a list of possible substitutions for progression[substitute_index].
@@ -93,6 +103,8 @@ Example:
 >>> substitute(['I', 'IV', 'V', 'I'], 0)
 ['III', 'III7', 'VI', 'VI7', 'I7']
 
+
+
 .. function:: substitute_diminished_for_diminished(progression, substitute_index, ignore_suffix=False)
 
   Substitute a diminished chord for another diminished chord.
@@ -104,7 +116,11 @@ Example:
 >>> substitute_diminished_for_diminished(['VII'], 0)
 ['IIdim', 'bIVdim', 'bbVIdim']
 
+
+
 .. function:: substitute_diminished_for_dominant(progression, substitute_index, ignore_suffix=False)
+
+
 
 .. function:: substitute_harmonic(progression, substitute_index, ignore_suffix=False)
 
@@ -122,6 +138,8 @@ The following table is used to convert progressions:
 || IV || VI ||
 || V || VII ||
 
+
+
 .. function:: substitute_major_for_minor(progression, substitute_index, ignore_suffix=False)
 
   Substitute major chords for their minor equivalent.
@@ -135,6 +153,8 @@ Examples:
 ['VI']
 >>> substitute_major_for_minor(['VM7'], 0)
 ['IIIm7']
+
+
 
 .. function:: substitute_minor_for_major(progression, substitute_index, ignore_suffix=False)
 
@@ -151,6 +171,8 @@ Examples:
 ['bVIIM']
 >>> substitute_minor_for_major(['VIm7'], 0)
 ['IM7']
+
+
 
 .. function:: to_chords(progression, key=C)
 
@@ -177,6 +199,8 @@ seventh chord when talking about progressions instead of just the
 dominant seventh chord. We have taken the classic route; I7 will get
 you a major seventh chord. If you specifically want a dominanth seventh,
 use Idom7.
+
+
 
 .. function:: tuple_to_string(prog_tuple)
 

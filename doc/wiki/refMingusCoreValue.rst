@@ -175,6 +175,8 @@ whole
 Functions
 ---------
 
+
+
 .. function:: add(value1, value2)
 
   Return the value of the two combined.
@@ -183,6 +185,8 @@ Example:
 
 >>> add(eighth, quarter)
 2.6666666666666665
+
+
 
 .. function:: determine(value)
 
@@ -203,6 +207,8 @@ Examples:
 This function recognizes all the base values, triplets, quintuplets,
 septuplets and up to four dots. The values are matched on range.
 
+
+
 .. function:: dots(value, nr=1)
 
   Return the dotted note value.
@@ -221,6 +227,8 @@ Examples:
 >>> dots(quarter)
 2.6666666666666665
 
+
+
 .. function:: quintuplet(value)
 
   Return the quintuplet note value.
@@ -234,6 +242,8 @@ Examples:
 10
 >>> quintuplet(4)
 5
+
+
 
 .. function:: septuplet(value, in_fourths=True)
 
@@ -257,6 +267,8 @@ Examples:
 >>> septuplet(8, False)
 7
 
+
+
 .. function:: subtract(value1, value2)
 
   Return the note value for value1 minus value2.
@@ -268,6 +280,8 @@ Example:
 
 >>> substract(quarter, eighth)
 8.0
+
+
 
 .. function:: triplet(value)
 
@@ -282,6 +296,8 @@ Examples:
 12
 >>> triplet(4)
 6
+
+
 
 .. function:: tuplet(value, rat1, rat2)
 

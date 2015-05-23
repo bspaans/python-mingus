@@ -8,6 +8,8 @@ you search through them.
 Functions
 ---------
 
+
+
 .. function:: add_tuning(instrument, description, tuning)
 
   Add a new tuning to the index.
@@ -22,14 +24,20 @@ Example:
 >>> tw_strings = [['E-2', 'E-3'], ['A-2', 'A-3'], ...........]
 >>> tuning.add_tuning('Guitar', 'twelve string', tw_string)
 
+
+
 .. function:: fingers_needed(fingering)
 
   Return the number of fingers needed to play the given fingering.
+
+
 
 .. function:: get_instruments()
 
   Return a sorted list of instruments that have string tunings defined
 for them.
+
+
 
 .. function:: get_tuning(instrument, description, nr_of_strings=None, nr_of_courses=None)
 
@@ -43,6 +51,8 @@ Example:
 
 >>> tunings.get_tuning('guitar', 'standard')
 <tunings.StringTuning instance at 0x139ac20>
+
+
 
 .. function:: get_tunings(instrument=None, nr_of_strings=None, nr_of_courses=None)
 

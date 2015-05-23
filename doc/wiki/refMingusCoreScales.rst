@@ -50,6 +50,8 @@ keys
 Functions
 ---------
 
+
+
 .. function:: augment(note)
 
   Augment a given note.
@@ -60,6 +62,8 @@ Examples:
 'C#'
 >>> augment('Cb')
 'C'
+
+
 
 .. function:: determine(notes)
 
@@ -72,6 +76,8 @@ Example:
 >>> determine(['A', 'Bb', 'E', 'F#', 'G'])
 ['G melodic minor', 'G Bachian', 'D harmonic major']
 
+
+
 .. function:: diminish(note)
 
   Diminish a given note.
@@ -83,6 +89,8 @@ Examples:
 >>> diminish('C#')
 'C'
 
+
+
 .. function:: get_notes(key=C)
 
   Return an ordered list of the notes in this natural key.
@@ -93,6 +101,8 @@ Examples:
 ['F', 'G', 'A', 'Bb', 'C', 'D', 'E']
 >>> get_notes('c')
 ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb']
+
+
 
 .. function:: reduce_accidentals(note)
 

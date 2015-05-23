@@ -7,6 +7,8 @@ Read a MIDI file and convert it into mingus.containers objects.
 Functions
 ---------
 
+
+
 .. function:: MIDI_to_Composition(file)
 
   Convert a MIDI file to a mingus.containers.Composition and return it

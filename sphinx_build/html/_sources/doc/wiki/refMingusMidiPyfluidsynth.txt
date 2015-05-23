@@ -51,7 +51,7 @@ cdll
 ^^^^
 
   * *Type*: ctypes.LibraryLoader
-  * *Value*: `<ctypes.LibraryLoader object at 0x7fed5e250890>`
+  * *Value*: `<ctypes.LibraryLoader object at 0x7fcccfccd8d0>`
 
 lib
 ^^^
@@ -63,20 +63,24 @@ pydll
 ^^^^^
 
   * *Type*: ctypes.LibraryLoader
-  * *Value*: `<ctypes.LibraryLoader object at 0x7fed5e2508d0>`
+  * *Value*: `<ctypes.LibraryLoader object at 0x7fcccfccd910>`
 
 pythonapi
 ^^^^^^^^^
 
   * *Type*: ctypes.PyDLL
-  * *Value*: `<PyDLL 'None', handle 7fed6196d188 at 7fed5e250910>`
+  * *Value*: `<PyDLL 'None', handle 7fccd33ea188 at 7fcccfccd950>`
 
 ----
 
 Functions
 ---------
 
+
+
 .. function:: ARRAY(typ, len)
+
+
 
 .. function:: CFUNCTYPE(restype)
 
@@ -95,17 +99,29 @@ prototype(integer index, method name[, paramflags]) -> foreign function calling 
 prototype((ordinal number, dll object)[, paramflags]) -> foreign function exported by ordinal
 prototype((function name, dll object)[, paramflags]) -> foreign function exported by name
 
+
+
 .. function:: PYFUNCTYPE(restype)
+
+
 
 .. function:: SetPointerType(pointer, cls)
 
+
+
 .. function:: c_buffer(init, size=None)
 
+
+
 .. function:: cast(obj, typ)
+
+
 
 .. function:: cfunc(name, result)
 
   Build and apply a ctypes prototype complete with parameter flags.
+
+
 
 .. function:: create_string_buffer(init, size=None)
 
@@ -113,19 +129,27 @@ prototype((function name, dll object)[, paramflags]) -> foreign function exporte
 create_string_buffer(anInteger) -> character array
 create_string_buffer(aString, anInteger) -> character array
 
+
+
 .. function:: create_unicode_buffer(init, size=None)
 
   create_unicode_buffer(aString) -> character array
 create_unicode_buffer(anInteger) -> character array
 create_unicode_buffer(aString, anInteger) -> character array
 
+
+
 .. function:: find_library(name)
+
+
 
 .. function:: fluid_synth_write_s16_stereo(synth, len)
 
   Return generated samples in stereo 16-bit format.
 
 Return value is a Numpy array of samples.
+
+
 
 .. function:: raw_audio_string(data)
 
@@ -134,11 +158,15 @@ Return value is a Numpy array of samples.
 Input is a numpy array of samples. Default output format is 16-bit
 signed (other formats not currently supported).
 
+
+
 .. function:: string_at(ptr, size=-1)
 
   string_at(addr[, size]) -> string
 
 Return the string at addr.
+
+
 
 .. function:: wstring_at(ptr, size=-1)
 

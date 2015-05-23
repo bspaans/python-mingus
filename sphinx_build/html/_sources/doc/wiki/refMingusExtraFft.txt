@@ -22,6 +22,8 @@ x
 Functions
 ---------
 
+
+
 .. function:: _fft(a, n=None, axis=-1)
 
   Compute the one-dimensional discrete Fourier Transform.
@@ -105,11 +107,15 @@ In this example, real input has an FFT which is Hermitian, i.e., symmetric
 in the real part and anti-symmetric in the imaginary part, as described in
 the `numpy.fft` documentation.
 
+
+
 .. function:: _find_log_index(f)
 
   Look up the index of the frequency f in the frequency table.
 
 Return the nearest index.
+
+
 
 .. function:: analyze_chunks(data, freq, bits, chunksize=512)
 
@@ -117,15 +123,21 @@ Return the nearest index.
 
 Making the chunksize a power of two works fastest.
 
+
+
 .. function:: data_from_file(file)
 
   Return (first channel data, sample frequency, sample width) from a .wav
 file.
 
+
+
 .. function:: find_Note(data, freq, bits)
 
   Get the frequencies, feed them to find_notes and the return the Note
 with the highest amplitude.
+
+
 
 .. function:: find_frequencies(data, freq=44100, bits=16)
 
@@ -135,6 +147,8 @@ transformation.
 Return a list of tuples (frequency, amplitude).
 
 Data should only contain one channel of audio.
+
+
 
 .. function:: find_melody(file=440_480_clean.wav, chunksize=512)
 
@@ -147,6 +161,8 @@ If two consequent chunks turn out to return the same Note they are
 grouped together.
 
 This is an experimental function.
+
+
 
 .. function:: find_notes(freqTable, maxNote=100)
 

@@ -24,6 +24,8 @@ fifths
 Functions
 ---------
 
+
+
 .. function:: augment(note)
 
   Augment a given note.
@@ -35,6 +37,8 @@ Examples:
 >>> augment('Cb')
 'C'
 
+
+
 .. function:: diminish(note)
 
   Diminish a given note.
@@ -45,6 +49,8 @@ Examples:
 'Cb'
 >>> diminish('C#')
 'C'
+
+
 
 .. function:: int_to_note(note_int, accidentals=#)
 
@@ -64,13 +70,19 @@ Examples:
 >>> int_to_note(3, 'b')
 'Eb'
 
+
+
 .. function:: is_enharmonic(note1, note2)
 
   Test whether note1 and note2 are enharmonic, i.e. they sound the same.
 
+
+
 .. function:: is_valid_note(note)
 
   Return True if note is in a recognised format. False if not.
+
+
 
 .. function:: note_to_int(note)
 
@@ -78,6 +90,8 @@ Examples:
 range of 0-11.
 
 Throw a NoteFormatError exception if the note format is not recognised.
+
+
 
 .. function:: reduce_accidentals(note)
 
@@ -87,6 +101,8 @@ Example:
 
 >>> reduce_accidentals('C####')
 'E'
+
+
 
 .. function:: remove_redundant_accidentals(note)
 

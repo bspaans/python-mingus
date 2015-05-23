@@ -19,13 +19,19 @@ determine, invert, is_consonant and is_dissonant.
 Functions
 ---------
 
+
+
 .. function:: augment_or_diminish_until_the_interval_is_right(note1, note2, interval)
 
   A helper function for the minor and major functions.
 
 You should probably not use this directly.
 
+
+
 .. function:: augmented_unison(note)
+
+
 
 .. function:: determine(note1, note2, shorthand=False)
 
@@ -50,6 +56,8 @@ fifths and fourths:
 >>> determine('C', 'F')
 'perfect fourth'
 
+
+
 .. function:: fifth(note, key)
 
   Take the diatonic fifth of note in key.
@@ -62,6 +70,8 @@ Examples:
 'B'
 >>> fifth('E', 'F')
 'Bb'
+
+
 
 .. function:: fourth(note, key)
 
@@ -76,6 +86,8 @@ Examples:
 >>> fourth('E', 'B')
 'A#'
 
+
+
 .. function:: from_shorthand(note, interval, up=True)
 
   Return the note on interval up or down.
@@ -89,12 +101,16 @@ Examples:
 >>> from_shorthand('E', '2', False)
 'D'
 
+
+
 .. function:: get_interval(note, interval, key=C)
 
   Return the note an interval (in half notes) away from the given note.
 
 This will produce mostly theoretical sound results, but you should use
 the minor and major functions to work around the corner cases.
+
+
 
 .. function:: interval(key, start_note, interval)
 
@@ -108,6 +124,8 @@ Example:
 >>> interval('C', 'D', 1)
 'E'
 
+
+
 .. function:: invert(interval)
 
   Invert an interval.
@@ -116,6 +134,8 @@ Example:
 
 >>> invert(['C', 'E'])
 ['E', 'C']
+
+
 
 .. function:: is_consonant(note1, note2, include_fourths=True)
 
@@ -131,6 +151,8 @@ a unison, third, sixth, perfect fourth or perfect fifth.
 In classical music the fourth is considered dissonant when used
 contrapuntal, which is why you can choose to exclude it.
 
+
+
 .. function:: is_dissonant(note1, note2, include_fourths=False)
 
   Return True if the insterval is dissonant.
@@ -141,12 +163,16 @@ dissonant.
 In the default case perfect fourths are considered consonant, but this
 can be changed by setting exclude_fourths to True.
 
+
+
 .. function:: is_imperfect_consonant(note1, note2)
 
   Return True id the interval is an imperfect consonant one.
 
 Imperfect consonances are either minor or major thirds or minor or major
 sixths.
+
+
 
 .. function:: is_perfect_consonant(note1, note2, include_fourths=True)
 
@@ -158,19 +184,35 @@ octaves (which is the same as a unison in this model).
 Perfect fourths are usually included as well, but are considered
 dissonant when used contrapuntal, which is why you can exclude them.
 
+
+
 .. function:: major_fifth(note)
+
+
 
 .. function:: major_fourth(note)
 
+
+
 .. function:: major_second(note)
+
+
 
 .. function:: major_seventh(note)
 
+
+
 .. function:: major_sixth(note)
+
+
 
 .. function:: major_third(note)
 
+
+
 .. function:: major_unison(note)
+
+
 
 .. function:: measure(note1, note2)
 
@@ -184,23 +226,43 @@ Examples:
 >>> measure('D', 'C')
 10
 
+
+
 .. function:: minor_fifth(note)
+
+
 
 .. function:: minor_fourth(note)
 
+
+
 .. function:: minor_second(note)
+
+
 
 .. function:: minor_seventh(note)
 
+
+
 .. function:: minor_sixth(note)
+
+
 
 .. function:: minor_third(note)
 
+
+
 .. function:: minor_unison(note)
+
+
 
 .. function:: perfect_fifth(note)
 
+
+
 .. function:: perfect_fourth(note)
+
+
 
 .. function:: second(note, key)
 
@@ -215,6 +277,8 @@ Examples:
 >>> second('E', 'D')
 'F#'
 
+
+
 .. function:: seventh(note, key)
 
   Take the diatonic seventh of note in key.
@@ -227,6 +291,8 @@ Examples:
 'D'
 >>> seventh('E', 'B')
 'D#'
+
+
 
 .. function:: sixth(note, key)
 
@@ -241,6 +307,8 @@ Examples:
 >>> sixth('E', 'B')
 'C#'
 
+
+
 .. function:: third(note, key)
 
   Take the diatonic third of note in key.
@@ -253,6 +321,8 @@ Examples:
 'G'
 >>> third('E', 'E')
 'G#'
+
+
 
 .. function:: unison(note, key=None)
 

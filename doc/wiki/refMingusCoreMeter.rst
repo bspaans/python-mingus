@@ -28,6 +28,8 @@ cut_time
 Functions
 ---------
 
+
+
 .. function:: is_asymmetrical(meter)
 
   Return True if meter is an asymmetrical meter, False otherwise.
@@ -38,6 +40,8 @@ Examples:
 True
 >>> is_asymmetrical((4,4))
 False
+
+
 
 .. function:: is_compound(meter)
 
@@ -50,6 +54,8 @@ True
 >>> is_compound((4,4))
 False
 
+
+
 .. function:: is_simple(meter)
 
   Return True if meter is a simple meter, False otherwise.
@@ -61,11 +67,15 @@ True
 >>> is_simple((4,4))
 True
 
+
+
 .. function:: is_valid(meter)
 
   Return True if meter is a valid tuple representation of a meter.
 
 Examples for meters are (3,4) for 3/4, (4,4) for 4/4, etc.
+
+
 
 .. function:: valid_beat_duration(duration)
 

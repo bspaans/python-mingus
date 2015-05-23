@@ -34,29 +34,51 @@ minor_keys
 Functions
 ---------
 
+
+
 .. function:: _bar2musicxml(bar)
 
+
+
 .. function:: _composition2musicxml(comp)
+
+
 
 .. function:: _gcd(a=None, b=None, terms=None)
 
   Return greatest common divisor using Euclid's Algorithm.
 
+
+
 .. function:: _lcm(a=None, b=None, terms=None)
 
   Return lowest common multiple.
 
+
+
 .. function:: _note2musicxml(note)
+
+
 
 .. function:: _track2musicxml(track)
 
+
+
 .. function:: from_Bar(bar)
+
+
 
 .. function:: from_Composition(comp)
 
+
+
 .. function:: from_Note(note)
 
+
+
 .. function:: from_Track(track)
+
+
 
 .. function:: write_Composition(composition, filename, zip=False)
 
