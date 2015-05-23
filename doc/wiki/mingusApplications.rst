@@ -14,11 +14,12 @@ Example Application: Drum Machine
 
 *Platform* All
 
-*Download* This program is included in mingus' [http://code.google.com/p/mingus/source/browse/trunk/mingus_examples examples] directory.
+*Download* This program is included in mingus' `examples <https://github.com/bspaans/python-mingus/mingus_examples/>`_ directory.
 
 
+.. image:: drum_machine.jpg
 
-[http://www.youtube.com/watch?v=FDdcz873tUQ http://img.youtube.com/vi/FDdcz873tUQ/0.jpg]
+http://www.youtube.com/watch?v=FDdcz873tUQ
 
 _ Clicking on the image will take you to a demonstration on YouTube _
 
