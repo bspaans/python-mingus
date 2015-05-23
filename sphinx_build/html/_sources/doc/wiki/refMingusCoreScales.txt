@@ -42,44 +42,28 @@ Other scales
 .. class:: Aeolian
 
 
-----
-
    .. method:: __eq__(self, other)
 
-
-----
 
    .. method:: __init__(self, note, octaves=1)
 
    Create the aeolian mode scale starting on the chosen note.
 
 
-----
-
    .. method:: __len__(self)
 
-
-----
 
    .. method:: __ne__(self, other)
 
 
-----
-
    .. method:: __repr__(self)
 
-
-----
 
    .. method:: __str__(self)
 
 
-----
-
    .. method:: ascending(self)
 
-
-----
 
    .. method:: degree(self, degree_number, direction=a)
 
@@ -88,8 +72,6 @@ Other scales
    The direction of the scale is 'a' for ascending (default) and 'd'
    for descending.
 
-
-----
 
    .. method:: descending(self)
 
@@ -106,12 +88,8 @@ Other scales
 .. class:: Bachian
 
 
-----
-
    .. method:: __eq__(self, other)
 
-
-----
 
    .. method:: __init__(self, note, octaves=1)
 
@@ -119,32 +97,20 @@ Other scales
    scale starting on the chosen note.
 
 
-----
-
    .. method:: __len__(self)
 
-
-----
 
    .. method:: __ne__(self, other)
 
 
-----
-
    .. method:: __repr__(self)
 
-
-----
 
    .. method:: __str__(self)
 
 
-----
-
    .. method:: ascending(self)
 
-
-----
 
    .. method:: degree(self, degree_number, direction=a)
 
@@ -153,8 +119,6 @@ Other scales
    The direction of the scale is 'a' for ascending (default) and 'd'
    for descending.
 
-
-----
 
    .. method:: descending(self)
 
@@ -171,44 +135,28 @@ Other scales
 .. class:: Chromatic
 
 
-----
-
    .. method:: __eq__(self, other)
 
-
-----
 
    .. method:: __init__(self, key, octaves=1)
 
    Create the chromatic scale in the chosen key.
 
 
-----
-
    .. method:: __len__(self)
 
-
-----
 
    .. method:: __ne__(self, other)
 
 
-----
-
    .. method:: __repr__(self)
 
-
-----
 
    .. method:: __str__(self)
 
 
-----
-
    .. method:: ascending(self)
 
-
-----
 
    .. method:: degree(self, degree_number, direction=a)
 
@@ -217,8 +165,6 @@ Other scales
    The direction of the scale is 'a' for ascending (default) and 'd'
    for descending.
 
-
-----
 
    .. method:: descending(self)
 
@@ -233,12 +179,8 @@ Other scales
 .. class:: Diatonic
 
 
-----
-
    .. method:: __eq__(self, other)
 
-
-----
 
    .. method:: __init__(self, note, semitones, octaves=1)
 
@@ -248,32 +190,20 @@ Other scales
    semitones.
 
 
-----
-
    .. method:: __len__(self)
 
-
-----
 
    .. method:: __ne__(self, other)
 
 
-----
-
    .. method:: __repr__(self)
 
-
-----
 
    .. method:: __str__(self)
 
 
-----
-
    .. method:: ascending(self)
 
-
-----
 
    .. method:: degree(self, degree_number, direction=a)
 
@@ -282,8 +212,6 @@ Other scales
    The direction of the scale is 'a' for ascending (default) and 'd'
    for descending.
 
-
-----
 
    .. method:: descending(self)
 
@@ -300,44 +228,28 @@ Other scales
 .. class:: Dorian
 
 
-----
-
    .. method:: __eq__(self, other)
 
-
-----
 
    .. method:: __init__(self, note, octaves=1)
 
    Create the dorian mode scale starting on the chosen note.
 
 
-----
-
    .. method:: __len__(self)
 
-
-----
 
    .. method:: __ne__(self, other)
 
 
-----
-
    .. method:: __repr__(self)
 
-
-----
 
    .. method:: __str__(self)
 
 
-----
-
    .. method:: ascending(self)
 
-
-----
 
    .. method:: degree(self, degree_number, direction=a)
 
@@ -346,8 +258,6 @@ Other scales
    The direction of the scale is 'a' for ascending (default) and 'd'
    for descending.
 
-
-----
 
    .. method:: descending(self)
 
@@ -364,44 +274,28 @@ Other scales
 .. class:: HarmonicMajor
 
 
-----
-
    .. method:: __eq__(self, other)
 
-
-----
 
    .. method:: __init__(self, note, octaves=1)
 
    Create the harmonic major scale starting on the chosen note.
 
 
-----
-
    .. method:: __len__(self)
 
-
-----
 
    .. method:: __ne__(self, other)
 
 
-----
-
    .. method:: __repr__(self)
 
-
-----
 
    .. method:: __str__(self)
 
 
-----
-
    .. method:: ascending(self)
 
-
-----
 
    .. method:: degree(self, degree_number, direction=a)
 
@@ -410,8 +304,6 @@ Other scales
    The direction of the scale is 'a' for ascending (default) and 'd'
    for descending.
 
-
-----
 
    .. method:: descending(self)
 
@@ -428,44 +320,28 @@ Other scales
 .. class:: HarmonicMinor
 
 
-----
-
    .. method:: __eq__(self, other)
 
-
-----
 
    .. method:: __init__(self, note, octaves=1)
 
    Create the harmonic minor scale starting on the chosen note.
 
 
-----
-
    .. method:: __len__(self)
 
-
-----
 
    .. method:: __ne__(self, other)
 
 
-----
-
    .. method:: __repr__(self)
 
-
-----
 
    .. method:: __str__(self)
 
 
-----
-
    .. method:: ascending(self)
 
-
-----
 
    .. method:: degree(self, degree_number, direction=a)
 
@@ -474,8 +350,6 @@ Other scales
    The direction of the scale is 'a' for ascending (default) and 'd'
    for descending.
 
-
-----
 
    .. method:: descending(self)
 
@@ -492,44 +366,28 @@ Other scales
 .. class:: Ionian
 
 
-----
-
    .. method:: __eq__(self, other)
 
-
-----
 
    .. method:: __init__(self, note, octaves=1)
 
    Create the ionian mode scale starting on the chosen note.
 
 
-----
-
    .. method:: __len__(self)
 
-
-----
 
    .. method:: __ne__(self, other)
 
 
-----
-
    .. method:: __repr__(self)
 
-
-----
 
    .. method:: __str__(self)
 
 
-----
-
    .. method:: ascending(self)
 
-
-----
 
    .. method:: degree(self, degree_number, direction=a)
 
@@ -538,8 +396,6 @@ Other scales
    The direction of the scale is 'a' for ascending (default) and 'd'
    for descending.
 
-
-----
 
    .. method:: descending(self)
 
@@ -556,44 +412,28 @@ Other scales
 .. class:: Locrian
 
 
-----
-
    .. method:: __eq__(self, other)
 
-
-----
 
    .. method:: __init__(self, note, octaves=1)
 
    Create the locrian mode scale starting on the chosen note.
 
 
-----
-
    .. method:: __len__(self)
 
-
-----
 
    .. method:: __ne__(self, other)
 
 
-----
-
    .. method:: __repr__(self)
 
-
-----
 
    .. method:: __str__(self)
 
 
-----
-
    .. method:: ascending(self)
 
-
-----
 
    .. method:: degree(self, degree_number, direction=a)
 
@@ -602,8 +442,6 @@ Other scales
    The direction of the scale is 'a' for ascending (default) and 'd'
    for descending.
 
-
-----
 
    .. method:: descending(self)
 
@@ -620,44 +458,28 @@ Other scales
 .. class:: Lydian
 
 
-----
-
    .. method:: __eq__(self, other)
 
-
-----
 
    .. method:: __init__(self, note, octaves=1)
 
    Create the lydian mode scale starting on the chosen note.
 
 
-----
-
    .. method:: __len__(self)
 
-
-----
 
    .. method:: __ne__(self, other)
 
 
-----
-
    .. method:: __repr__(self)
 
-
-----
 
    .. method:: __str__(self)
 
 
-----
-
    .. method:: ascending(self)
 
-
-----
 
    .. method:: degree(self, degree_number, direction=a)
 
@@ -666,8 +488,6 @@ Other scales
    The direction of the scale is 'a' for ascending (default) and 'd'
    for descending.
 
-
-----
 
    .. method:: descending(self)
 
@@ -684,44 +504,28 @@ Other scales
 .. class:: Major
 
 
-----
-
    .. method:: __eq__(self, other)
 
-
-----
 
    .. method:: __init__(self, note, octaves=1)
 
    Create the major scale starting on the chosen note.
 
 
-----
-
    .. method:: __len__(self)
 
-
-----
 
    .. method:: __ne__(self, other)
 
 
-----
-
    .. method:: __repr__(self)
 
-
-----
 
    .. method:: __str__(self)
 
 
-----
-
    .. method:: ascending(self)
 
-
-----
 
    .. method:: degree(self, degree_number, direction=a)
 
@@ -730,8 +534,6 @@ Other scales
    The direction of the scale is 'a' for ascending (default) and 'd'
    for descending.
 
-
-----
 
    .. method:: descending(self)
 
@@ -748,44 +550,28 @@ Other scales
 .. class:: MelodicMinor
 
 
-----
-
    .. method:: __eq__(self, other)
 
-
-----
 
    .. method:: __init__(self, note, octaves=1)
 
    Create the melodic minor scale starting on the chosen note.
 
 
-----
-
    .. method:: __len__(self)
 
-
-----
 
    .. method:: __ne__(self, other)
 
 
-----
-
    .. method:: __repr__(self)
 
-
-----
 
    .. method:: __str__(self)
 
 
-----
-
    .. method:: ascending(self)
 
-
-----
 
    .. method:: degree(self, degree_number, direction=a)
 
@@ -794,8 +580,6 @@ Other scales
    The direction of the scale is 'a' for ascending (default) and 'd'
    for descending.
 
-
-----
 
    .. method:: descending(self)
 
@@ -810,44 +594,28 @@ Other scales
 .. class:: MinorNeapolitan
 
 
-----
-
    .. method:: __eq__(self, other)
 
-
-----
 
    .. method:: __init__(self, note, octaves=1)
 
    Create the minor Neapolitan scale starting on the chosen note.
 
 
-----
-
    .. method:: __len__(self)
 
-
-----
 
    .. method:: __ne__(self, other)
 
 
-----
-
    .. method:: __repr__(self)
 
-
-----
 
    .. method:: __str__(self)
 
 
-----
-
    .. method:: ascending(self)
 
-
-----
 
    .. method:: degree(self, degree_number, direction=a)
 
@@ -856,8 +624,6 @@ Other scales
    The direction of the scale is 'a' for ascending (default) and 'd'
    for descending.
 
-
-----
 
    .. method:: descending(self)
 
@@ -872,44 +638,28 @@ Other scales
 .. class:: Mixolydian
 
 
-----
-
    .. method:: __eq__(self, other)
 
-
-----
 
    .. method:: __init__(self, note, octaves=1)
 
    Create the mixolydian mode scale starting on the chosen note.
 
 
-----
-
    .. method:: __len__(self)
 
-
-----
 
    .. method:: __ne__(self, other)
 
 
-----
-
    .. method:: __repr__(self)
 
-
-----
 
    .. method:: __str__(self)
 
 
-----
-
    .. method:: ascending(self)
 
-
-----
 
    .. method:: degree(self, degree_number, direction=a)
 
@@ -918,8 +668,6 @@ Other scales
    The direction of the scale is 'a' for ascending (default) and 'd'
    for descending.
 
-
-----
 
    .. method:: descending(self)
 
@@ -936,44 +684,28 @@ Other scales
 .. class:: NaturalMinor
 
 
-----
-
    .. method:: __eq__(self, other)
 
-
-----
 
    .. method:: __init__(self, note, octaves=1)
 
    Return the natural minor scale starting on the chosen note.
 
 
-----
-
    .. method:: __len__(self)
 
-
-----
 
    .. method:: __ne__(self, other)
 
 
-----
-
    .. method:: __repr__(self)
 
-
-----
 
    .. method:: __str__(self)
 
 
-----
-
    .. method:: ascending(self)
 
-
-----
 
    .. method:: degree(self, degree_number, direction=a)
 
@@ -982,8 +714,6 @@ Other scales
    The direction of the scale is 'a' for ascending (default) and 'd'
    for descending.
 
-
-----
 
    .. method:: descending(self)
 
@@ -1000,12 +730,8 @@ Other scales
 .. class:: Octatonic
 
 
-----
-
    .. method:: __eq__(self, other)
 
-
-----
 
    .. method:: __init__(self, note, octaves=1)
 
@@ -1013,32 +739,20 @@ Other scales
    on the chosen note.
 
 
-----
-
    .. method:: __len__(self)
 
-
-----
 
    .. method:: __ne__(self, other)
 
 
-----
-
    .. method:: __repr__(self)
 
-
-----
 
    .. method:: __str__(self)
 
 
-----
-
    .. method:: ascending(self)
 
-
-----
 
    .. method:: degree(self, degree_number, direction=a)
 
@@ -1047,8 +761,6 @@ Other scales
    The direction of the scale is 'a' for ascending (default) and 'd'
    for descending.
 
-
-----
 
    .. method:: descending(self)
 
@@ -1065,44 +777,28 @@ Other scales
 .. class:: Phrygian
 
 
-----
-
    .. method:: __eq__(self, other)
 
-
-----
 
    .. method:: __init__(self, note, octaves=1)
 
    Create the phrygian mode scale starting on the chosen note.
 
 
-----
-
    .. method:: __len__(self)
 
-
-----
 
    .. method:: __ne__(self, other)
 
 
-----
-
    .. method:: __repr__(self)
 
-
-----
 
    .. method:: __str__(self)
 
 
-----
-
    .. method:: ascending(self)
 
-
-----
 
    .. method:: degree(self, degree_number, direction=a)
 
@@ -1111,8 +807,6 @@ Other scales
    The direction of the scale is 'a' for ascending (default) and 'd'
    for descending.
 
-
-----
 
    .. method:: descending(self)
 
@@ -1129,44 +823,28 @@ Other scales
 .. class:: WholeTone
 
 
-----
-
    .. method:: __eq__(self, other)
 
-
-----
 
    .. method:: __init__(self, note, octaves=1)
 
    Create the whole tone scale starting on the chosen note.
 
 
-----
-
    .. method:: __len__(self)
 
-
-----
 
    .. method:: __ne__(self, other)
 
 
-----
-
    .. method:: __repr__(self)
 
-
-----
 
    .. method:: __str__(self)
 
 
-----
-
    .. method:: ascending(self)
 
-
-----
 
    .. method:: degree(self, degree_number, direction=a)
 
@@ -1175,8 +853,6 @@ Other scales
    The direction of the scale is 'a' for ascending (default) and 'd'
    for descending.
 
-
-----
 
    .. method:: descending(self)
 
@@ -1193,44 +869,28 @@ Other scales
 .. class:: _Scale
 
 
-----
-
    .. method:: __eq__(self, other)
 
-
-----
 
    .. method:: __init__(self, note, octaves)
 
 
-----
-
    .. method:: __len__(self)
 
-
-----
 
    .. method:: __ne__(self, other)
 
 
-----
-
    .. method:: __repr__(self)
 
 
-----
-
    .. method:: __str__(self)
 
-
-----
 
    .. method:: ascending(self)
 
    Return the list of ascending notes.
 
-
-----
 
    .. method:: degree(self, degree_number, direction=a)
 
@@ -1239,8 +899,6 @@ Other scales
    The direction of the scale is 'a' for ascending (default) and 'd'
    for descending.
 
-
-----
 
    .. method:: descending(self)
 

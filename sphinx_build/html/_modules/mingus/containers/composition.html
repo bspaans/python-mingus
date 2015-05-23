@@ -89,9 +89,9 @@
     <span class="n">tracks</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">selected_tracks</span> <span class="o">=</span> <span class="p">[]</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Composition.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersComposition.html#mingus.containers.composition.Composition.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">empty</span><span class="p">()</span>
-
+</div>
     <span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Remove all the tracks from this class.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tracks</span> <span class="o">=</span> <span class="p">[]</span>
@@ -105,7 +105,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">set_title</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_author</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">add_track</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">track</span><span class="p">):</span>
+<div class="viewcode-block" id="Composition.add_track"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersComposition.html#mingus.containers.composition.Composition.add_track">[docs]</a>    <span class="k">def</span> <span class="nf">add_track</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">track</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a track to the composition.</span>
 
 <span class="sd">        Raise an UnexpectedObjectError if the argument is not a</span>
@@ -116,15 +116,15 @@
                     <span class="s">&quot;expecting a mingus.containers.Track object&quot;</span> <span class="o">%</span> <span class="n">track</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tracks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">track</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">selected_tracks</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tracks</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
-
-    <span class="k">def</span> <span class="nf">add_note</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Composition.add_note"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersComposition.html#mingus.containers.composition.Composition.add_note">[docs]</a>    <span class="k">def</span> <span class="nf">add_note</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a note to the selected tracks.</span>
 
 <span class="sd">        Everything container.Track supports in __add__ is accepted.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">selected_tracks</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">tracks</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">note</span>
-
+</div>
     <span class="k">def</span> <span class="nf">set_title</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&#39;Untitled&#39;</span><span class="p">,</span> <span class="n">subtitle</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set the title and subtitle of the piece.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">title</span>
@@ -135,7 +135,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">author</span> <span class="o">=</span> <span class="n">author</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">email</span>
 
-    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<div class="viewcode-block" id="Composition.__add__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersComposition.html#mingus.containers.composition.Composition.__add__">[docs]</a>    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Enable the &#39;+&#39; operator for Compositions.</span>
 
 <span class="sd">        Notes, note strings, NoteContainers, Bars and Tracks are accepted.</span>
@@ -144,26 +144,26 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_track</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Composition.__getitem__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersComposition.html#mingus.containers.composition.Composition.__getitem__">[docs]</a>    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Enable the &#39;[]&#39; notation.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracks</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-
-    <span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Composition.__setitem__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersComposition.html#mingus.containers.composition.Composition.__setitem__">[docs]</a>    <span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Enable the &#39;[] =&#39; notation.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tracks</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
-
-    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Composition.__len__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersComposition.html#mingus.containers.composition.Composition.__len__">[docs]</a>    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Enable the len() function.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tracks</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Composition.__repr__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersComposition.html#mingus.containers.composition.Composition.__repr__">[docs]</a>    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return a string representing the class.&quot;&quot;&quot;</span>
         <span class="n">result</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracks</span><span class="p">:</span>
             <span class="n">result</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">result</span>
-</pre></div></div>
+</pre></div></div></div>
 
           </div>
         </div>

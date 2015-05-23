@@ -91,9 +91,9 @@
     <span class="n">clef</span> <span class="o">=</span> <span class="s">&#39;bass and treble&#39;</span>
     <span class="n">tuning</span> <span class="o">=</span> <span class="bp">None</span>  <span class="c"># optional StringTuning object</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Instrument.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersInstrument.html#mingus.containers.instrument.Instrument.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span>
-
+</div>
     <span class="k">def</span> <span class="nf">set_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">range</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set the range of the instrument.</span>
 
@@ -125,7 +125,7 @@
         <span class="sd">&quot;&quot;&quot;An alias for can_play_notes.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">can_play_notes</span><span class="p">(</span><span class="n">notes</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">can_play_notes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">notes</span><span class="p">):</span>
+<div class="viewcode-block" id="Instrument.can_play_notes"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersInstrument.html#mingus.containers.instrument.Instrument.can_play_notes">[docs]</a>    <span class="k">def</span> <span class="nf">can_play_notes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">notes</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Test if the notes lie within the range of the instrument.</span>
 
 <span class="sd">        Return True if so, False otherwise.</span>
@@ -138,36 +138,36 @@
             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">note_in_range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
                 <span class="k">return</span> <span class="bp">False</span>
         <span class="k">return</span> <span class="bp">True</span>
-
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Instrument.__repr__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersInstrument.html#mingus.containers.instrument.Instrument.__repr__">[docs]</a>    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return a string representing the object.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s"> [</span><span class="si">%s</span><span class="s"> - </span><span class="si">%s</span><span class="s">]&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">range</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
-</div>
+</div></div>
 <div class="viewcode-block" id="Piano"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersInstrument.html#mingus.containers.instrument.Piano">[docs]</a><span class="k">class</span> <span class="nc">Piano</span><span class="p">(</span><span class="n">Instrument</span><span class="p">):</span>
 
     <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;Piano&#39;</span>
     <span class="nb">range</span> <span class="o">=</span> <span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="s">&#39;F&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Note</span><span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Piano.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersInstrument.html#mingus.containers.instrument.Piano.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">Instrument</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
-</div>
+</div></div>
 <div class="viewcode-block" id="Guitar"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersInstrument.html#mingus.containers.instrument.Guitar">[docs]</a><span class="k">class</span> <span class="nc">Guitar</span><span class="p">(</span><span class="n">Instrument</span><span class="p">):</span>
 
     <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;Guitar&#39;</span>
     <span class="nb">range</span> <span class="o">=</span> <span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">Note</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
     <span class="n">clef</span> <span class="o">=</span> <span class="s">&#39;Treble&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Guitar.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersInstrument.html#mingus.containers.instrument.Guitar.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">Instrument</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">can_play_notes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">notes</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Guitar.can_play_notes"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersInstrument.html#mingus.containers.instrument.Guitar.can_play_notes">[docs]</a>    <span class="k">def</span> <span class="nf">can_play_notes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">notes</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">notes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">6</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">False</span>
         <span class="k">return</span> <span class="n">Instrument</span><span class="o">.</span><span class="n">can_play_notes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">notes</span><span class="p">)</span>
 
-</div>
+</div></div>
 <div class="viewcode-block" id="MidiInstrument"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersInstrument.html#mingus.containers.instrument.MidiInstrument">[docs]</a><span class="k">class</span> <span class="nc">MidiInstrument</span><span class="p">(</span><span class="n">Instrument</span><span class="p">):</span>
 
     <span class="nb">range</span> <span class="o">=</span> <span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Note</span><span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
@@ -304,9 +304,9 @@
         <span class="s">&#39;Gunshot&#39;</span><span class="p">,</span>
         <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="MidiInstrument.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersInstrument.html#mingus.containers.instrument.MidiInstrument.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-</pre></div></div>
+</pre></div></div></div>
 
           </div>
         </div>

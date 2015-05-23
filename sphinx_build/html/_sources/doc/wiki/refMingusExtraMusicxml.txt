@@ -104,112 +104,68 @@ http://www.musicxml.org/xml.html
    Attribute of type: int
    ``3``
 
-----
-
    .. method:: __init__(self)
 
-
-----
 
    .. method:: __nonzero__(self)
 
 
-----
-
    .. method:: _call_user_data_handler(self, operation, src, dst)
 
-
-----
 
    .. method:: _create_entity(self, name, publicId, systemId, notationName)
 
 
-----
-
    .. method:: _create_notation(self, name, publicId, systemId)
 
-
-----
 
    .. method:: _get_actualEncoding(self)
 
 
-----
-
    .. method:: _get_async(self)
 
-
-----
 
    .. method:: _get_childNodes(self)
 
 
-----
-
    .. method:: _get_doctype(self)
 
-
-----
 
    .. method:: _get_documentElement(self)
 
 
-----
-
    .. method:: _get_documentURI(self)
 
-
-----
 
    .. method:: _get_elem_info(self, element)
 
 
-----
-
    .. method:: _get_encoding(self)
 
-
-----
 
    .. method:: _get_errorHandler(self)
 
 
-----
-
    .. method:: _get_firstChild(self)
 
-
-----
 
    .. method:: _get_lastChild(self)
 
 
-----
-
    .. method:: _get_localName(self)
 
-
-----
 
    .. method:: _get_standalone(self)
 
 
-----
-
    .. method:: _get_strictErrorChecking(self)
 
-
-----
 
    .. method:: _get_version(self)
 
 
-----
-
    .. method:: _set_async(self, async)
 
-
-----
 
    .. method:: abort(self)
 
@@ -220,8 +176,6 @@ http://www.musicxml.org/xml.html
 
    Attribute of type: NoneType
    ``None``
-
-----
 
    .. method:: appendChild(self, node)
 
@@ -240,52 +194,32 @@ http://www.musicxml.org/xml.html
    Attribute of type: NoneType
    ``None``
 
-----
-
    .. method:: cloneNode(self, deep)
 
-
-----
 
    .. method:: createAttribute(self, qName)
 
 
-----
-
    .. method:: createAttributeNS(self, namespaceURI, qualifiedName)
 
-
-----
 
    .. method:: createCDATASection(self, data)
 
 
-----
-
    .. method:: createComment(self, data)
 
-
-----
 
    .. method:: createDocumentFragment(self)
 
 
-----
-
    .. method:: createElement(self, tagName)
 
-
-----
 
    .. method:: createElementNS(self, namespaceURI, qualifiedName)
 
 
-----
-
    .. method:: createProcessingInstruction(self, target, data)
 
-
-----
 
    .. method:: createTextNode(self, data)
 
@@ -302,7 +236,7 @@ http://www.musicxml.org/xml.html
    .. attribute:: documentElement
 
    Attribute of type: property
-   ``<property object at 0x7f79e076f2b8>``
+   ``<property object at 0x7fa78c0042b8>``
 
 ----
 
@@ -330,34 +264,22 @@ http://www.musicxml.org/xml.html
    .. attribute:: firstChild
 
    Attribute of type: property
-   ``<property object at 0x7f79e07cb628>``
-
-----
+   ``<property object at 0x7fa78c060628>``
 
    .. method:: getElementById(self, id)
 
 
-----
-
    .. method:: getElementsByTagName(self, name)
 
-
-----
 
    .. method:: getElementsByTagNameNS(self, namespaceURI, localName)
 
 
-----
-
    .. method:: getInterface(self, feature)
 
 
-----
-
    .. method:: getUserData(self, key)
 
-
-----
 
    .. method:: hasChildNodes(self)
 
@@ -367,24 +289,16 @@ http://www.musicxml.org/xml.html
    .. attribute:: implementation
 
    Attribute of type: instance
-   ``<xml.dom.minidom.DOMImplementation instance at 0x7f79e07699e0>``
-
-----
+   ``<xml.dom.minidom.DOMImplementation instance at 0x7fa78bffe9e0>``
 
    .. method:: importNode(self, node, deep)
 
 
-----
-
    .. method:: insertBefore(self, newChild, refChild)
 
 
-----
-
    .. method:: isSameNode(self, other)
 
-
-----
 
    .. method:: isSupported(self, feature, version)
 
@@ -394,14 +308,10 @@ http://www.musicxml.org/xml.html
    .. attribute:: lastChild
 
    Attribute of type: property
-   ``<property object at 0x7f79e07cb730>``
-
-----
+   ``<property object at 0x7fa78c060730>``
 
    .. method:: load(self, uri)
 
-
-----
 
    .. method:: loadXML(self, source)
 
@@ -411,7 +321,7 @@ http://www.musicxml.org/xml.html
    .. attribute:: localName
 
    Attribute of type: property
-   ``<property object at 0x7f79e07cbd60>``
+   ``<property object at 0x7fa78c060d60>``
 
 ----
 
@@ -448,8 +358,6 @@ http://www.musicxml.org/xml.html
    Attribute of type: NoneType
    ``None``
 
-----
-
    .. method:: normalize(self)
 
 
@@ -481,27 +389,17 @@ http://www.musicxml.org/xml.html
    Attribute of type: NoneType
    ``None``
 
-----
-
    .. method:: removeChild(self, oldChild)
 
-
-----
 
    .. method:: renameNode(self, n, namespaceURI, name)
 
 
-----
-
    .. method:: replaceChild(self, newChild, oldChild)
 
 
-----
-
    .. method:: saveXML(self, snode)
 
-
-----
 
    .. method:: setUserData(self, key, data, handler)
 
@@ -520,18 +418,12 @@ http://www.musicxml.org/xml.html
    Attribute of type: bool
    ``False``
 
-----
-
    .. method:: toprettyxml(self, indent=	, newl=
 , encoding=None)
 
 
-----
-
    .. method:: toxml(self, encoding=None)
 
-
-----
 
    .. method:: unlink(self)
 
@@ -542,8 +434,6 @@ http://www.musicxml.org/xml.html
 
    Attribute of type: NoneType
    ``None``
-
-----
 
    .. method:: writexml(self, writer, indent=, addindent=, newl=, encoding=None)
 

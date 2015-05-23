@@ -8,8 +8,6 @@ mingus.containers.track
 .. class:: Track
 
 
-----
-
    .. method:: __add__(self, value)
 
    Enable the '+' operator for Tracks.
@@ -17,40 +15,28 @@ mingus.containers.track
    Notes, notes as string, NoteContainers and Bars accepted.
 
 
-----
-
    .. method:: __eq__(self, other)
 
    Enable the '==' operator for tracks.
 
-
-----
 
    .. method:: __getitem__(self, index)
 
    Enable the '[]' notation for Tracks.
 
 
-----
-
    .. method:: __init__(self, instrument=None)
 
-
-----
 
    .. method:: __len__(self)
 
    Enable the len() function for Tracks.
 
 
-----
-
    .. method:: __repr__(self)
 
    Return a string representing the class.
 
-
-----
 
    .. method:: __setitem__(self, index, value)
 
@@ -60,14 +46,10 @@ mingus.containers.track
    mingus.containers.Bar object.
 
 
-----
-
    .. method:: add_bar(self, bar)
 
    Add a Bar to the current track.
 
-
-----
 
    .. method:: add_notes(self, note, duration=None)
 
@@ -83,8 +65,6 @@ mingus.containers.track
    range of the Instrument.
 
 
-----
-
    .. method:: augment(self)
 
    Augment all the bars in the Track.
@@ -97,14 +77,10 @@ mingus.containers.track
    Attribute of type: list
    ``[]``
 
-----
-
    .. method:: diminish(self)
 
    Diminish all the bars in the Track.
 
-
-----
 
    .. method:: from_chords(self, chords, duration=1)
 
@@ -123,15 +99,11 @@ mingus.containers.track
    >>> t = Track().from_chords(['C', ['Am', 'Dm'], 'G7', 'C#'], 1)
 
 
-----
-
    .. method:: get_notes(self)
 
    Return an iterator that iterates through every bar in the this
    track.
 
-
-----
 
    .. method:: get_tuning(self)
 
@@ -155,8 +127,6 @@ mingus.containers.track
    Attribute of type: str
    ``'Untitled'``
 
-----
-
    .. method:: set_tuning(self, tuning)
 
    Set the tuning attribute on both the Track and its instrument (when
@@ -165,15 +135,11 @@ mingus.containers.track
    Tuning should be a StringTuning or derivative object.
 
 
-----
-
    .. method:: test_integrity(self)
 
    Test whether all but the last Bars contained in this track are
    full.
 
-
-----
 
    .. method:: transpose(self, interval, up=True)
 

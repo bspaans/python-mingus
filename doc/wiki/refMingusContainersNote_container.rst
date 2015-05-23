@@ -8,8 +8,6 @@ mingus.containers.note_container
 .. class:: NoteContainer
 
 
-----
-
    .. method:: __add__(self, notes)
 
    Enable the use of the '+' operator on NoteContainers.
@@ -21,14 +19,10 @@ mingus.containers.note_container
    ['C-4', 'E-4', 'G-4', 'B-4']
 
 
-----
-
    .. method:: __eq__(self, other)
 
    Enable the '==' operator for NoteContainer instances.
 
-
-----
 
    .. method:: __getitem__(self, item)
 
@@ -41,26 +35,18 @@ mingus.containers.note_container
    'C-4'
 
 
-----
-
    .. method:: __init__(self, notes=[])
 
-
-----
 
    .. method:: __len__(self)
 
    Return the number of notes in the container.
 
 
-----
-
    .. method:: __repr__(self)
 
    Return a nice and clean string representing the note container.
 
-
-----
 
    .. method:: __setitem__(self, item, value)
 
@@ -76,8 +62,6 @@ mingus.containers.note_container
    ['B-4', 'E-4', 'G-4']
 
 
-----
-
    .. method:: __sub__(self, notes)
 
    Enable the use of the '-' operator on NoteContainers.
@@ -89,14 +73,10 @@ mingus.containers.note_container
    ['C-4', 'G-4']
 
 
-----
-
    .. method:: _consonance_test(self, testfunc, param=None)
 
    Private function used for testing consonance/dissonance.
 
-
-----
 
    .. method:: add_note(self, note, octave=None, dynamics={})
 
@@ -105,8 +85,6 @@ mingus.containers.note_container
    The note can either be a string, in which case you could also use
    the octave and dynamics arguments, or a Note object.
 
-
-----
 
    .. method:: add_notes(self, notes)
 
@@ -121,14 +99,10 @@ mingus.containers.note_container
    >>> notes = [['C', 5, {'volume': 20}], ['E', 6, {'volume': 20}]]
 
 
-----
-
    .. method:: augment(self)
 
    Augment all the notes in the NoteContainer.
 
-
-----
 
    .. method:: determine(self, shorthand=False)
 
@@ -136,28 +110,20 @@ mingus.containers.note_container
    container.
 
 
-----
-
    .. method:: diminish(self)
 
    Diminish all the notes in the NoteContainer.
 
-
-----
 
    .. method:: empty(self)
 
    Empty the container.
 
 
-----
-
    .. method:: from_chord(self, shorthand)
 
    Shortcut to from_chord_shorthand.
 
-
-----
 
    .. method:: from_chord_shorthand(self, shorthand)
 
@@ -172,14 +138,10 @@ mingus.containers.note_container
    ['A-4', 'C-5', 'E-5']
 
 
-----
-
    .. method:: from_interval(self, startnote, shorthand, up=True)
 
    Shortcut to from_interval_shorthand.
 
-
-----
 
    .. method:: from_interval_shorthand(self, startnote, shorthand, up=True)
 
@@ -197,14 +159,10 @@ mingus.containers.note_container
    ['F-3', 'C-4']
 
 
-----
-
    .. method:: from_progression(self, shorthand, key=C)
 
    Shortcut to from_progression_shorthand.
 
-
-----
 
    .. method:: from_progression_shorthand(self, shorthand, key=C)
 
@@ -219,16 +177,12 @@ mingus.containers.note_container
    ['A-4', 'C-5', 'E-5']
 
 
-----
-
    .. method:: get_note_names(self)
 
    Return a list with all the note names in the current container.
    
    Every name will only be mentioned once.
 
-
-----
 
    .. method:: is_consonant(self, include_fourths=True)
 
@@ -238,16 +192,12 @@ mingus.containers.note_container
    consonance.
 
 
-----
-
    .. method:: is_dissonant(self, include_fourths=False)
 
    Test whether the notes are dissonants.
    
    See the core.intervals module for a longer description.
 
-
-----
 
    .. method:: is_imperfect_consonant(self)
 
@@ -256,8 +206,6 @@ mingus.containers.note_container
    See the core.intervals module for a longer description on
    consonance.
 
-
-----
 
    .. method:: is_perfect_consonant(self, include_fourths=True)
 
@@ -274,14 +222,10 @@ mingus.containers.note_container
    Attribute of type: list
    ``[]``
 
-----
-
    .. method:: remove_duplicate_notes(self)
 
    Remove duplicate and enharmonic notes from the container.
 
-
-----
 
    .. method:: remove_note(self, note, octave=-1)
 
@@ -292,8 +236,6 @@ mingus.containers.note_container
    in every octave.
 
 
-----
-
    .. method:: remove_notes(self, notes)
 
    Remove notes from the containers.
@@ -302,14 +244,10 @@ mingus.containers.note_container
    also single strings or Note objects.
 
 
-----
-
    .. method:: sort(self)
 
    Sort the notes in the container from low to high.
 
-
-----
 
    .. method:: transpose(self, interval, up=True)
 

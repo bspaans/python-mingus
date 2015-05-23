@@ -14,8 +14,6 @@ http://www.sonicspot.com/guide/midifiles.html
 .. class:: MidiTrack
 
 
-----
-
    .. method:: __init__(self, start_bpm=120)
 
 
@@ -32,8 +30,6 @@ http://www.sonicspot.com/guide/midifiles.html
 
    Attribute of type: bool
    ``False``
-
-----
 
    .. method:: controller_event(self, channel, contr_nr, contr_val)
 
@@ -54,14 +50,10 @@ http://www.sonicspot.com/guide/midifiles.html
    Attribute of type: str
    ``'\x00'``
 
-----
-
    .. method:: end_of_track(self)
 
    Return the bytes for an end of track meta event.
 
-
-----
 
    .. method:: get_midi_data(self)
 
@@ -69,8 +61,6 @@ http://www.sonicspot.com/guide/midifiles.html
    
    Include header, track_data and the end of track meta event.
 
-
-----
 
    .. method:: header(self)
 
@@ -88,8 +78,6 @@ http://www.sonicspot.com/guide/midifiles.html
    Attribute of type: int
    ``1``
 
-----
-
    .. method:: int_to_varbyte(self, value)
 
    Convert an integer into a variable length byte.
@@ -100,43 +88,31 @@ http://www.sonicspot.com/guide/midifiles.html
    to store the value.
 
 
-----
-
    .. method:: key_signature_event(self, key=C)
 
    Return the bytes for a key signature event.
 
-
-----
 
    .. method:: midi_event(self, event_type, channel, param1, param2=None)
 
    Convert and return the paraters as a MIDI event in bytes.
 
 
-----
-
    .. method:: note_off(self, channel, note, velocity)
 
    Return bytes for a 'note off' event.
 
-
-----
 
    .. method:: note_on(self, channel, note, velocity)
 
    Return bytes for a 'note_on' event.
 
 
-----
-
    .. method:: play_Bar(self, bar)
 
    Convert a Bar object to MIDI events and write them to the
    track_data.
 
-
-----
 
    .. method:: play_Note(self, note)
 
@@ -147,8 +123,6 @@ http://www.sonicspot.com/guide/midifiles.html
    same goes for Note.velocity.
 
 
-----
-
    .. method:: play_NoteContainer(self, notecontainer)
 
    Convert a mingus.containers.NoteContainer to the equivalent MIDI
@@ -157,36 +131,26 @@ http://www.sonicspot.com/guide/midifiles.html
    Note.channel and Note.velocity can be set as well.
 
 
-----
-
    .. method:: play_Track(self, track)
 
    Convert a Track object to MIDI events and write them to the
    track_data.
 
 
-----
-
    .. method:: program_change_event(self, channel, instr)
 
    Return the bytes for a program change controller event.
 
-
-----
 
    .. method:: reset(self)
 
    Reset track_data and delta_time.
 
 
-----
-
    .. method:: select_bank(self, channel, bank)
 
    Return the MIDI event for a select bank controller event.
 
-
-----
 
    .. method:: set_deltatime(self, delta_time)
 
@@ -195,64 +159,46 @@ http://www.sonicspot.com/guide/midifiles.html
    Can be an integer or a variable length byte.
 
 
-----
-
    .. method:: set_instrument(self, channel, instr, bank=1)
 
    Add a program change and bank select event to the track_data.
 
-
-----
 
    .. method:: set_key(self, key=C)
 
    Add a key signature event to the track_data.
 
 
-----
-
    .. method:: set_meter(self, meter=(4, 4))
 
    Add a time signature event for meter to track_data.
 
-
-----
 
    .. method:: set_tempo(self, bpm)
 
    Convert the bpm to a midi event and write it to the track_data.
 
 
-----
-
    .. method:: set_tempo_event(self, bpm)
 
    Calculate the microseconds per quarter note.
 
-
-----
 
    .. method:: set_track_name(self, name)
 
    Add a meta event for the track.
 
 
-----
-
    .. method:: stop_Note(self, note)
 
    Add a note_off event for note to event_track.
 
-
-----
 
    .. method:: stop_NoteContainer(self, notecontainer)
 
    Add note_off events for each note in the NoteContainer to the
    track_data.
 
-
-----
 
    .. method:: time_signature_event(self, meter=(4, 4))
 
@@ -265,8 +211,6 @@ http://www.sonicspot.com/guide/midifiles.html
 
    Attribute of type: str
    ``''``
-
-----
 
    .. method:: track_name_event(self, name)
 

@@ -8,47 +8,33 @@ mingus.containers.bar
 .. class:: Bar
 
 
-----
-
    .. method:: __add__(self, note_container)
 
    Enable the '+' operator on Bars.
 
-
-----
 
    .. method:: __eq__(self, other)
 
    Enable the '==' operator for Bars.
 
 
-----
-
    .. method:: __getitem__(self, index)
 
    Enable the  '[]' notation on Bars to get the item at the index.
 
 
-----
-
    .. method:: __init__(self, key=C, meter=(4, 4))
 
-
-----
 
    .. method:: __len__(self)
 
    Enable the len() method for Bars.
 
 
-----
-
    .. method:: __repr__(self)
 
    Enable str() and repr() for Bars.
 
-
-----
 
    .. method:: __setitem__(self, index, value)
 
@@ -57,8 +43,6 @@ mingus.containers.bar
    The value should be a NoteContainer, or a string/list/Note
    understood by the NoteContainer.
 
-
-----
 
    .. method:: augment(self)
 
@@ -71,8 +55,6 @@ mingus.containers.bar
 
    Attribute of type: list
    ``[]``
-
-----
 
    .. method:: change_note_duration(self, at, to)
 
@@ -87,49 +69,35 @@ mingus.containers.bar
    Attribute of type: float
    ``0.0``
 
-----
-
    .. method:: determine_chords(self, shorthand=False)
 
    Return a list of lists [place_in_beat, possible_chords].
 
-
-----
 
    .. method:: determine_progression(self, shorthand=False)
 
    Return a list of lists [place_in_beat, possible_progressions].
 
 
-----
-
    .. method:: diminish(self)
 
    Diminish the NoteContainers in Bar.
 
-
-----
 
    .. method:: empty(self)
 
    Empty the Bar, remove all the NoteContainers.
 
 
-----
-
    .. method:: get_note_names(self)
 
    Return a list of unique note names in the Bar.
 
 
-----
-
    .. method:: get_range(self)
 
    Return the highest and the lowest note in a tuple.
 
-
-----
 
    .. method:: is_full(self)
 
@@ -158,8 +126,6 @@ mingus.containers.bar
    Attribute of type: tuple
    ``(4, 4)``
 
-----
-
    .. method:: place_notes(self, notes, duration)
 
    Place the notes on the current_beat.
@@ -173,14 +139,10 @@ mingus.containers.bar
    enough room for a note of that duration).
 
 
-----
-
    .. method:: place_notes_at(self, notes, at)
 
    Place notes at the given index.
 
-
-----
 
    .. method:: place_rest(self, duration)
 
@@ -189,14 +151,10 @@ mingus.containers.bar
    The same as place_notes(None, duration).
 
 
-----
-
    .. method:: remove_last_entry(self)
 
    Remove the last NoteContainer in the Bar.
 
-
-----
 
    .. method:: set_meter(self, meter)
 
@@ -208,14 +166,10 @@ mingus.containers.bar
    will be raised.
 
 
-----
-
    .. method:: space_left(self)
 
    Return the space left on the Bar.
 
-
-----
 
    .. method:: transpose(self, interval, up=True)
 
@@ -223,8 +177,6 @@ mingus.containers.bar
    
    Call transpose() on all NoteContainers in the bar.
 
-
-----
 
    .. method:: value_left(self)
 

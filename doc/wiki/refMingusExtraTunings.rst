@@ -11,8 +11,6 @@ you search through them.
 .. class:: StringTuning
 
 
-----
-
    .. method:: __init__(self, instrument, description, tuning)
 
    Create a new StringTuning instance.
@@ -24,21 +22,15 @@ you search through them.
    See tunings.add_tuning for examples.
 
 
-----
-
    .. method:: count_courses(self)
 
    Return the average number of courses per string.
 
 
-----
-
    .. method:: count_strings(self)
 
    Return the number of strings.
 
-
-----
 
    .. method:: find_chord_fingering(self, notes, max_distance=4, maxfret=18, max_fingers=4, return_best_as_NoteContainer=False)
 
@@ -53,8 +45,6 @@ you search through them.
    >>> t.find_chord_fingering(NoteContainer().from_chord('Am'))
    [[0, 0, 2, 2, 1, 0], [0, 3, 2, 2, 1, 0], ......]
 
-
-----
 
    .. method:: find_fingering(self, notes, max_distance=4, not_strings=[])
 
@@ -73,8 +63,6 @@ you search through them.
    [[(0, 7), (1, 7)], [(1, 0), (0, 14)]]
 
 
-----
-
    .. method:: find_frets(self, note, maxfret=24)
 
    Return a list with for each string the fret on which the note is
@@ -92,8 +80,6 @@ you search through them.
    [12, 5]
 
 
-----
-
    .. method:: find_note_names(self, notelist, string=0, maxfret=24)
 
    Return a list [(fret, notename)] in ascending order.
@@ -107,14 +93,10 @@ you search through them.
    [(0, 'E'), (5, 'A'), (8, 'C'), (12, 'E')]
 
 
-----
-
    .. method:: frets_to_NoteContainer(self, fingering)
 
    Convert a list such as returned by find_fret to a NoteContainer.
 
-
-----
 
    .. method:: get_Note(self, string=0, fret=0, maxfret=24)
 

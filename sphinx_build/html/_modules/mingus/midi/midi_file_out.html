@@ -83,25 +83,25 @@
     <span class="n">tracks</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">time_division</span> <span class="o">=</span> <span class="s">&quot;</span><span class="se">\x00\x48</span><span class="s">&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tracks</span><span class="o">=</span><span class="p">[]):</span>
+<div class="viewcode-block" id="MidiFile.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_out.html#mingus.midi.midi_file_out.MidiFile.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tracks</span><span class="o">=</span><span class="p">[]):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tracks</span> <span class="o">=</span> <span class="n">tracks</span>
-
-    <span class="k">def</span> <span class="nf">get_midi_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiFile.get_midi_data"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_out.html#mingus.midi.midi_file_out.MidiFile.get_midi_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_midi_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Collect and return the raw, binary MIDI data from the tracks.&quot;&quot;&quot;</span>
         <span class="n">tracks</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">get_midi_data</span><span class="p">()</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracks</span> <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">track_data</span> <span class="o">!=</span> <span class="s">&#39;&#39;</span><span class="p">]</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">()</span> <span class="o">+</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tracks</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">header</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiFile.header"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_out.html#mingus.midi.midi_file_out.MidiFile.header">[docs]</a>    <span class="k">def</span> <span class="nf">header</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return a header for type 1 MIDI file.&quot;&quot;&quot;</span>
         <span class="n">tracks</span> <span class="o">=</span> <span class="n">a2b_hex</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%04x</span><span class="s">&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">([</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracks</span> <span class="k">if</span>
             <span class="n">t</span><span class="o">.</span><span class="n">track_data</span> <span class="o">!=</span> <span class="s">&#39;&#39;</span><span class="p">]))</span>
         <span class="k">return</span> <span class="s">&#39;MThd</span><span class="se">\x00\x00\x00\x06\x00\x01</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">tracks</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_division</span>
-
-    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiFile.reset"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_out.html#mingus.midi.midi_file_out.MidiFile.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Reset every track.&quot;&quot;&quot;</span>
         <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracks</span><span class="p">]</span>
-
+</div>
     <span class="k">def</span> <span class="nf">write_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">file</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Collect the data from get_midi_data and write to file.&quot;&quot;&quot;</span>
         <span class="n">dat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_midi_data</span><span class="p">()</span>

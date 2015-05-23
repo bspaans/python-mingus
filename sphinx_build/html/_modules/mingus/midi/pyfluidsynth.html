@@ -196,7 +196,7 @@
 
     <span class="sd">&quot;&quot;&quot;Synth represents a FluidSynth synthesizer.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gain</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">samplerate</span><span class="o">=</span><span class="mi">44100</span><span class="p">):</span>
+<div class="viewcode-block" id="Synth.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiPyfluidsynth.html#mingus.midi.pyfluidsynth.Synth.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gain</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">samplerate</span><span class="o">=</span><span class="mi">44100</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create a new synthesizer object to control sound generation.</span>
 
 <span class="sd">        Optional keyword arguments:</span>
@@ -213,8 +213,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="n">st</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">synth</span> <span class="o">=</span> <span class="n">new_fluid_synth</span><span class="p">(</span><span class="n">st</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">audio_driver</span> <span class="o">=</span> <span class="bp">None</span>
-
-    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Synth.start"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiPyfluidsynth.html#mingus.midi.pyfluidsynth.Synth.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Start audio output driver in separate background thread.</span>
 
 <span class="sd">        Call this function any time after creating the Synth object.</span>
@@ -245,26 +245,26 @@
                     <span class="p">]</span>
             <span class="n">fluid_settings_setstr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">,</span> <span class="s">&#39;audio.driver&#39;</span><span class="p">,</span> <span class="n">driver</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">audio_driver</span> <span class="o">=</span> <span class="n">new_fluid_audio_driver</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Synth.delete"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiPyfluidsynth.html#mingus.midi.pyfluidsynth.Synth.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">audio_driver</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">delete_fluid_audio_driver</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">audio_driver</span><span class="p">)</span>
         <span class="n">delete_fluid_synth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">)</span>
         <span class="n">delete_fluid_settings</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">sfload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">update_midi_preset</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Synth.sfload"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiPyfluidsynth.html#mingus.midi.pyfluidsynth.Synth.sfload">[docs]</a>    <span class="k">def</span> <span class="nf">sfload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">update_midi_preset</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load SoundFont and return its IDi.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">fluid_synth_sfload</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">update_midi_preset</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">sfunload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sfid</span><span class="p">,</span> <span class="n">update_midi_preset</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Synth.sfunload"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiPyfluidsynth.html#mingus.midi.pyfluidsynth.Synth.sfunload">[docs]</a>    <span class="k">def</span> <span class="nf">sfunload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sfid</span><span class="p">,</span> <span class="n">update_midi_preset</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Unload a SoundFont and free memory it used.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">fluid_synth_sfunload</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">,</span> <span class="n">sfid</span><span class="p">,</span> <span class="n">update_midi_preset</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">program_select</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">sfid</span><span class="p">,</span> <span class="n">bank</span><span class="p">,</span> <span class="n">preset</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Synth.program_select"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiPyfluidsynth.html#mingus.midi.pyfluidsynth.Synth.program_select">[docs]</a>    <span class="k">def</span> <span class="nf">program_select</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">sfid</span><span class="p">,</span> <span class="n">bank</span><span class="p">,</span> <span class="n">preset</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Select a program.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">fluid_synth_program_select</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">sfid</span><span class="p">,</span> <span class="n">bank</span><span class="p">,</span> <span class="n">preset</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">noteon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">vel</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Synth.noteon"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiPyfluidsynth.html#mingus.midi.pyfluidsynth.Synth.noteon">[docs]</a>    <span class="k">def</span> <span class="nf">noteon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">vel</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Play a note.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">&gt;</span> <span class="mi">128</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">False</span>
@@ -273,16 +273,16 @@
         <span class="k">if</span> <span class="n">vel</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">vel</span> <span class="o">&gt;</span> <span class="mi">128</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">False</span>
         <span class="k">return</span> <span class="n">fluid_synth_noteon</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">vel</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">noteoff</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Synth.noteoff"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiPyfluidsynth.html#mingus.midi.pyfluidsynth.Synth.noteoff">[docs]</a>    <span class="k">def</span> <span class="nf">noteoff</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Stop a note.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">&gt;</span> <span class="mi">128</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">False</span>
         <span class="k">if</span> <span class="n">chan</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">False</span>
         <span class="k">return</span> <span class="n">fluid_synth_noteoff</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">pitch_bend</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Synth.pitch_bend"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiPyfluidsynth.html#mingus.midi.pyfluidsynth.Synth.pitch_bend">[docs]</a>    <span class="k">def</span> <span class="nf">pitch_bend</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Adjust pitch of a playing channel by small amounts.</span>
 
 <span class="sd">        A pitch bend value of 0 is no pitch change from default.</span>
@@ -291,8 +291,8 @@
 <span class="sd">        Maximum values are -8192 to +8192 (transposing by 4 semitones).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">fluid_synth_pitch_bend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">val</span> <span class="o">+</span> <span class="mi">8192</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">cc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">ctrl</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Synth.cc"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiPyfluidsynth.html#mingus.midi.pyfluidsynth.Synth.cc">[docs]</a>    <span class="k">def</span> <span class="nf">cc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">ctrl</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Send control change value.</span>
 
 <span class="sd">        The controls that are recognized are dependent on the</span>
@@ -307,28 +307,28 @@
 <span class="sd">          93: chorus</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">fluid_synth_cc</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">ctrl</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">program_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">prg</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Synth.program_change"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiPyfluidsynth.html#mingus.midi.pyfluidsynth.Synth.program_change">[docs]</a>    <span class="k">def</span> <span class="nf">program_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">prg</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Change the program.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">fluid_synth_program_change</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">prg</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">bank_select</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">bank</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Synth.bank_select"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiPyfluidsynth.html#mingus.midi.pyfluidsynth.Synth.bank_select">[docs]</a>    <span class="k">def</span> <span class="nf">bank_select</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">bank</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Choose a bank.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">fluid_synth_bank_select</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">bank</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">sfont_select</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">sfid</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Synth.sfont_select"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiPyfluidsynth.html#mingus.midi.pyfluidsynth.Synth.sfont_select">[docs]</a>    <span class="k">def</span> <span class="nf">sfont_select</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">sfid</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Choose a SoundFont.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">fluid_synth_sfont_select</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">sfid</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">program_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Synth.program_reset"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiPyfluidsynth.html#mingus.midi.pyfluidsynth.Synth.program_reset">[docs]</a>    <span class="k">def</span> <span class="nf">program_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Reset the programs on all channels.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">fluid_synth_program_reset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">system_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Synth.system_reset"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiPyfluidsynth.html#mingus.midi.pyfluidsynth.Synth.system_reset">[docs]</a>    <span class="k">def</span> <span class="nf">system_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Stop all notes and reset all programs.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">fluid_synth_system_reset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">get_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">len</span><span class="o">=</span><span class="mi">1024</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Synth.get_samples"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiPyfluidsynth.html#mingus.midi.pyfluidsynth.Synth.get_samples">[docs]</a>    <span class="k">def</span> <span class="nf">get_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">len</span><span class="o">=</span><span class="mi">1024</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Generate audio samples.</span>
 
 <span class="sd">        The return value will be a NumPy array containing the given</span>
@@ -337,7 +337,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">fluid_synth_write_s16_stereo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">,</span> <span class="nb">len</span><span class="p">)</span>
 
-</div>
+</div></div>
 <div class="viewcode-block" id="raw_audio_string"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiPyfluidsynth.html#mingus.midi.pyfluidsynth.raw_audio_string">[docs]</a><span class="k">def</span> <span class="nf">raw_audio_string</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Return a string of bytes to send to soundcard.</span>
 

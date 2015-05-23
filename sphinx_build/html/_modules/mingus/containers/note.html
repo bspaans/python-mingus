@@ -95,7 +95,7 @@
     <span class="n">octave</span> <span class="o">=</span> <span class="mi">4</span>
     <span class="n">dynamics</span> <span class="o">=</span> <span class="p">{}</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">dynamics</span><span class="o">=</span><span class="p">{}):</span>
+<div class="viewcode-block" id="Note.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">dynamics</span><span class="o">=</span><span class="p">{}):</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">set_note</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">octave</span><span class="p">,</span> <span class="n">dynamics</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">):</span>
@@ -110,7 +110,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">NoteFormatError</span><span class="p">(</span><span class="s">&quot;Don&#39;t know what to do with name object: &quot;</span>
                     <span class="s">&quot;&#39;</span><span class="si">%s</span><span class="s">&#39;&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
-
+</div>
     <span class="k">def</span> <span class="nf">set_note</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">dynamics</span><span class="o">=</span><span class="p">{}):</span>
         <span class="sd">&quot;&quot;&quot;Set the note to name in octave with dynamics.</span>
 
@@ -144,20 +144,20 @@
         <span class="n">octave</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">dynamics</span> <span class="o">=</span> <span class="p">{}</span>
 
-    <span class="k">def</span> <span class="nf">augment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Note.augment"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.augment">[docs]</a>    <span class="k">def</span> <span class="nf">augment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Call notes.augment with this note as argument.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">notes</span><span class="o">.</span><span class="n">augment</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">diminish</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Note.diminish"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.diminish">[docs]</a>    <span class="k">def</span> <span class="nf">diminish</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Call notes.diminish with this note as argument.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">notes</span><span class="o">.</span><span class="n">diminish</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">change_octave</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diff</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Note.change_octave"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.change_octave">[docs]</a>    <span class="k">def</span> <span class="nf">change_octave</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diff</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Change the octave of the note to the current octave + diff.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">octave</span> <span class="o">+=</span> <span class="n">diff</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">octave</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">octave</span> <span class="o">=</span> <span class="mi">0</span>
-
+</div>
     <span class="k">def</span> <span class="nf">octave_up</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Increment the current octave with 1.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">change_octave</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -291,7 +291,7 @@
                 <span class="n">octave</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_note</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">octave</span><span class="p">,</span> <span class="p">{})</span>
 
-    <span class="k">def</span> <span class="nf">__int__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Note.__int__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.__int__">[docs]</a>    <span class="k">def</span> <span class="nf">__int__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the current octave multiplied by twelve and add</span>
 <span class="sd">        notes.note_to_int to it.</span>
 <span class="sd">        </span>
@@ -305,8 +305,8 @@
             <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="s">&#39;b&#39;</span><span class="p">:</span>
                 <span class="n">res</span> <span class="o">-=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">res</span>
-
-    <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Note.__lt__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.__lt__">[docs]</a>    <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Enable the comparing operators on Notes (&gt;, &lt;, \ ==, !=, &gt;= and &lt;=).</span>
 
 <span class="sd">        So we can sort() Intervals, etc.</span>
@@ -320,29 +320,29 @@
         <span class="k">if</span> <span class="n">other</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">False</span>
         <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">int</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Note.__eq__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.__eq__">[docs]</a>    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Compare Notes for equality by comparing their note values.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">other</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">False</span>
         <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Note.__ne__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.__ne__">[docs]</a>    <span class="k">def</span> <span class="nf">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span> <span class="o">==</span> <span class="n">other</span>
-
-    <span class="k">def</span> <span class="nf">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Note.__gt__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.__gt__">[docs]</a>    <span class="k">def</span> <span class="nf">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">return</span> <span class="ow">not</span><span class="p">(</span><span class="bp">self</span> <span class="o">&lt;</span> <span class="n">other</span> <span class="ow">or</span> <span class="bp">self</span> <span class="o">==</span> <span class="n">other</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Note.__le__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.__le__">[docs]</a>    <span class="k">def</span> <span class="nf">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span> <span class="o">&lt;</span> <span class="n">other</span> <span class="ow">or</span> <span class="bp">self</span> <span class="o">==</span> <span class="n">other</span>
-
-    <span class="k">def</span> <span class="nf">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Note.__ge__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.__ge__">[docs]</a>    <span class="k">def</span> <span class="nf">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span> <span class="o">&lt;</span> <span class="n">other</span>
-
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Note.__repr__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.__repr__">[docs]</a>    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return a helpful representation for printing Note classes.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="s">&quot;&#39;</span><span class="si">%s</span><span class="s">-</span><span class="si">%d</span><span class="s">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">octave</span><span class="p">)</span>
-</pre></div></div>
+</pre></div></div></div>
 
           </div>
         </div>

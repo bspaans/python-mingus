@@ -120,17 +120,11 @@ Now you are ready to play Notes, NoteContainers, etc.
    Attribute of type: int
    ``6``
 
-----
-
    .. method:: __del__(self)
 
 
-----
-
    .. method:: __init__(self)
 
-
-----
 
    .. method:: attach(self, listener)
 
@@ -139,12 +133,8 @@ Now you are ready to play Notes, NoteContainers, etc.
    The object should have a notify(msg_type, param_dict) function.
 
 
-----
-
    .. method:: cc_event(self, channel, control, value)
 
-
-----
 
    .. method:: control_change(self, channel, control, value)
 
@@ -153,25 +143,17 @@ Now you are ready to play Notes, NoteContainers, etc.
    See the MIDI specification for more information.
 
 
-----
-
    .. method:: detach(self, listener)
 
    Detach a listening object so that it won't receive any events
    anymore.
 
 
-----
-
    .. method:: init(self)
 
 
-----
-
    .. method:: instr_event(self, channel, instr, bank)
 
-
-----
 
    .. method:: load_sound_font(self, sf2)
 
@@ -183,21 +165,15 @@ Now you are ready to play Notes, NoteContainers, etc.
    since the instruments are kept in the sf2 file.
 
 
-----
-
    .. method:: main_volume(self, channel, value)
 
    Set the main volume.
 
 
-----
-
    .. method:: modulation(self, channel, value)
 
    Set the modulation.
 
-
-----
 
    .. method:: notify_listeners(self, msg_type, params)
 
@@ -211,14 +187,10 @@ Now you are ready to play Notes, NoteContainers, etc.
    Attribute of type: NoneType
    ``None``
 
-----
-
    .. method:: pan(self, channel, value)
 
    Set the panning.
 
-
-----
 
    .. method:: play_Bar(self, bar, channel=1, bpm=120)
 
@@ -231,8 +203,6 @@ Now you are ready to play Notes, NoteContainers, etc.
    NoteContainer.
 
 
-----
-
    .. method:: play_Bars(self, bars, channels, bpm=120)
 
    Play several bars (a list of Bar objects) at the same time.
@@ -241,14 +211,10 @@ Now you are ready to play Notes, NoteContainers, etc.
    by providing one or more of the NoteContainers with a bpm argument.
 
 
-----
-
    .. method:: play_Composition(self, composition, channels=None, bpm=120)
 
    Play a Composition object.
 
-
-----
 
    .. method:: play_Note(self, note, channel=1, velocity=100)
 
@@ -259,21 +225,15 @@ Now you are ready to play Notes, NoteContainers, etc.
    will take presedence over the function arguments.
 
 
-----
-
    .. method:: play_NoteContainer(self, nc, channel=1, velocity=100)
 
    Play the Notes in the NoteContainer nc.
 
 
-----
-
    .. method:: play_Track(self, track, channel=1, bpm=120)
 
    Play a Track object.
 
-
-----
 
    .. method:: play_Tracks(self, tracks, channels, bpm=120)
 
@@ -283,24 +243,16 @@ Now you are ready to play Notes, NoteContainers, etc.
    set automatically.
 
 
-----
-
    .. method:: play_event(self, note, channel, velocity)
 
-
-----
 
    .. method:: set_instrument(self, channel, instr, bank=0)
 
    Set the channel to the instrument _instr_.
 
 
-----
-
    .. method:: sleep(self, seconds)
 
-
-----
 
    .. method:: start_audio_output(self, driver=None)
 
@@ -311,14 +263,10 @@ Now you are ready to play Notes, NoteContainers, etc.
    'pulseaudio'. Not all drivers will be available for every platform.
 
 
-----
-
    .. method:: start_recording(self, file=mingus_dump.wav)
 
    Initialize a new wave file for recording.
 
-
-----
 
    .. method:: stop_Note(self, note, channel=1)
 
@@ -328,19 +276,13 @@ Now you are ready to play Notes, NoteContainers, etc.
    argument given here.
 
 
-----
-
    .. method:: stop_NoteContainer(self, nc, channel=1)
 
    Stop playing the notes in NoteContainer nc.
 
 
-----
-
    .. method:: stop_event(self, note, channel)
 
-
-----
 
    .. method:: stop_everything(self)
 
@@ -359,7 +301,7 @@ Now you are ready to play Notes, NoteContainers, etc.
 .. data:: midi
 
    Attribute of type: mingus.midi.fluidsynth.FluidSynthSequencer
-   ``<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x7f79e0796950>``
+   ``<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x7fa78c02d910>``
 
 ----
 

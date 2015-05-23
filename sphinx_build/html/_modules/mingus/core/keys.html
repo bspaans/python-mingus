@@ -214,7 +214,7 @@
 
     <span class="sd">&quot;&quot;&quot;A key object.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s">&#39;C&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Key.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreKeys.html#mingus.core.keys.Key.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s">&#39;C&#39;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">key</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">islower</span><span class="p">():</span>
@@ -233,15 +233,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;{0} {1}{2}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="n">symbol</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">signature</span> <span class="o">=</span> <span class="n">get_key_signature</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Key.__eq__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreKeys.html#mingus.core.keys.Key.__eq__">[docs]</a>    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">True</span>
         <span class="k">return</span> <span class="bp">False</span>
-
-    <span class="k">def</span> <span class="nf">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Key.__ne__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreKeys.html#mingus.core.keys.Key.__ne__">[docs]</a>    <span class="k">def</span> <span class="nf">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__eq__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
-</pre></div></div>
+</pre></div></div></div>
 
           </div>
         </div>

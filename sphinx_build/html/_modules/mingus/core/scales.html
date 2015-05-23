@@ -142,41 +142,41 @@
 <span class="sd">    Not to be used by the final user.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="p">):</span>
+<div class="viewcode-block" id="_Scale.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales._Scale.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">note</span><span class="o">.</span><span class="n">islower</span><span class="p">():</span>
             <span class="k">raise</span> <span class="n">NoteFormatError</span><span class="p">(</span><span class="s">&quot;Unrecognised note &#39;</span><span class="si">%s</span><span class="s">&#39;&quot;</span> <span class="o">%</span> <span class="n">note</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">tonic</span> <span class="o">=</span> <span class="n">note</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">octaves</span> <span class="o">=</span> <span class="n">octaves</span>
-
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="_Scale.__repr__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales._Scale.__repr__">[docs]</a>    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s">&quot;&lt;Scale object (&#39;{0}&#39;)&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="_Scale.__str__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales._Scale.__str__">[docs]</a>    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s">&#39;Ascending:  {0}</span><span class="se">\n</span><span class="s">Descending: {1}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                 <span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ascending</span><span class="p">()),</span> <span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">descending</span><span class="p">()))</span>
-
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="_Scale.__eq__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales._Scale.__eq__">[docs]</a>    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ascending</span><span class="p">()</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">ascending</span><span class="p">():</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">descending</span><span class="p">()</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">descending</span><span class="p">():</span>
                 <span class="k">return</span> <span class="bp">True</span>
         <span class="k">return</span> <span class="bp">False</span>
-
-    <span class="k">def</span> <span class="nf">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="_Scale.__ne__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales._Scale.__ne__">[docs]</a>    <span class="k">def</span> <span class="nf">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__eq__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="_Scale.__len__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales._Scale.__len__">[docs]</a>    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ascending</span><span class="p">())</span>
-
-    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="_Scale.ascending"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales._Scale.ascending">[docs]</a>    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the list of ascending notes.&quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-
-    <span class="k">def</span> <span class="nf">descending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="_Scale.descending"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales._Scale.descending">[docs]</a>    <span class="k">def</span> <span class="nf">descending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the list of descending notes.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ascending</span><span class="p">()))</span>
-
-    <span class="k">def</span> <span class="nf">degree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">degree_number</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s">&#39;a&#39;</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="_Scale.degree"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales._Scale.degree">[docs]</a>    <span class="k">def</span> <span class="nf">degree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">degree_number</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s">&#39;a&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the asked scale degree.</span>
 
 <span class="sd">        The direction of the scale is &#39;a&#39; for ascending (default) and &#39;d&#39;</span>
@@ -195,7 +195,7 @@
 
 
 <span class="c"># The diatonic scales</span>
-</div>
+</div></div>
 <div class="viewcode-block" id="Diatonic"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Diatonic">[docs]</a><span class="k">class</span> <span class="nc">Diatonic</span><span class="p">(</span><span class="n">_Scale</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;The diatonic scale.</span>
@@ -208,7 +208,7 @@
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s">&#39;diatonic&#39;</span>
         
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">semitones</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="Diatonic.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Diatonic.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">semitones</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create the diatonic scale starting on the chosen note.</span>
 
 <span class="sd">        The second parameter is a tuple representing the position of</span>
@@ -218,8 +218,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">semitones</span> <span class="o">=</span> <span class="n">semitones</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;{0} diatonic, semitones in {1}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">semitones</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Diatonic.ascending"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Diatonic.ascending">[docs]</a>    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">notes</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">semitones</span><span class="p">:</span>
@@ -230,7 +230,7 @@
 
 
 <span class="c"># Ancient scales</span>
-</div>
+</div></div>
 <div class="viewcode-block" id="Ionian"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Ionian">[docs]</a><span class="k">class</span> <span class="nc">Ionian</span><span class="p">(</span><span class="n">_Scale</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;The ionian scale.</span>
@@ -243,16 +243,16 @@
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s">&#39;ancient&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="Ionian.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Ionian.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create the ionian mode scale starting on the chosen note.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Ionian</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;{0} ionian&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Ionian.ascending"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Ionian.ascending">[docs]</a>    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">notes</span> <span class="o">=</span> <span class="n">Diatonic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span><span class="o">.</span><span class="n">ascending</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">notes</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">octaves</span> <span class="o">+</span> <span class="p">[</span><span class="n">notes</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
 
-</div>
+</div></div>
 <div class="viewcode-block" id="Dorian"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Dorian">[docs]</a><span class="k">class</span> <span class="nc">Dorian</span><span class="p">(</span><span class="n">_Scale</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;The dorian scale.</span>
@@ -265,16 +265,16 @@
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s">&#39;ancient&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="Dorian.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Dorian.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create the dorian mode scale starting on the chosen note.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Dorian</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;{0} dorian&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Dorian.ascending"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Dorian.ascending">[docs]</a>    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">notes</span> <span class="o">=</span> <span class="n">Diatonic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span><span class="o">.</span><span class="n">ascending</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">notes</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">octaves</span> <span class="o">+</span> <span class="p">[</span><span class="n">notes</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
 
-</div>
+</div></div>
 <div class="viewcode-block" id="Phrygian"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Phrygian">[docs]</a><span class="k">class</span> <span class="nc">Phrygian</span><span class="p">(</span><span class="n">_Scale</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;The phrygian scale.</span>
@@ -287,16 +287,16 @@
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s">&#39;ancient&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="Phrygian.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Phrygian.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create the phrygian mode scale starting on the chosen note.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Phrygian</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;{0} phrygian&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Phrygian.ascending"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Phrygian.ascending">[docs]</a>    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">notes</span> <span class="o">=</span> <span class="n">Diatonic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span><span class="o">.</span><span class="n">ascending</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">notes</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">octaves</span> <span class="o">+</span> <span class="p">[</span><span class="n">notes</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
 
-</div>
+</div></div>
 <div class="viewcode-block" id="Lydian"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Lydian">[docs]</a><span class="k">class</span> <span class="nc">Lydian</span><span class="p">(</span><span class="n">_Scale</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;The lydian scale.</span>
@@ -309,16 +309,16 @@
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s">&#39;ancient&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="Lydian.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Lydian.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create the lydian mode scale starting on the chosen note.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Lydian</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;{0} lydian&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Lydian.ascending"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Lydian.ascending">[docs]</a>    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">notes</span> <span class="o">=</span> <span class="n">Diatonic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">,</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span><span class="o">.</span><span class="n">ascending</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">notes</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">octaves</span> <span class="o">+</span> <span class="p">[</span><span class="n">notes</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
 
-</div>
+</div></div>
 <div class="viewcode-block" id="Mixolydian"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Mixolydian">[docs]</a><span class="k">class</span> <span class="nc">Mixolydian</span><span class="p">(</span><span class="n">_Scale</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;The mixolydian scale.</span>
@@ -331,16 +331,16 @@
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s">&#39;ancient&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="Mixolydian.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Mixolydian.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create the mixolydian mode scale starting on the chosen note.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Mixolydian</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;{0} mixolydian&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Mixolydian.ascending"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Mixolydian.ascending">[docs]</a>    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">notes</span> <span class="o">=</span> <span class="n">Diatonic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span><span class="o">.</span><span class="n">ascending</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">notes</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">octaves</span> <span class="o">+</span> <span class="p">[</span><span class="n">notes</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
 
-</div>
+</div></div>
 <div class="viewcode-block" id="Aeolian"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Aeolian">[docs]</a><span class="k">class</span> <span class="nc">Aeolian</span><span class="p">(</span><span class="n">_Scale</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;The aeolian scale.</span>
@@ -353,16 +353,16 @@
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s">&#39;ancient&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="Aeolian.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Aeolian.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create the aeolian mode scale starting on the chosen note.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Aeolian</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;{0} aeolian&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Aeolian.ascending"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Aeolian.ascending">[docs]</a>    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">notes</span> <span class="o">=</span> <span class="n">Diatonic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span><span class="o">.</span><span class="n">ascending</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">notes</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">octaves</span> <span class="o">+</span> <span class="p">[</span><span class="n">notes</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
 
-</div>
+</div></div>
 <div class="viewcode-block" id="Locrian"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Locrian">[docs]</a><span class="k">class</span> <span class="nc">Locrian</span><span class="p">(</span><span class="n">_Scale</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;The locrian scale.</span>
@@ -375,18 +375,18 @@
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s">&#39;ancient&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="Locrian.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Locrian.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create the locrian mode scale starting on the chosen note.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Locrian</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;{0} locrian&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Locrian.ascending"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Locrian.ascending">[docs]</a>    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">notes</span> <span class="o">=</span> <span class="n">Diatonic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span><span class="o">.</span><span class="n">ascending</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">notes</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">octaves</span> <span class="o">+</span> <span class="p">[</span><span class="n">notes</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
 
 
 <span class="c"># The major scales</span>
-</div>
+</div></div>
 <div class="viewcode-block" id="Major"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Major">[docs]</a><span class="k">class</span> <span class="nc">Major</span><span class="p">(</span><span class="n">_Scale</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;The major scale.</span>
@@ -399,16 +399,16 @@
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s">&#39;major&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="Major.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Major.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create the major scale starting on the chosen note.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Major</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;{0} major&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Major.ascending"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Major.ascending">[docs]</a>    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">notes</span> <span class="o">=</span> <span class="n">get_notes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">notes</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">octaves</span> <span class="o">+</span> <span class="p">[</span><span class="n">notes</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
 
-</div>
+</div></div>
 <div class="viewcode-block" id="HarmonicMajor"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.HarmonicMajor">[docs]</a><span class="k">class</span> <span class="nc">HarmonicMajor</span><span class="p">(</span><span class="n">_Scale</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;The harmonic major scale.</span>
@@ -421,19 +421,19 @@
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s">&#39;major&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="HarmonicMajor.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.HarmonicMajor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create the harmonic major scale starting on the chosen note.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">HarmonicMajor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;{0} harmonic major&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="HarmonicMajor.ascending"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.HarmonicMajor.ascending">[docs]</a>    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">notes</span> <span class="o">=</span> <span class="n">Major</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">)</span><span class="o">.</span><span class="n">ascending</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">notes</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">diminish</span><span class="p">(</span><span class="n">notes</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">notes</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">octaves</span> <span class="o">+</span> <span class="p">[</span><span class="n">notes</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
 
 
 <span class="c"># The minor scales</span>
-</div>
+</div></div>
 <div class="viewcode-block" id="NaturalMinor"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.NaturalMinor">[docs]</a><span class="k">class</span> <span class="nc">NaturalMinor</span><span class="p">(</span><span class="n">_Scale</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;The natural minor scale.</span>
@@ -446,16 +446,16 @@
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s">&#39;minor&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="NaturalMinor.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.NaturalMinor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the natural minor scale starting on the chosen note.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">NaturalMinor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;{0} natural minor&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="NaturalMinor.ascending"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.NaturalMinor.ascending">[docs]</a>    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">notes</span> <span class="o">=</span> <span class="n">get_notes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">notes</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">octaves</span> <span class="o">+</span> <span class="p">[</span><span class="n">notes</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
 
-</div>
+</div></div>
 <div class="viewcode-block" id="HarmonicMinor"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.HarmonicMinor">[docs]</a><span class="k">class</span> <span class="nc">HarmonicMinor</span><span class="p">(</span><span class="n">_Scale</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;The harmonic minor scale.</span>
@@ -468,17 +468,17 @@
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s">&#39;minor&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="HarmonicMinor.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.HarmonicMinor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create the harmonic minor scale starting on the chosen note.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">HarmonicMinor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;{0} harmonic minor&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="HarmonicMinor.ascending"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.HarmonicMinor.ascending">[docs]</a>    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">notes</span> <span class="o">=</span> <span class="n">NaturalMinor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">)</span><span class="o">.</span><span class="n">ascending</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">notes</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="n">augment</span><span class="p">(</span><span class="n">notes</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">notes</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">octaves</span> <span class="o">+</span> <span class="p">[</span><span class="n">notes</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
 
-</div>
+</div></div>
 <div class="viewcode-block" id="MelodicMinor"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.MelodicMinor">[docs]</a><span class="k">class</span> <span class="nc">MelodicMinor</span><span class="p">(</span><span class="n">_Scale</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;The melodic minor scale.</span>
@@ -491,22 +491,22 @@
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s">&#39;minor&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="MelodicMinor.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.MelodicMinor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create the melodic minor scale starting on the chosen note.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MelodicMinor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;{0} melodic minor&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MelodicMinor.ascending"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.MelodicMinor.ascending">[docs]</a>    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">notes</span> <span class="o">=</span> <span class="n">NaturalMinor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">)</span><span class="o">.</span><span class="n">ascending</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">notes</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">augment</span><span class="p">(</span><span class="n">notes</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
         <span class="n">notes</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="n">augment</span><span class="p">(</span><span class="n">notes</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">notes</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">octaves</span> <span class="o">+</span> <span class="p">[</span><span class="n">notes</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
-        
-    <span class="k">def</span> <span class="nf">descending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        </div>
+<div class="viewcode-block" id="MelodicMinor.descending"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.MelodicMinor.descending">[docs]</a>    <span class="k">def</span> <span class="nf">descending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">notes</span> <span class="o">=</span> <span class="n">NaturalMinor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">)</span><span class="o">.</span><span class="n">descending</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">notes</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">octaves</span> <span class="o">+</span> <span class="p">[</span><span class="n">notes</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
 
-</div>
+</div></div>
 <div class="viewcode-block" id="Bachian"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Bachian">[docs]</a><span class="k">class</span> <span class="nc">Bachian</span><span class="p">(</span><span class="n">_Scale</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;The Bachian scale.</span>
@@ -519,17 +519,17 @@
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s">&#39;minor&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="Bachian.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Bachian.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create the Bachian (also known as &quot;real melodic minor&quot; and &quot;jazz&quot;)</span>
 <span class="sd">        scale starting on the chosen note.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Bachian</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;{0} Bachian&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Bachian.ascending"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Bachian.ascending">[docs]</a>    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">notes</span> <span class="o">=</span> <span class="n">MelodicMinor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">)</span><span class="o">.</span><span class="n">ascending</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">notes</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">octaves</span> <span class="o">+</span> <span class="p">[</span><span class="n">notes</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
 
-</div>
+</div></div>
 <div class="viewcode-block" id="MinorNeapolitan"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.MinorNeapolitan">[docs]</a><span class="k">class</span> <span class="nc">MinorNeapolitan</span><span class="p">(</span><span class="n">_Scale</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;The minor Neapolitan scale.</span>
@@ -542,24 +542,24 @@
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s">&#39;minor&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="MinorNeapolitan.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.MinorNeapolitan.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create the minor Neapolitan scale starting on the chosen note.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MinorNeapolitan</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;{0} minor Neapolitan&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MinorNeapolitan.ascending"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.MinorNeapolitan.ascending">[docs]</a>    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">notes</span> <span class="o">=</span> <span class="n">HarmonicMinor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">)</span><span class="o">.</span><span class="n">ascending</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">notes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">diminish</span><span class="p">(</span><span class="n">notes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">notes</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">octaves</span> <span class="o">+</span> <span class="p">[</span><span class="n">notes</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
-
-    <span class="k">def</span> <span class="nf">descending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MinorNeapolitan.descending"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.MinorNeapolitan.descending">[docs]</a>    <span class="k">def</span> <span class="nf">descending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">notes</span> <span class="o">=</span> <span class="n">NaturalMinor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">)</span><span class="o">.</span><span class="n">descending</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">notes</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="n">diminish</span><span class="p">(</span><span class="n">notes</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">notes</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">octaves</span> <span class="o">+</span> <span class="p">[</span><span class="n">notes</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
 
 
 <span class="c"># Other scales</span>
-</div>
+</div></div>
 <div class="viewcode-block" id="Chromatic"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Chromatic">[docs]</a><span class="k">class</span> <span class="nc">Chromatic</span><span class="p">(</span><span class="n">_Scale</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;The chromatic scale.</span>
@@ -575,14 +575,14 @@
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s">&#39;other&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="Chromatic.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Chromatic.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create the chromatic scale in the chosen key.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">key</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tonic</span> <span class="o">=</span> <span class="n">get_notes</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">octaves</span> <span class="o">=</span> <span class="n">octaves</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;{0} chromatic&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Chromatic.ascending"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Chromatic.ascending">[docs]</a>    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">notes</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="n">get_notes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">]:</span>
             <span class="k">if</span> <span class="n">intervals</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="n">notes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">note</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="s">&#39;major second&#39;</span><span class="p">):</span>
@@ -592,8 +592,8 @@
                 <span class="n">notes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
         <span class="n">notes</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">notes</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">octaves</span> <span class="o">+</span> <span class="p">[</span><span class="n">notes</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
-
-    <span class="k">def</span> <span class="nf">descending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Chromatic.descending"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Chromatic.descending">[docs]</a>    <span class="k">def</span> <span class="nf">descending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">notes</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">get_notes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">)):</span>
             <span class="k">if</span> <span class="n">intervals</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">notes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="s">&#39;major second&#39;</span><span class="p">):</span>
@@ -604,7 +604,7 @@
         <span class="n">notes</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">notes</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">octaves</span> <span class="o">+</span> <span class="p">[</span><span class="n">notes</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
 
-</div>
+</div></div>
 <div class="viewcode-block" id="WholeTone"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.WholeTone">[docs]</a><span class="k">class</span> <span class="nc">WholeTone</span><span class="p">(</span><span class="n">_Scale</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;The whole tone scale.</span>
@@ -617,18 +617,18 @@
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s">&#39;other&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="WholeTone.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.WholeTone.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create the whole tone scale starting on the chosen note.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">WholeTone</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;{0} whole tone&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="WholeTone.ascending"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.WholeTone.ascending">[docs]</a>    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">notes</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
             <span class="n">notes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">intervals</span><span class="o">.</span><span class="n">major_second</span><span class="p">(</span><span class="n">notes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
         <span class="k">return</span> <span class="n">notes</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">octaves</span> <span class="o">+</span> <span class="p">[</span><span class="n">notes</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
 
-</div>
+</div></div>
 <div class="viewcode-block" id="Octatonic"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Octatonic">[docs]</a><span class="k">class</span> <span class="nc">Octatonic</span><span class="p">(</span><span class="n">_Scale</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;The octatonic scale.</span>
@@ -641,13 +641,13 @@
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s">&#39;other&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="Octatonic.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Octatonic.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create the octatonic (also known as &quot;diminshed&quot;) scale starting</span>
 <span class="sd">        on the chosen note.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Octatonic</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">octaves</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;{0} octatonic&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Octatonic.ascending"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreScales.html#mingus.core.scales.Octatonic.ascending">[docs]</a>    <span class="k">def</span> <span class="nf">ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">notes</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">tonic</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
             <span class="n">notes</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
@@ -656,7 +656,7 @@
         <span class="n">notes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">intervals</span><span class="o">.</span><span class="n">major_seventh</span><span class="p">(</span><span class="n">notes</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
         <span class="n">notes</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="n">major_sixth</span><span class="p">(</span><span class="n">notes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">notes</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">octaves</span> <span class="o">+</span> <span class="p">[</span><span class="n">notes</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
-</pre></div></div>
+</pre></div></div></div>
 
           </div>
         </div>

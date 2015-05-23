@@ -117,12 +117,8 @@ attached to the Sequencer.
    Attribute of type: int
    ``6``
 
-----
-
    .. method:: __init__(self)
 
-
-----
 
    .. method:: attach(self, listener)
 
@@ -131,12 +127,8 @@ attached to the Sequencer.
    The object should have a notify(msg_type, param_dict) function.
 
 
-----
-
    .. method:: cc_event(self, channel, control, value)
 
-
-----
 
    .. method:: control_change(self, channel, control, value)
 
@@ -145,39 +137,27 @@ attached to the Sequencer.
    See the MIDI specification for more information.
 
 
-----
-
    .. method:: detach(self, listener)
 
    Detach a listening object so that it won't receive any events
    anymore.
 
 
-----
-
    .. method:: init(self)
 
 
-----
-
    .. method:: instr_event(self, channel, instr, bank)
 
-
-----
 
    .. method:: main_volume(self, channel, value)
 
    Set the main volume.
 
 
-----
-
    .. method:: modulation(self, channel, value)
 
    Set the modulation.
 
-
-----
 
    .. method:: notify_listeners(self, msg_type, params)
 
@@ -191,14 +171,10 @@ attached to the Sequencer.
    Attribute of type: NoneType
    ``None``
 
-----
-
    .. method:: pan(self, channel, value)
 
    Set the panning.
 
-
-----
 
    .. method:: play_Bar(self, bar, channel=1, bpm=120)
 
@@ -211,8 +187,6 @@ attached to the Sequencer.
    NoteContainer.
 
 
-----
-
    .. method:: play_Bars(self, bars, channels, bpm=120)
 
    Play several bars (a list of Bar objects) at the same time.
@@ -221,14 +195,10 @@ attached to the Sequencer.
    by providing one or more of the NoteContainers with a bpm argument.
 
 
-----
-
    .. method:: play_Composition(self, composition, channels=None, bpm=120)
 
    Play a Composition object.
 
-
-----
 
    .. method:: play_Note(self, note, channel=1, velocity=100)
 
@@ -239,21 +209,15 @@ attached to the Sequencer.
    will take presedence over the function arguments.
 
 
-----
-
    .. method:: play_NoteContainer(self, nc, channel=1, velocity=100)
 
    Play the Notes in the NoteContainer nc.
 
 
-----
-
    .. method:: play_Track(self, track, channel=1, bpm=120)
 
    Play a Track object.
 
-
-----
 
    .. method:: play_Tracks(self, tracks, channels, bpm=120)
 
@@ -263,24 +227,16 @@ attached to the Sequencer.
    set automatically.
 
 
-----
-
    .. method:: play_event(self, note, channel, velocity)
 
-
-----
 
    .. method:: set_instrument(self, channel, instr, bank=0)
 
    Set the channel to the instrument _instr_.
 
 
-----
-
    .. method:: sleep(self, seconds)
 
-
-----
 
    .. method:: stop_Note(self, note, channel=1)
 
@@ -290,19 +246,13 @@ attached to the Sequencer.
    argument given here.
 
 
-----
-
    .. method:: stop_NoteContainer(self, nc, channel=1)
 
    Stop playing the notes in NoteContainer nc.
 
 
-----
-
    .. method:: stop_event(self, note, channel)
 
-
-----
 
    .. method:: stop_everything(self)
 

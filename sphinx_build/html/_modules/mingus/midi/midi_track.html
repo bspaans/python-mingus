@@ -96,10 +96,10 @@
     <span class="n">change_instrument</span> <span class="o">=</span> <span class="bp">False</span>
     <span class="n">instrument</span> <span class="o">=</span> <span class="mi">1</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_bpm</span><span class="o">=</span><span class="mi">120</span><span class="p">):</span>
+<div class="viewcode-block" id="MidiTrack.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_bpm</span><span class="o">=</span><span class="mi">120</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">track_data</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_tempo</span><span class="p">(</span><span class="n">start_bpm</span><span class="p">)</span>
-
+</div>
     <span class="k">def</span> <span class="nf">end_of_track</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the bytes for an end of track meta event.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="s">&quot;</span><span class="se">\x00\xff\x2f\x00</span><span class="s">&quot;</span>

@@ -44,8 +44,6 @@ Read a MIDI file and convert it into mingus.containers objects.
 .. class:: MidiFile
 
 
-----
-
    .. method:: MIDI_to_Composition(self, file)
 
 
@@ -63,8 +61,6 @@ Read a MIDI file and convert it into mingus.containers objects.
    Attribute of type: int
    ``0``
 
-----
-
    .. method:: bytes_to_int(self, bytes)
 
 
@@ -75,16 +71,12 @@ Read a MIDI file and convert it into mingus.containers objects.
    Attribute of type: tuple
    ``(4, 4)``
 
-----
-
    .. method:: parse_midi_event(self, fp)
 
    Parse a MIDI event.
    
    Return a dictionary and the number of bytes read.
 
-
-----
 
    .. method:: parse_midi_file(self, file)
 
@@ -95,15 +87,11 @@ Read a MIDI file and convert it into mingus.containers objects.
    track data and the number of bytes read.
 
 
-----
-
    .. method:: parse_midi_file_header(self, fp)
 
    Read the header of a MIDI file and return a tuple containing the
    format type, number of tracks and parsed time division information.
 
-
-----
 
    .. method:: parse_time_division(self, bytes)
 
@@ -115,8 +103,6 @@ Read a MIDI file and convert it into mingus.containers objects.
    set. If fps is False, ticks_per_beat will hold the value.
 
 
-----
-
    .. method:: parse_track(self, fp)
 
    Parse a MIDI track from its header to its events.
@@ -124,14 +110,10 @@ Read a MIDI file and convert it into mingus.containers objects.
    Return a list of events and the number of bytes that were read.
 
 
-----
-
    .. method:: parse_track_header(self, fp)
 
    Return the size of the track chunk.
 
-
-----
 
    .. method:: parse_varbyte_as_int(self, fp, return_bytes_read=True)
 

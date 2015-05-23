@@ -26,8 +26,6 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 .. class:: Synth
 
 
-----
-
    .. method:: __init__(self, gain=0.2, samplerate=44100)
 
    Create a new synthesizer object to control sound generation.
@@ -38,14 +36,10 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
      samplerate: output samplerate in Hz, default is 44100 Hz
 
 
-----
-
    .. method:: bank_select(self, chan, bank)
 
    Choose a bank.
 
-
-----
 
    .. method:: cc(self, chan, ctrl, val)
 
@@ -63,12 +57,8 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
      93: chorus
 
 
-----
-
    .. method:: delete(self)
 
-
-----
 
    .. method:: get_samples(self, len=1024)
 
@@ -79,21 +69,15 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
    (the default) the array will be size 2 * len.
 
 
-----
-
    .. method:: noteoff(self, chan, key)
 
    Stop a note.
 
 
-----
-
    .. method:: noteon(self, chan, key, vel)
 
    Play a note.
 
-
-----
 
    .. method:: pitch_bend(self, chan, val)
 
@@ -105,49 +89,35 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
    Maximum values are -8192 to +8192 (transposing by 4 semitones).
 
 
-----
-
    .. method:: program_change(self, chan, prg)
 
    Change the program.
 
-
-----
 
    .. method:: program_reset(self)
 
    Reset the programs on all channels.
 
 
-----
-
    .. method:: program_select(self, chan, sfid, bank, preset)
 
    Select a program.
 
-
-----
 
    .. method:: sfload(self, filename, update_midi_preset=0)
 
    Load SoundFont and return its IDi.
 
 
-----
-
    .. method:: sfont_select(self, chan, sfid)
 
    Choose a SoundFont.
 
 
-----
-
    .. method:: sfunload(self, sfid, update_midi_preset=0)
 
    Unload a SoundFont and free memory it used.
 
-
-----
 
    .. method:: start(self, driver=None)
 
@@ -167,8 +137,6 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
    Not all drivers will be available for every platform, it depends on
    which drivers were compiled into FluidSynth for your platform.
 
-
-----
 
    .. method:: system_reset(self)
 
@@ -208,7 +176,7 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 .. data:: cdll
 
    Attribute of type: ctypes.LibraryLoader
-   ``<ctypes.LibraryLoader object at 0x7f79e0c978d0>``
+   ``<ctypes.LibraryLoader object at 0x7fa78c52c890>``
 
 ----
 
@@ -222,14 +190,14 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 .. data:: pydll
 
    Attribute of type: ctypes.LibraryLoader
-   ``<ctypes.LibraryLoader object at 0x7f79e0c97910>``
+   ``<ctypes.LibraryLoader object at 0x7fa78c52c8d0>``
 
 ----
 
 .. data:: pythonapi
 
    Attribute of type: ctypes.PyDLL
-   ``<PyDLL 'None', handle 7f79e43b3188 at 7f79e0c97950>``
+   ``<PyDLL 'None', handle 7fa78fc48188 at 7fa78c52c910>``
 
 ----
 

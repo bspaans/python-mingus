@@ -8,29 +8,19 @@ mingus.containers.note
 .. class:: Note
 
 
-----
-
    .. method:: __eq__(self, other)
 
    Compare Notes for equality by comparing their note values.
 
 
-----
-
    .. method:: __ge__(self, other)
 
-
-----
 
    .. method:: __gt__(self, other)
 
 
-----
-
    .. method:: __init__(self, name=C, octave=4, dynamics={})
 
-
-----
 
    .. method:: __int__(self)
 
@@ -41,12 +31,8 @@ mingus.containers.note
    you to use int() on Notes.
 
 
-----
-
    .. method:: __le__(self, other)
 
-
-----
 
    .. method:: __lt__(self, other)
 
@@ -62,33 +48,23 @@ mingus.containers.note
    False
 
 
-----
-
    .. method:: __ne__(self, other)
 
-
-----
 
    .. method:: __repr__(self)
 
    Return a helpful representation for printing Note classes.
 
 
-----
-
    .. method:: augment(self)
 
    Call notes.augment with this note as argument.
 
 
-----
-
    .. method:: change_octave(self, diff)
 
    Change the octave of the note to the current octave + diff.
 
-
-----
 
    .. method:: diminish(self)
 
@@ -102,14 +78,10 @@ mingus.containers.note
    Attribute of type: dict
    ``{}``
 
-----
-
    .. method:: empty(self)
 
    Remove the data in the instance.
 
-
-----
 
    .. method:: from_hertz(self, hertz, standard_pitch=440)
 
@@ -118,8 +90,6 @@ mingus.containers.note
    The standard_pitch argument can be used to set the pitch of A-4,
    from which the rest is calculated.
 
-
-----
 
    .. method:: from_int(self, integer)
 
@@ -132,8 +102,6 @@ mingus.containers.note
    >>> Note().from_int(12)
    'C-1'
 
-
-----
 
    .. method:: from_shorthand(self, shorthand)
 
@@ -148,8 +116,6 @@ mingus.containers.note
    >>> Note().from_shorthand("c'")
    'C-4'
 
-
-----
 
    .. method:: measure(self, other)
 
@@ -177,28 +143,20 @@ mingus.containers.note
    Attribute of type: int
    ``4``
 
-----
-
    .. method:: octave_down(self)
 
    Decrement the current octave with 1.
 
-
-----
 
    .. method:: octave_up(self)
 
    Increment the current octave with 1.
 
 
-----
-
    .. method:: remove_redundant_accidentals(self)
 
    Call notes.remove_redundant_accidentals on this note's name.
 
-
-----
 
    .. method:: set_note(self, name=C, octave=4, dynamics={})
 
@@ -208,8 +166,6 @@ mingus.containers.note
    otherwise.
 
 
-----
-
    .. method:: to_hertz(self, standard_pitch=440)
 
    Return the Note in Hz.
@@ -217,8 +173,6 @@ mingus.containers.note
    The standard_pitch argument can be used to set the pitch of A-4,
    from which the rest is calculated.
 
-
-----
 
    .. method:: to_shorthand(self)
 
@@ -235,8 +189,6 @@ mingus.containers.note
    >>> Note('C-1').to_shorthand()
    'C,'
 
-
-----
 
    .. method:: transpose(self, interval, up=True)
 

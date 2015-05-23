@@ -112,16 +112,13 @@
 <dl class="class">
 <dt id="mingus.midi.midi_file_in.MidiFile">
 <em class="property">class </em><code class="descclassname">mingus.midi.midi_file_in.</code><code class="descname">MidiFile</code><a class="reference internal" href="../../_modules/mingus/midi/midi_file_in.html#MidiFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.midi_file_in.MidiFile" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="mingus.midi.midi_file_in.MidiFile.MIDI_to_Composition">
+<code class="descname">MIDI_to_Composition</code><span class="sig-paren">(</span><em>self</em>, <em>file</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/midi_file_in.html#MidiFile.MIDI_to_Composition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.midi_file_in.MidiFile.MIDI_to_Composition" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<hr class="docutils" />
-<blockquote>
-<div><dl class="method">
-<dt id="mingus.midi.midi_file_in.MIDI_to_Composition">
-<code class="descclassname">mingus.midi.midi_file_in.</code><code class="descname">MIDI_to_Composition</code><span class="sig-paren">(</span><em>self</em>, <em>file</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/midi_file_in.html#MIDI_to_Composition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.midi_file_in.MIDI_to_Composition" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+</dd></dl>
 
-</div></blockquote>
 <hr class="docutils" />
 <blockquote>
 <div><dl class="attribute">
@@ -141,10 +138,7 @@
 
 <p>Attribute of type: int
 <code class="docutils literal"><span class="pre">0</span></code></p>
-</div></blockquote>
-<hr class="docutils" />
-<blockquote>
-<div><dl class="method">
+<dl class="method">
 <dt id="mingus.midi.midi_file_in.bytes_to_int">
 <code class="descclassname">mingus.midi.midi_file_in.</code><code class="descname">bytes_to_int</code><span class="sig-paren">(</span><em>self</em>, <em>bytes</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.midi_file_in.bytes_to_int" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -159,20 +153,14 @@
 
 <p>Attribute of type: tuple
 <code class="docutils literal"><span class="pre">(4,</span> <span class="pre">4)</span></code></p>
-</div></blockquote>
-<hr class="docutils" />
-<blockquote>
-<div><dl class="method">
+<dl class="method">
 <dt id="mingus.midi.midi_file_in.parse_midi_event">
 <code class="descclassname">mingus.midi.midi_file_in.</code><code class="descname">parse_midi_event</code><span class="sig-paren">(</span><em>self</em>, <em>fp</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.midi_file_in.parse_midi_event" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Parse a MIDI event.</p>
 <p>Return a dictionary and the number of bytes read.</p>
-</div></blockquote>
-<hr class="docutils" />
-<blockquote>
-<div><dl class="method">
+<dl class="method">
 <dt id="mingus.midi.midi_file_in.parse_midi_file">
 <code class="descclassname">mingus.midi.midi_file_in.</code><code class="descname">parse_midi_file</code><span class="sig-paren">(</span><em>self</em>, <em>file</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.midi_file_in.parse_midi_file" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -181,20 +169,14 @@
 <p>Return the header -as a tuple containing respectively the MIDI
 format, the number of tracks and the time division-, the parsed
 track data and the number of bytes read.</p>
-</div></blockquote>
-<hr class="docutils" />
-<blockquote>
-<div><dl class="method">
+<dl class="method">
 <dt id="mingus.midi.midi_file_in.parse_midi_file_header">
 <code class="descclassname">mingus.midi.midi_file_in.</code><code class="descname">parse_midi_file_header</code><span class="sig-paren">(</span><em>self</em>, <em>fp</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.midi_file_in.parse_midi_file_header" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Read the header of a MIDI file and return a tuple containing the
 format type, number of tracks and parsed time division information.</p>
-</div></blockquote>
-<hr class="docutils" />
-<blockquote>
-<div><dl class="method">
+<dl class="method">
 <dt id="mingus.midi.midi_file_in.parse_time_division">
 <code class="descclassname">mingus.midi.midi_file_in.</code><code class="descname">parse_time_division</code><span class="sig-paren">(</span><em>self</em>, <em>bytes</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.midi_file_in.parse_time_division" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -204,29 +186,20 @@ return a dictionary with the boolean fps set to indicate whether to
 use frames per second or ticks per beat.</p>
 <p>If fps is True, the values SMPTE_frames and clock_ticks will also be
 set. If fps is False, ticks_per_beat will hold the value.</p>
-</div></blockquote>
-<hr class="docutils" />
-<blockquote>
-<div><dl class="method">
+<dl class="method">
 <dt id="mingus.midi.midi_file_in.parse_track">
 <code class="descclassname">mingus.midi.midi_file_in.</code><code class="descname">parse_track</code><span class="sig-paren">(</span><em>self</em>, <em>fp</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.midi_file_in.parse_track" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Parse a MIDI track from its header to its events.</p>
 <p>Return a list of events and the number of bytes that were read.</p>
-</div></blockquote>
-<hr class="docutils" />
-<blockquote>
-<div><dl class="method">
+<dl class="method">
 <dt id="mingus.midi.midi_file_in.parse_track_header">
 <code class="descclassname">mingus.midi.midi_file_in.</code><code class="descname">parse_track_header</code><span class="sig-paren">(</span><em>self</em>, <em>fp</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.midi_file_in.parse_track_header" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Return the size of the track chunk.</p>
-</div></blockquote>
-<hr class="docutils" />
-<blockquote>
-<div><dl class="method">
+<dl class="method">
 <dt id="mingus.midi.midi_file_in.parse_varbyte_as_int">
 <code class="descclassname">mingus.midi.midi_file_in.</code><code class="descname">parse_varbyte_as_int</code><span class="sig-paren">(</span><em>self</em>, <em>fp</em>, <em>return_bytes_read=True</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.midi_file_in.parse_varbyte_as_int" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -261,8 +234,8 @@ corresponding integer.</p>
 </div></blockquote>
 <hr class="docutils" />
 <dl class="function">
-<dt>
-<code class="descclassname">mingus.midi.midi_file_in.</code><code class="descname">MIDI_to_Composition</code><span class="sig-paren">(</span><em>file</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/midi_file_in.html#MIDI_to_Composition"><span class="viewcode-link">[source]</span></a></dt>
+<dt id="mingus.midi.midi_file_in.MIDI_to_Composition">
+<code class="descclassname">mingus.midi.midi_file_in.</code><code class="descname">MIDI_to_Composition</code><span class="sig-paren">(</span><em>file</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/midi/midi_file_in.html#MIDI_to_Composition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.midi.midi_file_in.MIDI_to_Composition" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert a MIDI file to a mingus.containers.Composition and return it
 in a tuple with the last used tempo in beats per minute (this will
 change in the future).</p>

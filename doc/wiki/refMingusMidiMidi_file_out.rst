@@ -11,26 +11,18 @@ mingus.containers.
 .. class:: MidiFile
 
 
-----
-
    .. method:: __init__(self, tracks=[])
 
-
-----
 
    .. method:: get_midi_data(self)
 
    Collect and return the raw, binary MIDI data from the tracks.
 
 
-----
-
    .. method:: header(self)
 
    Return a header for type 1 MIDI file.
 
-
-----
 
    .. method:: reset(self)
 
@@ -50,8 +42,6 @@ mingus.containers.
 
    Attribute of type: list
    ``[]``
-
-----
 
    .. method:: write_file(self, file, verbose=False)
 

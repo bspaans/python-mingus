@@ -86,10 +86,10 @@
     <span class="n">description</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
     <span class="n">compositions</span> <span class="o">=</span> <span class="p">[]</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Suite.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersSuite.html#mingus.containers.suite.Suite.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span>
-
-    <span class="k">def</span> <span class="nf">add_composition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">composition</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Suite.add_composition"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersSuite.html#mingus.containers.suite.Suite.add_composition">[docs]</a>    <span class="k">def</span> <span class="nf">add_composition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">composition</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a composition to the suite.</span>
 
 <span class="sd">        Raise an UnexpectedObjectError when the supplied argument is not a</span>
@@ -100,7 +100,7 @@
                     <span class="s">&quot;a mingus.containers.Composition object.&quot;</span> <span class="o">%</span> <span class="n">composition</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">compositions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">composition</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span>
-
+</div>
     <span class="k">def</span> <span class="nf">set_author</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">author</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set the author of the suite.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">author</span> <span class="o">=</span> <span class="n">author</span>
@@ -111,26 +111,26 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">title</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">subtitle</span> <span class="o">=</span> <span class="n">subtitle</span>
 
-    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Suite.__len__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersSuite.html#mingus.containers.suite.Suite.__len__">[docs]</a>    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Enable the len() function.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">compositions</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Suite.__getitem__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersSuite.html#mingus.containers.suite.Suite.__getitem__">[docs]</a>    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Enable the &#39;[]&#39; notation.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">compositions</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-
-    <span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Suite.__setitem__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersSuite.html#mingus.containers.suite.Suite.__setitem__">[docs]</a>    <span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Enable the &#39;[] =&#39; notation.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s">&#39;tracks&#39;</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">UnexpectedObjectError</span><span class="p">(</span><span class="s">&quot;Object &#39;</span><span class="si">%s</span><span class="s">&#39; is not expected. &quot;</span>
                     <span class="s">&quot;Expecting a &quot;</span>
                     <span class="s">&quot;mingus.containers.Composition object.&quot;</span> <span class="o">%</span> <span class="n">value</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">compositions</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
-
-    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">composition</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Suite.__add__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersSuite.html#mingus.containers.suite.Suite.__add__">[docs]</a>    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">composition</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Enable the &#39;+&#39; operator for Compositions.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_composition</span><span class="p">(</span><span class="n">composition</span><span class="p">)</span>
-</pre></div></div>
+</pre></div></div></div>
 
           </div>
         </div>

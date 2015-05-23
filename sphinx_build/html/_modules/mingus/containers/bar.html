@@ -90,14 +90,14 @@
     <span class="n">length</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">bar</span> <span class="o">=</span> <span class="p">[]</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="n">meter</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)):</span>
+<div class="viewcode-block" id="Bar.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersBar.html#mingus.containers.bar.Bar.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="n">meter</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)):</span>
         <span class="c"># warning should check types</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
             <span class="n">key</span> <span class="o">=</span> <span class="n">keys</span><span class="o">.</span><span class="n">Key</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">key</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_meter</span><span class="p">(</span><span class="n">meter</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">empty</span><span class="p">()</span>
-
+</div>
     <span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Empty the Bar, remove all the NoteContainers.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bar</span> <span class="o">=</span> <span class="p">[]</span>
@@ -215,11 +215,11 @@
         <span class="sd">&quot;&quot;&quot;Return the value left on the Bar.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">space_left</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">augment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Bar.augment"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersBar.html#mingus.containers.bar.Bar.augment">[docs]</a>    <span class="k">def</span> <span class="nf">augment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Augment the NoteContainers in Bar.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">cont</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bar</span><span class="p">:</span>
             <span class="n">cont</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">augment</span><span class="p">()</span>
-
+</div>
     <span class="k">def</span> <span class="nf">diminish</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Diminish the NoteContainers in Bar.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">cont</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bar</span><span class="p">:</span>
@@ -257,18 +257,18 @@
                     <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">res</span>
 
-    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note_container</span><span class="p">):</span>
+<div class="viewcode-block" id="Bar.__add__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersBar.html#mingus.containers.bar.Bar.__add__">[docs]</a>    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note_container</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Enable the &#39;+&#39; operator on Bars.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">meter</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">place_notes</span><span class="p">(</span><span class="n">note_container</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">meter</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">place_notes</span><span class="p">(</span><span class="n">note_container</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Bar.__getitem__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersBar.html#mingus.containers.bar.Bar.__getitem__">[docs]</a>    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Enable the  &#39;[]&#39; notation on Bars to get the item at the index.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">bar</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-
-    <span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Bar.__setitem__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersBar.html#mingus.containers.bar.Bar.__setitem__">[docs]</a>    <span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Enable the use of [] = notation on Bars.</span>
 
 <span class="sd">        The value should be a NoteContainer, or a string/list/Note</span>
@@ -286,22 +286,22 @@
                 <span class="n">res</span> <span class="o">+</span> <span class="n">x</span>
             <span class="n">value</span> <span class="o">=</span> <span class="n">res</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bar</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
-
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Bar.__repr__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersBar.html#mingus.containers.bar.Bar.__repr__">[docs]</a>    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Enable str() and repr() for Bars.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bar</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Bar.__len__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersBar.html#mingus.containers.bar.Bar.__len__">[docs]</a>    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Enable the len() method for Bars.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bar</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Bar.__eq__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersBar.html#mingus.containers.bar.Bar.__eq__">[docs]</a>    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Enable the &#39;==&#39; operator for Bars.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bar</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bar</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">bar</span><span class="p">[</span><span class="n">b</span><span class="p">]:</span>
                 <span class="k">return</span> <span class="bp">False</span>
         <span class="k">return</span> <span class="bp">True</span>
-</pre></div></div>
+</pre></div></div></div>
 
           </div>
         </div>
