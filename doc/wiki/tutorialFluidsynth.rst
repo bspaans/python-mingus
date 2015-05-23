@@ -3,9 +3,6 @@
 
 `FluidSynth` is a MIDI synthesizer which uses SoundFont (.SF2) files to generate audio. To work with this module, you'll need the FluidSynth library (usually packaged with the stand-alone program) and a nice instrument collection (look here: http://www.hammersound.net, go to Sounds -> Soundfont Library -> Collections). 
 
-== Importing FluidSynth ==
-
-
 
 >>> from mingus.midi import fluidsynth
 
@@ -15,7 +12,8 @@
 ----
 
 
-== Loading a SoundFont ==
+Loading a SoundFont
+-------------------
 
 To load the SoundFont and initialize FluidSynth we'll only have to call `init`.
 
@@ -33,9 +31,11 @@ You can give an optional second argument to specify a driver (one of 'alsa', 'os
 ----
 
 
-== Playing mingus.containers Objects ==
+Playing mingus.containers Objects
+---------------------------------
 
-=== play_Note ===
+play_Note
+^^^^^^^^^
 
 `play_Note(note, channel = 1, velocity = 100)` converts the given Note object to a midi `note on` command on `channel`. The velocity (0-127) stands for the speed with which the notes are hit. This roughly translates to volume.
 
@@ -56,7 +56,8 @@ The channel and velocity can be set as Note attributes as well. If that's the ca
 True
 
 
-=== stop_Note ===
+stop_Note
+^^^^^^^^^
 
 If a playing note needs to be stopped, `stop_Note(note, channel = 1)` can be used. 
 
@@ -67,7 +68,8 @@ True
 
 *Note* it doesn't matter if the note is actually playing; ie. nothing will break when you try to stop a note that is already stopped.
 
-=== Playing and Stopping NoteContainers ===
+Playing and Stopping NoteContainers 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `play_NoteContainer(notecontainer, channel = 1, velocity = 100)` and stop_NoteContainer(notecontainer, channel = 1)` work the same as `play_Note` and `stop_Note`.
 
@@ -78,7 +80,8 @@ True
 True
 
 
-=== Playing Bars, Tracks and Compositions ===
+Playing Bars, Tracks and Compositions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `play_Bar`, `play_Track` and `play_Composition` all take three arguments. The first is the object itself, the second is the channel which defaults to 1, and the last one is the number of beats per minute which denotes tempo. 
 
@@ -96,9 +99,11 @@ True
 ----
 
 
-== Misc. MIDI Commands ==
+Misc. MIDI Commands
+-------------------
 
-=== Change the Instrument === 
+Change the Instrument
+^^^^^^^^^^^^^^^^^^^^^
 
 `set_instrument(channel, instr, bank = 0)` can be used to change the instrument that is being used on a channel. You can find a list of instruments by googling for `midi instruments table`, but you can also use the `names` attribute in the MidiInstrument class found in mingus.containers.Instrument. 
 
@@ -114,9 +119,7 @@ True
 ----
 
 
-= End of Tutorial 1 = 
+You can learn more about `mingus.midi.fluidsynth <refMingusMidiFluidsynth>`_ in the reference section.
 
-You can learn more about [refMingusMidiFluidsynth mingus.midi.fluidsynth] in the reference section.
-
-  * [tutorialMidiFileOut Saving Containers as Midi File]
-  * [mingusIndex Back to Index]
+  * `Saving Containers as Midi File <tutorialMidiFileOut>`_
+  * `Back to Index </index>`_

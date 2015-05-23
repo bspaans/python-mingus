@@ -56,12 +56,12 @@
   <div class="section" id="tutorial-1-playing-containers-with-fluidsynth">
 <h1>Tutorial 1 - Playing Containers with FluidSynth<a class="headerlink" href="#tutorial-1-playing-containers-with-fluidsynth" title="Permalink to this headline">¶</a></h1>
 <p><cite>FluidSynth</cite> is a MIDI synthesizer which uses SoundFont (.SF2) files to generate audio. To work with this module, you&#8217;ll need the FluidSynth library (usually packaged with the stand-alone program) and a nice instrument collection (look here: <a class="reference external" href="http://www.hammersound.net">http://www.hammersound.net</a>, go to Sounds -&gt; Soundfont Library -&gt; Collections).</p>
-<p>== Importing FluidSynth ==</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mingus.midi</span> <span class="kn">import</span> <span class="n">fluidsynth</span>
 </pre></div>
 </div>
 <hr class="docutils" />
-<p>== Loading a SoundFont ==</p>
+<div class="section" id="loading-a-soundfont">
+<h2>Loading a SoundFont<a class="headerlink" href="#loading-a-soundfont" title="Permalink to this headline">¶</a></h2>
 <p>To load the SoundFont and initialize FluidSynth we&#8217;ll only have to call <cite>init</cite>.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fluidsynth</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="s">&quot;soundfont.SF2&quot;</span><span class="p">)</span>
 </pre></div>
@@ -70,9 +70,12 @@
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fluidsynth</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="s">&quot;soundfont.SF2&quot;</span><span class="p">,</span> <span class="s">&quot;alsa&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
 <hr class="docutils" />
-<p>== Playing mingus.containers Objects ==</p>
-<p>=== play_Note ===</p>
+<div class="section" id="playing-mingus-containers-objects">
+<h2>Playing mingus.containers Objects<a class="headerlink" href="#playing-mingus-containers-objects" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="play-note">
+<h3>play_Note<a class="headerlink" href="#play-note" title="Permalink to this headline">¶</a></h3>
 <p><cite>play_Note(note, channel = 1, velocity = 100)</cite> converts the given Note object to a midi <cite>note on</cite> command on <cite>channel</cite>. The velocity (0-127) stands for the speed with which the notes are hit. This roughly translates to volume.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fluidsynth</span><span class="o">.</span><span class="n">play_Note</span><span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="s">&quot;C-5&quot;</span><span class="p">))</span>
 <span class="go">True</span>
@@ -88,14 +91,18 @@
 <span class="go">True</span>
 </pre></div>
 </div>
-<p>=== stop_Note ===</p>
+</div>
+<div class="section" id="stop-note">
+<h3>stop_Note<a class="headerlink" href="#stop-note" title="Permalink to this headline">¶</a></h3>
 <p>If a playing note needs to be stopped, <cite>stop_Note(note, channel = 1)</cite> can be used.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fluidsynth</span><span class="o">.</span><span class="n">stop_Note</span><span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="s">&quot;C-5&quot;</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
 <span class="go">True</span>
 </pre></div>
 </div>
 <p><em>Note</em> it doesn&#8217;t matter if the note is actually playing; ie. nothing will break when you try to stop a note that is already stopped.</p>
-<p>=== Playing and Stopping NoteContainers ===</p>
+</div>
+<div class="section" id="playing-and-stopping-notecontainers">
+<h3>Playing and Stopping NoteContainers<a class="headerlink" href="#playing-and-stopping-notecontainers" title="Permalink to this headline">¶</a></h3>
 <p><cite>play_NoteContainer(notecontainer, channel = 1, velocity = 100)</cite> and stop_NoteContainer(notecontainer, channel = 1)` work the same as <cite>play_Note</cite> and <cite>stop_Note</cite>.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fluidsynth</span><span class="o">.</span><span class="n">play_NoteContainer</span><span class="p">(</span><span class="n">NoteContainer</span><span class="p">([</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">]))</span>
 <span class="go">True</span>
@@ -103,7 +110,9 @@
 <span class="go">True</span>
 </pre></div>
 </div>
-<p>=== Playing Bars, Tracks and Compositions ===</p>
+</div>
+<div class="section" id="playing-bars-tracks-and-compositions">
+<h3>Playing Bars, Tracks and Compositions<a class="headerlink" href="#playing-bars-tracks-and-compositions" title="Permalink to this headline">¶</a></h3>
 <p><cite>play_Bar</cite>, <cite>play_Track</cite> and <cite>play_Composition</cite> all take three arguments. The first is the object itself, the second is the channel which defaults to 1, and the last one is the number of beats per minute which denotes tempo.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">()</span>
 </pre></div>
@@ -113,9 +122,13 @@
 </pre></div>
 </div>
 <p><em>Note</em> You can set a <cite>bpm</cite> attribute on a NoteContainer to change the tempo. Furthermore, you can set a Track&#8217;s <cite>instrument</cite> attribute to a MidiInstrument object so that play_Track and play_Composition know which instrument to use.</p>
+</div>
+</div>
 <hr class="docutils" />
-<p>== Misc. MIDI Commands ==</p>
-<p>=== Change the Instrument ===</p>
+<div class="section" id="misc-midi-commands">
+<h2>Misc. MIDI Commands<a class="headerlink" href="#misc-midi-commands" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="change-the-instrument">
+<h3>Change the Instrument<a class="headerlink" href="#change-the-instrument" title="Permalink to this headline">¶</a></h3>
 <p><cite>set_instrument(channel, instr, bank = 0)</cite> can be used to change the instrument that is being used on a channel. You can find a list of instruments by googling for <cite>midi instruments table</cite>, but you can also use the <cite>names</cite> attribute in the MidiInstrument class found in mingus.containers.Instrument.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fluidsynth</span><span class="o">.</span><span class="n">set_instrument</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
 </pre></div>
@@ -123,14 +136,15 @@
 <p>=== Panning, Modulation and Other Control Change Commands ===</p>
 <p><cite>panning(channel, value)</cite> and <cite>modulation(channel, value)</cite> are shortcuts to the <cite>control_change(channel, control, value)</cite> function added for your convenience. There are more control change commands however. You can find tables by googling, but know that FluidSynth ignores some of the commands.</p>
 <hr class="docutils" />
-<p>= End of Tutorial 1 =</p>
-<p>You can learn more about [refMingusMidiFluidsynth mingus.midi.fluidsynth] in the reference section.</p>
+<p>You can learn more about <a class="reference external" href="refMingusMidiFluidsynth">mingus.midi.fluidsynth</a> in the reference section.</p>
 <blockquote>
 <div><ul class="simple">
-<li>[tutorialMidiFileOut Saving Containers as Midi File]</li>
-<li>[mingusIndex Back to Index]</li>
+<li><a class="reference external" href="tutorialMidiFileOut">Saving Containers as Midi File</a></li>
+<li><a class="reference external" href="/index">Back to Index</a></li>
 </ul>
 </div></blockquote>
+</div>
+</div>
 </div>
 
 
@@ -139,6 +153,25 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tutorial 1 - Playing Containers with FluidSynth</a><ul>
+<li><a class="reference internal" href="#loading-a-soundfont">Loading a SoundFont</a></li>
+<li><a class="reference internal" href="#playing-mingus-containers-objects">Playing mingus.containers Objects</a><ul>
+<li><a class="reference internal" href="#play-note">play_Note</a></li>
+<li><a class="reference internal" href="#stop-note">stop_Note</a></li>
+<li><a class="reference internal" href="#playing-and-stopping-notecontainers">Playing and Stopping NoteContainers</a></li>
+<li><a class="reference internal" href="#playing-bars-tracks-and-compositions">Playing Bars, Tracks and Compositions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#misc-midi-commands">Misc. MIDI Commands</a><ul>
+<li><a class="reference internal" href="#change-the-instrument">Change the Instrument</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="tutorialSuiteModule.html"
                         title="previous chapter">Tutorial 7 - Suite</a></p>
