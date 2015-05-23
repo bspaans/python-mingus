@@ -7,7 +7,8 @@ This is an overview of some of the applications that use mingus. If you know of 
 ----
 
 
-== Example Application: Drum Machine ==
+Example Application: Drum Machine
+---------------------------------
 
 *Description* A simple drum program with crude recording and playback support controlled by the keyboard.
 
@@ -27,7 +28,8 @@ _ Clicking on the image will take you to a demonstration on YouTube _
 
 
 
-== Example Application: Keyboard ==
+Example Application: Keyboard
+-----------------------------
 
 *Description* A keyboard controlled keyboard (yeah). Determines chords while you play them.
 
@@ -44,7 +46,8 @@ _ Clicking on the image will take you to a demonstration on YouTube _
 ----
 
 
-== Improviser ==
+Improviser
+----------
 
 *Description* Automatic music generation software.
 
@@ -62,4 +65,4 @@ _ Clicking on the image will take you to an example composition on YouTube _
 ----
 
 
-  * [mingusIndex Back to Index]
+:doc:`Back to Index </index>`
