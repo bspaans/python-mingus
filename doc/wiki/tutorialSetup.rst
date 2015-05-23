@@ -1,23 +1,26 @@
 ﻿Setup
 =====
 
+Installation
+------------
+
+Using pip
+^^^^^^^^^
+
+1. pip install mingus
+
+
 Installing from Source
-----------------------
+^^^^^^^^^^^^^^^^^^^^^^
 
-* Get the `tar.gz` archive.
-* Unpack
-* Open a terminal or 'prompt' and `cd` to the directory to which you unpacked.
-* Type `python setup.py install`
+1. Clone https://github.com/bspaans/python-mingus or unpack the source archive
+2. `python setup.py install`
 
 
-Installing .deb or Windows Package
-----------------------------------
 
-* Get the `deb` or `exe` installer.
-* Run it.
 
 Installing from your default package manager
---------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 mingus might be packaged for your distribution's package manager. See :doc:`getting mingus<tutorialGettingmingus>` for a list.
 
