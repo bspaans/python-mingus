@@ -1,0 +1,294 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mingus.extra.fft &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">mingus 0.5.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for mingus.extra.fft</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="c">#    mingus - Music theory Python package, fft module.</span>
+<span class="c">#    Copyright (C) 2008-2009, Bart Spaans</span>
+<span class="c">#</span>
+<span class="c">#    This program is free software: you can redistribute it and/or modify</span>
+<span class="c">#    it under the terms of the GNU General Public License as published by</span>
+<span class="c">#    the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c">#    (at your option) any later version.</span>
+<span class="c">#</span>
+<span class="c">#    This program is distributed in the hope that it will be useful,</span>
+<span class="c">#    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c">#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c">#    GNU General Public License for more details.</span>
+<span class="c">#</span>
+<span class="c">#    You should have received a copy of the GNU General Public License</span>
+<span class="c">#    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="sd">&quot;&quot;&quot;Find the frequencies in raw audio data by using fast Fourier transformations</span>
+<span class="sd">(supplied by numpy).</span>
+
+<span class="sd">This module can also convert the found frequencies to Note objects.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">wave</span>
+<span class="kn">import</span> <span class="nn">struct</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">mingus.containers.note</span> <span class="kn">import</span> <span class="n">Note</span>
+<span class="kn">from</span> <span class="nn">numpy.fft</span> <span class="kn">import</span> <span class="n">fft</span> <span class="k">as</span> <span class="n">_fft</span>
+<span class="kn">import</span> <span class="nn">operator</span>
+
+<span class="c"># Making a frequency-amplitude table   Adapted some ideas and source from:</span>
+<span class="c"># http://xoomer.virgilio.it/sam_psy/psych/sound_proc/sound_proc_python.html</span>
+<span class="c">#</span>
+<span class="c"># The log function turns out to be really, really slow, which adds up quickly.</span>
+<span class="c"># So before we do any performance critical calculations we set up a cache of all</span>
+<span class="c"># the frequencies we need to look up.</span>
+
+<span class="n">_log_cache</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">129</span><span class="p">):</span>
+    <span class="n">_log_cache</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Note</span><span class="p">()</span><span class="o">.</span><span class="n">from_int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">to_hertz</span><span class="p">())</span>
+<span class="n">_last_asked</span> <span class="o">=</span> <span class="bp">None</span>
+
+<div class="viewcode-block" id="_find_log_index"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraFft.html#mingus.extra.fft._find_log_index">[docs]</a><span class="k">def</span> <span class="nf">_find_log_index</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Look up the index of the frequency f in the frequency table.</span>
+
+<span class="sd">    Return the nearest index.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">_last_asked</span><span class="p">,</span> <span class="n">_log_cache</span>
+    <span class="p">(</span><span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
+
+    <span class="c"># Most calls are sequential, this keeps track of the last value asked for so</span>
+    <span class="c"># that we need to search much, much less.</span>
+    <span class="k">if</span> <span class="n">_last_asked</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="p">(</span><span class="n">lastn</span><span class="p">,</span> <span class="n">lastval</span><span class="p">)</span> <span class="o">=</span> <span class="n">_last_asked</span>
+        <span class="k">if</span> <span class="n">f</span> <span class="o">&gt;=</span> <span class="n">lastval</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">f</span> <span class="o">&lt;=</span> <span class="n">_log_cache</span><span class="p">[</span><span class="n">lastn</span><span class="p">]:</span>
+                <span class="n">_last_asked</span> <span class="o">=</span> <span class="p">(</span><span class="n">lastn</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">lastn</span>
+            <span class="k">elif</span> <span class="n">f</span> <span class="o">&lt;=</span> <span class="n">_log_cache</span><span class="p">[</span><span class="n">lastn</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+                <span class="n">_last_asked</span> <span class="o">=</span> <span class="p">(</span><span class="n">lastn</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">lastn</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">begin</span> <span class="o">=</span> <span class="n">lastn</span>
+
+    <span class="c"># Do some range checking</span>
+    <span class="k">if</span> <span class="n">f</span> <span class="o">&gt;</span> <span class="n">_log_cache</span><span class="p">[</span><span class="mi">127</span><span class="p">]</span> <span class="ow">or</span> <span class="n">f</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">128</span>
+
+    <span class="c"># Binary search related algorithm to find the index</span>
+    <span class="k">while</span> <span class="n">begin</span> <span class="o">!=</span> <span class="n">end</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="n">begin</span> <span class="o">+</span> <span class="n">end</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">_log_cache</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+        <span class="n">cp</span> <span class="o">=</span> <span class="n">_log_cache</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">n</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">cp</span> <span class="o">&lt;</span> <span class="n">f</span> <span class="o">&lt;=</span> <span class="n">c</span><span class="p">:</span>
+            <span class="n">_last_asked</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">n</span>
+        <span class="k">if</span> <span class="n">f</span> <span class="o">&lt;</span> <span class="n">c</span><span class="p">:</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">n</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">begin</span> <span class="o">=</span> <span class="n">n</span>
+    <span class="n">_last_asked</span> <span class="o">=</span> <span class="p">(</span><span class="n">begin</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">begin</span>
+</div>
+<div class="viewcode-block" id="find_frequencies"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraFft.html#mingus.extra.fft.find_frequencies">[docs]</a><span class="k">def</span> <span class="nf">find_frequencies</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">44100</span><span class="p">,</span> <span class="n">bits</span><span class="o">=</span><span class="mi">16</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert audio data into a frequency-amplitude table using fast fourier</span>
+<span class="sd">    transformation.</span>
+
+<span class="sd">    Return a list of tuples (frequency, amplitude).</span>
+
+<span class="sd">    Data should only contain one channel of audio.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c"># Fast fourier transform</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">_fft</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">uniquePts</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ceil</span><span class="p">((</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+
+    <span class="c"># Scale by the length (n) and square the value to get the amplitude</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="p">[(</span><span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">uniquePts</span><span class="p">]]</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">p</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span>
+
+    <span class="c"># Generate the frequencies and zip with the amplitudes</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">freq</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">freqArray</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">uniquePts</span> <span class="o">*</span> <span class="n">s</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">zip</span><span class="p">(</span><span class="n">freqArray</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="find_notes"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraFft.html#mingus.extra.fft.find_notes">[docs]</a><span class="k">def</span> <span class="nf">find_notes</span><span class="p">(</span><span class="n">freqTable</span><span class="p">,</span> <span class="n">maxNote</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert the (frequencies, amplitude) list to a (Note, amplitude) list.&quot;&quot;&quot;</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">129</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">Note</span><span class="p">()</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">ampl</span><span class="p">)</span> <span class="ow">in</span> <span class="n">freqTable</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">freq</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">ampl</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="n">_find_log_index</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">f</span> <span class="o">&lt;</span> <span class="n">maxNote</span><span class="p">:</span>
+                <span class="n">res</span><span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="o">+=</span> <span class="n">ampl</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">res</span><span class="p">[</span><span class="mi">128</span><span class="p">]</span> <span class="o">+=</span> <span class="n">ampl</span>
+    <span class="k">return</span> <span class="p">[(</span><span class="n">Note</span><span class="p">()</span><span class="o">.</span><span class="n">from_int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">128</span> <span class="k">else</span> <span class="bp">None</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="ow">in</span>
+            <span class="nb">enumerate</span><span class="p">(</span><span class="n">res</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="data_from_file"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraFft.html#mingus.extra.fft.data_from_file">[docs]</a><span class="k">def</span> <span class="nf">data_from_file</span><span class="p">(</span><span class="nb">file</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return (first channel data, sample frequency, sample width) from a .wav</span>
+<span class="sd">    file.&quot;&quot;&quot;</span>
+    <span class="n">fp</span> <span class="o">=</span> <span class="n">wave</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">readframes</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">getnframes</span><span class="p">())</span>
+    <span class="n">channels</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">getnchannels</span><span class="p">()</span>
+    <span class="n">freq</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">getframerate</span><span class="p">()</span>
+    <span class="n">bits</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">getsampwidth</span><span class="p">()</span>
+
+    <span class="c"># Unpack bytes -- warning currently only tested with 16 bit wavefiles. 32</span>
+    <span class="c"># bit not supported.</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">((</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">h&#39;</span> <span class="o">%</span> <span class="n">fp</span><span class="o">.</span><span class="n">getnframes</span><span class="p">())</span> <span class="o">*</span> <span class="n">channels</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+    <span class="c"># Only use first channel</span>
+    <span class="n">channel1</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="n">channels</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">channel1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+        <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">channel1</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="n">bits</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="find_Note"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraFft.html#mingus.extra.fft.find_Note">[docs]</a><span class="k">def</span> <span class="nf">find_Note</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="n">bits</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get the frequencies, feed them to find_notes and the return the Note</span>
+<span class="sd">    with the highest amplitude.&quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">find_frequencies</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="n">bits</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">find_notes</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">operator</span><span class="o">.</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">))[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</div>
+<div class="viewcode-block" id="analyze_chunks"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraFft.html#mingus.extra.fft.analyze_chunks">[docs]</a><span class="k">def</span> <span class="nf">analyze_chunks</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="n">bits</span><span class="p">,</span> <span class="n">chunksize</span><span class="o">=</span><span class="mi">512</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Cut the one channel data in chunks and analyzes them separately.</span>
+
+<span class="sd">    Making the chunksize a power of two works fastest.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">while</span> <span class="n">data</span> <span class="o">!=</span> <span class="p">[]:</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">find_frequencies</span><span class="p">(</span><span class="n">data</span><span class="p">[:</span><span class="n">chunksize</span><span class="p">],</span> <span class="n">freq</span><span class="p">,</span> <span class="n">bits</span><span class="p">)</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">find_notes</span><span class="p">(</span><span class="n">f</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">operator</span><span class="o">.</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">))[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">chunksize</span><span class="p">:]</span>
+    <span class="k">return</span> <span class="n">res</span>
+</div>
+<div class="viewcode-block" id="find_melody"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraFft.html#mingus.extra.fft.find_melody">[docs]</a><span class="k">def</span> <span class="nf">find_melody</span><span class="p">(</span><span class="nb">file</span><span class="o">=</span><span class="s">&#39;440_480_clean.wav&#39;</span><span class="p">,</span> <span class="n">chunksize</span><span class="o">=</span><span class="mi">512</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Cut the sample into chunks and analyze each chunk.</span>
+
+<span class="sd">    Return a list [(Note, chunks)] where chunks is the number of chunks</span>
+<span class="sd">    where that note is the most dominant.</span>
+
+<span class="sd">    If two consequent chunks turn out to return the same Note they are</span>
+<span class="sd">    grouped together.</span>
+
+<span class="sd">    This is an experimental function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="n">bits</span><span class="p">)</span> <span class="o">=</span> <span class="n">data_from_file</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">analyze_chunks</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="n">bits</span><span class="p">,</span> <span class="n">chunksize</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="p">[]:</span>
+            <span class="k">if</span> <span class="n">res</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">d</span><span class="p">:</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">res</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">val</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">d</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">d</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">freq</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">freq</span><span class="p">)</span> <span class="ow">in</span> <span class="n">res</span><span class="p">]</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">mingus</a></h1>
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=bspaans&repo=python-mingus&type=watch&count=true&size=large"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/bspaans/python-mingus" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

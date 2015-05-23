@@ -1,0 +1,396 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ctypes.util &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
+    <link rel="up" title="ctypes" href="../ctypes.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../ctypes.html" accesskey="U">ctypes</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for ctypes.util</h1><div class="highlight"><pre>
+<span class="c">######################################################################</span>
+<span class="c">#  This file should be kept compatible with Python 2.3, see PEP 291. #</span>
+<span class="c">######################################################################</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+
+<span class="c"># find_library(name) returns the pathname of a library, or None.</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">&quot;nt&quot;</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">_get_build_version</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;Return the version of MSVC that was used to build Python.</span>
+
+<span class="sd">        For Python 2.3 and up, the version number is included in</span>
+<span class="sd">        sys.version.  For earlier versions, assume the compiler is MSVC 6.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># This function was copied from Lib/distutils/msvccompiler.py</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="s">&quot;MSC v.&quot;</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">6</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span>
+        <span class="n">s</span><span class="p">,</span> <span class="n">rest</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="p">[</span><span class="n">i</span><span class="p">:]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">majorVersion</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">-</span> <span class="mi">6</span>
+        <span class="n">minorVersion</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span> <span class="o">/</span> <span class="mf">10.0</span>
+        <span class="c"># I don&#39;t think paths are affected by minor version in version 6</span>
+        <span class="k">if</span> <span class="n">majorVersion</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+            <span class="n">minorVersion</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">majorVersion</span> <span class="o">&gt;=</span> <span class="mi">6</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">majorVersion</span> <span class="o">+</span> <span class="n">minorVersion</span>
+        <span class="c"># else we don&#39;t know what version of the compiler this is</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">find_msvcrt</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;Return the name of the VC runtime dll&quot;&quot;&quot;</span>
+        <span class="n">version</span> <span class="o">=</span> <span class="n">_get_build_version</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">version</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c"># better be safe than sorry</span>
+            <span class="k">return</span> <span class="bp">None</span>
+        <span class="k">if</span> <span class="n">version</span> <span class="o">&lt;=</span> <span class="mi">6</span><span class="p">:</span>
+            <span class="n">clibname</span> <span class="o">=</span> <span class="s">&#39;msvcrt&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">clibname</span> <span class="o">=</span> <span class="s">&#39;msvcr</span><span class="si">%d</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">version</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span>
+
+        <span class="c"># If python was built with in debug mode</span>
+        <span class="kn">import</span> <span class="nn">imp</span>
+        <span class="k">if</span> <span class="n">imp</span><span class="o">.</span><span class="n">get_suffixes</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;_d.pyd&#39;</span><span class="p">:</span>
+            <span class="n">clibname</span> <span class="o">+=</span> <span class="s">&#39;d&#39;</span>
+        <span class="k">return</span> <span class="n">clibname</span><span class="o">+</span><span class="s">&#39;.dll&#39;</span>
+
+    <span class="k">def</span> <span class="nf">find_library</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&#39;c&#39;</span><span class="p">,</span> <span class="s">&#39;m&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">find_msvcrt</span><span class="p">()</span>
+        <span class="c"># See MSDN for the REAL search order.</span>
+        <span class="k">for</span> <span class="n">directory</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;PATH&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">pathsep</span><span class="p">):</span>
+            <span class="n">fname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">fname</span>
+            <span class="k">if</span> <span class="n">fname</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&quot;.dll&quot;</span><span class="p">):</span>
+                <span class="k">continue</span>
+            <span class="n">fname</span> <span class="o">=</span> <span class="n">fname</span> <span class="o">+</span> <span class="s">&quot;.dll&quot;</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">fname</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">&quot;ce&quot;</span><span class="p">:</span>
+    <span class="c"># search path according to MSDN:</span>
+    <span class="c"># - absolute path specified by filename</span>
+    <span class="c"># - The .exe launch directory</span>
+    <span class="c"># - the Windows directory</span>
+    <span class="c"># - ROM dll files (where are they?)</span>
+    <span class="c"># - OEM specified search path: HKLM\Loader\SystemPath</span>
+    <span class="k">def</span> <span class="nf">find_library</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">name</span>
+
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">&quot;posix&quot;</span> <span class="ow">and</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s">&quot;darwin&quot;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">ctypes.macholib.dyld</span> <span class="kn">import</span> <span class="n">dyld_find</span> <span class="k">as</span> <span class="n">_dyld_find</span>
+    <span class="k">def</span> <span class="nf">find_library</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+        <span class="n">possible</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;lib</span><span class="si">%s</span><span class="s">.dylib&#39;</span> <span class="o">%</span> <span class="n">name</span><span class="p">,</span>
+                    <span class="s">&#39;</span><span class="si">%s</span><span class="s">.dylib&#39;</span> <span class="o">%</span> <span class="n">name</span><span class="p">,</span>
+                    <span class="s">&#39;</span><span class="si">%s</span><span class="s">.framework/</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">name</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">possible</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">_dyld_find</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">continue</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+<span class="k">elif</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">&quot;posix&quot;</span><span class="p">:</span>
+    <span class="c"># Andreas Degert&#39;s find functions, using gcc, /sbin/ldconfig, objdump</span>
+    <span class="kn">import</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">tempfile</span><span class="o">,</span> <span class="nn">errno</span>
+
+    <span class="k">def</span> <span class="nf">_findLib_gcc</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+        <span class="n">expr</span> <span class="o">=</span> <span class="s">r&#39;[^\(\)\s]*lib</span><span class="si">%s</span><span class="s">\.[^\(\)\s]*&#39;</span> <span class="o">%</span> <span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">fdout</span><span class="p">,</span> <span class="n">ccout</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">mkstemp</span><span class="p">()</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fdout</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s">&#39;if type gcc &gt;/dev/null 2&gt;&amp;1; then CC=gcc; elif type cc &gt;/dev/null 2&gt;&amp;1; then CC=cc;else exit 10; fi;&#39;</span> \
+              <span class="s">&#39;LANG=C LC_ALL=C $CC -Wl,-t -o &#39;</span> <span class="o">+</span> <span class="n">ccout</span> <span class="o">+</span> <span class="s">&#39; 2&gt;&amp;1 -l&#39;</span> <span class="o">+</span> <span class="n">name</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">trace</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+            <span class="k">finally</span><span class="p">:</span>
+                <span class="n">rv</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">ccout</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">OSError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">errno</span> <span class="o">!=</span> <span class="n">errno</span><span class="o">.</span><span class="n">ENOENT</span><span class="p">:</span>
+                    <span class="k">raise</span>
+        <span class="k">if</span> <span class="n">rv</span> <span class="o">==</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">OSError</span><span class="p">,</span> <span class="s">&#39;gcc or cc command not found&#39;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">trace</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">res</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+        <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+
+    <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s">&quot;sunos5&quot;</span><span class="p">:</span>
+        <span class="c"># use /usr/ccs/bin/dump on solaris</span>
+        <span class="k">def</span> <span class="nf">_get_soname</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">f</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">None</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="s">&quot;/usr/ccs/bin/dump -Lpv 2&gt;/dev/null &quot;</span> <span class="o">+</span> <span class="n">f</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+            <span class="k">finally</span><span class="p">:</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">r&#39;\[.*\]\sSONAME\s+([^\s]+)&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">res</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">None</span>
+            <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">_get_soname</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+            <span class="c"># assuming GNU binutils / ELF</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">f</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">None</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="s">&#39;if ! type objdump &gt;/dev/null 2&gt;&amp;1; then exit 10; fi;&#39;</span> \
+                  <span class="s">&quot;objdump -p -j .dynamic 2&gt;/dev/null &quot;</span> <span class="o">+</span> <span class="n">f</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+            <span class="n">dump</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+            <span class="n">rv</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">rv</span> <span class="o">==</span> <span class="mi">10</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">OSError</span><span class="p">,</span> <span class="s">&#39;objdump command not found&#39;</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+            <span class="k">finally</span><span class="p">:</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">r&#39;\sSONAME\s+([^\s]+)&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">res</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">None</span>
+            <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;freebsd&quot;</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;openbsd&quot;</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;dragonfly&quot;</span><span class="p">)):</span>
+
+        <span class="k">def</span> <span class="nf">_num_version</span><span class="p">(</span><span class="n">libname</span><span class="p">):</span>
+            <span class="c"># &quot;libxyz.so.MAJOR.MINOR&quot; =&gt; [ MAJOR, MINOR ]</span>
+            <span class="n">parts</span> <span class="o">=</span> <span class="n">libname</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">)</span>
+            <span class="n">nums</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">while</span> <span class="n">parts</span><span class="p">:</span>
+                    <span class="n">nums</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">parts</span><span class="o">.</span><span class="n">pop</span><span class="p">()))</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">return</span> <span class="n">nums</span> <span class="ow">or</span> <span class="p">[</span> <span class="n">sys</span><span class="o">.</span><span class="n">maxint</span> <span class="p">]</span>
+
+        <span class="k">def</span> <span class="nf">find_library</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+            <span class="n">ename</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">expr</span> <span class="o">=</span> <span class="s">r&#39;:-l</span><span class="si">%s</span><span class="s">\.\S+ =&gt; \S*/(lib</span><span class="si">%s</span><span class="s">\.\S+)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">ename</span><span class="p">,</span> <span class="n">ename</span><span class="p">)</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s">&#39;/sbin/ldconfig -r 2&gt;/dev/null&#39;</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+            <span class="k">finally</span><span class="p">:</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">res</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">_get_soname</span><span class="p">(</span><span class="n">_findLib_gcc</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">_num_version</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s">&quot;sunos5&quot;</span><span class="p">:</span>
+
+        <span class="k">def</span> <span class="nf">_findLib_crle</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">is64</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s">&#39;/usr/bin/crle&#39;</span><span class="p">):</span>
+                <span class="k">return</span> <span class="bp">None</span>
+
+            <span class="k">if</span> <span class="n">is64</span><span class="p">:</span>
+                <span class="n">cmd</span> <span class="o">=</span> <span class="s">&#39;env LC_ALL=C /usr/bin/crle -64 2&gt;/dev/null&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">cmd</span> <span class="o">=</span> <span class="s">&#39;env LC_ALL=C /usr/bin/crle 2&gt;/dev/null&#39;</span>
+
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;Default Library Path (ELF):&#39;</span><span class="p">):</span>
+                    <span class="n">paths</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">4</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">paths</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">None</span>
+
+            <span class="k">for</span> <span class="nb">dir</span> <span class="ow">in</span> <span class="n">paths</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;:&quot;</span><span class="p">):</span>
+                <span class="n">libfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="s">&quot;lib</span><span class="si">%s</span><span class="s">.so&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">libfile</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="n">libfile</span>
+
+            <span class="k">return</span> <span class="bp">None</span>
+
+        <span class="k">def</span> <span class="nf">find_library</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">is64</span> <span class="o">=</span> <span class="bp">False</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">_get_soname</span><span class="p">(</span><span class="n">_findLib_crle</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">is64</span><span class="p">)</span> <span class="ow">or</span> <span class="n">_findLib_gcc</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="k">def</span> <span class="nf">_findSoname_ldconfig</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+            <span class="kn">import</span> <span class="nn">struct</span>
+            <span class="c"># XXX this code assumes that we know all unames and that a single</span>
+            <span class="c"># ABI is supported per uname; instead we should find what the</span>
+            <span class="c"># ABI is (e.g. check ABI of current process) or simply ask libc</span>
+            <span class="c"># to load the library for us</span>
+            <span class="n">uname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">uname</span><span class="p">()[</span><span class="mi">4</span><span class="p">]</span>
+            <span class="c"># ARM has a variety of unames, e.g. armv7l</span>
+            <span class="k">if</span> <span class="n">uname</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;arm&quot;</span><span class="p">):</span>
+                <span class="n">uname</span> <span class="o">=</span> <span class="s">&quot;arm&quot;</span>
+            <span class="k">if</span> <span class="n">struct</span><span class="o">.</span><span class="n">calcsize</span><span class="p">(</span><span class="s">&#39;l&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+                <span class="n">machine</span> <span class="o">=</span> <span class="n">uname</span> <span class="o">+</span> <span class="s">&#39;-32&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">machine</span> <span class="o">=</span> <span class="n">uname</span> <span class="o">+</span> <span class="s">&#39;-64&#39;</span>
+            <span class="n">mach_map</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s">&#39;x86_64-64&#39;</span><span class="p">:</span> <span class="s">&#39;libc6,x86-64&#39;</span><span class="p">,</span>
+                <span class="s">&#39;ppc64-64&#39;</span><span class="p">:</span> <span class="s">&#39;libc6,64bit&#39;</span><span class="p">,</span>
+                <span class="s">&#39;sparc64-64&#39;</span><span class="p">:</span> <span class="s">&#39;libc6,64bit&#39;</span><span class="p">,</span>
+                <span class="s">&#39;s390x-64&#39;</span><span class="p">:</span> <span class="s">&#39;libc6,64bit&#39;</span><span class="p">,</span>
+                <span class="s">&#39;ia64-64&#39;</span><span class="p">:</span> <span class="s">&#39;libc6,IA-64&#39;</span><span class="p">,</span>
+                <span class="c"># this actually breaks on biarch or multiarch as the first</span>
+                <span class="c"># library wins; uname doesn&#39;t tell us which ABI we&#39;re using</span>
+                <span class="s">&#39;arm-32&#39;</span><span class="p">:</span> <span class="s">&#39;libc6(,hard-float)?&#39;</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="n">abi_type</span> <span class="o">=</span> <span class="n">mach_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">machine</span><span class="p">,</span> <span class="s">&#39;libc6&#39;</span><span class="p">)</span>
+
+            <span class="c"># XXX assuming GLIBC&#39;s ldconfig (with option -p)</span>
+            <span class="n">expr</span> <span class="o">=</span> <span class="s">r&#39;\s+(lib</span><span class="si">%s</span><span class="s">\.[^\s]+)\s+\(</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">name</span><span class="p">),</span> <span class="n">abi_type</span><span class="p">)</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s">&#39;/sbin/ldconfig -p 2&gt;/dev/null&#39;</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+            <span class="k">finally</span><span class="p">:</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">res</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">None</span>
+            <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<div class="viewcode-block" id="find_library"><a class="viewcode-back" href="../../doc/wiki/refMingusMidiPyfluidsynth.html#mingus.midi.pyfluidsynth.find_library">[docs]</a>        <span class="k">def</span> <span class="nf">find_library</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">_findSoname_ldconfig</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">or</span> <span class="n">_get_soname</span><span class="p">(</span><span class="n">_findLib_gcc</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+
+<span class="c">################################################################</span>
+<span class="c"># test code</span>
+</div>
+<span class="k">def</span> <span class="nf">test</span><span class="p">():</span>
+    <span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="n">cdll</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">&quot;nt&quot;</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">cdll</span><span class="o">.</span><span class="n">msvcrt</span>
+        <span class="k">print</span> <span class="n">cdll</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s">&quot;msvcrt&quot;</span><span class="p">)</span>
+        <span class="k">print</span> <span class="n">find_library</span><span class="p">(</span><span class="s">&quot;msvcrt&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">&quot;posix&quot;</span><span class="p">:</span>
+        <span class="c"># find and load_version</span>
+        <span class="k">print</span> <span class="n">find_library</span><span class="p">(</span><span class="s">&quot;m&quot;</span><span class="p">)</span>
+        <span class="k">print</span> <span class="n">find_library</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">)</span>
+        <span class="k">print</span> <span class="n">find_library</span><span class="p">(</span><span class="s">&quot;bz2&quot;</span><span class="p">)</span>
+
+        <span class="c"># getattr</span>
+<span class="c">##        print cdll.m</span>
+<span class="c">##        print cdll.bz2</span>
+
+        <span class="c"># load</span>
+        <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s">&quot;darwin&quot;</span><span class="p">:</span>
+            <span class="k">print</span> <span class="n">cdll</span><span class="o">.</span><span class="n">LoadLibrary</span><span class="p">(</span><span class="s">&quot;libm.dylib&quot;</span><span class="p">)</span>
+            <span class="k">print</span> <span class="n">cdll</span><span class="o">.</span><span class="n">LoadLibrary</span><span class="p">(</span><span class="s">&quot;libcrypto.dylib&quot;</span><span class="p">)</span>
+            <span class="k">print</span> <span class="n">cdll</span><span class="o">.</span><span class="n">LoadLibrary</span><span class="p">(</span><span class="s">&quot;libSystem.dylib&quot;</span><span class="p">)</span>
+            <span class="k">print</span> <span class="n">cdll</span><span class="o">.</span><span class="n">LoadLibrary</span><span class="p">(</span><span class="s">&quot;System.framework/System&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span> <span class="n">cdll</span><span class="o">.</span><span class="n">LoadLibrary</span><span class="p">(</span><span class="s">&quot;libm.so&quot;</span><span class="p">)</span>
+            <span class="k">print</span> <span class="n">cdll</span><span class="o">.</span><span class="n">LoadLibrary</span><span class="p">(</span><span class="s">&quot;libcrypt.so&quot;</span><span class="p">)</span>
+            <span class="k">print</span> <span class="n">find_library</span><span class="p">(</span><span class="s">&quot;crypt&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">test</span><span class="p">()</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">mingus</a></h1>
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=bspaans&repo=python-mingus&type=watch&count=true&size=large"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/bspaans/python-mingus" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
