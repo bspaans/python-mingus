@@ -35,7 +35,7 @@ LilyPond creates sheet music from files formatted in the LilyPond format. This m
 Generating Files from LilyPond Strings
 --------------------------------------
 
-To do something useful with the strings generated in the previous section, we can use the `to_png` and `to_pdf` functions. This does assume that you have !LilyPond installed and in your $PATH.
+To do something useful with the strings generated in the previous section, we can use the `to_png` and `to_pdf` functions. This does assume that you have LilyPond installed and in your $PATH.
 
 
 
