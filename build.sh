@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-git checkout gh_pages_base
+git reset --hard gh_pages_base
 git clean -df
 git checkout sphinx-workspace sphinx_build/html
 mv sphinx_build/html/* .
