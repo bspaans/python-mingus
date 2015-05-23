@@ -221,7 +221,7 @@
             <span class="n">c</span><span class="o">.</span><span class="n">tracks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">bpm</span><span class="p">)</span>
 </div>
-    <span class="k">def</span> <span class="nf">parse_midi_file_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">):</span>
+<div class="viewcode-block" id="MidiFile.parse_midi_file_header"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_in.html#mingus.midi.midi_file_in.MidiFile.parse_midi_file_header">[docs]</a>    <span class="k">def</span> <span class="nf">parse_midi_file_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Read the header of a MIDI file and return a tuple containing the</span>
 <span class="sd">        format type, number of tracks and parsed time division information.&quot;&quot;&quot;</span>
         <span class="c"># Check header</span>
@@ -266,11 +266,11 @@
         <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">chunk_size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bytes_read</span> <span class="o">+=</span> <span class="n">chunk_size</span> <span class="o">/</span> <span class="mi">2</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">format_type</span><span class="p">,</span> <span class="n">number_of_tracks</span><span class="p">,</span> <span class="n">time_division</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">bytes_to_int</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiFile.bytes_to_int"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_in.html#mingus.midi.midi_file_in.MidiFile.bytes_to_int">[docs]</a>    <span class="k">def</span> <span class="nf">bytes_to_int</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">binascii</span><span class="o">.</span><span class="n">b2a_hex</span><span class="p">(</span><span class="nb">bytes</span><span class="p">),</span> <span class="mi">16</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">parse_time_division</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiFile.parse_time_division"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_in.html#mingus.midi.midi_file_in.MidiFile.parse_time_division">[docs]</a>    <span class="k">def</span> <span class="nf">parse_time_division</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Parse the time division found in the header of a MIDI file and</span>
 <span class="sd">        return a dictionary with the boolean fps set to indicate whether to</span>
 <span class="sd">        use frames per second or ticks per beat.</span>
@@ -292,8 +292,8 @@
             <span class="n">clock_ticks</span> <span class="o">=</span> <span class="p">(</span><span class="n">value</span> <span class="o">&amp;</span> <span class="mh">0x00FF</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">2</span>
             <span class="k">return</span> <span class="p">{</span><span class="s">&#39;fps&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> <span class="s">&#39;SMPTE_frames&#39;</span><span class="p">:</span> <span class="n">SMPTE_frames</span><span class="p">,</span>
                     <span class="s">&#39;clock_ticks&#39;</span><span class="p">:</span> <span class="n">clock_ticks</span><span class="p">}</span>
-
-    <span class="k">def</span> <span class="nf">parse_track</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiFile.parse_track"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_in.html#mingus.midi.midi_file_in.MidiFile.parse_track">[docs]</a>    <span class="k">def</span> <span class="nf">parse_track</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Parse a MIDI track from its header to its events.</span>
 
 <span class="sd">        Return a list of events and the number of bytes that were read.</span>
@@ -310,8 +310,8 @@
         <span class="k">if</span> <span class="n">chunk_size</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">print</span> <span class="s">&#39;yikes.&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_read</span><span class="p">,</span> <span class="n">chunk_size</span>
         <span class="k">return</span> <span class="n">events</span>
-
-    <span class="k">def</span> <span class="nf">parse_midi_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiFile.parse_midi_event"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_in.html#mingus.midi.midi_file_in.MidiFile.parse_midi_event">[docs]</a>    <span class="k">def</span> <span class="nf">parse_midi_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Parse a MIDI event.</span>
 
 <span class="sd">        Return a dictionary and the number of bytes read.</span>
@@ -371,8 +371,8 @@
             <span class="n">param2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_to_int</span><span class="p">(</span><span class="n">param2</span><span class="p">)</span>
             <span class="k">return</span> <span class="p">({</span><span class="s">&#39;event&#39;</span><span class="p">:</span> <span class="n">event_type</span><span class="p">,</span> <span class="s">&#39;channel&#39;</span><span class="p">:</span> <span class="n">channel</span><span class="p">,</span> <span class="s">&#39;param1&#39;</span><span class="p">:</span> <span class="n">param1</span><span class="p">,</span>
                 <span class="s">&#39;param2&#39;</span><span class="p">:</span> <span class="n">param2</span><span class="p">},</span> <span class="n">chunk_size</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">parse_track_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiFile.parse_track_header"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_in.html#mingus.midi.midi_file_in.MidiFile.parse_track_header">[docs]</a>    <span class="k">def</span> <span class="nf">parse_track_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the size of the track chunk.&quot;&quot;&quot;</span>
         <span class="c"># Check the header</span>
         <span class="k">try</span><span class="p">:</span>
@@ -393,8 +393,8 @@
             <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s">&quot;Couldn&#39;t read track chunk size from file.&quot;</span><span class="p">)</span>
         <span class="n">chunk_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_to_int</span><span class="p">(</span><span class="n">chunk_size</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">chunk_size</span>
-
-    <span class="k">def</span> <span class="nf">parse_midi_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">file</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiFile.parse_midi_file"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_in.html#mingus.midi.midi_file_in.MidiFile.parse_midi_file">[docs]</a>    <span class="k">def</span> <span class="nf">parse_midi_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">file</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Parse a MIDI file.</span>
 
 <span class="sd">        Return the header -as a tuple containing respectively the MIDI</span>
@@ -415,8 +415,8 @@
             <span class="n">tracks</span> <span class="o">-=</span> <span class="mi">1</span>
         <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">parse_varbyte_as_int</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">return_bytes_read</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiFile.parse_varbyte_as_int"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_in.html#mingus.midi.midi_file_in.MidiFile.parse_varbyte_as_int">[docs]</a>    <span class="k">def</span> <span class="nf">parse_varbyte_as_int</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">return_bytes_read</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Read a variable length byte from the file and return the</span>
 <span class="sd">        corresponding integer.&quot;&quot;&quot;</span>
         <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
@@ -438,7 +438,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">bytes_read</span><span class="p">)</span>
 
-</div>
+</div></div>
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">argv</span>
     <span class="kn">import</span> <span class="nn">fluidsynth</span>

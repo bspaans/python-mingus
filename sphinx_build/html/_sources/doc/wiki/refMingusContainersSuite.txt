@@ -39,28 +39,20 @@ mingus.containers.suite
    Composition object.
 
 
-----
-
    .. attribute:: author
 
    Attribute of type: str
    ``''``
-
-----
 
    .. attribute:: compositions
 
    Attribute of type: list
    ``[]``
 
-----
-
    .. attribute:: description
 
    Attribute of type: str
    ``''``
-
-----
 
    .. attribute:: email
 
@@ -77,14 +69,10 @@ mingus.containers.suite
    Set the title and the subtitle of the suite.
 
 
-----
-
    .. attribute:: subtitle
 
    Attribute of type: str
    ``''``
-
-----
 
    .. attribute:: title
 

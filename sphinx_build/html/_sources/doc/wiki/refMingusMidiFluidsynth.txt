@@ -22,98 +22,70 @@ Now you are ready to play Notes, NoteContainers, etc.
 .. class:: FluidSynthSequencer
 
 
-----
-
    .. attribute:: MSG_CC
 
    Attribute of type: int
    ``2``
-
-----
 
    .. attribute:: MSG_INSTR
 
    Attribute of type: int
    ``3``
 
-----
-
    .. attribute:: MSG_PLAY_BAR
 
    Attribute of type: int
    ``9``
-
-----
 
    .. attribute:: MSG_PLAY_BARS
 
    Attribute of type: int
    ``10``
 
-----
-
    .. attribute:: MSG_PLAY_COMPOSITION
 
    Attribute of type: int
    ``13``
-
-----
 
    .. attribute:: MSG_PLAY_INT
 
    Attribute of type: int
    ``0``
 
-----
-
    .. attribute:: MSG_PLAY_NC
 
    Attribute of type: int
    ``7``
-
-----
 
    .. attribute:: MSG_PLAY_NOTE
 
    Attribute of type: int
    ``5``
 
-----
-
    .. attribute:: MSG_PLAY_TRACK
 
    Attribute of type: int
    ``11``
-
-----
 
    .. attribute:: MSG_PLAY_TRACKS
 
    Attribute of type: int
    ``12``
 
-----
-
    .. attribute:: MSG_SLEEP
 
    Attribute of type: int
    ``4``
-
-----
 
    .. attribute:: MSG_STOP_INT
 
    Attribute of type: int
    ``1``
 
-----
-
    .. attribute:: MSG_STOP_NC
 
    Attribute of type: int
    ``8``
-
-----
 
    .. attribute:: MSG_STOP_NOTE
 
@@ -179,8 +151,6 @@ Now you are ready to play Notes, NoteContainers, etc.
 
    Send a message to all the observers.
 
-
-----
 
    .. attribute:: output
 
@@ -301,7 +271,7 @@ Now you are ready to play Notes, NoteContainers, etc.
 .. data:: midi
 
    Attribute of type: mingus.midi.fluidsynth.FluidSynthSequencer
-   ``<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x7fa78c02d910>``
+   ``<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x7fd0113c78d0>``
 
 ----
 

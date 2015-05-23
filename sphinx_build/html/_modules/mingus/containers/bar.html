@@ -98,13 +98,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">set_meter</span><span class="p">(</span><span class="n">meter</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">empty</span><span class="p">()</span>
 </div>
-    <span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Bar.empty"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersBar.html#mingus.containers.bar.Bar.empty">[docs]</a>    <span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Empty the Bar, remove all the NoteContainers.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bar</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">current_beat</span> <span class="o">=</span> <span class="mf">0.0</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">bar</span>
-
-    <span class="k">def</span> <span class="nf">set_meter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meter</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Bar.set_meter"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersBar.html#mingus.containers.bar.Bar.set_meter">[docs]</a>    <span class="k">def</span> <span class="nf">set_meter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meter</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set the meter of this bar.</span>
 
 <span class="sd">        Meters in mingus are represented by a single tuple.</span>
@@ -123,8 +123,8 @@
             <span class="k">raise</span> <span class="n">MeterFormatError</span><span class="p">(</span><span class="s">&quot;The meter argument &#39;</span><span class="si">%s</span><span class="s">&#39; is not an &quot;</span>
                     <span class="s">&quot;understood representation of a meter. &quot;</span>
                     <span class="s">&quot;Expecting a tuple.&quot;</span> <span class="o">%</span> <span class="n">meter</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">place_notes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">notes</span><span class="p">,</span> <span class="n">duration</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Bar.place_notes"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersBar.html#mingus.containers.bar.Bar.place_notes">[docs]</a>    <span class="k">def</span> <span class="nf">place_notes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">notes</span><span class="p">,</span> <span class="n">duration</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Place the notes on the current_beat.</span>
 
 <span class="sd">        Notes can be strings, Notes, list of strings, list of Notes or a</span>
@@ -152,27 +152,27 @@
             <span class="k">return</span> <span class="bp">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">False</span>
-
-    <span class="k">def</span> <span class="nf">place_notes_at</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">notes</span><span class="p">,</span> <span class="n">at</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Bar.place_notes_at"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersBar.html#mingus.containers.bar.Bar.place_notes_at">[docs]</a>    <span class="k">def</span> <span class="nf">place_notes_at</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">notes</span><span class="p">,</span> <span class="n">at</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Place notes at the given index.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bar</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">at</span><span class="p">:</span>
                 <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">+=</span> <span class="n">notes</span>
-
-    <span class="k">def</span> <span class="nf">place_rest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duration</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Bar.place_rest"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersBar.html#mingus.containers.bar.Bar.place_rest">[docs]</a>    <span class="k">def</span> <span class="nf">place_rest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duration</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Place a rest of given duration on the current_beat.</span>
 
 <span class="sd">        The same as place_notes(None, duration).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">place_notes</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">remove_last_entry</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Bar.remove_last_entry"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersBar.html#mingus.containers.bar.Bar.remove_last_entry">[docs]</a>    <span class="k">def</span> <span class="nf">remove_last_entry</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Remove the last NoteContainer in the Bar.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">current_beat</span> <span class="o">-=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">bar</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bar</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bar</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_beat</span>
-
-    <span class="k">def</span> <span class="nf">is_full</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Bar.is_full"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersBar.html#mingus.containers.bar.Bar.is_full">[docs]</a>    <span class="k">def</span> <span class="nf">is_full</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return False if there is room in this Bar for another</span>
 <span class="sd">        NoteContainer, True otherwise.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
@@ -182,8 +182,8 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_beat</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">-</span> <span class="mf">0.001</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">True</span>
         <span class="k">return</span> <span class="bp">False</span>
-
-    <span class="k">def</span> <span class="nf">change_note_duration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">at</span><span class="p">,</span> <span class="n">to</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Bar.change_note_duration"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersBar.html#mingus.containers.bar.Bar.change_note_duration">[docs]</a>    <span class="k">def</span> <span class="nf">change_note_duration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">at</span><span class="p">,</span> <span class="n">to</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Change the note duration at the given index to the given</span>
 <span class="sd">        duration.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">valid_beat_duration</span><span class="p">(</span><span class="n">to</span><span class="p">):</span>
@@ -195,8 +195,8 @@
                     <span class="n">cur</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
                     <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">to</span>
                     <span class="n">diff</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">cur</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">to</span>
-
-    <span class="k">def</span> <span class="nf">get_range</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Bar.get_range"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersBar.html#mingus.containers.bar.Bar.get_range">[docs]</a>    <span class="k">def</span> <span class="nf">get_range</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the highest and the lowest note in a tuple.&quot;&quot;&quot;</span>
         <span class="p">(</span><span class="nb">min</span><span class="p">,</span> <span class="nb">max</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">cont</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bar</span><span class="p">:</span>
@@ -206,49 +206,49 @@
                 <span class="k">elif</span> <span class="nb">int</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">int</span><span class="p">(</span><span class="nb">max</span><span class="p">):</span>
                     <span class="nb">max</span> <span class="o">=</span> <span class="n">note</span>
         <span class="k">return</span> <span class="p">(</span><span class="nb">min</span><span class="p">,</span> <span class="nb">max</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">space_left</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Bar.space_left"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersBar.html#mingus.containers.bar.Bar.space_left">[docs]</a>    <span class="k">def</span> <span class="nf">space_left</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the space left on the Bar.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_beat</span>
-
-    <span class="k">def</span> <span class="nf">value_left</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Bar.value_left"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersBar.html#mingus.containers.bar.Bar.value_left">[docs]</a>    <span class="k">def</span> <span class="nf">value_left</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the value left on the Bar.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">space_left</span><span class="p">()</span>
-
+</div>
 <div class="viewcode-block" id="Bar.augment"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersBar.html#mingus.containers.bar.Bar.augment">[docs]</a>    <span class="k">def</span> <span class="nf">augment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Augment the NoteContainers in Bar.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">cont</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bar</span><span class="p">:</span>
             <span class="n">cont</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">augment</span><span class="p">()</span>
 </div>
-    <span class="k">def</span> <span class="nf">diminish</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Bar.diminish"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersBar.html#mingus.containers.bar.Bar.diminish">[docs]</a>    <span class="k">def</span> <span class="nf">diminish</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Diminish the NoteContainers in Bar.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">cont</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bar</span><span class="p">:</span>
             <span class="n">cont</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">diminish</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">transpose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">up</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Bar.transpose"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersBar.html#mingus.containers.bar.Bar.transpose">[docs]</a>    <span class="k">def</span> <span class="nf">transpose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">up</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Transpose the notes in the bar up or down the interval.</span>
 
 <span class="sd">        Call transpose() on all NoteContainers in the bar.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">cont</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bar</span><span class="p">:</span>
             <span class="n">cont</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">interval</span><span class="p">,</span> <span class="n">up</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">determine_chords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shorthand</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Bar.determine_chords"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersBar.html#mingus.containers.bar.Bar.determine_chords">[docs]</a>    <span class="k">def</span> <span class="nf">determine_chords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shorthand</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return a list of lists [place_in_beat, possible_chords].&quot;&quot;&quot;</span>
         <span class="n">chords</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bar</span><span class="p">:</span>
             <span class="n">chords</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="n">shorthand</span><span class="p">)])</span>
         <span class="k">return</span> <span class="n">chords</span>
-
-    <span class="k">def</span> <span class="nf">determine_progression</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shorthand</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Bar.determine_progression"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersBar.html#mingus.containers.bar.Bar.determine_progression">[docs]</a>    <span class="k">def</span> <span class="nf">determine_progression</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shorthand</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return a list of lists [place_in_beat, possible_progressions].&quot;&quot;&quot;</span>
         <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bar</span><span class="p">:</span>
             <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">progressions</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">get_note_names</span><span class="p">(),</span>
                        <span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">shorthand</span><span class="p">)])</span>
         <span class="k">return</span> <span class="n">res</span>
-
-    <span class="k">def</span> <span class="nf">get_note_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Bar.get_note_names"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersBar.html#mingus.containers.bar.Bar.get_note_names">[docs]</a>    <span class="k">def</span> <span class="nf">get_note_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return a list of unique note names in the Bar.&quot;&quot;&quot;</span>
         <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">cont</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bar</span><span class="p">:</span>
@@ -256,7 +256,7 @@
                 <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">res</span><span class="p">:</span>
                     <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">res</span>
-
+</div>
 <div class="viewcode-block" id="Bar.__add__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersBar.html#mingus.containers.bar.Bar.__add__">[docs]</a>    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note_container</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Enable the &#39;+&#39; operator on Bars.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">meter</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>

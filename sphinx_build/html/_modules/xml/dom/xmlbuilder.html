@@ -1,0 +1,477 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>xml.dom.xmlbuilder &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">mingus 0.5.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for xml.dom.xmlbuilder</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;Implementation of the DOM Level 3 &#39;LS-Load&#39; feature.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">xml.dom</span>
+
+<span class="kn">from</span> <span class="nn">xml.dom.NodeFilter</span> <span class="kn">import</span> <span class="n">NodeFilter</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;DOMBuilder&quot;</span><span class="p">,</span> <span class="s">&quot;DOMEntityResolver&quot;</span><span class="p">,</span> <span class="s">&quot;DOMInputSource&quot;</span><span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">Options</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Features object that has variables set for each DOMBuilder feature.</span>
+
+<span class="sd">    The DOMBuilder class uses an instance of this class to pass settings to</span>
+<span class="sd">    the ExpatBuilder class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># Note that the DOMBuilder class in LoadSave constrains which of these</span>
+    <span class="c"># values can be set using the DOM Level 3 LoadSave feature.</span>
+
+    <span class="n">namespaces</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">namespace_declarations</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">validation</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">external_parameter_entities</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">external_general_entities</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">external_dtd_subset</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">validate_if_schema</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">validate</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">datatype_normalization</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">create_entity_ref_nodes</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">entities</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">whitespace_in_element_content</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">cdata_sections</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">charset_overrides_xml_encoding</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">infoset</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">supported_mediatypes_only</span> <span class="o">=</span> <span class="bp">False</span>
+
+    <span class="n">errorHandler</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="nb">filter</span> <span class="o">=</span> <span class="bp">None</span>
+
+
+<span class="k">class</span> <span class="nc">DOMBuilder</span><span class="p">:</span>
+    <span class="n">entityResolver</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">errorHandler</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="nb">filter</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="n">ACTION_REPLACE</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">ACTION_APPEND_AS_CHILDREN</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">ACTION_INSERT_AFTER</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">ACTION_INSERT_BEFORE</span> <span class="o">=</span> <span class="mi">4</span>
+
+    <span class="n">_legal_actions</span> <span class="o">=</span> <span class="p">(</span><span class="n">ACTION_REPLACE</span><span class="p">,</span> <span class="n">ACTION_APPEND_AS_CHILDREN</span><span class="p">,</span>
+                      <span class="n">ACTION_INSERT_AFTER</span><span class="p">,</span> <span class="n">ACTION_INSERT_BEFORE</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_options</span> <span class="o">=</span> <span class="n">Options</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_get_entityResolver</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">entityResolver</span>
+    <span class="k">def</span> <span class="nf">_set_entityResolver</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entityResolver</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entityResolver</span> <span class="o">=</span> <span class="n">entityResolver</span>
+
+    <span class="k">def</span> <span class="nf">_get_errorHandler</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">errorHandler</span>
+    <span class="k">def</span> <span class="nf">_set_errorHandler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">errorHandler</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">errorHandler</span> <span class="o">=</span> <span class="n">errorHandler</span>
+
+    <span class="k">def</span> <span class="nf">_get_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter</span>
+    <span class="k">def</span> <span class="nf">_set_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filter</span> <span class="o">=</span> <span class="nb">filter</span>
+
+    <span class="k">def</span> <span class="nf">setFeature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">supportsFeature</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="n">state</span> <span class="ow">and</span> <span class="mi">1</span> <span class="ow">or</span> <span class="mi">0</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">settings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_settings</span><span class="p">[(</span><span class="n">_name_xform</span><span class="p">(</span><span class="n">name</span><span class="p">),</span> <span class="n">state</span><span class="p">)]</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">xml</span><span class="o">.</span><span class="n">dom</span><span class="o">.</span><span class="n">NotSupportedErr</span><span class="p">(</span>
+                    <span class="s">&quot;unsupported feature: </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">settings</span><span class="p">:</span>
+                    <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">xml</span><span class="o">.</span><span class="n">dom</span><span class="o">.</span><span class="n">NotFoundErr</span><span class="p">(</span><span class="s">&quot;unknown feature: &quot;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">supportsFeature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">,</span> <span class="n">_name_xform</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">canSetFeature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">_name_xform</span><span class="p">(</span><span class="n">name</span><span class="p">),</span> <span class="n">state</span> <span class="ow">and</span> <span class="mi">1</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_settings</span>
+
+    <span class="c"># This dictionary maps from (feature,value) to a list of</span>
+    <span class="c"># (option,value) pairs that should be set on the Options object.</span>
+    <span class="c"># If a (feature,value) setting is not in this dictionary, it is</span>
+    <span class="c"># not supported by the DOMBuilder.</span>
+    <span class="c">#</span>
+    <span class="n">_settings</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="p">(</span><span class="s">&quot;namespace_declarations&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">&quot;namespace_declarations&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)],</span>
+        <span class="p">(</span><span class="s">&quot;namespace_declarations&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">&quot;namespace_declarations&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span>
+        <span class="p">(</span><span class="s">&quot;validation&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">&quot;validation&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)],</span>
+        <span class="p">(</span><span class="s">&quot;external_general_entities&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">&quot;external_general_entities&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)],</span>
+        <span class="p">(</span><span class="s">&quot;external_general_entities&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">&quot;external_general_entities&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span>
+        <span class="p">(</span><span class="s">&quot;external_parameter_entities&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">&quot;external_parameter_entities&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)],</span>
+        <span class="p">(</span><span class="s">&quot;external_parameter_entities&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">&quot;external_parameter_entities&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span>
+        <span class="p">(</span><span class="s">&quot;validate_if_schema&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">&quot;validate_if_schema&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)],</span>
+        <span class="p">(</span><span class="s">&quot;create_entity_ref_nodes&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">&quot;create_entity_ref_nodes&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)],</span>
+        <span class="p">(</span><span class="s">&quot;create_entity_ref_nodes&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">&quot;create_entity_ref_nodes&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span>
+        <span class="p">(</span><span class="s">&quot;entities&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">&quot;create_entity_ref_nodes&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="p">(</span><span class="s">&quot;entities&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)],</span>
+        <span class="p">(</span><span class="s">&quot;entities&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">&quot;entities&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span>
+        <span class="p">(</span><span class="s">&quot;whitespace_in_element_content&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">&quot;whitespace_in_element_content&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)],</span>
+        <span class="p">(</span><span class="s">&quot;whitespace_in_element_content&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">&quot;whitespace_in_element_content&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span>
+        <span class="p">(</span><span class="s">&quot;cdata_sections&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">&quot;cdata_sections&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)],</span>
+        <span class="p">(</span><span class="s">&quot;cdata_sections&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">&quot;cdata_sections&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span>
+        <span class="p">(</span><span class="s">&quot;comments&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">&quot;comments&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)],</span>
+        <span class="p">(</span><span class="s">&quot;comments&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">&quot;comments&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span>
+        <span class="p">(</span><span class="s">&quot;charset_overrides_xml_encoding&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">&quot;charset_overrides_xml_encoding&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)],</span>
+        <span class="p">(</span><span class="s">&quot;charset_overrides_xml_encoding&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">&quot;charset_overrides_xml_encoding&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span>
+        <span class="p">(</span><span class="s">&quot;infoset&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="p">[],</span>
+        <span class="p">(</span><span class="s">&quot;infoset&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">&quot;namespace_declarations&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="p">(</span><span class="s">&quot;validate_if_schema&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="p">(</span><span class="s">&quot;create_entity_ref_nodes&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="p">(</span><span class="s">&quot;entities&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="p">(</span><span class="s">&quot;cdata_sections&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="p">(</span><span class="s">&quot;datatype_normalization&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="p">(</span><span class="s">&quot;whitespace_in_element_content&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="p">(</span><span class="s">&quot;comments&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="p">(</span><span class="s">&quot;charset_overrides_xml_encoding&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span>
+        <span class="p">(</span><span class="s">&quot;supported_mediatypes_only&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">&quot;supported_mediatypes_only&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)],</span>
+        <span class="p">(</span><span class="s">&quot;namespaces&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">&quot;namespaces&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)],</span>
+        <span class="p">(</span><span class="s">&quot;namespaces&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">&quot;namespaces&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">getFeature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="n">xname</span> <span class="o">=</span> <span class="n">_name_xform</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">,</span> <span class="n">xname</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s">&quot;infoset&quot;</span><span class="p">:</span>
+                <span class="n">options</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options</span>
+                <span class="k">return</span> <span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">datatype_normalization</span>
+                        <span class="ow">and</span> <span class="n">options</span><span class="o">.</span><span class="n">whitespace_in_element_content</span>
+                        <span class="ow">and</span> <span class="n">options</span><span class="o">.</span><span class="n">comments</span>
+                        <span class="ow">and</span> <span class="n">options</span><span class="o">.</span><span class="n">charset_overrides_xml_encoding</span>
+                        <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">namespace_declarations</span>
+                                 <span class="ow">or</span> <span class="n">options</span><span class="o">.</span><span class="n">validate_if_schema</span>
+                                 <span class="ow">or</span> <span class="n">options</span><span class="o">.</span><span class="n">create_entity_ref_nodes</span>
+                                 <span class="ow">or</span> <span class="n">options</span><span class="o">.</span><span class="n">entities</span>
+                                 <span class="ow">or</span> <span class="n">options</span><span class="o">.</span><span class="n">cdata_sections</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="n">xml</span><span class="o">.</span><span class="n">dom</span><span class="o">.</span><span class="n">NotFoundErr</span><span class="p">(</span><span class="s">&quot;feature </span><span class="si">%s</span><span class="s"> not known&quot;</span> <span class="o">%</span> <span class="nb">repr</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">parseURI</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">entityResolver</span><span class="p">:</span>
+            <span class="nb">input</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">entityResolver</span><span class="o">.</span><span class="n">resolveEntity</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">uri</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">input</span> <span class="o">=</span> <span class="n">DOMEntityResolver</span><span class="p">()</span><span class="o">.</span><span class="n">resolveEntity</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">uri</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">)</span>
+        <span class="n">options</span><span class="o">.</span><span class="n">filter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter</span>
+        <span class="n">options</span><span class="o">.</span><span class="n">errorHandler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">errorHandler</span>
+        <span class="n">fp</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">byteStream</span>
+        <span class="k">if</span> <span class="n">fp</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">options</span><span class="o">.</span><span class="n">systemId</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">urllib2</span>
+            <span class="n">fp</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">systemId</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_bytestream</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">parseWithContext</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">cnode</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">action</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_legal_actions</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;not a legal action&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s">&quot;Haven&#39;t written this yet...&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_parse_bytestream</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">xml.dom.expatbuilder</span>
+        <span class="n">builder</span> <span class="o">=</span> <span class="n">xml</span><span class="o">.</span><span class="n">dom</span><span class="o">.</span><span class="n">expatbuilder</span><span class="o">.</span><span class="n">makeBuilder</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">builder</span><span class="o">.</span><span class="n">parseFile</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_name_xform</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;-&#39;</span><span class="p">,</span> <span class="s">&#39;_&#39;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">DOMEntityResolver</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="s">&#39;_opener&#39;</span><span class="p">,</span>
+
+    <span class="k">def</span> <span class="nf">resolveEntity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">publicId</span><span class="p">,</span> <span class="n">systemId</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">systemId</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span>
+        <span class="n">source</span> <span class="o">=</span> <span class="n">DOMInputSource</span><span class="p">()</span>
+        <span class="n">source</span><span class="o">.</span><span class="n">publicId</span> <span class="o">=</span> <span class="n">publicId</span>
+        <span class="n">source</span><span class="o">.</span><span class="n">systemId</span> <span class="o">=</span> <span class="n">systemId</span>
+        <span class="n">source</span><span class="o">.</span><span class="n">byteStream</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_opener</span><span class="p">()</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">systemId</span><span class="p">)</span>
+
+        <span class="c"># determine the encoding if the transport provided it</span>
+        <span class="n">source</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_guess_media_encoding</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+
+        <span class="c"># determine the base URI is we can</span>
+        <span class="kn">import</span> <span class="nn">posixpath</span><span class="o">,</span> <span class="nn">urlparse</span>
+        <span class="n">parts</span> <span class="o">=</span> <span class="n">urlparse</span><span class="o">.</span><span class="n">urlparse</span><span class="p">(</span><span class="n">systemId</span><span class="p">)</span>
+        <span class="n">scheme</span><span class="p">,</span> <span class="n">netloc</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">fragment</span> <span class="o">=</span> <span class="n">parts</span>
+        <span class="c"># XXX should we check the scheme here as well?</span>
+        <span class="k">if</span> <span class="n">path</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">):</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">posixpath</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;/&quot;</span>
+            <span class="n">parts</span> <span class="o">=</span> <span class="n">scheme</span><span class="p">,</span> <span class="n">netloc</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">fragment</span>
+            <span class="n">source</span><span class="o">.</span><span class="n">baseURI</span> <span class="o">=</span> <span class="n">urlparse</span><span class="o">.</span><span class="n">urlunparse</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">source</span>
+
+    <span class="k">def</span> <span class="nf">_get_opener</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_opener</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_opener</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_opener</span><span class="p">()</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_opener</span>
+
+    <span class="k">def</span> <span class="nf">_create_opener</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">urllib2</span>
+        <span class="k">return</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">build_opener</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_guess_media_encoding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">):</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">byteStream</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+        <span class="k">if</span> <span class="s">&quot;Content-Type&quot;</span> <span class="ow">in</span> <span class="n">info</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">info</span><span class="o">.</span><span class="n">getplist</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">param</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;charset=&quot;</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="n">param</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;=&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">DOMInputSource</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;byteStream&#39;</span><span class="p">,</span> <span class="s">&#39;characterStream&#39;</span><span class="p">,</span> <span class="s">&#39;stringData&#39;</span><span class="p">,</span>
+                 <span class="s">&#39;encoding&#39;</span><span class="p">,</span> <span class="s">&#39;publicId&#39;</span><span class="p">,</span> <span class="s">&#39;systemId&#39;</span><span class="p">,</span> <span class="s">&#39;baseURI&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">byteStream</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">characterStream</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stringData</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">publicId</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">systemId</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">baseURI</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">_get_byteStream</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">byteStream</span>
+    <span class="k">def</span> <span class="nf">_set_byteStream</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">byteStream</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">byteStream</span> <span class="o">=</span> <span class="n">byteStream</span>
+
+    <span class="k">def</span> <span class="nf">_get_characterStream</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">characterStream</span>
+    <span class="k">def</span> <span class="nf">_set_characterStream</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">characterStream</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">characterStream</span> <span class="o">=</span> <span class="n">characterStream</span>
+
+    <span class="k">def</span> <span class="nf">_get_stringData</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stringData</span>
+    <span class="k">def</span> <span class="nf">_set_stringData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stringData</span> <span class="o">=</span> <span class="n">data</span>
+
+    <span class="k">def</span> <span class="nf">_get_encoding</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoding</span>
+    <span class="k">def</span> <span class="nf">_set_encoding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encoding</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="n">encoding</span>
+
+    <span class="k">def</span> <span class="nf">_get_publicId</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">publicId</span>
+    <span class="k">def</span> <span class="nf">_set_publicId</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">publicId</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">publicId</span> <span class="o">=</span> <span class="n">publicId</span>
+
+    <span class="k">def</span> <span class="nf">_get_systemId</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">systemId</span>
+    <span class="k">def</span> <span class="nf">_set_systemId</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">systemId</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">systemId</span> <span class="o">=</span> <span class="n">systemId</span>
+
+    <span class="k">def</span> <span class="nf">_get_baseURI</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseURI</span>
+    <span class="k">def</span> <span class="nf">_set_baseURI</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">baseURI</span> <span class="o">=</span> <span class="n">uri</span>
+
+
+<span class="k">class</span> <span class="nc">DOMBuilderFilter</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Element filter which can be used to tailor construction of</span>
+<span class="sd">    a DOM instance.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># There&#39;s really no need for this class; concrete implementations</span>
+    <span class="c"># should just implement the endElement() and startElement()</span>
+    <span class="c"># methods as appropriate.  Using this makes it easy to only</span>
+    <span class="c"># implement one of them.</span>
+
+    <span class="n">FILTER_ACCEPT</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">FILTER_REJECT</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">FILTER_SKIP</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">FILTER_INTERRUPT</span> <span class="o">=</span> <span class="mi">4</span>
+
+    <span class="n">whatToShow</span> <span class="o">=</span> <span class="n">NodeFilter</span><span class="o">.</span><span class="n">SHOW_ALL</span>
+
+    <span class="k">def</span> <span class="nf">_get_whatToShow</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">whatToShow</span>
+
+    <span class="k">def</span> <span class="nf">acceptNode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">FILTER_ACCEPT</span>
+
+    <span class="k">def</span> <span class="nf">startContainer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">FILTER_ACCEPT</span>
+
+<span class="k">del</span> <span class="n">NodeFilter</span>
+
+
+<span class="k">class</span> <span class="nc">DocumentLS</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Mixin to create documents that conform to the load/save spec.&quot;&quot;&quot;</span>
+
+    <span class="n">async</span> <span class="o">=</span> <span class="bp">False</span>
+
+    <span class="k">def</span> <span class="nf">_get_async</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="k">def</span> <span class="nf">_set_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">async</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">async</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">xml</span><span class="o">.</span><span class="n">dom</span><span class="o">.</span><span class="n">NotSupportedErr</span><span class="p">(</span>
+                <span class="s">&quot;asynchronous document loading is not supported&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">abort</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c"># What does it mean to &quot;clear&quot; a document?  Does the</span>
+        <span class="c"># documentElement disappear?</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+            <span class="s">&quot;haven&#39;t figured out what this means yet&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s">&quot;haven&#39;t written this yet&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">loadXML</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s">&quot;haven&#39;t written this yet&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">saveXML</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">snode</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">snode</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">snode</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">elif</span> <span class="n">snode</span><span class="o">.</span><span class="n">ownerDocument</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">xml</span><span class="o">.</span><span class="n">dom</span><span class="o">.</span><span class="n">WrongDocumentErr</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">snode</span><span class="o">.</span><span class="n">toxml</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">DOMImplementationLS</span><span class="p">:</span>
+    <span class="n">MODE_SYNCHRONOUS</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">MODE_ASYNCHRONOUS</span> <span class="o">=</span> <span class="mi">2</span>
+
+    <span class="k">def</span> <span class="nf">createDOMBuilder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">schemaType</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">schemaType</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">xml</span><span class="o">.</span><span class="n">dom</span><span class="o">.</span><span class="n">NotSupportedErr</span><span class="p">(</span>
+                <span class="s">&quot;schemaType not yet supported&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">MODE_SYNCHRONOUS</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">DOMBuilder</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">MODE_ASYNCHRONOUS</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">xml</span><span class="o">.</span><span class="n">dom</span><span class="o">.</span><span class="n">NotSupportedErr</span><span class="p">(</span>
+                <span class="s">&quot;asynchronous builders are not supported&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;unknown value for mode&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">createDOMWriter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+            <span class="s">&quot;the writer interface hasn&#39;t been written yet!&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">createDOMInputSource</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">DOMInputSource</span><span class="p">()</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

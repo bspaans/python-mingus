@@ -139,34 +139,30 @@ you to use int() on Notes.</p>
 <dd></dd></dl>
 
 <p>Call notes.diminish with this note as argument.</p>
-</dd></dl>
-
-<hr class="docutils" />
-<blockquote>
-<div><dl class="attribute">
-<dt id="mingus.containers.note.dynamics">
-<code class="descclassname">mingus.containers.note.</code><code class="descname">dynamics</code><a class="headerlink" href="#mingus.containers.note.dynamics" title="Permalink to this definition">¶</a></dt>
+<dl class="attribute">
+<dt id="mingus.containers.note.Note.dynamics">
+<code class="descname">dynamics</code><a class="headerlink" href="#mingus.containers.note.Note.dynamics" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Attribute of type: dict
 <code class="docutils literal"><span class="pre">{}</span></code></p>
 <dl class="method">
-<dt id="mingus.containers.note.empty">
-<code class="descclassname">mingus.containers.note.</code><code class="descname">empty</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.note.empty" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.containers.note.Note.empty">
+<code class="descname">empty</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/containers/note.html#Note.empty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.containers.note.Note.empty" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Remove the data in the instance.</p>
 <dl class="method">
-<dt id="mingus.containers.note.from_hertz">
-<code class="descclassname">mingus.containers.note.</code><code class="descname">from_hertz</code><span class="sig-paren">(</span><em>self</em>, <em>hertz</em>, <em>standard_pitch=440</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.note.from_hertz" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.containers.note.Note.from_hertz">
+<code class="descname">from_hertz</code><span class="sig-paren">(</span><em>self</em>, <em>hertz</em>, <em>standard_pitch=440</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/containers/note.html#Note.from_hertz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.containers.note.Note.from_hertz" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Set the Note name and pitch, calculated from the hertz value.</p>
 <p>The standard_pitch argument can be used to set the pitch of A-4,
 from which the rest is calculated.</p>
 <dl class="method">
-<dt id="mingus.containers.note.from_int">
-<code class="descclassname">mingus.containers.note.</code><code class="descname">from_int</code><span class="sig-paren">(</span><em>self</em>, <em>integer</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.note.from_int" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.containers.note.Note.from_int">
+<code class="descname">from_int</code><span class="sig-paren">(</span><em>self</em>, <em>integer</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/containers/note.html#Note.from_int"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.containers.note.Note.from_int" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Set the Note corresponding to the integer.</p>
@@ -177,8 +173,8 @@ from which the rest is calculated.</p>
 </pre></div>
 </div>
 <dl class="method">
-<dt id="mingus.containers.note.from_shorthand">
-<code class="descclassname">mingus.containers.note.</code><code class="descname">from_shorthand</code><span class="sig-paren">(</span><em>self</em>, <em>shorthand</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.note.from_shorthand" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.containers.note.Note.from_shorthand">
+<code class="descname">from_shorthand</code><span class="sig-paren">(</span><em>self</em>, <em>shorthand</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/containers/note.html#Note.from_shorthand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.containers.note.Note.from_shorthand" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Convert from traditional Helmhotz pitch notation.</p>
@@ -192,8 +188,8 @@ from which the rest is calculated.</p>
 </pre></div>
 </div>
 <dl class="method">
-<dt id="mingus.containers.note.measure">
-<code class="descclassname">mingus.containers.note.</code><code class="descname">measure</code><span class="sig-paren">(</span><em>self</em>, <em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.note.measure" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.containers.note.Note.measure">
+<code class="descname">measure</code><span class="sig-paren">(</span><em>self</em>, <em>other</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/containers/note.html#Note.measure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.containers.note.Note.measure" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Return the number of semitones between this Note and the other.</p>
@@ -204,63 +200,57 @@ from which the rest is calculated.</p>
 <span class="go">-2</span>
 </pre></div>
 </div>
-</div></blockquote>
-<hr class="docutils" />
-<blockquote>
-<div><dl class="attribute">
-<dt id="mingus.containers.note.name">
-<code class="descclassname">mingus.containers.note.</code><code class="descname">name</code><a class="headerlink" href="#mingus.containers.note.name" title="Permalink to this definition">¶</a></dt>
+<dl class="attribute">
+<dt id="mingus.containers.note.Note.name">
+<code class="descname">name</code><a class="headerlink" href="#mingus.containers.note.Note.name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Attribute of type: str
 <code class="docutils literal"><span class="pre">'C'</span></code></p>
-</div></blockquote>
-<hr class="docutils" />
-<blockquote>
-<div><dl class="attribute">
-<dt id="mingus.containers.note.octave">
-<code class="descclassname">mingus.containers.note.</code><code class="descname">octave</code><a class="headerlink" href="#mingus.containers.note.octave" title="Permalink to this definition">¶</a></dt>
+<dl class="attribute">
+<dt id="mingus.containers.note.Note.octave">
+<code class="descname">octave</code><a class="headerlink" href="#mingus.containers.note.Note.octave" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Attribute of type: int
 <code class="docutils literal"><span class="pre">4</span></code></p>
 <dl class="method">
-<dt id="mingus.containers.note.octave_down">
-<code class="descclassname">mingus.containers.note.</code><code class="descname">octave_down</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.note.octave_down" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.containers.note.Note.octave_down">
+<code class="descname">octave_down</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/containers/note.html#Note.octave_down"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.containers.note.Note.octave_down" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Decrement the current octave with 1.</p>
 <dl class="method">
-<dt id="mingus.containers.note.octave_up">
-<code class="descclassname">mingus.containers.note.</code><code class="descname">octave_up</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.note.octave_up" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.containers.note.Note.octave_up">
+<code class="descname">octave_up</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/containers/note.html#Note.octave_up"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.containers.note.Note.octave_up" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Increment the current octave with 1.</p>
 <dl class="method">
-<dt id="mingus.containers.note.remove_redundant_accidentals">
-<code class="descclassname">mingus.containers.note.</code><code class="descname">remove_redundant_accidentals</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.note.remove_redundant_accidentals" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.containers.note.Note.remove_redundant_accidentals">
+<code class="descname">remove_redundant_accidentals</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/containers/note.html#Note.remove_redundant_accidentals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.containers.note.Note.remove_redundant_accidentals" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Call notes.remove_redundant_accidentals on this note&#8217;s name.</p>
 <dl class="method">
-<dt id="mingus.containers.note.set_note">
-<code class="descclassname">mingus.containers.note.</code><code class="descname">set_note</code><span class="sig-paren">(</span><em>self</em>, <em>name=C</em>, <em>octave=4</em>, <em>dynamics={}</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.note.set_note" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.containers.note.Note.set_note">
+<code class="descname">set_note</code><span class="sig-paren">(</span><em>self</em>, <em>name=C</em>, <em>octave=4</em>, <em>dynamics={}</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/containers/note.html#Note.set_note"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.containers.note.Note.set_note" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Set the note to name in octave with dynamics.</p>
 <p>Return the objects if it succeeded, raise an NoteFormatError
 otherwise.</p>
 <dl class="method">
-<dt id="mingus.containers.note.to_hertz">
-<code class="descclassname">mingus.containers.note.</code><code class="descname">to_hertz</code><span class="sig-paren">(</span><em>self</em>, <em>standard_pitch=440</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.note.to_hertz" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.containers.note.Note.to_hertz">
+<code class="descname">to_hertz</code><span class="sig-paren">(</span><em>self</em>, <em>standard_pitch=440</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/containers/note.html#Note.to_hertz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.containers.note.Note.to_hertz" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Return the Note in Hz.</p>
 <p>The standard_pitch argument can be used to set the pitch of A-4,
 from which the rest is calculated.</p>
 <dl class="method">
-<dt id="mingus.containers.note.to_shorthand">
-<code class="descclassname">mingus.containers.note.</code><code class="descname">to_shorthand</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.note.to_shorthand" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.containers.note.Note.to_shorthand">
+<code class="descname">to_shorthand</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/containers/note.html#Note.to_shorthand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.containers.note.Note.to_shorthand" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Give the traditional Helmhotz pitch notation.</p>
@@ -276,8 +266,8 @@ from which the rest is calculated.</p>
 </pre></div>
 </div>
 <dl class="method">
-<dt id="mingus.containers.note.transpose">
-<code class="descclassname">mingus.containers.note.</code><code class="descname">transpose</code><span class="sig-paren">(</span><em>self</em>, <em>interval</em>, <em>up=True</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.note.transpose" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.containers.note.Note.transpose">
+<code class="descname">transpose</code><span class="sig-paren">(</span><em>self</em>, <em>interval</em>, <em>up=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/containers/note.html#Note.transpose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.containers.note.Note.transpose" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Transpose the note up or down the interval.</p>
@@ -291,7 +281,8 @@ from which the rest is calculated.</p>
 <span class="go">&#39;A-4&#39;</span>
 </pre></div>
 </div>
-</div></blockquote>
+</dd></dl>
+
 <hr class="docutils" />
 <p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
 </div>

@@ -1550,46 +1550,46 @@
 
     <span class="n">_magic_id_count</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Document.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">childNodes</span> <span class="o">=</span> <span class="n">NodeList</span><span class="p">()</span>
         <span class="c"># mapping of (namespaceURI, localName) -&gt; ElementInfo</span>
         <span class="c">#        and tagName -&gt; ElementInfo</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_elem_info</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_id_cache</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_id_search_stack</span> <span class="o">=</span> <span class="bp">None</span>
-
-    <span class="k">def</span> <span class="nf">_get_elem_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document._get_elem_info"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document._get_elem_info">[docs]</a>    <span class="k">def</span> <span class="nf">_get_elem_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">element</span><span class="o">.</span><span class="n">namespaceURI</span><span class="p">:</span>
             <span class="n">key</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">namespaceURI</span><span class="p">,</span> <span class="n">element</span><span class="o">.</span><span class="n">localName</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">key</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">tagName</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elem_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_get_actualEncoding</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document._get_actualEncoding"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document._get_actualEncoding">[docs]</a>    <span class="k">def</span> <span class="nf">_get_actualEncoding</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">actualEncoding</span>
-
-    <span class="k">def</span> <span class="nf">_get_doctype</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document._get_doctype"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document._get_doctype">[docs]</a>    <span class="k">def</span> <span class="nf">_get_doctype</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">doctype</span>
-
-    <span class="k">def</span> <span class="nf">_get_documentURI</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document._get_documentURI"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document._get_documentURI">[docs]</a>    <span class="k">def</span> <span class="nf">_get_documentURI</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">documentURI</span>
-
-    <span class="k">def</span> <span class="nf">_get_encoding</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document._get_encoding"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document._get_encoding">[docs]</a>    <span class="k">def</span> <span class="nf">_get_encoding</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoding</span>
-
-    <span class="k">def</span> <span class="nf">_get_errorHandler</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document._get_errorHandler"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document._get_errorHandler">[docs]</a>    <span class="k">def</span> <span class="nf">_get_errorHandler</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">errorHandler</span>
-
-    <span class="k">def</span> <span class="nf">_get_standalone</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document._get_standalone"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document._get_standalone">[docs]</a>    <span class="k">def</span> <span class="nf">_get_standalone</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">standalone</span>
-
-    <span class="k">def</span> <span class="nf">_get_strictErrorChecking</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document._get_strictErrorChecking"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document._get_strictErrorChecking">[docs]</a>    <span class="k">def</span> <span class="nf">_get_strictErrorChecking</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">strictErrorChecking</span>
-
-    <span class="k">def</span> <span class="nf">_get_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document._get_version"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document._get_version">[docs]</a>    <span class="k">def</span> <span class="nf">_get_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">version</span>
-
-    <span class="k">def</span> <span class="nf">appendChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document.appendChild"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document.appendChild">[docs]</a>    <span class="k">def</span> <span class="nf">appendChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">nodeType</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_child_node_types</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">xml</span><span class="o">.</span><span class="n">dom</span><span class="o">.</span><span class="n">HierarchyRequestErr</span><span class="p">(</span>
                 <span class="s">&quot;</span><span class="si">%s</span><span class="s"> cannot be child of </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">node</span><span class="p">),</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
@@ -1604,8 +1604,8 @@
             <span class="k">raise</span> <span class="n">xml</span><span class="o">.</span><span class="n">dom</span><span class="o">.</span><span class="n">HierarchyRequestErr</span><span class="p">(</span>
                 <span class="s">&quot;two document elements disallowed&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Node</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">removeChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">oldChild</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document.removeChild"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document.removeChild">[docs]</a>    <span class="k">def</span> <span class="nf">removeChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">oldChild</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">childNodes</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">oldChild</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
@@ -1616,19 +1616,19 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">documentElement</span> <span class="o">=</span> <span class="bp">None</span>
 
         <span class="k">return</span> <span class="n">oldChild</span>
-
-    <span class="k">def</span> <span class="nf">_get_documentElement</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document._get_documentElement"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document._get_documentElement">[docs]</a>    <span class="k">def</span> <span class="nf">_get_documentElement</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">childNodes</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">nodeType</span> <span class="o">==</span> <span class="n">Node</span><span class="o">.</span><span class="n">ELEMENT_NODE</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">node</span>
-
+</div>
     <span class="k">def</span> <span class="nf">unlink</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">doctype</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">doctype</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">doctype</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="n">Node</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">cloneNode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">deep</span><span class="p">):</span>
+<div class="viewcode-block" id="Document.cloneNode"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document.cloneNode">[docs]</a>    <span class="k">def</span> <span class="nf">cloneNode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">deep</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">deep</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">None</span>
         <span class="n">clone</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">implementation</span><span class="o">.</span><span class="n">createDocument</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
@@ -1648,56 +1648,56 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_call_user_data_handler</span><span class="p">(</span><span class="n">xml</span><span class="o">.</span><span class="n">dom</span><span class="o">.</span><span class="n">UserDataHandler</span><span class="o">.</span><span class="n">NODE_CLONED</span><span class="p">,</span>
                                      <span class="bp">self</span><span class="p">,</span> <span class="n">clone</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">clone</span>
-
-    <span class="k">def</span> <span class="nf">createDocumentFragment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document.createDocumentFragment"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document.createDocumentFragment">[docs]</a>    <span class="k">def</span> <span class="nf">createDocumentFragment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">d</span> <span class="o">=</span> <span class="n">DocumentFragment</span><span class="p">()</span>
         <span class="n">d</span><span class="o">.</span><span class="n">ownerDocument</span> <span class="o">=</span> <span class="bp">self</span>
         <span class="k">return</span> <span class="n">d</span>
-
-    <span class="k">def</span> <span class="nf">createElement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tagName</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document.createElement"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document.createElement">[docs]</a>    <span class="k">def</span> <span class="nf">createElement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tagName</span><span class="p">):</span>
         <span class="n">e</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="n">tagName</span><span class="p">)</span>
         <span class="n">e</span><span class="o">.</span><span class="n">ownerDocument</span> <span class="o">=</span> <span class="bp">self</span>
         <span class="k">return</span> <span class="n">e</span>
-
-    <span class="k">def</span> <span class="nf">createTextNode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document.createTextNode"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document.createTextNode">[docs]</a>    <span class="k">def</span> <span class="nf">createTextNode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">StringTypes</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="s">&quot;node contents must be a string&quot;</span>
         <span class="n">t</span> <span class="o">=</span> <span class="n">Text</span><span class="p">()</span>
         <span class="n">t</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
         <span class="n">t</span><span class="o">.</span><span class="n">ownerDocument</span> <span class="o">=</span> <span class="bp">self</span>
         <span class="k">return</span> <span class="n">t</span>
-
-    <span class="k">def</span> <span class="nf">createCDATASection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document.createCDATASection"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document.createCDATASection">[docs]</a>    <span class="k">def</span> <span class="nf">createCDATASection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">StringTypes</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="s">&quot;node contents must be a string&quot;</span>
         <span class="n">c</span> <span class="o">=</span> <span class="n">CDATASection</span><span class="p">()</span>
         <span class="n">c</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
         <span class="n">c</span><span class="o">.</span><span class="n">ownerDocument</span> <span class="o">=</span> <span class="bp">self</span>
         <span class="k">return</span> <span class="n">c</span>
-
-    <span class="k">def</span> <span class="nf">createComment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document.createComment"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document.createComment">[docs]</a>    <span class="k">def</span> <span class="nf">createComment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="n">c</span> <span class="o">=</span> <span class="n">Comment</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="n">c</span><span class="o">.</span><span class="n">ownerDocument</span> <span class="o">=</span> <span class="bp">self</span>
         <span class="k">return</span> <span class="n">c</span>
-
-    <span class="k">def</span> <span class="nf">createProcessingInstruction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document.createProcessingInstruction"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document.createProcessingInstruction">[docs]</a>    <span class="k">def</span> <span class="nf">createProcessingInstruction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="n">p</span> <span class="o">=</span> <span class="n">ProcessingInstruction</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="n">p</span><span class="o">.</span><span class="n">ownerDocument</span> <span class="o">=</span> <span class="bp">self</span>
         <span class="k">return</span> <span class="n">p</span>
-
-    <span class="k">def</span> <span class="nf">createAttribute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qName</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document.createAttribute"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document.createAttribute">[docs]</a>    <span class="k">def</span> <span class="nf">createAttribute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qName</span><span class="p">):</span>
         <span class="n">a</span> <span class="o">=</span> <span class="n">Attr</span><span class="p">(</span><span class="n">qName</span><span class="p">)</span>
         <span class="n">a</span><span class="o">.</span><span class="n">ownerDocument</span> <span class="o">=</span> <span class="bp">self</span>
         <span class="n">a</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
         <span class="k">return</span> <span class="n">a</span>
-
-    <span class="k">def</span> <span class="nf">createElementNS</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">namespaceURI</span><span class="p">,</span> <span class="n">qualifiedName</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document.createElementNS"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document.createElementNS">[docs]</a>    <span class="k">def</span> <span class="nf">createElementNS</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">namespaceURI</span><span class="p">,</span> <span class="n">qualifiedName</span><span class="p">):</span>
         <span class="n">prefix</span><span class="p">,</span> <span class="n">localName</span> <span class="o">=</span> <span class="n">_nssplit</span><span class="p">(</span><span class="n">qualifiedName</span><span class="p">)</span>
         <span class="n">e</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="n">qualifiedName</span><span class="p">,</span> <span class="n">namespaceURI</span><span class="p">,</span> <span class="n">prefix</span><span class="p">)</span>
         <span class="n">e</span><span class="o">.</span><span class="n">ownerDocument</span> <span class="o">=</span> <span class="bp">self</span>
         <span class="k">return</span> <span class="n">e</span>
-
-    <span class="k">def</span> <span class="nf">createAttributeNS</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">namespaceURI</span><span class="p">,</span> <span class="n">qualifiedName</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document.createAttributeNS"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document.createAttributeNS">[docs]</a>    <span class="k">def</span> <span class="nf">createAttributeNS</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">namespaceURI</span><span class="p">,</span> <span class="n">qualifiedName</span><span class="p">):</span>
         <span class="n">prefix</span><span class="p">,</span> <span class="n">localName</span> <span class="o">=</span> <span class="n">_nssplit</span><span class="p">(</span><span class="n">qualifiedName</span><span class="p">)</span>
         <span class="n">a</span> <span class="o">=</span> <span class="n">Attr</span><span class="p">(</span><span class="n">qualifiedName</span><span class="p">,</span> <span class="n">namespaceURI</span><span class="p">,</span> <span class="n">localName</span><span class="p">,</span> <span class="n">prefix</span><span class="p">)</span>
         <span class="n">a</span><span class="o">.</span><span class="n">ownerDocument</span> <span class="o">=</span> <span class="bp">self</span>
@@ -1706,18 +1706,18 @@
 
     <span class="c"># A couple of implementation-specific helpers to create node types</span>
     <span class="c"># not supported by the W3C DOM specs:</span>
-
-    <span class="k">def</span> <span class="nf">_create_entity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">publicId</span><span class="p">,</span> <span class="n">systemId</span><span class="p">,</span> <span class="n">notationName</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document._create_entity"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document._create_entity">[docs]</a>    <span class="k">def</span> <span class="nf">_create_entity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">publicId</span><span class="p">,</span> <span class="n">systemId</span><span class="p">,</span> <span class="n">notationName</span><span class="p">):</span>
         <span class="n">e</span> <span class="o">=</span> <span class="n">Entity</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">publicId</span><span class="p">,</span> <span class="n">systemId</span><span class="p">,</span> <span class="n">notationName</span><span class="p">)</span>
         <span class="n">e</span><span class="o">.</span><span class="n">ownerDocument</span> <span class="o">=</span> <span class="bp">self</span>
         <span class="k">return</span> <span class="n">e</span>
-
-    <span class="k">def</span> <span class="nf">_create_notation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">publicId</span><span class="p">,</span> <span class="n">systemId</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document._create_notation"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document._create_notation">[docs]</a>    <span class="k">def</span> <span class="nf">_create_notation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">publicId</span><span class="p">,</span> <span class="n">systemId</span><span class="p">):</span>
         <span class="n">n</span> <span class="o">=</span> <span class="n">Notation</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">publicId</span><span class="p">,</span> <span class="n">systemId</span><span class="p">)</span>
         <span class="n">n</span><span class="o">.</span><span class="n">ownerDocument</span> <span class="o">=</span> <span class="bp">self</span>
         <span class="k">return</span> <span class="n">n</span>
-
-    <span class="k">def</span> <span class="nf">getElementById</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document.getElementById"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document.getElementById">[docs]</a>    <span class="k">def</span> <span class="nf">getElementById</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_id_cache</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_id_cache</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_elem_info</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_magic_id_count</span><span class="p">):</span>
@@ -1774,24 +1774,24 @@
             <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
                 <span class="k">break</span>
         <span class="k">return</span> <span class="n">result</span>
-
-    <span class="k">def</span> <span class="nf">getElementsByTagName</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document.getElementsByTagName"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document.getElementsByTagName">[docs]</a>    <span class="k">def</span> <span class="nf">getElementsByTagName</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">_get_elements_by_tagName_helper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">NodeList</span><span class="p">())</span>
-
-    <span class="k">def</span> <span class="nf">getElementsByTagNameNS</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">namespaceURI</span><span class="p">,</span> <span class="n">localName</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document.getElementsByTagNameNS"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document.getElementsByTagNameNS">[docs]</a>    <span class="k">def</span> <span class="nf">getElementsByTagNameNS</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">namespaceURI</span><span class="p">,</span> <span class="n">localName</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">_get_elements_by_tagName_ns_helper</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span> <span class="n">namespaceURI</span><span class="p">,</span> <span class="n">localName</span><span class="p">,</span> <span class="n">NodeList</span><span class="p">())</span>
-
-    <span class="k">def</span> <span class="nf">isSupported</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature</span><span class="p">,</span> <span class="n">version</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document.isSupported"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document.isSupported">[docs]</a>    <span class="k">def</span> <span class="nf">isSupported</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature</span><span class="p">,</span> <span class="n">version</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">implementation</span><span class="o">.</span><span class="n">hasFeature</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">version</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">importNode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">deep</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Document.importNode"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document.importNode">[docs]</a>    <span class="k">def</span> <span class="nf">importNode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">deep</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">nodeType</span> <span class="o">==</span> <span class="n">Node</span><span class="o">.</span><span class="n">DOCUMENT_NODE</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">xml</span><span class="o">.</span><span class="n">dom</span><span class="o">.</span><span class="n">NotSupportedErr</span><span class="p">(</span><span class="s">&quot;cannot import document nodes&quot;</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">nodeType</span> <span class="o">==</span> <span class="n">Node</span><span class="o">.</span><span class="n">DOCUMENT_TYPE_NODE</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">xml</span><span class="o">.</span><span class="n">dom</span><span class="o">.</span><span class="n">NotSupportedErr</span><span class="p">(</span><span class="s">&quot;cannot import document type nodes&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">_clone_node</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">deep</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
-
+</div>
     <span class="k">def</span> <span class="nf">writexml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">writer</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">addindent</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">newl</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span>
                  <span class="n">encoding</span> <span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">encoding</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
@@ -1803,7 +1803,7 @@
 
     <span class="c"># DOM Level 3 (WD 9 April 2002)</span>
 
-    <span class="k">def</span> <span class="nf">renameNode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">namespaceURI</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="Document.renameNode"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.Document.renameNode">[docs]</a>    <span class="k">def</span> <span class="nf">renameNode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">namespaceURI</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">n</span><span class="o">.</span><span class="n">ownerDocument</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">self</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">xml</span><span class="o">.</span><span class="n">dom</span><span class="o">.</span><span class="n">WrongDocumentErr</span><span class="p">(</span>
                 <span class="s">&quot;cannot rename nodes from other documents;</span><span class="se">\n</span><span class="s">&quot;</span>
@@ -1857,7 +1857,7 @@
         <span class="c"># interpreted as meaning &quot;no, don&#39;t call the handler unless a</span>
         <span class="c"># new node is created.&quot;</span>
         <span class="k">return</span> <span class="n">n</span>
-</div>
+</div></div>
 <span class="n">defproperty</span><span class="p">(</span><span class="n">Document</span><span class="p">,</span> <span class="s">&quot;documentElement&quot;</span><span class="p">,</span>
             <span class="n">doc</span><span class="o">=</span><span class="s">&quot;Top-level element of this document.&quot;</span><span class="p">)</span>
 

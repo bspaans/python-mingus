@@ -215,8 +215,6 @@ mingus.containers.note_container
    consonance.
 
 
-----
-
    .. attribute:: notes
 
    Attribute of type: list

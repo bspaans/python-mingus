@@ -116,56 +116,56 @@
     <span class="n">MSG_PLAY_TRACKS</span> <span class="o">=</span> <span class="mi">12</span>
     <span class="n">MSG_PLAY_COMPOSITION</span> <span class="o">=</span> <span class="mi">13</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Sequencer.__init__"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiSequencer.html#mingus.midi.sequencer.Sequencer.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">listeners</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
 
         <span class="c"># Events Implement some of these functions when subclassing</span>
-
-    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Sequencer.init"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiSequencer.html#mingus.midi.sequencer.Sequencer.init">[docs]</a>    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span>
-
-    <span class="k">def</span> <span class="nf">play_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">velocity</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Sequencer.play_event"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiSequencer.html#mingus.midi.sequencer.Sequencer.play_event">[docs]</a>    <span class="k">def</span> <span class="nf">play_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">velocity</span><span class="p">):</span>
         <span class="k">pass</span>
-
-    <span class="k">def</span> <span class="nf">stop_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">channel</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Sequencer.stop_event"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiSequencer.html#mingus.midi.sequencer.Sequencer.stop_event">[docs]</a>    <span class="k">def</span> <span class="nf">stop_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">channel</span><span class="p">):</span>
         <span class="k">pass</span>
-
-    <span class="k">def</span> <span class="nf">cc_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">control</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Sequencer.cc_event"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiSequencer.html#mingus.midi.sequencer.Sequencer.cc_event">[docs]</a>    <span class="k">def</span> <span class="nf">cc_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">control</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="k">pass</span>
-
-    <span class="k">def</span> <span class="nf">instr_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">instr</span><span class="p">,</span> <span class="n">bank</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Sequencer.instr_event"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiSequencer.html#mingus.midi.sequencer.Sequencer.instr_event">[docs]</a>    <span class="k">def</span> <span class="nf">instr_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">instr</span><span class="p">,</span> <span class="n">bank</span><span class="p">):</span>
         <span class="k">pass</span>
-
-    <span class="k">def</span> <span class="nf">sleep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seconds</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Sequencer.sleep"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiSequencer.html#mingus.midi.sequencer.Sequencer.sleep">[docs]</a>    <span class="k">def</span> <span class="nf">sleep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seconds</span><span class="p">):</span>
         <span class="k">pass</span>
-
-    <span class="k">def</span> <span class="nf">attach</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">listener</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Sequencer.attach"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiSequencer.html#mingus.midi.sequencer.Sequencer.attach">[docs]</a>    <span class="k">def</span> <span class="nf">attach</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">listener</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Attach an object that should be notified of events.</span>
 
 <span class="sd">        The object should have a notify(msg_type, param_dict) function.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">listener</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">listeners</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">listeners</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">listener</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">detach</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">listener</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Sequencer.detach"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiSequencer.html#mingus.midi.sequencer.Sequencer.detach">[docs]</a>    <span class="k">def</span> <span class="nf">detach</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">listener</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Detach a listening object so that it won&#39;t receive any events</span>
 <span class="sd">        anymore.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">listener</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">listeners</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">listeners</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">listener</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">notify_listeners</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg_type</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Sequencer.notify_listeners"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiSequencer.html#mingus.midi.sequencer.Sequencer.notify_listeners">[docs]</a>    <span class="k">def</span> <span class="nf">notify_listeners</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg_type</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Send a message to all the observers.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">listeners</span><span class="p">:</span>
             <span class="n">c</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="n">msg_type</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">set_instrument</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">instr</span><span class="p">,</span> <span class="n">bank</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Sequencer.set_instrument"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiSequencer.html#mingus.midi.sequencer.Sequencer.set_instrument">[docs]</a>    <span class="k">def</span> <span class="nf">set_instrument</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">instr</span><span class="p">,</span> <span class="n">bank</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set the channel to the instrument _instr_.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">instr_event</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">instr</span><span class="p">,</span> <span class="n">bank</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">notify_listeners</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MSG_INSTR</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;channel&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">channel</span><span class="p">),</span>
             <span class="s">&#39;instr&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">instr</span><span class="p">),</span> <span class="s">&#39;bank&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">bank</span><span class="p">)})</span>
-
-    <span class="k">def</span> <span class="nf">control_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">control</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Sequencer.control_change"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiSequencer.html#mingus.midi.sequencer.Sequencer.control_change">[docs]</a>    <span class="k">def</span> <span class="nf">control_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">control</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Send a control change message.</span>
 
 <span class="sd">        See the MIDI specification for more information.</span>
@@ -178,8 +178,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">notify_listeners</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MSG_CC</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;channel&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">channel</span><span class="p">),</span>
             <span class="s">&#39;control&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">control</span><span class="p">),</span> <span class="s">&#39;value&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)})</span>
         <span class="k">return</span> <span class="bp">True</span>
-
-    <span class="k">def</span> <span class="nf">play_Note</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">velocity</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Sequencer.play_Note"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiSequencer.html#mingus.midi.sequencer.Sequencer.play_Note">[docs]</a>    <span class="k">def</span> <span class="nf">play_Note</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">velocity</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Play a Note object on a channel with a velocity[0-127].</span>
 
 <span class="sd">        You can either specify the velocity and channel here as arguments or</span>
@@ -196,8 +196,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">notify_listeners</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MSG_PLAY_NOTE</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;channel&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">channel</span><span class="p">),</span>
             <span class="s">&#39;note&#39;</span><span class="p">:</span> <span class="n">note</span><span class="p">,</span> <span class="s">&#39;velocity&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">velocity</span><span class="p">)})</span>
         <span class="k">return</span> <span class="bp">True</span>
-
-    <span class="k">def</span> <span class="nf">stop_Note</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Sequencer.stop_Note"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiSequencer.html#mingus.midi.sequencer.Sequencer.stop_Note">[docs]</a>    <span class="k">def</span> <span class="nf">stop_Note</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Stop a note on a channel.</span>
 
 <span class="sd">        If Note.channel is set, it will take presedence over the channel</span>
@@ -211,14 +211,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">notify_listeners</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MSG_STOP_NOTE</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;channel&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">channel</span><span class="p">),</span>
             <span class="s">&#39;note&#39;</span><span class="p">:</span> <span class="n">note</span><span class="p">})</span>
         <span class="k">return</span> <span class="bp">True</span>
-
-    <span class="k">def</span> <span class="nf">stop_everything</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Sequencer.stop_everything"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiSequencer.html#mingus.midi.sequencer.Sequencer.stop_everything">[docs]</a>    <span class="k">def</span> <span class="nf">stop_everything</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Stop all the notes on all channels.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">118</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">16</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">stop_Note</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">play_NoteContainer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nc</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">velocity</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Sequencer.play_NoteContainer"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiSequencer.html#mingus.midi.sequencer.Sequencer.play_NoteContainer">[docs]</a>    <span class="k">def</span> <span class="nf">play_NoteContainer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nc</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">velocity</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Play the Notes in the NoteContainer nc.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">notify_listeners</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MSG_PLAY_NC</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;notes&#39;</span><span class="p">:</span> <span class="n">nc</span><span class="p">,</span>
             <span class="s">&#39;channel&#39;</span><span class="p">:</span> <span class="n">channel</span><span class="p">,</span> <span class="s">&#39;velocity&#39;</span><span class="p">:</span> <span class="n">velocity</span><span class="p">})</span>
@@ -228,8 +228,8 @@
             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">play_Note</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">velocity</span><span class="p">):</span>
                 <span class="k">return</span> <span class="bp">False</span>
         <span class="k">return</span> <span class="bp">True</span>
-
-    <span class="k">def</span> <span class="nf">stop_NoteContainer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nc</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Sequencer.stop_NoteContainer"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiSequencer.html#mingus.midi.sequencer.Sequencer.stop_NoteContainer">[docs]</a>    <span class="k">def</span> <span class="nf">stop_NoteContainer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nc</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Stop playing the notes in NoteContainer nc.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">notify_listeners</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MSG_PLAY_NC</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;notes&#39;</span><span class="p">:</span> <span class="n">nc</span><span class="p">,</span>
             <span class="s">&#39;channel&#39;</span><span class="p">:</span> <span class="n">channel</span><span class="p">})</span>
@@ -239,8 +239,8 @@
             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop_Note</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">channel</span><span class="p">):</span>
                 <span class="k">return</span> <span class="bp">False</span>
         <span class="k">return</span> <span class="bp">True</span>
-
-    <span class="k">def</span> <span class="nf">play_Bar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bar</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bpm</span><span class="o">=</span><span class="mi">120</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Sequencer.play_Bar"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiSequencer.html#mingus.midi.sequencer.Sequencer.play_Bar">[docs]</a>    <span class="k">def</span> <span class="nf">play_Bar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bar</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bpm</span><span class="o">=</span><span class="mi">120</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Play a Bar object.</span>
 
 <span class="sd">        Return a dictionary with the bpm lemma set on success, an empty dict</span>
@@ -268,8 +268,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">notify_listeners</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MSG_SLEEP</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;s&#39;</span><span class="p">:</span> <span class="n">ms</span><span class="p">})</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">stop_NoteContainer</span><span class="p">(</span><span class="n">nc</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">channel</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">{</span><span class="s">&#39;bpm&#39;</span><span class="p">:</span> <span class="n">bpm</span><span class="p">}</span>
-
-    <span class="k">def</span> <span class="nf">play_Bars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bars</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="n">bpm</span><span class="o">=</span><span class="mi">120</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Sequencer.play_Bars"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiSequencer.html#mingus.midi.sequencer.Sequencer.play_Bars">[docs]</a>    <span class="k">def</span> <span class="nf">play_Bars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bars</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="n">bpm</span><span class="o">=</span><span class="mi">120</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Play several bars (a list of Bar objects) at the same time.</span>
 
 <span class="sd">        A list of channels should also be provided. The tempo can be changed</span>
@@ -345,8 +345,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">stop_NoteContainer</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
             <span class="n">playing</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">{</span><span class="s">&#39;bpm&#39;</span><span class="p">:</span> <span class="n">bpm</span><span class="p">}</span>
-
-    <span class="k">def</span> <span class="nf">play_Track</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">track</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bpm</span><span class="o">=</span><span class="mi">120</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Sequencer.play_Track"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiSequencer.html#mingus.midi.sequencer.Sequencer.play_Track">[docs]</a>    <span class="k">def</span> <span class="nf">play_Track</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">track</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bpm</span><span class="o">=</span><span class="mi">120</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Play a Track object.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">notify_listeners</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MSG_PLAY_TRACK</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;track&#39;</span><span class="p">:</span> <span class="n">track</span><span class="p">,</span> <span class="s">&#39;channel&#39;</span>
                               <span class="p">:</span> <span class="n">channel</span><span class="p">,</span> <span class="s">&#39;bpm&#39;</span><span class="p">:</span> <span class="n">bpm</span><span class="p">})</span>
@@ -357,8 +357,8 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">return</span> <span class="p">{}</span>
         <span class="k">return</span> <span class="p">{</span><span class="s">&#39;bpm&#39;</span><span class="p">:</span> <span class="n">bpm</span><span class="p">}</span>
-
-    <span class="k">def</span> <span class="nf">play_Tracks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tracks</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="n">bpm</span><span class="o">=</span><span class="mi">120</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Sequencer.play_Tracks"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiSequencer.html#mingus.midi.sequencer.Sequencer.play_Tracks">[docs]</a>    <span class="k">def</span> <span class="nf">play_Tracks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tracks</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="n">bpm</span><span class="o">=</span><span class="mi">120</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Play a list of Tracks.</span>
 
 <span class="sd">        If an instance of MidiInstrument is used then the instrument will be</span>
@@ -393,27 +393,27 @@
                 <span class="k">return</span> <span class="p">{}</span>
             <span class="n">current_bar</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="p">{</span><span class="s">&#39;bpm&#39;</span><span class="p">:</span> <span class="n">bpm</span><span class="p">}</span>
-
-    <span class="k">def</span> <span class="nf">play_Composition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">composition</span><span class="p">,</span> <span class="n">channels</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">bpm</span><span class="o">=</span><span class="mi">120</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Sequencer.play_Composition"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiSequencer.html#mingus.midi.sequencer.Sequencer.play_Composition">[docs]</a>    <span class="k">def</span> <span class="nf">play_Composition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">composition</span><span class="p">,</span> <span class="n">channels</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">bpm</span><span class="o">=</span><span class="mi">120</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Play a Composition object.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">notify_listeners</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MSG_PLAY_COMPOSITION</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;composition&#39;</span>
                               <span class="p">:</span> <span class="n">composition</span><span class="p">,</span> <span class="s">&#39;channels&#39;</span><span class="p">:</span> <span class="n">channels</span><span class="p">,</span> <span class="s">&#39;bpm&#39;</span><span class="p">:</span> <span class="n">bpm</span><span class="p">})</span>
         <span class="k">if</span> <span class="n">channels</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">channels</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">composition</span><span class="o">.</span><span class="n">tracks</span><span class="p">)))</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">play_Tracks</span><span class="p">(</span><span class="n">composition</span><span class="o">.</span><span class="n">tracks</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="n">bpm</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">modulation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Sequencer.modulation"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiSequencer.html#mingus.midi.sequencer.Sequencer.modulation">[docs]</a>    <span class="k">def</span> <span class="nf">modulation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set the modulation.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">control_change</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">main_volume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Sequencer.main_volume"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiSequencer.html#mingus.midi.sequencer.Sequencer.main_volume">[docs]</a>    <span class="k">def</span> <span class="nf">main_volume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set the main volume.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">control_change</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">pan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Sequencer.pan"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiSequencer.html#mingus.midi.sequencer.Sequencer.pan">[docs]</a>    <span class="k">def</span> <span class="nf">pan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set the panning.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">control_change</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-</pre></div></div>
+</pre></div></div></div>
 
           </div>
         </div>

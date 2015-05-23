@@ -53,21 +53,15 @@ mingus.containers.composition
    mingus.containers.Track object.
 
 
-----
-
    .. attribute:: author
 
    Attribute of type: str
    ``''``
 
-----
-
    .. attribute:: description
 
    Attribute of type: str
    ``''``
-
-----
 
    .. attribute:: email
 
@@ -86,8 +80,6 @@ mingus.containers.composition
    Remove the track and composer information.
 
 
-----
-
    .. attribute:: selected_tracks
 
    Attribute of type: list
@@ -103,21 +95,15 @@ mingus.containers.composition
    Set the title and subtitle of the piece.
 
 
-----
-
    .. attribute:: subtitle
 
    Attribute of type: str
    ``''``
 
-----
-
    .. attribute:: title
 
    Attribute of type: str
    ``'Untitled'``
-
-----
 
    .. attribute:: tracks
 

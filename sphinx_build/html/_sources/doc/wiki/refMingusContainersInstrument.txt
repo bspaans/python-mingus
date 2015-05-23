@@ -19,14 +19,10 @@ mingus.containers.instrument
    .. method:: can_play_notes(self, notes)
 
 
-----
-
    .. attribute:: clef
 
    Attribute of type: str
    ``'Treble'``
-
-----
 
    .. attribute:: name
 
@@ -45,8 +41,6 @@ mingus.containers.instrument
    An alias for can_play_notes.
 
 
-----
-
    .. attribute:: range
 
    Attribute of type: tuple
@@ -58,8 +52,6 @@ mingus.containers.instrument
    
    A range is a tuple of two Notes or note strings.
 
-
-----
 
    .. attribute:: tuning
 
@@ -84,14 +76,10 @@ mingus.containers.instrument
    Return True if so, False otherwise.
 
 
-----
-
    .. attribute:: clef
 
    Attribute of type: str
    ``'bass and treble'``
-
-----
 
    .. attribute:: name
 
@@ -110,8 +98,6 @@ mingus.containers.instrument
    An alias for can_play_notes.
 
 
-----
-
    .. attribute:: range
 
    Attribute of type: tuple
@@ -123,8 +109,6 @@ mingus.containers.instrument
    
    A range is a tuple of two Notes or note strings.
 
-
-----
 
    .. attribute:: tuning
 
@@ -149,28 +133,20 @@ mingus.containers.instrument
    Return True if so, False otherwise.
 
 
-----
-
    .. attribute:: clef
 
    Attribute of type: str
    ``'bass and treble'``
-
-----
 
    .. attribute:: instrument_nr
 
    Attribute of type: int
    ``1``
 
-----
-
    .. attribute:: name
 
    Attribute of type: str
    ``''``
-
-----
 
    .. attribute:: names
 
@@ -189,8 +165,6 @@ mingus.containers.instrument
    An alias for can_play_notes.
 
 
-----
-
    .. attribute:: range
 
    Attribute of type: tuple
@@ -202,8 +176,6 @@ mingus.containers.instrument
    
    A range is a tuple of two Notes or note strings.
 
-
-----
 
    .. attribute:: tuning
 
@@ -228,14 +200,10 @@ mingus.containers.instrument
    Return True if so, False otherwise.
 
 
-----
-
    .. attribute:: clef
 
    Attribute of type: str
    ``'bass and treble'``
-
-----
 
    .. attribute:: name
 
@@ -254,8 +222,6 @@ mingus.containers.instrument
    An alias for can_play_notes.
 
 
-----
-
    .. attribute:: range
 
    Attribute of type: tuple
@@ -267,8 +233,6 @@ mingus.containers.instrument
    
    A range is a tuple of two Notes or note strings.
 
-
-----
 
    .. attribute:: tuning
 

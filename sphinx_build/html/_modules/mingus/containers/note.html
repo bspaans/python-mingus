@@ -111,7 +111,7 @@
             <span class="k">raise</span> <span class="n">NoteFormatError</span><span class="p">(</span><span class="s">&quot;Don&#39;t know what to do with name object: &quot;</span>
                     <span class="s">&quot;&#39;</span><span class="si">%s</span><span class="s">&#39;&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
 </div>
-    <span class="k">def</span> <span class="nf">set_note</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">dynamics</span><span class="o">=</span><span class="p">{}):</span>
+<div class="viewcode-block" id="Note.set_note"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.set_note">[docs]</a>    <span class="k">def</span> <span class="nf">set_note</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">dynamics</span><span class="o">=</span><span class="p">{}):</span>
         <span class="sd">&quot;&quot;&quot;Set the note to name in octave with dynamics.</span>
 
 <span class="sd">        Return the objects if it succeeded, raise an NoteFormatError</span>
@@ -137,13 +137,13 @@
                 <span class="k">raise</span> <span class="n">NoteFormatError</span><span class="p">(</span><span class="s">&quot;The string &#39;</span><span class="si">%s</span><span class="s">&#39; is not a valid &quot;</span>
                         <span class="s">&quot;representation of a note in mingus&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">False</span>
-
-    <span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Note.empty"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.empty">[docs]</a>    <span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Remove the data in the instance.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
         <span class="n">octave</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">dynamics</span> <span class="o">=</span> <span class="p">{}</span>
-
+</div>
 <div class="viewcode-block" id="Note.augment"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.augment">[docs]</a>    <span class="k">def</span> <span class="nf">augment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Call notes.augment with this note as argument.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">notes</span><span class="o">.</span><span class="n">augment</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
@@ -158,19 +158,19 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">octave</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">octave</span> <span class="o">=</span> <span class="mi">0</span>
 </div>
-    <span class="k">def</span> <span class="nf">octave_up</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Note.octave_up"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.octave_up">[docs]</a>    <span class="k">def</span> <span class="nf">octave_up</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Increment the current octave with 1.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">change_octave</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">octave_down</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Note.octave_down"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.octave_down">[docs]</a>    <span class="k">def</span> <span class="nf">octave_down</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Decrement the current octave with 1.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">change_octave</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">remove_redundant_accidentals</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Note.remove_redundant_accidentals"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.remove_redundant_accidentals">[docs]</a>    <span class="k">def</span> <span class="nf">remove_redundant_accidentals</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Call notes.remove_redundant_accidentals on this note&#39;s name.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">notes</span><span class="o">.</span><span class="n">remove_redundant_accidentals</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">transpose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">up</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Note.transpose"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.transpose">[docs]</a>    <span class="k">def</span> <span class="nf">transpose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">up</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Transpose the note up or down the interval.</span>
 
 <span class="sd">        Examples:</span>
@@ -190,8 +190,8 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span> <span class="o">&gt;</span> <span class="n">Note</span><span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">o_octave</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">octave</span> <span class="o">-=</span> <span class="mi">1</span>
-
-    <span class="k">def</span> <span class="nf">from_int</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integer</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Note.from_int"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.from_int">[docs]</a>    <span class="k">def</span> <span class="nf">from_int</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integer</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set the Note corresponding to the integer.</span>
 
 <span class="sd">        0 is a C on octave 0, 12 is a C on octave 1, etc.</span>
@@ -203,8 +203,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">notes</span><span class="o">.</span><span class="n">int_to_note</span><span class="p">(</span><span class="n">integer</span> <span class="o">%</span> <span class="mi">12</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">octave</span> <span class="o">=</span> <span class="n">integer</span> <span class="o">//</span> <span class="mi">12</span>
         <span class="k">return</span> <span class="bp">self</span>
-
-    <span class="k">def</span> <span class="nf">measure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Note.measure"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.measure">[docs]</a>    <span class="k">def</span> <span class="nf">measure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the number of semitones between this Note and the other.</span>
 
 <span class="sd">        Examples:</span>
@@ -214,8 +214,8 @@
 <span class="sd">        -2</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">to_hertz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">standard_pitch</span><span class="o">=</span><span class="mi">440</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Note.to_hertz"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.to_hertz">[docs]</a>    <span class="k">def</span> <span class="nf">to_hertz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">standard_pitch</span><span class="o">=</span><span class="mi">440</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the Note in Hz.</span>
 
 <span class="sd">        The standard_pitch argument can be used to set the pitch of A-4,</span>
@@ -224,8 +224,8 @@
         <span class="c"># int(Note(&quot;A&quot;)) == 57</span>
         <span class="n">diff</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__int__</span><span class="p">()</span> <span class="o">-</span> <span class="mi">57</span>
         <span class="k">return</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="n">diff</span> <span class="o">/</span> <span class="mf">12.0</span><span class="p">)</span> <span class="o">*</span> <span class="mi">440</span>
-
-    <span class="k">def</span> <span class="nf">from_hertz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hertz</span><span class="p">,</span> <span class="n">standard_pitch</span><span class="o">=</span><span class="mi">440</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Note.from_hertz"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.from_hertz">[docs]</a>    <span class="k">def</span> <span class="nf">from_hertz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hertz</span><span class="p">,</span> <span class="n">standard_pitch</span><span class="o">=</span><span class="mi">440</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set the Note name and pitch, calculated from the hertz value.</span>
 
 <span class="sd">        The standard_pitch argument can be used to set the pitch of A-4,</span>
@@ -236,8 +236,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">notes</span><span class="o">.</span><span class="n">int_to_note</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">%</span> <span class="mi">12</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">octave</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span> <span class="o">/</span> <span class="mi">12</span><span class="p">)</span> <span class="o">-</span> <span class="mi">6</span>
         <span class="k">return</span> <span class="bp">self</span>
-
-    <span class="k">def</span> <span class="nf">to_shorthand</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Note.to_shorthand"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.to_shorthand">[docs]</a>    <span class="k">def</span> <span class="nf">to_shorthand</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Give the traditional Helmhotz pitch notation.</span>
 
 <span class="sd">        Examples:</span>
@@ -262,8 +262,8 @@
             <span class="n">res</span> <span class="o">+=</span> <span class="s">&quot;&#39;&quot;</span>
             <span class="n">o</span> <span class="o">-=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">res</span>
-
-    <span class="k">def</span> <span class="nf">from_shorthand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shorthand</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Note.from_shorthand"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.from_shorthand">[docs]</a>    <span class="k">def</span> <span class="nf">from_shorthand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shorthand</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Convert from traditional Helmhotz pitch notation.</span>
 
 <span class="sd">        Examples:</span>
@@ -290,7 +290,7 @@
             <span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="s">&quot;&#39;&quot;</span><span class="p">:</span>
                 <span class="n">octave</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_note</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">octave</span><span class="p">,</span> <span class="p">{})</span>
-
+</div>
 <div class="viewcode-block" id="Note.__int__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersNote.html#mingus.containers.note.Note.__int__">[docs]</a>    <span class="k">def</span> <span class="nf">__int__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the current octave multiplied by twelve and add</span>
 <span class="sd">        notes.note_to_int to it.</span>

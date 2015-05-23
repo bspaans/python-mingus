@@ -100,11 +100,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">track_data</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_tempo</span><span class="p">(</span><span class="n">start_bpm</span><span class="p">)</span>
 </div>
-    <span class="k">def</span> <span class="nf">end_of_track</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="MidiTrack.end_of_track"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.end_of_track">[docs]</a>    <span class="k">def</span> <span class="nf">end_of_track</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the bytes for an end of track meta event.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="s">&quot;</span><span class="se">\x00\xff\x2f\x00</span><span class="s">&quot;</span>
-
-    <span class="k">def</span> <span class="nf">play_Note</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiTrack.play_Note"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.play_Note">[docs]</a>    <span class="k">def</span> <span class="nf">play_Note</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Convert a Note object to a midi event and adds it to the</span>
 <span class="sd">        track_data.</span>
 
@@ -126,8 +126,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">set_instrument</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">change_instrument</span> <span class="o">=</span> <span class="bp">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">track_data</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">note_on</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="mi">12</span><span class="p">,</span> <span class="n">velocity</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">play_NoteContainer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">notecontainer</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiTrack.play_NoteContainer"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.play_NoteContainer">[docs]</a>    <span class="k">def</span> <span class="nf">play_NoteContainer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">notecontainer</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Convert a mingus.containers.NoteContainer to the equivalent MIDI</span>
 <span class="sd">        events and add it to the track_data.</span>
 
@@ -139,8 +139,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">play_Note</span><span class="p">(</span><span class="n">notecontainer</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">set_deltatime</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
             <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">play_Note</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">notecontainer</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
-
-    <span class="k">def</span> <span class="nf">play_Bar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bar</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiTrack.play_Bar"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.play_Bar">[docs]</a>    <span class="k">def</span> <span class="nf">play_Bar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bar</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Convert a Bar object to MIDI events and write them to the</span>
 <span class="sd">        track_data.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_deltatime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delay</span><span class="p">)</span>
@@ -161,8 +161,8 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">play_NoteContainer</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">set_deltatime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">int_to_varbyte</span><span class="p">(</span><span class="n">tick</span><span class="p">))</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">stop_NoteContainer</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-
-    <span class="k">def</span> <span class="nf">play_Track</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">track</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiTrack.play_Track"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.play_Track">[docs]</a>    <span class="k">def</span> <span class="nf">play_Track</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">track</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Convert a Track object to MIDI events and write them to the</span>
 <span class="sd">        track_data.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">track</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">):</span>
@@ -174,8 +174,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span> <span class="o">=</span> <span class="n">instr</span><span class="o">.</span><span class="n">instrument_nr</span>
         <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">track</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">play_Bar</span><span class="p">(</span><span class="n">bar</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">stop_Note</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiTrack.stop_Note"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.stop_Note">[docs]</a>    <span class="k">def</span> <span class="nf">stop_Note</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a note_off event for note to event_track.&quot;&quot;&quot;</span>
         <span class="n">velocity</span> <span class="o">=</span> <span class="mi">64</span>
         <span class="n">channel</span> <span class="o">=</span> <span class="mi">1</span>
@@ -189,8 +189,8 @@
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="s">&#39;velocity&#39;</span><span class="p">):</span>
             <span class="n">velocity</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">velocity</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">track_data</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">note_off</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="mi">12</span><span class="p">,</span> <span class="n">velocity</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">stop_NoteContainer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">notecontainer</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiTrack.stop_NoteContainer"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.stop_NoteContainer">[docs]</a>    <span class="k">def</span> <span class="nf">stop_NoteContainer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">notecontainer</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add note_off events for each note in the NoteContainer to the</span>
 <span class="sd">        track_data.&quot;&quot;&quot;</span>
         <span class="c"># if there is more than one note in the container, the deltatime should</span>
@@ -201,13 +201,13 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">stop_Note</span><span class="p">(</span><span class="n">notecontainer</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">set_deltatime</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
             <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">stop_Note</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">notecontainer</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
-
-    <span class="k">def</span> <span class="nf">set_instrument</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">instr</span><span class="p">,</span> <span class="n">bank</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiTrack.set_instrument"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.set_instrument">[docs]</a>    <span class="k">def</span> <span class="nf">set_instrument</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">instr</span><span class="p">,</span> <span class="n">bank</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a program change and bank select event to the track_data.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">track_data</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">select_bank</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">bank</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">track_data</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">program_change_event</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">instr</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">header</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiTrack.header"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.header">[docs]</a>    <span class="k">def</span> <span class="nf">header</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the bytes for the header of track.</span>
 
 <span class="sd">        The header contains the length of the track_data, so you&#39;ll have to</span>
@@ -217,15 +217,15 @@
         <span class="n">chunk_size</span> <span class="o">=</span> <span class="n">a2b_hex</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%08x</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">track_data</span><span class="p">)</span>
                               <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">end_of_track</span><span class="p">())))</span>
         <span class="k">return</span> <span class="n">TRACK_HEADER</span> <span class="o">+</span> <span class="n">chunk_size</span>
-
-    <span class="k">def</span> <span class="nf">get_midi_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiTrack.get_midi_data"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.get_midi_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_midi_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the MIDI data in bytes for this track.</span>
 
 <span class="sd">        Include header, track_data and the end of track meta event.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">()</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">track_data</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_of_track</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">midi_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_type</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiTrack.midi_event"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.midi_event">[docs]</a>    <span class="k">def</span> <span class="nf">midi_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_type</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Convert and return the paraters as a MIDI event in bytes.&quot;&quot;&quot;</span>
         <span class="k">assert</span> <span class="n">event_type</span> <span class="o">&lt;</span> <span class="mh">0x80</span> <span class="ow">and</span> <span class="n">event_type</span> <span class="o">&gt;=</span> <span class="mi">0</span>
         <span class="k">assert</span> <span class="n">channel</span> <span class="o">&lt;</span> <span class="mi">16</span> <span class="ow">and</span> <span class="n">channel</span> <span class="o">&gt;=</span> <span class="mi">0</span>
@@ -235,25 +235,25 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">params</span> <span class="o">=</span> <span class="n">a2b_hex</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%02x%02x</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">))</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">delta_time</span> <span class="o">+</span> <span class="n">tc</span> <span class="o">+</span> <span class="n">params</span>
-
-    <span class="k">def</span> <span class="nf">note_off</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">velocity</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiTrack.note_off"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.note_off">[docs]</a>    <span class="k">def</span> <span class="nf">note_off</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">velocity</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return bytes for a &#39;note off&#39; event.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">midi_event</span><span class="p">(</span><span class="n">NOTE_OFF</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">velocity</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">note_on</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">velocity</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiTrack.note_on"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.note_on">[docs]</a>    <span class="k">def</span> <span class="nf">note_on</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">velocity</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return bytes for a &#39;note_on&#39; event.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">midi_event</span><span class="p">(</span><span class="n">NOTE_ON</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">velocity</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">controller_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">contr_nr</span><span class="p">,</span> <span class="n">contr_val</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiTrack.controller_event"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.controller_event">[docs]</a>    <span class="k">def</span> <span class="nf">controller_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">contr_nr</span><span class="p">,</span> <span class="n">contr_val</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the bytes for a MIDI controller event.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">midi_event</span><span class="p">(</span><span class="n">CONTROLLER</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">contr_nr</span><span class="p">,</span> <span class="n">contr_val</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiTrack.reset"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Reset track_data and delta_time.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">track_data</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">delta_time</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\x00</span><span class="s">&#39;</span>
-
-    <span class="k">def</span> <span class="nf">set_deltatime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">delta_time</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiTrack.set_deltatime"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.set_deltatime">[docs]</a>    <span class="k">def</span> <span class="nf">set_deltatime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">delta_time</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set the delta_time.</span>
 
 <span class="sd">        Can be an integer or a variable length byte.</span>
@@ -261,44 +261,44 @@
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">delta_time</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">:</span>
             <span class="n">delta_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">int_to_varbyte</span><span class="p">(</span><span class="n">delta_time</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">delta_time</span> <span class="o">=</span> <span class="n">delta_time</span>
-
-    <span class="k">def</span> <span class="nf">select_bank</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">bank</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiTrack.select_bank"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.select_bank">[docs]</a>    <span class="k">def</span> <span class="nf">select_bank</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">bank</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the MIDI event for a select bank controller event.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">controller_event</span><span class="p">(</span><span class="n">BANK_SELECT</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">bank</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">program_change_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">instr</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiTrack.program_change_event"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.program_change_event">[docs]</a>    <span class="k">def</span> <span class="nf">program_change_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">instr</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the bytes for a program change controller event.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">midi_event</span><span class="p">(</span><span class="n">PROGRAM_CHANGE</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">instr</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">set_tempo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bpm</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiTrack.set_tempo"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.set_tempo">[docs]</a>    <span class="k">def</span> <span class="nf">set_tempo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bpm</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Convert the bpm to a midi event and write it to the track_data.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bpm</span> <span class="o">=</span> <span class="n">bpm</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">track_data</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_tempo_event</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bpm</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">set_tempo_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bpm</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiTrack.set_tempo_event"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.set_tempo_event">[docs]</a>    <span class="k">def</span> <span class="nf">set_tempo_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bpm</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculate the microseconds per quarter note.&quot;&quot;&quot;</span>
         <span class="n">ms_per_min</span> <span class="o">=</span> <span class="mi">60000000</span>
         <span class="n">mpqn</span> <span class="o">=</span> <span class="n">a2b_hex</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%06x</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">ms_per_min</span> <span class="o">/</span> <span class="n">bpm</span><span class="p">))</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">delta_time</span> <span class="o">+</span> <span class="n">META_EVENT</span> <span class="o">+</span> <span class="n">SET_TEMPO</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\x03</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">mpqn</span>
-
-    <span class="k">def</span> <span class="nf">set_meter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meter</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)):</span>
+</div>
+<div class="viewcode-block" id="MidiTrack.set_meter"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.set_meter">[docs]</a>    <span class="k">def</span> <span class="nf">set_meter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meter</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)):</span>
         <span class="sd">&quot;&quot;&quot;Add a time signature event for meter to track_data.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">track_data</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_signature_event</span><span class="p">(</span><span class="n">meter</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">time_signature_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meter</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)):</span>
+</div>
+<div class="viewcode-block" id="MidiTrack.time_signature_event"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.time_signature_event">[docs]</a>    <span class="k">def</span> <span class="nf">time_signature_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meter</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)):</span>
         <span class="sd">&quot;&quot;&quot;Return a time signature event for meter.&quot;&quot;&quot;</span>
         <span class="n">numer</span> <span class="o">=</span> <span class="n">a2b_hex</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%02x</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">meter</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">denom</span> <span class="o">=</span> <span class="n">a2b_hex</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%02x</span><span class="s">&#39;</span> <span class="o">%</span> <span class="nb">int</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">meter</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">2</span><span class="p">)))</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">delta_time</span> <span class="o">+</span> <span class="n">META_EVENT</span> <span class="o">+</span> <span class="n">TIME_SIGNATURE</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\x04</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">numer</span>\
              <span class="o">+</span> <span class="n">denom</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\x18\x08</span><span class="s">&#39;</span>
-
-    <span class="k">def</span> <span class="nf">set_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s">&#39;C&#39;</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiTrack.set_key"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.set_key">[docs]</a>    <span class="k">def</span> <span class="nf">set_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s">&#39;C&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a key signature event to the track_data.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">Key</span><span class="p">):</span>
             <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">track_data</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">key_signature_event</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">key_signature_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s">&#39;C&#39;</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiTrack.key_signature_event"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.key_signature_event">[docs]</a>    <span class="k">def</span> <span class="nf">key_signature_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s">&#39;C&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the bytes for a key signature event.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">islower</span><span class="p">():</span>
             <span class="n">val</span> <span class="o">=</span> <span class="n">minor_keys</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">-</span> <span class="mi">7</span>
@@ -311,17 +311,17 @@
         <span class="n">key</span> <span class="o">=</span> <span class="n">a2b_hex</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%02x</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">val</span><span class="p">)</span>
         <span class="k">return</span> <span class="s">&#39;{0}{1}{2}</span><span class="se">\x02</span><span class="s">{3}{4}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delta_time</span><span class="p">,</span> <span class="n">META_EVENT</span><span class="p">,</span>
                 <span class="n">KEY_SIGNATURE</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">set_track_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiTrack.set_track_name"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.set_track_name">[docs]</a>    <span class="k">def</span> <span class="nf">set_track_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a meta event for the track.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">track_data</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">track_name_event</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">track_name_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiTrack.track_name_event"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.track_name_event">[docs]</a>    <span class="k">def</span> <span class="nf">track_name_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the bytes for a track name meta event.&quot;&quot;&quot;</span>
         <span class="n">l</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">int_to_varbyte</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
         <span class="k">return</span> <span class="s">&#39;</span><span class="se">\x00</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">META_EVENT</span> <span class="o">+</span> <span class="n">TRACK_NAME</span> <span class="o">+</span> <span class="n">l</span> <span class="o">+</span> <span class="n">name</span>
-
-    <span class="k">def</span> <span class="nf">int_to_varbyte</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="MidiTrack.int_to_varbyte"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_track.html#mingus.midi.midi_track.MidiTrack.int_to_varbyte">[docs]</a>    <span class="k">def</span> <span class="nf">int_to_varbyte</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Convert an integer into a variable length byte.</span>
 
 <span class="sd">        How it works: the bytes are stored in big-endian (significant bit</span>
@@ -340,7 +340,7 @@
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">bytes</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
             <span class="nb">bytes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">|</span> <span class="mh">0x80</span>
         <span class="k">return</span> <span class="n">pack</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">B&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="nb">bytes</span><span class="p">),</span> <span class="o">*</span><span class="nb">bytes</span><span class="p">)</span>
-</pre></div></div>
+</pre></div></div></div>
 
           </div>
         </div>

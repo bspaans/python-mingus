@@ -20,84 +20,60 @@ http://www.musicxml.org/xml.html
 .. class:: Document
 
 
-----
-
    .. attribute:: ATTRIBUTE_NODE
 
    Attribute of type: int
    ``2``
-
-----
 
    .. attribute:: CDATA_SECTION_NODE
 
    Attribute of type: int
    ``4``
 
-----
-
    .. attribute:: COMMENT_NODE
 
    Attribute of type: int
    ``8``
-
-----
 
    .. attribute:: DOCUMENT_FRAGMENT_NODE
 
    Attribute of type: int
    ``11``
 
-----
-
    .. attribute:: DOCUMENT_NODE
 
    Attribute of type: int
    ``9``
-
-----
 
    .. attribute:: DOCUMENT_TYPE_NODE
 
    Attribute of type: int
    ``10``
 
-----
-
    .. attribute:: ELEMENT_NODE
 
    Attribute of type: int
    ``1``
-
-----
 
    .. attribute:: ENTITY_NODE
 
    Attribute of type: int
    ``6``
 
-----
-
    .. attribute:: ENTITY_REFERENCE_NODE
 
    Attribute of type: int
    ``5``
-
-----
 
    .. attribute:: NOTATION_NODE
 
    Attribute of type: int
    ``12``
 
-----
-
    .. attribute:: PROCESSING_INSTRUCTION_NODE
 
    Attribute of type: int
    ``7``
-
-----
 
    .. attribute:: TEXT_NODE
 
@@ -170,8 +146,6 @@ http://www.musicxml.org/xml.html
    .. method:: abort(self)
 
 
-----
-
    .. attribute:: actualEncoding
 
    Attribute of type: NoneType
@@ -180,14 +154,10 @@ http://www.musicxml.org/xml.html
    .. method:: appendChild(self, node)
 
 
-----
-
    .. attribute:: async
 
    Attribute of type: bool
    ``False``
-
-----
 
    .. attribute:: attributes
 
@@ -224,47 +194,35 @@ http://www.musicxml.org/xml.html
    .. method:: createTextNode(self, data)
 
 
-----
-
    .. attribute:: doctype
 
    Attribute of type: NoneType
    ``None``
 
-----
-
    .. attribute:: documentElement
 
    Attribute of type: property
-   ``<property object at 0x7fa78c0042b8>``
-
-----
+   ``<property object at 0x7fd01139c2b8>``
 
    .. attribute:: documentURI
 
    Attribute of type: NoneType
    ``None``
 
-----
-
    .. attribute:: encoding
 
    Attribute of type: NoneType
    ``None``
-
-----
 
    .. attribute:: errorHandler
 
    Attribute of type: NoneType
    ``None``
 
-----
-
    .. attribute:: firstChild
 
    Attribute of type: property
-   ``<property object at 0x7fa78c060628>``
+   ``<property object at 0x7fd0113f9628>``
 
    .. method:: getElementById(self, id)
 
@@ -284,12 +242,10 @@ http://www.musicxml.org/xml.html
    .. method:: hasChildNodes(self)
 
 
-----
-
    .. attribute:: implementation
 
    Attribute of type: instance
-   ``<xml.dom.minidom.DOMImplementation instance at 0x7fa78bffe9e0>``
+   ``<xml.dom.minidom.DOMImplementation instance at 0x7fd0113979e0>``
 
    .. method:: importNode(self, node, deep)
 
@@ -303,12 +259,10 @@ http://www.musicxml.org/xml.html
    .. method:: isSupported(self, feature, version)
 
 
-----
-
    .. attribute:: lastChild
 
    Attribute of type: property
-   ``<property object at 0x7fa78c060730>``
+   ``<property object at 0x7fd0113f9730>``
 
    .. method:: load(self, uri)
 
@@ -316,42 +270,30 @@ http://www.musicxml.org/xml.html
    .. method:: loadXML(self, source)
 
 
-----
-
    .. attribute:: localName
 
    Attribute of type: property
-   ``<property object at 0x7fa78c060d60>``
-
-----
+   ``<property object at 0x7fd0113f9d60>``
 
    .. attribute:: namespaceURI
 
    Attribute of type: NoneType
    ``None``
 
-----
-
    .. attribute:: nextSibling
 
    Attribute of type: NoneType
    ``None``
-
-----
 
    .. attribute:: nodeName
 
    Attribute of type: str
    ``'#document'``
 
-----
-
    .. attribute:: nodeType
 
    Attribute of type: int
    ``9``
-
-----
 
    .. attribute:: nodeValue
 
@@ -361,28 +303,20 @@ http://www.musicxml.org/xml.html
    .. method:: normalize(self)
 
 
-----
-
    .. attribute:: ownerDocument
 
    Attribute of type: NoneType
    ``None``
-
-----
 
    .. attribute:: parentNode
 
    Attribute of type: NoneType
    ``None``
 
-----
-
    .. attribute:: prefix
 
    Attribute of type: NoneType
    ``None``
-
-----
 
    .. attribute:: previousSibling
 
@@ -404,14 +338,10 @@ http://www.musicxml.org/xml.html
    .. method:: setUserData(self, key, data, handler)
 
 
-----
-
    .. attribute:: standalone
 
    Attribute of type: NoneType
    ``None``
-
-----
 
    .. attribute:: strictErrorChecking
 
@@ -427,8 +357,6 @@ http://www.musicxml.org/xml.html
 
    .. method:: unlink(self)
 
-
-----
 
    .. attribute:: version
 

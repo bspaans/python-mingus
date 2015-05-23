@@ -129,26 +129,22 @@ range of the Instrument.</p>
 <dd></dd></dl>
 
 <p>Augment all the bars in the Track.</p>
-</dd></dl>
-
-<hr class="docutils" />
-<blockquote>
-<div><dl class="attribute">
-<dt id="mingus.containers.track.bars">
-<code class="descclassname">mingus.containers.track.</code><code class="descname">bars</code><a class="headerlink" href="#mingus.containers.track.bars" title="Permalink to this definition">¶</a></dt>
+<dl class="attribute">
+<dt id="mingus.containers.track.Track.bars">
+<code class="descname">bars</code><a class="headerlink" href="#mingus.containers.track.Track.bars" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Attribute of type: list
 <code class="docutils literal"><span class="pre">[]</span></code></p>
 <dl class="method">
-<dt id="mingus.containers.track.diminish">
-<code class="descclassname">mingus.containers.track.</code><code class="descname">diminish</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.track.diminish" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.containers.track.Track.diminish">
+<code class="descname">diminish</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/containers/track.html#Track.diminish"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.containers.track.Track.diminish" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Diminish all the bars in the Track.</p>
 <dl class="method">
-<dt id="mingus.containers.track.from_chords">
-<code class="descclassname">mingus.containers.track.</code><code class="descname">from_chords</code><span class="sig-paren">(</span><em>self</em>, <em>chords</em>, <em>duration=1</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.track.from_chords" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.containers.track.Track.from_chords">
+<code class="descname">from_chords</code><span class="sig-paren">(</span><em>self</em>, <em>chords</em>, <em>duration=1</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/containers/track.html#Track.from_chords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.containers.track.Track.from_chords" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Add chords to the Track.</p>
@@ -162,73 +158,65 @@ fingering.</p>
 </pre></div>
 </div>
 <dl class="method">
-<dt id="mingus.containers.track.get_notes">
-<code class="descclassname">mingus.containers.track.</code><code class="descname">get_notes</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.track.get_notes" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.containers.track.Track.get_notes">
+<code class="descname">get_notes</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/containers/track.html#Track.get_notes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.containers.track.Track.get_notes" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Return an iterator that iterates through every bar in the this
 track.</p>
 <dl class="method">
-<dt id="mingus.containers.track.get_tuning">
-<code class="descclassname">mingus.containers.track.</code><code class="descname">get_tuning</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.track.get_tuning" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.containers.track.Track.get_tuning">
+<code class="descname">get_tuning</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/containers/track.html#Track.get_tuning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.containers.track.Track.get_tuning" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Return a StringTuning object.</p>
 <p>If an instrument is set and has a tuning it will be returned.
 Otherwise the track&#8217;s one will be used.</p>
-</div></blockquote>
-<hr class="docutils" />
-<blockquote>
-<div><dl class="attribute">
-<dt id="mingus.containers.track.instrument">
-<code class="descclassname">mingus.containers.track.</code><code class="descname">instrument</code><a class="headerlink" href="#mingus.containers.track.instrument" title="Permalink to this definition">¶</a></dt>
+<dl class="attribute">
+<dt id="mingus.containers.track.Track.instrument">
+<code class="descname">instrument</code><a class="headerlink" href="#mingus.containers.track.Track.instrument" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Attribute of type: NoneType
 <code class="docutils literal"><span class="pre">None</span></code></p>
-</div></blockquote>
-<hr class="docutils" />
-<blockquote>
-<div><dl class="attribute">
-<dt id="mingus.containers.track.name">
-<code class="descclassname">mingus.containers.track.</code><code class="descname">name</code><a class="headerlink" href="#mingus.containers.track.name" title="Permalink to this definition">¶</a></dt>
+<dl class="attribute">
+<dt id="mingus.containers.track.Track.name">
+<code class="descname">name</code><a class="headerlink" href="#mingus.containers.track.Track.name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Attribute of type: str
 <code class="docutils literal"><span class="pre">'Untitled'</span></code></p>
 <dl class="method">
-<dt id="mingus.containers.track.set_tuning">
-<code class="descclassname">mingus.containers.track.</code><code class="descname">set_tuning</code><span class="sig-paren">(</span><em>self</em>, <em>tuning</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.track.set_tuning" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.containers.track.Track.set_tuning">
+<code class="descname">set_tuning</code><span class="sig-paren">(</span><em>self</em>, <em>tuning</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/containers/track.html#Track.set_tuning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.containers.track.Track.set_tuning" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Set the tuning attribute on both the Track and its instrument (when
 available).</p>
 <p>Tuning should be a StringTuning or derivative object.</p>
 <dl class="method">
-<dt id="mingus.containers.track.test_integrity">
-<code class="descclassname">mingus.containers.track.</code><code class="descname">test_integrity</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.track.test_integrity" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.containers.track.Track.test_integrity">
+<code class="descname">test_integrity</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/containers/track.html#Track.test_integrity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.containers.track.Track.test_integrity" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Test whether all but the last Bars contained in this track are
 full.</p>
 <dl class="method">
-<dt id="mingus.containers.track.transpose">
-<code class="descclassname">mingus.containers.track.</code><code class="descname">transpose</code><span class="sig-paren">(</span><em>self</em>, <em>interval</em>, <em>up=True</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.containers.track.transpose" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.containers.track.Track.transpose">
+<code class="descname">transpose</code><span class="sig-paren">(</span><em>self</em>, <em>interval</em>, <em>up=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/containers/track.html#Track.transpose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.containers.track.Track.transpose" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Transpose all the notes in the track up or down the interval.</p>
 <p>Call transpose() on every Bar.</p>
-</div></blockquote>
-<hr class="docutils" />
-<blockquote>
-<div><dl class="attribute">
-<dt id="mingus.containers.track.tuning">
-<code class="descclassname">mingus.containers.track.</code><code class="descname">tuning</code><a class="headerlink" href="#mingus.containers.track.tuning" title="Permalink to this definition">¶</a></dt>
+<dl class="attribute">
+<dt id="mingus.containers.track.Track.tuning">
+<code class="descname">tuning</code><a class="headerlink" href="#mingus.containers.track.Track.tuning" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Attribute of type: NoneType
 <code class="docutils literal"><span class="pre">None</span></code></p>
-</div></blockquote>
+</dd></dl>
+
 <hr class="docutils" />
 <p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
 </div>

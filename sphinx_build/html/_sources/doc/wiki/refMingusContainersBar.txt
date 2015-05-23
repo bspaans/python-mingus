@@ -49,8 +49,6 @@ mingus.containers.bar
    Augment the NoteContainers in Bar.
 
 
-----
-
    .. attribute:: bar
 
    Attribute of type: list
@@ -61,8 +59,6 @@ mingus.containers.bar
    Change the note duration at the given index to the given
    duration.
 
-
-----
 
    .. attribute:: current_beat
 
@@ -105,21 +101,15 @@ mingus.containers.bar
    NoteContainer, True otherwise.
 
 
-----
-
    .. attribute:: key
 
    Attribute of type: str
    ``'C'``
 
-----
-
    .. attribute:: length
 
    Attribute of type: float
    ``0.0``
-
-----
 
    .. attribute:: meter
 

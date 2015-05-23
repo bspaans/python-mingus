@@ -96,13 +96,13 @@
 
     <span class="n">output</span> <span class="o">=</span> <span class="bp">None</span>
 
-    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="FluidSynthSequencer.init"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiFluidsynth.html#mingus.midi.fluidsynth.FluidSynthSequencer.init">[docs]</a>    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fs</span> <span class="o">=</span> <span class="n">fs</span><span class="o">.</span><span class="n">Synth</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="FluidSynthSequencer.__del__"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiFluidsynth.html#mingus.midi.fluidsynth.FluidSynthSequencer.__del__">[docs]</a>    <span class="k">def</span> <span class="nf">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">start_audio_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="FluidSynthSequencer.start_audio_output"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiFluidsynth.html#mingus.midi.fluidsynth.FluidSynthSequencer.start_audio_output">[docs]</a>    <span class="k">def</span> <span class="nf">start_audio_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Start the audio output.</span>
 
 <span class="sd">        The optional driver argument can be any of &#39;alsa&#39;, &#39;oss&#39;, &#39;jack&#39;,</span>
@@ -110,16 +110,16 @@
 <span class="sd">        &#39;pulseaudio&#39;. Not all drivers will be available for every platform.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">start_recording</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="s">&#39;mingus_dump.wav&#39;</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="FluidSynthSequencer.start_recording"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiFluidsynth.html#mingus.midi.fluidsynth.FluidSynthSequencer.start_recording">[docs]</a>    <span class="k">def</span> <span class="nf">start_recording</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="s">&#39;mingus_dump.wav&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize a new wave file for recording.&quot;&quot;&quot;</span>
         <span class="n">w</span> <span class="o">=</span> <span class="n">wave</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="s">&#39;wb&#39;</span><span class="p">)</span>
         <span class="n">w</span><span class="o">.</span><span class="n">setnchannels</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
         <span class="n">w</span><span class="o">.</span><span class="n">setsampwidth</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
         <span class="n">w</span><span class="o">.</span><span class="n">setframerate</span><span class="p">(</span><span class="mi">44100</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wav</span> <span class="o">=</span> <span class="n">w</span>
-
-    <span class="k">def</span> <span class="nf">load_sound_font</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sf2</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="FluidSynthSequencer.load_sound_font"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiFluidsynth.html#mingus.midi.fluidsynth.FluidSynthSequencer.load_sound_font">[docs]</a>    <span class="k">def</span> <span class="nf">load_sound_font</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sf2</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load a sound font.</span>
 
 <span class="sd">        Return True on success, False on failure.</span>
@@ -130,20 +130,20 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">sfid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">sfload</span><span class="p">(</span><span class="n">sf2</span><span class="p">)</span>
         <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">sfid</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span>
 
-    <span class="c"># Implement Sequencer&#39;s interface</span>
-    <span class="k">def</span> <span class="nf">play_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">velocity</span><span class="p">):</span>
+    <span class="c"># Implement Sequencer&#39;s interface</span></div>
+<div class="viewcode-block" id="FluidSynthSequencer.play_event"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiFluidsynth.html#mingus.midi.fluidsynth.FluidSynthSequencer.play_event">[docs]</a>    <span class="k">def</span> <span class="nf">play_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">velocity</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">noteon</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">velocity</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">stop_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">channel</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="FluidSynthSequencer.stop_event"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiFluidsynth.html#mingus.midi.fluidsynth.FluidSynthSequencer.stop_event">[docs]</a>    <span class="k">def</span> <span class="nf">stop_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">channel</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">noteoff</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">note</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">cc_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">control</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="FluidSynthSequencer.cc_event"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiFluidsynth.html#mingus.midi.fluidsynth.FluidSynthSequencer.cc_event">[docs]</a>    <span class="k">def</span> <span class="nf">cc_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">control</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">cc</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">control</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">instr_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">instr</span><span class="p">,</span> <span class="n">bank</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="FluidSynthSequencer.instr_event"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiFluidsynth.html#mingus.midi.fluidsynth.FluidSynthSequencer.instr_event">[docs]</a>    <span class="k">def</span> <span class="nf">instr_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">instr</span><span class="p">,</span> <span class="n">bank</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">program_select</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sfid</span><span class="p">,</span> <span class="n">bank</span><span class="p">,</span> <span class="n">instr</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">sleep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seconds</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="FluidSynthSequencer.sleep"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiFluidsynth.html#mingus.midi.fluidsynth.FluidSynthSequencer.sleep">[docs]</a>    <span class="k">def</span> <span class="nf">sleep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seconds</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;wav&#39;</span><span class="p">):</span>
             <span class="n">samples</span> <span class="o">=</span> <span class="n">fs</span><span class="o">.</span><span class="n">raw_audio_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">get_samples</span><span class="p">(</span>
                 <span class="nb">int</span><span class="p">(</span><span class="n">seconds</span> <span class="o">*</span> <span class="mi">44100</span><span class="p">)))</span>
@@ -151,7 +151,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">seconds</span><span class="p">)</span>
 
-</div>
+</div></div>
 <span class="n">midi</span> <span class="o">=</span> <span class="n">FluidSynthSequencer</span><span class="p">()</span>
 <span class="n">initialized</span> <span class="o">=</span> <span class="bp">False</span>
 

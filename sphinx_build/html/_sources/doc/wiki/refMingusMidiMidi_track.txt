@@ -17,14 +17,10 @@ http://www.sonicspot.com/guide/midifiles.html
    .. method:: __init__(self, start_bpm=120)
 
 
-----
-
    .. attribute:: bpm
 
    Attribute of type: int
    ``120``
-
-----
 
    .. attribute:: change_instrument
 
@@ -36,14 +32,10 @@ http://www.sonicspot.com/guide/midifiles.html
    Return the bytes for a MIDI controller event.
 
 
-----
-
    .. attribute:: delay
 
    Attribute of type: int
    ``0``
-
-----
 
    .. attribute:: delta_time
 
@@ -70,8 +62,6 @@ http://www.sonicspot.com/guide/midifiles.html
    call this function when you're done adding data (when you're not
    using get_midi_data).
 
-
-----
 
    .. attribute:: instrument
 
@@ -204,8 +194,6 @@ http://www.sonicspot.com/guide/midifiles.html
 
    Return a time signature event for meter.
 
-
-----
 
    .. attribute:: track_data
 

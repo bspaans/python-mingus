@@ -29,14 +29,10 @@ mingus.containers.
    Reset every track.
 
 
-----
-
    .. attribute:: time_division
 
    Attribute of type: str
    ``'\x00H'``
-
-----
 
    .. attribute:: tracks
 

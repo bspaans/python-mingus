@@ -8,14 +8,10 @@ mingus.containers.mt_exceptions
 .. class:: InstrumentRangeError
 
 
-----
-
    .. attribute:: args
 
    Attribute of type: getset_descriptor
    ``<attribute 'args' of 'exceptions.BaseException' objects>``
-
-----
 
    .. attribute:: message
 
@@ -25,14 +21,10 @@ mingus.containers.mt_exceptions
 .. class:: MeterFormatError
 
 
-----
-
    .. attribute:: args
 
    Attribute of type: getset_descriptor
    ``<attribute 'args' of 'exceptions.BaseException' objects>``
-
-----
 
    .. attribute:: message
 
@@ -42,14 +34,10 @@ mingus.containers.mt_exceptions
 .. class:: NoteFormatError
 
 
-----
-
    .. attribute:: args
 
    Attribute of type: getset_descriptor
    ``<attribute 'args' of 'exceptions.BaseException' objects>``
-
-----
 
    .. attribute:: message
 
@@ -59,14 +47,10 @@ mingus.containers.mt_exceptions
 .. class:: UnexpectedObjectError
 
 
-----
-
    .. attribute:: args
 
    Attribute of type: getset_descriptor
    ``<attribute 'args' of 'exceptions.BaseException' objects>``
-
-----
 
    .. attribute:: message
 

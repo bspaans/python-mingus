@@ -70,8 +70,6 @@ mingus.containers.track
    Augment all the bars in the Track.
 
 
-----
-
    .. attribute:: bars
 
    Attribute of type: list
@@ -113,14 +111,10 @@ mingus.containers.track
    Otherwise the track's one will be used.
 
 
-----
-
    .. attribute:: instrument
 
    Attribute of type: NoneType
    ``None``
-
-----
 
    .. attribute:: name
 
@@ -147,8 +141,6 @@ mingus.containers.track
    
    Call transpose() on every Bar.
 
-
-----
 
    .. attribute:: tuning
 

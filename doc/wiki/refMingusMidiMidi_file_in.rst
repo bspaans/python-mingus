@@ -10,14 +10,10 @@ Read a MIDI file and convert it into mingus.containers objects.
 .. class:: FormatError
 
 
-----
-
    .. attribute:: args
 
    Attribute of type: getset_descriptor
    ``<attribute 'args' of 'exceptions.BaseException' objects>``
-
-----
 
    .. attribute:: message
 
@@ -27,14 +23,10 @@ Read a MIDI file and convert it into mingus.containers objects.
 .. class:: HeaderError
 
 
-----
-
    .. attribute:: args
 
    Attribute of type: getset_descriptor
    ``<attribute 'args' of 'exceptions.BaseException' objects>``
-
-----
 
    .. attribute:: message
 
@@ -47,14 +39,10 @@ Read a MIDI file and convert it into mingus.containers objects.
    .. method:: MIDI_to_Composition(self, file)
 
 
-----
-
    .. attribute:: bpm
 
    Attribute of type: int
    ``120``
-
-----
 
    .. attribute:: bytes_read
 
@@ -63,8 +51,6 @@ Read a MIDI file and convert it into mingus.containers objects.
 
    .. method:: bytes_to_int(self, bytes)
 
-
-----
 
    .. attribute:: meter
 
@@ -124,14 +110,10 @@ Read a MIDI file and convert it into mingus.containers objects.
 .. class:: TimeDivisionError
 
 
-----
-
    .. attribute:: args
 
    Attribute of type: getset_descriptor
    ``<attribute 'args' of 'exceptions.BaseException' objects>``
-
-----
 
    .. attribute:: message
 

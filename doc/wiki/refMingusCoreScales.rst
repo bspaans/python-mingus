@@ -78,8 +78,6 @@ Other scales
    Return the list of descending notes.
 
 
-----
-
    .. attribute:: type
 
    Attribute of type: str
@@ -125,8 +123,6 @@ Other scales
    Return the list of descending notes.
 
 
-----
-
    .. attribute:: type
 
    Attribute of type: str
@@ -168,8 +164,6 @@ Other scales
 
    .. method:: descending(self)
 
-
-----
 
    .. attribute:: type
 
@@ -218,8 +212,6 @@ Other scales
    Return the list of descending notes.
 
 
-----
-
    .. attribute:: type
 
    Attribute of type: str
@@ -263,8 +255,6 @@ Other scales
 
    Return the list of descending notes.
 
-
-----
 
    .. attribute:: type
 
@@ -310,8 +300,6 @@ Other scales
    Return the list of descending notes.
 
 
-----
-
    .. attribute:: type
 
    Attribute of type: str
@@ -355,8 +343,6 @@ Other scales
 
    Return the list of descending notes.
 
-
-----
 
    .. attribute:: type
 
@@ -402,8 +388,6 @@ Other scales
    Return the list of descending notes.
 
 
-----
-
    .. attribute:: type
 
    Attribute of type: str
@@ -447,8 +431,6 @@ Other scales
 
    Return the list of descending notes.
 
-
-----
 
    .. attribute:: type
 
@@ -494,8 +476,6 @@ Other scales
    Return the list of descending notes.
 
 
-----
-
    .. attribute:: type
 
    Attribute of type: str
@@ -540,8 +520,6 @@ Other scales
    Return the list of descending notes.
 
 
-----
-
    .. attribute:: type
 
    Attribute of type: str
@@ -584,8 +562,6 @@ Other scales
    .. method:: descending(self)
 
 
-----
-
    .. attribute:: type
 
    Attribute of type: str
@@ -627,8 +603,6 @@ Other scales
 
    .. method:: descending(self)
 
-
-----
 
    .. attribute:: type
 
@@ -674,8 +648,6 @@ Other scales
    Return the list of descending notes.
 
 
-----
-
    .. attribute:: type
 
    Attribute of type: str
@@ -719,8 +691,6 @@ Other scales
 
    Return the list of descending notes.
 
-
-----
 
    .. attribute:: type
 
@@ -767,8 +737,6 @@ Other scales
    Return the list of descending notes.
 
 
-----
-
    .. attribute:: type
 
    Attribute of type: str
@@ -813,8 +781,6 @@ Other scales
    Return the list of descending notes.
 
 
-----
-
    .. attribute:: type
 
    Attribute of type: str
@@ -858,8 +824,6 @@ Other scales
 
    Return the list of descending notes.
 
-
-----
 
    .. attribute:: type
 

@@ -102,7 +102,7 @@
         <span class="sd">&quot;&quot;&quot;Reset every track.&quot;&quot;&quot;</span>
         <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracks</span><span class="p">]</span>
 </div>
-    <span class="k">def</span> <span class="nf">write_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">file</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<div class="viewcode-block" id="MidiFile.write_file"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_out.html#mingus.midi.midi_file_out.MidiFile.write_file">[docs]</a>    <span class="k">def</span> <span class="nf">write_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">file</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Collect the data from get_midi_data and write to file.&quot;&quot;&quot;</span>
         <span class="n">dat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_midi_data</span><span class="p">()</span>
         <span class="k">try</span><span class="p">:</span>
@@ -120,7 +120,7 @@
             <span class="k">print</span> <span class="s">&#39;Written </span><span class="si">%d</span><span class="s"> bytes to </span><span class="si">%s</span><span class="s">.&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dat</span><span class="p">),</span> <span class="nb">file</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">True</span>
 
-</div>
+</div></div>
 <div class="viewcode-block" id="write_Note"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_out.html#mingus.midi.midi_file_out.write_Note">[docs]</a><span class="k">def</span> <span class="nf">write_Note</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">bpm</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Expect a Note object from mingus.containers and save it into a MIDI</span>
 <span class="sd">    file, specified in file.</span>

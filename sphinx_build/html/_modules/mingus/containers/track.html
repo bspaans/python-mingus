@@ -132,14 +132,14 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">bars</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">place_notes</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
 </div>
-    <span class="k">def</span> <span class="nf">get_notes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Track.get_notes"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.get_notes">[docs]</a>    <span class="k">def</span> <span class="nf">get_notes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return an iterator that iterates through every bar in the this</span>
 <span class="sd">        track.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bars</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">beat</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">notes</span> <span class="ow">in</span> <span class="n">bar</span><span class="p">:</span>
                 <span class="k">yield</span> <span class="n">beat</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">notes</span> 
-
-    <span class="k">def</span> <span class="nf">from_chords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chords</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Track.from_chords"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.from_chords">[docs]</a>    <span class="k">def</span> <span class="nf">from_chords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chords</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add chords to the Track.</span>
 
 <span class="sd">        The given chords should be a list of shorthand strings or list of</span>
@@ -178,8 +178,8 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">add_notes</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span>
-
-    <span class="k">def</span> <span class="nf">get_tuning</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Track.get_tuning"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.get_tuning">[docs]</a>    <span class="k">def</span> <span class="nf">get_tuning</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return a StringTuning object.</span>
 
 <span class="sd">        If an instrument is set and has a tuning it will be returned.</span>
@@ -188,8 +188,8 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">tuning</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">tuning</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tuning</span>
-
-    <span class="k">def</span> <span class="nf">set_tuning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tuning</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Track.set_tuning"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.set_tuning">[docs]</a>    <span class="k">def</span> <span class="nf">set_tuning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tuning</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set the tuning attribute on both the Track and its instrument (when</span>
 <span class="sd">        available).</span>
 
@@ -199,8 +199,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">tuning</span> <span class="o">=</span> <span class="n">tuning</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tuning</span> <span class="o">=</span> <span class="n">tuning</span>
         <span class="k">return</span> <span class="bp">self</span>
-
-    <span class="k">def</span> <span class="nf">transpose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">up</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Track.transpose"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.transpose">[docs]</a>    <span class="k">def</span> <span class="nf">transpose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">up</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Transpose all the notes in the track up or down the interval.</span>
 
 <span class="sd">        Call transpose() on every Bar.</span>
@@ -208,19 +208,19 @@
         <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bars</span><span class="p">:</span>
             <span class="n">bar</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">interval</span><span class="p">,</span> <span class="n">up</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span>
-
+</div>
 <div class="viewcode-block" id="Track.augment"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.augment">[docs]</a>    <span class="k">def</span> <span class="nf">augment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Augment all the bars in the Track.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bars</span><span class="p">:</span>
             <span class="n">bar</span><span class="o">.</span><span class="n">augment</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span>
 </div>
-    <span class="k">def</span> <span class="nf">diminish</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Track.diminish"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.diminish">[docs]</a>    <span class="k">def</span> <span class="nf">diminish</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Diminish all the bars in the Track.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bars</span><span class="p">:</span>
             <span class="n">bar</span><span class="o">.</span><span class="n">diminish</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span>
-
+</div>
 <div class="viewcode-block" id="Track.__add__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.__add__">[docs]</a>    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Enable the &#39;+&#39; operator for Tracks.</span>
 
@@ -233,14 +233,14 @@
         <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_notes</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 </div>
-    <span class="k">def</span> <span class="nf">test_integrity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Track.test_integrity"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.test_integrity">[docs]</a>    <span class="k">def</span> <span class="nf">test_integrity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Test whether all but the last Bars contained in this track are</span>
 <span class="sd">        full.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bars</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">b</span><span class="o">.</span><span class="n">is_full</span><span class="p">():</span>
                 <span class="k">return</span> <span class="bp">False</span>
         <span class="k">return</span> <span class="bp">True</span>
-
+</div>
 <div class="viewcode-block" id="Track.__eq__"><a class="viewcode-back" href="../../../doc/wiki/refMingusContainersTrack.html#mingus.containers.track.Track.__eq__">[docs]</a>    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Enable the &#39;==&#39; operator for tracks.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bars</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>

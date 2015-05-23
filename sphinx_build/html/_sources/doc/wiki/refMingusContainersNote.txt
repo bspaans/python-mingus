@@ -71,8 +71,6 @@ mingus.containers.note
    Call notes.diminish with this note as argument.
 
 
-----
-
    .. attribute:: dynamics
 
    Attribute of type: dict
@@ -129,14 +127,10 @@ mingus.containers.note
    -2
 
 
-----
-
    .. attribute:: name
 
    Attribute of type: str
    ``'C'``
-
-----
 
    .. attribute:: octave
 
