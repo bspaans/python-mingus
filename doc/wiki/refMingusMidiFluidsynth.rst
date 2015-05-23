@@ -29,7 +29,7 @@ midi
 ^^^^
 
   * *Type*: mingus.midi.fluidsynth.FluidSynthSequencer
-  * *Value*: `<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x7f0189c04910>`
+  * *Value*: `<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x7fb233305910>`
 
 ----
 
@@ -49,18 +49,18 @@ Functions
 .. function:: init(sf2, driver=None, file=None)
 
   Initialize the audio.
-
-Return True on success, False on failure.
-
-This function needs to be called before you can have any audio.
-
-The sf2 argument should be the location of a valid soundfont file.
-
-The optional driver argument can be any of 'alsa', 'oss', 'jack',
-'portaudio', 'sndmgr', 'coreaudio' or 'Direct Sound'.
-
-If the file argument is not None, then instead of loading the driver, a
-new wave file will be initialized to store the audio data.
+  
+  Return True on success, False on failure.
+  
+  This function needs to be called before you can have any audio.
+  
+  The sf2 argument should be the location of a valid soundfont file.
+  
+  The optional driver argument can be any of 'alsa', 'oss', 'jack',
+  'portaudio', 'sndmgr', 'coreaudio' or 'Direct Sound'.
+  
+  If the file argument is not None, then instead of loading the driver, a
+  new wave file will be initialized to store the audio data.
 
 
 ----
@@ -83,8 +83,8 @@ new wave file will be initialized to store the audio data.
 .. function:: play_Bar(bar, channel=1, bpm=120)
 
   Play a Bar object using play_NoteContainer and stop_NoteContainer.
-
-Set a bpm attribute on a NoteContainer to change the tempo.
+  
+  Set a bpm attribute on a NoteContainer to change the tempo.
 
 
 ----
@@ -92,8 +92,8 @@ Set a bpm attribute on a NoteContainer to change the tempo.
 .. function:: play_Bars(bars, channels, bpm=120)
 
   Play a list of bars on the given list of channels.
-
-Set a bpm attribute on a NoteContainer to change the tempo.
+  
+  Set a bpm attribute on a NoteContainer to change the tempo.
 
 
 ----
@@ -108,17 +108,17 @@ Set a bpm attribute on a NoteContainer to change the tempo.
 .. function:: play_Note(note, channel=1, velocity=100)
 
   Convert a Note object to a 'midi on' command.
-
-The channel and velocity can be set as Note attributes as well. If
-that's the case those values take presedence over the ones given here as
-function arguments.
-
-Example:
-
+  
+  The channel and velocity can be set as Note attributes as well. If
+  that's the case those values take presedence over the ones given here as
+  function arguments.
+  
+  Example:
+  
 >>> n = Note('C', 4)
->>> n.channel = 9
->>> n.velocity = 50
->>> FluidSynth.play_Note(n)
+  >>> n.channel = 9
+  >>> n.velocity = 50
+  >>> FluidSynth.play_Note(n)
 
 
 ----
@@ -152,8 +152,8 @@ Example:
 .. function:: stop_Note(note, channel=1)
 
   Stop the Note playing at channel.
-
-If a channel attribute is set on the note, it will take presedence.
+  
+  If a channel attribute is set on the note, it will take presedence.
 
 
 ----

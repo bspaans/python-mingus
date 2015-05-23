@@ -34,13 +34,13 @@ Functions
 .. function:: is_asymmetrical(meter)
 
   Return True if meter is an asymmetrical meter, False otherwise.
-
-Examples:
-
+  
+  Examples:
+  
 >>> is_asymmetrical((3,4))
-True
->>> is_asymmetrical((4,4))
-False
+  True
+  >>> is_asymmetrical((4,4))
+  False
 
 
 ----
@@ -48,13 +48,13 @@ False
 .. function:: is_compound(meter)
 
   Return True if meter is a compound meter, False otherwise.
-
-Examples:
-
+  
+  Examples:
+  
 >>> is_compound((3,4))
-True
->>> is_compound((4,4))
-False
+  True
+  >>> is_compound((4,4))
+  False
 
 
 ----
@@ -62,13 +62,13 @@ False
 .. function:: is_simple(meter)
 
   Return True if meter is a simple meter, False otherwise.
-
-Examples:
-
+  
+  Examples:
+  
 >>> is_simple((3,4))
-True
->>> is_simple((4,4))
-True
+  True
+  >>> is_simple((4,4))
+  True
 
 
 ----
@@ -76,8 +76,8 @@ True
 .. function:: is_valid(meter)
 
   Return True if meter is a valid tuple representation of a meter.
-
-Examples for meters are (3,4) for 3/4, (4,4) for 4/4, etc.
+  
+  Examples for meters are (3,4) for 3/4, (4,4) for 4/4, etc.
 
 
 ----

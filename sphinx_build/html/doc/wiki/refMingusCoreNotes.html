@@ -79,13 +79,13 @@ enables simple calculations.</p>
 <dt id="augment">
 <code class="descname">augment</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#augment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Augment a given note.</p>
+<p>Examples:</p>
 </dd></dl>
 
-<p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">augment</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">&#39;C#&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">augment</span><span class="p">(</span><span class="s">&#39;Cb&#39;</span><span class="p">)</span>
-<span class="go">&#39;C&#39;</span>
+<span class="go">  &#39;C#&#39;</span>
+<span class="go">  &gt;&gt;&gt; augment(&#39;Cb&#39;)</span>
+<span class="go">  &#39;C&#39;</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -93,32 +93,32 @@ enables simple calculations.</p>
 <dt id="diminish">
 <code class="descname">diminish</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#diminish" title="Permalink to this definition">¶</a></dt>
 <dd><p>Diminish a given note.</p>
+<p>Examples:</p>
 </dd></dl>
 
-<p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diminish</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">&#39;Cb&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">diminish</span><span class="p">(</span><span class="s">&#39;C#&#39;</span><span class="p">)</span>
-<span class="go">&#39;C&#39;</span>
+<span class="go">  &#39;Cb&#39;</span>
+<span class="go">  &gt;&gt;&gt; diminish(&#39;C#&#39;)</span>
+<span class="go">  &#39;C&#39;</span>
 </pre></div>
 </div>
 <hr class="docutils" />
 <dl class="function">
 <dt id="int_to_note">
 <code class="descname">int_to_note</code><span class="sig-paren">(</span><em>note_int</em>, <em>accidentals=#</em><span class="sig-paren">)</span><a class="headerlink" href="#int_to_note" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert integers in the range of 0-11 to notes in the form of C or C#</p>
-</dd></dl>
-
-<p>or Db.</p>
+<dd><p>Convert integers in the range of 0-11 to notes in the form of C or C#
+or Db.</p>
 <p>Throw a RangeError exception if the note_int is not in the range 0-11.</p>
 <p>If not specified, sharps will be used.</p>
 <p>Examples:</p>
+</dd></dl>
+
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">int_to_note</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="go">&#39;C&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">int_to_note</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="go">&#39;D#&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">int_to_note</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">)</span>
-<span class="go">&#39;Eb&#39;</span>
+<span class="go">  &#39;C&#39;</span>
+<span class="go">  &gt;&gt;&gt; int_to_note(3)</span>
+<span class="go">  &#39;D#&#39;</span>
+<span class="go">  &gt;&gt;&gt; int_to_note(3, &#39;b&#39;)</span>
+<span class="go">  &#39;Eb&#39;</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -139,21 +139,21 @@ enables simple calculations.</p>
 <dl class="function">
 <dt id="note_to_int">
 <code class="descname">note_to_int</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#note_to_int" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert notes in the form of C, C#, Cb, C##, etc. to an integer in the</p>
+<dd><p>Convert notes in the form of C, C#, Cb, C##, etc. to an integer in the
+range of 0-11.</p>
+<p>Throw a NoteFormatError exception if the note format is not recognised.</p>
 </dd></dl>
 
-<p>range of 0-11.</p>
-<p>Throw a NoteFormatError exception if the note format is not recognised.</p>
 <hr class="docutils" />
 <dl class="function">
 <dt id="reduce_accidentals">
 <code class="descname">reduce_accidentals</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#reduce_accidentals" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reduce any extra accidentals to proper notes.</p>
+<p>Example:</p>
 </dd></dl>
 
-<p>Example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">reduce_accidentals</span><span class="p">(</span><span class="s">&#39;C####&#39;</span><span class="p">)</span>
-<span class="go">&#39;E&#39;</span>
+<span class="go">  &#39;E&#39;</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -161,13 +161,13 @@ enables simple calculations.</p>
 <dt id="remove_redundant_accidentals">
 <code class="descname">remove_redundant_accidentals</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#remove_redundant_accidentals" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remove redundant sharps and flats from the given note.</p>
+<p>Examples:</p>
 </dd></dl>
 
-<p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">remove_redundant_accidentals</span><span class="p">(</span><span class="s">&#39;C##b&#39;</span><span class="p">)</span>
-<span class="go">&#39;C#&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">remove_redundant_accidentals</span><span class="p">(</span><span class="s">&#39;Eb##b&#39;</span><span class="p">)</span>
-<span class="go">&#39;E&#39;</span>
+<span class="go">  &#39;C#&#39;</span>
+<span class="go">  &gt;&gt;&gt; remove_redundant_accidentals(&#39;Eb##b&#39;)</span>
+<span class="go">  &#39;E&#39;</span>
 </pre></div>
 </div>
 <hr class="docutils" />

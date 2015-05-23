@@ -56,9 +56,9 @@ mingus.containers.</p>
 <dt id="write_Bar">
 <code class="descname">write_Bar</code><span class="sig-paren">(</span><em>file</em>, <em>bar</em>, <em>bpm=120</em>, <em>repeat=0</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#write_Bar" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write a mingus.Bar to a MIDI file.</p>
+<p>Both the key and the meter are written to the file as well.</p>
 </dd></dl>
 
-<p>Both the key and the meter are written to the file as well.</p>
 <hr class="docutils" />
 <dl class="function">
 <dt id="write_Composition">
@@ -70,11 +70,11 @@ mingus.containers.</p>
 <dl class="function">
 <dt id="write_Note">
 <code class="descname">write_Note</code><span class="sig-paren">(</span><em>file</em>, <em>note</em>, <em>bpm=120</em>, <em>repeat=0</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#write_Note" title="Permalink to this definition">¶</a></dt>
-<dd><p>Expect a Note object from mingus.containers and save it into a MIDI</p>
+<dd><p>Expect a Note object from mingus.containers and save it into a MIDI
+file, specified in file.</p>
+<p>You can set the velocity and channel in Note.velocity and Note.channel.</p>
 </dd></dl>
 
-<p>file, specified in file.</p>
-<p>You can set the velocity and channel in Note.velocity and Note.channel.</p>
 <hr class="docutils" />
 <dl class="function">
 <dt id="write_NoteContainer">
@@ -87,12 +87,12 @@ mingus.containers.</p>
 <dt id="write_Track">
 <code class="descname">write_Track</code><span class="sig-paren">(</span><em>file</em>, <em>track</em>, <em>bpm=120</em>, <em>repeat=0</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#write_Track" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write a mingus.Track to a MIDI file.</p>
-</dd></dl>
-
 <p>Write the name to the file and set the instrument if the instrument has
 the attribute instrument_nr, which represents the MIDI instrument
 number. The class MidiInstrument in mingus.containers.Instrument has
 this attribute by default.</p>
+</dd></dl>
+
 <hr class="docutils" />
 <p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
 </div>

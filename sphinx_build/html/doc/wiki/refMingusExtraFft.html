@@ -74,14 +74,9 @@
 <dt id="_fft">
 <code class="descname">_fft</code><span class="sig-paren">(</span><em>a</em>, <em>n=None</em>, <em>axis=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#_fft" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the one-dimensional discrete Fourier Transform.</p>
-</dd></dl>
-
 <p>This function computes the one-dimensional <em>n</em>-point discrete Fourier
 Transform (DFT) with the efficient Fast Fourier Transform (FFT)
 algorithm [CT].</p>
-</div>
-<div class="section" id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
 <dt>a <span class="classifier-delimiter">:</span> <span class="classifier">array_like</span></dt>
 <dd>Input array, can be complex.</dd>
@@ -94,42 +89,27 @@ the length of the input along the axis specified by <cite>axis</cite> is used.</
 <dd>Axis over which to compute the FFT.  If not given, the last axis is
 used.</dd>
 </dl>
-</div>
-<div class="section" id="returns">
-<h2>Returns<a class="headerlink" href="#returns" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
 <dt>out <span class="classifier-delimiter">:</span> <span class="classifier">complex ndarray</span></dt>
 <dd>The truncated or zero-padded input, transformed along the axis
 indicated by <cite>axis</cite>, or the last one if <cite>axis</cite> is not specified.</dd>
 </dl>
-</div>
-<div class="section" id="raises">
-<h2>Raises<a class="headerlink" href="#raises" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
 <dt>IndexError</dt>
 <dd>if <cite>axes</cite> is larger than the last axis of <cite>a</cite>.</dd>
 </dl>
-</div>
-<div class="section" id="see-also">
-<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
 <p>numpy.fft : for definition of the DFT and conventions used.
 ifft : The inverse of <cite>fft</cite>.
 fft2 : The two-dimensional FFT.
 fftn : The <em>n</em>-dimensional FFT.
 rfftn : The <em>n</em>-dimensional FFT of real input.
 fftfreq : Frequency bins for given FFT parameters.</p>
-</div>
-<div class="section" id="notes">
-<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
 <p>FFT (Fast Fourier Transform) refers to a way the discrete Fourier
 Transform (DFT) can be calculated efficiently, by using symmetries in the
 calculated terms.  The symmetry is highest when <cite>n</cite> is a power of 2, and
 the transform is therefore most efficient for these sizes.</p>
 <p>The DFT is defined, with the conventions used in this implementation, in
 the documentation for the <cite>numpy.fft</cite> module.</p>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <table class="docutils citation" frame="void" id="ct" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
@@ -138,86 +118,86 @@ machine calculation of complex Fourier series,&#8221; <em>Math. Comput.</em>
 19: 297-301.</td></tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+</dd></dl>
+
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2j</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="o">/</span> <span class="mi">8</span><span class="p">))</span>
-<span class="go">array([ -3.44505240e-16 +1.14383329e-17j,</span>
-<span class="go">         8.00000000e+00 -5.71092652e-15j,</span>
-<span class="go">         2.33482938e-16 +1.22460635e-16j,</span>
-<span class="go">         1.64863782e-15 +1.77635684e-15j,</span>
-<span class="go">         9.95839695e-17 +2.33482938e-16j,</span>
-<span class="go">         0.00000000e+00 +1.66837030e-15j,</span>
-<span class="go">         1.14383329e-17 +1.22460635e-16j,</span>
-<span class="go">         -1.64863782e-15 +1.77635684e-15j])</span>
+<span class="go">  array([ -3.44505240e-16 +1.14383329e-17j,</span>
+<span class="go">           8.00000000e+00 -5.71092652e-15j,</span>
+<span class="go">           2.33482938e-16 +1.22460635e-16j,</span>
+<span class="go">           1.64863782e-15 +1.77635684e-15j,</span>
+<span class="go">           9.95839695e-17 +2.33482938e-16j,</span>
+<span class="go">           0.00000000e+00 +1.66837030e-15j,</span>
+<span class="go">           1.14383329e-17 +1.22460635e-16j,</span>
+<span class="go">           -1.64863782e-15 +1.77635684e-15j])</span>
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">sp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">freq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">imag</span><span class="p">)</span>
-<span class="go">[&lt;matplotlib.lines.Line2D object at 0x...&gt;, &lt;matplotlib.lines.Line2D object at 0x...&gt;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="go">  &gt;&gt;&gt; t = np.arange(256)</span>
+<span class="go">  &gt;&gt;&gt; sp = np.fft.fft(np.sin(t))</span>
+<span class="go">  &gt;&gt;&gt; freq = np.fft.fftfreq(t.shape[-1])</span>
+<span class="go">  &gt;&gt;&gt; plt.plot(freq, sp.real, freq, sp.imag)</span>
+<span class="go">  [&lt;matplotlib.lines.Line2D object at 0x...&gt;, &lt;matplotlib.lines.Line2D object at 0x...&gt;]</span>
+<span class="go">  &gt;&gt;&gt; plt.show()</span>
 </pre></div>
 </div>
-<p>In this example, real input has an FFT which is Hermitian, i.e., symmetric
+<blockquote>
+<div>In this example, real input has an FFT which is Hermitian, i.e., symmetric
 in the real part and anti-symmetric in the imaginary part, as described in
-the <cite>numpy.fft</cite> documentation.</p>
+the <cite>numpy.fft</cite> documentation.</div></blockquote>
 <hr class="docutils" />
 <dl class="function">
 <dt id="_find_log_index">
 <code class="descname">_find_log_index</code><span class="sig-paren">(</span><em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#_find_log_index" title="Permalink to this definition">¶</a></dt>
 <dd><p>Look up the index of the frequency f in the frequency table.</p>
+<p>Return the nearest index.</p>
 </dd></dl>
 
-<p>Return the nearest index.</p>
 <hr class="docutils" />
 <dl class="function">
 <dt id="analyze_chunks">
 <code class="descname">analyze_chunks</code><span class="sig-paren">(</span><em>data</em>, <em>freq</em>, <em>bits</em>, <em>chunksize=512</em><span class="sig-paren">)</span><a class="headerlink" href="#analyze_chunks" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cut the one channel data in chunks and analyzes them separately.</p>
+<p>Making the chunksize a power of two works fastest.</p>
 </dd></dl>
 
-<p>Making the chunksize a power of two works fastest.</p>
 <hr class="docutils" />
 <dl class="function">
 <dt id="data_from_file">
 <code class="descname">data_from_file</code><span class="sig-paren">(</span><em>file</em><span class="sig-paren">)</span><a class="headerlink" href="#data_from_file" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return (first channel data, sample frequency, sample width) from a .wav</p>
+<dd><p>Return (first channel data, sample frequency, sample width) from a .wav
+file.</p>
 </dd></dl>
 
-<p>file.</p>
 <hr class="docutils" />
 <dl class="function">
 <dt id="find_Note">
 <code class="descname">find_Note</code><span class="sig-paren">(</span><em>data</em>, <em>freq</em>, <em>bits</em><span class="sig-paren">)</span><a class="headerlink" href="#find_Note" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the frequencies, feed them to find_notes and the return the Note</p>
+<dd><p>Get the frequencies, feed them to find_notes and the return the Note
+with the highest amplitude.</p>
 </dd></dl>
 
-<p>with the highest amplitude.</p>
 <hr class="docutils" />
 <dl class="function">
 <dt id="find_frequencies">
 <code class="descname">find_frequencies</code><span class="sig-paren">(</span><em>data</em>, <em>freq=44100</em>, <em>bits=16</em><span class="sig-paren">)</span><a class="headerlink" href="#find_frequencies" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert audio data into a frequency-amplitude table using fast fourier</p>
-</dd></dl>
-
-<p>transformation.</p>
+<dd><p>Convert audio data into a frequency-amplitude table using fast fourier
+transformation.</p>
 <p>Return a list of tuples (frequency, amplitude).</p>
 <p>Data should only contain one channel of audio.</p>
+</dd></dl>
+
 <hr class="docutils" />
 <dl class="function">
 <dt id="find_melody">
 <code class="descname">find_melody</code><span class="sig-paren">(</span><em>file=440_480_clean.wav</em>, <em>chunksize=512</em><span class="sig-paren">)</span><a class="headerlink" href="#find_melody" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cut the sample into chunks and analyze each chunk.</p>
-</dd></dl>
-
 <p>Return a list [(Note, chunks)] where chunks is the number of chunks
 where that note is the most dominant.</p>
 <p>If two consequent chunks turn out to return the same Note they are
 grouped together.</p>
 <p>This is an experimental function.</p>
+</dd></dl>
+
 <hr class="docutils" />
 <dl class="function">
 <dt id="find_notes">
@@ -244,13 +224,6 @@ grouped together.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#functions">Functions</a></li>
-<li><a class="reference internal" href="#parameters">Parameters</a></li>
-<li><a class="reference internal" href="#returns">Returns</a></li>
-<li><a class="reference internal" href="#raises">Raises</a></li>
-<li><a class="reference internal" href="#see-also">See Also</a></li>
-<li><a class="reference internal" href="#notes">Notes</a></li>
-<li><a class="reference internal" href="#references">References</a></li>
-<li><a class="reference internal" href="#examples">Examples</a></li>
 </ul>
 </li>
 </ul>

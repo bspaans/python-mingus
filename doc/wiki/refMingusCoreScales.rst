@@ -56,13 +56,13 @@ Functions
 .. function:: augment(note)
 
   Augment a given note.
-
-Examples:
-
+  
+  Examples:
+  
 >>> augment('C')
-'C#'
->>> augment('Cb')
-'C'
+  'C#'
+  >>> augment('Cb')
+  'C'
 
 
 ----
@@ -70,13 +70,13 @@ Examples:
 .. function:: determine(notes)
 
   Determine the scales containing the notes.
-
-All major and minor scales are recognized.
-
-Example:
-
+  
+  All major and minor scales are recognized.
+  
+  Example:
+  
 >>> determine(['A', 'Bb', 'E', 'F#', 'G'])
-['G melodic minor', 'G Bachian', 'D harmonic major']
+  ['G melodic minor', 'G Bachian', 'D harmonic major']
 
 
 ----
@@ -84,13 +84,13 @@ Example:
 .. function:: diminish(note)
 
   Diminish a given note.
-
-Examples:
-
+  
+  Examples:
+  
 >>> diminish('C')
-'Cb'
->>> diminish('C#')
-'C'
+  'Cb'
+  >>> diminish('C#')
+  'C'
 
 
 ----
@@ -98,13 +98,13 @@ Examples:
 .. function:: get_notes(key=C)
 
   Return an ordered list of the notes in this natural key.
-
-Examples:
-
+  
+  Examples:
+  
 >>> get_notes('F')
-['F', 'G', 'A', 'Bb', 'C', 'D', 'E']
->>> get_notes('c')
-['C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb']
+  ['F', 'G', 'A', 'Bb', 'C', 'D', 'E']
+  >>> get_notes('c')
+  ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb']
 
 
 ----
@@ -112,11 +112,11 @@ Examples:
 .. function:: reduce_accidentals(note)
 
   Reduce any extra accidentals to proper notes.
-
-Example:
-
+  
+  Example:
+  
 >>> reduce_accidentals('C####')
-'E'
+  'E'
 
 ----
 

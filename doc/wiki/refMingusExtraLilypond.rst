@@ -17,9 +17,9 @@ Functions
 .. function:: from_Bar(bar, showkey=True, showtime=True)
 
   Get a Bar object and return the LilyPond equivalent in a string.
-
-The showkey and showtime parameters can be set to determine whether the
-key and the time should be shown.
+  
+  The showkey and showtime parameters can be set to determine whether the
+  key and the time should be shown.
 
 
 ----
@@ -34,11 +34,11 @@ key and the time should be shown.
 .. function:: from_Note(note, process_octaves=True, standalone=True)
 
   Get a Note object and return the LilyPond equivalent in a string.
-
-If process_octaves is set to False, all data regarding octaves will be
-ignored. If standalone is True, the result can be used by functions
-like to_png and will produce a valid output. The argument is mostly here
-to let from_NoteContainer make use of this function.
+  
+  If process_octaves is set to False, all data regarding octaves will be
+  ignored. If standalone is True, the result can be used by functions
+  like to_png and will produce a valid output. The argument is mostly here
+  to let from_NoteContainer make use of this function.
 
 
 ----
@@ -46,12 +46,12 @@ to let from_NoteContainer make use of this function.
 .. function:: from_NoteContainer(nc, duration=None, standalone=True)
 
   Get a NoteContainer object and return the LilyPond equivalent in a
-string.
-
-The second argument determining the duration of the NoteContainer is
-optional. When the standalone argument is True the result of this
-function can be used directly by functions like to_png. It is mostly
-here to be used by from_Bar.
+  string.
+  
+  The second argument determining the duration of the NoteContainer is
+  optional. When the standalone argument is True the result of this
+  function can be used directly by functions like to_png. It is mostly
+  here to be used by from_Bar.
 
 
 ----
@@ -78,8 +78,8 @@ here to be used by from_Bar.
 .. function:: to_pdf(ly_string, filename)
 
   Save a string in LilyPond format to a PDF.
-
-LilyPond in the $PATH is needed.
+  
+  LilyPond in the $PATH is needed.
 
 
 ----
@@ -87,8 +87,8 @@ LilyPond in the $PATH is needed.
 .. function:: to_png(ly_string, filename)
 
   Save a string in LilyPond format to a PNG.
-
-LilyPond in the $PATH is needed.
+  
+  LilyPond in the $PATH is needed.
 
 ----
 

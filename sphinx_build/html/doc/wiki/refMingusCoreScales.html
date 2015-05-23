@@ -118,13 +118,13 @@ little overview:</p>
 <dt id="augment">
 <code class="descname">augment</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#augment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Augment a given note.</p>
+<p>Examples:</p>
 </dd></dl>
 
-<p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">augment</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">&#39;C#&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">augment</span><span class="p">(</span><span class="s">&#39;Cb&#39;</span><span class="p">)</span>
-<span class="go">&#39;C&#39;</span>
+<span class="go">  &#39;C#&#39;</span>
+<span class="go">  &gt;&gt;&gt; augment(&#39;Cb&#39;)</span>
+<span class="go">  &#39;C&#39;</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -132,12 +132,12 @@ little overview:</p>
 <dt id="determine">
 <code class="descname">determine</code><span class="sig-paren">(</span><em>notes</em><span class="sig-paren">)</span><a class="headerlink" href="#determine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Determine the scales containing the notes.</p>
-</dd></dl>
-
 <p>All major and minor scales are recognized.</p>
 <p>Example:</p>
+</dd></dl>
+
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">([</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;Bb&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;F#&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">])</span>
-<span class="go">[&#39;G melodic minor&#39;, &#39;G Bachian&#39;, &#39;D harmonic major&#39;]</span>
+<span class="go">  [&#39;G melodic minor&#39;, &#39;G Bachian&#39;, &#39;D harmonic major&#39;]</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -145,13 +145,13 @@ little overview:</p>
 <dt id="diminish">
 <code class="descname">diminish</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#diminish" title="Permalink to this definition">¶</a></dt>
 <dd><p>Diminish a given note.</p>
+<p>Examples:</p>
 </dd></dl>
 
-<p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diminish</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">&#39;Cb&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">diminish</span><span class="p">(</span><span class="s">&#39;C#&#39;</span><span class="p">)</span>
-<span class="go">&#39;C&#39;</span>
+<span class="go">  &#39;Cb&#39;</span>
+<span class="go">  &gt;&gt;&gt; diminish(&#39;C#&#39;)</span>
+<span class="go">  &#39;C&#39;</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -159,13 +159,13 @@ little overview:</p>
 <dt id="get_notes">
 <code class="descname">get_notes</code><span class="sig-paren">(</span><em>key=C</em><span class="sig-paren">)</span><a class="headerlink" href="#get_notes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return an ordered list of the notes in this natural key.</p>
+<p>Examples:</p>
 </dd></dl>
 
-<p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">get_notes</span><span class="p">(</span><span class="s">&#39;F&#39;</span><span class="p">)</span>
-<span class="go">[&#39;F&#39;, &#39;G&#39;, &#39;A&#39;, &#39;Bb&#39;, &#39;C&#39;, &#39;D&#39;, &#39;E&#39;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">get_notes</span><span class="p">(</span><span class="s">&#39;c&#39;</span><span class="p">)</span>
-<span class="go">[&#39;C&#39;, &#39;D&#39;, &#39;Eb&#39;, &#39;F&#39;, &#39;G&#39;, &#39;Ab&#39;, &#39;Bb&#39;]</span>
+<span class="go">  [&#39;F&#39;, &#39;G&#39;, &#39;A&#39;, &#39;Bb&#39;, &#39;C&#39;, &#39;D&#39;, &#39;E&#39;]</span>
+<span class="go">  &gt;&gt;&gt; get_notes(&#39;c&#39;)</span>
+<span class="go">  [&#39;C&#39;, &#39;D&#39;, &#39;Eb&#39;, &#39;F&#39;, &#39;G&#39;, &#39;Ab&#39;, &#39;Bb&#39;]</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -173,11 +173,11 @@ little overview:</p>
 <dt id="reduce_accidentals">
 <code class="descname">reduce_accidentals</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#reduce_accidentals" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reduce any extra accidentals to proper notes.</p>
+<p>Example:</p>
 </dd></dl>
 
-<p>Example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">reduce_accidentals</span><span class="p">(</span><span class="s">&#39;C####&#39;</span><span class="p">)</span>
-<span class="go">&#39;E&#39;</span>
+<span class="go">  &#39;E&#39;</span>
 </pre></div>
 </div>
 <hr class="docutils" />

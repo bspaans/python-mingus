@@ -64,15 +64,15 @@ you search through them.</p>
 <dt id="add_tuning">
 <code class="descname">add_tuning</code><span class="sig-paren">(</span><em>instrument</em>, <em>description</em>, <em>tuning</em><span class="sig-paren">)</span><a class="headerlink" href="#add_tuning" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a new tuning to the index.</p>
-</dd></dl>
-
 <p>The instrument and description parameters should be strings; tuning
 should be a list of strings or a list of lists to denote courses.</p>
 <p>Example:</p>
+</dd></dl>
+
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">std_strings</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;E-2&#39;</span><span class="p">,</span> <span class="s">&#39;A-2&#39;</span><span class="p">,</span> <span class="s">&#39;D-3&#39;</span><span class="p">,</span> <span class="s">&#39;G-3&#39;</span><span class="p">,</span> <span class="s">&#39;B-3&#39;</span><span class="p">,</span> <span class="s">&#39;E-4&#39;</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tuning</span><span class="o">.</span><span class="n">add_tuning</span><span class="p">(</span><span class="s">&#39;Guitar&#39;</span><span class="p">,</span> <span class="s">&#39;standard&#39;</span><span class="p">,</span> <span class="n">std_strings</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tw_strings</span> <span class="o">=</span> <span class="p">[[</span><span class="s">&#39;E-2&#39;</span><span class="p">,</span> <span class="s">&#39;E-3&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;A-2&#39;</span><span class="p">,</span> <span class="s">&#39;A-3&#39;</span><span class="p">],</span> <span class="o">...........</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tuning</span><span class="o">.</span><span class="n">add_tuning</span><span class="p">(</span><span class="s">&#39;Guitar&#39;</span><span class="p">,</span> <span class="s">&#39;twelve string&#39;</span><span class="p">,</span> <span class="n">tw_string</span><span class="p">)</span>
+<span class="go">  &gt;&gt;&gt; tuning.add_tuning(&#39;Guitar&#39;, &#39;standard&#39;, std_strings)</span>
+<span class="go">  &gt;&gt;&gt; tw_strings = [[&#39;E-2&#39;, &#39;E-3&#39;], [&#39;A-2&#39;, &#39;A-3&#39;], ...........]</span>
+<span class="go">  &gt;&gt;&gt; tuning.add_tuning(&#39;Guitar&#39;, &#39;twelve string&#39;, tw_string)</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -86,23 +86,23 @@ should be a list of strings or a list of lists to denote courses.</p>
 <dl class="function">
 <dt id="get_instruments">
 <code class="descname">get_instruments</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#get_instruments" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a sorted list of instruments that have string tunings defined</p>
+<dd><p>Return a sorted list of instruments that have string tunings defined
+for them.</p>
 </dd></dl>
 
-<p>for them.</p>
 <hr class="docutils" />
 <dl class="function">
 <dt id="get_tuning">
 <code class="descname">get_tuning</code><span class="sig-paren">(</span><em>instrument</em>, <em>description</em>, <em>nr_of_strings=None</em>, <em>nr_of_courses=None</em><span class="sig-paren">)</span><a class="headerlink" href="#get_tuning" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the first tuning that satisfies the constraints.</p>
-</dd></dl>
-
 <p>The instrument and description arguments are treated like
 case-insensitive prefixes. So search for &#8216;bass&#8217; is the same is
 &#8216;Bass Guitar&#8217;.</p>
 <p>Example:</p>
+</dd></dl>
+
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tunings</span><span class="o">.</span><span class="n">get_tuning</span><span class="p">(</span><span class="s">&#39;guitar&#39;</span><span class="p">,</span> <span class="s">&#39;standard&#39;</span><span class="p">)</span>
-<span class="go">&lt;tunings.StringTuning instance at 0x139ac20&gt;</span>
+<span class="go">  &lt;tunings.StringTuning instance at 0x139ac20&gt;</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -110,14 +110,14 @@ case-insensitive prefixes. So search for &#8216;bass&#8217; is the same is
 <dt id="get_tunings">
 <code class="descname">get_tunings</code><span class="sig-paren">(</span><em>instrument=None</em>, <em>nr_of_strings=None</em>, <em>nr_of_courses=None</em><span class="sig-paren">)</span><a class="headerlink" href="#get_tunings" title="Permalink to this definition">¶</a></dt>
 <dd><p>Search tunings on instrument, strings, courses or a combination.</p>
-</dd></dl>
-
 <p>The instrument is actually treated like a case-insensitive prefix. So
 asking for &#8216;bass&#8217; yields the same tunings as &#8216;Bass Guitar&#8217;; the string
 &#8216;ba&#8217; yields all the instruments starting with &#8216;ba&#8217;.</p>
 <p>Example:</p>
+</dd></dl>
+
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tunings</span><span class="o">.</span><span class="n">get_tunings</span><span class="p">(</span><span class="n">nr_of_string</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tunings</span><span class="o">.</span><span class="n">get_tunings</span><span class="p">(</span><span class="s">&#39;bass&#39;</span><span class="p">)</span>
+<span class="go">  &gt;&gt;&gt; tunings.get_tunings(&#39;bass&#39;)</span>
 </pre></div>
 </div>
 <hr class="docutils" />

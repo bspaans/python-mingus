@@ -296,11 +296,11 @@ up your code. This module is here to help do the conversion.</p>
 <dt id="add">
 <code class="descname">add</code><span class="sig-paren">(</span><em>value1</em>, <em>value2</em><span class="sig-paren">)</span><a class="headerlink" href="#add" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the value of the two combined.</p>
+<p>Example:</p>
 </dd></dl>
 
-<p>Example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">add</span><span class="p">(</span><span class="n">eighth</span><span class="p">,</span> <span class="n">quarter</span><span class="p">)</span>
-<span class="go">2.6666666666666665</span>
+<span class="go">  2.6666666666666665</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -308,39 +308,40 @@ up your code. This module is here to help do the conversion.</p>
 <dt id="determine">
 <code class="descname">determine</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#determine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Analyse the value and return a tuple containing the parts it&#8217;s made of.</p>
-</dd></dl>
-
 <p>The tuple respectively consists of the base note value, the number of
 dots, and the ratio (see tuplet).</p>
 <p>Examples:</p>
+</dd></dl>
+
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
-<span class="go">(8, 0, 1, 1)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
-<span class="go">(8, 0, 3, 2)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="mi">14</span><span class="p">)</span>
-<span class="go">(8, 0, 7, 4)</span>
+<span class="go">  (8, 0, 1, 1)</span>
+<span class="go">  &gt;&gt;&gt; determine(12)</span>
+<span class="go">  (8, 0, 3, 2)</span>
+<span class="go">  &gt;&gt;&gt; determine(14)</span>
+<span class="go">  (8, 0, 7, 4)</span>
 </pre></div>
 </div>
-<p>This function recognizes all the base values, triplets, quintuplets,
-septuplets and up to four dots. The values are matched on range.</p>
+<blockquote>
+<div>This function recognizes all the base values, triplets, quintuplets,
+septuplets and up to four dots. The values are matched on range.</div></blockquote>
 <hr class="docutils" />
 <dl class="function">
 <dt id="dots">
 <code class="descname">dots</code><span class="sig-paren">(</span><em>value</em>, <em>nr=1</em><span class="sig-paren">)</span><a class="headerlink" href="#dots" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the dotted note value.</p>
-</dd></dl>
-
 <p>A dot adds half the duration of the note. A second dot adds half of what
 was added before, etc. So a dotted eighth note has the length of three
 sixteenth notes. An eighth note with two dots has the length of seven
 thirty second notes.</p>
 <p>Examples:</p>
+</dd></dl>
+
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">dots</span><span class="p">(</span><span class="n">eighth</span><span class="p">)</span>
-<span class="go">5.3333333333333333</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">dots</span><span class="p">(</span><span class="n">eighth</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="go">4.5714285714285712</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">dots</span><span class="p">(</span><span class="n">quarter</span><span class="p">)</span>
-<span class="go">2.6666666666666665</span>
+<span class="go">  5.3333333333333333</span>
+<span class="go">  &gt;&gt;&gt; dots(eighth, 2)</span>
+<span class="go">  4.5714285714285712</span>
+<span class="go">  &gt;&gt;&gt; dots(quarter)</span>
+<span class="go">  2.6666666666666665</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -348,15 +349,15 @@ thirty second notes.</p>
 <dt id="quintuplet">
 <code class="descname">quintuplet</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#quintuplet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the quintuplet note value.</p>
-</dd></dl>
-
 <p>A quintuplet divides the base value two above into five parts. So a
 quintuplet eighth note is a fifth of a half note.</p>
 <p>Examples:</p>
+</dd></dl>
+
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">quintuplet</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
-<span class="go">10</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">quintuplet</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-<span class="go">5</span>
+<span class="go">  10</span>
+<span class="go">  &gt;&gt;&gt; quintuplet(4)</span>
+<span class="go">  5</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -364,22 +365,23 @@ quintuplet eighth note is a fifth of a half note.</p>
 <dt id="septuplet">
 <code class="descname">septuplet</code><span class="sig-paren">(</span><em>value</em>, <em>in_fourths=True</em><span class="sig-paren">)</span><a class="headerlink" href="#septuplet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the septuplet note value.</p>
-</dd></dl>
-
 <p>The usage of a septuplet is ambigious: seven notes can be played either
 in the duration of four or eighth notes.</p>
 <p>If in_fourths is set to True, this function will use 4, otherwise 8
 notes. So a septuplet eighth note is respectively either 14 or 7.</p>
 <p>Notice how</p>
+</dd></dl>
+
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">septuplet</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span> <span class="o">==</span> <span class="n">septuplet</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
-<span class="go">True</span>
+<span class="go">  True</span>
 </pre></div>
 </div>
-<p>Examples:</p>
+<blockquote>
+<div>Examples:</div></blockquote>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">septuplet</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
-<span class="go">14</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">septuplet</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
-<span class="go">7</span>
+<span class="go">  14</span>
+<span class="go">  &gt;&gt;&gt; septuplet(8, False)</span>
+<span class="go">  7</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -387,13 +389,13 @@ notes. So a septuplet eighth note is respectively either 14 or 7.</p>
 <dt id="subtract">
 <code class="descname">subtract</code><span class="sig-paren">(</span><em>value1</em>, <em>value2</em><span class="sig-paren">)</span><a class="headerlink" href="#subtract" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the note value for value1 minus value2.</p>
-</dd></dl>
-
 <p>There are no exceptions for producing negative values, which can be
 useful for taking differences.</p>
 <p>Example:</p>
+</dd></dl>
+
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">substract</span><span class="p">(</span><span class="n">quarter</span><span class="p">,</span> <span class="n">eighth</span><span class="p">)</span>
-<span class="go">8.0</span>
+<span class="go">  8.0</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -401,15 +403,15 @@ useful for taking differences.</p>
 <dt id="triplet">
 <code class="descname">triplet</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#triplet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the triplet note value.</p>
-</dd></dl>
-
 <p>A triplet divides the base value above into three parts. So a triplet
 eighth note is a third of a quarter note.</p>
 <p>Examples:</p>
+</dd></dl>
+
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">triplet</span><span class="p">(</span><span class="n">eighth</span><span class="p">)</span>
-<span class="go">12</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">triplet</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-<span class="go">6</span>
+<span class="go">  12</span>
+<span class="go">  &gt;&gt;&gt; triplet(4)</span>
+<span class="go">  6</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -417,15 +419,15 @@ eighth note is a third of a quarter note.</p>
 <dt id="tuplet">
 <code class="descname">tuplet</code><span class="sig-paren">(</span><em>value</em>, <em>rat1</em>, <em>rat2</em><span class="sig-paren">)</span><a class="headerlink" href="#tuplet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a tuplet.</p>
-</dd></dl>
-
 <p>A tuplet can be written as a ratio. For example: 5:4 means that you play
 5 notes in the duration of 4 (a quintuplet), 3:2 means that you play 3
 notes in the duration of 2 (a triplet), etc. This function calculates
 the note value when playing in rat1:rat2.</p>
 <p>Example:</p>
+</dd></dl>
+
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tuplet</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="go">12</span>
+<span class="go">  12</span>
 </pre></div>
 </div>
 <hr class="docutils" />

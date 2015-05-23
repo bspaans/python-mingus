@@ -30,13 +30,13 @@ Functions
 .. function:: augment(note)
 
   Augment a given note.
-
-Examples:
-
+  
+  Examples:
+  
 >>> augment('C')
-'C#'
->>> augment('Cb')
-'C'
+  'C#'
+  >>> augment('Cb')
+  'C'
 
 
 ----
@@ -44,13 +44,13 @@ Examples:
 .. function:: diminish(note)
 
   Diminish a given note.
-
-Examples:
-
+  
+  Examples:
+  
 >>> diminish('C')
-'Cb'
->>> diminish('C#')
-'C'
+  'Cb'
+  >>> diminish('C#')
+  'C'
 
 
 ----
@@ -58,20 +58,20 @@ Examples:
 .. function:: int_to_note(note_int, accidentals=#)
 
   Convert integers in the range of 0-11 to notes in the form of C or C#
-or Db.
-
-Throw a RangeError exception if the note_int is not in the range 0-11.
-
-If not specified, sharps will be used.
-
-Examples:
-
+  or Db.
+  
+  Throw a RangeError exception if the note_int is not in the range 0-11.
+  
+  If not specified, sharps will be used.
+  
+  Examples:
+  
 >>> int_to_note(0)
-'C'
->>> int_to_note(3)
-'D#'
->>> int_to_note(3, 'b')
-'Eb'
+  'C'
+  >>> int_to_note(3)
+  'D#'
+  >>> int_to_note(3, 'b')
+  'Eb'
 
 
 ----
@@ -93,9 +93,9 @@ Examples:
 .. function:: note_to_int(note)
 
   Convert notes in the form of C, C#, Cb, C##, etc. to an integer in the
-range of 0-11.
-
-Throw a NoteFormatError exception if the note format is not recognised.
+  range of 0-11.
+  
+  Throw a NoteFormatError exception if the note format is not recognised.
 
 
 ----
@@ -103,11 +103,11 @@ Throw a NoteFormatError exception if the note format is not recognised.
 .. function:: reduce_accidentals(note)
 
   Reduce any extra accidentals to proper notes.
-
-Example:
-
+  
+  Example:
+  
 >>> reduce_accidentals('C####')
-'E'
+  'E'
 
 
 ----
@@ -115,13 +115,13 @@ Example:
 .. function:: remove_redundant_accidentals(note)
 
   Remove redundant sharps and flats from the given note.
-
-Examples:
-
+  
+  Examples:
+  
 >>> remove_redundant_accidentals('C##b')
-'C#'
->>> remove_redundant_accidentals('Eb##b')
-'E'
+  'C#'
+  >>> remove_redundant_accidentals('Eb##b')
+  'E'
 
 ----
 

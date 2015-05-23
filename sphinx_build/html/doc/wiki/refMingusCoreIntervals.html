@@ -71,9 +71,9 @@ determine, invert, is_consonant and is_dissonant.</p>
 <dt id="augment_or_diminish_until_the_interval_is_right">
 <code class="descname">augment_or_diminish_until_the_interval_is_right</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em>, <em>interval</em><span class="sig-paren">)</span><a class="headerlink" href="#augment_or_diminish_until_the_interval_is_right" title="Permalink to this definition">¶</a></dt>
 <dd><p>A helper function for the minor and major functions.</p>
+<p>You should probably not use this directly.</p>
 </dd></dl>
 
-<p>You should probably not use this directly.</p>
 <hr class="docutils" />
 <dl class="function">
 <dt id="augmented_unison">
@@ -85,25 +85,26 @@ determine, invert, is_consonant and is_dissonant.</p>
 <dt id="determine">
 <code class="descname">determine</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em>, <em>shorthand=False</em><span class="sig-paren">)</span><a class="headerlink" href="#determine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Name the interval between note1 and note2.</p>
+<p>Examples:</p>
 </dd></dl>
 
-<p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">)</span>
-<span class="go">&#39;major third&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;Eb&#39;</span><span class="p">)</span>
-<span class="go">&#39;minor third&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E#&#39;</span><span class="p">)</span>
-<span class="go">&#39;augmented third&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;Ebb&#39;</span><span class="p">)</span>
-<span class="go">&#39;diminished third&#39;</span>
+<span class="go">  &#39;major third&#39;</span>
+<span class="go">  &gt;&gt;&gt; determine(&#39;C&#39;, &#39;Eb&#39;)</span>
+<span class="go">  &#39;minor third&#39;</span>
+<span class="go">  &gt;&gt;&gt; determine(&#39;C&#39;, &#39;E#&#39;)</span>
+<span class="go">  &#39;augmented third&#39;</span>
+<span class="go">  &gt;&gt;&gt; determine(&#39;C&#39;, &#39;Ebb&#39;)</span>
+<span class="go">  &#39;diminished third&#39;</span>
 </pre></div>
 </div>
-<p>This works for all intervals. Note that there are corner cases for major
-fifths and fourths:</p>
+<blockquote>
+<div>This works for all intervals. Note that there are corner cases for major
+fifths and fourths:</div></blockquote>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">)</span>
-<span class="go">&#39;perfect fifth&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;F&#39;</span><span class="p">)</span>
-<span class="go">&#39;perfect fourth&#39;</span>
+<span class="go">  &#39;perfect fifth&#39;</span>
+<span class="go">  &gt;&gt;&gt; determine(&#39;C&#39;, &#39;F&#39;)</span>
+<span class="go">  &#39;perfect fourth&#39;</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -111,14 +112,14 @@ fifths and fourths:</p>
 <dt id="fifth">
 <code class="descname">fifth</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#fifth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Take the diatonic fifth of note in key.</p>
-</dd></dl>
-
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>Examples:</p>
+</dd></dl>
+
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fifth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">&#39;B&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">fifth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;F&#39;</span><span class="p">)</span>
-<span class="go">&#39;Bb&#39;</span>
+<span class="go">  &#39;B&#39;</span>
+<span class="go">  &gt;&gt;&gt; fifth(&#39;E&#39;, &#39;F&#39;)</span>
+<span class="go">  &#39;Bb&#39;</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -126,14 +127,14 @@ fifths and fourths:</p>
 <dt id="fourth">
 <code class="descname">fourth</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#fourth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Take the diatonic fourth of note in key.</p>
-</dd></dl>
-
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>Examples:</p>
+</dd></dl>
+
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fourth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">&#39;A&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">fourth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">)</span>
-<span class="go">&#39;A#&#39;</span>
+<span class="go">  &#39;A&#39;</span>
+<span class="go">  &gt;&gt;&gt; fourth(&#39;E&#39;, &#39;B&#39;)</span>
+<span class="go">  &#39;A#&#39;</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -141,15 +142,15 @@ fifths and fourths:</p>
 <dt id="from_shorthand">
 <code class="descname">from_shorthand</code><span class="sig-paren">(</span><em>note</em>, <em>interval</em>, <em>up=True</em><span class="sig-paren">)</span><a class="headerlink" href="#from_shorthand" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the note on interval up or down.</p>
+<p>Examples:</p>
 </dd></dl>
 
-<p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;b3&#39;</span><span class="p">)</span>
-<span class="go">&#39;C&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;2&#39;</span><span class="p">)</span>
-<span class="go">&#39;E&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;2&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
-<span class="go">&#39;D&#39;</span>
+<span class="go">  &#39;C&#39;</span>
+<span class="go">  &gt;&gt;&gt; from_shorthand(&#39;D&#39;, &#39;2&#39;)</span>
+<span class="go">  &#39;E&#39;</span>
+<span class="go">  &gt;&gt;&gt; from_shorthand(&#39;E&#39;, &#39;2&#39;, False)</span>
+<span class="go">  &#39;D&#39;</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -157,22 +158,22 @@ fifths and fourths:</p>
 <dt id="get_interval">
 <code class="descname">get_interval</code><span class="sig-paren">(</span><em>note</em>, <em>interval</em>, <em>key=C</em><span class="sig-paren">)</span><a class="headerlink" href="#get_interval" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the note an interval (in half notes) away from the given note.</p>
-</dd></dl>
-
 <p>This will produce mostly theoretical sound results, but you should use
 the minor and major functions to work around the corner cases.</p>
+</dd></dl>
+
 <hr class="docutils" />
 <dl class="function">
 <dt id="interval">
 <code class="descname">interval</code><span class="sig-paren">(</span><em>key</em>, <em>start_note</em>, <em>interval</em><span class="sig-paren">)</span><a class="headerlink" href="#interval" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the note found at the interval starting from start_note in the</p>
-</dd></dl>
-
-<p>given key.</p>
+<dd><p>Return the note found at the interval starting from start_note in the
+given key.</p>
 <p>Raise a KeyError exception if start_note is not a valid note.</p>
 <p>Example:</p>
+</dd></dl>
+
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">interval</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="go">&#39;E&#39;</span>
+<span class="go">  &#39;E&#39;</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -180,11 +181,11 @@ the minor and major functions to work around the corner cases.</p>
 <dt id="invert">
 <code class="descname">invert</code><span class="sig-paren">(</span><em>interval</em><span class="sig-paren">)</span><a class="headerlink" href="#invert" title="Permalink to this definition">¶</a></dt>
 <dd><p>Invert an interval.</p>
+<p>Example:</p>
 </dd></dl>
 
-<p>Example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">invert</span><span class="p">([</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">])</span>
-<span class="go">[&#39;E&#39;, &#39;C&#39;]</span>
+<span class="go">  [&#39;E&#39;, &#39;C&#39;]</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -192,8 +193,6 @@ the minor and major functions to work around the corner cases.</p>
 <dt id="is_consonant">
 <code class="descname">is_consonant</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em>, <em>include_fourths=True</em><span class="sig-paren">)</span><a class="headerlink" href="#is_consonant" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return True if the interval is consonant.</p>
-</dd></dl>
-
 <p>A consonance is a harmony, chord, or interval considered stable, as
 opposed to a dissonance.</p>
 <p>This function tests whether the given interval is consonant. This
@@ -201,37 +200,39 @@ basically means that it checks whether the interval is (or sounds like)
 a unison, third, sixth, perfect fourth or perfect fifth.</p>
 <p>In classical music the fourth is considered dissonant when used
 contrapuntal, which is why you can choose to exclude it.</p>
+</dd></dl>
+
 <hr class="docutils" />
 <dl class="function">
 <dt id="is_dissonant">
 <code class="descname">is_dissonant</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em>, <em>include_fourths=False</em><span class="sig-paren">)</span><a class="headerlink" href="#is_dissonant" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return True if the insterval is dissonant.</p>
-</dd></dl>
-
 <p>This function tests whether an interval is considered unstable,
 dissonant.</p>
 <p>In the default case perfect fourths are considered consonant, but this
 can be changed by setting exclude_fourths to True.</p>
+</dd></dl>
+
 <hr class="docutils" />
 <dl class="function">
 <dt id="is_imperfect_consonant">
 <code class="descname">is_imperfect_consonant</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em><span class="sig-paren">)</span><a class="headerlink" href="#is_imperfect_consonant" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return True id the interval is an imperfect consonant one.</p>
-</dd></dl>
-
 <p>Imperfect consonances are either minor or major thirds or minor or major
 sixths.</p>
+</dd></dl>
+
 <hr class="docutils" />
 <dl class="function">
 <dt id="is_perfect_consonant">
 <code class="descname">is_perfect_consonant</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em>, <em>include_fourths=True</em><span class="sig-paren">)</span><a class="headerlink" href="#is_perfect_consonant" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return True if the interval is a perfect consonant one.</p>
-</dd></dl>
-
 <p>Perfect consonances are either unisons, perfect fourths or fifths, or
 octaves (which is the same as a unison in this model).</p>
 <p>Perfect fourths are usually included as well, but are considered
 dissonant when used contrapuntal, which is why you can exclude them.</p>
+</dd></dl>
+
 <hr class="docutils" />
 <dl class="function">
 <dt id="major_fifth">
@@ -278,15 +279,15 @@ dissonant when used contrapuntal, which is why you can exclude them.</p>
 <dl class="function">
 <dt id="measure">
 <code class="descname">measure</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em><span class="sig-paren">)</span><a class="headerlink" href="#measure" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return an integer in the range of 0-11, determining the half note steps</p>
+<dd><p>Return an integer in the range of 0-11, determining the half note steps
+between note1 and note2.</p>
+<p>Examples:</p>
 </dd></dl>
 
-<p>between note1 and note2.</p>
-<p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">measure</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">)</span>
-<span class="go">2</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">measure</span><span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">10</span>
+<span class="go">  2</span>
+<span class="go">  &gt;&gt;&gt; measure(&#39;D&#39;, &#39;C&#39;)</span>
+<span class="go">  10</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -348,14 +349,14 @@ dissonant when used contrapuntal, which is why you can exclude them.</p>
 <dt id="second">
 <code class="descname">second</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#second" title="Permalink to this definition">¶</a></dt>
 <dd><p>Take the diatonic second of note in key.</p>
-</dd></dl>
-
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>Examples:</p>
+</dd></dl>
+
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">second</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">&#39;F&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">second</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">)</span>
-<span class="go">&#39;F#&#39;</span>
+<span class="go">  &#39;F&#39;</span>
+<span class="go">  &gt;&gt;&gt; second(&#39;E&#39;, &#39;D&#39;)</span>
+<span class="go">  &#39;F#&#39;</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -363,14 +364,14 @@ dissonant when used contrapuntal, which is why you can exclude them.</p>
 <dt id="seventh">
 <code class="descname">seventh</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#seventh" title="Permalink to this definition">¶</a></dt>
 <dd><p>Take the diatonic seventh of note in key.</p>
-</dd></dl>
-
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>Examples:</p>
+</dd></dl>
+
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">seventh</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">&#39;D&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">seventh</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">)</span>
-<span class="go">&#39;D#&#39;</span>
+<span class="go">  &#39;D&#39;</span>
+<span class="go">  &gt;&gt;&gt; seventh(&#39;E&#39;, &#39;B&#39;)</span>
+<span class="go">  &#39;D#&#39;</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -378,14 +379,14 @@ dissonant when used contrapuntal, which is why you can exclude them.</p>
 <dt id="sixth">
 <code class="descname">sixth</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#sixth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Take the diatonic sixth of note in key.</p>
-</dd></dl>
-
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>Examples:</p>
+</dd></dl>
+
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sixth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">&#39;C&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">sixth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">)</span>
-<span class="go">&#39;C#&#39;</span>
+<span class="go">  &#39;C&#39;</span>
+<span class="go">  &gt;&gt;&gt; sixth(&#39;E&#39;, &#39;B&#39;)</span>
+<span class="go">  &#39;C#&#39;</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -393,14 +394,14 @@ dissonant when used contrapuntal, which is why you can exclude them.</p>
 <dt id="third">
 <code class="descname">third</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#third" title="Permalink to this definition">¶</a></dt>
 <dd><p>Take the diatonic third of note in key.</p>
-</dd></dl>
-
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>Examples:</p>
+</dd></dl>
+
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">third</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">&#39;G&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">third</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">)</span>
-<span class="go">&#39;G#&#39;</span>
+<span class="go">  &#39;G&#39;</span>
+<span class="go">  &gt;&gt;&gt; third(&#39;E&#39;, &#39;E&#39;)</span>
+<span class="go">  &#39;G#&#39;</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -408,14 +409,14 @@ dissonant when used contrapuntal, which is why you can exclude them.</p>
 <dt id="unison">
 <code class="descname">unison</code><span class="sig-paren">(</span><em>note</em>, <em>key=None</em><span class="sig-paren">)</span><a class="headerlink" href="#unison" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the unison of note.</p>
-</dd></dl>
-
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>The key is not at all important, but is here for consistency reasons
 only.</p>
 <p>Example:</p>
+</dd></dl>
+
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">unison</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">&#39;C&#39;</span>
+<span class="go">  &#39;C&#39;</span>
 </pre></div>
 </div>
 <hr class="docutils" />

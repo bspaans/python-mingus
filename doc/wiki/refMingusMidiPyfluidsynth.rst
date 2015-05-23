@@ -51,7 +51,7 @@ cdll
 ^^^^
 
   * *Type*: ctypes.LibraryLoader
-  * *Value*: `<ctypes.LibraryLoader object at 0x7f018a102890>`
+  * *Value*: `<ctypes.LibraryLoader object at 0x7fb233803890>`
 
 lib
 ^^^
@@ -63,13 +63,13 @@ pydll
 ^^^^^
 
   * *Type*: ctypes.LibraryLoader
-  * *Value*: `<ctypes.LibraryLoader object at 0x7f018a1028d0>`
+  * *Value*: `<ctypes.LibraryLoader object at 0x7fb2338038d0>`
 
 pythonapi
 ^^^^^^^^^
 
   * *Type*: ctypes.PyDLL
-  * *Value*: `<PyDLL 'None', handle 7f018d81f188 at 7f018a102910>`
+  * *Value*: `<PyDLL 'None', handle 7fb236f20188 at 7fb233803910>`
 
 ----
 
@@ -87,19 +87,19 @@ Functions
 .. function:: CFUNCTYPE(restype)
 
   CFUNCTYPE(restype, *argtypes,
-             use_errno=False, use_last_error=False) -> function prototype.
-
-restype: the result type
-argtypes: a sequence specifying the argument types
-
-The function prototype can be called in different ways to create a
-callable object:
-
-prototype(integer address) -> foreign function
-prototype(callable) -> create and return a C callable function from callable
-prototype(integer index, method name[, paramflags]) -> foreign function calling a COM method
-prototype((ordinal number, dll object)[, paramflags]) -> foreign function exported by ordinal
-prototype((function name, dll object)[, paramflags]) -> foreign function exported by name
+               use_errno=False, use_last_error=False) -> function prototype.
+  
+  restype: the result type
+  argtypes: a sequence specifying the argument types
+  
+  The function prototype can be called in different ways to create a
+  callable object:
+  
+  prototype(integer address) -> foreign function
+  prototype(callable) -> create and return a C callable function from callable
+  prototype(integer index, method name[, paramflags]) -> foreign function calling a COM method
+  prototype((ordinal number, dll object)[, paramflags]) -> foreign function exported by ordinal
+  prototype((function name, dll object)[, paramflags]) -> foreign function exported by name
 
 
 ----
@@ -134,8 +134,8 @@ prototype((function name, dll object)[, paramflags]) -> foreign function exporte
 .. function:: create_string_buffer(init, size=None)
 
   create_string_buffer(aString) -> character array
-create_string_buffer(anInteger) -> character array
-create_string_buffer(aString, anInteger) -> character array
+  create_string_buffer(anInteger) -> character array
+  create_string_buffer(aString, anInteger) -> character array
 
 
 ----
@@ -143,8 +143,8 @@ create_string_buffer(aString, anInteger) -> character array
 .. function:: create_unicode_buffer(init, size=None)
 
   create_unicode_buffer(aString) -> character array
-create_unicode_buffer(anInteger) -> character array
-create_unicode_buffer(aString, anInteger) -> character array
+  create_unicode_buffer(anInteger) -> character array
+  create_unicode_buffer(aString, anInteger) -> character array
 
 
 ----
@@ -157,8 +157,8 @@ create_unicode_buffer(aString, anInteger) -> character array
 .. function:: fluid_synth_write_s16_stereo(synth, len)
 
   Return generated samples in stereo 16-bit format.
-
-Return value is a Numpy array of samples.
+  
+  Return value is a Numpy array of samples.
 
 
 ----
@@ -166,9 +166,9 @@ Return value is a Numpy array of samples.
 .. function:: raw_audio_string(data)
 
   Return a string of bytes to send to soundcard.
-
-Input is a numpy array of samples. Default output format is 16-bit
-signed (other formats not currently supported).
+  
+  Input is a numpy array of samples. Default output format is 16-bit
+  signed (other formats not currently supported).
 
 
 ----
@@ -176,8 +176,8 @@ signed (other formats not currently supported).
 .. function:: string_at(ptr, size=-1)
 
   string_at(addr[, size]) -> string
-
-Return the string at addr.
+  
+  Return the string at addr.
 
 
 ----
@@ -185,8 +185,8 @@ Return the string at addr.
 .. function:: wstring_at(ptr, size=-1)
 
   wstring_at(addr[, size]) -> string
-
-Return the string at addr.
+  
+  Return the string at addr.
 
 ----
 

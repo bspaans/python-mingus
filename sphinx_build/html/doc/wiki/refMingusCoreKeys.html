@@ -105,20 +105,20 @@
 <dt id="get_key">
 <code class="descname">get_key</code><span class="sig-paren">(</span><em>accidentals=0</em><span class="sig-paren">)</span><a class="headerlink" href="#get_key" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the key corrisponding to accidentals.</p>
-</dd></dl>
-
 <p>Return the tuple containing the major key corrensponding to the
 accidentals put as input, and his relative minor; negative numbers for
 flats, positive numbers for sharps.</p>
+</dd></dl>
+
 <hr class="docutils" />
 <dl class="function">
 <dt id="get_key_signature">
 <code class="descname">get_key_signature</code><span class="sig-paren">(</span><em>key=C</em><span class="sig-paren">)</span><a class="headerlink" href="#get_key_signature" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the key signature.</p>
-</dd></dl>
-
 <p>0 for C or a, negative numbers for flat key signatures, positive numbers
 for sharp key signatures.</p>
+</dd></dl>
+
 <hr class="docutils" />
 <dl class="function">
 <dt id="get_key_signature_accidentals">
@@ -131,13 +131,13 @@ for sharp key signatures.</p>
 <dt id="get_notes">
 <code class="descname">get_notes</code><span class="sig-paren">(</span><em>key=C</em><span class="sig-paren">)</span><a class="headerlink" href="#get_notes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return an ordered list of the notes in this natural key.</p>
+<p>Examples:</p>
 </dd></dl>
 
-<p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">get_notes</span><span class="p">(</span><span class="s">&#39;F&#39;</span><span class="p">)</span>
-<span class="go">[&#39;F&#39;, &#39;G&#39;, &#39;A&#39;, &#39;Bb&#39;, &#39;C&#39;, &#39;D&#39;, &#39;E&#39;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">get_notes</span><span class="p">(</span><span class="s">&#39;c&#39;</span><span class="p">)</span>
-<span class="go">[&#39;C&#39;, &#39;D&#39;, &#39;Eb&#39;, &#39;F&#39;, &#39;G&#39;, &#39;Ab&#39;, &#39;Bb&#39;]</span>
+<span class="go">  [&#39;F&#39;, &#39;G&#39;, &#39;A&#39;, &#39;Bb&#39;, &#39;C&#39;, &#39;D&#39;, &#39;E&#39;]</span>
+<span class="go">  &gt;&gt;&gt; get_notes(&#39;c&#39;)</span>
+<span class="go">  [&#39;C&#39;, &#39;D&#39;, &#39;Eb&#39;, &#39;F&#39;, &#39;G&#39;, &#39;Ab&#39;, &#39;Bb&#39;]</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -152,11 +152,11 @@ for sharp key signatures.</p>
 <dt id="relative_major">
 <code class="descname">relative_major</code><span class="sig-paren">(</span><em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#relative_major" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the relative major of a minor key.</p>
+<p>Example:</p>
 </dd></dl>
 
-<p>Example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">relative_major</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">)</span>
-<span class="go">&#39;C&#39;</span>
+<span class="go">  &#39;C&#39;</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -164,11 +164,11 @@ for sharp key signatures.</p>
 <dt id="relative_minor">
 <code class="descname">relative_minor</code><span class="sig-paren">(</span><em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#relative_minor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the relative minor of a major key.</p>
+<p>Example:</p>
 </dd></dl>
 
-<p>Example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">relative_minor</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
-<span class="go">&#39;a&#39;</span>
+<span class="go">  &#39;a&#39;</span>
 </pre></div>
 </div>
 <hr class="docutils" />

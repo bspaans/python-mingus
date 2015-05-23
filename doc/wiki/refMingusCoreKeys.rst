@@ -51,10 +51,10 @@ Functions
 .. function:: get_key(accidentals=0)
 
   Return the key corrisponding to accidentals.
-
-Return the tuple containing the major key corrensponding to the
-accidentals put as input, and his relative minor; negative numbers for
-flats, positive numbers for sharps.
+  
+  Return the tuple containing the major key corrensponding to the
+  accidentals put as input, and his relative minor; negative numbers for
+  flats, positive numbers for sharps.
 
 
 ----
@@ -62,9 +62,9 @@ flats, positive numbers for sharps.
 .. function:: get_key_signature(key=C)
 
   Return the key signature.
-
-0 for C or a, negative numbers for flat key signatures, positive numbers
-for sharp key signatures.
+  
+  0 for C or a, negative numbers for flat key signatures, positive numbers
+  for sharp key signatures.
 
 
 ----
@@ -79,13 +79,13 @@ for sharp key signatures.
 .. function:: get_notes(key=C)
 
   Return an ordered list of the notes in this natural key.
-
-Examples:
-
+  
+  Examples:
+  
 >>> get_notes('F')
-['F', 'G', 'A', 'Bb', 'C', 'D', 'E']
->>> get_notes('c')
-['C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb']
+  ['F', 'G', 'A', 'Bb', 'C', 'D', 'E']
+  >>> get_notes('c')
+  ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb']
 
 
 ----
@@ -100,11 +100,11 @@ Examples:
 .. function:: relative_major(key)
 
   Return the relative major of a minor key.
-
-Example:
-
+  
+  Example:
+  
 >>> relative_major('a')
-'C'
+  'C'
 
 
 ----
@@ -112,11 +112,11 @@ Example:
 .. function:: relative_minor(key)
 
   Return the relative minor of a major key.
-
-Example:
-
+  
+  Example:
+  
 >>> relative_minor('C')
-'a'
+  'a'
 
 ----
 
