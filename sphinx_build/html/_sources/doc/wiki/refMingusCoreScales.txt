@@ -39,20 +39,10 @@ Other scales
 Attributes
 ----------
 
-keys
 
 ----
 
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
+.. attribute::keys
 
   * *Type*: list
   * *Value*: `[('Cb', 'ab'), ('Gb', 'eb'), ('Db', 'bb'), ('Ab', 'f'), ('Eb', 'c'), ('Bb', 'g'), ('F', 'd'), ('C', 'a'), ('G', 'e'), ('D', 'b'), ('A', 'f#'), ('E', 'c#'), ('B', 'g#'), ('F#', 'd#'), ('C#', 'a#')]`
@@ -73,7 +63,6 @@ Functions
   
   >>> augment('C')
   'C#'
-  
   >>> augment('Cb')
   'C'
 
@@ -102,7 +91,6 @@ Functions
   
   >>> diminish('C')
   'Cb'
-  
   >>> diminish('C#')
   'C'
 
@@ -117,7 +105,6 @@ Functions
   
   >>> get_notes('F')
   ['F', 'G', 'A', 'Bb', 'C', 'D', 'E']
-  
   >>> get_notes('c')
   ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb']
 

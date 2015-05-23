@@ -17,89 +17,18 @@ vice versa.
 Attributes
 ----------
 
-numeral_intervals
 
 ----
 
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
+.. attribute::numeral_intervals
 
   * *Type*: list
   * *Value*: `[0, 2, 4, 5, 7, 9, 11]`
 
-numerals
 
 ----
 
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
+.. attribute::numerals
 
   * *Type*: list
   * *Value*: `['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']`
@@ -122,13 +51,10 @@ Functions
   
   >>> determine(['C', 'E', 'G'], 'C')
   ['tonic']
-  
   >>> determine(['G', 'B', 'D'], 'C')
   ['dominant']
-  
   >>> determine(['G', 'B', 'D', 'F'], 'C', True)
   ['V7']
-  
   >>> determine([['C', 'E', 'G'], ['G', 'B', 'D']], 'C', True)
   [['I'], ['V']]
 
@@ -152,7 +78,6 @@ Functions
   
   >>> parse_string('I')
   ('I', 0, '')
-  
   >>> parse_string('bIM7')
   ('I', -1, 'M7')
 
@@ -167,10 +92,8 @@ Functions
   
   >>> skip('I')
   'II'
-  
   >>> skip('VII')
   'I'
-  
   >>> skip('I', 2)
   'III'
 
@@ -241,7 +164,6 @@ Functions
   
   >>> substitute_major_for_minor(['I'], 0)
   ['VI']
-  
   >>> substitute_major_for_minor(['VM7'], 0)
   ['IIIm7']
 
@@ -259,10 +181,8 @@ Functions
   
   >>> substitute_minor_for_major(['VI'], 0)
   ['I']
-  
   >>> substitute_minor_for_major(['Vm'], 0)
   ['bVIIM']
-  
   >>> substitute_minor_for_major(['VIm7'], 0)
   ['IM7']
 
@@ -277,7 +197,6 @@ Functions
   
   >>> to_chords(['I', 'V7'])
   [['C', 'E', 'G'], ['G', 'B', 'D', 'F']]
-  
   >>> to_chords('I7')
   [['C', 'E', 'G', 'B']]
   

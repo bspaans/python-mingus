@@ -11,71 +11,18 @@ A meter is represented by a tuple. 4/4 time would look like (4,4), 3/4 like
 Attributes
 ----------
 
-common_time
 
 ----
 
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
+.. attribute::common_time
 
   * *Type*: tuple
   * *Value*: `(4, 4)`
 
-cut_time
 
 ----
 
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
+.. attribute::cut_time
 
   * *Type*: tuple
   * *Value*: `(2, 2)`
@@ -96,7 +43,6 @@ Functions
   
   >>> is_asymmetrical((3,4))
   True
-  
   >>> is_asymmetrical((4,4))
   False
 
@@ -111,7 +57,6 @@ Functions
   
   >>> is_compound((3,4))
   True
-  
   >>> is_compound((4,4))
   False
 
@@ -126,7 +71,6 @@ Functions
   
   >>> is_simple((3,4))
   True
-  
   >>> is_simple((4,4))
   True
 

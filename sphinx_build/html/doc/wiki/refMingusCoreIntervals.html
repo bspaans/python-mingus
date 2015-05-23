@@ -88,30 +88,20 @@ determine, invert, is_consonant and is_dissonant.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">)</span>
 <span class="go">&#39;major third&#39;</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;Eb&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;Eb&#39;</span><span class="p">)</span>
 <span class="go">&#39;minor third&#39;</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E#&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E#&#39;</span><span class="p">)</span>
 <span class="go">&#39;augmented third&#39;</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;Ebb&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;Ebb&#39;</span><span class="p">)</span>
 <span class="go">&#39;diminished third&#39;</span>
 </pre></div>
 </div>
 <p>This works for all intervals. Note that there are corner cases for major
-fifths and fourths:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">)</span>
-<span class="go">&#39;perfect fifth&#39;</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;F&#39;</span><span class="p">)</span>
-<span class="go">&#39;perfect fourth&#39;</span>
-</pre></div>
-</div>
+fifths and fourths:
+&gt;&gt;&gt; determine(&#8216;C&#8217;, &#8216;G&#8217;)
+&#8216;perfect fifth&#8217;
+&gt;&gt;&gt; determine(&#8216;C&#8217;, &#8216;F&#8217;)
+&#8216;perfect fourth&#8217;</p>
 </dd></dl>
 
 <hr class="docutils" />
@@ -123,9 +113,7 @@ fifths and fourths:</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fifth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
 <span class="go">&#39;B&#39;</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fifth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;F&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fifth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;F&#39;</span><span class="p">)</span>
 <span class="go">&#39;Bb&#39;</span>
 </pre></div>
 </div>
@@ -140,9 +128,7 @@ fifths and fourths:</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fourth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
 <span class="go">&#39;A&#39;</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fourth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fourth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">)</span>
 <span class="go">&#39;A#&#39;</span>
 </pre></div>
 </div>
@@ -156,13 +142,9 @@ fifths and fourths:</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;b3&#39;</span><span class="p">)</span>
 <span class="go">&#39;C&#39;</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;2&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;2&#39;</span><span class="p">)</span>
 <span class="go">&#39;E&#39;</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;2&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;2&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
 <span class="go">&#39;D&#39;</span>
 </pre></div>
 </div>
@@ -299,9 +281,7 @@ between note1 and note2.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">measure</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">)</span>
 <span class="go">2</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">measure</span><span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">measure</span><span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
 <span class="go">10</span>
 </pre></div>
 </div>
@@ -370,9 +350,7 @@ between note1 and note2.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">second</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
 <span class="go">&#39;F&#39;</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">second</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">second</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">)</span>
 <span class="go">&#39;F#&#39;</span>
 </pre></div>
 </div>
@@ -387,9 +365,7 @@ between note1 and note2.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">seventh</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
 <span class="go">&#39;D&#39;</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">seventh</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">seventh</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">)</span>
 <span class="go">&#39;D#&#39;</span>
 </pre></div>
 </div>
@@ -404,9 +380,7 @@ between note1 and note2.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sixth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
 <span class="go">&#39;C&#39;</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sixth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sixth</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">)</span>
 <span class="go">&#39;C#&#39;</span>
 </pre></div>
 </div>
@@ -421,9 +395,7 @@ between note1 and note2.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">third</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
 <span class="go">&#39;G&#39;</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">third</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">third</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">)</span>
 <span class="go">&#39;G#&#39;</span>
 </pre></div>
 </div>

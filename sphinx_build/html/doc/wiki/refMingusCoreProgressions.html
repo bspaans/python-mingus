@@ -65,31 +65,6 @@ more complex progressions, like: #V7, bIIdim7, etc.</p>
 vice versa.</p>
 <div class="section" id="attributes">
 <h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
-<p>numeral_intervals</p>
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<p>numerals</p>
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
 <hr class="docutils" />
 <hr class="docutils" />
 </div>
@@ -105,17 +80,11 @@ vice versa.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">([</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">],</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
 <span class="go">[&#39;tonic&#39;]</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">([</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">],</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">([</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">],</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
 <span class="go">[&#39;dominant&#39;]</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">([</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;F&#39;</span><span class="p">],</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">([</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;F&#39;</span><span class="p">],</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
 <span class="go">[&#39;V7&#39;]</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">([[</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">]],</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">([[</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">]],</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
 <span class="go">[[&#39;I&#39;], [&#39;V&#39;]]</span>
 </pre></div>
 </div>
@@ -138,9 +107,7 @@ interval.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">parse_string</span><span class="p">(</span><span class="s">&#39;I&#39;</span><span class="p">)</span>
 <span class="go">(&#39;I&#39;, 0, &#39;&#39;)</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">parse_string</span><span class="p">(</span><span class="s">&#39;bIM7&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parse_string</span><span class="p">(</span><span class="s">&#39;bIM7&#39;</span><span class="p">)</span>
 <span class="go">(&#39;I&#39;, -1, &#39;M7&#39;)</span>
 </pre></div>
 </div>
@@ -154,13 +121,9 @@ interval.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">skip</span><span class="p">(</span><span class="s">&#39;I&#39;</span><span class="p">)</span>
 <span class="go">&#39;II&#39;</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">skip</span><span class="p">(</span><span class="s">&#39;VII&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">skip</span><span class="p">(</span><span class="s">&#39;VII&#39;</span><span class="p">)</span>
 <span class="go">&#39;I&#39;</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">skip</span><span class="p">(</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">skip</span><span class="p">(</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="go">&#39;III&#39;</span>
 </pre></div>
 </div>
@@ -226,9 +189,7 @@ suffix.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_major_for_minor</span><span class="p">([</span><span class="s">&#39;I&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
 <span class="go">[&#39;VI&#39;]</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_major_for_minor</span><span class="p">([</span><span class="s">&#39;VM7&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_major_for_minor</span><span class="p">([</span><span class="s">&#39;VM7&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
 <span class="go">[&#39;IIIm7&#39;]</span>
 </pre></div>
 </div>
@@ -244,13 +205,9 @@ suffix.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_minor_for_major</span><span class="p">([</span><span class="s">&#39;VI&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
 <span class="go">[&#39;I&#39;]</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_minor_for_major</span><span class="p">([</span><span class="s">&#39;Vm&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_minor_for_major</span><span class="p">([</span><span class="s">&#39;Vm&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
 <span class="go">[&#39;bVIIM&#39;]</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_minor_for_major</span><span class="p">([</span><span class="s">&#39;VIm7&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">substitute_minor_for_major</span><span class="p">([</span><span class="s">&#39;VIm7&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
 <span class="go">[&#39;IM7&#39;]</span>
 </pre></div>
 </div>
@@ -264,9 +221,7 @@ suffix.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">to_chords</span><span class="p">([</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;V7&#39;</span><span class="p">])</span>
 <span class="go">[[&#39;C&#39;, &#39;E&#39;, &#39;G&#39;], [&#39;G&#39;, &#39;B&#39;, &#39;D&#39;, &#39;F&#39;]]</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">to_chords</span><span class="p">(</span><span class="s">&#39;I7&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">to_chords</span><span class="p">(</span><span class="s">&#39;I7&#39;</span><span class="p">)</span>
 <span class="go">[[&#39;C&#39;, &#39;E&#39;, &#39;G&#39;, &#39;B&#39;]]</span>
 </pre></div>
 </div>

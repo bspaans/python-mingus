@@ -83,128 +83,18 @@ Useful Functions
 Attributes
 ----------
 
-chord_shorthand
 
 ----
 
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
+.. attribute::chord_shorthand
 
   * *Type*: dict
-  * *Value*: `{'': <function major_triad at 0x7f9ebe042410>, 'm11': <function minor_eleventh at 0x7f9ebe042ed8>, 'm13': <function minor_thirteenth at 0x7f9ebe042f50>, '67': <function dominant_sixth at 0x7f9ebe042b18>, '69': <function sixth_ninth at 0x7f9ebe042b90>, '7b12': <function hendrix_chord at 0x7f9ebe058578>, 'hendrix': <function hendrix_chord at 0x7f9ebe058578>, 'aug': <function augmented_triad at 0x7f9ebe042578>, 'm7': <function minor_seventh at 0x7f9ebe042758>, 'm6': <function minor_sixth at 0x7f9ebe042a28>, '6': <function major_sixth at 0x7f9ebe042aa0>, '5': <function <lambda> at 0x7f9ebe059d70>, 'm9': <function minor_ninth at 0x7f9ebe042c08>, 'm7+': <function augmented_minor_seventh at 0x7f9ebe058410>, '6/7': <function dominant_sixth at 0x7f9ebe042b18>, '7#11': <function lydian_dominant_seventh at 0x7f9ebe058500>, '6/9': <function sixth_ninth at 0x7f9ebe042b90>, '11': <function eleventh at 0x7f9ebe042e60>, 'dim': <function diminished_triad at 0x7f9ebe042500>, '13': <function dominant_thirteenth at 0x7f9ebe0580c8>, '7b5': <function dominant_flat_five at 0x7f9ebe058488>, 'm7b5': <function minor_seventh_flat_five at 0x7f9ebe0428c0>, 'susb9': <function suspended_fourth_ninth at 0x7f9ebe058320>, 'mM7': <function minor_major_seventh at 0x7f9ebe0429b0>, '7b9': <function dominant_flat_ninth at 0x7f9ebe042d70>, 'M13': <function major_thirteenth at 0x7f9ebe058050>, 'sus47': <function suspended_seventh at 0x7f9ebe0582a8>, 'm': <function minor_triad at 0x7f9ebe042488>, 'sus4b9': <function suspended_fourth_ninth at 0x7f9ebe058320>, 'M7': <function major_seventh at 0x7f9ebe0426e0>, 'M6': <function major_sixth at 0x7f9ebe042aa0>, 'dim7': <function diminished_seventh at 0x7f9ebe042938>, 'M7+': <function augmented_major_seventh at 0x7f9ebe058398>, 'M9': <function major_ninth at 0x7f9ebe042c80>, 'dom7': <function dominant_seventh at 0x7f9ebe0427d0>, 'M7+5': <function augmented_minor_seventh at 0x7f9ebe058410>, '+': <function augmented_triad at 0x7f9ebe042578>, 'sus': <function suspended_triad at 0x7f9ebe058140>, '7': <function dominant_seventh at 0x7f9ebe0427d0>, '9': <function dominant_ninth at 0x7f9ebe042cf8>, 'M': <function major_triad at 0x7f9ebe042410>, '7+': <function augmented_major_seventh at 0x7f9ebe058398>, 'sus2': <function suspended_second_triad at 0x7f9ebe0581b8>, 'sus4': <function suspended_fourth_triad at 0x7f9ebe058230>, '7#5': <function augmented_minor_seventh at 0x7f9ebe058410>, '7#9': <function dominant_sharp_ninth at 0x7f9ebe042de8>, 'm/M7': <function minor_major_seventh at 0x7f9ebe0429b0>}`
+  * *Value*: `{'': <function major_triad at 0x7f1fe3b57410>, 'm11': <function minor_eleventh at 0x7f1fe3b57ed8>, 'm13': <function minor_thirteenth at 0x7f1fe3b57f50>, '67': <function dominant_sixth at 0x7f1fe3b57b18>, '69': <function sixth_ninth at 0x7f1fe3b57b90>, '7b12': <function hendrix_chord at 0x7f1fe3b6e578>, 'hendrix': <function hendrix_chord at 0x7f1fe3b6e578>, 'aug': <function augmented_triad at 0x7f1fe3b57578>, 'm7': <function minor_seventh at 0x7f1fe3b57758>, 'm6': <function minor_sixth at 0x7f1fe3b57a28>, '6': <function major_sixth at 0x7f1fe3b57aa0>, '5': <function <lambda> at 0x7f1fe3b6fd70>, 'm9': <function minor_ninth at 0x7f1fe3b57c08>, 'm7+': <function augmented_minor_seventh at 0x7f1fe3b6e410>, '6/7': <function dominant_sixth at 0x7f1fe3b57b18>, '7#11': <function lydian_dominant_seventh at 0x7f1fe3b6e500>, '6/9': <function sixth_ninth at 0x7f1fe3b57b90>, '11': <function eleventh at 0x7f1fe3b57e60>, 'dim': <function diminished_triad at 0x7f1fe3b57500>, '13': <function dominant_thirteenth at 0x7f1fe3b6e0c8>, '7b5': <function dominant_flat_five at 0x7f1fe3b6e488>, 'm7b5': <function minor_seventh_flat_five at 0x7f1fe3b578c0>, 'susb9': <function suspended_fourth_ninth at 0x7f1fe3b6e320>, 'mM7': <function minor_major_seventh at 0x7f1fe3b579b0>, '7b9': <function dominant_flat_ninth at 0x7f1fe3b57d70>, 'M13': <function major_thirteenth at 0x7f1fe3b6e050>, 'sus47': <function suspended_seventh at 0x7f1fe3b6e2a8>, 'm': <function minor_triad at 0x7f1fe3b57488>, 'sus4b9': <function suspended_fourth_ninth at 0x7f1fe3b6e320>, 'M7': <function major_seventh at 0x7f1fe3b576e0>, 'M6': <function major_sixth at 0x7f1fe3b57aa0>, 'dim7': <function diminished_seventh at 0x7f1fe3b57938>, 'M7+': <function augmented_major_seventh at 0x7f1fe3b6e398>, 'M9': <function major_ninth at 0x7f1fe3b57c80>, 'dom7': <function dominant_seventh at 0x7f1fe3b577d0>, 'M7+5': <function augmented_minor_seventh at 0x7f1fe3b6e410>, '+': <function augmented_triad at 0x7f1fe3b57578>, 'sus': <function suspended_triad at 0x7f1fe3b6e140>, '7': <function dominant_seventh at 0x7f1fe3b577d0>, '9': <function dominant_ninth at 0x7f1fe3b57cf8>, 'M': <function major_triad at 0x7f1fe3b57410>, '7+': <function augmented_major_seventh at 0x7f1fe3b6e398>, 'sus2': <function suspended_second_triad at 0x7f1fe3b6e1b8>, 'sus4': <function suspended_fourth_triad at 0x7f1fe3b6e230>, '7#5': <function augmented_minor_seventh at 0x7f1fe3b6e410>, '7#9': <function dominant_sharp_ninth at 0x7f1fe3b57de8>, 'm/M7': <function minor_major_seventh at 0x7f1fe3b579b0>}`
 
-chord_shorthand_meaning
 
 ----
 
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
+.. attribute::chord_shorthand_meaning
 
   * *Type*: dict
   * *Value*: `{'': ' major triad', 'm11': ' minor eleventh', 'add11': ' eleventh', '67': ' dominant sixth', '69': ' sixth ninth', '7b12': ' hendrix chord', 'hendrix': ' hendrix chord', 'aug': ' augmented triad', 'm7': ' minor seventh', 'm6': ' minor sixth', '6': ' major sixth', '5': ' perfect fifth', 'm9': ' minor ninth', 'm7+': ' augmented minor seventh', '6/7': ' dominant sixth', '7#11': ' lydian dominant seventh', '6/9': ' sixth ninth', '11': ' eleventh', 'dim': ' diminished triad', '13': ' dominant thirteenth', '7b5': ' dominant flat five', 'm7b5': ' half diminished seventh', 'susb9': ' suspended fourth ninth', 'mM7': ' minor/major seventh', 'm13': ' minor thirteenth', '7b9': ' dominant flat ninth', 'M13': ' major thirteenth', 'sus47': ' suspended seventh', 'm': ' minor triad', 'sus4b9': ' suspended fourth ninth', 'M7': ' major seventh', 'M6': ' major sixth', 'dim7': ' diminished seventh', 'M7+': ' augmented major seventh', 'M9': ' major ninth', 'add13': ' dominant thirteenth', 'dom7': ' dominant seventh', 'M7+5': ' augmented minor seventh', '+': ' augmented triad', 'sus': ' suspended fourth triad', '7': ' dominant seventh', '9': ' dominant ninth', 'M': ' major triad', '7+': ' augmented major seventh', 'sus2': ' suspended second triad', 'sus4': ' suspended fourth triad', '7#5': ' augmented minor seventh', '7#9': ' dominant sharp ninth', 'm/M7': ' minor/major seventh', 'add9': ' dominant ninth', '7sus4': ' suspended seventh'}`
@@ -396,10 +286,8 @@ Functions
   
   >>> determine_triad(['A', 'C', 'E'])
   'A minor triad'
-  
   >>> determine_triad(['C', 'E', 'A'])
   'A minor triad, first inversion'
-  
   >>> determine_triad(['A', 'C', 'E'], True)
   'Am'
 
@@ -568,16 +456,12 @@ Functions
   
   >>> from_shorthand('Amin')
   ['A', 'C', 'E']
-  
   >>> from_shorthand('Am/M7')
   ['A', 'C', 'E', 'G#']
-  
   >>> from_shorthand('A')
   ['A', 'C#', 'E']
-  
   >>> from_shorthand('A/G')
   ['G', 'A', 'C#', 'E']
-  
   >>> from_shorthand('Dm|G')
   ['G', 'B', 'D', 'F', 'A']
   
@@ -586,7 +470,6 @@ Functions
   "-" and "maj" or "ma".
   
   Example:
-  
   >>> from_shorthand('Amin7') == from_shorthand('Am7')
   True
   
@@ -1042,7 +925,6 @@ Functions
   
   >>> tonic('C')
   ['C', 'E', 'G']
-  
   >>> tonic('c')
   ['C', 'Eb', 'G']
 
@@ -1064,7 +946,6 @@ Functions
   
   >>> triad('E', 'C')
   ['E', 'G', 'B']
-  
   >>> triad('E', 'B')
   ['E', 'G#', 'B']
 

@@ -10,152 +10,42 @@ This module provides a simple interface for dealing with keys.
 Attributes
 ----------
 
-base_scale
 
 ----
 
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
+.. attribute::base_scale
 
   * *Type*: list
   * *Value*: `['C', 'D', 'E', 'F', 'G', 'A', 'B']`
 
-couple
 
 ----
 
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
+.. attribute::couple
 
   * *Type*: tuple
   * *Value*: `('C#', 'a#')`
 
-keys
 
 ----
 
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
+.. attribute::keys
 
   * *Type*: list
   * *Value*: `[('Cb', 'ab'), ('Gb', 'eb'), ('Db', 'bb'), ('Ab', 'f'), ('Eb', 'c'), ('Bb', 'g'), ('F', 'd'), ('C', 'a'), ('G', 'e'), ('D', 'b'), ('A', 'f#'), ('E', 'c#'), ('B', 'g#'), ('F#', 'd#'), ('C#', 'a#')]`
 
-major_keys
 
 ----
 
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
+.. attribute::major_keys
 
   * *Type*: list
   * *Value*: `['Cb', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#']`
 
-minor_keys
 
 ----
 
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
+.. attribute::minor_keys
 
   * *Type*: list
   * *Value*: `['ab', 'eb', 'bb', 'f', 'c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#']`
@@ -204,7 +94,6 @@ Functions
   
   >>> get_notes('F')
   ['F', 'G', 'A', 'Bb', 'C', 'D', 'E']
-  
   >>> get_notes('c')
   ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb']
 

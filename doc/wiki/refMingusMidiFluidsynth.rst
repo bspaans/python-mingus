@@ -19,62 +19,21 @@ Now you are ready to play Notes, NoteContainers, etc.
 Attributes
 ----------
 
-initialized
 
 ----
 
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
+.. attribute::initialized
 
   * *Type*: bool
   * *Value*: `False`
 
-midi
 
 ----
 
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
+.. attribute::midi
 
   * *Type*: mingus.midi.fluidsynth.FluidSynthSequencer
-  * *Value*: `<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x7f9eba5fd950>`
+  * *Value*: `<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x7f1fe0112950>`
 
 ----
 
@@ -161,11 +120,8 @@ Functions
   Example:
   
   >>> n = Note('C', 4)
-  
   >>> n.channel = 9
-  
   >>> n.velocity = 50
-  
   >>> FluidSynth.play_Note(n)
 
 

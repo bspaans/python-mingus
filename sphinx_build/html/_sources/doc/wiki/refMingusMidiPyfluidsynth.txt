@@ -23,248 +23,69 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 Attributes
 ----------
 
-DEFAULT_MODE
 
 ----
 
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
+.. attribute::DEFAULT_MODE
 
   * *Type*: int
   * *Value*: `0`
 
-RTLD_GLOBAL
 
 ----
 
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
+.. attribute::RTLD_GLOBAL
 
   * *Type*: int
   * *Value*: `256`
 
-RTLD_LOCAL
 
 ----
 
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
+.. attribute::RTLD_LOCAL
 
   * *Type*: int
   * *Value*: `0`
 
-api_version
 
 ----
 
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
+.. attribute::api_version
 
   * *Type*: str
   * *Value*: `'1.2'`
 
-cdll
 
 ----
 
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
+.. attribute::cdll
 
   * *Type*: ctypes.LibraryLoader
-  * *Value*: `<ctypes.LibraryLoader object at 0x7f9ebaafc8d0>`
+  * *Value*: `<ctypes.LibraryLoader object at 0x7f1fe06118d0>`
 
-lib
 
 ----
 
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
+.. attribute::lib
 
   * *Type*: str
   * *Value*: `'libfluidsynth.so.1'`
 
-pydll
 
 ----
 
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
+.. attribute::pydll
 
   * *Type*: ctypes.LibraryLoader
-  * *Value*: `<ctypes.LibraryLoader object at 0x7f9ebaafc910>`
+  * *Value*: `<ctypes.LibraryLoader object at 0x7f1fe0611910>`
 
-pythonapi
 
 ----
 
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
+.. attribute::pythonapi
 
   * *Type*: ctypes.PyDLL
-  * *Value*: `<PyDLL 'None', handle 7f9ebe219188 at 7f9ebaafc950>`
+  * *Value*: `<PyDLL 'None', handle 7f1fe3d2e188 at 7f1fe0611950>`
 
 ----
 

@@ -141,44 +141,6 @@ use together.</p>
 </dl>
 <div class="section" id="attributes">
 <h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
-<p>chord_shorthand</p>
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<p>chord_shorthand_meaning</p>
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
 <hr class="docutils" />
 <hr class="docutils" />
 </div>
@@ -372,13 +334,9 @@ triads. Also knows about invertions.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine_triad</span><span class="p">([</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">])</span>
 <span class="go">&#39;A minor triad&#39;</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine_triad</span><span class="p">([</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">determine_triad</span><span class="p">([</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">])</span>
 <span class="go">&#39;A minor triad, first inversion&#39;</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine_triad</span><span class="p">([</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">],</span> <span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">determine_triad</span><span class="p">([</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">],</span> <span class="bp">True</span><span class="p">)</span>
 <span class="go">&#39;Am&#39;</span>
 </pre></div>
 </div>
@@ -543,32 +501,22 @@ call when a slashed chord or polychord is found.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;Amin&#39;</span><span class="p">)</span>
 <span class="go">[&#39;A&#39;, &#39;C&#39;, &#39;E&#39;]</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;Am/M7&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;Am/M7&#39;</span><span class="p">)</span>
 <span class="go">[&#39;A&#39;, &#39;C&#39;, &#39;E&#39;, &#39;G#&#39;]</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">)</span>
 <span class="go">[&#39;A&#39;, &#39;C#&#39;, &#39;E&#39;]</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;A/G&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;A/G&#39;</span><span class="p">)</span>
 <span class="go">[&#39;G&#39;, &#39;A&#39;, &#39;C#&#39;, &#39;E&#39;]</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;Dm|G&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;Dm|G&#39;</span><span class="p">)</span>
 <span class="go">[&#39;G&#39;, &#39;B&#39;, &#39;D&#39;, &#39;F&#39;, &#39;A&#39;]</span>
 </pre></div>
 </div>
 <p>Recognised abbreviations: the letters &#8220;m&#8221; and &#8220;M&#8221; in the following
 abbreviations can always be substituted by respectively &#8220;min&#8221;, &#8220;mi&#8221; or
 &#8220;-&#8221; and &#8220;maj&#8221; or &#8220;ma&#8221;.</p>
-<p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;Amin7&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;Am7&#39;</span><span class="p">)</span>
-<span class="go">True</span>
-</pre></div>
-</div>
+<p>Example:
+&gt;&gt;&gt; from_shorthand(&#8216;Amin7&#8217;) == from_shorthand(&#8216;Am7&#8217;)
+True</p>
 <p>Triads: &#8216;m&#8217;, &#8216;M&#8217; or &#8216;&#8217;, &#8216;dim&#8217;</p>
 <p>Sevenths: &#8216;m7&#8217;, &#8216;M7&#8217;, &#8216;7&#8217;, &#8216;m7b5&#8217;, &#8216;dim7&#8217;, &#8216;m/M7&#8217; or &#8216;mM7&#8217;</p>
 <p>Augmented chords: &#8216;aug&#8217; or &#8216;+&#8217;, &#8216;7#5&#8217; or &#8216;M7+5&#8217;, &#8216;M7+&#8217;, &#8216;m7+&#8217;, &#8216;7+&#8217;</p>
@@ -1013,9 +961,7 @@ seventh&#8221;) chord on note.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tonic</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
 <span class="go">[&#39;C&#39;, &#39;E&#39;, &#39;G&#39;]</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tonic</span><span class="p">(</span><span class="s">&#39;c&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tonic</span><span class="p">(</span><span class="s">&#39;c&#39;</span><span class="p">)</span>
 <span class="go">[&#39;C&#39;, &#39;Eb&#39;, &#39;G&#39;]</span>
 </pre></div>
 </div>
@@ -1036,9 +982,7 @@ seventh&#8221;) chord on note.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">triad</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
 <span class="go">[&#39;E&#39;, &#39;G&#39;, &#39;B&#39;]</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">triad</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">triad</span><span class="p">(</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">)</span>
 <span class="go">[&#39;E&#39;, &#39;G#&#39;, &#39;B&#39;]</span>
 </pre></div>
 </div>

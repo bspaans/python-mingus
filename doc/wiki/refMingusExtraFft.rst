@@ -11,11 +11,10 @@ This module can also convert the found frequencies to Note objects.
 Attributes
 ----------
 
-x
 
 ----
 
-.. attribute::
+.. attribute::x
 
   * *Type*: int
   * *Value*: `128`
@@ -98,18 +97,12 @@ Functions
            1.14383329e-17 +1.22460635e-16j,
            -1.64863782e-15 +1.77635684e-15j])
   
-  
   >>> import matplotlib.pyplot as plt
-  
   >>> t = np.arange(256)
-  
   >>> sp = np.fft.fft(np.sin(t))
-  
   >>> freq = np.fft.fftfreq(t.shape[-1])
-  
   >>> plt.plot(freq, sp.real, freq, sp.imag)
   [<matplotlib.lines.Line2D object at 0x...>, <matplotlib.lines.Line2D object at 0x...>]
-  
   >>> plt.show()
   
   In this example, real input has an FFT which is Hermitian, i.e., symmetric

@@ -44,22 +44,17 @@ Functions
   
   >>> determine('C', 'E')
   'major third'
-  
   >>> determine('C', 'Eb')
   'minor third'
-  
   >>> determine('C', 'E#')
   'augmented third'
-  
   >>> determine('C', 'Ebb')
   'diminished third'
   
   This works for all intervals. Note that there are corner cases for major
   fifths and fourths:
-  
   >>> determine('C', 'G')
   'perfect fifth'
-  
   >>> determine('C', 'F')
   'perfect fourth'
 
@@ -76,7 +71,6 @@ Functions
   
   >>> fifth('E', 'C')
   'B'
-  
   >>> fifth('E', 'F')
   'Bb'
 
@@ -93,7 +87,6 @@ Functions
   
   >>> fourth('E', 'C')
   'A'
-  
   >>> fourth('E', 'B')
   'A#'
 
@@ -108,10 +101,8 @@ Functions
   
   >>> from_shorthand('A', 'b3')
   'C'
-  
   >>> from_shorthand('D', '2')
   'E'
-  
   >>> from_shorthand('E', '2', False)
   'D'
 
@@ -252,7 +243,6 @@ Functions
   
   >>> measure('C', 'D')
   2
-  
   >>> measure('D', 'C')
   10
 
@@ -314,7 +304,6 @@ Functions
   
   >>> second('E', 'C')
   'F'
-  
   >>> second('E', 'D')
   'F#'
 
@@ -331,7 +320,6 @@ Functions
   
   >>> seventh('E', 'C')
   'D'
-  
   >>> seventh('E', 'B')
   'D#'
 
@@ -348,7 +336,6 @@ Functions
   
   >>> sixth('E', 'C')
   'C'
-  
   >>> sixth('E', 'B')
   'C#'
 
@@ -365,7 +352,6 @@ Functions
   
   >>> third('E', 'C')
   'G'
-  
   >>> third('E', 'E')
   'G#'
 

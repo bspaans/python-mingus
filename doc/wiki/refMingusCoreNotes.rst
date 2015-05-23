@@ -13,26 +13,10 @@ enables simple calculations.
 Attributes
 ----------
 
-fifths
 
 ----
 
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
-----
-
-.. attribute::
+.. attribute::fifths
 
   * *Type*: list
   * *Value*: `['F', 'C', 'G', 'D', 'A', 'E', 'B']`
@@ -53,7 +37,6 @@ Functions
   
   >>> augment('C')
   'C#'
-  
   >>> augment('Cb')
   'C'
 
@@ -68,7 +51,6 @@ Functions
   
   >>> diminish('C')
   'Cb'
-  
   >>> diminish('C#')
   'C'
 
@@ -88,10 +70,8 @@ Functions
   
   >>> int_to_note(0)
   'C'
-  
   >>> int_to_note(3)
   'D#'
-  
   >>> int_to_note(3, 'b')
   'Eb'
 
@@ -142,7 +122,6 @@ Functions
   
   >>> remove_redundant_accidentals('C##b')
   'C#'
-  
   >>> remove_redundant_accidentals('Eb##b')
   'E'
 

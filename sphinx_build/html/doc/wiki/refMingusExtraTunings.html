@@ -68,15 +68,9 @@ you search through them.</p>
 should be a list of strings or a list of lists to denote courses.</p>
 <p>Example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">std_strings</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;E-2&#39;</span><span class="p">,</span> <span class="s">&#39;A-2&#39;</span><span class="p">,</span> <span class="s">&#39;D-3&#39;</span><span class="p">,</span> <span class="s">&#39;G-3&#39;</span><span class="p">,</span> <span class="s">&#39;B-3&#39;</span><span class="p">,</span> <span class="s">&#39;E-4&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tuning</span><span class="o">.</span><span class="n">add_tuning</span><span class="p">(</span><span class="s">&#39;Guitar&#39;</span><span class="p">,</span> <span class="s">&#39;standard&#39;</span><span class="p">,</span> <span class="n">std_strings</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tw_strings</span> <span class="o">=</span> <span class="p">[[</span><span class="s">&#39;E-2&#39;</span><span class="p">,</span> <span class="s">&#39;E-3&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;A-2&#39;</span><span class="p">,</span> <span class="s">&#39;A-3&#39;</span><span class="p">],</span> <span class="o">...........</span><span class="p">]</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tuning</span><span class="o">.</span><span class="n">add_tuning</span><span class="p">(</span><span class="s">&#39;Guitar&#39;</span><span class="p">,</span> <span class="s">&#39;twelve string&#39;</span><span class="p">,</span> <span class="n">tw_string</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tuning</span><span class="o">.</span><span class="n">add_tuning</span><span class="p">(</span><span class="s">&#39;Guitar&#39;</span><span class="p">,</span> <span class="s">&#39;standard&#39;</span><span class="p">,</span> <span class="n">std_strings</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tw_strings</span> <span class="o">=</span> <span class="p">[[</span><span class="s">&#39;E-2&#39;</span><span class="p">,</span> <span class="s">&#39;E-3&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;A-2&#39;</span><span class="p">,</span> <span class="s">&#39;A-3&#39;</span><span class="p">],</span> <span class="o">...........</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tuning</span><span class="o">.</span><span class="n">add_tuning</span><span class="p">(</span><span class="s">&#39;Guitar&#39;</span><span class="p">,</span> <span class="s">&#39;twelve string&#39;</span><span class="p">,</span> <span class="n">tw_string</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -121,9 +115,7 @@ asking for &#8216;bass&#8217; yields the same tunings as &#8216;Bass Guitar&#821
 &#8216;ba&#8217; yields all the instruments starting with &#8216;ba&#8217;.</p>
 <p>Example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tunings</span><span class="o">.</span><span class="n">get_tunings</span><span class="p">(</span><span class="n">nr_of_string</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tunings</span><span class="o">.</span><span class="n">get_tunings</span><span class="p">(</span><span class="s">&#39;bass&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tunings</span><span class="o">.</span><span class="n">get_tunings</span><span class="p">(</span><span class="s">&#39;bass&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
