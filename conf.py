@@ -165,7 +165,7 @@ html_static_path = ['sphinx_static']
 #html_sidebars = {}
 html_sidebars = {
 '**': [
-    'about.html', 'navigation.html', 'searchbox.html', 'donate.html',
+    'about.html', 'searchbox.html', 'donate.html',
     ]
 }
 
