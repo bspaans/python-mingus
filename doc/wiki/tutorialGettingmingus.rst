@@ -1,7 +1,7 @@
 ﻿Getting mingus
 ==============
 
-The latest release, as well as the windows installer are available at [http://pypi.python.org/pypi/mingus/ Python's Package Index],
+The latest release, as well as the windows installer are available at `Python's Package Index <http://pypi.python.org/pypi/mingus/>`_.
 which means you can also use `easyinstall mingus` and `pip install mingus`. See also: :doc:`Setup <tutorialSetup>`
 
 You can also check out the latest source from our git repository:
