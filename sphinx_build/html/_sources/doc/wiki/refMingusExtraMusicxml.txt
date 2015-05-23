@@ -135,7 +135,7 @@ http://www.musicxml.org/xml.html
 .. attribute:: documentElement
 
    Attribute of type: property
-   ``<property object at 0x7f50c05b9310>``
+   ``<property object at 0x7f51e4b14310>``
 
 ----
 
@@ -163,28 +163,28 @@ http://www.musicxml.org/xml.html
 .. attribute:: firstChild
 
    Attribute of type: property
-   ``<property object at 0x7f50c0613680>``
+   ``<property object at 0x7f51e4b6e680>``
 
 ----
 
 .. attribute:: implementation
 
    Attribute of type: instance
-   ``<xml.dom.minidom.DOMImplementation instance at 0x7f50c05b3950>``
+   ``<xml.dom.minidom.DOMImplementation instance at 0x7f51e4b0e950>``
 
 ----
 
 .. attribute:: lastChild
 
    Attribute of type: property
-   ``<property object at 0x7f50c0613788>``
+   ``<property object at 0x7f51e4b6e788>``
 
 ----
 
 .. attribute:: localName
 
    Attribute of type: property
-   ``<property object at 0x7f50c0613db8>``
+   ``<property object at 0x7f51e4b6edb8>``
 
 ----
 

@@ -115,9 +115,10 @@ API docs
    doc/wiki/refMingusMidiSequencerobserver
    doc/wiki/refMingusMidiMidi_events
    doc/wiki/refMingusMidiFluidsynth
-   doc/wiki/refMingusMidiMiditrack
-   doc/wiki/refMingusMidiMidifileout
-   doc/wiki/refMingusMidiMidifilein
+   doc/wiki/refMingusMidiPyfluidsynth
+   doc/wiki/refMingusMidiMidi_track
+   doc/wiki/refMingusMidiMidi_file_out
+   doc/wiki/refMingusMidiMidi_file_in
 
 .. toctree::
    :maxdepth: 1
