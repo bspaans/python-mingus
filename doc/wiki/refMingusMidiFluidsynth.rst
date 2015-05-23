@@ -29,7 +29,7 @@ midi
 ^^^^
 
   * *Type*: mingus.midi.fluidsynth.FluidSynthSequencer
-  * *Value*: `<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x7fbe4c28a950>`
+  * *Value*: `<mingus.midi.fluidsynth.FluidSynthSequencer object at 0x7f3cd35e3950>`
 
 ----
 
