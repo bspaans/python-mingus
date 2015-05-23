@@ -1,3 +1,5 @@
+.. module:: mingus.containers.suite
+
 =======================
 mingus.containers.suite
 =======================

@@ -1,3 +1,5 @@
+.. module:: mingus.containers.Guitar
+
 ========================
 mingus.containers.Guitar
 ========================

@@ -1,3 +1,5 @@
+.. module:: mingus.midi.midi_events
+
 =======================
 mingus.midi.midi_events
 =======================

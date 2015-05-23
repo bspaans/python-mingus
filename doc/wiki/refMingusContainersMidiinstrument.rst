@@ -1,3 +1,5 @@
+.. module:: mingus.containers.MidiInstrument
+
 ================================
 mingus.containers.MidiInstrument
 ================================

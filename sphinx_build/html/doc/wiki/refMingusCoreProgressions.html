@@ -39,6 +39,9 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="refMingusContainersNote.html" title="mingus.containers.note"
              accesskey="N">next</a> |</li>
         <li class="right" >
@@ -53,7 +56,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="mingus-core-progressions">
+  <span class="target" id="module-mingus.core.progressions"></span><div class="section" id="mingus-core-progressions">
 <h1>mingus.core.progressions<a class="headerlink" href="#mingus-core-progressions" title="Permalink to this headline">¶</a></h1>
 <p>Module for dealing with progressions.</p>
 <p>In music and music theory you often deal with sequencesi of chords. These
@@ -65,24 +68,24 @@ more complex progressions, like: #V7, bIIdim7, etc.</p>
 vice versa.</p>
 <hr class="docutils" />
 <dl class="data">
-<dt id="numeral_intervals">
-<code class="descname">numeral_intervals</code><a class="headerlink" href="#numeral_intervals" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.progressions.numeral_intervals">
+<code class="descclassname">mingus.core.progressions.</code><code class="descname">numeral_intervals</code><a class="headerlink" href="#mingus.core.progressions.numeral_intervals" title="Permalink to this definition">¶</a></dt>
 <dd><p>Attribute of type: list
 <code class="docutils literal"><span class="pre">[0,</span> <span class="pre">2,</span> <span class="pre">4,</span> <span class="pre">5,</span> <span class="pre">7,</span> <span class="pre">9,</span> <span class="pre">11]</span></code></p>
 </dd></dl>
 
 <hr class="docutils" />
 <dl class="data">
-<dt id="numerals">
-<code class="descname">numerals</code><a class="headerlink" href="#numerals" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.progressions.numerals">
+<code class="descclassname">mingus.core.progressions.</code><code class="descname">numerals</code><a class="headerlink" href="#mingus.core.progressions.numerals" title="Permalink to this definition">¶</a></dt>
 <dd><p>Attribute of type: list
 <code class="docutils literal"><span class="pre">['I',</span> <span class="pre">'II',</span> <span class="pre">'III',</span> <span class="pre">'IV',</span> <span class="pre">'V',</span> <span class="pre">'VI',</span> <span class="pre">'VII']</span></code></p>
 </dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="determine">
-<code class="descname">determine</code><span class="sig-paren">(</span><em>chord</em>, <em>key</em>, <em>shorthand=False</em><span class="sig-paren">)</span><a class="headerlink" href="#determine" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.progressions.determine">
+<code class="descclassname">mingus.core.progressions.</code><code class="descname">determine</code><span class="sig-paren">(</span><em>chord</em>, <em>key</em>, <em>shorthand=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/progressions.html#determine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.progressions.determine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Determine the harmonic function of chord in key.</p>
 <p>This function can also deal with lists of chords.</p>
 <p>Examples:</p>
@@ -100,8 +103,8 @@ vice versa.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="interval_diff">
-<code class="descname">interval_diff</code><span class="sig-paren">(</span><em>progression1</em>, <em>progression2</em>, <em>interval</em><span class="sig-paren">)</span><a class="headerlink" href="#interval_diff" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.progressions.interval_diff">
+<code class="descclassname">mingus.core.progressions.</code><code class="descname">interval_diff</code><span class="sig-paren">(</span><em>progression1</em>, <em>progression2</em>, <em>interval</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/progressions.html#interval_diff"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.progressions.interval_diff" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the number of half steps progression2 needs to be diminished or
 augmented until the interval between progression1 and progression2 is
 interval.</p>
@@ -109,8 +112,8 @@ interval.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="parse_string">
-<code class="descname">parse_string</code><span class="sig-paren">(</span><em>progression</em><span class="sig-paren">)</span><a class="headerlink" href="#parse_string" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.progressions.parse_string">
+<code class="descclassname">mingus.core.progressions.</code><code class="descname">parse_string</code><span class="sig-paren">(</span><em>progression</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/progressions.html#parse_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.progressions.parse_string" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a tuple (roman numeral, accidentals, chord suffix).</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">parse_string</span><span class="p">(</span><span class="s">&#39;I&#39;</span><span class="p">)</span>
@@ -123,8 +126,8 @@ interval.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="skip">
-<code class="descname">skip</code><span class="sig-paren">(</span><em>roman_numeral</em>, <em>skip=1</em><span class="sig-paren">)</span><a class="headerlink" href="#skip" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.progressions.skip">
+<code class="descclassname">mingus.core.progressions.</code><code class="descname">skip</code><span class="sig-paren">(</span><em>roman_numeral</em>, <em>skip=1</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/progressions.html#skip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.progressions.skip" title="Permalink to this definition">¶</a></dt>
 <dd><p>Skip the given places to the next roman numeral.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">skip</span><span class="p">(</span><span class="s">&#39;I&#39;</span><span class="p">)</span>
@@ -139,8 +142,8 @@ interval.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="substitute">
-<code class="descname">substitute</code><span class="sig-paren">(</span><em>progression</em>, <em>substitute_index</em>, <em>depth=0</em><span class="sig-paren">)</span><a class="headerlink" href="#substitute" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.progressions.substitute">
+<code class="descclassname">mingus.core.progressions.</code><code class="descname">substitute</code><span class="sig-paren">(</span><em>progression</em>, <em>substitute_index</em>, <em>depth=0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/progressions.html#substitute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.progressions.substitute" title="Permalink to this definition">¶</a></dt>
 <dd><p>Give a list of possible substitutions for progression[substitute_index].</p>
 <p>If depth &gt; 0 the substitutions of each result will be recursively added
 as well.</p>
@@ -153,8 +156,8 @@ as well.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="substitute_diminished_for_diminished">
-<code class="descname">substitute_diminished_for_diminished</code><span class="sig-paren">(</span><em>progression</em>, <em>substitute_index</em>, <em>ignore_suffix=False</em><span class="sig-paren">)</span><a class="headerlink" href="#substitute_diminished_for_diminished" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.progressions.substitute_diminished_for_diminished">
+<code class="descclassname">mingus.core.progressions.</code><code class="descname">substitute_diminished_for_diminished</code><span class="sig-paren">(</span><em>progression</em>, <em>substitute_index</em>, <em>ignore_suffix=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/progressions.html#substitute_diminished_for_diminished"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.progressions.substitute_diminished_for_diminished" title="Permalink to this definition">¶</a></dt>
 <dd><p>Substitute a diminished chord for another diminished chord.</p>
 <p>&#8216;dim&#8217; and &#8216;dim7&#8217; suffixes recognized, and &#8216;VI&#8217; if there is no suffix.</p>
 <p>Example:</p>
@@ -166,14 +169,14 @@ as well.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="substitute_diminished_for_dominant">
-<code class="descname">substitute_diminished_for_dominant</code><span class="sig-paren">(</span><em>progression</em>, <em>substitute_index</em>, <em>ignore_suffix=False</em><span class="sig-paren">)</span><a class="headerlink" href="#substitute_diminished_for_dominant" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.progressions.substitute_diminished_for_dominant">
+<code class="descclassname">mingus.core.progressions.</code><code class="descname">substitute_diminished_for_dominant</code><span class="sig-paren">(</span><em>progression</em>, <em>substitute_index</em>, <em>ignore_suffix=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/progressions.html#substitute_diminished_for_dominant"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.progressions.substitute_diminished_for_dominant" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="substitute_harmonic">
-<code class="descname">substitute_harmonic</code><span class="sig-paren">(</span><em>progression</em>, <em>substitute_index</em>, <em>ignore_suffix=False</em><span class="sig-paren">)</span><a class="headerlink" href="#substitute_harmonic" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.progressions.substitute_harmonic">
+<code class="descclassname">mingus.core.progressions.</code><code class="descname">substitute_harmonic</code><span class="sig-paren">(</span><em>progression</em>, <em>substitute_index</em>, <em>ignore_suffix=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/progressions.html#substitute_harmonic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.progressions.substitute_harmonic" title="Permalink to this definition">¶</a></dt>
 <dd><p>Do simple harmonic substitutions. Return a list of possible substitions
 for progression[substitute_index].</p>
 <p>If ignore_suffix is set to True the suffix of the chord being
@@ -189,8 +192,8 @@ suffix, or with suffix &#8216;7&#8217; will be substituted.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="substitute_major_for_minor">
-<code class="descname">substitute_major_for_minor</code><span class="sig-paren">(</span><em>progression</em>, <em>substitute_index</em>, <em>ignore_suffix=False</em><span class="sig-paren">)</span><a class="headerlink" href="#substitute_major_for_minor" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.progressions.substitute_major_for_minor">
+<code class="descclassname">mingus.core.progressions.</code><code class="descname">substitute_major_for_minor</code><span class="sig-paren">(</span><em>progression</em>, <em>substitute_index</em>, <em>ignore_suffix=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/progressions.html#substitute_major_for_minor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.progressions.substitute_major_for_minor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Substitute major chords for their minor equivalent.</p>
 <p>&#8216;M&#8217; and &#8216;M7&#8217; suffixes recognized, and [&#8216;I&#8217;, &#8216;IV&#8217;, &#8216;V&#8217;] if there is no
 suffix.</p>
@@ -205,8 +208,8 @@ suffix.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="substitute_minor_for_major">
-<code class="descname">substitute_minor_for_major</code><span class="sig-paren">(</span><em>progression</em>, <em>substitute_index</em>, <em>ignore_suffix=False</em><span class="sig-paren">)</span><a class="headerlink" href="#substitute_minor_for_major" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.progressions.substitute_minor_for_major">
+<code class="descclassname">mingus.core.progressions.</code><code class="descname">substitute_minor_for_major</code><span class="sig-paren">(</span><em>progression</em>, <em>substitute_index</em>, <em>ignore_suffix=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/progressions.html#substitute_minor_for_major"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.progressions.substitute_minor_for_major" title="Permalink to this definition">¶</a></dt>
 <dd><p>Substitute minor chords for its major equivalent.</p>
 <p>&#8216;m&#8217; and &#8216;m7&#8217; suffixes recognized, and [&#8216;II&#8217;, &#8216;III&#8217;, &#8216;VI&#8217;] if there is no
 suffix.</p>
@@ -223,8 +226,8 @@ suffix.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="to_chords">
-<code class="descname">to_chords</code><span class="sig-paren">(</span><em>progression</em>, <em>key=C</em><span class="sig-paren">)</span><a class="headerlink" href="#to_chords" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.progressions.to_chords">
+<code class="descclassname">mingus.core.progressions.</code><code class="descname">to_chords</code><span class="sig-paren">(</span><em>progression</em>, <em>key=C</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/progressions.html#to_chords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.progressions.to_chords" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert a list of chord functions or a string to a list of chords.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">to_chords</span><span class="p">([</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;V7&#39;</span><span class="p">])</span>
@@ -248,8 +251,8 @@ use Idom7.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="tuple_to_string">
-<code class="descname">tuple_to_string</code><span class="sig-paren">(</span><em>prog_tuple</em><span class="sig-paren">)</span><a class="headerlink" href="#tuple_to_string" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.progressions.tuple_to_string">
+<code class="descclassname">mingus.core.progressions.</code><code class="descname">tuple_to_string</code><span class="sig-paren">(</span><em>prog_tuple</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/progressions.html#tuple_to_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.progressions.tuple_to_string" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a string from tuples returned by parse_string.</p>
 </dd></dl>
 

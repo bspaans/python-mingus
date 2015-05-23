@@ -1,0 +1,1375 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mingus.core.chords &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">mingus 0.5.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for mingus.core.chords</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="c">#    mingus - Music theory Python package, chords module.</span>
+<span class="c">#    Copyright (C) 2008-2009, Bart Spaans</span>
+<span class="c">#</span>
+<span class="c">#    This program is free software: you can redistribute it and/or modify</span>
+<span class="c">#    it under the terms of the GNU General Public License as published by</span>
+<span class="c">#    the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c">#    (at your option) any later version.</span>
+<span class="c">#</span>
+<span class="c">#    This program is distributed in the hope that it will be useful,</span>
+<span class="c">#    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c">#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c">#    GNU General Public License for more details.</span>
+<span class="c">#</span>
+<span class="c">#    You should have received a copy of the GNU General Public License</span>
+<span class="c">#    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="sd">&quot;&quot;&quot;Module to create chords.</span>
+
+<span class="sd">This module is a huge module that builds on the intervals module. It can be</span>
+<span class="sd">used to generate and recognise a plethora of chords.</span>
+
+<span class="sd">The following overview groups some of the functions you are most likely to</span>
+<span class="sd">use together.</span>
+
+<span class="sd">Generate Diatonic Chords</span>
+<span class="sd"> * Triads</span>
+<span class="sd">   * triad</span>
+<span class="sd">   * triads</span>
+<span class="sd"> * Sevenths</span>
+<span class="sd">   * seventh</span>
+<span class="sd">   * sevenths</span>
+
+<span class="sd">Generate Absolute Chords</span>
+<span class="sd"> * Triads</span>
+<span class="sd">   * minor_triad</span>
+<span class="sd">   * major_triad</span>
+<span class="sd">   * diminished_triad</span>
+<span class="sd"> * Sixths</span>
+<span class="sd">   * minor_sixth</span>
+<span class="sd">   * major_sixth</span>
+<span class="sd"> * Sevenths</span>
+<span class="sd">   * minor_seventh</span>
+<span class="sd">   * major_seventh</span>
+<span class="sd">   * dominant_seventh</span>
+<span class="sd">   * minor_major_seventh</span>
+<span class="sd">   * minor_seventh_flat_five</span>
+<span class="sd">   * diminished_seventh</span>
+<span class="sd"> * Ninths</span>
+<span class="sd">   * minor_ninth</span>
+<span class="sd">   * major_ninth</span>
+<span class="sd">   * dominant_ninth</span>
+<span class="sd"> * Elevenths</span>
+<span class="sd">   * minor_eleventh</span>
+<span class="sd">   * eleventh</span>
+<span class="sd"> * Thirteenths</span>
+<span class="sd">   * minor_thirteenth</span>
+<span class="sd">   * major_thirteenth</span>
+<span class="sd">   * dominant_thirteenth</span>
+<span class="sd"> * Augmented chords</span>
+<span class="sd">   * augmented_triad</span>
+<span class="sd">   * augmented_major_seventh</span>
+<span class="sd">   * augmented_minor_seventh</span>
+<span class="sd"> * Suspended chords</span>
+<span class="sd">   * suspended_second_triad</span>
+<span class="sd">   * suspended_fourth_triad</span>
+<span class="sd">   * suspended_seventh</span>
+<span class="sd">   * suspended_fourth_ninth</span>
+<span class="sd">   * suspended_ninth</span>
+<span class="sd"> * Altered chords</span>
+<span class="sd">   * dominant_flat_ninth</span>
+<span class="sd">   * dominant_sharp_ninth</span>
+<span class="sd">   * dominant_flat_five</span>
+<span class="sd">   * sixth_ninth</span>
+<span class="sd">   * hendrix_chord</span>
+
+<span class="sd">Get Chords by Function</span>
+<span class="sd"> * Function</span>
+<span class="sd">   * tonic and tonic7</span>
+<span class="sd">   * supertonic and supertonic7</span>
+<span class="sd">   * mediant and mediant7</span>
+<span class="sd">   * subdominant and subdominant7</span>
+<span class="sd">   * dominant and dominant7</span>
+<span class="sd">   * submediant and submediant7</span>
+<span class="sd"> * Aliases</span>
+<span class="sd">   * I, II, III, IV, V, VI</span>
+<span class="sd">   * ii, iii, vi, vii</span>
+<span class="sd">   * I7, II7, III7, IV7, V7, VI7</span>
+<span class="sd">   * ii7, iii7, vi7</span>
+
+<span class="sd">Useful Functions</span>
+<span class="sd"> * determine - Can recognize all the chords that can be generated with \</span>
+<span class="sd">from_shorthand (a lot) and their inversions.</span>
+<span class="sd"> * from_shorthand - Generates chords from shorthand (eg. &#39;Cmin7&#39;)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">intervals</span>
+<span class="kn">import</span> <span class="nn">notes</span>
+<span class="kn">import</span> <span class="nn">keys</span>
+<span class="kn">from</span> <span class="nn">mt_exceptions</span> <span class="kn">import</span> <span class="n">NoteFormatError</span><span class="p">,</span> <span class="n">FormatError</span>
+
+<span class="n">_triads_cache</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c"># A cache for composed sevenths</span>
+<span class="n">_sevenths_cache</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="n">chord_shorthand_meaning</span> <span class="o">=</span> <span class="p">{</span>  <span class="c"># Triads Augmented chords Suspended chords Sevenths</span>
+                             <span class="c"># Sixths Ninths Elevenths Thirteenths Altered</span>
+                             <span class="c"># Chords Special</span>
+    <span class="s">&#39;m&#39;</span><span class="p">:</span> <span class="s">&#39; minor triad&#39;</span><span class="p">,</span>
+    <span class="s">&#39;M&#39;</span><span class="p">:</span> <span class="s">&#39; major triad&#39;</span><span class="p">,</span>
+    <span class="s">&#39;&#39;</span><span class="p">:</span> <span class="s">&#39; major triad&#39;</span><span class="p">,</span>
+    <span class="s">&#39;dim&#39;</span><span class="p">:</span> <span class="s">&#39; diminished triad&#39;</span><span class="p">,</span>
+    <span class="s">&#39;aug&#39;</span><span class="p">:</span> <span class="s">&#39; augmented triad&#39;</span><span class="p">,</span>
+    <span class="s">&#39;+&#39;</span><span class="p">:</span> <span class="s">&#39; augmented triad&#39;</span><span class="p">,</span>
+    <span class="s">&#39;7#5&#39;</span><span class="p">:</span> <span class="s">&#39; augmented minor seventh&#39;</span><span class="p">,</span>
+    <span class="s">&#39;M7+5&#39;</span><span class="p">:</span> <span class="s">&#39; augmented minor seventh&#39;</span><span class="p">,</span>
+    <span class="s">&#39;M7+&#39;</span><span class="p">:</span> <span class="s">&#39; augmented major seventh&#39;</span><span class="p">,</span>
+    <span class="s">&#39;m7+&#39;</span><span class="p">:</span> <span class="s">&#39; augmented minor seventh&#39;</span><span class="p">,</span>
+    <span class="s">&#39;7+&#39;</span><span class="p">:</span> <span class="s">&#39; augmented major seventh&#39;</span><span class="p">,</span>
+    <span class="s">&#39;sus47&#39;</span><span class="p">:</span> <span class="s">&#39; suspended seventh&#39;</span><span class="p">,</span>
+    <span class="s">&#39;7sus4&#39;</span><span class="p">:</span> <span class="s">&#39; suspended seventh&#39;</span><span class="p">,</span>
+    <span class="s">&#39;sus4&#39;</span><span class="p">:</span> <span class="s">&#39; suspended fourth triad&#39;</span><span class="p">,</span>
+    <span class="s">&#39;sus2&#39;</span><span class="p">:</span> <span class="s">&#39; suspended second triad&#39;</span><span class="p">,</span>
+    <span class="s">&#39;sus&#39;</span><span class="p">:</span> <span class="s">&#39; suspended fourth triad&#39;</span><span class="p">,</span>
+    <span class="s">&#39;11&#39;</span><span class="p">:</span> <span class="s">&#39; eleventh&#39;</span><span class="p">,</span>
+    <span class="s">&#39;add11&#39;</span><span class="p">:</span> <span class="s">&#39; eleventh&#39;</span><span class="p">,</span>
+    <span class="s">&#39;sus4b9&#39;</span><span class="p">:</span> <span class="s">&#39; suspended fourth ninth&#39;</span><span class="p">,</span>
+    <span class="s">&#39;susb9&#39;</span><span class="p">:</span> <span class="s">&#39; suspended fourth ninth&#39;</span><span class="p">,</span>
+    <span class="s">&#39;m7&#39;</span><span class="p">:</span> <span class="s">&#39; minor seventh&#39;</span><span class="p">,</span>
+    <span class="s">&#39;M7&#39;</span><span class="p">:</span> <span class="s">&#39; major seventh&#39;</span><span class="p">,</span>
+    <span class="s">&#39;dom7&#39;</span><span class="p">:</span> <span class="s">&#39; dominant seventh&#39;</span><span class="p">,</span>
+    <span class="s">&#39;7&#39;</span><span class="p">:</span> <span class="s">&#39; dominant seventh&#39;</span><span class="p">,</span>
+    <span class="s">&#39;m7b5&#39;</span><span class="p">:</span> <span class="s">&#39; half diminished seventh&#39;</span><span class="p">,</span>
+    <span class="s">&#39;dim7&#39;</span><span class="p">:</span> <span class="s">&#39; diminished seventh&#39;</span><span class="p">,</span>
+    <span class="s">&#39;m/M7&#39;</span><span class="p">:</span> <span class="s">&#39; minor/major seventh&#39;</span><span class="p">,</span>
+    <span class="s">&#39;mM7&#39;</span><span class="p">:</span> <span class="s">&#39; minor/major seventh&#39;</span><span class="p">,</span>
+    <span class="s">&#39;m6&#39;</span><span class="p">:</span> <span class="s">&#39; minor sixth&#39;</span><span class="p">,</span>
+    <span class="s">&#39;M6&#39;</span><span class="p">:</span> <span class="s">&#39; major sixth&#39;</span><span class="p">,</span>
+    <span class="s">&#39;6&#39;</span><span class="p">:</span> <span class="s">&#39; major sixth&#39;</span><span class="p">,</span>
+    <span class="s">&#39;6/7&#39;</span><span class="p">:</span> <span class="s">&#39; dominant sixth&#39;</span><span class="p">,</span>
+    <span class="s">&#39;67&#39;</span><span class="p">:</span> <span class="s">&#39; dominant sixth&#39;</span><span class="p">,</span>
+    <span class="s">&#39;6/9&#39;</span><span class="p">:</span> <span class="s">&#39; sixth ninth&#39;</span><span class="p">,</span>
+    <span class="s">&#39;69&#39;</span><span class="p">:</span> <span class="s">&#39; sixth ninth&#39;</span><span class="p">,</span>
+    <span class="s">&#39;9&#39;</span><span class="p">:</span> <span class="s">&#39; dominant ninth&#39;</span><span class="p">,</span>
+    <span class="s">&#39;add9&#39;</span><span class="p">:</span> <span class="s">&#39; dominant ninth&#39;</span><span class="p">,</span>
+    <span class="s">&#39;7b9&#39;</span><span class="p">:</span> <span class="s">&#39; dominant flat ninth&#39;</span><span class="p">,</span>
+    <span class="s">&#39;7#9&#39;</span><span class="p">:</span> <span class="s">&#39; dominant sharp ninth&#39;</span><span class="p">,</span>
+    <span class="s">&#39;M9&#39;</span><span class="p">:</span> <span class="s">&#39; major ninth&#39;</span><span class="p">,</span>
+    <span class="s">&#39;m9&#39;</span><span class="p">:</span> <span class="s">&#39; minor ninth&#39;</span><span class="p">,</span>
+    <span class="s">&#39;7#11&#39;</span><span class="p">:</span> <span class="s">&#39; lydian dominant seventh&#39;</span><span class="p">,</span>
+    <span class="s">&#39;m11&#39;</span><span class="p">:</span> <span class="s">&#39; minor eleventh&#39;</span><span class="p">,</span>
+    <span class="s">&#39;M13&#39;</span><span class="p">:</span> <span class="s">&#39; major thirteenth&#39;</span><span class="p">,</span>
+    <span class="s">&#39;m13&#39;</span><span class="p">:</span> <span class="s">&#39; minor thirteenth&#39;</span><span class="p">,</span>
+    <span class="s">&#39;13&#39;</span><span class="p">:</span> <span class="s">&#39; dominant thirteenth&#39;</span><span class="p">,</span>
+    <span class="s">&#39;add13&#39;</span><span class="p">:</span> <span class="s">&#39; dominant thirteenth&#39;</span><span class="p">,</span>
+    <span class="s">&#39;7b5&#39;</span><span class="p">:</span> <span class="s">&#39; dominant flat five&#39;</span><span class="p">,</span>
+    <span class="s">&#39;hendrix&#39;</span><span class="p">:</span> <span class="s">&#39; hendrix chord&#39;</span><span class="p">,</span>
+    <span class="s">&#39;7b12&#39;</span><span class="p">:</span> <span class="s">&#39; hendrix chord&#39;</span><span class="p">,</span>
+    <span class="s">&#39;5&#39;</span><span class="p">:</span> <span class="s">&#39; perfect fifth&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+<div class="viewcode-block" id="triad"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.triad">[docs]</a><span class="k">def</span> <span class="nf">triad</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the triad on note in key as a list.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">    &gt;&gt;&gt; triad(&#39;E&#39;, &#39;C&#39;)</span>
+<span class="sd">    [&#39;E&#39;, &#39;G&#39;, &#39;B&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; triad(&#39;E&#39;, &#39;B&#39;)</span>
+<span class="sd">    [&#39;E&#39;, &#39;G#&#39;, &#39;B&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">note</span><span class="p">,</span> <span class="n">intervals</span><span class="o">.</span><span class="n">third</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">key</span><span class="p">),</span> <span class="n">intervals</span><span class="o">.</span><span class="n">fifth</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">key</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="triads"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.triads">[docs]</a><span class="k">def</span> <span class="nf">triads</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return all the triads in key.</span>
+
+<span class="sd">    Implemented using a cache.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">_triads_cache</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_triads_cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">triad</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">key</span><span class="p">),</span> <span class="n">keys</span><span class="o">.</span><span class="n">get_notes</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+    <span class="n">_triads_cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span>
+    <span class="k">return</span> <span class="n">res</span>
+</div>
+<div class="viewcode-block" id="major_triad"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.major_triad">[docs]</a><span class="k">def</span> <span class="nf">major_triad</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a major triad on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; major_triad(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;E&#39;, &#39;G&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">note</span><span class="p">,</span> <span class="n">intervals</span><span class="o">.</span><span class="n">major_third</span><span class="p">(</span><span class="n">note</span><span class="p">),</span> <span class="n">intervals</span><span class="o">.</span><span class="n">perfect_fifth</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="minor_triad"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.minor_triad">[docs]</a><span class="k">def</span> <span class="nf">minor_triad</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a minor triad on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; minor_triad(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;Eb&#39;, &#39;G&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">note</span><span class="p">,</span> <span class="n">intervals</span><span class="o">.</span><span class="n">minor_third</span><span class="p">(</span><span class="n">note</span><span class="p">),</span> <span class="n">intervals</span><span class="o">.</span><span class="n">perfect_fifth</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="diminished_triad"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.diminished_triad">[docs]</a><span class="k">def</span> <span class="nf">diminished_triad</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a diminished triad on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; diminished_triad(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;Eb&#39;, &#39;Gb&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">note</span><span class="p">,</span> <span class="n">intervals</span><span class="o">.</span><span class="n">minor_third</span><span class="p">(</span><span class="n">note</span><span class="p">),</span> <span class="n">intervals</span><span class="o">.</span><span class="n">minor_fifth</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="augmented_triad"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.augmented_triad">[docs]</a><span class="k">def</span> <span class="nf">augmented_triad</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build an augmented triad on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; augmented_triad(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;E&#39;, &#39;G#&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">note</span><span class="p">,</span> <span class="n">intervals</span><span class="o">.</span><span class="n">major_third</span><span class="p">(</span><span class="n">note</span><span class="p">),</span>
+            <span class="n">notes</span><span class="o">.</span><span class="n">augment</span><span class="p">(</span><span class="n">intervals</span><span class="o">.</span><span class="n">major_fifth</span><span class="p">(</span><span class="n">note</span><span class="p">))]</span>
+</div>
+<div class="viewcode-block" id="seventh"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.seventh">[docs]</a><span class="k">def</span> <span class="nf">seventh</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the seventh chord on note in key.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; seventh(&#39;C&#39;, &#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;E&#39;, &#39;G&#39;, &#39;B&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">triad</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">intervals</span><span class="o">.</span><span class="n">seventh</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">key</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="sevenths"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.sevenths">[docs]</a><span class="k">def</span> <span class="nf">sevenths</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return all the sevenths chords in key in a list.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">_sevenths_cache</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_sevenths_cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">seventh</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">key</span><span class="p">),</span> <span class="n">keys</span><span class="o">.</span><span class="n">get_notes</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+    <span class="n">_sevenths_cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span>
+    <span class="k">return</span> <span class="n">res</span>
+</div>
+<div class="viewcode-block" id="major_seventh"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.major_seventh">[docs]</a><span class="k">def</span> <span class="nf">major_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a major seventh on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; major_seventh(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;E&#39;, &#39;G&#39;, &#39;B&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">major_triad</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">intervals</span><span class="o">.</span><span class="n">major_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="minor_seventh"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.minor_seventh">[docs]</a><span class="k">def</span> <span class="nf">minor_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a minor seventh on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; minor_seventh(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;Eb&#39;, &#39;G&#39;, &#39;Bb&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">minor_triad</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">intervals</span><span class="o">.</span><span class="n">minor_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="dominant_seventh"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.dominant_seventh">[docs]</a><span class="k">def</span> <span class="nf">dominant_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a dominant seventh on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; dominant_seventh(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;E&#39;, &#39;G&#39;, &#39;Bb&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">major_triad</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">intervals</span><span class="o">.</span><span class="n">minor_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="half_diminished_seventh"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.half_diminished_seventh">[docs]</a><span class="k">def</span> <span class="nf">half_diminished_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a half diminished seventh (also known as &quot;minor seventh flat</span>
+<span class="sd">    five&quot;) chord on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; half_diminished_seventh(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;Eb&#39;, &#39;Gb&#39;, &#39;Bb&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">diminished_triad</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">intervals</span><span class="o">.</span><span class="n">minor_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="minor_seventh_flat_five"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.minor_seventh_flat_five">[docs]</a><span class="k">def</span> <span class="nf">minor_seventh_flat_five</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a minor seventh flat five (also known as &quot;half diminished</span>
+<span class="sd">    seventh&quot;) chord on note.</span>
+
+<span class="sd">    See half_diminished_seventh(note) for docs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">half_diminished_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="diminished_seventh"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.diminished_seventh">[docs]</a><span class="k">def</span> <span class="nf">diminished_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a diminished seventh chord on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; diminished_seventh(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;Eb&#39;, &#39;Gb&#39;, &#39;Bbb&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">diminished_triad</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span>
+            <span class="p">[</span><span class="n">notes</span><span class="o">.</span><span class="n">diminish</span><span class="p">(</span><span class="n">intervals</span><span class="o">.</span><span class="n">minor_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">))])</span>
+</div>
+<div class="viewcode-block" id="minor_major_seventh"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.minor_major_seventh">[docs]</a><span class="k">def</span> <span class="nf">minor_major_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a minor major seventh chord on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; minor_major_seventh(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;Eb&#39;, &#39;G&#39;, &#39;B&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">minor_triad</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">intervals</span><span class="o">.</span><span class="n">major_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="minor_sixth"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.minor_sixth">[docs]</a><span class="k">def</span> <span class="nf">minor_sixth</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a minor sixth chord on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; minor_sixth(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;Eb&#39;, &#39;G&#39;, &#39;A&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">minor_triad</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">intervals</span><span class="o">.</span><span class="n">major_sixth</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="major_sixth"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.major_sixth">[docs]</a><span class="k">def</span> <span class="nf">major_sixth</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a major sixth chord on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; major_sixth(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;E&#39;, &#39;G&#39;, &#39;A&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">major_triad</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">intervals</span><span class="o">.</span><span class="n">major_sixth</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="dominant_sixth"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.dominant_sixth">[docs]</a><span class="k">def</span> <span class="nf">dominant_sixth</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build the altered chord 6/7 on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; dominant_sixth(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;E&#39;, &#39;G&#39;, &#39;A&#39;, &#39;Bb&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">major_sixth</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">intervals</span><span class="o">.</span><span class="n">minor_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="sixth_ninth"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.sixth_ninth">[docs]</a><span class="k">def</span> <span class="nf">sixth_ninth</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build the sixth/ninth chord on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; sixth_ninth(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;E&#39;, &#39;G&#39;, &#39;A&#39;, &#39;D&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">major_sixth</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">intervals</span><span class="o">.</span><span class="n">major_second</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="minor_ninth"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.minor_ninth">[docs]</a><span class="k">def</span> <span class="nf">minor_ninth</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a minor ninth chord on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; minor_ninth(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;Eb&#39;, &#39;G&#39;, &#39;Bb&#39;, &#39;D&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">minor_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">intervals</span><span class="o">.</span><span class="n">major_second</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="major_ninth"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.major_ninth">[docs]</a><span class="k">def</span> <span class="nf">major_ninth</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a major ninth chord on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; major_ninth(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;E&#39;, &#39;G&#39;, &#39;B&#39;, &#39;D&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">major_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">intervals</span><span class="o">.</span><span class="n">major_second</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="dominant_ninth"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.dominant_ninth">[docs]</a><span class="k">def</span> <span class="nf">dominant_ninth</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a dominant ninth chord on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; dominant_ninth(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;E&#39;, &#39;G&#39;, &#39;Bb&#39;, &#39;D&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">dominant_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">intervals</span><span class="o">.</span><span class="n">major_second</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="dominant_flat_ninth"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.dominant_flat_ninth">[docs]</a><span class="k">def</span> <span class="nf">dominant_flat_ninth</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a dominant flat ninth chord on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; dominant_ninth(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;E&#39;, &#39;G&#39;, &#39;Bb&#39;, &#39;Db&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">dominant_ninth</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+    <span class="n">res</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="n">minor_second</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
+</div>
+<div class="viewcode-block" id="dominant_sharp_ninth"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.dominant_sharp_ninth">[docs]</a><span class="k">def</span> <span class="nf">dominant_sharp_ninth</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a dominant sharp ninth chord on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; dominant_ninth(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;E&#39;, &#39;G&#39;, &#39;Bb&#39;, &#39;D#&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">dominant_ninth</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+    <span class="n">res</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">notes</span><span class="o">.</span><span class="n">augment</span><span class="p">(</span><span class="n">intervals</span><span class="o">.</span><span class="n">major_second</span><span class="p">(</span><span class="n">note</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">res</span>
+</div>
+<div class="viewcode-block" id="eleventh"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.eleventh">[docs]</a><span class="k">def</span> <span class="nf">eleventh</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build an eleventh chord on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; eleventh(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;G&#39;, &#39;Bb&#39;, &#39;F&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">note</span><span class="p">,</span> <span class="n">intervals</span><span class="o">.</span><span class="n">perfect_fifth</span><span class="p">(</span><span class="n">note</span><span class="p">),</span> <span class="n">intervals</span><span class="o">.</span><span class="n">minor_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">),</span>
+            <span class="n">intervals</span><span class="o">.</span><span class="n">perfect_fourth</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="minor_eleventh"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.minor_eleventh">[docs]</a><span class="k">def</span> <span class="nf">minor_eleventh</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a minor eleventh chord on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; minor_eleventh(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;Eb&#39;, &#39;G&#39;, &#39;Bb&#39;, &#39;F&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">minor_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">intervals</span><span class="o">.</span><span class="n">perfect_fourth</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="minor_thirteenth"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.minor_thirteenth">[docs]</a><span class="k">def</span> <span class="nf">minor_thirteenth</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a minor thirteenth chord on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; minor_thirteenth(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;Eb&#39;, &#39;G&#39;, &#39;Bb&#39;, &#39;D&#39;, &#39;A&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">minor_ninth</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">intervals</span><span class="o">.</span><span class="n">major_sixth</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="major_thirteenth"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.major_thirteenth">[docs]</a><span class="k">def</span> <span class="nf">major_thirteenth</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a major thirteenth chord on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; major_thirteenth(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;E&#39;, &#39;G&#39;, &#39;B&#39;, &#39;D&#39;, &#39;A&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">major_ninth</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">intervals</span><span class="o">.</span><span class="n">major_sixth</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="dominant_thirteenth"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.dominant_thirteenth">[docs]</a><span class="k">def</span> <span class="nf">dominant_thirteenth</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a dominant thirteenth chord on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; dominant_thirteenth(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;E&#39;, &#39;G&#39;, &#39;Bb&#39;, &#39;D&#39;, &#39;A&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">dominant_ninth</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">intervals</span><span class="o">.</span><span class="n">major_sixth</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="suspended_triad"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.suspended_triad">[docs]</a><span class="k">def</span> <span class="nf">suspended_triad</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;An alias for suspended_fourth_triad.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">suspended_fourth_triad</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="suspended_second_triad"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.suspended_second_triad">[docs]</a><span class="k">def</span> <span class="nf">suspended_second_triad</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a suspended second triad on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; suspended_second_triad(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;D&#39;, &#39;G&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">note</span><span class="p">,</span> <span class="n">intervals</span><span class="o">.</span><span class="n">major_second</span><span class="p">(</span><span class="n">note</span><span class="p">),</span> <span class="n">intervals</span><span class="o">.</span><span class="n">perfect_fifth</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="suspended_fourth_triad"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.suspended_fourth_triad">[docs]</a><span class="k">def</span> <span class="nf">suspended_fourth_triad</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a suspended fourth triad on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; suspended_fourth_triad(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;F&#39;, &#39;G&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">note</span><span class="p">,</span> <span class="n">intervals</span><span class="o">.</span><span class="n">perfect_fourth</span><span class="p">(</span><span class="n">note</span><span class="p">),</span> <span class="n">intervals</span><span class="o">.</span><span class="n">perfect_fifth</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="suspended_seventh"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.suspended_seventh">[docs]</a><span class="k">def</span> <span class="nf">suspended_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a suspended (flat) seventh chord on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; suspended_seventh(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;F&#39;, &#39;G&#39;, &#39;Bb&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">suspended_fourth_triad</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">intervals</span><span class="o">.</span><span class="n">minor_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="suspended_fourth_ninth"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.suspended_fourth_ninth">[docs]</a><span class="k">def</span> <span class="nf">suspended_fourth_ninth</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a suspended fourth flat ninth chord on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; suspended_fourth_ninth(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;F&#39;, &#39;G&#39;, &#39;Db&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">suspended_fourth_triad</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">intervals</span><span class="o">.</span><span class="n">minor_second</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="augmented_major_seventh"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.augmented_major_seventh">[docs]</a><span class="k">def</span> <span class="nf">augmented_major_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build an augmented major seventh chord on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; augmented_major_seventh(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;E&#39;, &#39;G#&#39;, &#39;B&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">augmented_triad</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">intervals</span><span class="o">.</span><span class="n">major_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="augmented_minor_seventh"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.augmented_minor_seventh">[docs]</a><span class="k">def</span> <span class="nf">augmented_minor_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build an augmented minor seventh chord on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; augmented_minor_seventh(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;E&#39;, &#39;G#&#39;, &#39;Bb&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">augmented_triad</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">intervals</span><span class="o">.</span><span class="n">minor_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="dominant_flat_five"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.dominant_flat_five">[docs]</a><span class="k">def</span> <span class="nf">dominant_flat_five</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a dominant flat five chord on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; dominant_flat_five(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;E&#39;, &#39;Gb&#39;, &#39;Bb&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">dominant_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+    <span class="n">res</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">notes</span><span class="o">.</span><span class="n">diminish</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">res</span>
+</div>
+<div class="viewcode-block" id="lydian_dominant_seventh"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.lydian_dominant_seventh">[docs]</a><span class="k">def</span> <span class="nf">lydian_dominant_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build the lydian dominant seventh (7#11) on note.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; lydian_dominant_seventh(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;E&#39;, &#39;G&#39;, &#39;Bb&#39;, &#39;F#&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">dominant_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span>
+            <span class="p">[</span><span class="n">notes</span><span class="o">.</span><span class="n">augment</span><span class="p">(</span><span class="n">intervals</span><span class="o">.</span><span class="n">perfect_fourth</span><span class="p">(</span><span class="n">note</span><span class="p">))])</span>
+</div>
+<div class="viewcode-block" id="hendrix_chord"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.hendrix_chord">[docs]</a><span class="k">def</span> <span class="nf">hendrix_chord</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build the famous Hendrix chord (7b12).</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; hendrix_chord(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;E&#39;, &#39;G&#39;, &#39;Bb&#39;, &#39;Eb&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">dominant_seventh</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">intervals</span><span class="o">.</span><span class="n">minor_third</span><span class="p">(</span><span class="n">note</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="tonic"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.tonic">[docs]</a><span class="k">def</span> <span class="nf">tonic</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the tonic chord in key.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">    &gt;&gt;&gt; tonic(&#39;C&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;E&#39;, &#39;G&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; tonic(&#39;c&#39;)</span>
+<span class="sd">    [&#39;C&#39;, &#39;Eb&#39;, &#39;G&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">triads</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</div>
+<div class="viewcode-block" id="tonic7"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.tonic7">[docs]</a><span class="k">def</span> <span class="nf">tonic7</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the seventh chord in key.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">sevenths</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</div>
+<div class="viewcode-block" id="supertonic"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.supertonic">[docs]</a><span class="k">def</span> <span class="nf">supertonic</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the supertonic chord in key.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; supertonic(&#39;C&#39;)</span>
+<span class="sd">    [&#39;D&#39;, &#39;F&#39;, &#39;A&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">triads</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+</div>
+<div class="viewcode-block" id="supertonic7"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.supertonic7">[docs]</a><span class="k">def</span> <span class="nf">supertonic7</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the supertonic seventh chord in key.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">sevenths</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+</div>
+<div class="viewcode-block" id="mediant"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.mediant">[docs]</a><span class="k">def</span> <span class="nf">mediant</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the mediant chord in key.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; mediant(&#39;C&#39;)</span>
+<span class="sd">    [&#39;E&#39;, &#39;G&#39;, &#39;B&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">triads</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
+</div>
+<div class="viewcode-block" id="mediant7"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.mediant7">[docs]</a><span class="k">def</span> <span class="nf">mediant7</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the mediant seventh chord in key.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">sevenths</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
+</div>
+<div class="viewcode-block" id="subdominant"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.subdominant">[docs]</a><span class="k">def</span> <span class="nf">subdominant</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the subdominant chord in key.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; subdominant(&#39;C&#39;)</span>
+<span class="sd">    [&#39;F&#39;, &#39;A&#39;, &#39;C&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">triads</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="mi">3</span><span class="p">]</span>
+</div>
+<div class="viewcode-block" id="subdominant7"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.subdominant7">[docs]</a><span class="k">def</span> <span class="nf">subdominant7</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the subdominant seventh chord in key.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">sevenths</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="mi">3</span><span class="p">]</span>
+</div>
+<div class="viewcode-block" id="dominant"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.dominant">[docs]</a><span class="k">def</span> <span class="nf">dominant</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the dominant chord in key.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; dominant(&#39;C&#39;)</span>
+<span class="sd">    [&#39;G&#39;, &#39;B&#39;, &#39;D&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">triads</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="mi">4</span><span class="p">]</span>
+</div>
+<div class="viewcode-block" id="dominant7"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.dominant7">[docs]</a><span class="k">def</span> <span class="nf">dominant7</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the dominant seventh chord in key.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">sevenths</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="mi">4</span><span class="p">]</span>
+</div>
+<div class="viewcode-block" id="submediant"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.submediant">[docs]</a><span class="k">def</span> <span class="nf">submediant</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the submediant chord in key.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; submediant(&#39;C&#39;)</span>
+<span class="sd">    [&#39;A&#39;, &#39;C&#39;, &#39;E&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">triads</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="mi">5</span><span class="p">]</span>
+</div>
+<div class="viewcode-block" id="submediant7"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.submediant7">[docs]</a><span class="k">def</span> <span class="nf">submediant7</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the submediant seventh chord in key.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">sevenths</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="mi">5</span><span class="p">]</span>
+</div>
+<div class="viewcode-block" id="subtonic"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.subtonic">[docs]</a><span class="k">def</span> <span class="nf">subtonic</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the subtonic chord in key.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; subtonic(&#39;C&#39;)</span>
+<span class="sd">    [&#39;B&#39;, &#39;D&#39;, &#39;F&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">triads</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="mi">6</span><span class="p">]</span>
+</div>
+<div class="viewcode-block" id="subtonic7"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.subtonic7">[docs]</a><span class="k">def</span> <span class="nf">subtonic7</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the subtonic seventh chord in key.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">sevenths</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="mi">6</span><span class="p">]</span>
+</div>
+<div class="viewcode-block" id="I"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.I">[docs]</a><span class="k">def</span> <span class="nf">I</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">tonic</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="I7"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.I7">[docs]</a><span class="k">def</span> <span class="nf">I7</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">tonic7</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="ii"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.ii">[docs]</a><span class="k">def</span> <span class="nf">ii</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">supertonic</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="II"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.II">[docs]</a><span class="k">def</span> <span class="nf">II</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">supertonic</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="ii7"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.ii7">[docs]</a><span class="k">def</span> <span class="nf">ii7</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">supertonic7</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="II7"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.II7">[docs]</a><span class="k">def</span> <span class="nf">II7</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">supertonic7</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="iii"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.iii">[docs]</a><span class="k">def</span> <span class="nf">iii</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">mediant</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="III"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.III">[docs]</a><span class="k">def</span> <span class="nf">III</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">mediant</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="iii7"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.iii7">[docs]</a><span class="k">def</span> <span class="nf">iii7</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">mediant7</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="III7"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.III7">[docs]</a><span class="k">def</span> <span class="nf">III7</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">mediant7</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="IV"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.IV">[docs]</a><span class="k">def</span> <span class="nf">IV</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">subdominant</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="IV7"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.IV7">[docs]</a><span class="k">def</span> <span class="nf">IV7</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">subdominant7</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="V"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.V">[docs]</a><span class="k">def</span> <span class="nf">V</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">dominant</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="V7"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.V7">[docs]</a><span class="k">def</span> <span class="nf">V7</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">dominant7</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="vi"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.vi">[docs]</a><span class="k">def</span> <span class="nf">vi</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">submediant</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="VI"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.VI">[docs]</a><span class="k">def</span> <span class="nf">VI</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">submediant</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="vi7"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.vi7">[docs]</a><span class="k">def</span> <span class="nf">vi7</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">submediant7</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="VI7"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.VI7">[docs]</a><span class="k">def</span> <span class="nf">VI7</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">submediant7</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="vii"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.vii">[docs]</a><span class="k">def</span> <span class="nf">vii</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">subtonic</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="VII"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.VII">[docs]</a><span class="k">def</span> <span class="nf">VII</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">subtonic</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="vii7"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.vii7">[docs]</a><span class="k">def</span> <span class="nf">vii7</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">subtonic</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="VII7"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.VII7">[docs]</a><span class="k">def</span> <span class="nf">VII7</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">subtonic7</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="invert"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.invert">[docs]</a><span class="k">def</span> <span class="nf">invert</span><span class="p">(</span><span class="n">chord</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Invert a given chord one time.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">chord</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="p">[</span><span class="n">chord</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+</div>
+<div class="viewcode-block" id="first_inversion"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.first_inversion">[docs]</a><span class="k">def</span> <span class="nf">first_inversion</span><span class="p">(</span><span class="n">chord</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the first inversion of a chord.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">invert</span><span class="p">(</span><span class="n">chord</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="second_inversion"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.second_inversion">[docs]</a><span class="k">def</span> <span class="nf">second_inversion</span><span class="p">(</span><span class="n">chord</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the second inversion of chord.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">invert</span><span class="p">(</span><span class="n">invert</span><span class="p">(</span><span class="n">chord</span><span class="p">))</span>
+</div>
+<div class="viewcode-block" id="third_inversion"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.third_inversion">[docs]</a><span class="k">def</span> <span class="nf">third_inversion</span><span class="p">(</span><span class="n">chord</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the third inversion of chord.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">invert</span><span class="p">(</span><span class="n">invert</span><span class="p">(</span><span class="n">invert</span><span class="p">(</span><span class="n">chord</span><span class="p">)))</span>
+</div>
+<div class="viewcode-block" id="from_shorthand"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.from_shorthand">[docs]</a><span class="k">def</span> <span class="nf">from_shorthand</span><span class="p">(</span><span class="n">shorthand_string</span><span class="p">,</span> <span class="n">slash</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Take a chord written in shorthand and return the notes in the chord.</span>
+
+<span class="sd">    The function can recognize triads, sevenths, sixths, ninths, elevenths,</span>
+<span class="sd">    thirteenths, slashed chords and a number of altered chords.</span>
+
+<span class="sd">    The second argument should not be given and is only used for a recursive</span>
+<span class="sd">    call when a slashed chord or polychord is found.</span>
+
+<span class="sd">    See http://tinyurl.com/3hn6v8u for a nice overview of chord patterns.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">    &gt;&gt;&gt; from_shorthand(&#39;Amin&#39;)</span>
+<span class="sd">    [&#39;A&#39;, &#39;C&#39;, &#39;E&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; from_shorthand(&#39;Am/M7&#39;)</span>
+<span class="sd">    [&#39;A&#39;, &#39;C&#39;, &#39;E&#39;, &#39;G#&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; from_shorthand(&#39;A&#39;)</span>
+<span class="sd">    [&#39;A&#39;, &#39;C#&#39;, &#39;E&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; from_shorthand(&#39;A/G&#39;)</span>
+<span class="sd">    [&#39;G&#39;, &#39;A&#39;, &#39;C#&#39;, &#39;E&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; from_shorthand(&#39;Dm|G&#39;)</span>
+<span class="sd">    [&#39;G&#39;, &#39;B&#39;, &#39;D&#39;, &#39;F&#39;, &#39;A&#39;]</span>
+
+<span class="sd">    Recognised abbreviations: the letters &quot;m&quot; and &quot;M&quot; in the following</span>
+<span class="sd">    abbreviations can always be substituted by respectively &quot;min&quot;, &quot;mi&quot; or</span>
+<span class="sd">    &quot;-&quot; and &quot;maj&quot; or &quot;ma&quot;.</span>
+<span class="sd">    </span>
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; from_shorthand(&#39;Amin7&#39;) == from_shorthand(&#39;Am7&#39;)</span>
+<span class="sd">    True</span>
+
+<span class="sd">    Triads: &#39;m&#39;, &#39;M&#39; or &#39;&#39;, &#39;dim&#39;</span>
+
+<span class="sd">    Sevenths: &#39;m7&#39;, &#39;M7&#39;, &#39;7&#39;, &#39;m7b5&#39;, &#39;dim7&#39;, &#39;m/M7&#39; or &#39;mM7&#39;</span>
+
+<span class="sd">    Augmented chords: &#39;aug&#39; or &#39;+&#39;, &#39;7#5&#39; or &#39;M7+5&#39;, &#39;M7+&#39;, &#39;m7+&#39;, &#39;7+&#39;</span>
+
+<span class="sd">    Suspended chords: &#39;sus4&#39;, &#39;sus2&#39;, &#39;sus47&#39; or &#39;7sus4&#39;, &#39;sus&#39;, &#39;11&#39;,</span>
+<span class="sd">    &#39;sus4b9&#39; or &#39;susb9&#39;</span>
+
+<span class="sd">    Sixths: &#39;6&#39;, &#39;m6&#39;, &#39;M6&#39;, &#39;6/7&#39; or &#39;67&#39;, &#39;6/9&#39; or &#39;69&#39;</span>
+
+<span class="sd">    Ninths: &#39;9&#39; or &#39;add9&#39;, &#39;M9&#39;, &#39;m9&#39;, &#39;7b9&#39;, &#39;7#9&#39;</span>
+
+<span class="sd">    Elevenths: &#39;11&#39; or &#39;add11&#39;, &#39;7#11&#39;, &#39;m11&#39;</span>
+
+<span class="sd">    Thirteenths: &#39;13&#39; or &#39;add13&#39;, &#39;M13&#39;, &#39;m13&#39;</span>
+
+<span class="sd">    Altered chords: &#39;7b5&#39;, &#39;7b9&#39;, &#39;7#9&#39;, &#39;67&#39; or &#39;6/7&#39;</span>
+
+<span class="sd">    Special: &#39;5&#39;, &#39;NC&#39;, &#39;hendrix&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c"># warning reduce??</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">shorthand_string</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">shorthand_string</span><span class="p">:</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">from_shorthand</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">res</span>
+    <span class="k">if</span> <span class="n">shorthand_string</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;NC&#39;</span><span class="p">,</span> <span class="s">&#39;N.C.&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+    <span class="c"># Shrink shorthand_string to a format recognised by chord_shorthand</span>
+    <span class="n">shorthand_string</span> <span class="o">=</span> <span class="n">shorthand_string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;min&#39;</span><span class="p">,</span> <span class="s">&#39;m&#39;</span><span class="p">)</span>
+    <span class="n">shorthand_string</span> <span class="o">=</span> <span class="n">shorthand_string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;mi&#39;</span><span class="p">,</span> <span class="s">&#39;m&#39;</span><span class="p">)</span>
+    <span class="n">shorthand_string</span> <span class="o">=</span> <span class="n">shorthand_string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;-&#39;</span><span class="p">,</span> <span class="s">&#39;m&#39;</span><span class="p">)</span>
+    <span class="n">shorthand_string</span> <span class="o">=</span> <span class="n">shorthand_string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;maj&#39;</span><span class="p">,</span> <span class="s">&#39;M&#39;</span><span class="p">)</span>
+    <span class="n">shorthand_string</span> <span class="o">=</span> <span class="n">shorthand_string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;ma&#39;</span><span class="p">,</span> <span class="s">&#39;M&#39;</span><span class="p">)</span>
+
+    <span class="c"># Get the note name</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">notes</span><span class="o">.</span><span class="n">is_valid_note</span><span class="p">(</span><span class="n">shorthand_string</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">raise</span> <span class="n">NoteFormatError</span><span class="p">,</span> <span class="s">&quot;Unrecognised note &#39;</span><span class="si">%s</span><span class="s">&#39; in chord &#39;</span><span class="si">%s</span><span class="s">&#39;&quot;</span>\
+             <span class="o">%</span> <span class="p">(</span><span class="n">shorthand_string</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">shorthand_string</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">shorthand_string</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c"># Look for accidentals</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">shorthand_string</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="s">&#39;#&#39;</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">+=</span> <span class="n">n</span>
+        <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="s">&#39;b&#39;</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">+=</span> <span class="n">n</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">break</span>
+
+    <span class="c"># Look for slashes and polychords &#39;|&#39;</span>
+    <span class="n">slash_index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">rest_of_string</span> <span class="o">=</span> <span class="n">shorthand_string</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">):]</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">rest_of_string</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="s">&#39;/&#39;</span><span class="p">:</span>
+            <span class="n">slash_index</span> <span class="o">=</span> <span class="n">s</span>
+        <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="s">&#39;|&#39;</span><span class="p">:</span>
+            <span class="c"># Generate polychord</span>
+            <span class="k">return</span> <span class="n">from_shorthand</span><span class="p">(</span><span class="n">shorthand_string</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">+</span> <span class="n">s</span><span class="p">],</span>
+                    <span class="n">from_shorthand</span><span class="p">(</span><span class="n">shorthand_string</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">+</span> <span class="n">s</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:]))</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c"># Generate slash chord</span>
+    <span class="k">if</span> <span class="n">slash_index</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">rest_of_string</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;m/M7&#39;</span><span class="p">,</span> <span class="s">&#39;6/9&#39;</span><span class="p">,</span> <span class="s">&#39;6/7&#39;</span><span class="p">]:</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">shorthand_string</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">+</span> <span class="n">slash_index</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">from_shorthand</span><span class="p">(</span><span class="n">shorthand_string</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">+</span> <span class="n">slash_index</span><span class="p">],</span>
+                              <span class="n">shorthand_string</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">+</span> <span class="n">slash_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:])</span>
+    <span class="n">shorthand_start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="n">short_chord</span> <span class="o">=</span> <span class="n">shorthand_string</span><span class="p">[</span><span class="n">shorthand_start</span><span class="p">:]</span>
+    <span class="k">if</span> <span class="n">chord_shorthand</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">short_chord</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">chord_shorthand</span><span class="p">[</span><span class="n">short_chord</span><span class="p">](</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">slash</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c"># Add slashed chords</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">slash</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">notes</span><span class="o">.</span><span class="n">is_valid_note</span><span class="p">(</span><span class="n">slash</span><span class="p">):</span>
+                    <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="n">slash</span><span class="p">]</span> <span class="o">+</span> <span class="n">res</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">NoteFormatError</span><span class="p">,</span> \
+                        <span class="s">&quot;Unrecognised note &#39;</span><span class="si">%s</span><span class="s">&#39; in slash chord&#39;</span><span class="si">%s</span><span class="s">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">slash</span><span class="p">,</span>
+                            <span class="n">slash</span> <span class="o">+</span> <span class="n">shorthand_string</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">slash</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+                <span class="c"># Add polychords</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="n">slash</span>
+                <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">res</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">n</span> <span class="o">!=</span> <span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                        <span class="n">r</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">r</span>
+        <span class="k">return</span> <span class="n">res</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">FormatError</span><span class="p">,</span> <span class="s">&#39;Unknown shorthand: </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">shorthand_string</span>
+</div>
+<div class="viewcode-block" id="determine"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.determine">[docs]</a><span class="k">def</span> <span class="nf">determine</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">shorthand</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">no_inversions</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">no_polychords</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Name a chord.</span>
+
+<span class="sd">    This function can determine almost every chord, from a simple triad to a</span>
+<span class="sd">    fourteen note polychord.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">chord</span> <span class="o">==</span> <span class="p">[]:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">chord</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">chord</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">chord</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">intervals</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="n">chord</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">chord</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">chord</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">determine_triad</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">shorthand</span><span class="p">,</span> <span class="n">no_inversions</span><span class="p">,</span> <span class="n">no_polychords</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">chord</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">determine_seventh</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">shorthand</span><span class="p">,</span> <span class="n">no_inversions</span><span class="p">,</span> <span class="n">no_polychords</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">chord</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">determine_extended_chord5</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">shorthand</span><span class="p">,</span> <span class="n">no_inversions</span><span class="p">,</span>
+                <span class="n">no_polychords</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">chord</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">determine_extended_chord6</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">shorthand</span><span class="p">,</span> <span class="n">no_inversions</span><span class="p">,</span>
+                <span class="n">no_polychords</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">chord</span><span class="p">)</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">determine_extended_chord7</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">shorthand</span><span class="p">,</span> <span class="n">no_inversions</span><span class="p">,</span>
+                <span class="n">no_polychords</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">determine_polychords</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">shorthand</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="determine_triad"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.determine_triad">[docs]</a><span class="k">def</span> <span class="nf">determine_triad</span><span class="p">(</span><span class="n">triad</span><span class="p">,</span> <span class="n">shorthand</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">no_inversions</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">placeholder</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Name the triad; return answers in a list.</span>
+
+<span class="sd">    The third argument should not be given. If shorthand is True the answers</span>
+<span class="sd">    will be in abbreviated form.</span>
+
+<span class="sd">    This function can determine major, minor, diminished and suspended</span>
+<span class="sd">    triads. Also knows about invertions.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">    &gt;&gt;&gt; determine_triad([&#39;A&#39;, &#39;C&#39;, &#39;E&#39;])</span>
+<span class="sd">    &#39;A minor triad&#39;</span>
+<span class="sd">    &gt;&gt;&gt; determine_triad([&#39;C&#39;, &#39;E&#39;, &#39;A&#39;])</span>
+<span class="sd">    &#39;A minor triad, first inversion&#39;</span>
+<span class="sd">    &gt;&gt;&gt; determine_triad([&#39;A&#39;, &#39;C&#39;, &#39;E&#39;], True)</span>
+<span class="sd">    &#39;Am&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">triad</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="c"># warning: raise exception: not a triad</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="k">def</span> <span class="nf">inversion_exhauster</span><span class="p">(</span><span class="n">triad</span><span class="p">,</span> <span class="n">shorthand</span><span class="p">,</span> <span class="n">tries</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Run tries every inversion and save the result.&quot;&quot;&quot;</span>
+        <span class="n">intval1</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="n">triad</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">triad</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">True</span><span class="p">)</span>
+        <span class="n">intval2</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="n">triad</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">triad</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="bp">True</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">add_result</span><span class="p">(</span><span class="n">short</span><span class="p">):</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">short</span><span class="p">,</span> <span class="n">tries</span><span class="p">,</span> <span class="n">triad</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+        <span class="n">intval</span> <span class="o">=</span> <span class="n">intval1</span> <span class="o">+</span> <span class="n">intval2</span>
+        <span class="k">if</span> <span class="n">intval</span> <span class="o">==</span> <span class="s">&#39;25&#39;</span><span class="p">:</span>
+            <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;sus2&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">intval</span> <span class="o">==</span> <span class="s">&#39;3b7&#39;</span><span class="p">:</span>
+            <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;dom7&#39;</span><span class="p">)</span>  <span class="c"># changed from just &#39;7&#39;</span>
+        <span class="k">elif</span> <span class="n">intval</span> <span class="o">==</span> <span class="s">&#39;3b5&#39;</span><span class="p">:</span>
+            <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;7b5&#39;</span><span class="p">)</span>  <span class="c"># why not b5?</span>
+        <span class="k">elif</span> <span class="n">intval</span> <span class="o">==</span> <span class="s">&#39;35&#39;</span><span class="p">:</span>
+            <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;M&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">intval</span> <span class="o">==</span> <span class="s">&#39;3#5&#39;</span><span class="p">:</span>
+            <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;aug&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">intval</span> <span class="o">==</span> <span class="s">&#39;36&#39;</span><span class="p">:</span>
+            <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;M6&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">intval</span> <span class="o">==</span> <span class="s">&#39;37&#39;</span><span class="p">:</span>
+            <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;M7&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">intval</span> <span class="o">==</span> <span class="s">&#39;b3b5&#39;</span><span class="p">:</span>
+            <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;dim&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">intval</span> <span class="o">==</span> <span class="s">&#39;b35&#39;</span><span class="p">:</span>
+            <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;m&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">intval</span> <span class="o">==</span> <span class="s">&#39;b36&#39;</span><span class="p">:</span>
+            <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;m6&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">intval</span> <span class="o">==</span> <span class="s">&#39;b3b7&#39;</span><span class="p">:</span>
+            <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;m7&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">intval</span> <span class="o">==</span> <span class="s">&#39;b37&#39;</span><span class="p">:</span>
+            <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;m/M7&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">intval</span> <span class="o">==</span> <span class="s">&#39;45&#39;</span><span class="p">:</span>
+            <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;sus4&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">intval</span> <span class="o">==</span> <span class="s">&#39;5b7&#39;</span><span class="p">:</span>
+            <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;m7&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">intval</span> <span class="o">==</span> <span class="s">&#39;57&#39;</span><span class="p">:</span>
+            <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;M7&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">tries</span> <span class="o">!=</span> <span class="mi">3</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">no_inversions</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">inversion_exhauster</span><span class="p">([</span><span class="n">triad</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="n">triad</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">shorthand</span><span class="p">,</span>
+                                       <span class="n">tries</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">shorthand</span><span class="p">:</span>
+                    <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">chord_shorthand_meaning</span><span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span>
+                            <span class="n">int_desc</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="k">return</span> <span class="n">res</span>
+    <span class="k">return</span> <span class="n">inversion_exhauster</span><span class="p">(</span><span class="n">triad</span><span class="p">,</span> <span class="n">shorthand</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[])</span>
+</div>
+<div class="viewcode-block" id="determine_seventh"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.determine_seventh">[docs]</a><span class="k">def</span> <span class="nf">determine_seventh</span><span class="p">(</span><span class="n">seventh</span><span class="p">,</span> <span class="n">shorthand</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">no_inversion</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">no_polychords</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Determine the type of seventh chord; return the results in a list,</span>
+<span class="sd">    ordered on inversions.</span>
+
+<span class="sd">    This function expects seventh to be a list of 4 notes.</span>
+
+<span class="sd">    If shorthand is set to True, results will be returned in chord shorthand</span>
+<span class="sd">    (&#39;Cmin7&#39;, etc.); inversions will be dropped in that case.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; determine_seventh([&#39;C&#39;, &#39;E&#39;, &#39;G&#39;, &#39;B&#39;])</span>
+<span class="sd">    [&#39;C major seventh&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">seventh</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="c"># warning raise exception: seventh chord is not a seventh chord</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="k">def</span> <span class="nf">inversion_exhauster</span><span class="p">(</span><span class="n">seventh</span><span class="p">,</span> <span class="n">shorthand</span><span class="p">,</span> <span class="n">tries</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">polychords</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Determine sevenths recursive functions.&quot;&quot;&quot;</span>
+        <span class="c"># Check whether the first three notes of seventh are part of some triad.</span>
+        <span class="n">triads</span> <span class="o">=</span> <span class="n">determine_triad</span><span class="p">(</span><span class="n">seventh</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+
+        <span class="c"># Get the interval between the first and last note</span>
+        <span class="n">intval3</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="n">seventh</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">seventh</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+
+        <span class="k">def</span> <span class="nf">add_result</span><span class="p">(</span><span class="n">short</span><span class="p">,</span> <span class="n">poly</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;Helper function.&quot;&quot;&quot;</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">short</span><span class="p">,</span> <span class="n">tries</span><span class="p">,</span> <span class="n">seventh</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">poly</span><span class="p">))</span>
+
+        <span class="c"># Recognizing polychords</span>
+        <span class="k">if</span> <span class="n">tries</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">no_polychords</span><span class="p">:</span>
+            <span class="n">polychords</span> <span class="o">=</span> <span class="n">polychords</span> <span class="o">+</span> <span class="n">determine_polychords</span><span class="p">(</span><span class="n">seventh</span><span class="p">,</span> <span class="n">shorthand</span><span class="p">)</span>
+
+        <span class="c"># Recognizing sevenths</span>
+        <span class="k">for</span> <span class="n">triad</span> <span class="ow">in</span> <span class="n">triads</span><span class="p">:</span>
+            <span class="c"># Basic triads</span>
+            <span class="n">triad</span> <span class="o">=</span> <span class="n">triad</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">seventh</span><span class="p">[</span><span class="mi">0</span><span class="p">]):]</span>
+            <span class="k">if</span> <span class="n">triad</span> <span class="o">==</span> <span class="s">&#39;m&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">intval3</span> <span class="o">==</span> <span class="s">&#39;minor seventh&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;m7&#39;</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">intval3</span> <span class="o">==</span> <span class="s">&#39;major seventh&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;m/M7&#39;</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">intval3</span> <span class="o">==</span> <span class="s">&#39;major sixth&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;m6&#39;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">triad</span> <span class="o">==</span> <span class="s">&#39;M&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">intval3</span> <span class="o">==</span> <span class="s">&#39;major seventh&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;M7&#39;</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">intval3</span> <span class="o">==</span> <span class="s">&#39;minor seventh&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;7&#39;</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">intval3</span> <span class="o">==</span> <span class="s">&#39;major sixth&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;M6&#39;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">triad</span> <span class="o">==</span> <span class="s">&#39;dim&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">intval3</span> <span class="o">==</span> <span class="s">&#39;minor seventh&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;m7b5&#39;</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">intval3</span> <span class="o">==</span> <span class="s">&#39;diminished seventh&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;dim7&#39;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">triad</span> <span class="o">==</span> <span class="s">&#39;aug&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">intval3</span> <span class="o">==</span> <span class="s">&#39;minor seventh&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;m7+&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">intval3</span> <span class="o">==</span> <span class="s">&#39;major seventh&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;M7+&#39;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">triad</span> <span class="o">==</span> <span class="s">&#39;sus4&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">intval3</span> <span class="o">==</span> <span class="s">&#39;minor seventh&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;sus47&#39;</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">intval3</span> <span class="o">==</span> <span class="s">&#39;minor second&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;sus4b9&#39;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">triad</span> <span class="o">==</span> <span class="s">&#39;m7&#39;</span><span class="p">:</span>
+
+            <span class="c"># Other</span>
+                <span class="k">if</span> <span class="n">intval3</span> <span class="o">==</span> <span class="s">&#39;perfect fourth&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;11&#39;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">triad</span> <span class="o">==</span> <span class="s">&#39;7b5&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">intval3</span> <span class="o">==</span> <span class="s">&#39;minor seventh&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;7b5&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">tries</span> <span class="o">!=</span> <span class="mi">4</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">no_inversion</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">inversion_exhauster</span><span class="p">([</span><span class="n">seventh</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="n">seventh</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">shorthand</span><span class="p">,</span>
+                    <span class="n">tries</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">polychords</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c"># Return results</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="c"># Reset seventh</span>
+            <span class="n">seventh</span> <span class="o">=</span> <span class="p">[</span><span class="n">seventh</span><span class="p">[</span><span class="mi">3</span><span class="p">]]</span> <span class="o">+</span> <span class="n">seventh</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">shorthand</span><span class="p">:</span>
+                    <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">chord_shorthand_meaning</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+                                <span class="o">+</span> <span class="n">int_desc</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="k">return</span> <span class="n">res</span> <span class="o">+</span> <span class="n">polychords</span>
+    <span class="k">return</span> <span class="n">inversion_exhauster</span><span class="p">(</span><span class="n">seventh</span><span class="p">,</span> <span class="n">shorthand</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[])</span>
+</div>
+<div class="viewcode-block" id="determine_extended_chord5"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.determine_extended_chord5">[docs]</a><span class="k">def</span> <span class="nf">determine_extended_chord5</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">shorthand</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">no_inversions</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">no_polychords</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Determine the names of an extended chord.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">chord</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="c"># warning raise exeption: not an extended chord</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="k">def</span> <span class="nf">inversion_exhauster</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">shorthand</span><span class="p">,</span> <span class="n">tries</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">polychords</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Recursive helper function.&quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="nf">add_result</span><span class="p">(</span><span class="n">short</span><span class="p">):</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">short</span><span class="p">,</span> <span class="n">tries</span><span class="p">,</span> <span class="n">chord</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+        <span class="n">triads</span> <span class="o">=</span> <span class="n">determine_triad</span><span class="p">(</span><span class="n">chord</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+        <span class="n">sevenths</span> <span class="o">=</span> <span class="n">determine_seventh</span><span class="p">(</span><span class="n">chord</span><span class="p">[:</span><span class="mi">4</span><span class="p">],</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+
+        <span class="c"># Determine polychords</span>
+        <span class="k">if</span> <span class="n">tries</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">no_polychords</span><span class="p">:</span>
+            <span class="n">polychords</span> <span class="o">+=</span> <span class="n">determine_polychords</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">shorthand</span><span class="p">)</span>
+
+        <span class="n">intval4</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="n">chord</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">chord</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">seventh</span> <span class="ow">in</span> <span class="n">sevenths</span><span class="p">:</span>
+            <span class="n">seventh</span> <span class="o">=</span> <span class="n">seventh</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">chord</span><span class="p">[</span><span class="mi">0</span><span class="p">]):]</span>
+            <span class="k">if</span> <span class="n">seventh</span> <span class="o">==</span> <span class="s">&#39;M7&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">intval4</span> <span class="o">==</span> <span class="s">&#39;major second&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;M9&#39;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">seventh</span> <span class="o">==</span> <span class="s">&#39;m7&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">intval4</span> <span class="o">==</span> <span class="s">&#39;major second&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;m9&#39;</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">intval4</span> <span class="o">==</span> <span class="s">&#39;perfect fourth&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;m11&#39;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">seventh</span> <span class="o">==</span> <span class="s">&#39;7&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">intval4</span> <span class="o">==</span> <span class="s">&#39;major second&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;9&#39;</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">intval4</span> <span class="o">==</span> <span class="s">&#39;minor second&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;7b9&#39;</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">intval4</span> <span class="o">==</span> <span class="s">&#39;augmented second&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;7#9&#39;</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">intval4</span> <span class="o">==</span> <span class="s">&#39;minor third&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;7b12&#39;</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">intval4</span> <span class="o">==</span> <span class="s">&#39;augmented fourth&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;7#11&#39;</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">intval4</span> <span class="o">==</span> <span class="s">&#39;major sixth&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;13&#39;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">seventh</span> <span class="o">==</span> <span class="s">&#39;M6&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">intval4</span> <span class="o">==</span> <span class="s">&#39;major second&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;6/9&#39;</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">intval4</span> <span class="o">==</span> <span class="s">&#39;minor seventh&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;6/7&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">tries</span> <span class="o">!=</span> <span class="mi">5</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">no_inversions</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">inversion_exhauster</span><span class="p">([</span><span class="n">chord</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="n">chord</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">shorthand</span><span class="p">,</span>
+                    <span class="n">tries</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">polychords</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">shorthand</span><span class="p">:</span>
+                    <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">chord_shorthand_meaning</span><span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+                                <span class="o">+</span> <span class="n">int_desc</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="k">return</span> <span class="n">res</span> <span class="o">+</span> <span class="n">polychords</span>
+
+    <span class="k">return</span> <span class="n">inversion_exhauster</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">shorthand</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[])</span>
+</div>
+<div class="viewcode-block" id="determine_extended_chord6"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.determine_extended_chord6">[docs]</a><span class="k">def</span> <span class="nf">determine_extended_chord6</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">shorthand</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">no_inversions</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">no_polychords</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Determine the names of an 6 note chord.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">chord</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">6</span><span class="p">:</span>
+        <span class="c"># warning raise exeption: not an extended chord</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="k">def</span> <span class="nf">inversion_exhauster</span><span class="p">(</span>
+        <span class="n">chord</span><span class="p">,</span>
+        <span class="n">shorthand</span><span class="p">,</span>
+        <span class="n">tries</span><span class="p">,</span>
+        <span class="n">result</span><span class="p">,</span>
+        <span class="n">polychords</span><span class="p">,</span>
+        <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Recursive helper function&quot;&quot;&quot;</span>
+
+        <span class="c"># Determine polychords</span>
+        <span class="k">if</span> <span class="n">tries</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">no_polychords</span><span class="p">:</span>
+            <span class="n">polychords</span> <span class="o">+=</span> <span class="n">determine_polychords</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">shorthand</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">add_result</span><span class="p">(</span><span class="n">short</span><span class="p">):</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">short</span><span class="p">,</span> <span class="n">tries</span><span class="p">,</span> <span class="n">chord</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+        <span class="n">ch</span> <span class="o">=</span> <span class="n">determine_extended_chord5</span><span class="p">(</span><span class="n">chord</span><span class="p">[:</span><span class="mi">5</span><span class="p">],</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+        <span class="n">intval5</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="n">chord</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">chord</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">ch</span><span class="p">:</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">chord</span><span class="p">[</span><span class="mi">0</span><span class="p">]):]</span>
+            <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="s">&#39;9&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">intval5</span> <span class="o">==</span> <span class="s">&#39;perfect fourth&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;11&#39;</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">intval5</span> <span class="o">==</span> <span class="s">&#39;augmented fourth&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;7#11&#39;</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">intval5</span> <span class="o">==</span> <span class="s">&#39;major sixth&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;13&#39;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="s">&#39;m9&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">intval5</span> <span class="o">==</span> <span class="s">&#39;perfect fourth&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;m11&#39;</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">intval5</span> <span class="o">==</span> <span class="s">&#39;major sixth&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;m13&#39;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="s">&#39;M9&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">intval5</span> <span class="o">==</span> <span class="s">&#39;perfect fourth&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;M11&#39;</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">intval5</span> <span class="o">==</span> <span class="s">&#39;major sixth&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;M13&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">tries</span> <span class="o">!=</span> <span class="mi">6</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">no_inversions</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">inversion_exhauster</span><span class="p">([</span><span class="n">chord</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="n">chord</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">shorthand</span><span class="p">,</span>
+                    <span class="n">tries</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">polychords</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">shorthand</span><span class="p">:</span>
+                    <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">chord_shorthand_meaning</span><span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span>
+                            <span class="n">int_desc</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="k">return</span> <span class="n">res</span> <span class="o">+</span> <span class="n">polychords</span>
+    <span class="k">return</span> <span class="n">inversion_exhauster</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">shorthand</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[])</span>
+</div>
+<div class="viewcode-block" id="determine_extended_chord7"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.determine_extended_chord7">[docs]</a><span class="k">def</span> <span class="nf">determine_extended_chord7</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">shorthand</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">no_inversions</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">no_polychords</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Determine the names of an 7 note chord.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">chord</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">7</span><span class="p">:</span>
+        <span class="c"># warning raise exeption: not an extended chord</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="k">def</span> <span class="nf">inversion_exhauster</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">shorthand</span><span class="p">,</span> <span class="n">tries</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">polychords</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Recursive helper function.&quot;&quot;&quot;</span>
+        <span class="c"># Determine polychords</span>
+        <span class="k">if</span> <span class="n">tries</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">no_polychords</span><span class="p">:</span>
+            <span class="n">polychords</span> <span class="o">+=</span> <span class="n">determine_polychords</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">shorthand</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">add_result</span><span class="p">(</span><span class="n">short</span><span class="p">):</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">short</span><span class="p">,</span> <span class="n">tries</span><span class="p">,</span> <span class="n">chord</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+        <span class="n">ch</span> <span class="o">=</span> <span class="n">determine_extended_chord6</span><span class="p">(</span><span class="n">chord</span><span class="p">[:</span><span class="mi">6</span><span class="p">],</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+        <span class="n">intval6</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="n">chord</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">chord</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">ch</span><span class="p">:</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">chord</span><span class="p">[</span><span class="mi">0</span><span class="p">]):]</span>
+            <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="s">&#39;11&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">intval6</span> <span class="o">==</span> <span class="s">&#39;major sixth&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;13&#39;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="s">&#39;m11&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">intval6</span> <span class="o">==</span> <span class="s">&#39;major sixth&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;m13&#39;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="s">&#39;M11&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">intval6</span> <span class="o">==</span> <span class="s">&#39;major sixth&#39;</span><span class="p">:</span>
+                    <span class="n">add_result</span><span class="p">(</span><span class="s">&#39;M13&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">tries</span> <span class="o">!=</span> <span class="mi">6</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">inversion_exhauster</span><span class="p">([</span><span class="n">chord</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="n">chord</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">shorthand</span><span class="p">,</span>
+                                       <span class="n">tries</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">polychords</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">shorthand</span><span class="p">:</span>
+                    <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">chord_shorthand_meaning</span><span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+                                <span class="o">+</span> <span class="n">int_desc</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="k">return</span> <span class="n">res</span> <span class="o">+</span> <span class="n">polychords</span>
+
+    <span class="k">return</span> <span class="n">inversion_exhauster</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">shorthand</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[])</span>
+</div>
+<div class="viewcode-block" id="int_desc"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.int_desc">[docs]</a><span class="k">def</span> <span class="nf">int_desc</span><span class="p">(</span><span class="n">tries</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the inversion of the triad in a string.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tries</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s">&#39;&#39;</span>
+    <span class="k">elif</span> <span class="n">tries</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s">&#39;, first inversion&#39;</span>
+    <span class="k">elif</span> <span class="n">tries</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s">&#39;, second inversion&#39;</span>
+    <span class="k">elif</span> <span class="n">tries</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s">&#39;, third inversion&#39;</span>
+</div>
+<div class="viewcode-block" id="determine_polychords"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreChords.html#mingus.core.chords.determine_polychords">[docs]</a><span class="k">def</span> <span class="nf">determine_polychords</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">shorthand</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Determine the polychords in chord.</span>
+<span class="sd">    </span>
+<span class="sd">    This function can handle anything from polychords based on two triads to</span>
+<span class="sd">    6 note extended chords.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">polychords</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">function_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">determine_triad</span><span class="p">,</span> <span class="n">determine_seventh</span><span class="p">,</span>
+                     <span class="n">determine_extended_chord5</span><span class="p">,</span> <span class="n">determine_extended_chord6</span><span class="p">,</span>
+                     <span class="n">determine_extended_chord7</span><span class="p">]</span>
+
+    <span class="c"># Range tracking.</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">chord</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">chord</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">14</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">chord</span><span class="p">)</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="n">function_nr</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">chord</span><span class="p">)</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">function_nr</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">function_nr</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">f2</span> <span class="ow">in</span> <span class="n">function_nr</span><span class="p">:</span>
+            <span class="c"># The clever part: Try the function_list[f] on the len(chord) - (3 +</span>
+            <span class="c"># f) last notes of the chord. Then try the function_list[f2] on the</span>
+            <span class="c"># f2 + 3 first notes of the chord. Thus, trying all possible</span>
+            <span class="c"># combinations.</span>
+            <span class="k">for</span> <span class="n">chord1</span> <span class="ow">in</span> <span class="n">function_list</span><span class="p">[</span><span class="n">f</span><span class="p">](</span><span class="n">chord</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">chord</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="n">f</span><span class="p">):],</span> <span class="bp">True</span><span class="p">,</span>
+                    <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">chord2</span> <span class="ow">in</span> <span class="n">function_list</span><span class="p">[</span><span class="n">f2</span><span class="p">](</span><span class="n">chord</span><span class="p">[:</span><span class="n">f2</span> <span class="o">+</span> <span class="mi">3</span><span class="p">],</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span>
+                        <span class="bp">True</span><span class="p">):</span>
+                    <span class="n">polychords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">|</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">chord1</span><span class="p">,</span> <span class="n">chord2</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">shorthand</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">polychords</span><span class="p">:</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="s">&#39; polychord&#39;</span>
+    <span class="k">return</span> <span class="n">polychords</span>
+
+<span class="c"># A dictionairy that can be used to present chord abbreviations. This</span>
+<span class="c"># dictionairy is also used in from_shorthand()</span></div>
+<span class="n">chord_shorthand</span> <span class="o">=</span> <span class="p">{</span>  <span class="c"># Triads Augmented chords Suspended chords Sevenths Sixths</span>
+                     <span class="c"># Ninths Elevenths Thirteenths Altered Chords Special</span>
+    <span class="s">&#39;m&#39;</span><span class="p">:</span> <span class="n">minor_triad</span><span class="p">,</span>
+    <span class="s">&#39;M&#39;</span><span class="p">:</span> <span class="n">major_triad</span><span class="p">,</span>
+    <span class="s">&#39;&#39;</span><span class="p">:</span> <span class="n">major_triad</span><span class="p">,</span>
+    <span class="s">&#39;dim&#39;</span><span class="p">:</span> <span class="n">diminished_triad</span><span class="p">,</span>
+    <span class="s">&#39;aug&#39;</span><span class="p">:</span> <span class="n">augmented_triad</span><span class="p">,</span>
+    <span class="s">&#39;+&#39;</span><span class="p">:</span> <span class="n">augmented_triad</span><span class="p">,</span>
+    <span class="s">&#39;7#5&#39;</span><span class="p">:</span> <span class="n">augmented_minor_seventh</span><span class="p">,</span>
+    <span class="s">&#39;M7+5&#39;</span><span class="p">:</span> <span class="n">augmented_minor_seventh</span><span class="p">,</span>
+    <span class="s">&#39;M7+&#39;</span><span class="p">:</span> <span class="n">augmented_major_seventh</span><span class="p">,</span>
+    <span class="s">&#39;m7+&#39;</span><span class="p">:</span> <span class="n">augmented_minor_seventh</span><span class="p">,</span>
+    <span class="s">&#39;7+&#39;</span><span class="p">:</span> <span class="n">augmented_major_seventh</span><span class="p">,</span>
+    <span class="s">&#39;sus47&#39;</span><span class="p">:</span> <span class="n">suspended_seventh</span><span class="p">,</span>
+    <span class="s">&#39;sus4&#39;</span><span class="p">:</span> <span class="n">suspended_fourth_triad</span><span class="p">,</span>
+    <span class="s">&#39;sus2&#39;</span><span class="p">:</span> <span class="n">suspended_second_triad</span><span class="p">,</span>
+    <span class="s">&#39;sus&#39;</span><span class="p">:</span> <span class="n">suspended_triad</span><span class="p">,</span>
+    <span class="s">&#39;11&#39;</span><span class="p">:</span> <span class="n">eleventh</span><span class="p">,</span>
+    <span class="s">&#39;sus4b9&#39;</span><span class="p">:</span> <span class="n">suspended_fourth_ninth</span><span class="p">,</span>
+    <span class="s">&#39;susb9&#39;</span><span class="p">:</span> <span class="n">suspended_fourth_ninth</span><span class="p">,</span>
+    <span class="s">&#39;m7&#39;</span><span class="p">:</span> <span class="n">minor_seventh</span><span class="p">,</span>
+    <span class="s">&#39;M7&#39;</span><span class="p">:</span> <span class="n">major_seventh</span><span class="p">,</span>
+    <span class="s">&#39;7&#39;</span><span class="p">:</span> <span class="n">dominant_seventh</span><span class="p">,</span>
+    <span class="s">&#39;dom7&#39;</span><span class="p">:</span> <span class="n">dominant_seventh</span><span class="p">,</span>
+    <span class="s">&#39;m7b5&#39;</span><span class="p">:</span> <span class="n">minor_seventh_flat_five</span><span class="p">,</span>
+    <span class="s">&#39;dim7&#39;</span><span class="p">:</span> <span class="n">diminished_seventh</span><span class="p">,</span>
+    <span class="s">&#39;m/M7&#39;</span><span class="p">:</span> <span class="n">minor_major_seventh</span><span class="p">,</span>
+    <span class="s">&#39;mM7&#39;</span><span class="p">:</span> <span class="n">minor_major_seventh</span><span class="p">,</span>
+    <span class="s">&#39;m6&#39;</span><span class="p">:</span> <span class="n">minor_sixth</span><span class="p">,</span>
+    <span class="s">&#39;M6&#39;</span><span class="p">:</span> <span class="n">major_sixth</span><span class="p">,</span>
+    <span class="s">&#39;6&#39;</span><span class="p">:</span> <span class="n">major_sixth</span><span class="p">,</span>
+    <span class="s">&#39;6/7&#39;</span><span class="p">:</span> <span class="n">dominant_sixth</span><span class="p">,</span>
+    <span class="s">&#39;67&#39;</span><span class="p">:</span> <span class="n">dominant_sixth</span><span class="p">,</span>
+    <span class="s">&#39;6/9&#39;</span><span class="p">:</span> <span class="n">sixth_ninth</span><span class="p">,</span>
+    <span class="s">&#39;69&#39;</span><span class="p">:</span> <span class="n">sixth_ninth</span><span class="p">,</span>
+    <span class="s">&#39;9&#39;</span><span class="p">:</span> <span class="n">dominant_ninth</span><span class="p">,</span>
+    <span class="s">&#39;7b9&#39;</span><span class="p">:</span> <span class="n">dominant_flat_ninth</span><span class="p">,</span>
+    <span class="s">&#39;7#9&#39;</span><span class="p">:</span> <span class="n">dominant_sharp_ninth</span><span class="p">,</span>
+    <span class="s">&#39;M9&#39;</span><span class="p">:</span> <span class="n">major_ninth</span><span class="p">,</span>
+    <span class="s">&#39;m9&#39;</span><span class="p">:</span> <span class="n">minor_ninth</span><span class="p">,</span>
+    <span class="s">&#39;7#11&#39;</span><span class="p">:</span> <span class="n">lydian_dominant_seventh</span><span class="p">,</span>
+    <span class="s">&#39;m11&#39;</span><span class="p">:</span> <span class="n">minor_eleventh</span><span class="p">,</span>
+    <span class="s">&#39;M13&#39;</span><span class="p">:</span> <span class="n">major_thirteenth</span><span class="p">,</span>
+    <span class="s">&#39;m13&#39;</span><span class="p">:</span> <span class="n">minor_thirteenth</span><span class="p">,</span>
+    <span class="s">&#39;13&#39;</span><span class="p">:</span> <span class="n">dominant_thirteenth</span><span class="p">,</span>
+    <span class="s">&#39;7b5&#39;</span><span class="p">:</span> <span class="n">dominant_flat_five</span><span class="p">,</span>
+    <span class="s">&#39;hendrix&#39;</span><span class="p">:</span> <span class="n">hendrix_chord</span><span class="p">,</span>
+    <span class="s">&#39;7b12&#39;</span><span class="p">:</span> <span class="n">hendrix_chord</span><span class="p">,</span>
+    <span class="s">&#39;5&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">intervals</span><span class="o">.</span><span class="n">perfect_fifth</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
+    <span class="p">}</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -39,6 +39,9 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="refMingusCoreKeys.html" title="mingus.core.keys"
              accesskey="N">next</a> |</li>
         <li class="right" >
@@ -53,7 +56,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="mingus-core-scales">
+  <span class="target" id="module-mingus.core.scales"></span><div class="section" id="mingus-core-scales">
 <h1>mingus.core.scales<a class="headerlink" href="#mingus-core-scales" title="Permalink to this headline">¶</a></h1>
 <p>Module for dealing with scales.</p>
 <p>The scales module allows you to create a plethora of scales. Here&#8217;s a
@@ -100,16 +103,16 @@ little overview:</p>
 </dl>
 <hr class="docutils" />
 <dl class="data">
-<dt id="keys">
-<code class="descname">keys</code><a class="headerlink" href="#keys" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.scales.keys">
+<code class="descclassname">mingus.core.scales.</code><code class="descname">keys</code><a class="headerlink" href="#mingus.core.scales.keys" title="Permalink to this definition">¶</a></dt>
 <dd><p>Attribute of type: list
 <code class="docutils literal"><span class="pre">[('Cb',</span> <span class="pre">'ab'),</span> <span class="pre">('Gb',</span> <span class="pre">'eb'),</span> <span class="pre">('Db',</span> <span class="pre">'bb'),</span> <span class="pre">('Ab',</span> <span class="pre">'f'),</span> <span class="pre">('Eb',</span> <span class="pre">'c'),</span> <span class="pre">('Bb',</span> <span class="pre">'g'),</span> <span class="pre">('F',</span> <span class="pre">'d'),</span> <span class="pre">('C',</span> <span class="pre">'a'),</span> <span class="pre">('G',</span> <span class="pre">'e'),</span> <span class="pre">('D',</span> <span class="pre">'b'),</span> <span class="pre">('A',</span> <span class="pre">'f#'),</span> <span class="pre">('E',</span> <span class="pre">'c#'),</span> <span class="pre">('B',</span> <span class="pre">'g#'),</span> <span class="pre">('F#',</span> <span class="pre">'d#'),</span> <span class="pre">('C#',</span> <span class="pre">'a#')]</span></code></p>
 </dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="augment">
-<code class="descname">augment</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#augment" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.scales.augment">
+<code class="descclassname">mingus.core.scales.</code><code class="descname">augment</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/notes.html#augment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.scales.augment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Augment a given note.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">augment</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
@@ -122,8 +125,8 @@ little overview:</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="determine">
-<code class="descname">determine</code><span class="sig-paren">(</span><em>notes</em><span class="sig-paren">)</span><a class="headerlink" href="#determine" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.scales.determine">
+<code class="descclassname">mingus.core.scales.</code><code class="descname">determine</code><span class="sig-paren">(</span><em>notes</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/scales.html#determine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.scales.determine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Determine the scales containing the notes.</p>
 <p>All major and minor scales are recognized.</p>
 <p>Example:</p>
@@ -135,8 +138,8 @@ little overview:</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="diminish">
-<code class="descname">diminish</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#diminish" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.scales.diminish">
+<code class="descclassname">mingus.core.scales.</code><code class="descname">diminish</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/notes.html#diminish"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.scales.diminish" title="Permalink to this definition">¶</a></dt>
 <dd><p>Diminish a given note.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diminish</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
@@ -149,8 +152,8 @@ little overview:</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="get_notes">
-<code class="descname">get_notes</code><span class="sig-paren">(</span><em>key=C</em><span class="sig-paren">)</span><a class="headerlink" href="#get_notes" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.scales.get_notes">
+<code class="descclassname">mingus.core.scales.</code><code class="descname">get_notes</code><span class="sig-paren">(</span><em>key=C</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/keys.html#get_notes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.scales.get_notes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return an ordered list of the notes in this natural key.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">get_notes</span><span class="p">(</span><span class="s">&#39;F&#39;</span><span class="p">)</span>
@@ -163,8 +166,8 @@ little overview:</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="reduce_accidentals">
-<code class="descname">reduce_accidentals</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#reduce_accidentals" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.scales.reduce_accidentals">
+<code class="descclassname">mingus.core.scales.</code><code class="descname">reduce_accidentals</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/notes.html#reduce_accidentals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.scales.reduce_accidentals" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reduce any extra accidentals to proper notes.</p>
 <p>Example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">reduce_accidentals</span><span class="p">(</span><span class="s">&#39;C####&#39;</span><span class="p">)</span>

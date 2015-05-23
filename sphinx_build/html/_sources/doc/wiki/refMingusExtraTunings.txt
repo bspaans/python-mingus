@@ -1,3 +1,5 @@
+.. module:: mingus.extra.tunings
+
 ====================
 mingus.extra.tunings
 ====================

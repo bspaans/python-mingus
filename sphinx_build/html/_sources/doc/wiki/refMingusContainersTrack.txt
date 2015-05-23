@@ -1,3 +1,5 @@
+.. module:: mingus.containers.track
+
 =======================
 mingus.containers.track
 =======================

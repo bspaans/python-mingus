@@ -1,3 +1,5 @@
+.. module:: mingus.containers.bar
+
 =====================
 mingus.containers.bar
 =====================

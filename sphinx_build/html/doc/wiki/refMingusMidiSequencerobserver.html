@@ -39,6 +39,9 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="refMingusMidiMidi_events.html" title="mingus.midi.midi_events"
              accesskey="N">next</a> |</li>
         <li class="right" >
@@ -53,7 +56,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="mingus-midi-sequencerobserver">
+  <span class="target" id="module-mingus.midi.SequencerObserver"></span><div class="section" id="mingus-midi-sequencerobserver">
 <h1>mingus.midi.SequencerObserver<a class="headerlink" href="#mingus-midi-sequencerobserver" title="Permalink to this headline">¶</a></h1>
 <p>An easy to extend base class that can be used to observe a Sequencer.</p>
 <blockquote>
@@ -63,92 +66,92 @@ the proper function so you only have to implement the functions for the
 events you need to see.</div></blockquote>
 <hr class="docutils" />
 <dl class="function">
-<dt id="cc_event">
-<code class="descname">cc_event</code><span class="sig-paren">(</span><em>self</em>, <em>channel</em>, <em>control</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#cc_event" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.midi.SequencerObserver.cc_event">
+<code class="descclassname">mingus.midi.SequencerObserver.</code><code class="descname">cc_event</code><span class="sig-paren">(</span><em>self</em>, <em>channel</em>, <em>control</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.SequencerObserver.cc_event" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="instr_event">
-<code class="descname">instr_event</code><span class="sig-paren">(</span><em>self</em>, <em>channel</em>, <em>instr</em>, <em>bank</em><span class="sig-paren">)</span><a class="headerlink" href="#instr_event" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.midi.SequencerObserver.instr_event">
+<code class="descclassname">mingus.midi.SequencerObserver.</code><code class="descname">instr_event</code><span class="sig-paren">(</span><em>self</em>, <em>channel</em>, <em>instr</em>, <em>bank</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.SequencerObserver.instr_event" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="notify">
-<code class="descname">notify</code><span class="sig-paren">(</span><em>self</em>, <em>msg_type</em>, <em>params</em><span class="sig-paren">)</span><a class="headerlink" href="#notify" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.midi.SequencerObserver.notify">
+<code class="descclassname">mingus.midi.SequencerObserver.</code><code class="descname">notify</code><span class="sig-paren">(</span><em>self</em>, <em>msg_type</em>, <em>params</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.SequencerObserver.notify" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="play_Bar">
-<code class="descname">play_Bar</code><span class="sig-paren">(</span><em>self</em>, <em>bar</em>, <em>channel</em>, <em>bpm</em><span class="sig-paren">)</span><a class="headerlink" href="#play_Bar" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.midi.SequencerObserver.play_Bar">
+<code class="descclassname">mingus.midi.SequencerObserver.</code><code class="descname">play_Bar</code><span class="sig-paren">(</span><em>self</em>, <em>bar</em>, <em>channel</em>, <em>bpm</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.SequencerObserver.play_Bar" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="play_Bars">
-<code class="descname">play_Bars</code><span class="sig-paren">(</span><em>self</em>, <em>bars</em>, <em>channels</em>, <em>bpm</em><span class="sig-paren">)</span><a class="headerlink" href="#play_Bars" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.midi.SequencerObserver.play_Bars">
+<code class="descclassname">mingus.midi.SequencerObserver.</code><code class="descname">play_Bars</code><span class="sig-paren">(</span><em>self</em>, <em>bars</em>, <em>channels</em>, <em>bpm</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.SequencerObserver.play_Bars" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="play_Composition">
-<code class="descname">play_Composition</code><span class="sig-paren">(</span><em>self</em>, <em>composition</em>, <em>channels</em>, <em>bpm</em><span class="sig-paren">)</span><a class="headerlink" href="#play_Composition" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.midi.SequencerObserver.play_Composition">
+<code class="descclassname">mingus.midi.SequencerObserver.</code><code class="descname">play_Composition</code><span class="sig-paren">(</span><em>self</em>, <em>composition</em>, <em>channels</em>, <em>bpm</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.SequencerObserver.play_Composition" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="play_Note">
-<code class="descname">play_Note</code><span class="sig-paren">(</span><em>self</em>, <em>note</em>, <em>channel</em>, <em>velocity</em><span class="sig-paren">)</span><a class="headerlink" href="#play_Note" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.midi.SequencerObserver.play_Note">
+<code class="descclassname">mingus.midi.SequencerObserver.</code><code class="descname">play_Note</code><span class="sig-paren">(</span><em>self</em>, <em>note</em>, <em>channel</em>, <em>velocity</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.SequencerObserver.play_Note" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="play_NoteContainer">
-<code class="descname">play_NoteContainer</code><span class="sig-paren">(</span><em>self</em>, <em>notes</em>, <em>channel</em><span class="sig-paren">)</span><a class="headerlink" href="#play_NoteContainer" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.midi.SequencerObserver.play_NoteContainer">
+<code class="descclassname">mingus.midi.SequencerObserver.</code><code class="descname">play_NoteContainer</code><span class="sig-paren">(</span><em>self</em>, <em>notes</em>, <em>channel</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.SequencerObserver.play_NoteContainer" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="play_Track">
-<code class="descname">play_Track</code><span class="sig-paren">(</span><em>self</em>, <em>track</em>, <em>channel</em>, <em>bpm</em><span class="sig-paren">)</span><a class="headerlink" href="#play_Track" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.midi.SequencerObserver.play_Track">
+<code class="descclassname">mingus.midi.SequencerObserver.</code><code class="descname">play_Track</code><span class="sig-paren">(</span><em>self</em>, <em>track</em>, <em>channel</em>, <em>bpm</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.SequencerObserver.play_Track" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="play_Tracks">
-<code class="descname">play_Tracks</code><span class="sig-paren">(</span><em>self</em>, <em>tracks</em>, <em>channels</em>, <em>bpm</em><span class="sig-paren">)</span><a class="headerlink" href="#play_Tracks" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.midi.SequencerObserver.play_Tracks">
+<code class="descclassname">mingus.midi.SequencerObserver.</code><code class="descname">play_Tracks</code><span class="sig-paren">(</span><em>self</em>, <em>tracks</em>, <em>channels</em>, <em>bpm</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.SequencerObserver.play_Tracks" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="play_int_note_event">
-<code class="descname">play_int_note_event</code><span class="sig-paren">(</span><em>self</em>, <em>int_note</em>, <em>channel</em>, <em>velocity</em><span class="sig-paren">)</span><a class="headerlink" href="#play_int_note_event" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.midi.SequencerObserver.play_int_note_event">
+<code class="descclassname">mingus.midi.SequencerObserver.</code><code class="descname">play_int_note_event</code><span class="sig-paren">(</span><em>self</em>, <em>int_note</em>, <em>channel</em>, <em>velocity</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.SequencerObserver.play_int_note_event" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="sleep">
-<code class="descname">sleep</code><span class="sig-paren">(</span><em>self</em>, <em>seconds</em><span class="sig-paren">)</span><a class="headerlink" href="#sleep" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.midi.SequencerObserver.sleep">
+<code class="descclassname">mingus.midi.SequencerObserver.</code><code class="descname">sleep</code><span class="sig-paren">(</span><em>self</em>, <em>seconds</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.SequencerObserver.sleep" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="stop_Note">
-<code class="descname">stop_Note</code><span class="sig-paren">(</span><em>self</em>, <em>note</em>, <em>channel</em><span class="sig-paren">)</span><a class="headerlink" href="#stop_Note" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.midi.SequencerObserver.stop_Note">
+<code class="descclassname">mingus.midi.SequencerObserver.</code><code class="descname">stop_Note</code><span class="sig-paren">(</span><em>self</em>, <em>note</em>, <em>channel</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.SequencerObserver.stop_Note" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="stop_NoteContainer">
-<code class="descname">stop_NoteContainer</code><span class="sig-paren">(</span><em>self</em>, <em>notes</em>, <em>channel</em><span class="sig-paren">)</span><a class="headerlink" href="#stop_NoteContainer" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.midi.SequencerObserver.stop_NoteContainer">
+<code class="descclassname">mingus.midi.SequencerObserver.</code><code class="descname">stop_NoteContainer</code><span class="sig-paren">(</span><em>self</em>, <em>notes</em>, <em>channel</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.SequencerObserver.stop_NoteContainer" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="stop_int_note_event">
-<code class="descname">stop_int_note_event</code><span class="sig-paren">(</span><em>self</em>, <em>int_note</em>, <em>channel</em><span class="sig-paren">)</span><a class="headerlink" href="#stop_int_note_event" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.midi.SequencerObserver.stop_int_note_event">
+<code class="descclassname">mingus.midi.SequencerObserver.</code><code class="descname">stop_int_note_event</code><span class="sig-paren">(</span><em>self</em>, <em>int_note</em>, <em>channel</em><span class="sig-paren">)</span><a class="headerlink" href="#mingus.midi.SequencerObserver.stop_int_note_event" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />

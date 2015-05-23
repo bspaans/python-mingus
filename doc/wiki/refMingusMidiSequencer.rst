@@ -1,3 +1,5 @@
+.. module:: mingus.midi.sequencer
+
 =====================
 mingus.midi.sequencer
 =====================

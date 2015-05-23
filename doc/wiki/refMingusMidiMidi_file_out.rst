@@ -1,3 +1,5 @@
+.. module:: mingus.midi.midi_file_out
+
 =========================
 mingus.midi.midi_file_out
 =========================

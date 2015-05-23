@@ -39,6 +39,9 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="refMingusExtraStringtuning.html" title="mingus.extra.StringTuning"
              accesskey="N">next</a> |</li>
         <li class="right" >
@@ -53,14 +56,14 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="mingus-extra-tunings">
+  <span class="target" id="module-mingus.extra.tunings"></span><div class="section" id="mingus-extra-tunings">
 <h1>mingus.extra.tunings<a class="headerlink" href="#mingus-extra-tunings" title="Permalink to this headline">¶</a></h1>
 <p>Dozens of standard tunings, a StringTuning class and some functions to help
 you search through them.</p>
 <hr class="docutils" />
 <dl class="function">
-<dt id="add_tuning">
-<code class="descname">add_tuning</code><span class="sig-paren">(</span><em>instrument</em>, <em>description</em>, <em>tuning</em><span class="sig-paren">)</span><a class="headerlink" href="#add_tuning" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.extra.tunings.add_tuning">
+<code class="descclassname">mingus.extra.tunings.</code><code class="descname">add_tuning</code><span class="sig-paren">(</span><em>instrument</em>, <em>description</em>, <em>tuning</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/extra/tunings.html#add_tuning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.extra.tunings.add_tuning" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a new tuning to the index.</p>
 <p>The instrument and description parameters should be strings; tuning
 should be a list of strings or a list of lists to denote courses.</p>
@@ -75,23 +78,23 @@ should be a list of strings or a list of lists to denote courses.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="fingers_needed">
-<code class="descname">fingers_needed</code><span class="sig-paren">(</span><em>fingering</em><span class="sig-paren">)</span><a class="headerlink" href="#fingers_needed" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.extra.tunings.fingers_needed">
+<code class="descclassname">mingus.extra.tunings.</code><code class="descname">fingers_needed</code><span class="sig-paren">(</span><em>fingering</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/extra/tunings.html#fingers_needed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.extra.tunings.fingers_needed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the number of fingers needed to play the given fingering.</p>
 </dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="get_instruments">
-<code class="descname">get_instruments</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#get_instruments" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.extra.tunings.get_instruments">
+<code class="descclassname">mingus.extra.tunings.</code><code class="descname">get_instruments</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/extra/tunings.html#get_instruments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.extra.tunings.get_instruments" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a sorted list of instruments that have string tunings defined
 for them.</p>
 </dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="get_tuning">
-<code class="descname">get_tuning</code><span class="sig-paren">(</span><em>instrument</em>, <em>description</em>, <em>nr_of_strings=None</em>, <em>nr_of_courses=None</em><span class="sig-paren">)</span><a class="headerlink" href="#get_tuning" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.extra.tunings.get_tuning">
+<code class="descclassname">mingus.extra.tunings.</code><code class="descname">get_tuning</code><span class="sig-paren">(</span><em>instrument</em>, <em>description</em>, <em>nr_of_strings=None</em>, <em>nr_of_courses=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/extra/tunings.html#get_tuning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.extra.tunings.get_tuning" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the first tuning that satisfies the constraints.</p>
 <p>The instrument and description arguments are treated like
 case-insensitive prefixes. So search for &#8216;bass&#8217; is the same is
@@ -105,8 +108,8 @@ case-insensitive prefixes. So search for &#8216;bass&#8217; is the same is
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="get_tunings">
-<code class="descname">get_tunings</code><span class="sig-paren">(</span><em>instrument=None</em>, <em>nr_of_strings=None</em>, <em>nr_of_courses=None</em><span class="sig-paren">)</span><a class="headerlink" href="#get_tunings" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.extra.tunings.get_tunings">
+<code class="descclassname">mingus.extra.tunings.</code><code class="descname">get_tunings</code><span class="sig-paren">(</span><em>instrument=None</em>, <em>nr_of_strings=None</em>, <em>nr_of_courses=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/extra/tunings.html#get_tunings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.extra.tunings.get_tunings" title="Permalink to this definition">¶</a></dt>
 <dd><p>Search tunings on instrument, strings, courses or a combination.</p>
 <p>The instrument is actually treated like a case-insensitive prefix. So
 asking for &#8216;bass&#8217; yields the same tunings as &#8216;Bass Guitar&#8217;; the string

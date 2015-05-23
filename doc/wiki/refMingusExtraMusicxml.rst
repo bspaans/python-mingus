@@ -1,3 +1,5 @@
+.. module:: mingus.extra.musicxml
+
 =====================
 mingus.extra.musicxml
 =====================
@@ -135,7 +137,7 @@ http://www.musicxml.org/xml.html
 .. attribute:: documentElement
 
    Attribute of type: property
-   ``<property object at 0x7f0e9d417310>``
+   ``<property object at 0x7ff492bf2310>``
 
 ----
 
@@ -163,28 +165,28 @@ http://www.musicxml.org/xml.html
 .. attribute:: firstChild
 
    Attribute of type: property
-   ``<property object at 0x7f0e9d471680>``
+   ``<property object at 0x7ff492c4c680>``
 
 ----
 
 .. attribute:: implementation
 
    Attribute of type: instance
-   ``<xml.dom.minidom.DOMImplementation instance at 0x7f0e9d411950>``
+   ``<xml.dom.minidom.DOMImplementation instance at 0x7ff492bec950>``
 
 ----
 
 .. attribute:: lastChild
 
    Attribute of type: property
-   ``<property object at 0x7f0e9d471788>``
+   ``<property object at 0x7ff492c4c788>``
 
 ----
 
 .. attribute:: localName
 
    Attribute of type: property
-   ``<property object at 0x7f0e9d471db8>``
+   ``<property object at 0x7ff492c4cdb8>``
 
 ----
 

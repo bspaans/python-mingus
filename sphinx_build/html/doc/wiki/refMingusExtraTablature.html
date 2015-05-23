@@ -39,6 +39,9 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="refMingusExtraFft.html" title="mingus.extra.fft"
              accesskey="N">next</a> |</li>
         <li class="right" >
@@ -53,35 +56,35 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="mingus-extra-tablature">
+  <span class="target" id="module-mingus.extra.tablature"></span><div class="section" id="mingus-extra-tablature">
 <h1>mingus.extra.tablature<a class="headerlink" href="#mingus-extra-tablature" title="Permalink to this headline">¶</a></h1>
 <p>Functions to convert mingus.containers to pretty ASCII tablature.</p>
 <hr class="docutils" />
 <dl class="data">
-<dt id="default_tuning">
-<code class="descname">default_tuning</code><a class="headerlink" href="#default_tuning" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.extra.tablature.default_tuning">
+<code class="descclassname">mingus.extra.tablature.</code><code class="descname">default_tuning</code><a class="headerlink" href="#mingus.extra.tablature.default_tuning" title="Permalink to this definition">¶</a></dt>
 <dd><p>Attribute of type: mingus.extra.tunings.StringTuning
-<code class="docutils literal"><span class="pre">&lt;mingus.extra.tunings.StringTuning</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7f0e9fbfde90&gt;</span></code></p>
+<code class="docutils literal"><span class="pre">&lt;mingus.extra.tunings.StringTuning</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7ff4953d8e90&gt;</span></code></p>
 </dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="_get_qsize">
-<code class="descname">_get_qsize</code><span class="sig-paren">(</span><em>tuning</em>, <em>width</em><span class="sig-paren">)</span><a class="headerlink" href="#_get_qsize" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.extra.tablature._get_qsize">
+<code class="descclassname">mingus.extra.tablature.</code><code class="descname">_get_qsize</code><span class="sig-paren">(</span><em>tuning</em>, <em>width</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/extra/tablature.html#_get_qsize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.extra.tablature._get_qsize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a reasonable quarter note size for &#8216;tuning&#8217; and &#8216;width&#8217;.</p>
 </dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="_get_width">
-<code class="descname">_get_width</code><span class="sig-paren">(</span><em>maxwidth</em><span class="sig-paren">)</span><a class="headerlink" href="#_get_width" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.extra.tablature._get_width">
+<code class="descclassname">mingus.extra.tablature.</code><code class="descname">_get_width</code><span class="sig-paren">(</span><em>maxwidth</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/extra/tablature.html#_get_width"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.extra.tablature._get_width" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the width of a single bar, when width of the page is given.</p>
 </dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="add_headers">
-<code class="descname">add_headers</code><span class="sig-paren">(</span><em>width=80</em>, <em>title=Untitled</em>, <em>subtitle=</em>, <em>author=</em>, <em>email=</em>, <em>description=</em>, <em>tunings=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#add_headers" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.extra.tablature.add_headers">
+<code class="descclassname">mingus.extra.tablature.</code><code class="descname">add_headers</code><span class="sig-paren">(</span><em>width=80</em>, <em>title=Untitled</em>, <em>subtitle=</em>, <em>author=</em>, <em>email=</em>, <em>description=</em>, <em>tunings=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/extra/tablature.html#add_headers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.extra.tablature.add_headers" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a nice header in the form of a list of strings using the
 information that has been filled in.</p>
 <p>All arguments except &#8216;width&#8217; and &#8216;tunings&#8217; should be strings. &#8216;width&#8217;
@@ -91,15 +94,15 @@ instruments.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="begin_track">
-<code class="descname">begin_track</code><span class="sig-paren">(</span><em>tuning</em>, <em>padding=2</em><span class="sig-paren">)</span><a class="headerlink" href="#begin_track" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.extra.tablature.begin_track">
+<code class="descclassname">mingus.extra.tablature.</code><code class="descname">begin_track</code><span class="sig-paren">(</span><em>tuning</em>, <em>padding=2</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/extra/tablature.html#begin_track"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.extra.tablature.begin_track" title="Permalink to this definition">¶</a></dt>
 <dd><p>Helper function that builds the first few characters of every bar.</p>
 </dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="from_Bar">
-<code class="descname">from_Bar</code><span class="sig-paren">(</span><em>bar</em>, <em>width=40</em>, <em>tuning=None</em>, <em>collapse=True</em><span class="sig-paren">)</span><a class="headerlink" href="#from_Bar" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.extra.tablature.from_Bar">
+<code class="descclassname">mingus.extra.tablature.</code><code class="descname">from_Bar</code><span class="sig-paren">(</span><em>bar</em>, <em>width=40</em>, <em>tuning=None</em>, <em>collapse=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/extra/tablature.html#from_Bar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.extra.tablature.from_Bar" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert a mingus.containers.Bar object to ASCII tablature.</p>
 <p>Throw a FingerError if no playable fingering can be found.</p>
 <p>&#8216;tuning&#8217; should be a StringTuning object or None for the default tuning.
@@ -110,8 +113,8 @@ all lines will be concatenated with a newline symbol.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="from_Composition">
-<code class="descname">from_Composition</code><span class="sig-paren">(</span><em>composition</em>, <em>width=80</em><span class="sig-paren">)</span><a class="headerlink" href="#from_Composition" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.extra.tablature.from_Composition">
+<code class="descclassname">mingus.extra.tablature.</code><code class="descname">from_Composition</code><span class="sig-paren">(</span><em>composition</em>, <em>width=80</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/extra/tablature.html#from_Composition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.extra.tablature.from_Composition" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert a mingus.containers.Composition to an ASCII tablature string.</p>
 <p>Automatically add an header based on the title, subtitle, author, e-mail
 and description attributes. An extra description of the piece can also
@@ -122,8 +125,8 @@ attribute.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="from_Note">
-<code class="descname">from_Note</code><span class="sig-paren">(</span><em>note</em>, <em>width=80</em>, <em>tuning=None</em><span class="sig-paren">)</span><a class="headerlink" href="#from_Note" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.extra.tablature.from_Note">
+<code class="descclassname">mingus.extra.tablature.</code><code class="descname">from_Note</code><span class="sig-paren">(</span><em>note</em>, <em>width=80</em>, <em>tuning=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/extra/tablature.html#from_Note"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.extra.tablature.from_Note" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a string made out of ASCII tablature representing a Note object
 or note string.</p>
 <p>Throw a RangeError if a suitable fret can&#8217;t be found.</p>
@@ -135,8 +138,8 @@ default one.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="from_NoteContainer">
-<code class="descname">from_NoteContainer</code><span class="sig-paren">(</span><em>notes</em>, <em>width=80</em>, <em>tuning=None</em><span class="sig-paren">)</span><a class="headerlink" href="#from_NoteContainer" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.extra.tablature.from_NoteContainer">
+<code class="descclassname">mingus.extra.tablature.</code><code class="descname">from_NoteContainer</code><span class="sig-paren">(</span><em>notes</em>, <em>width=80</em>, <em>tuning=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/extra/tablature.html#from_NoteContainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.extra.tablature.from_NoteContainer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a string made out of ASCII tablature representing a
 NoteContainer object or list of note strings / Note objects.</p>
 <p>Throw a FingerError if no playable fingering can be found.</p>
@@ -148,8 +151,8 @@ instead of the default one.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="from_Suite">
-<code class="descname">from_Suite</code><span class="sig-paren">(</span><em>suite</em>, <em>maxwidth=80</em><span class="sig-paren">)</span><a class="headerlink" href="#from_Suite" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.extra.tablature.from_Suite">
+<code class="descclassname">mingus.extra.tablature.</code><code class="descname">from_Suite</code><span class="sig-paren">(</span><em>suite</em>, <em>maxwidth=80</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/extra/tablature.html#from_Suite"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.extra.tablature.from_Suite" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert a mingus.containers.Suite to an ASCII tablature string, complete
 with headers.</p>
 <p>This function makes use of the Suite&#8217;s title, subtitle, author, email
@@ -158,8 +161,8 @@ and description attributes.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="from_Track">
-<code class="descname">from_Track</code><span class="sig-paren">(</span><em>track</em>, <em>maxwidth=80</em>, <em>tuning=None</em><span class="sig-paren">)</span><a class="headerlink" href="#from_Track" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.extra.tablature.from_Track">
+<code class="descclassname">mingus.extra.tablature.</code><code class="descname">from_Track</code><span class="sig-paren">(</span><em>track</em>, <em>maxwidth=80</em>, <em>tuning=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/extra/tablature.html#from_Track"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.extra.tablature.from_Track" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert a mingus.containers.Track object to an ASCII tablature string.</p>
 <p>&#8216;tuning&#8217; should be set to a StringTuning object or to None to use the
 Track&#8217;s tuning (or alternatively the default if the Track hasn&#8217;t got its

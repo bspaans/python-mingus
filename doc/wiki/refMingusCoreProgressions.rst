@@ -1,3 +1,5 @@
+.. module:: mingus.core.progressions
+
 ========================
 mingus.core.progressions
 ========================

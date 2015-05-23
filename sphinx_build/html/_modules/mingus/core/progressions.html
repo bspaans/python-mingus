@@ -1,0 +1,588 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mingus.core.progressions &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">mingus 0.5.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for mingus.core.progressions</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="c">#    mingus - Music theory Python package, progressions module.</span>
+<span class="c">#    Copyright (C) 2008-2009, Bart Spaans</span>
+<span class="c">#</span>
+<span class="c">#    This program is free software: you can redistribute it and/or modify</span>
+<span class="c">#    it under the terms of the GNU General Public License as published by</span>
+<span class="c">#    the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c">#    (at your option) any later version.</span>
+<span class="c">#</span>
+<span class="c">#    This program is distributed in the hope that it will be useful,</span>
+<span class="c">#    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c">#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c">#    GNU General Public License for more details.</span>
+<span class="c">#</span>
+<span class="c">#    You should have received a copy of the GNU General Public License</span>
+<span class="c">#    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="sd">&quot;&quot;&quot;Module for dealing with progressions.</span>
+
+<span class="sd">In music and music theory you often deal with sequencesi of chords. These</span>
+<span class="sd">chord sequences are called progressions and are often written down using</span>
+<span class="sd">roman numerals. In this system the &#39;I&#39; refers to the first natural triad in</span>
+<span class="sd">a key, the II to the second, etc. We can add prefixes and suffixes to denote</span>
+<span class="sd">more complex progressions, like: #V7, bIIdim7, etc.</span>
+
+<span class="sd">This module provides methods which can convert progressions to chords and</span>
+<span class="sd">vice versa.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">notes</span>
+<span class="kn">import</span> <span class="nn">chords</span>
+<span class="kn">import</span> <span class="nn">intervals</span>
+<span class="n">numerals</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;II&#39;</span><span class="p">,</span> <span class="s">&#39;III&#39;</span><span class="p">,</span> <span class="s">&#39;IV&#39;</span><span class="p">,</span> <span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="s">&#39;VI&#39;</span><span class="p">,</span> <span class="s">&#39;VII&#39;</span><span class="p">]</span>
+<span class="n">numeral_intervals</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
+
+<div class="viewcode-block" id="to_chords"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreProgressions.html#mingus.core.progressions.to_chords">[docs]</a><span class="k">def</span> <span class="nf">to_chords</span><span class="p">(</span><span class="n">progression</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s">&#39;C&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert a list of chord functions or a string to a list of chords.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">    &gt;&gt;&gt; to_chords([&#39;I&#39;, &#39;V7&#39;])</span>
+<span class="sd">    [[&#39;C&#39;, &#39;E&#39;, &#39;G&#39;], [&#39;G&#39;, &#39;B&#39;, &#39;D&#39;, &#39;F&#39;]]</span>
+<span class="sd">    &gt;&gt;&gt; to_chords(&#39;I7&#39;)</span>
+<span class="sd">    [[&#39;C&#39;, &#39;E&#39;, &#39;G&#39;, &#39;B&#39;]]</span>
+
+<span class="sd">    Any number of accidentals can be used as prefix to augment or diminish;</span>
+<span class="sd">    for example: bIV or #I.</span>
+<span class="sd">    </span>
+<span class="sd">    All the chord abbreviations in the chord module can be used as suffixes;</span>
+<span class="sd">    for example: Im7, IVdim7, etc.</span>
+<span class="sd">    </span>
+<span class="sd">    You can combine prefixes and suffixes to manage complex progressions:</span>
+<span class="sd">    #vii7, #iidim7, iii7, etc.</span>
+<span class="sd">    </span>
+<span class="sd">    Using 7 as suffix is ambiguous, since it is classicly used to denote the</span>
+<span class="sd">    seventh chord when talking about progressions instead of just the</span>
+<span class="sd">    dominant seventh chord. We have taken the classic route; I7 will get</span>
+<span class="sd">    you a major seventh chord. If you specifically want a dominanth seventh,</span>
+<span class="sd">    use Idom7.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">progression</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">progression</span> <span class="o">=</span> <span class="p">[</span><span class="n">progression</span><span class="p">]</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">chord</span> <span class="ow">in</span> <span class="n">progression</span><span class="p">:</span>
+        <span class="c"># strip preceding accidentals from the string</span>
+        <span class="p">(</span><span class="n">roman_numeral</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">suffix</span><span class="p">)</span> <span class="o">=</span> <span class="n">parse_string</span><span class="p">(</span><span class="n">chord</span><span class="p">)</span>
+
+        <span class="c"># There is no roman numeral parsing, just a simple check. Sorry to</span>
+        <span class="c"># disappoint. warning Should throw exception</span>
+        <span class="k">if</span> <span class="n">roman_numeral</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">numerals</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+
+        <span class="c"># These suffixes don&#39;t need any post processing</span>
+        <span class="k">if</span> <span class="n">suffix</span> <span class="o">==</span> <span class="s">&#39;7&#39;</span> <span class="ow">or</span> <span class="n">suffix</span> <span class="o">==</span> <span class="s">&#39;&#39;</span><span class="p">:</span>
+            <span class="n">roman_numeral</span> <span class="o">+=</span> <span class="n">suffix</span>
+
+            <span class="c"># ahh Python. Everything is a dict.</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">chords</span><span class="o">.</span><span class="n">__dict__</span><span class="p">[</span><span class="n">roman_numeral</span><span class="p">](</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">chords</span><span class="o">.</span><span class="n">__dict__</span><span class="p">[</span><span class="n">roman_numeral</span><span class="p">](</span><span class="n">key</span><span class="p">)</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">chords</span><span class="o">.</span><span class="n">chord_shorthand</span><span class="p">[</span><span class="n">suffix</span><span class="p">](</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="k">while</span> <span class="n">acc</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">notes</span><span class="o">.</span><span class="n">diminish</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+            <span class="n">acc</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">acc</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">notes</span><span class="o">.</span><span class="n">augment</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+            <span class="n">acc</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+</div>
+<div class="viewcode-block" id="determine"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreProgressions.html#mingus.core.progressions.determine">[docs]</a><span class="k">def</span> <span class="nf">determine</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">shorthand</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Determine the harmonic function of chord in key.</span>
+
+<span class="sd">    This function can also deal with lists of chords.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">    &gt;&gt;&gt; determine([&#39;C&#39;, &#39;E&#39;, &#39;G&#39;], &#39;C&#39;)</span>
+<span class="sd">    [&#39;tonic&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; determine([&#39;G&#39;, &#39;B&#39;, &#39;D&#39;], &#39;C&#39;)</span>
+<span class="sd">    [&#39;dominant&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; determine([&#39;G&#39;, &#39;B&#39;, &#39;D&#39;, &#39;F&#39;], &#39;C&#39;, True)</span>
+<span class="sd">    [&#39;V7&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; determine([[&#39;C&#39;, &#39;E&#39;, &#39;G&#39;], [&#39;G&#39;, &#39;B&#39;, &#39;D&#39;]], &#39;C&#39;, True)</span>
+<span class="sd">    [[&#39;I&#39;], [&#39;V&#39;]]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c"># Handle lists of chords</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">chord</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chord</span><span class="p">:</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">determine</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">shorthand</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="n">func_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&#39;I&#39;</span><span class="p">:</span> <span class="s">&#39;tonic&#39;</span><span class="p">,</span>
+        <span class="s">&#39;ii&#39;</span><span class="p">:</span> <span class="s">&#39;supertonic&#39;</span><span class="p">,</span>
+        <span class="s">&#39;iii&#39;</span><span class="p">:</span> <span class="s">&#39;mediant&#39;</span><span class="p">,</span>
+        <span class="s">&#39;IV&#39;</span><span class="p">:</span> <span class="s">&#39;subdominant&#39;</span><span class="p">,</span>
+        <span class="s">&#39;V&#39;</span><span class="p">:</span> <span class="s">&#39;dominant&#39;</span><span class="p">,</span>
+        <span class="s">&#39;vi&#39;</span><span class="p">:</span> <span class="s">&#39;submediant&#39;</span><span class="p">,</span>
+        <span class="s">&#39;vii&#39;</span><span class="p">:</span> <span class="s">&#39;subtonic&#39;</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="n">expected_chord</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;M&#39;</span><span class="p">,</span> <span class="s">&#39;M7&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s">&#39;ii&#39;</span><span class="p">,</span> <span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="s">&#39;m7&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s">&#39;iii&#39;</span><span class="p">,</span> <span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="s">&#39;m7&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s">&#39;IV&#39;</span><span class="p">,</span> <span class="s">&#39;M&#39;</span><span class="p">,</span> <span class="s">&#39;M7&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="s">&#39;M&#39;</span><span class="p">,</span> <span class="s">&#39;7&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s">&#39;vi&#39;</span><span class="p">,</span> <span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="s">&#39;m7&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s">&#39;vii&#39;</span><span class="p">,</span> <span class="s">&#39;dim&#39;</span><span class="p">,</span> <span class="s">&#39;m7b5&#39;</span><span class="p">],</span>
+        <span class="p">]</span>
+    <span class="n">type_of_chord</span> <span class="o">=</span> <span class="n">chords</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">chord</span> <span class="ow">in</span> <span class="n">type_of_chord</span><span class="p">:</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">chord</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="c"># Get accidentals</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">chord</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+            <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="s">&#39;b&#39;</span><span class="p">:</span>
+                <span class="n">name</span> <span class="o">+=</span> <span class="s">&#39;b&#39;</span>
+            <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="s">&#39;#&#39;</span><span class="p">:</span>
+                <span class="n">name</span> <span class="o">+=</span> <span class="s">&#39;#&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">a</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">chord_type</span> <span class="o">=</span> <span class="n">chord</span><span class="p">[</span><span class="n">a</span><span class="p">:]</span>
+
+        <span class="c"># Determine chord function</span>
+        <span class="p">(</span><span class="n">interval_type</span><span class="p">,</span> <span class="n">interval</span><span class="p">)</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">interval</span> <span class="o">==</span> <span class="s">&#39;unison&#39;</span><span class="p">:</span>
+            <span class="n">func</span> <span class="o">=</span> <span class="s">&#39;I&#39;</span>
+        <span class="k">elif</span> <span class="n">interval</span> <span class="o">==</span> <span class="s">&#39;second&#39;</span><span class="p">:</span>
+            <span class="n">func</span> <span class="o">=</span> <span class="s">&#39;ii&#39;</span>
+        <span class="k">elif</span> <span class="n">interval</span> <span class="o">==</span> <span class="s">&#39;third&#39;</span><span class="p">:</span>
+            <span class="n">func</span> <span class="o">=</span> <span class="s">&#39;iii&#39;</span>
+        <span class="k">elif</span> <span class="n">interval</span> <span class="o">==</span> <span class="s">&#39;fourth&#39;</span><span class="p">:</span>
+            <span class="n">func</span> <span class="o">=</span> <span class="s">&#39;IV&#39;</span>
+        <span class="k">elif</span> <span class="n">interval</span> <span class="o">==</span> <span class="s">&#39;fifth&#39;</span><span class="p">:</span>
+            <span class="n">func</span> <span class="o">=</span> <span class="s">&#39;V&#39;</span>
+        <span class="k">elif</span> <span class="n">interval</span> <span class="o">==</span> <span class="s">&#39;sixth&#39;</span><span class="p">:</span>
+            <span class="n">func</span> <span class="o">=</span> <span class="s">&#39;vi&#39;</span>
+        <span class="k">elif</span> <span class="n">interval</span> <span class="o">==</span> <span class="s">&#39;seventh&#39;</span><span class="p">:</span>
+            <span class="n">func</span> <span class="o">=</span> <span class="s">&#39;vii&#39;</span>
+
+        <span class="c"># Check whether the chord is altered or not</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">expected_chord</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">func</span><span class="p">:</span>
+                <span class="c"># Triads</span>
+                <span class="k">if</span> <span class="n">chord_type</span> <span class="o">==</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">shorthand</span><span class="p">:</span>
+                        <span class="n">func</span> <span class="o">=</span> <span class="n">func_dict</span><span class="p">[</span><span class="n">func</span><span class="p">]</span>
+                <span class="k">elif</span> <span class="n">chord_type</span> <span class="o">==</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span>
+                    <span class="c"># Sevenths</span>
+                    <span class="k">if</span> <span class="n">shorthand</span><span class="p">:</span>
+                        <span class="n">func</span> <span class="o">+=</span> <span class="s">&#39;7&#39;</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">func</span> <span class="o">=</span> <span class="n">func_dict</span><span class="p">[</span><span class="n">func</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39; seventh&#39;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c"># Other</span>
+                    <span class="k">if</span> <span class="n">shorthand</span><span class="p">:</span>
+                        <span class="n">func</span> <span class="o">+=</span> <span class="n">chord_type</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">func</span> <span class="o">=</span> <span class="n">func_dict</span><span class="p">[</span><span class="n">func</span><span class="p">]</span>\
+                             <span class="o">+</span> <span class="n">chords</span><span class="o">.</span><span class="n">chord_shorthand_meaning</span><span class="p">[</span><span class="n">chord_type</span><span class="p">]</span>
+
+        <span class="c"># Handle b&#39;s and #&#39;s (for instance Dbm in key C is bII)</span>
+        <span class="k">if</span> <span class="n">shorthand</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">interval_type</span> <span class="o">==</span> <span class="s">&#39;minor&#39;</span><span class="p">:</span>
+                <span class="n">func</span> <span class="o">=</span> <span class="s">&#39;b&#39;</span> <span class="o">+</span> <span class="n">func</span>
+            <span class="k">elif</span> <span class="n">interval_type</span> <span class="o">==</span> <span class="s">&#39;augmented&#39;</span><span class="p">:</span>
+                <span class="n">func</span> <span class="o">=</span> <span class="s">&#39;#&#39;</span> <span class="o">+</span> <span class="n">func</span>
+            <span class="k">elif</span> <span class="n">interval_type</span> <span class="o">==</span> <span class="s">&#39;diminished&#39;</span><span class="p">:</span>
+                <span class="n">func</span> <span class="o">=</span> <span class="s">&#39;bb&#39;</span> <span class="o">+</span> <span class="n">func</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">interval_type</span> <span class="o">==</span> <span class="s">&#39;minor&#39;</span><span class="p">:</span>
+                <span class="n">func</span> <span class="o">=</span> <span class="s">&#39;minor &#39;</span> <span class="o">+</span> <span class="n">func</span>
+            <span class="k">elif</span> <span class="n">interval_type</span> <span class="o">==</span> <span class="s">&#39;augmented&#39;</span><span class="p">:</span>
+                <span class="n">func</span> <span class="o">=</span> <span class="s">&#39;augmented &#39;</span> <span class="o">+</span> <span class="n">func</span>
+            <span class="k">elif</span> <span class="n">interval_type</span> <span class="o">==</span> <span class="s">&#39;diminished&#39;</span><span class="p">:</span>
+                <span class="n">func</span> <span class="o">=</span> <span class="s">&#39;diminished &#39;</span> <span class="o">+</span> <span class="n">func</span>
+
+        <span class="c"># Add to results</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+</div>
+<div class="viewcode-block" id="parse_string"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreProgressions.html#mingus.core.progressions.parse_string">[docs]</a><span class="k">def</span> <span class="nf">parse_string</span><span class="p">(</span><span class="n">progression</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a tuple (roman numeral, accidentals, chord suffix).</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">    &gt;&gt;&gt; parse_string(&#39;I&#39;)</span>
+<span class="sd">    (&#39;I&#39;, 0, &#39;&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; parse_string(&#39;bIM7&#39;)</span>
+<span class="sd">    (&#39;I&#39;, -1, &#39;M7&#39;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">acc</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">roman_numeral</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+    <span class="n">suffix</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">progression</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="s">&#39;#&#39;</span><span class="p">:</span>
+            <span class="n">acc</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="s">&#39;b&#39;</span><span class="p">:</span>
+            <span class="n">acc</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">c</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s">&#39;I&#39;</span> <span class="ow">or</span> <span class="n">c</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s">&#39;V&#39;</span><span class="p">:</span>
+            <span class="n">roman_numeral</span> <span class="o">+=</span> <span class="n">c</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">suffix</span> <span class="o">=</span> <span class="n">progression</span><span class="p">[</span><span class="n">i</span><span class="p">:]</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">roman_numeral</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">suffix</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="tuple_to_string"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreProgressions.html#mingus.core.progressions.tuple_to_string">[docs]</a><span class="k">def</span> <span class="nf">tuple_to_string</span><span class="p">(</span><span class="n">prog_tuple</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a string from tuples returned by parse_string.&quot;&quot;&quot;</span>
+    <span class="p">(</span><span class="n">roman</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">suff</span><span class="p">)</span> <span class="o">=</span> <span class="n">prog_tuple</span>
+    <span class="k">if</span> <span class="n">acc</span> <span class="o">&gt;</span> <span class="mi">6</span><span class="p">:</span>
+        <span class="n">acc</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">acc</span> <span class="o">%</span> <span class="mi">6</span>
+    <span class="k">elif</span> <span class="n">acc</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">6</span><span class="p">:</span>
+        <span class="n">acc</span> <span class="o">=</span> <span class="n">acc</span> <span class="o">%</span> <span class="mi">6</span>
+    <span class="k">while</span> <span class="n">acc</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">roman</span> <span class="o">=</span> <span class="s">&#39;b&#39;</span> <span class="o">+</span> <span class="n">roman</span>
+        <span class="n">acc</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">acc</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">roman</span> <span class="o">=</span> <span class="s">&#39;#&#39;</span> <span class="o">+</span> <span class="n">roman</span>
+        <span class="n">acc</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">roman</span> <span class="o">+</span> <span class="n">suff</span>
+</div>
+<div class="viewcode-block" id="substitute_harmonic"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreProgressions.html#mingus.core.progressions.substitute_harmonic">[docs]</a><span class="k">def</span> <span class="nf">substitute_harmonic</span><span class="p">(</span><span class="n">progression</span><span class="p">,</span> <span class="n">substitute_index</span><span class="p">,</span> <span class="n">ignore_suffix</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Do simple harmonic substitutions. Return a list of possible substitions</span>
+<span class="sd">    for progression[substitute_index].</span>
+
+<span class="sd">    If ignore_suffix is set to True the suffix of the chord being</span>
+<span class="sd">    substituted will be ignored. Otherwise only progressions without a</span>
+<span class="sd">    suffix, or with suffix &#39;7&#39; will be substituted.</span>
+
+<span class="sd">    The following table is used to convert progressions:</span>
+<span class="sd">    || I || III ||</span>
+<span class="sd">    || I || VI ||</span>
+<span class="sd">    || IV || II ||</span>
+<span class="sd">    || IV || VI ||</span>
+<span class="sd">    || V || VII ||</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">simple_substitutions</span> <span class="o">=</span> <span class="p">[(</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;III&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;VI&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;IV&#39;</span><span class="p">,</span> <span class="s">&#39;II&#39;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s">&#39;IV&#39;</span><span class="p">,</span> <span class="s">&#39;VI&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="s">&#39;VII&#39;</span><span class="p">)]</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="p">(</span><span class="n">roman</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">suff</span><span class="p">)</span> <span class="o">=</span> <span class="n">parse_string</span><span class="p">(</span><span class="n">progression</span><span class="p">[</span><span class="n">substitute_index</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;&#39;</span> <span class="ow">or</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;7&#39;</span> <span class="ow">or</span> <span class="n">ignore_suffix</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">subs</span> <span class="ow">in</span> <span class="n">simple_substitutions</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">subs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">roman</span> <span class="o">==</span> <span class="n">subs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="bp">None</span>
+            <span class="k">if</span> <span class="n">r</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="n">subs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">roman</span> <span class="o">==</span> <span class="n">subs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">else</span> <span class="bp">None</span>
+            <span class="k">if</span> <span class="n">r</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">suff</span> <span class="o">=</span> <span class="n">suff</span> <span class="k">if</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;7&#39;</span> <span class="k">else</span> <span class="s">&#39;&#39;</span>
+                <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tuple_to_string</span><span class="p">((</span><span class="n">r</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">suff</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">res</span>
+</div>
+<div class="viewcode-block" id="substitute_minor_for_major"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreProgressions.html#mingus.core.progressions.substitute_minor_for_major">[docs]</a><span class="k">def</span> <span class="nf">substitute_minor_for_major</span><span class="p">(</span><span class="n">progression</span><span class="p">,</span> <span class="n">substitute_index</span><span class="p">,</span>
+        <span class="n">ignore_suffix</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Substitute minor chords for its major equivalent.</span>
+
+<span class="sd">    &#39;m&#39; and &#39;m7&#39; suffixes recognized, and [&#39;II&#39;, &#39;III&#39;, &#39;VI&#39;] if there is no</span>
+<span class="sd">    suffix.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">    &gt;&gt;&gt; substitute_minor_for_major([&#39;VI&#39;], 0)</span>
+<span class="sd">    [&#39;I&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; substitute_minor_for_major([&#39;Vm&#39;], 0)</span>
+<span class="sd">    [&#39;bVIIM&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; substitute_minor_for_major([&#39;VIm7&#39;], 0)</span>
+<span class="sd">    [&#39;IM7&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="p">(</span><span class="n">roman</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">suff</span><span class="p">)</span> <span class="o">=</span> <span class="n">parse_string</span><span class="p">(</span><span class="n">progression</span><span class="p">[</span><span class="n">substitute_index</span><span class="p">])</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c"># Minor to major substitution</span>
+    <span class="k">if</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;m&#39;</span> <span class="ow">or</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;m7&#39;</span> <span class="ow">or</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;&#39;</span> <span class="ow">and</span> <span class="n">roman</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;II&#39;</span><span class="p">,</span> <span class="s">&#39;III&#39;</span><span class="p">,</span> <span class="s">&#39;VI&#39;</span>
+            <span class="p">]</span> <span class="ow">or</span> <span class="n">ignore_suffix</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">skip</span><span class="p">(</span><span class="n">roman</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">interval_diff</span><span class="p">(</span><span class="n">roman</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">acc</span>
+        <span class="k">if</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;m&#39;</span> <span class="ow">or</span> <span class="n">ignore_suffix</span><span class="p">:</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tuple_to_string</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s">&#39;M&#39;</span><span class="p">)))</span>
+        <span class="k">elif</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;m7&#39;</span> <span class="ow">or</span> <span class="n">ignore_suffix</span><span class="p">:</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tuple_to_string</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s">&#39;M7&#39;</span><span class="p">)))</span>
+        <span class="k">elif</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;&#39;</span> <span class="ow">or</span> <span class="n">ignore_suffix</span><span class="p">:</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tuple_to_string</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">res</span>
+</div>
+<div class="viewcode-block" id="substitute_major_for_minor"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreProgressions.html#mingus.core.progressions.substitute_major_for_minor">[docs]</a><span class="k">def</span> <span class="nf">substitute_major_for_minor</span><span class="p">(</span><span class="n">progression</span><span class="p">,</span> <span class="n">substitute_index</span><span class="p">,</span>
+        <span class="n">ignore_suffix</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Substitute major chords for their minor equivalent.</span>
+
+<span class="sd">    &#39;M&#39; and &#39;M7&#39; suffixes recognized, and [&#39;I&#39;, &#39;IV&#39;, &#39;V&#39;] if there is no</span>
+<span class="sd">    suffix.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">    &gt;&gt;&gt; substitute_major_for_minor([&#39;I&#39;], 0)</span>
+<span class="sd">    [&#39;VI&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; substitute_major_for_minor([&#39;VM7&#39;], 0)</span>
+<span class="sd">    [&#39;IIIm7&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="p">(</span><span class="n">roman</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">suff</span><span class="p">)</span> <span class="o">=</span> <span class="n">parse_string</span><span class="p">(</span><span class="n">progression</span><span class="p">[</span><span class="n">substitute_index</span><span class="p">])</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c"># Major to minor substitution</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;M&#39;</span> <span class="ow">or</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;M7&#39;</span> <span class="ow">or</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;&#39;</span> <span class="ow">and</span>
+            <span class="n">roman</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;IV&#39;</span><span class="p">,</span> <span class="s">&#39;V&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="n">ignore_suffix</span><span class="p">):</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">skip</span><span class="p">(</span><span class="n">roman</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">interval_diff</span><span class="p">(</span><span class="n">roman</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span> <span class="o">+</span> <span class="n">acc</span>
+        <span class="k">if</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;M&#39;</span> <span class="ow">or</span> <span class="n">ignore_suffix</span><span class="p">:</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tuple_to_string</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s">&#39;m&#39;</span><span class="p">)))</span>
+        <span class="k">elif</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;M7&#39;</span> <span class="ow">or</span> <span class="n">ignore_suffix</span><span class="p">:</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tuple_to_string</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s">&#39;m7&#39;</span><span class="p">)))</span>
+        <span class="k">elif</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;&#39;</span> <span class="ow">or</span> <span class="n">ignore_suffix</span><span class="p">:</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tuple_to_string</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">res</span>
+</div>
+<div class="viewcode-block" id="substitute_diminished_for_diminished"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreProgressions.html#mingus.core.progressions.substitute_diminished_for_diminished">[docs]</a><span class="k">def</span> <span class="nf">substitute_diminished_for_diminished</span><span class="p">(</span><span class="n">progression</span><span class="p">,</span> <span class="n">substitute_index</span><span class="p">,</span>
+        <span class="n">ignore_suffix</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Substitute a diminished chord for another diminished chord.</span>
+
+<span class="sd">    &#39;dim&#39; and &#39;dim7&#39; suffixes recognized, and &#39;VI&#39; if there is no suffix.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; substitute_diminished_for_diminished([&#39;VII&#39;], 0)</span>
+<span class="sd">    [&#39;IIdim&#39;, &#39;bIVdim&#39;, &#39;bbVIdim&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="p">(</span><span class="n">roman</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">suff</span><span class="p">)</span> <span class="o">=</span> <span class="n">parse_string</span><span class="p">(</span><span class="n">progression</span><span class="p">[</span><span class="n">substitute_index</span><span class="p">])</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c"># Diminished progressions</span>
+    <span class="k">if</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;dim7&#39;</span> <span class="ow">or</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;dim&#39;</span> <span class="ow">or</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;&#39;</span> <span class="ow">and</span> <span class="n">roman</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;VII&#39;</span><span class="p">]</span>\
+         <span class="ow">or</span> <span class="n">ignore_suffix</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;&#39;</span><span class="p">:</span>
+            <span class="n">suff</span> <span class="o">=</span> <span class="s">&#39;dim&#39;</span>
+
+        <span class="c"># Add diminished chord</span>
+        <span class="n">last</span> <span class="o">=</span> <span class="n">roman</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="nb">next</span> <span class="o">=</span> <span class="n">skip</span><span class="p">(</span><span class="n">last</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">acc</span> <span class="o">+=</span> <span class="n">interval_diff</span><span class="p">(</span><span class="n">last</span><span class="p">,</span> <span class="nb">next</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tuple_to_string</span><span class="p">((</span><span class="nb">next</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">suff</span><span class="p">)))</span>
+            <span class="n">last</span> <span class="o">=</span> <span class="nb">next</span>
+    <span class="k">return</span> <span class="n">res</span>
+</div>
+<div class="viewcode-block" id="substitute_diminished_for_dominant"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreProgressions.html#mingus.core.progressions.substitute_diminished_for_dominant">[docs]</a><span class="k">def</span> <span class="nf">substitute_diminished_for_dominant</span><span class="p">(</span><span class="n">progression</span><span class="p">,</span> <span class="n">substitute_index</span><span class="p">,</span>
+        <span class="n">ignore_suffix</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="p">(</span><span class="n">roman</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">suff</span><span class="p">)</span> <span class="o">=</span> <span class="n">parse_string</span><span class="p">(</span><span class="n">progression</span><span class="p">[</span><span class="n">substitute_index</span><span class="p">])</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c"># Diminished progressions</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;dim7&#39;</span> <span class="ow">or</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;dim&#39;</span> <span class="ow">or</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;&#39;</span> <span class="ow">and</span>
+            <span class="n">roman</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;VII&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="n">ignore_suffix</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;&#39;</span><span class="p">:</span>
+            <span class="n">suff</span> <span class="o">=</span> <span class="s">&#39;dim&#39;</span>
+
+        <span class="c"># Add diminished chord</span>
+        <span class="n">last</span> <span class="o">=</span> <span class="n">roman</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="nb">next</span> <span class="o">=</span> <span class="n">skip</span><span class="p">(</span><span class="n">last</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">dom</span> <span class="o">=</span> <span class="n">skip</span><span class="p">(</span><span class="n">last</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">interval_diff</span><span class="p">(</span><span class="n">last</span><span class="p">,</span> <span class="n">dom</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">acc</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tuple_to_string</span><span class="p">((</span><span class="n">dom</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s">&#39;dom7&#39;</span><span class="p">)))</span>
+            <span class="n">last</span> <span class="o">=</span> <span class="nb">next</span>
+    <span class="k">return</span> <span class="n">res</span>
+</div>
+<div class="viewcode-block" id="substitute"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreProgressions.html#mingus.core.progressions.substitute">[docs]</a><span class="k">def</span> <span class="nf">substitute</span><span class="p">(</span><span class="n">progression</span><span class="p">,</span> <span class="n">substitute_index</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Give a list of possible substitutions for progression[substitute_index].</span>
+
+<span class="sd">    If depth &gt; 0 the substitutions of each result will be recursively added</span>
+<span class="sd">    as well.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; substitute([&#39;I&#39;, &#39;IV&#39;, &#39;V&#39;, &#39;I&#39;], 0)</span>
+<span class="sd">    [&#39;III&#39;, &#39;III7&#39;, &#39;VI&#39;, &#39;VI7&#39;, &#39;I7&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">simple_substitutions</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;III&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;VI&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s">&#39;IV&#39;</span><span class="p">,</span> <span class="s">&#39;II&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s">&#39;IV&#39;</span><span class="p">,</span> <span class="s">&#39;VI&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="s">&#39;VII&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="s">&#39;VIIdim7&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="s">&#39;IIdim7&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="s">&#39;IVdim7&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="s">&#39;bVIIdim7&#39;</span><span class="p">),</span>
+        <span class="p">]</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">progression</span><span class="p">[</span><span class="n">substitute_index</span><span class="p">]</span>
+    <span class="p">(</span><span class="n">roman</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">suff</span><span class="p">)</span> <span class="o">=</span> <span class="n">parse_string</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+    <span class="c"># Do the simple harmonic substitutions</span>
+    <span class="k">if</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;&#39;</span> <span class="ow">or</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;7&#39;</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">subs</span> <span class="ow">in</span> <span class="n">simple_substitutions</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">if</span> <span class="n">roman</span> <span class="o">==</span> <span class="n">subs</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="n">subs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">roman</span> <span class="o">==</span> <span class="n">subs</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="n">subs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">r</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tuple_to_string</span><span class="p">((</span><span class="n">r</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)))</span>
+
+                <span class="c"># Add seventh or triad depending on r</span>
+                <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s">&#39;7&#39;</span><span class="p">:</span>
+                    <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tuple_to_string</span><span class="p">((</span><span class="n">r</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="s">&#39;7&#39;</span><span class="p">)))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tuple_to_string</span><span class="p">((</span><span class="n">r</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">acc</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)))</span>
+
+    <span class="k">if</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;&#39;</span> <span class="ow">or</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;M&#39;</span> <span class="ow">or</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;m&#39;</span><span class="p">:</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tuple_to_string</span><span class="p">((</span><span class="n">roman</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">suff</span> <span class="o">+</span> <span class="s">&#39;7&#39;</span><span class="p">)))</span>
+
+    <span class="k">if</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;m&#39;</span> <span class="ow">or</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;m7&#39;</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">skip</span><span class="p">(</span><span class="n">roman</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">interval_diff</span><span class="p">(</span><span class="n">roman</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">acc</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tuple_to_string</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s">&#39;M&#39;</span><span class="p">)))</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tuple_to_string</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s">&#39;M7&#39;</span><span class="p">)))</span>
+
+    <span class="c"># Major to minor substitution</span>
+    <span class="k">if</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;M&#39;</span> <span class="ow">or</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;M7&#39;</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">skip</span><span class="p">(</span><span class="n">roman</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">interval_diff</span><span class="p">(</span><span class="n">roman</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span> <span class="o">+</span> <span class="n">acc</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tuple_to_string</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s">&#39;m&#39;</span><span class="p">)))</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tuple_to_string</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s">&#39;m7&#39;</span><span class="p">)))</span>
+
+    <span class="k">if</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;dim7&#39;</span> <span class="ow">or</span> <span class="n">suff</span> <span class="o">==</span> <span class="s">&#39;dim&#39;</span><span class="p">:</span>
+        <span class="c"># Add the corresponding dominant seventh</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tuple_to_string</span><span class="p">((</span><span class="n">skip</span><span class="p">(</span><span class="n">roman</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">acc</span><span class="p">,</span> <span class="s">&#39;dom7&#39;</span><span class="p">)))</span>
+
+        <span class="n">n</span> <span class="o">=</span> <span class="n">skip</span><span class="p">(</span><span class="n">roman</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tuple_to_string</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">acc</span> <span class="o">+</span> <span class="n">interval_diff</span><span class="p">(</span><span class="n">roman</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="s">&#39;dom7&#39;</span><span class="p">)))</span>
+
+        <span class="c"># Add diminished chord</span>
+        <span class="n">last</span> <span class="o">=</span> <span class="n">roman</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="nb">next</span> <span class="o">=</span> <span class="n">skip</span><span class="p">(</span><span class="n">last</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">acc</span> <span class="o">+=</span> <span class="n">interval_diff</span><span class="p">(</span><span class="n">last</span><span class="p">,</span> <span class="nb">next</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tuple_to_string</span><span class="p">((</span><span class="nb">next</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">suff</span><span class="p">)))</span>
+            <span class="n">last</span> <span class="o">=</span> <span class="nb">next</span>
+    <span class="n">res2</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">depth</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">res</span><span class="p">:</span>
+            <span class="n">new_progr</span> <span class="o">=</span> <span class="n">progression</span>
+            <span class="n">new_progr</span><span class="p">[</span><span class="n">substitute_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
+            <span class="n">res2</span> <span class="o">+=</span> <span class="n">substitute</span><span class="p">(</span><span class="n">new_progr</span><span class="p">,</span> <span class="n">substitute_index</span><span class="p">,</span> <span class="n">depth</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span> <span class="o">+</span> <span class="n">res2</span>
+</div>
+<div class="viewcode-block" id="interval_diff"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreProgressions.html#mingus.core.progressions.interval_diff">[docs]</a><span class="k">def</span> <span class="nf">interval_diff</span><span class="p">(</span><span class="n">progression1</span><span class="p">,</span> <span class="n">progression2</span><span class="p">,</span> <span class="n">interval</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the number of half steps progression2 needs to be diminished or</span>
+<span class="sd">    augmented until the interval between progression1 and progression2 is</span>
+<span class="sd">    interval.&quot;&quot;&quot;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">numeral_intervals</span><span class="p">[</span><span class="n">numerals</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">progression1</span><span class="p">)]</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">numeral_intervals</span><span class="p">[</span><span class="n">numerals</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">progression2</span><span class="p">)]</span>
+    <span class="n">acc</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">:</span>
+        <span class="n">j</span> <span class="o">+=</span> <span class="mi">12</span>
+    <span class="k">while</span> <span class="n">j</span> <span class="o">-</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">interval</span><span class="p">:</span>
+        <span class="n">acc</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">j</span> <span class="o">-</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">interval</span><span class="p">:</span>
+        <span class="n">acc</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">acc</span>
+</div>
+<div class="viewcode-block" id="skip"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreProgressions.html#mingus.core.progressions.skip">[docs]</a><span class="k">def</span> <span class="nf">skip</span><span class="p">(</span><span class="n">roman_numeral</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Skip the given places to the next roman numeral.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">    &gt;&gt;&gt; skip(&#39;I&#39;)</span>
+<span class="sd">    &#39;II&#39;</span>
+<span class="sd">    &gt;&gt;&gt; skip(&#39;VII&#39;)</span>
+<span class="sd">    &#39;I&#39;</span>
+<span class="sd">    &gt;&gt;&gt; skip(&#39;I&#39;, 2)</span>
+<span class="sd">    &#39;III&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">numerals</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">roman_numeral</span><span class="p">)</span> <span class="o">+</span> <span class="n">skip</span>
+    <span class="k">return</span> <span class="n">numerals</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="mi">7</span><span class="p">]</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

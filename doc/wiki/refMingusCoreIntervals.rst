@@ -1,3 +1,5 @@
+.. module:: mingus.core.intervals
+
 =====================
 mingus.core.intervals
 =====================

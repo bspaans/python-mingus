@@ -1,0 +1,415 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mingus.extra.musicxml &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">mingus 0.5.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for mingus.extra.musicxml</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="c">#    mingus - Music theory Python package, musicxml module.</span>
+<span class="c">#    Copyright (C) 2008-2009, Bart Spaans, Javier Palanca</span>
+<span class="c">#    Copyright (C) 2011, Carlo Stemberger</span>
+<span class="c">#</span>
+<span class="c">#    This program is free software: you can redistribute it and/or modify</span>
+<span class="c">#    it under the terms of the GNU General Public License as published by</span>
+<span class="c">#    the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c">#    (at your option) any later version.</span>
+<span class="c">#</span>
+<span class="c">#    This program is distributed in the hope that it will be useful,</span>
+<span class="c">#    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c">#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c">#    GNU General Public License for more details.</span>
+<span class="c">#</span>
+<span class="c">#    You should have received a copy of the GNU General Public License</span>
+<span class="c">#    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="sd">&quot;&quot;&quot;Convert mingus.containers to MusicXML files.</span>
+
+<span class="sd">The MusicXML format represents common Western musical notation from the 17th</span>
+<span class="sd">century onwards. It lets you distribute interactive sheet music online, and</span>
+<span class="sd">use sheet music files with a wide variety of musical applications.</span>
+
+<span class="sd">The MusicXML format is open for use by anyone under a royalty-free license,</span>
+<span class="sd">and is supported by over 100 applications.</span>
+
+<span class="sd">http://www.musicxml.org/xml.html</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">xml</span>
+<span class="kn">from</span> <span class="nn">xml.dom.minidom</span> <span class="kn">import</span> <span class="n">Document</span>
+<span class="kn">from</span> <span class="nn">mingus.core</span> <span class="kn">import</span> <span class="n">notes</span>
+<span class="kn">from</span> <span class="nn">mingus.core.keys</span> <span class="kn">import</span> <span class="n">major_keys</span><span class="p">,</span> <span class="n">minor_keys</span>
+<span class="kn">from</span> <span class="nn">mingus.containers.instrument</span> <span class="kn">import</span> <span class="n">MidiInstrument</span>
+<span class="kn">from</span> <span class="nn">mingus.containers.composition</span> <span class="kn">import</span> <span class="n">Composition</span>
+<span class="kn">from</span> <span class="nn">mingus.containers.track</span> <span class="kn">import</span> <span class="n">Track</span>
+<span class="kn">from</span> <span class="nn">mingus.core</span> <span class="kn">import</span> <span class="n">value</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<div class="viewcode-block" id="_gcd"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml._gcd">[docs]</a><span class="k">def</span> <span class="nf">_gcd</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">terms</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return greatest common divisor using Euclid&#39;s Algorithm.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">terms</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">_gcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="n">terms</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">while</span> <span class="n">b</span><span class="p">:</span>
+            <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">a</span>
+</div>
+<div class="viewcode-block" id="_lcm"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml._lcm">[docs]</a><span class="k">def</span> <span class="nf">_lcm</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">terms</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return lowest common multiple.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">terms</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">_lcm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="n">terms</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span> <span class="o">/</span> <span class="n">_gcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="_note2musicxml"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml._note2musicxml">[docs]</a><span class="k">def</span> <span class="nf">_note2musicxml</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">()</span>
+    <span class="n">note_node</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;note&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">note</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="c"># note is a rest</span>
+        <span class="n">rest</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;rest&#39;</span><span class="p">)</span>
+        <span class="n">note_node</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">rest</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c"># add pitch info</span>
+        <span class="n">pitch</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;pitch&#39;</span><span class="p">)</span>
+        <span class="n">step</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;step&#39;</span><span class="p">)</span>
+        <span class="n">step</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">createTextNode</span><span class="p">(</span><span class="n">note</span><span class="o">.</span><span class="n">name</span><span class="p">[:</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="n">pitch</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+        <span class="n">octave</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;octave&#39;</span><span class="p">)</span>
+        <span class="n">octave</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">createTextNode</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">note</span><span class="o">.</span><span class="n">octave</span><span class="p">)))</span>
+        <span class="n">pitch</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">octave</span><span class="p">)</span>
+
+        <span class="c"># check for alterations</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">note</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="s">&#39;b&#39;</span><span class="p">:</span>
+                <span class="n">count</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="s">&#39;#&#39;</span><span class="p">:</span>
+                <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">count</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">alter</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;alter&#39;</span><span class="p">)</span>
+            <span class="n">alter</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">createTextNode</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)))</span>
+            <span class="n">pitch</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">alter</span><span class="p">)</span>
+        <span class="n">note_node</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">pitch</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">note_node</span>
+</div>
+<div class="viewcode-block" id="_bar2musicxml"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml._bar2musicxml">[docs]</a><span class="k">def</span> <span class="nf">_bar2musicxml</span><span class="p">(</span><span class="n">bar</span><span class="p">):</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">()</span>
+    <span class="n">bar_node</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;measure&#39;</span><span class="p">)</span>
+
+    <span class="c"># bar attributes</span>
+    <span class="n">attributes</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;attributes&#39;</span><span class="p">)</span>
+
+    <span class="c"># calculate divisions by using the LCM</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">nc</span> <span class="ow">in</span> <span class="n">bar</span><span class="p">:</span>
+        <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="n">nc</span><span class="p">[</span><span class="mi">1</span><span class="p">])[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="n">lcm</span> <span class="o">=</span> <span class="n">_lcm</span><span class="p">(</span><span class="n">terms</span><span class="o">=</span><span class="n">l</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span>
+    <span class="n">divisions</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;divisions&#39;</span><span class="p">)</span>
+    <span class="n">divisions</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">createTextNode</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">lcm</span><span class="p">)))</span>
+    <span class="n">attributes</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">divisions</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">bar</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">key</span> <span class="ow">in</span> <span class="n">major_keys</span> <span class="ow">or</span> <span class="n">bar</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">key</span> <span class="ow">in</span> <span class="n">minor_keys</span><span class="p">:</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;key&#39;</span><span class="p">)</span>
+        <span class="n">fifths</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;fifths&#39;</span><span class="p">)</span>
+
+        <span class="c"># now we are going to guess which is the key of the bar</span>
+        <span class="n">fifths</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">createTextNode</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">signature</span><span class="p">)))</span>
+        <span class="n">mode</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;mode&#39;</span><span class="p">)</span>
+        <span class="n">mode</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">createTextNode</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">mode</span><span class="p">))</span>
+        <span class="n">key</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">fifths</span><span class="p">)</span>
+        <span class="n">key</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span>
+        <span class="n">attributes</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;time&#39;</span><span class="p">)</span>
+    <span class="n">beats</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;beats&#39;</span><span class="p">)</span>
+    <span class="n">beattype</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;beat-type&#39;</span><span class="p">)</span>
+    <span class="n">beats</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">createTextNode</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">meter</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
+    <span class="n">beattype</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">createTextNode</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">meter</span><span class="p">[</span><span class="mi">1</span><span class="p">])))</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">beats</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">beattype</span><span class="p">)</span>
+    <span class="n">attributes</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+    <span class="n">bar_node</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span>
+    <span class="n">chord</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;chord&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">nc</span> <span class="ow">in</span> <span class="n">bar</span><span class="p">:</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">determine</span><span class="p">(</span><span class="n">nc</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">beat</span> <span class="o">=</span> <span class="n">time</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">note_cont</span> <span class="o">=</span> <span class="n">nc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">is_chord</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">if</span> <span class="n">note_cont</span><span class="p">:</span>
+            <span class="c"># is a note_container with 2 or more notes a chord?</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">note_cont</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">is_chord</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">note_cont</span> <span class="o">=</span> <span class="p">[</span><span class="bp">None</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">note_cont</span><span class="p">:</span>
+            <span class="n">note</span> <span class="o">=</span> <span class="n">_note2musicxml</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">is_chord</span><span class="p">:</span>
+                <span class="n">note</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">chord</span><span class="p">)</span>
+
+            <span class="c"># convert the duration of the note</span>
+            <span class="n">duration</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;duration&#39;</span><span class="p">)</span>
+            <span class="n">duration</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">createTextNode</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">lcm</span> <span class="o">*</span> <span class="p">(</span><span class="mf">4.0</span>
+                                  <span class="o">/</span> <span class="n">beat</span><span class="p">)))))</span>
+            <span class="n">note</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span>
+
+            <span class="c"># check for dots</span>
+            <span class="n">dot</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;dot&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">time</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="n">note</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">dot</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">beat</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="n">musicxml</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="n">type_node</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;type&#39;</span><span class="p">)</span>
+                <span class="n">type_node</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">createTextNode</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">musicxml</span><span class="p">[</span><span class="n">beat</span><span class="p">]))</span>
+                <span class="n">note</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">type_node</span><span class="p">)</span>
+
+            <span class="c"># check for non-standard ratio</span>
+            <span class="k">if</span> <span class="n">time</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">time</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">modification</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;time-modification&#39;</span><span class="p">)</span>
+                <span class="n">actual</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;actual-notes&#39;</span><span class="p">)</span>
+                <span class="n">actual</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">createTextNode</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="mi">2</span><span class="p">])))</span>
+                <span class="n">normal</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;normal-notes&#39;</span><span class="p">)</span>
+                <span class="n">normal</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">createTextNode</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="mi">3</span><span class="p">])))</span>
+                <span class="n">modification</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span>
+                <span class="n">modification</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">normal</span><span class="p">)</span>
+                <span class="n">note</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">modification</span><span class="p">)</span>
+            <span class="n">bar_node</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">bar_node</span>
+</div>
+<div class="viewcode-block" id="_track2musicxml"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml._track2musicxml">[docs]</a><span class="k">def</span> <span class="nf">_track2musicxml</span><span class="p">(</span><span class="n">track</span><span class="p">):</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">()</span>
+    <span class="n">clef</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">track_node</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;part&#39;</span><span class="p">)</span>
+    <span class="n">track_node</span><span class="o">.</span><span class="n">setAttribute</span><span class="p">(</span><span class="s">&#39;id&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">track</span><span class="p">)))</span>
+    <span class="k">if</span> <span class="n">track</span><span class="o">.</span><span class="n">instrument</span><span class="p">:</span>  <span class="c"># try to guess the clef of the instrument</span>
+        <span class="k">if</span> <span class="s">&#39;treble&#39;</span> <span class="ow">in</span> <span class="n">track</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">clef</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="n">clef</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;2&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="s">&#39;bass&#39;</span> <span class="ow">in</span> <span class="n">track</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">clef</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="n">clef</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;F&#39;</span><span class="p">,</span> <span class="s">&#39;4&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="s">&#39;french&#39;</span> <span class="ow">in</span> <span class="n">track</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">clef</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="n">clef</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;1&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="s">&#39;baritone&#39;</span> <span class="ow">in</span> <span class="n">track</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">clef</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="n">clef</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;F&#39;</span><span class="p">,</span> <span class="s">&#39;3&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="s">&#39;subbass&#39;</span> <span class="ow">in</span> <span class="n">track</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">clef</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="n">clef</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;F&#39;</span><span class="p">,</span> <span class="s">&#39;5&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="s">&#39;alto&#39;</span> <span class="ow">in</span> <span class="n">track</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">clef</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="n">clef</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;3&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="s">&#39;tenor&#39;</span> <span class="ow">in</span> <span class="n">track</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">clef</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="n">clef</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;4&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="s">&#39;mezzo-soprano&#39;</span> <span class="ow">in</span> <span class="n">track</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">clef</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="n">clef</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;2&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="s">&#39;soprano&#39;</span> <span class="ow">in</span> <span class="n">track</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">clef</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="n">clef</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;1&#39;</span><span class="p">)</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">track</span><span class="o">.</span><span class="n">bars</span><span class="p">:</span>
+        <span class="n">bar</span> <span class="o">=</span> <span class="n">_bar2musicxml</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+        <span class="n">bar</span><span class="o">.</span><span class="n">setAttribute</span><span class="p">(</span><span class="s">&#39;number&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">counter</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">clef</span><span class="p">:</span>
+            <span class="n">attrs</span> <span class="o">=</span> <span class="n">bar</span><span class="o">.</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="s">&#39;attributes&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">attrs</span><span class="p">:</span>
+                <span class="n">clef_node</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;clef&#39;</span><span class="p">)</span>
+                <span class="n">sign</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;sign&#39;</span><span class="p">)</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;line&#39;</span><span class="p">)</span>
+                <span class="n">sign</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">createTextNode</span><span class="p">(</span><span class="n">clef</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+                <span class="n">line</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">createTextNode</span><span class="p">(</span><span class="n">clef</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+                <span class="n">clef_node</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+                <span class="n">clef_node</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                <span class="n">attr</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">clef_node</span><span class="p">)</span>
+        <span class="n">track_node</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">bar</span><span class="p">)</span>
+        <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">track_node</span>
+</div>
+<div class="viewcode-block" id="_composition2musicxml"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml._composition2musicxml">[docs]</a><span class="k">def</span> <span class="nf">_composition2musicxml</span><span class="p">(</span><span class="n">comp</span><span class="p">):</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">()</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;score-partwise&#39;</span><span class="p">)</span>
+    <span class="n">score</span><span class="o">.</span><span class="n">setAttribute</span><span class="p">(</span><span class="s">&#39;version&#39;</span><span class="p">,</span> <span class="s">&#39;2.0&#39;</span><span class="p">)</span>
+
+    <span class="c"># set title information</span>
+    <span class="k">if</span> <span class="n">comp</span><span class="o">.</span><span class="n">title</span><span class="p">:</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;movement-title&#39;</span><span class="p">)</span>
+        <span class="n">title</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">createTextNode</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">comp</span><span class="o">.</span><span class="n">title</span><span class="p">)))</span>
+        <span class="n">score</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">identification</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;identification&#39;</span><span class="p">)</span>
+
+    <span class="c"># set author information</span>
+    <span class="k">if</span> <span class="n">comp</span><span class="o">.</span><span class="n">author</span><span class="p">:</span>
+        <span class="n">author</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;creator&#39;</span><span class="p">)</span>
+        <span class="n">author</span><span class="o">.</span><span class="n">setAttribute</span><span class="p">(</span><span class="s">&#39;type&#39;</span><span class="p">,</span> <span class="s">&#39;composer&#39;</span><span class="p">)</span>
+        <span class="n">author</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">createTextNode</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">comp</span><span class="o">.</span><span class="n">author</span><span class="p">)))</span>
+        <span class="n">identification</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">author</span><span class="p">)</span>
+
+    <span class="c"># set additional info</span>
+    <span class="n">encoding</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;encoding&#39;</span><span class="p">)</span>
+    <span class="n">software</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;software&#39;</span><span class="p">)</span>
+    <span class="n">software</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">createTextNode</span><span class="p">(</span><span class="s">&#39;mingus&#39;</span><span class="p">))</span>
+    <span class="n">encoding</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">software</span><span class="p">)</span>
+    <span class="n">enc_date</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;encoding-date&#39;</span><span class="p">)</span>
+    <span class="n">enc_date</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">createTextNode</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())))</span>
+    <span class="n">encoding</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">enc_date</span><span class="p">)</span>
+    <span class="n">identification</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">encoding</span><span class="p">)</span>
+    <span class="n">score</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">identification</span><span class="p">)</span>
+
+    <span class="c"># add tracks</span>
+    <span class="n">part_list</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;part-list&#39;</span><span class="p">)</span>
+    <span class="n">score</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">part_list</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">comp</span><span class="p">:</span>
+        <span class="n">track</span> <span class="o">=</span> <span class="n">_track2musicxml</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+        <span class="n">score_part</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;score-part&#39;</span><span class="p">)</span>
+        <span class="n">track</span><span class="o">.</span><span class="n">setAttribute</span><span class="p">(</span><span class="s">&#39;id&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">t</span><span class="p">)))</span>
+        <span class="n">score_part</span><span class="o">.</span><span class="n">setAttribute</span><span class="p">(</span><span class="s">&#39;id&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">t</span><span class="p">)))</span>
+        <span class="n">part_name</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;part-name&#39;</span><span class="p">)</span>
+        <span class="n">part_name</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">createTextNode</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+        <span class="n">score_part</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">part_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">instrument</span><span class="p">:</span>
+
+            <span class="c"># add instrument info</span>
+            <span class="n">score_inst</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;score-instrument&#39;</span><span class="p">)</span>
+            <span class="n">score_inst</span><span class="o">.</span><span class="n">setAttribute</span><span class="p">(</span><span class="s">&#39;id&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">instrument</span><span class="p">)))</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;instrument-name&#39;</span><span class="p">)</span>
+            <span class="n">name</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">createTextNode</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">name</span><span class="p">)))</span>
+            <span class="n">score_inst</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">score_part</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">score_inst</span><span class="p">)</span>
+
+            <span class="c"># add midi instruments</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">instrument</span><span class="p">,</span> <span class="n">MidiInstrument</span><span class="p">):</span>
+                <span class="n">midi</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;midi-instrument&#39;</span><span class="p">)</span>
+                <span class="n">midi</span><span class="o">.</span><span class="n">setAttribute</span><span class="p">(</span><span class="s">&#39;id&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">instrument</span><span class="p">)))</span>
+                <span class="n">channel</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;midi-channel&#39;</span><span class="p">)</span>
+                <span class="n">channel</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">createTextNode</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>  <span class="c"># what about</span>
+                                                                 <span class="c"># the MIDI</span>
+                                                                 <span class="c"># channels?</span>
+                <span class="n">program</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">&#39;midi-program&#39;</span><span class="p">)</span>
+                <span class="n">program</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">createTextNode</span><span class="p">(</span>
+                    <span class="nb">str</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">instrument_nr</span><span class="p">)))</span>
+                <span class="n">midi</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+                <span class="n">midi</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">program</span><span class="p">)</span>
+                <span class="n">score_part</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">midi</span><span class="p">)</span>
+        <span class="n">part_list</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">score_part</span><span class="p">)</span>
+        <span class="n">track</span><span class="o">.</span><span class="n">setAttribute</span><span class="p">(</span><span class="s">&#39;id&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">t</span><span class="p">)))</span>
+        <span class="n">score</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">track</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">score</span>
+</div>
+<div class="viewcode-block" id="from_Note"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.from_Note">[docs]</a><span class="k">def</span> <span class="nf">from_Note</span><span class="p">(</span><span class="n">note</span><span class="p">):</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">Composition</span><span class="p">()</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_composition2musicxml</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">toprettyxml</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="from_Bar"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.from_Bar">[docs]</a><span class="k">def</span> <span class="nf">from_Bar</span><span class="p">(</span><span class="n">bar</span><span class="p">):</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">Composition</span><span class="p">()</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">Track</span><span class="p">()</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">add_bar</span><span class="p">(</span><span class="n">bar</span><span class="p">)</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">add_track</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_composition2musicxml</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">toprettyxml</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="from_Track"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.from_Track">[docs]</a><span class="k">def</span> <span class="nf">from_Track</span><span class="p">(</span><span class="n">track</span><span class="p">):</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">Composition</span><span class="p">()</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">add_track</span><span class="p">(</span><span class="n">track</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_composition2musicxml</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">toprettyxml</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="from_Composition"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.from_Composition">[docs]</a><span class="k">def</span> <span class="nf">from_Composition</span><span class="p">(</span><span class="n">comp</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">_composition2musicxml</span><span class="p">(</span><span class="n">comp</span><span class="p">)</span><span class="o">.</span><span class="n">toprettyxml</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="write_Composition"><a class="viewcode-back" href="../../../doc/wiki/refMingusExtraMusicxml.html#mingus.extra.musicxml.write_Composition">[docs]</a><span class="k">def</span> <span class="nf">write_Composition</span><span class="p">(</span><span class="n">composition</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="nb">zip</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create an XML file (or MXL if compressed) for a given composition.&quot;&quot;&quot;</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">from_Composition</span><span class="p">(</span><span class="n">composition</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">zip</span><span class="p">:</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span> <span class="o">+</span> <span class="s">&#39;.xml&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">zipfile</span>
+        <span class="kn">import</span> <span class="nn">os</span>
+        <span class="n">zf</span> <span class="o">=</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">filename</span> <span class="o">+</span> <span class="s">&#39;.mxl&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;w&#39;</span><span class="p">,</span>
+                             <span class="n">compression</span><span class="o">=</span><span class="n">zipfile</span><span class="o">.</span><span class="n">ZIP_DEFLATED</span><span class="p">)</span>
+        <span class="n">zi</span> <span class="o">=</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipInfo</span><span class="p">(</span><span class="s">&#39;META-INF&#39;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span> <span class="o">+</span> <span class="s">&#39;container.xml&#39;</span><span class="p">)</span>
+        <span class="n">zi</span><span class="o">.</span><span class="n">external_attr</span> <span class="o">=</span> <span class="mo">0660</span> <span class="o">&lt;&lt;</span> <span class="il">16L</span>
+        <span class="n">zf</span><span class="o">.</span><span class="n">writestr</span><span class="p">(</span><span class="n">zi</span><span class="p">,</span>
+                    <span class="s">&quot;&lt;?xml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;?&gt;&quot;</span>
+                    <span class="s">&quot;&lt;container&gt;&lt;rootfiles&gt;&lt;rootfile full-path=&#39;{0}.xml&#39;/&gt;&quot;</span>
+                    <span class="s">&quot;&lt;/rootfiles&gt;&lt;/container&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+        <span class="n">zi</span> <span class="o">=</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipInfo</span><span class="p">(</span><span class="n">filename</span> <span class="o">+</span> <span class="s">&#39;.xml&#39;</span><span class="p">)</span>
+        <span class="n">zi</span><span class="o">.</span><span class="n">external_attr</span> <span class="o">=</span> <span class="mo">0660</span> <span class="o">&lt;&lt;</span> <span class="il">16L</span>
+        <span class="n">zf</span><span class="o">.</span><span class="n">writestr</span><span class="p">(</span><span class="n">zi</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+        <span class="n">zf</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

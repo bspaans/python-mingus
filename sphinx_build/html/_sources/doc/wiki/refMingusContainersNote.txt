@@ -1,3 +1,5 @@
+.. module:: mingus.containers.note
+
 ======================
 mingus.containers.note
 ======================

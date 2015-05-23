@@ -1,3 +1,5 @@
+.. module:: mingus.midi.pyfluidsynth
+
 ========================
 mingus.midi.pyfluidsynth
 ========================
@@ -57,7 +59,7 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 .. data:: cdll
 
    Attribute of type: ctypes.LibraryLoader
-   ``<ctypes.LibraryLoader object at 0x7f0e9d93e8d0>``
+   ``<ctypes.LibraryLoader object at 0x7ff4931198d0>``
 
 ----
 
@@ -71,14 +73,14 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 .. data:: pydll
 
    Attribute of type: ctypes.LibraryLoader
-   ``<ctypes.LibraryLoader object at 0x7f0e9d93e910>``
+   ``<ctypes.LibraryLoader object at 0x7ff493119910>``
 
 ----
 
 .. data:: pythonapi
 
    Attribute of type: ctypes.PyDLL
-   ``<PyDLL 'None', handle 7f0ea105b188 at 7f0e9d93e950>``
+   ``<PyDLL 'None', handle 7ff496836188 at 7ff493119950>``
 
 ----
 

@@ -1,3 +1,5 @@
+.. module:: mingus.midi.sequencer_observer
+
 ==============================
 mingus.midi.sequencer_observer
 ==============================

@@ -1,3 +1,5 @@
+.. module:: mingus.extra.StringTuning
+
 =========================
 mingus.extra.StringTuning
 =========================

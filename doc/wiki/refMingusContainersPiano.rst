@@ -1,3 +1,5 @@
+.. module:: mingus.containers.Piano
+
 =======================
 mingus.containers.Piano
 =======================

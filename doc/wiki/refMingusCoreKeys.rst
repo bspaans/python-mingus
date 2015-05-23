@@ -1,3 +1,5 @@
+.. module:: mingus.core.keys
+
 ================
 mingus.core.keys
 ================

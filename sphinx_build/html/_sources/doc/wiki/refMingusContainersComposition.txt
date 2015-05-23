@@ -1,3 +1,5 @@
+.. module:: mingus.containers.composition
+
 =============================
 mingus.containers.composition
 =============================

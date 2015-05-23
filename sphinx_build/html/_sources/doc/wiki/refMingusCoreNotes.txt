@@ -1,3 +1,5 @@
+.. module:: mingus.core.notes
+
 =================
 mingus.core.notes
 =================

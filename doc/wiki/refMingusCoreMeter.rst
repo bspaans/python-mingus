@@ -1,3 +1,5 @@
+.. module:: mingus.core.meter
+
 =================
 mingus.core.meter
 =================

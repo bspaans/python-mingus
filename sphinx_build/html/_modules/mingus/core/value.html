@@ -1,0 +1,365 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mingus.core.value &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">mingus 0.5.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for mingus.core.value</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="c">#    mingus - Music theory Python package, value module.</span>
+<span class="c">#    Copyright (C) 2008-2009, Bart Spaans, Javier Palanca</span>
+<span class="c">#</span>
+<span class="c">#    This program is free software: you can redistribute it and/or modify</span>
+<span class="c">#    it under the terms of the GNU General Public License as published by</span>
+<span class="c">#    the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c">#    (at your option) any later version.</span>
+<span class="c">#</span>
+<span class="c">#    This program is distributed in the hope that it will be useful,</span>
+<span class="c">#    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c">#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c">#    GNU General Public License for more details.</span>
+<span class="c">#</span>
+<span class="c">#    You should have received a copy of the GNU General Public License</span>
+<span class="c">#    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="sd">&quot;&quot;&quot;Module for dealing with values.</span>
+
+<span class="sd">A note value indicates the relative duration of a note.</span>
+
+<span class="sd">In mingus, note values are represented by floating point numbers.</span>
+<span class="sd">A quarter note is 4, because it stands for 1/4 note, an eighth note is 8</span>
+<span class="sd">because it stands for 1/8, a sixteenth note is 16, etc.</span>
+
+<span class="sd">These are all pretty straight forward, but how do you define a sixteenth</span>
+<span class="sd">triplet? Well, sixteenth triplets are made by taking an eighth note</span>
+<span class="sd">and deviding it in 3 equal parts. 1/8 times 1/3 = 1/24; so 24 is the number</span>
+<span class="sd">we want. How about a dotted eighth note? A dotted eighth note has the length</span>
+<span class="sd">of an eighth note plus half an eighth note. 1/8 + 1/16 = 3/16 = 1 / 16 / 3.</span>
+<span class="sd">So 16/3 is the number we are looking for.</span>
+
+<span class="sd">As you can see these calculations can be quite tiresome and can clutter</span>
+<span class="sd">up your code. This module is here to help do the conversion.</span>
+
+<span class="sd">Medieval backwards compatibility privided.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">longa</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">breve</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">semibreve</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">minim</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">crotchet</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">quaver</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">semiquaver</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">demisemiquaver</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">hemidemisemiquaver</span> <span class="o">=</span> <span class="mi">64</span>
+
+<span class="c"># British notation is hilarious</span>
+<span class="n">quasihemidemisemiquaver</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">semihemidemisemiquaver</span> <span class="o">=</span> <span class="mi">128</span>
+
+<span class="c"># From the part of Europe that is traditionally sane with units:</span>
+<span class="n">whole</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">half</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">quarter</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">eighth</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">sixteenth</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">thirty_second</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">sixty_fourth</span> <span class="o">=</span> <span class="mi">64</span>
+<span class="n">hundred_twenty_eighth</span> <span class="o">=</span> <span class="mi">128</span>
+
+<span class="c"># MusicXML conversion table</span>
+<span class="n">musicxml</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s">&#39;whole&#39;</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="s">&#39;half&#39;</span><span class="p">,</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="s">&#39;quarter&#39;</span><span class="p">,</span>
+    <span class="mi">8</span><span class="p">:</span> <span class="s">&#39;eighth&#39;</span><span class="p">,</span>
+    <span class="mi">16</span><span class="p">:</span> <span class="s">&#39;16th&#39;</span><span class="p">,</span>
+    <span class="mi">32</span><span class="p">:</span> <span class="s">&#39;32th&#39;</span><span class="p">,</span>
+    <span class="mi">64</span><span class="p">:</span> <span class="s">&#39;64th&#39;</span><span class="p">,</span>
+    <span class="mi">128</span><span class="p">:</span> <span class="s">&#39;128th&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="n">base_values</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mf">0.25</span><span class="p">,</span>
+    <span class="mf">0.5</span><span class="p">,</span>
+    <span class="mi">1</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">,</span>
+    <span class="mi">4</span><span class="p">,</span>
+    <span class="mi">8</span><span class="p">,</span>
+    <span class="mi">16</span><span class="p">,</span>
+    <span class="mi">32</span><span class="p">,</span>
+    <span class="mi">64</span><span class="p">,</span>
+    <span class="mi">128</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="n">base_quintuplets</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mf">0.3125</span><span class="p">,</span>
+    <span class="mf">0.625</span><span class="p">,</span>
+    <span class="mf">1.25</span><span class="p">,</span>
+    <span class="mf">2.5</span><span class="p">,</span>
+    <span class="mi">5</span><span class="p">,</span>
+    <span class="mi">10</span><span class="p">,</span>
+    <span class="mi">20</span><span class="p">,</span>
+    <span class="mi">40</span><span class="p">,</span>
+    <span class="mi">80</span><span class="p">,</span>
+    <span class="mi">160</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="n">base_triplets</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mf">0.375</span><span class="p">,</span>
+    <span class="mf">0.75</span><span class="p">,</span>
+    <span class="mf">1.5</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">,</span>
+    <span class="mi">6</span><span class="p">,</span>
+    <span class="mi">12</span><span class="p">,</span>
+    <span class="mi">24</span><span class="p">,</span>
+    <span class="mi">48</span><span class="p">,</span>
+    <span class="mi">96</span><span class="p">,</span>
+    <span class="mi">192</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="n">base_septuplets</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mf">0.4375</span><span class="p">,</span>
+    <span class="mf">0.875</span><span class="p">,</span>
+    <span class="mf">1.75</span><span class="p">,</span>
+    <span class="mf">3.5</span><span class="p">,</span>
+    <span class="mi">7</span><span class="p">,</span>
+    <span class="mi">14</span><span class="p">,</span>
+    <span class="mi">28</span><span class="p">,</span>
+    <span class="mi">56</span><span class="p">,</span>
+    <span class="mi">112</span><span class="p">,</span>
+    <span class="mi">224</span><span class="p">,</span>
+    <span class="p">]</span>
+
+<div class="viewcode-block" id="add"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreValue.html#mingus.core.value.add">[docs]</a><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">value1</span><span class="p">,</span> <span class="n">value2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the value of the two combined.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; add(eighth, quarter)</span>
+<span class="sd">    2.6666666666666665</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">value1</span> <span class="o">+</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">value2</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="subtract"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreValue.html#mingus.core.value.subtract">[docs]</a><span class="k">def</span> <span class="nf">subtract</span><span class="p">(</span><span class="n">value1</span><span class="p">,</span> <span class="n">value2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the note value for value1 minus value2.</span>
+
+<span class="sd">    There are no exceptions for producing negative values, which can be</span>
+<span class="sd">    useful for taking differences.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; substract(quarter, eighth)</span>
+<span class="sd">    8.0</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">value1</span> <span class="o">-</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">value2</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="dots"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreValue.html#mingus.core.value.dots">[docs]</a><span class="k">def</span> <span class="nf">dots</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">nr</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the dotted note value.</span>
+
+<span class="sd">    A dot adds half the duration of the note. A second dot adds half of what</span>
+<span class="sd">    was added before, etc. So a dotted eighth note has the length of three</span>
+<span class="sd">    sixteenth notes. An eighth note with two dots has the length of seven</span>
+<span class="sd">    thirty second notes.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">    &gt;&gt;&gt; dots(eighth)</span>
+<span class="sd">    5.3333333333333333</span>
+<span class="sd">    &gt;&gt;&gt; dots(eighth, 2)</span>
+<span class="sd">    4.5714285714285712</span>
+<span class="sd">    &gt;&gt;&gt; dots(quarter)</span>
+<span class="sd">    2.6666666666666665</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">value</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">**</span> <span class="p">(</span><span class="n">nr</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+</div>
+<div class="viewcode-block" id="triplet"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreValue.html#mingus.core.value.triplet">[docs]</a><span class="k">def</span> <span class="nf">triplet</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the triplet note value.</span>
+
+<span class="sd">    A triplet divides the base value above into three parts. So a triplet</span>
+<span class="sd">    eighth note is a third of a quarter note.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">    &gt;&gt;&gt; triplet(eighth)</span>
+<span class="sd">    12</span>
+<span class="sd">    &gt;&gt;&gt; triplet(4)</span>
+<span class="sd">    6</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">tuplet</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="quintuplet"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreValue.html#mingus.core.value.quintuplet">[docs]</a><span class="k">def</span> <span class="nf">quintuplet</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the quintuplet note value.</span>
+
+<span class="sd">    A quintuplet divides the base value two above into five parts. So a</span>
+<span class="sd">    quintuplet eighth note is a fifth of a half note.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">    &gt;&gt;&gt; quintuplet(8)</span>
+<span class="sd">    10</span>
+<span class="sd">    &gt;&gt;&gt; quintuplet(4)</span>
+<span class="sd">    5</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">tuplet</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="septuplet"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreValue.html#mingus.core.value.septuplet">[docs]</a><span class="k">def</span> <span class="nf">septuplet</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">in_fourths</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the septuplet note value.</span>
+
+<span class="sd">    The usage of a septuplet is ambigious: seven notes can be played either</span>
+<span class="sd">    in the duration of four or eighth notes.</span>
+
+<span class="sd">    If in_fourths is set to True, this function will use 4, otherwise 8</span>
+<span class="sd">    notes. So a septuplet eighth note is respectively either 14 or 7.</span>
+
+<span class="sd">    Notice how</span>
+<span class="sd">    &gt;&gt;&gt; septuplet(8, False) == septuplet(4, True)</span>
+<span class="sd">    True</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">    &gt;&gt;&gt; septuplet(8)</span>
+<span class="sd">    14</span>
+<span class="sd">    &gt;&gt;&gt; septuplet(8, False)</span>
+<span class="sd">    7</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">in_fourths</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">tuplet</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">tuplet</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="tuplet"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreValue.html#mingus.core.value.tuplet">[docs]</a><span class="k">def</span> <span class="nf">tuplet</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">rat1</span><span class="p">,</span> <span class="n">rat2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a tuplet.</span>
+
+<span class="sd">    A tuplet can be written as a ratio. For example: 5:4 means that you play</span>
+<span class="sd">    5 notes in the duration of 4 (a quintuplet), 3:2 means that you play 3</span>
+<span class="sd">    notes in the duration of 2 (a triplet), etc. This function calculates</span>
+<span class="sd">    the note value when playing in rat1:rat2.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; tuplet(8, 3, 2)</span>
+<span class="sd">    12</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">rat1</span> <span class="o">*</span> <span class="n">value</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">rat2</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="determine"><a class="viewcode-back" href="../../../doc/wiki/refMingusCoreValue.html#mingus.core.value.determine">[docs]</a><span class="k">def</span> <span class="nf">determine</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Analyse the value and return a tuple containing the parts it&#39;s made of.</span>
+
+<span class="sd">    The tuple respectively consists of the base note value, the number of</span>
+<span class="sd">    dots, and the ratio (see tuplet).</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">    &gt;&gt;&gt; determine(8)</span>
+<span class="sd">    (8, 0, 1, 1)</span>
+<span class="sd">    &gt;&gt;&gt; determine(12)</span>
+<span class="sd">    (8, 0, 3, 2)</span>
+<span class="sd">    &gt;&gt;&gt; determine(14)</span>
+<span class="sd">    (8, 0, 7, 4)</span>
+
+<span class="sd">    This function recognizes all the base values, triplets, quintuplets,</span>
+<span class="sd">    septuplets and up to four dots. The values are matched on range.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">base_values</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="n">v</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="n">v</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">scaled</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">i</span>
+    <span class="k">if</span> <span class="n">scaled</span> <span class="o">&gt;=</span> <span class="mf">0.9375</span><span class="p">:</span>  <span class="c"># base value</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">base_values</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">scaled</span> <span class="o">&gt;=</span> <span class="mf">0.8125</span><span class="p">:</span>
+        <span class="c"># septuplet: scaled = 0.875</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">base_values</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">scaled</span> <span class="o">&gt;=</span> <span class="mi">17</span> <span class="o">/</span> <span class="mf">24.0</span><span class="p">:</span>
+        <span class="c"># triplet: scaled = 0.75</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">base_values</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">scaled</span> <span class="o">&gt;=</span> <span class="mi">31</span> <span class="o">/</span> <span class="mf">48.0</span><span class="p">:</span>
+        <span class="c"># dotted note (one dot): scaled = 2/3.0</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">scaled</span> <span class="o">&gt;=</span> <span class="mi">67</span> <span class="o">/</span> <span class="mf">112.0</span><span class="p">:</span>
+        <span class="c"># quintuplet: scaled = 0.625</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">base_values</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+        <span class="n">d</span> <span class="o">+=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">x</span>
+        <span class="k">if</span> <span class="n">scaled</span> <span class="o">==</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="n">x</span> <span class="o">/</span> <span class="n">d</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">base_values</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

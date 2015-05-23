@@ -1,3 +1,5 @@
+.. module:: mingus.containers.instrument
+
 ============================
 mingus.containers.instrument
 ============================

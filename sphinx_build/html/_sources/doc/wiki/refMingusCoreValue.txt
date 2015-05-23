@@ -1,3 +1,5 @@
+.. module:: mingus.core.value
+
 =================
 mingus.core.value
 =================

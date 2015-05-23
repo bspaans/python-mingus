@@ -1,3 +1,5 @@
+.. module:: mingus.extra.lilypond
+
 =====================
 mingus.extra.lilypond
 =====================

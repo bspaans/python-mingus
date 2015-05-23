@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mingus.midi.fluidsynth &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">mingus 0.5.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for mingus.midi.fluidsynth</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="c">#    mingus - Music theory Python package, fluidsynth module.</span>
+<span class="c">#    Copyright (C) 2008-2009, Bart Spaans</span>
+<span class="c">#</span>
+<span class="c">#    This program is free software: you can redistribute it and/or modify</span>
+<span class="c">#    it under the terms of the GNU General Public License as published by</span>
+<span class="c">#    the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c">#    (at your option) any later version.</span>
+<span class="c">#</span>
+<span class="c">#    This program is distributed in the hope that it will be useful,</span>
+<span class="c">#    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c">#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c">#    GNU General Public License for more details.</span>
+<span class="c">#</span>
+<span class="c">#    You should have received a copy of the GNU General Public License</span>
+<span class="c">#    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="sd">&quot;&quot;&quot;FluidSynth support for mingus.</span>
+
+<span class="sd">FluidSynth is a software MIDI synthesizer which allows you to play the</span>
+<span class="sd">containers in mingus.containers real-time. To work with this module, you&#39;ll</span>
+<span class="sd">need fluidsynth and a nice instrument collection (look here:</span>
+<span class="sd">http://www.hammersound.net, go to Sounds → Soundfont Library → Collections).</span>
+
+<span class="sd">To start using FluidSynth with mingus, do:</span>
+<span class="sd">&gt;&gt;&gt; from mingus.midi import fluidsynth</span>
+<span class="sd">&gt;&gt;&gt; fluidsynth.init(&#39;soundfontlocation.sf2&#39;)</span>
+
+<span class="sd">Now you are ready to play Notes, NoteContainers, etc.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">mingus.midi.sequencer</span> <span class="kn">import</span> <span class="n">Sequencer</span>
+<span class="kn">from</span> <span class="nn">mingus.containers.instrument</span> <span class="kn">import</span> <span class="n">MidiInstrument</span>
+<span class="kn">import</span> <span class="nn">pyfluidsynth</span> <span class="kn">as</span> <span class="nn">fs</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">wave</span>
+
+<span class="k">class</span> <span class="nc">FluidSynthSequencer</span><span class="p">(</span><span class="n">Sequencer</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;A simple MidiSequencer for FluidSynth.&quot;&quot;&quot;</span>
+
+    <span class="n">output</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fs</span> <span class="o">=</span> <span class="n">fs</span><span class="o">.</span><span class="n">Synth</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">start_audio_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Start the audio output.</span>
+
+<span class="sd">        The optional driver argument can be any of &#39;alsa&#39;, &#39;oss&#39;, &#39;jack&#39;,</span>
+<span class="sd">        &#39;portaudio&#39;, &#39;sndmgr&#39;, &#39;coreaudio&#39;, &#39;Direct Sound&#39;, &#39;dsound&#39;,</span>
+<span class="sd">        &#39;pulseaudio&#39;. Not all drivers will be available for every platform.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">start_recording</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="s">&#39;mingus_dump.wav&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize a new wave file for recording.&quot;&quot;&quot;</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">wave</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="s">&#39;wb&#39;</span><span class="p">)</span>
+        <span class="n">w</span><span class="o">.</span><span class="n">setnchannels</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">w</span><span class="o">.</span><span class="n">setsampwidth</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">w</span><span class="o">.</span><span class="n">setframerate</span><span class="p">(</span><span class="mi">44100</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wav</span> <span class="o">=</span> <span class="n">w</span>
+
+    <span class="k">def</span> <span class="nf">load_sound_font</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sf2</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Load a sound font.</span>
+
+<span class="sd">        Return True on success, False on failure.</span>
+
+<span class="sd">        This function should be called before your audio can be played,</span>
+<span class="sd">        since the instruments are kept in the sf2 file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sfid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">sfload</span><span class="p">(</span><span class="n">sf2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">sfid</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="c"># Implement Sequencer&#39;s interface</span>
+    <span class="k">def</span> <span class="nf">play_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">velocity</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">noteon</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">velocity</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">stop_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">channel</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">noteoff</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">note</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">cc_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">control</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">cc</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">control</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">instr_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">instr</span><span class="p">,</span> <span class="n">bank</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">program_select</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sfid</span><span class="p">,</span> <span class="n">bank</span><span class="p">,</span> <span class="n">instr</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">sleep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seconds</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;wav&#39;</span><span class="p">):</span>
+            <span class="n">samples</span> <span class="o">=</span> <span class="n">fs</span><span class="o">.</span><span class="n">raw_audio_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">get_samples</span><span class="p">(</span>
+                <span class="nb">int</span><span class="p">(</span><span class="n">seconds</span> <span class="o">*</span> <span class="mi">44100</span><span class="p">)))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">wav</span><span class="o">.</span><span class="n">writeframes</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">samples</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">seconds</span><span class="p">)</span>
+
+
+<span class="n">midi</span> <span class="o">=</span> <span class="n">FluidSynthSequencer</span><span class="p">()</span>
+<span class="n">initialized</span> <span class="o">=</span> <span class="bp">False</span>
+
+<div class="viewcode-block" id="init"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiFluidsynth.html#mingus.midi.fluidsynth.init">[docs]</a><span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="n">sf2</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Initialize the audio.</span>
+
+<span class="sd">    Return True on success, False on failure.</span>
+
+<span class="sd">    This function needs to be called before you can have any audio.</span>
+
+<span class="sd">    The sf2 argument should be the location of a valid soundfont file.</span>
+
+<span class="sd">    The optional driver argument can be any of &#39;alsa&#39;, &#39;oss&#39;, &#39;jack&#39;,</span>
+<span class="sd">    &#39;portaudio&#39;, &#39;sndmgr&#39;, &#39;coreaudio&#39; or &#39;Direct Sound&#39;.</span>
+
+<span class="sd">    If the file argument is not None, then instead of loading the driver, a</span>
+<span class="sd">    new wave file will be initialized to store the audio data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">midi</span><span class="p">,</span> <span class="n">initialized</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">initialized</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">midi</span><span class="o">.</span><span class="n">start_recording</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">midi</span><span class="o">.</span><span class="n">start_audio_output</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">midi</span><span class="o">.</span><span class="n">load_sound_font</span><span class="p">(</span><span class="n">sf2</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="n">midi</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">program_reset</span><span class="p">()</span>
+        <span class="n">initialized</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="k">return</span> <span class="bp">True</span>
+</div>
+<div class="viewcode-block" id="play_Note"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiFluidsynth.html#mingus.midi.fluidsynth.play_Note">[docs]</a><span class="k">def</span> <span class="nf">play_Note</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">velocity</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert a Note object to a &#39;midi on&#39; command.</span>
+
+<span class="sd">    The channel and velocity can be set as Note attributes as well. If</span>
+<span class="sd">    that&#39;s the case those values take presedence over the ones given here as</span>
+<span class="sd">    function arguments.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; n = Note(&#39;C&#39;, 4)</span>
+<span class="sd">    &gt;&gt;&gt; n.channel = 9</span>
+<span class="sd">    &gt;&gt;&gt; n.velocity = 50</span>
+<span class="sd">    &gt;&gt;&gt; FluidSynth.play_Note(n)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">midi</span><span class="o">.</span><span class="n">play_Note</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">velocity</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="stop_Note"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiFluidsynth.html#mingus.midi.fluidsynth.stop_Note">[docs]</a><span class="k">def</span> <span class="nf">stop_Note</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Stop the Note playing at channel.</span>
+
+<span class="sd">    If a channel attribute is set on the note, it will take presedence.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">midi</span><span class="o">.</span><span class="n">stop_Note</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">channel</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="play_NoteContainer"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiFluidsynth.html#mingus.midi.fluidsynth.play_NoteContainer">[docs]</a><span class="k">def</span> <span class="nf">play_NoteContainer</span><span class="p">(</span><span class="n">nc</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">velocity</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Use play_Note to play the Notes in the NoteContainer nc.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">midi</span><span class="o">.</span><span class="n">play_NoteContainer</span><span class="p">(</span><span class="n">nc</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">velocity</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="stop_NoteContainer"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiFluidsynth.html#mingus.midi.fluidsynth.stop_NoteContainer">[docs]</a><span class="k">def</span> <span class="nf">stop_NoteContainer</span><span class="p">(</span><span class="n">nc</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Use stop_Note to stop the notes in NoteContainer nc.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">midi</span><span class="o">.</span><span class="n">stop_NoteContainer</span><span class="p">(</span><span class="n">nc</span><span class="p">,</span> <span class="n">channel</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="play_Bar"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiFluidsynth.html#mingus.midi.fluidsynth.play_Bar">[docs]</a><span class="k">def</span> <span class="nf">play_Bar</span><span class="p">(</span><span class="n">bar</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bpm</span><span class="o">=</span><span class="mi">120</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Play a Bar object using play_NoteContainer and stop_NoteContainer.</span>
+
+<span class="sd">    Set a bpm attribute on a NoteContainer to change the tempo.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">midi</span><span class="o">.</span><span class="n">play_Bar</span><span class="p">(</span><span class="n">bar</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">bpm</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="play_Bars"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiFluidsynth.html#mingus.midi.fluidsynth.play_Bars">[docs]</a><span class="k">def</span> <span class="nf">play_Bars</span><span class="p">(</span><span class="n">bars</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="n">bpm</span><span class="o">=</span><span class="mi">120</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Play a list of bars on the given list of channels.</span>
+
+<span class="sd">    Set a bpm attribute on a NoteContainer to change the tempo.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">midi</span><span class="o">.</span><span class="n">play_Bars</span><span class="p">(</span><span class="n">bars</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="n">bpm</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="play_Track"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiFluidsynth.html#mingus.midi.fluidsynth.play_Track">[docs]</a><span class="k">def</span> <span class="nf">play_Track</span><span class="p">(</span><span class="n">track</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bpm</span><span class="o">=</span><span class="mi">120</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Use play_Bar to play a Track object.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">midi</span><span class="o">.</span><span class="n">play_Track</span><span class="p">(</span><span class="n">track</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">bpm</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="play_Tracks"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiFluidsynth.html#mingus.midi.fluidsynth.play_Tracks">[docs]</a><span class="k">def</span> <span class="nf">play_Tracks</span><span class="p">(</span><span class="n">tracks</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="n">bpm</span><span class="o">=</span><span class="mi">120</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Use play_Bars to play a list of Tracks on the given list of channels.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">midi</span><span class="o">.</span><span class="n">play_Tracks</span><span class="p">(</span><span class="n">tracks</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="n">bpm</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="play_Composition"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiFluidsynth.html#mingus.midi.fluidsynth.play_Composition">[docs]</a><span class="k">def</span> <span class="nf">play_Composition</span><span class="p">(</span><span class="n">composition</span><span class="p">,</span> <span class="n">channels</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">bpm</span><span class="o">=</span><span class="mi">120</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Play a composition.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">midi</span><span class="o">.</span><span class="n">play_Composition</span><span class="p">(</span><span class="n">composition</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="n">bpm</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="control_change"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiFluidsynth.html#mingus.midi.fluidsynth.control_change">[docs]</a><span class="k">def</span> <span class="nf">control_change</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">control</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Send a control change event on channel.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">midi</span><span class="o">.</span><span class="n">control_change</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">control</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</div>
+<span class="k">def</span> <span class="nf">set_instrument</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">midi_instr</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Set the midi instrument on channel.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">midi</span><span class="o">.</span><span class="n">set_instrument</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">midi_instr</span><span class="p">)</span>
+
+<div class="viewcode-block" id="stop_everything"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiFluidsynth.html#mingus.midi.fluidsynth.stop_everything">[docs]</a><span class="k">def</span> <span class="nf">stop_everything</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Stop all the playing notes on all channels.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">midi</span><span class="o">.</span><span class="n">stop_everything</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="modulation"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiFluidsynth.html#mingus.midi.fluidsynth.modulation">[docs]</a><span class="k">def</span> <span class="nf">modulation</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">midi</span><span class="o">.</span><span class="n">modulation</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="pan"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiFluidsynth.html#mingus.midi.fluidsynth.pan">[docs]</a><span class="k">def</span> <span class="nf">pan</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">midi</span><span class="o">.</span><span class="n">pan</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="main_volume"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiFluidsynth.html#mingus.midi.fluidsynth.main_volume">[docs]</a><span class="k">def</span> <span class="nf">main_volume</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">midi</span><span class="o">.</span><span class="n">main_volume</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="set_instrument"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiFluidsynth.html#mingus.midi.fluidsynth.set_instrument">[docs]</a><span class="k">def</span> <span class="nf">set_instrument</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">instr</span><span class="p">,</span> <span class="n">bank</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">midi</span><span class="o">.</span><span class="n">set_instrument</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">instr</span><span class="p">,</span> <span class="n">bank</span><span class="p">)</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

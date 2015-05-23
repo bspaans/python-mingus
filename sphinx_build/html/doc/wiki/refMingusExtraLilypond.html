@@ -39,6 +39,9 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="refMingusExtraTunings.html" title="mingus.extra.tunings"
              accesskey="N">next</a> |</li>
         <li class="right" >
@@ -53,15 +56,15 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="mingus-extra-lilypond">
+  <span class="target" id="module-mingus.extra.lilypond"></span><div class="section" id="mingus-extra-lilypond">
 <h1>mingus.extra.lilypond<a class="headerlink" href="#mingus-extra-lilypond" title="Permalink to this headline">¶</a></h1>
 <p>Functions to generate files in the LilyPond format.</p>
 <p>This allows you to create sheet music from some of the objects in
 mingus.containers.</p>
 <hr class="docutils" />
 <dl class="function">
-<dt id="from_Bar">
-<code class="descname">from_Bar</code><span class="sig-paren">(</span><em>bar</em>, <em>showkey=True</em>, <em>showtime=True</em><span class="sig-paren">)</span><a class="headerlink" href="#from_Bar" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.extra.lilypond.from_Bar">
+<code class="descclassname">mingus.extra.lilypond.</code><code class="descname">from_Bar</code><span class="sig-paren">(</span><em>bar</em>, <em>showkey=True</em>, <em>showtime=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/extra/lilypond.html#from_Bar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.extra.lilypond.from_Bar" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a Bar object and return the LilyPond equivalent in a string.</p>
 <p>The showkey and showtime parameters can be set to determine whether the
 key and the time should be shown.</p>
@@ -69,15 +72,15 @@ key and the time should be shown.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="from_Composition">
-<code class="descname">from_Composition</code><span class="sig-paren">(</span><em>composition</em><span class="sig-paren">)</span><a class="headerlink" href="#from_Composition" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.extra.lilypond.from_Composition">
+<code class="descclassname">mingus.extra.lilypond.</code><code class="descname">from_Composition</code><span class="sig-paren">(</span><em>composition</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/extra/lilypond.html#from_Composition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.extra.lilypond.from_Composition" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the LilyPond equivalent of a Composition in a string.</p>
 </dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="from_Note">
-<code class="descname">from_Note</code><span class="sig-paren">(</span><em>note</em>, <em>process_octaves=True</em>, <em>standalone=True</em><span class="sig-paren">)</span><a class="headerlink" href="#from_Note" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.extra.lilypond.from_Note">
+<code class="descclassname">mingus.extra.lilypond.</code><code class="descname">from_Note</code><span class="sig-paren">(</span><em>note</em>, <em>process_octaves=True</em>, <em>standalone=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/extra/lilypond.html#from_Note"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.extra.lilypond.from_Note" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a Note object and return the LilyPond equivalent in a string.</p>
 <p>If process_octaves is set to False, all data regarding octaves will be
 ignored. If standalone is True, the result can be used by functions
@@ -87,8 +90,8 @@ to let from_NoteContainer make use of this function.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="from_NoteContainer">
-<code class="descname">from_NoteContainer</code><span class="sig-paren">(</span><em>nc</em>, <em>duration=None</em>, <em>standalone=True</em><span class="sig-paren">)</span><a class="headerlink" href="#from_NoteContainer" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.extra.lilypond.from_NoteContainer">
+<code class="descclassname">mingus.extra.lilypond.</code><code class="descname">from_NoteContainer</code><span class="sig-paren">(</span><em>nc</em>, <em>duration=None</em>, <em>standalone=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/extra/lilypond.html#from_NoteContainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.extra.lilypond.from_NoteContainer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a NoteContainer object and return the LilyPond equivalent in a
 string.</p>
 <p>The second argument determining the duration of the NoteContainer is
@@ -99,36 +102,36 @@ here to be used by from_Bar.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="from_Suite">
-<code class="descname">from_Suite</code><span class="sig-paren">(</span><em>suite</em><span class="sig-paren">)</span><a class="headerlink" href="#from_Suite" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.extra.lilypond.from_Suite">
+<code class="descclassname">mingus.extra.lilypond.</code><code class="descname">from_Suite</code><span class="sig-paren">(</span><em>suite</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/extra/lilypond.html#from_Suite"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.extra.lilypond.from_Suite" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="from_Track">
-<code class="descname">from_Track</code><span class="sig-paren">(</span><em>track</em><span class="sig-paren">)</span><a class="headerlink" href="#from_Track" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.extra.lilypond.from_Track">
+<code class="descclassname">mingus.extra.lilypond.</code><code class="descname">from_Track</code><span class="sig-paren">(</span><em>track</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/extra/lilypond.html#from_Track"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.extra.lilypond.from_Track" title="Permalink to this definition">¶</a></dt>
 <dd><p>Process a Track object and return the LilyPond equivalent in a string.</p>
 </dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="save_string_and_execute_LilyPond">
-<code class="descname">save_string_and_execute_LilyPond</code><span class="sig-paren">(</span><em>ly_string</em>, <em>filename</em>, <em>command</em><span class="sig-paren">)</span><a class="headerlink" href="#save_string_and_execute_LilyPond" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.extra.lilypond.save_string_and_execute_LilyPond">
+<code class="descclassname">mingus.extra.lilypond.</code><code class="descname">save_string_and_execute_LilyPond</code><span class="sig-paren">(</span><em>ly_string</em>, <em>filename</em>, <em>command</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/extra/lilypond.html#save_string_and_execute_LilyPond"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.extra.lilypond.save_string_and_execute_LilyPond" title="Permalink to this definition">¶</a></dt>
 <dd><p>A helper function for to_png and to_pdf. Should not be used directly.</p>
 </dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="to_pdf">
-<code class="descname">to_pdf</code><span class="sig-paren">(</span><em>ly_string</em>, <em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#to_pdf" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.extra.lilypond.to_pdf">
+<code class="descclassname">mingus.extra.lilypond.</code><code class="descname">to_pdf</code><span class="sig-paren">(</span><em>ly_string</em>, <em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/extra/lilypond.html#to_pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.extra.lilypond.to_pdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save a string in LilyPond format to a PDF.</p>
 <p>LilyPond in the $PATH is needed.</p>
 </dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="to_png">
-<code class="descname">to_png</code><span class="sig-paren">(</span><em>ly_string</em>, <em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#to_png" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.extra.lilypond.to_png">
+<code class="descclassname">mingus.extra.lilypond.</code><code class="descname">to_png</code><span class="sig-paren">(</span><em>ly_string</em>, <em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/extra/lilypond.html#to_png"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.extra.lilypond.to_png" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save a string in LilyPond format to a PNG.</p>
 <p>LilyPond in the $PATH is needed.</p>
 </dd></dl>

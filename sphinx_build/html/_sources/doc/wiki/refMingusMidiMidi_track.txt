@@ -1,3 +1,5 @@
+.. module:: mingus.midi.midi_track
+
 ======================
 mingus.midi.midi_track
 ======================

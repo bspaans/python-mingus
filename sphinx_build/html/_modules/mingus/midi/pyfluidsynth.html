@@ -1,0 +1,386 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mingus.midi.pyfluidsynth &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">mingus 0.5.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for mingus.midi.pyfluidsynth</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="c">#    pyFluidSynth</span>
+<span class="c">#</span>
+<span class="c">#    Python bindings for FluidSynth</span>
+<span class="c">#</span>
+<span class="c">#    Copyright 2008-2009, Nathan Whitehead &lt;nwhitehe@gmail.com&gt;</span>
+<span class="c">#    Currently maintained by Bart Spaans &lt;onderstekop@gmail.com&gt;</span>
+<span class="c">#    Released under the LGPL</span>
+
+<span class="sd">&quot;&quot;&quot;Python bindings for FluidSynth.</span>
+
+<span class="sd">FluidSynth is a software synthesizer for generating music.  It works like a</span>
+<span class="sd">MIDI synthesizer.</span>
+
+<span class="sd">You load patches, set parameters, then send NOTEON and NOTEOFF events to</span>
+<span class="sd">play notes.</span>
+
+<span class="sd">Instruments are defined in SoundFonts, generally files with the extension</span>
+<span class="sd">SF2.</span>
+
+<span class="sd">FluidSynth can either be used to play audio itself, or you can call a</span>
+<span class="sd">function that returns chunks of audio data and output the data to the</span>
+<span class="sd">soundcard yourself.</span>
+
+<span class="sd">FluidSynth works on all major platforms, so pyFluidSynth should also.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">ctypes.util</span> <span class="kn">import</span> <span class="n">find_library</span>
+
+<span class="n">lib</span> <span class="o">=</span> <span class="n">find_library</span><span class="p">(</span><span class="s">&#39;fluidsynth&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">find_library</span><span class="p">(</span><span class="s">&#39;libfluidsynth&#39;</span><span class="p">)</span>\
+     <span class="ow">or</span> <span class="n">find_library</span><span class="p">(</span><span class="s">&#39;libfluidsynth-1&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">lib</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">,</span> <span class="s">&quot;Couldn&#39;t find the FluidSynth library.&quot;</span>
+
+<span class="n">_fl</span> <span class="o">=</span> <span class="n">CDLL</span><span class="p">(</span><span class="n">lib</span><span class="p">)</span>
+
+<div class="viewcode-block" id="cfunc"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiPyfluidsynth.html#mingus.midi.pyfluidsynth.cfunc">[docs]</a><span class="k">def</span> <span class="nf">cfunc</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build and apply a ctypes prototype complete with parameter flags.&quot;&quot;&quot;</span>
+    <span class="n">atypes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">aflags</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="n">atypes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">aflags</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">arg</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">arg</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">arg</span><span class="p">[</span><span class="mi">3</span><span class="p">:])</span>
+    <span class="k">return</span> <span class="n">CFUNCTYPE</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="o">*</span><span class="n">atypes</span><span class="p">)((</span><span class="n">name</span><span class="p">,</span> <span class="n">_fl</span><span class="p">),</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">aflags</span><span class="p">))</span>
+</div>
+<span class="n">api_version</span> <span class="o">=</span> <span class="s">&#39;1.2&#39;</span>
+
+<span class="n">new_fluid_settings</span> <span class="o">=</span> <span class="n">cfunc</span><span class="p">(</span><span class="s">&#39;new_fluid_settings&#39;</span><span class="p">,</span> <span class="n">c_void_p</span><span class="p">)</span>
+<span class="n">new_fluid_synth</span> <span class="o">=</span> <span class="n">cfunc</span><span class="p">(</span><span class="s">&#39;new_fluid_synth&#39;</span><span class="p">,</span> <span class="n">c_void_p</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;settings&#39;</span><span class="p">,</span> <span class="n">c_void_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">new_fluid_audio_driver</span> <span class="o">=</span> <span class="n">cfunc</span><span class="p">(</span><span class="s">&#39;new_fluid_audio_driver&#39;</span><span class="p">,</span> <span class="n">c_void_p</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;settings&#39;</span><span class="p">,</span>
+                               <span class="n">c_void_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;synth&#39;</span><span class="p">,</span> <span class="n">c_void_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">fluid_settings_setstr</span> <span class="o">=</span> <span class="n">cfunc</span><span class="p">(</span><span class="s">&#39;fluid_settings_setstr&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;settings&#39;</span><span class="p">,</span>
+                              <span class="n">c_void_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="n">c_char_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;str&#39;</span><span class="p">,</span>
+                              <span class="n">c_char_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">fluid_settings_setnum</span> <span class="o">=</span> <span class="n">cfunc</span><span class="p">(</span><span class="s">&#39;fluid_settings_setnum&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;settings&#39;</span><span class="p">,</span>
+                              <span class="n">c_void_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="n">c_char_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;val&#39;</span><span class="p">,</span>
+                              <span class="n">c_double</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">fluid_settings_setint</span> <span class="o">=</span> <span class="n">cfunc</span><span class="p">(</span><span class="s">&#39;fluid_settings_setint&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;settings&#39;</span><span class="p">,</span>
+                              <span class="n">c_void_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="n">c_char_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;val&#39;</span><span class="p">,</span>
+                              <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">delete_fluid_audio_driver</span> <span class="o">=</span> <span class="n">cfunc</span><span class="p">(</span><span class="s">&#39;delete_fluid_audio_driver&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;driver&#39;</span><span class="p">,</span>
+                                  <span class="n">c_void_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">delete_fluid_synth</span> <span class="o">=</span> <span class="n">cfunc</span><span class="p">(</span><span class="s">&#39;delete_fluid_synth&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;synth&#39;</span><span class="p">,</span> <span class="n">c_void_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">delete_fluid_settings</span> <span class="o">=</span> <span class="n">cfunc</span><span class="p">(</span><span class="s">&#39;delete_fluid_settings&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;settings&#39;</span><span class="p">,</span>
+                              <span class="n">c_void_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">fluid_synth_sfload</span> <span class="o">=</span> <span class="n">cfunc</span><span class="p">(</span><span class="s">&#39;fluid_synth_sfload&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;synth&#39;</span><span class="p">,</span> <span class="n">c_void_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+                           <span class="p">(</span><span class="s">&#39;filename&#39;</span><span class="p">,</span> <span class="n">c_char_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;update_midi_presets&#39;</span><span class="p">,</span>
+                           <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">fluid_synth_sfunload</span> <span class="o">=</span> <span class="n">cfunc</span><span class="p">(</span><span class="s">&#39;fluid_synth_sfunload&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;synth&#39;</span><span class="p">,</span> <span class="n">c_void_p</span><span class="p">,</span>
+                             <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;sfid&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;update_midi_presets&#39;</span><span class="p">,</span>
+                             <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">fluid_synth_program_select</span> <span class="o">=</span> <span class="n">cfunc</span><span class="p">(</span>
+    <span class="s">&#39;fluid_synth_program_select&#39;</span><span class="p">,</span>
+    <span class="n">c_int</span><span class="p">,</span>
+    <span class="p">(</span><span class="s">&#39;synth&#39;</span><span class="p">,</span> <span class="n">c_void_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;chan&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;sfid&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;bank&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;preset&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">)</span>
+<span class="n">fluid_synth_noteon</span> <span class="o">=</span> <span class="n">cfunc</span><span class="p">(</span>
+    <span class="s">&#39;fluid_synth_noteon&#39;</span><span class="p">,</span>
+    <span class="n">c_int</span><span class="p">,</span>
+    <span class="p">(</span><span class="s">&#39;synth&#39;</span><span class="p">,</span> <span class="n">c_void_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;chan&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;key&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;vel&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">)</span>
+<span class="n">fluid_synth_noteoff</span> <span class="o">=</span> <span class="n">cfunc</span><span class="p">(</span><span class="s">&#39;fluid_synth_noteoff&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;synth&#39;</span><span class="p">,</span> <span class="n">c_void_p</span><span class="p">,</span>
+                            <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;chan&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;key&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">fluid_synth_pitch_bend</span> <span class="o">=</span> <span class="n">cfunc</span><span class="p">(</span><span class="s">&#39;fluid_synth_pitch_bend&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;synth&#39;</span><span class="p">,</span>
+                               <span class="n">c_void_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;chan&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;val&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span>
+                               <span class="mi">1</span><span class="p">))</span>
+<span class="n">fluid_synth_cc</span> <span class="o">=</span> <span class="n">cfunc</span><span class="p">(</span>
+    <span class="s">&#39;fluid_synth_cc&#39;</span><span class="p">,</span>
+    <span class="n">c_int</span><span class="p">,</span>
+    <span class="p">(</span><span class="s">&#39;synth&#39;</span><span class="p">,</span> <span class="n">c_void_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;chan&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;ctrl&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;val&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">)</span>
+<span class="n">fluid_synth_program_change</span> <span class="o">=</span> <span class="n">cfunc</span><span class="p">(</span><span class="s">&#39;fluid_synth_program_change&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;synth&#39;</span>
+                                   <span class="p">,</span> <span class="n">c_void_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;chan&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;prg&#39;</span><span class="p">,</span>
+                                   <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">fluid_synth_bank_select</span> <span class="o">=</span> <span class="n">cfunc</span><span class="p">(</span><span class="s">&#39;fluid_synth_bank_select&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;synth&#39;</span><span class="p">,</span>
+                                <span class="n">c_void_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;chan&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;bank&#39;</span><span class="p">,</span>
+                                <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">fluid_synth_sfont_select</span> <span class="o">=</span> <span class="n">cfunc</span><span class="p">(</span><span class="s">&#39;fluid_synth_sfont_select&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;synth&#39;</span><span class="p">,</span>
+                                 <span class="n">c_void_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;chan&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;sfid&#39;</span><span class="p">,</span>
+                                 <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">fluid_synth_program_reset</span> <span class="o">=</span> <span class="n">cfunc</span><span class="p">(</span><span class="s">&#39;fluid_synth_program_reset&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;synth&#39;</span><span class="p">,</span>
+                                  <span class="n">c_void_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">fluid_synth_system_reset</span> <span class="o">=</span> <span class="n">cfunc</span><span class="p">(</span><span class="s">&#39;fluid_synth_system_reset&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;synth&#39;</span><span class="p">,</span>
+                                 <span class="n">c_void_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">fluid_synth_write_s16</span> <span class="o">=</span> <span class="n">cfunc</span><span class="p">(</span>
+    <span class="s">&#39;fluid_synth_write_s16&#39;</span><span class="p">,</span>
+    <span class="n">c_void_p</span><span class="p">,</span>
+    <span class="p">(</span><span class="s">&#39;synth&#39;</span><span class="p">,</span> <span class="n">c_void_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;len&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;lbuf&#39;</span><span class="p">,</span> <span class="n">c_void_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;loff&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;lincr&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;rbuf&#39;</span><span class="p">,</span> <span class="n">c_void_p</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;roff&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;rincr&#39;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">)</span>
+
+<div class="viewcode-block" id="fluid_synth_write_s16_stereo"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiPyfluidsynth.html#mingus.midi.pyfluidsynth.fluid_synth_write_s16_stereo">[docs]</a><span class="k">def</span> <span class="nf">fluid_synth_write_s16_stereo</span><span class="p">(</span><span class="n">synth</span><span class="p">,</span> <span class="nb">len</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return generated samples in stereo 16-bit format.</span>
+
+<span class="sd">    Return value is a Numpy array of samples.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">numpy</span>
+    <span class="n">buf</span> <span class="o">=</span> <span class="n">create_string_buffer</span><span class="p">(</span><span class="nb">len</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="n">fluid_synth_write_s16</span><span class="p">(</span><span class="n">synth</span><span class="p">,</span> <span class="nb">len</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">buf</span><span class="p">[:],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">int16</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Synth"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiPyfluidsynth.html#mingus.midi.pyfluidsynth.Synth">[docs]</a><span class="k">class</span> <span class="nc">Synth</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;Synth represents a FluidSynth synthesizer.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gain</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">samplerate</span><span class="o">=</span><span class="mi">44100</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a new synthesizer object to control sound generation.</span>
+
+<span class="sd">        Optional keyword arguments:</span>
+<span class="sd">          gain: scale factor for audio output, default is 0.2</span>
+<span class="sd">                lower values are quieter, allow more simultaneous notes</span>
+<span class="sd">          samplerate: output samplerate in Hz, default is 44100 Hz</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">st</span> <span class="o">=</span> <span class="n">new_fluid_settings</span><span class="p">()</span>
+        <span class="n">fluid_settings_setnum</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="s">&#39;synth.gain&#39;</span><span class="p">,</span> <span class="n">gain</span><span class="p">)</span>
+        <span class="n">fluid_settings_setnum</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="s">&#39;synth.sample-rate&#39;</span><span class="p">,</span> <span class="n">samplerate</span><span class="p">)</span>
+
+        <span class="c"># No reason to limit ourselves to 16 channels</span>
+        <span class="n">fluid_settings_setint</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="s">&#39;synth.midi-channels&#39;</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="n">st</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">synth</span> <span class="o">=</span> <span class="n">new_fluid_synth</span><span class="p">(</span><span class="n">st</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">audio_driver</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Start audio output driver in separate background thread.</span>
+
+<span class="sd">        Call this function any time after creating the Synth object.</span>
+<span class="sd">        If you don&#39;t call this function, use get_samples() to generate</span>
+<span class="sd">        samples.</span>
+
+<span class="sd">        Optional keyword argument:</span>
+<span class="sd">          driver: which audio driver to use for output</span>
+<span class="sd">                  Possible choices:</span>
+<span class="sd">                    &#39;alsa&#39;, &#39;oss&#39;, &#39;jack&#39;, &#39;portaudio&#39;</span>
+<span class="sd">                    &#39;sndmgr&#39;, &#39;coreaudio&#39;, &#39;Direct Sound&#39;,</span>
+<span class="sd">                    &#39;dsound&#39;, &#39;pulseaudio&#39;</span>
+
+<span class="sd">        Not all drivers will be available for every platform, it depends on</span>
+<span class="sd">        which drivers were compiled into FluidSynth for your platform.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">driver</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">driver</span> <span class="ow">in</span> <span class="p">[</span>
+                    <span class="s">&#39;alsa&#39;</span><span class="p">,</span>
+                    <span class="s">&#39;oss&#39;</span><span class="p">,</span>
+                    <span class="s">&#39;jack&#39;</span><span class="p">,</span>
+                    <span class="s">&#39;portaudio&#39;</span><span class="p">,</span>
+                    <span class="s">&#39;sndmgr&#39;</span><span class="p">,</span>
+                    <span class="s">&#39;coreaudio&#39;</span><span class="p">,</span>
+                    <span class="s">&#39;Direct Sound&#39;</span><span class="p">,</span>
+                    <span class="s">&#39;dsound&#39;</span><span class="p">,</span>
+                    <span class="s">&#39;pulseaudio&#39;</span>
+                    <span class="p">]</span>
+            <span class="n">fluid_settings_setstr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">,</span> <span class="s">&#39;audio.driver&#39;</span><span class="p">,</span> <span class="n">driver</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">audio_driver</span> <span class="o">=</span> <span class="n">new_fluid_audio_driver</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">audio_driver</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">delete_fluid_audio_driver</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">audio_driver</span><span class="p">)</span>
+        <span class="n">delete_fluid_synth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">)</span>
+        <span class="n">delete_fluid_settings</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">sfload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">update_midi_preset</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Load SoundFont and return its IDi.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">fluid_synth_sfload</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">update_midi_preset</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">sfunload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sfid</span><span class="p">,</span> <span class="n">update_midi_preset</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Unload a SoundFont and free memory it used.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">fluid_synth_sfunload</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">,</span> <span class="n">sfid</span><span class="p">,</span> <span class="n">update_midi_preset</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">program_select</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">sfid</span><span class="p">,</span> <span class="n">bank</span><span class="p">,</span> <span class="n">preset</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Select a program.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">fluid_synth_program_select</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">sfid</span><span class="p">,</span> <span class="n">bank</span><span class="p">,</span> <span class="n">preset</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">noteon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">vel</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Play a note.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">&gt;</span> <span class="mi">128</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">if</span> <span class="n">chan</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">if</span> <span class="n">vel</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">vel</span> <span class="o">&gt;</span> <span class="mi">128</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">return</span> <span class="n">fluid_synth_noteon</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">vel</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">noteoff</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Stop a note.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">&gt;</span> <span class="mi">128</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">if</span> <span class="n">chan</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">return</span> <span class="n">fluid_synth_noteoff</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">pitch_bend</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adjust pitch of a playing channel by small amounts.</span>
+
+<span class="sd">        A pitch bend value of 0 is no pitch change from default.</span>
+<span class="sd">        A value of -2048 is 1 semitone down.</span>
+<span class="sd">        A value of 2048 is 1 semitone up.</span>
+<span class="sd">        Maximum values are -8192 to +8192 (transposing by 4 semitones).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">fluid_synth_pitch_bend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">val</span> <span class="o">+</span> <span class="mi">8192</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">cc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">ctrl</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Send control change value.</span>
+
+<span class="sd">        The controls that are recognized are dependent on the</span>
+<span class="sd">        SoundFont.  Values are always 0 to 127.  Typical controls</span>
+<span class="sd">        include:</span>
+<span class="sd">          1: vibrato</span>
+<span class="sd">          7: volume</span>
+<span class="sd">          10: pan (left to right)</span>
+<span class="sd">          11: expression (soft to loud)</span>
+<span class="sd">          64: sustain</span>
+<span class="sd">          91: reverb</span>
+<span class="sd">          93: chorus</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">fluid_synth_cc</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">ctrl</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">program_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">prg</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Change the program.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">fluid_synth_program_change</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">prg</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">bank_select</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">bank</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Choose a bank.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">fluid_synth_bank_select</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">bank</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">sfont_select</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">sfid</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Choose a SoundFont.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">fluid_synth_sfont_select</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">sfid</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">program_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reset the programs on all channels.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">fluid_synth_program_reset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">system_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Stop all notes and reset all programs.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">fluid_synth_system_reset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">len</span><span class="o">=</span><span class="mi">1024</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generate audio samples.</span>
+
+<span class="sd">        The return value will be a NumPy array containing the given</span>
+<span class="sd">        length of audio samples.  If the synth is set to stereo output</span>
+<span class="sd">        (the default) the array will be size 2 * len.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">fluid_synth_write_s16_stereo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synth</span><span class="p">,</span> <span class="nb">len</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="raw_audio_string"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiPyfluidsynth.html#mingus.midi.pyfluidsynth.raw_audio_string">[docs]</a><span class="k">def</span> <span class="nf">raw_audio_string</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a string of bytes to send to soundcard.</span>
+
+<span class="sd">    Input is a numpy array of samples. Default output format is 16-bit</span>
+<span class="sd">    signed (other formats not currently supported).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">numpy</span>
+    <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">int16</span><span class="p">)</span><span class="o">.</span><span class="n">tostring</span><span class="p">()</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

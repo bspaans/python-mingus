@@ -1,3 +1,5 @@
+.. module:: mingus.containers.mt_exceptions
+
 ===============================
 mingus.containers.mt_exceptions
 ===============================

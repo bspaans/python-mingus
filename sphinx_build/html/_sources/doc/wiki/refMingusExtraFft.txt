@@ -1,3 +1,5 @@
+.. module:: mingus.extra.fft
+
 ================
 mingus.extra.fft
 ================

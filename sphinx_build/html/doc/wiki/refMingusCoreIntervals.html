@@ -39,6 +39,9 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="refMingusCoreChords.html" title="mingus.core.chords"
              accesskey="N">next</a> |</li>
         <li class="right" >
@@ -53,7 +56,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="mingus-core-intervals">
+  <span class="target" id="module-mingus.core.intervals"></span><div class="section" id="mingus-core-intervals">
 <h1>mingus.core.intervals<a class="headerlink" href="#mingus-core-intervals" title="Permalink to this headline">¶</a></h1>
 <p>Module to create intervals from notes.</p>
 <p>When you are working in a key (for instance &#8216;F&#8217;), you can use the functions
@@ -66,22 +69,22 @@ returns &#8216;A&#8217;.</p>
 determine, invert, is_consonant and is_dissonant.</p>
 <hr class="docutils" />
 <dl class="function">
-<dt id="augment_or_diminish_until_the_interval_is_right">
-<code class="descname">augment_or_diminish_until_the_interval_is_right</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em>, <em>interval</em><span class="sig-paren">)</span><a class="headerlink" href="#augment_or_diminish_until_the_interval_is_right" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.augment_or_diminish_until_the_interval_is_right">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">augment_or_diminish_until_the_interval_is_right</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em>, <em>interval</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#augment_or_diminish_until_the_interval_is_right"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.augment_or_diminish_until_the_interval_is_right" title="Permalink to this definition">¶</a></dt>
 <dd><p>A helper function for the minor and major functions.</p>
 <p>You should probably not use this directly.</p>
 </dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="augmented_unison">
-<code class="descname">augmented_unison</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#augmented_unison" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.augmented_unison">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">augmented_unison</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#augmented_unison"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.augmented_unison" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="determine">
-<code class="descname">determine</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em>, <em>shorthand=False</em><span class="sig-paren">)</span><a class="headerlink" href="#determine" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.determine">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">determine</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em>, <em>shorthand=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#determine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.determine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Name the interval between note1 and note2.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">determine</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">)</span>
@@ -104,8 +107,8 @@ fifths and fourths:
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="fifth">
-<code class="descname">fifth</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#fifth" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.fifth">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">fifth</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#fifth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.fifth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Take the diatonic fifth of note in key.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>Examples:</p>
@@ -119,8 +122,8 @@ fifths and fourths:
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="fourth">
-<code class="descname">fourth</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#fourth" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.fourth">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">fourth</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#fourth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.fourth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Take the diatonic fourth of note in key.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>Examples:</p>
@@ -134,8 +137,8 @@ fifths and fourths:
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="from_shorthand">
-<code class="descname">from_shorthand</code><span class="sig-paren">(</span><em>note</em>, <em>interval</em>, <em>up=True</em><span class="sig-paren">)</span><a class="headerlink" href="#from_shorthand" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.from_shorthand">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">from_shorthand</code><span class="sig-paren">(</span><em>note</em>, <em>interval</em>, <em>up=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#from_shorthand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.from_shorthand" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the note on interval up or down.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">from_shorthand</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;b3&#39;</span><span class="p">)</span>
@@ -150,8 +153,8 @@ fifths and fourths:
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="get_interval">
-<code class="descname">get_interval</code><span class="sig-paren">(</span><em>note</em>, <em>interval</em>, <em>key=C</em><span class="sig-paren">)</span><a class="headerlink" href="#get_interval" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.get_interval">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">get_interval</code><span class="sig-paren">(</span><em>note</em>, <em>interval</em>, <em>key=C</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#get_interval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.get_interval" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the note an interval (in half notes) away from the given note.</p>
 <p>This will produce mostly theoretical sound results, but you should use
 the minor and major functions to work around the corner cases.</p>
@@ -159,8 +162,8 @@ the minor and major functions to work around the corner cases.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="interval">
-<code class="descname">interval</code><span class="sig-paren">(</span><em>key</em>, <em>start_note</em>, <em>interval</em><span class="sig-paren">)</span><a class="headerlink" href="#interval" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.interval">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">interval</code><span class="sig-paren">(</span><em>key</em>, <em>start_note</em>, <em>interval</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#interval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.interval" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the note found at the interval starting from start_note in the
 given key.</p>
 <p>Raise a KeyError exception if start_note is not a valid note.</p>
@@ -173,8 +176,8 @@ given key.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="invert">
-<code class="descname">invert</code><span class="sig-paren">(</span><em>interval</em><span class="sig-paren">)</span><a class="headerlink" href="#invert" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.invert">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">invert</code><span class="sig-paren">(</span><em>interval</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#invert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.invert" title="Permalink to this definition">¶</a></dt>
 <dd><p>Invert an interval.</p>
 <p>Example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">invert</span><span class="p">([</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">])</span>
@@ -185,8 +188,8 @@ given key.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="is_consonant">
-<code class="descname">is_consonant</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em>, <em>include_fourths=True</em><span class="sig-paren">)</span><a class="headerlink" href="#is_consonant" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.is_consonant">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">is_consonant</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em>, <em>include_fourths=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#is_consonant"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.is_consonant" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return True if the interval is consonant.</p>
 <p>A consonance is a harmony, chord, or interval considered stable, as
 opposed to a dissonance.</p>
@@ -199,8 +202,8 @@ contrapuntal, which is why you can choose to exclude it.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="is_dissonant">
-<code class="descname">is_dissonant</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em>, <em>include_fourths=False</em><span class="sig-paren">)</span><a class="headerlink" href="#is_dissonant" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.is_dissonant">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">is_dissonant</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em>, <em>include_fourths=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#is_dissonant"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.is_dissonant" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return True if the insterval is dissonant.</p>
 <p>This function tests whether an interval is considered unstable,
 dissonant.</p>
@@ -210,8 +213,8 @@ can be changed by setting exclude_fourths to True.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="is_imperfect_consonant">
-<code class="descname">is_imperfect_consonant</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em><span class="sig-paren">)</span><a class="headerlink" href="#is_imperfect_consonant" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.is_imperfect_consonant">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">is_imperfect_consonant</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#is_imperfect_consonant"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.is_imperfect_consonant" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return True id the interval is an imperfect consonant one.</p>
 <p>Imperfect consonances are either minor or major thirds or minor or major
 sixths.</p>
@@ -219,8 +222,8 @@ sixths.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="is_perfect_consonant">
-<code class="descname">is_perfect_consonant</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em>, <em>include_fourths=True</em><span class="sig-paren">)</span><a class="headerlink" href="#is_perfect_consonant" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.is_perfect_consonant">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">is_perfect_consonant</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em>, <em>include_fourths=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#is_perfect_consonant"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.is_perfect_consonant" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return True if the interval is a perfect consonant one.</p>
 <p>Perfect consonances are either unisons, perfect fourths or fifths, or
 octaves (which is the same as a unison in this model).</p>
@@ -230,50 +233,50 @@ dissonant when used contrapuntal, which is why you can exclude them.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="major_fifth">
-<code class="descname">major_fifth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#major_fifth" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.major_fifth">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">major_fifth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#major_fifth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.major_fifth" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="major_fourth">
-<code class="descname">major_fourth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#major_fourth" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.major_fourth">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">major_fourth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#major_fourth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.major_fourth" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="major_second">
-<code class="descname">major_second</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#major_second" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.major_second">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">major_second</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#major_second"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.major_second" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="major_seventh">
-<code class="descname">major_seventh</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#major_seventh" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.major_seventh">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">major_seventh</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#major_seventh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.major_seventh" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="major_sixth">
-<code class="descname">major_sixth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#major_sixth" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.major_sixth">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">major_sixth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#major_sixth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.major_sixth" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="major_third">
-<code class="descname">major_third</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#major_third" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.major_third">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">major_third</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#major_third"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.major_third" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="major_unison">
-<code class="descname">major_unison</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#major_unison" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.major_unison">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">major_unison</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#major_unison"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.major_unison" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="measure">
-<code class="descname">measure</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em><span class="sig-paren">)</span><a class="headerlink" href="#measure" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.measure">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">measure</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#measure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.measure" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return an integer in the range of 0-11, determining the half note steps
 between note1 and note2.</p>
 <p>Examples:</p>
@@ -287,62 +290,62 @@ between note1 and note2.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="minor_fifth">
-<code class="descname">minor_fifth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#minor_fifth" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.minor_fifth">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">minor_fifth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#minor_fifth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.minor_fifth" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="minor_fourth">
-<code class="descname">minor_fourth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#minor_fourth" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.minor_fourth">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">minor_fourth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#minor_fourth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.minor_fourth" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="minor_second">
-<code class="descname">minor_second</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#minor_second" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.minor_second">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">minor_second</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#minor_second"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.minor_second" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="minor_seventh">
-<code class="descname">minor_seventh</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#minor_seventh" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.minor_seventh">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">minor_seventh</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#minor_seventh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.minor_seventh" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="minor_sixth">
-<code class="descname">minor_sixth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#minor_sixth" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.minor_sixth">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">minor_sixth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#minor_sixth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.minor_sixth" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="minor_third">
-<code class="descname">minor_third</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#minor_third" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.minor_third">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">minor_third</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#minor_third"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.minor_third" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="minor_unison">
-<code class="descname">minor_unison</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#minor_unison" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.minor_unison">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">minor_unison</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#minor_unison"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.minor_unison" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="perfect_fifth">
-<code class="descname">perfect_fifth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#perfect_fifth" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.perfect_fifth">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">perfect_fifth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#perfect_fifth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.perfect_fifth" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="perfect_fourth">
-<code class="descname">perfect_fourth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#perfect_fourth" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.perfect_fourth">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">perfect_fourth</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#perfect_fourth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.perfect_fourth" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="second">
-<code class="descname">second</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#second" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.second">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">second</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#second"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.second" title="Permalink to this definition">¶</a></dt>
 <dd><p>Take the diatonic second of note in key.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>Examples:</p>
@@ -356,8 +359,8 @@ between note1 and note2.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="seventh">
-<code class="descname">seventh</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#seventh" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.seventh">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">seventh</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#seventh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.seventh" title="Permalink to this definition">¶</a></dt>
 <dd><p>Take the diatonic seventh of note in key.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>Examples:</p>
@@ -371,8 +374,8 @@ between note1 and note2.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="sixth">
-<code class="descname">sixth</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#sixth" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.sixth">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">sixth</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#sixth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.sixth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Take the diatonic sixth of note in key.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>Examples:</p>
@@ -386,8 +389,8 @@ between note1 and note2.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="third">
-<code class="descname">third</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#third" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.third">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">third</code><span class="sig-paren">(</span><em>note</em>, <em>key</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#third"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.third" title="Permalink to this definition">¶</a></dt>
 <dd><p>Take the diatonic third of note in key.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>Examples:</p>
@@ -401,8 +404,8 @@ between note1 and note2.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="unison">
-<code class="descname">unison</code><span class="sig-paren">(</span><em>note</em>, <em>key=None</em><span class="sig-paren">)</span><a class="headerlink" href="#unison" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.intervals.unison">
+<code class="descclassname">mingus.core.intervals.</code><code class="descname">unison</code><span class="sig-paren">(</span><em>note</em>, <em>key=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/intervals.html#unison"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.intervals.unison" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the unison of note.</p>
 <p>Raise a KeyError exception if the note is not found in the given key.</p>
 <p>The key is not at all important, but is here for consistency reasons

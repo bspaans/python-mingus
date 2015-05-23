@@ -1,0 +1,486 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mingus.midi.midi_file_in &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">mingus 0.5.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for mingus.midi.midi_file_in</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="c">#    mingus - Music theory Python package, midi_file_in module.</span>
+<span class="c">#    Copyright (C) 2008-2009, Bart Spaans</span>
+<span class="c">#</span>
+<span class="c">#    This program is free software: you can redistribute it and/or modify</span>
+<span class="c">#    it under the terms of the GNU General Public License as published by</span>
+<span class="c">#    the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c">#    (at your option) any later version.</span>
+<span class="c">#</span>
+<span class="c">#    This program is distributed in the hope that it will be useful,</span>
+<span class="c">#    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c">#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c">#    GNU General Public License for more details.</span>
+<span class="c">#</span>
+<span class="c">#    You should have received a copy of the GNU General Public License</span>
+<span class="c">#    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="sd">&quot;&quot;&quot;Read a MIDI file and convert it into mingus.containers objects.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">mingus.containers.note</span> <span class="kn">import</span> <span class="n">Note</span>
+<span class="kn">from</span> <span class="nn">mingus.containers.note_container</span> <span class="kn">import</span> <span class="n">NoteContainer</span>
+<span class="kn">from</span> <span class="nn">mingus.containers.bar</span> <span class="kn">import</span> <span class="n">Bar</span>
+<span class="kn">from</span> <span class="nn">mingus.containers.track</span> <span class="kn">import</span> <span class="n">Track</span>
+<span class="kn">from</span> <span class="nn">mingus.containers.composition</span> <span class="kn">import</span> <span class="n">Composition</span>
+<span class="kn">from</span> <span class="nn">mingus.containers.instrument</span> <span class="kn">import</span> <span class="n">MidiInstrument</span>
+<span class="kn">import</span> <span class="nn">mingus.core.notes</span> <span class="kn">as</span> <span class="nn">notes</span>
+<span class="kn">import</span> <span class="nn">mingus.core.intervals</span> <span class="kn">as</span> <span class="nn">intervals</span>
+<span class="kn">import</span> <span class="nn">binascii</span>
+
+<div class="viewcode-block" id="MIDI_to_Composition"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_in.html#mingus.midi.midi_file_in.MIDI_to_Composition">[docs]</a><span class="k">def</span> <span class="nf">MIDI_to_Composition</span><span class="p">(</span><span class="nb">file</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert a MIDI file to a mingus.containers.Composition and return it</span>
+<span class="sd">    in a tuple with the last used tempo in beats per minute (this will</span>
+<span class="sd">    change in the future).</span>
+
+<span class="sd">    This function can raise all kinds of exceptions (IOError, HeaderError,</span>
+<span class="sd">    TimeDivisionError, FormatError), so be sure to try and catch.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">MidiFile</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">m</span><span class="o">.</span><span class="n">MIDI_to_Composition</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+</div>
+<span class="k">class</span> <span class="nc">HeaderError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<span class="k">class</span> <span class="nc">TimeDivisionError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<span class="k">class</span> <span class="nc">FormatError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+
+    <span class="k">pass</span>
+
+
+<div class="viewcode-block" id="MidiFile"><a class="viewcode-back" href="../../../doc/wiki/refMingusMidiMidi_file_in.html#mingus.midi.midi_file_in.MidiFile">[docs]</a><span class="k">class</span> <span class="nc">MidiFile</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;A class that parses a MIDI file.&quot;&quot;&quot;</span>
+
+    <span class="n">bpm</span> <span class="o">=</span> <span class="mi">120</span>
+    <span class="n">meter</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="n">bytes_read</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">MIDI_to_Composition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">file</span><span class="p">):</span>
+        <span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">track_data</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_midi_file</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">Composition</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">header</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s">&#39;fps&#39;</span><span class="p">]:</span>
+            <span class="k">print</span> <span class="s">&quot;Don&#39;t know how to parse this yet&quot;</span>
+            <span class="k">return</span> <span class="n">c</span>
+        <span class="n">ticks_per_beat</span> <span class="o">=</span> <span class="n">header</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s">&#39;ticks_per_beat&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">track</span> <span class="ow">in</span> <span class="n">track_data</span><span class="p">:</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="n">Track</span><span class="p">()</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">()</span>
+            <span class="n">metronome</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c"># Tick once every quarter note</span>
+            <span class="n">thirtyseconds</span> <span class="o">=</span> <span class="mi">8</span>  <span class="c"># 8 thirtyseconds in a quarter note</span>
+            <span class="n">meter</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="s">&#39;C&#39;</span>
+            <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">track</span><span class="p">:</span>
+                <span class="p">(</span><span class="n">deltatime</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span> <span class="o">=</span> <span class="n">e</span>
+                <span class="n">duration</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">deltatime</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">ticks_per_beat</span> <span class="o">*</span> <span class="mf">4.0</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">duration</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="p">:</span>
+                    <span class="n">duration</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">duration</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">bar</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">current_length</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">bar</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+                        <span class="n">b</span><span class="o">.</span><span class="n">bar</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">duration</span>
+                        <span class="k">if</span> <span class="n">current_length</span> <span class="o">-</span> <span class="n">duration</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                            <span class="n">b</span><span class="o">.</span><span class="n">current_beat</span> <span class="o">-=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">current_length</span>
+                            <span class="n">b</span><span class="o">.</span><span class="n">current_beat</span> <span class="o">+=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">duration</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">b</span><span class="o">.</span><span class="n">place_notes</span><span class="p">(</span><span class="n">NoteContainer</span><span class="p">(),</span> <span class="n">duration</span><span class="p">):</span>
+                        <span class="n">t</span> <span class="o">+</span> <span class="n">b</span>
+                        <span class="n">b</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">meter</span><span class="p">)</span>
+                        <span class="n">b</span><span class="o">.</span><span class="n">place_notes</span><span class="p">(</span><span class="n">NoteContainer</span><span class="p">(),</span> <span class="n">duration</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">event</span><span class="p">[</span><span class="s">&#39;event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">8</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">deltatime</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="k">pass</span>
+                <span class="k">elif</span> <span class="n">event</span><span class="p">[</span><span class="s">&#39;event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">9</span><span class="p">:</span>
+                    <span class="c"># note on</span>
+                    <span class="n">n</span> <span class="o">=</span> <span class="n">Note</span><span class="p">(</span><span class="n">notes</span><span class="o">.</span><span class="n">int_to_note</span><span class="p">(</span><span class="n">event</span><span class="p">[</span><span class="s">&#39;param1&#39;</span><span class="p">]</span> <span class="o">%</span> <span class="mi">12</span><span class="p">),</span>
+                             <span class="n">event</span><span class="p">[</span><span class="s">&#39;param1&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">12</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+                    <span class="n">n</span><span class="o">.</span><span class="n">channel</span> <span class="o">=</span> <span class="n">event</span><span class="p">[</span><span class="s">&#39;channel&#39;</span><span class="p">]</span>
+                    <span class="n">n</span><span class="o">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="n">event</span><span class="p">[</span><span class="s">&#39;param2&#39;</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">bar</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">b</span><span class="o">.</span><span class="n">bar</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">n</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">b</span> <span class="o">+</span> <span class="n">n</span>
+                <span class="k">elif</span> <span class="n">event</span><span class="p">[</span><span class="s">&#39;event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">10</span><span class="p">:</span>
+                    <span class="c"># note aftertouch</span>
+                    <span class="k">pass</span>
+                <span class="k">elif</span> <span class="n">event</span><span class="p">[</span><span class="s">&#39;event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">11</span><span class="p">:</span>
+                    <span class="c"># controller select</span>
+                    <span class="k">pass</span>
+                <span class="k">elif</span> <span class="n">event</span><span class="p">[</span><span class="s">&#39;event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">12</span><span class="p">:</span>
+                    <span class="c"># program change</span>
+                    <span class="n">i</span> <span class="o">=</span> <span class="n">MidiInstrument</span><span class="p">()</span>
+                    <span class="n">i</span><span class="o">.</span><span class="n">instrument_nr</span> <span class="o">=</span> <span class="n">event</span><span class="p">[</span><span class="s">&#39;param1&#39;</span><span class="p">]</span>
+                    <span class="n">t</span><span class="o">.</span><span class="n">instrument</span> <span class="o">=</span> <span class="n">i</span>
+                <span class="k">elif</span> <span class="n">event</span><span class="p">[</span><span class="s">&#39;event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0x0f</span><span class="p">:</span>
+                    <span class="c"># meta event Text</span>
+                    <span class="k">if</span> <span class="n">event</span><span class="p">[</span><span class="s">&#39;meta_event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="k">pass</span>
+                    <span class="k">elif</span> <span class="n">event</span><span class="p">[</span><span class="s">&#39;meta_event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                        <span class="c"># Track name</span>
+                        <span class="n">t</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">event</span><span class="p">[</span><span class="s">&#39;data&#39;</span><span class="p">]</span>
+                    <span class="k">elif</span> <span class="n">event</span><span class="p">[</span><span class="s">&#39;meta_event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+                        <span class="c"># Marker</span>
+                        <span class="k">pass</span>
+                    <span class="k">elif</span> <span class="n">event</span><span class="p">[</span><span class="s">&#39;meta_event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>
+                        <span class="c"># Cue Point</span>
+                        <span class="k">pass</span>
+                    <span class="k">elif</span> <span class="n">event</span><span class="p">[</span><span class="s">&#39;meta_event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">47</span><span class="p">:</span>
+                        <span class="c"># End of Track</span>
+                        <span class="k">pass</span>
+                    <span class="k">elif</span> <span class="n">event</span><span class="p">[</span><span class="s">&#39;meta_event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">81</span><span class="p">:</span>
+                        <span class="c"># Set tempo warning Only the last change in bpm will get</span>
+                        <span class="c"># saved currently</span>
+                        <span class="n">mpqn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_to_int</span><span class="p">(</span><span class="n">event</span><span class="p">[</span><span class="s">&#39;data&#39;</span><span class="p">])</span>
+                        <span class="n">bpm</span> <span class="o">=</span> <span class="mi">60000000</span> <span class="o">/</span> <span class="n">mpqn</span>
+                    <span class="k">elif</span> <span class="n">event</span><span class="p">[</span><span class="s">&#39;meta_event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">88</span><span class="p">:</span>
+                        <span class="c"># Time Signature</span>
+                        <span class="n">d</span> <span class="o">=</span> <span class="n">event</span><span class="p">[</span><span class="s">&#39;data&#39;</span><span class="p">]</span>
+                        <span class="n">thirtyseconds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_to_int</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+                        <span class="n">metronome</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_to_int</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">/</span> <span class="mf">24.0</span>
+                        <span class="n">denom</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_to_int</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                        <span class="n">numer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_to_int</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                        <span class="n">meter</span> <span class="o">=</span> <span class="p">(</span><span class="n">numer</span><span class="p">,</span> <span class="n">denom</span><span class="p">)</span>
+                        <span class="n">b</span><span class="o">.</span><span class="n">set_meter</span><span class="p">(</span><span class="n">meter</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">event</span><span class="p">[</span><span class="s">&#39;meta_event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">89</span><span class="p">:</span>
+                        <span class="c"># Key Signature</span>
+                        <span class="n">d</span> <span class="o">=</span> <span class="n">event</span><span class="p">[</span><span class="s">&#39;data&#39;</span><span class="p">]</span>
+                        <span class="n">sharps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_to_int</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                        <span class="n">minor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_to_int</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                        <span class="k">if</span> <span class="n">minor</span><span class="p">:</span>
+                            <span class="n">key</span> <span class="o">=</span> <span class="s">&#39;A&#39;</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">key</span> <span class="o">=</span> <span class="s">&#39;C&#39;</span>
+                        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">sharps</span><span class="p">)):</span>
+                            <span class="k">if</span> <span class="n">sharps</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                                <span class="n">key</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="n">major_fourth</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="n">key</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="n">major_fifth</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+                        <span class="n">b</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">Note</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">print</span> <span class="s">&#39;Unsupported META event&#39;</span><span class="p">,</span> <span class="n">event</span><span class="p">[</span><span class="s">&#39;meta_event&#39;</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">print</span> <span class="s">&#39;Unsupported MIDI event&#39;</span><span class="p">,</span> <span class="n">event</span>
+            <span class="n">t</span> <span class="o">+</span> <span class="n">b</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">tracks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">bpm</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">parse_midi_file_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Read the header of a MIDI file and return a tuple containing the</span>
+<span class="sd">        format type, number of tracks and parsed time division information.&quot;&quot;&quot;</span>
+        <span class="c"># Check header</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">!=</span> <span class="s">&#39;MThd&#39;</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">HeaderError</span><span class="p">(</span><span class="s">&#39;Not a valid MIDI file header. Byte </span><span class="si">%d</span><span class="s">.&#39;</span>
+                        <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_read</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bytes_read</span> <span class="o">+=</span> <span class="mi">4</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s">&quot;Couldn&#39;t read from file.&quot;</span><span class="p">)</span>
+
+        <span class="c"># Parse chunk size</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">chunk_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_to_int</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bytes_read</span> <span class="o">+=</span> <span class="mi">4</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s">&quot;Couldn&#39;t read chunk size from file. Byte </span><span class="si">%d</span><span class="s">.&quot;</span>
+                    <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_read</span><span class="p">)</span>
+
+        <span class="c"># Expect chunk size to be at least 6</span>
+        <span class="k">if</span> <span class="n">chunk_size</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">format_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_to_int</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bytes_read</span> <span class="o">+=</span> <span class="mi">2</span>
+            <span class="k">if</span> <span class="n">format_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]:</span>
+                <span class="k">raise</span> <span class="n">FormatError</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%d</span><span class="s"> is not a valid MIDI format.&#39;</span>
+                        <span class="o">%</span> <span class="n">format_type</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s">&quot;Couldn&#39;t read format type from file.&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">number_of_tracks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_to_int</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+            <span class="n">time_division</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_time_division</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bytes_read</span> <span class="o">+=</span> <span class="mi">4</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s">&quot;Couldn&#39;t read number of tracks &quot;</span>
+                    <span class="s">&quot;and/or time division from tracks.&quot;</span><span class="p">)</span>
+
+        <span class="n">chunk_size</span> <span class="o">-=</span> <span class="mi">6</span>
+        <span class="k">if</span> <span class="n">chunk_size</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">FormatError</span><span class="p">(</span><span class="s">&quot;Won&#39;t parse this.&quot;</span><span class="p">)</span>
+        <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">chunk_size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bytes_read</span> <span class="o">+=</span> <span class="n">chunk_size</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">format_type</span><span class="p">,</span> <span class="n">number_of_tracks</span><span class="p">,</span> <span class="n">time_division</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">bytes_to_int</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">binascii</span><span class="o">.</span><span class="n">b2a_hex</span><span class="p">(</span><span class="nb">bytes</span><span class="p">),</span> <span class="mi">16</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">parse_time_division</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Parse the time division found in the header of a MIDI file and</span>
+<span class="sd">        return a dictionary with the boolean fps set to indicate whether to</span>
+<span class="sd">        use frames per second or ticks per beat.</span>
+
+<span class="sd">        If fps is True, the values SMPTE_frames and clock_ticks will also be</span>
+<span class="sd">        set. If fps is False, ticks_per_beat will hold the value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># If highest bit is set, time division is set in frames per second</span>
+        <span class="c"># otherwise in ticks_per_beat</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_to_int</span><span class="p">(</span><span class="nb">bytes</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span> <span class="o">&amp;</span> <span class="mh">0x8000</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s">&#39;fps&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span> <span class="s">&#39;ticks_per_beat&#39;</span><span class="p">:</span> <span class="n">value</span> <span class="o">&amp;</span> <span class="mh">0x7FFF</span><span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">SMPTE_frames</span> <span class="o">=</span> <span class="p">(</span><span class="n">value</span> <span class="o">&amp;</span> <span class="mh">0x7F00</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">2</span>
+            <span class="k">if</span> <span class="n">SMPTE_frames</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">24</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">30</span><span class="p">]:</span>
+                <span class="k">raise</span> <span class="n">TimeDivisionError</span><span class="p">,</span> \
+                    <span class="s">&quot;&#39;</span><span class="si">%d</span><span class="s">&#39; is not a valid value for the number of SMPTE frames&quot;</span>\
+                     <span class="o">%</span> <span class="n">SMPTE_frames</span>
+            <span class="n">clock_ticks</span> <span class="o">=</span> <span class="p">(</span><span class="n">value</span> <span class="o">&amp;</span> <span class="mh">0x00FF</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">2</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s">&#39;fps&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> <span class="s">&#39;SMPTE_frames&#39;</span><span class="p">:</span> <span class="n">SMPTE_frames</span><span class="p">,</span>
+                    <span class="s">&#39;clock_ticks&#39;</span><span class="p">:</span> <span class="n">clock_ticks</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">parse_track</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Parse a MIDI track from its header to its events.</span>
+
+<span class="sd">        Return a list of events and the number of bytes that were read.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">events</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">chunk_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_track_header</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+        <span class="nb">bytes</span> <span class="o">=</span> <span class="n">chunk_size</span>
+        <span class="k">while</span> <span class="n">chunk_size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="p">(</span><span class="n">delta_time</span><span class="p">,</span> <span class="n">chunk_delta</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_varbyte_as_int</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+            <span class="n">chunk_size</span> <span class="o">-=</span> <span class="n">chunk_delta</span>
+            <span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">chunk_delta</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_midi_event</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+            <span class="n">chunk_size</span> <span class="o">-=</span> <span class="n">chunk_delta</span>
+            <span class="n">events</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">delta_time</span><span class="p">,</span> <span class="n">event</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">chunk_size</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;yikes.&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_read</span><span class="p">,</span> <span class="n">chunk_size</span>
+        <span class="k">return</span> <span class="n">events</span>
+
+    <span class="k">def</span> <span class="nf">parse_midi_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Parse a MIDI event.</span>
+
+<span class="sd">        Return a dictionary and the number of bytes read.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">chunk_size</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">ec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_to_int</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+            <span class="n">chunk_size</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bytes_read</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s">&quot;Couldn&#39;t read event type &quot;</span>
+                    <span class="s">&quot;and channel data from file.&quot;</span><span class="p">)</span>
+
+        <span class="c"># Get the nibbles</span>
+        <span class="n">event_type</span> <span class="o">=</span> <span class="p">(</span><span class="n">ec</span> <span class="o">&amp;</span> <span class="mh">0xf0</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span>
+        <span class="n">channel</span> <span class="o">=</span> <span class="n">ec</span> <span class="o">&amp;</span> <span class="mh">0x0f</span>
+
+        <span class="c"># I don&#39;t know what these events are supposed to do, but I keep finding</span>
+        <span class="c"># them. The parser ignores them.</span>
+        <span class="k">if</span> <span class="n">event_type</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">FormatError</span><span class="p">(</span><span class="s">&#39;Unknown event type </span><span class="si">%d</span><span class="s">. Byte </span><span class="si">%d</span><span class="s">.&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">event_type</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">bytes_read</span><span class="p">))</span>
+
+        <span class="c"># Meta events can have strings of variable length</span>
+        <span class="k">if</span> <span class="n">event_type</span> <span class="o">==</span> <span class="mh">0x0f</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">meta_event</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_to_int</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+                <span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">chunk_delta</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_varbyte_as_int</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+                <span class="n">chunk_size</span> <span class="o">+=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">chunk_delta</span> <span class="o">+</span> <span class="n">length</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">bytes_read</span> <span class="o">+=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">length</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s">&quot;Couldn&#39;t read meta event from file.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">({</span><span class="s">&#39;event&#39;</span><span class="p">:</span> <span class="n">event_type</span><span class="p">,</span> <span class="s">&#39;meta_event&#39;</span><span class="p">:</span> <span class="n">meta_event</span><span class="p">,</span>
+                <span class="s">&#39;data&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">},</span> <span class="n">chunk_size</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">event_type</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">]:</span>
+            <span class="c"># Program change and Channel aftertouch events only have one</span>
+            <span class="c"># parameter</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">param1</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">chunk_size</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">bytes_read</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s">&quot;Couldn&#39;t read MIDI event parameters from file.&quot;</span><span class="p">)</span>
+            <span class="n">param1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_to_int</span><span class="p">(</span><span class="n">param1</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">({</span><span class="s">&#39;event&#39;</span><span class="p">:</span> <span class="n">event_type</span><span class="p">,</span> <span class="s">&#39;channel&#39;</span><span class="p">:</span> <span class="n">channel</span><span class="p">,</span>
+                <span class="s">&#39;param1&#39;</span><span class="p">:</span> <span class="n">param1</span><span class="p">},</span> <span class="n">chunk_size</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">param1</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">param2</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">chunk_size</span> <span class="o">+=</span> <span class="mi">2</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">bytes_read</span> <span class="o">+=</span> <span class="mi">2</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s">&quot;Couldn&#39;t read MIDI event parameters from file.&quot;</span><span class="p">)</span>
+            <span class="n">param1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_to_int</span><span class="p">(</span><span class="n">param1</span><span class="p">)</span>
+            <span class="n">param2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_to_int</span><span class="p">(</span><span class="n">param2</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">({</span><span class="s">&#39;event&#39;</span><span class="p">:</span> <span class="n">event_type</span><span class="p">,</span> <span class="s">&#39;channel&#39;</span><span class="p">:</span> <span class="n">channel</span><span class="p">,</span> <span class="s">&#39;param1&#39;</span><span class="p">:</span> <span class="n">param1</span><span class="p">,</span>
+                <span class="s">&#39;param2&#39;</span><span class="p">:</span> <span class="n">param2</span><span class="p">},</span> <span class="n">chunk_size</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">parse_track_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the size of the track chunk.&quot;&quot;&quot;</span>
+        <span class="c"># Check the header</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bytes_read</span> <span class="o">+=</span> <span class="mi">4</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s">&quot;Couldn&#39;t read track header from file. Byte </span><span class="si">%d</span><span class="s">.&quot;</span>
+                    <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_read</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">h</span> <span class="o">!=</span> <span class="s">&#39;MTrk&#39;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">HeaderError</span><span class="p">(</span><span class="s">&#39;Not a valid Track header. Byte </span><span class="si">%d</span><span class="s">.&#39;</span>
+                    <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_read</span><span class="p">)</span>
+
+        <span class="c"># Parse the size of the header</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">chunk_size</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bytes_read</span> <span class="o">+=</span> <span class="mi">4</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s">&quot;Couldn&#39;t read track chunk size from file.&quot;</span><span class="p">)</span>
+        <span class="n">chunk_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_to_int</span><span class="p">(</span><span class="n">chunk_size</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">chunk_size</span>
+
+    <span class="k">def</span> <span class="nf">parse_midi_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">file</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Parse a MIDI file.</span>
+
+<span class="sd">        Return the header -as a tuple containing respectively the MIDI</span>
+<span class="sd">        format, the number of tracks and the time division-, the parsed</span>
+<span class="sd">        track data and the number of bytes read.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s">&#39;File not found&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bytes_read</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_midi_file_header</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">tracks</span> <span class="o">=</span> <span class="n">header</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">while</span> <span class="n">tracks</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">events</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_track</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">events</span><span class="p">)</span>
+            <span class="n">tracks</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">parse_varbyte_as_int</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">return_bytes_read</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Read a variable length byte from the file and return the</span>
+<span class="sd">        corresponding integer.&quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">bytes_read</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="mh">0x80</span>
+        <span class="k">while</span> <span class="n">r</span> <span class="o">&amp;</span> <span class="mh">0x80</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytes_to_int</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">bytes_read</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s">&quot;Couldn&#39;t read variable length byte from file.&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">r</span> <span class="o">&amp;</span> <span class="mh">0x80</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">result</span> <span class="o">&lt;&lt;</span> <span class="mi">7</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">r</span> <span class="o">&amp;</span> <span class="mh">0x7F</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">result</span> <span class="o">&lt;&lt;</span> <span class="mi">7</span><span class="p">)</span> <span class="o">+</span> <span class="n">r</span>
+            <span class="n">bytes_read</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">return_bytes_read</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">result</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">bytes_read</span><span class="p">)</span>
+
+</div>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">argv</span>
+    <span class="kn">import</span> <span class="nn">fluidsynth</span>
+    <span class="kn">import</span> <span class="nn">MidiFileOut</span>
+    <span class="n">fluidsynth</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+    <span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">bpm</span><span class="p">)</span> <span class="o">=</span> <span class="n">MIDI_to_Composition</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">MidiFileOut</span><span class="o">.</span><span class="n">write_Composition</span><span class="p">(</span><span class="s">&#39;test.mid&#39;</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">bpm</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

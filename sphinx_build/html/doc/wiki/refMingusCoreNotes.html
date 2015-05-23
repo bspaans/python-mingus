@@ -39,6 +39,9 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="refMingusCoreIntervals.html" title="mingus.core.intervals"
              accesskey="N">next</a> |</li>
         <li class="right" >
@@ -53,7 +56,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="mingus-core-notes">
+  <span class="target" id="module-mingus.core.notes"></span><div class="section" id="mingus-core-notes">
 <h1>mingus.core.notes<a class="headerlink" href="#mingus-core-notes" title="Permalink to this headline">¶</a></h1>
 <p>Basic module for notes.</p>
 <p>This module is the foundation of the music theory package.</p>
@@ -61,16 +64,16 @@
 enables simple calculations.</p>
 <hr class="docutils" />
 <dl class="data">
-<dt id="fifths">
-<code class="descname">fifths</code><a class="headerlink" href="#fifths" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.notes.fifths">
+<code class="descclassname">mingus.core.notes.</code><code class="descname">fifths</code><a class="headerlink" href="#mingus.core.notes.fifths" title="Permalink to this definition">¶</a></dt>
 <dd><p>Attribute of type: list
 <code class="docutils literal"><span class="pre">['F',</span> <span class="pre">'C',</span> <span class="pre">'G',</span> <span class="pre">'D',</span> <span class="pre">'A',</span> <span class="pre">'E',</span> <span class="pre">'B']</span></code></p>
 </dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="augment">
-<code class="descname">augment</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#augment" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.notes.augment">
+<code class="descclassname">mingus.core.notes.</code><code class="descname">augment</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/notes.html#augment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.notes.augment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Augment a given note.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">augment</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
@@ -83,8 +86,8 @@ enables simple calculations.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="diminish">
-<code class="descname">diminish</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#diminish" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.notes.diminish">
+<code class="descclassname">mingus.core.notes.</code><code class="descname">diminish</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/notes.html#diminish"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.notes.diminish" title="Permalink to this definition">¶</a></dt>
 <dd><p>Diminish a given note.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diminish</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
@@ -97,8 +100,8 @@ enables simple calculations.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="int_to_note">
-<code class="descname">int_to_note</code><span class="sig-paren">(</span><em>note_int</em>, <em>accidentals=#</em><span class="sig-paren">)</span><a class="headerlink" href="#int_to_note" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.notes.int_to_note">
+<code class="descclassname">mingus.core.notes.</code><code class="descname">int_to_note</code><span class="sig-paren">(</span><em>note_int</em>, <em>accidentals=#</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/notes.html#int_to_note"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.notes.int_to_note" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert integers in the range of 0-11 to notes in the form of C or C#
 or Db.</p>
 <p>Throw a RangeError exception if the note_int is not in the range 0-11.</p>
@@ -116,22 +119,22 @@ or Db.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="is_enharmonic">
-<code class="descname">is_enharmonic</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em><span class="sig-paren">)</span><a class="headerlink" href="#is_enharmonic" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.notes.is_enharmonic">
+<code class="descclassname">mingus.core.notes.</code><code class="descname">is_enharmonic</code><span class="sig-paren">(</span><em>note1</em>, <em>note2</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/notes.html#is_enharmonic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.notes.is_enharmonic" title="Permalink to this definition">¶</a></dt>
 <dd><p>Test whether note1 and note2 are enharmonic, i.e. they sound the same.</p>
 </dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="is_valid_note">
-<code class="descname">is_valid_note</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#is_valid_note" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.notes.is_valid_note">
+<code class="descclassname">mingus.core.notes.</code><code class="descname">is_valid_note</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/notes.html#is_valid_note"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.notes.is_valid_note" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return True if note is in a recognised format. False if not.</p>
 </dd></dl>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="note_to_int">
-<code class="descname">note_to_int</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#note_to_int" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.notes.note_to_int">
+<code class="descclassname">mingus.core.notes.</code><code class="descname">note_to_int</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/notes.html#note_to_int"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.notes.note_to_int" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert notes in the form of C, C#, Cb, C##, etc. to an integer in the
 range of 0-11.</p>
 <p>Throw a NoteFormatError exception if the note format is not recognised.</p>
@@ -139,8 +142,8 @@ range of 0-11.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="reduce_accidentals">
-<code class="descname">reduce_accidentals</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#reduce_accidentals" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.notes.reduce_accidentals">
+<code class="descclassname">mingus.core.notes.</code><code class="descname">reduce_accidentals</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/notes.html#reduce_accidentals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.notes.reduce_accidentals" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reduce any extra accidentals to proper notes.</p>
 <p>Example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">reduce_accidentals</span><span class="p">(</span><span class="s">&#39;C####&#39;</span><span class="p">)</span>
@@ -151,8 +154,8 @@ range of 0-11.</p>
 
 <hr class="docutils" />
 <dl class="function">
-<dt id="remove_redundant_accidentals">
-<code class="descname">remove_redundant_accidentals</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#remove_redundant_accidentals" title="Permalink to this definition">¶</a></dt>
+<dt id="mingus.core.notes.remove_redundant_accidentals">
+<code class="descclassname">mingus.core.notes.</code><code class="descname">remove_redundant_accidentals</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mingus/core/notes.html#remove_redundant_accidentals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mingus.core.notes.remove_redundant_accidentals" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remove redundant sharps and flats from the given note.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">remove_redundant_accidentals</span><span class="p">(</span><span class="s">&#39;C##b&#39;</span><span class="p">)</span>

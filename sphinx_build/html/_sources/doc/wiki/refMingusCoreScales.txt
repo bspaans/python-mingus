@@ -1,3 +1,5 @@
+.. module:: mingus.core.scales
+
 ==================
 mingus.core.scales
 ==================
