@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mingus.extra.StringTuning &mdash; mingus 0.5.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.5.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="mingus 0.5.1 documentation" href="../../index.html" />
+    <link rel="next" title="mingus.extra.tablature" href="refMingusExtraTablature.html" />
+    <link rel="prev" title="mingus.extra.tunings" href="refMingusExtraTunings.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="refMingusExtraTablature.html" title="mingus.extra.tablature"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="refMingusExtraTunings.html" title="mingus.extra.tunings"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">mingus 0.5.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="mingus-extra-stringtuning">
+<h1>mingus.extra.StringTuning<a class="headerlink" href="#mingus-extra-stringtuning" title="Permalink to this headline">¶</a></h1>
+<p>A class to store and work with tunings and fingerings.</p>
+<hr class="docutils" />
+<dl class="function">
+<dt id="__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>self</em>, <em>instrument</em>, <em>description</em>, <em>tuning</em><span class="sig-paren">)</span><a class="headerlink" href="#__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new StringTuning instance.</p>
+<p>The instrument and description parameters should be strings; tuning
+should be a list of strings or a list of lists of strings that
+denote courses.</p>
+<p>See tunings.add_tuning for examples.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="count_courses">
+<code class="descname">count_courses</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#count_courses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the average number of courses per string.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="count_strings">
+<code class="descname">count_strings</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#count_strings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of strings.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="find_chord_fingering">
+<code class="descname">find_chord_fingering</code><span class="sig-paren">(</span><em>self</em>, <em>notes</em>, <em>max_distance=4</em>, <em>maxfret=18</em>, <em>max_fingers=4</em>, <em>return_best_as_NoteContainer=False</em><span class="sig-paren">)</span><a class="headerlink" href="#find_chord_fingering" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of fret lists that are considered possible fingerings.</p>
+<p>This function only looks at and matches on the note _names_ so it
+does more than find_fingering.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">tunings</span><span class="o">.</span><span class="n">get_tuning</span><span class="p">(</span><span class="s">&#39;guitar&#39;</span><span class="p">,</span> <span class="s">&#39;standard&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">find_chord_fingering</span><span class="p">(</span><span class="n">NoteContainer</span><span class="p">()</span><span class="o">.</span><span class="n">from_chord</span><span class="p">(</span><span class="s">&#39;Am&#39;</span><span class="p">))</span>
+<span class="go">[[0, 0, 2, 2, 1, 0], [0, 3, 2, 2, 1, 0], ......]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="find_fingering">
+<code class="descname">find_fingering</code><span class="sig-paren">(</span><em>self</em>, <em>notes</em>, <em>max_distance=4</em>, <em>not_strings=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#find_fingering" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list [(string, fret)] of possible fingerings for
+&#8216;notes&#8217;.</p>
+<p>The notes parameter should be a list of strings or Notes or a
+NoteContainer; max_distance denotes the maximum distance between
+frets; not_strings can be used to disclude certain strings and is
+used internally to recurse.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">tunings</span><span class="o">.</span><span class="n">StringTuning</span><span class="p">(</span><span class="s">&#39;test&#39;</span><span class="p">,</span> <span class="s">&#39;test&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;A-3&#39;</span><span class="p">,</span> <span class="s">&#39;E-4&#39;</span><span class="p">,</span> <span class="s">&#39;A-5&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">find_fingering</span><span class="p">([</span><span class="s">&#39;E-4&#39;</span><span class="p">,</span> <span class="s">&#39;B-4&#39;</span><span class="p">])</span>
+<span class="go">[[(0, 7), (1, 7)], [(1, 0), (0, 14)]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="find_frets">
+<code class="descname">find_frets</code><span class="sig-paren">(</span><em>self</em>, <em>note</em>, <em>maxfret=24</em><span class="sig-paren">)</span><a class="headerlink" href="#find_frets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list with for each string the fret on which the note is
+played or None if it can&#8217;t be played on that particular string.</p>
+<p>The maxfret parameter is the highest fret that can be played; note
+should either be a string or a Note object.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">tunings</span><span class="o">.</span><span class="n">StringTuning</span><span class="p">(</span><span class="s">&#39;test&#39;</span><span class="p">,</span> <span class="s">&#39;test&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;A-3&#39;</span><span class="p">,</span> <span class="s">&#39;E-4&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">find_frets</span><span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="s">&#39;C-4&#39;</span><span class="p">)</span>
+<span class="go">[3, None]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">find_frets</span><span class="p">(</span><span class="n">Note</span><span class="p">(</span><span class="s">&#39;A-4&#39;</span><span class="p">)</span>
+<span class="go">[12, 5]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="find_note_names">
+<code class="descname">find_note_names</code><span class="sig-paren">(</span><em>self</em>, <em>notelist</em>, <em>string=0</em>, <em>maxfret=24</em><span class="sig-paren">)</span><a class="headerlink" href="#find_note_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list [(fret, notename)] in ascending order.</p>
+<p>Notelist should be a list of Notes, note-strings or a NoteContainer.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">tunings</span><span class="o">.</span><span class="n">StringTuning</span><span class="p">(</span><span class="s">&#39;test&#39;</span><span class="p">,</span> <span class="s">&#39;test&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;A-3&#39;</span><span class="p">,</span> <span class="s">&#39;A-4&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">find_note_names</span><span class="p">([</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="go">[(0, &#39;E&#39;), (5, &#39;A&#39;), (8, &#39;C&#39;), (12, &#39;E&#39;)]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="frets_to_NoteContainer">
+<code class="descname">frets_to_NoteContainer</code><span class="sig-paren">(</span><em>self</em>, <em>fingering</em><span class="sig-paren">)</span><a class="headerlink" href="#frets_to_NoteContainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a list such as returned by find_fret to a NoteContainer.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="get_Note">
+<code class="descname">get_Note</code><span class="sig-paren">(</span><em>self</em>, <em>string=0</em>, <em>fret=0</em>, <em>maxfret=24</em><span class="sig-paren">)</span><a class="headerlink" href="#get_Note" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the Note on &#8216;string&#8217;, &#8216;fret&#8217;.</p>
+<p>Throw a RangeError if either the fret or string is unplayable.</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">tunings</span><span class="o">.</span><span class="n">StringTuning</span><span class="p">(</span><span class="s">&#39;test&#39;</span><span class="p">,</span> <span class="s">&#39;test&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;A-3&#39;</span><span class="p">,</span> <span class="s">&#39;A-4&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="p">,</span><span class="n">get_Note</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">&#39;A-3&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">get_Note</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">&#39;A#-3&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">get_Note</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">&#39;A-4&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<hr class="docutils" />
+<p><a class="reference internal" href="../../index.html"><em>Back to Index</em></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="refMingusExtraTunings.html"
+                        title="previous chapter">mingus.extra.tunings</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="refMingusExtraTablature.html"
+                        title="next chapter">mingus.extra.tablature</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/doc/wiki/refMingusExtraStringtuning.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Bart Spaans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+      |
+      <a href="../../_sources/doc/wiki/refMingusExtraStringtuning.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>
