@@ -254,3 +254,198 @@ class MidiInstrument(Instrument):
     def __init__(self, name=''):
         self.name = name
 
+class MidiPercussionInstrument(Instrument):
+    def __init__(self):
+        super(MidiPercussionInstrument, self).__init__()
+        self.name = "Midi Percussion"
+        self.mapping = {
+            35: "Acoustic Bass Drum",
+            36: "Bass Drum 1",
+            37: "Side Stick",
+            38: "Acoustic Snare",
+            39: "Hand Clap",
+            40: "Electric Snare",
+            41: "Low Floor Tom",
+            42: "Closed Hi Hat",
+            43: "High Floor Tom",
+            44: "Pedal Hi-Hat",
+            45: "Low Tom",
+            46: "Open Hi-Hat",
+            47: "Low-Mid Tom",
+            48: "Hi Mid Tom",
+            49: "Crash Cymbal 1",
+            50: "High Tom",
+            51: "Ride Cymbal 1",
+            52: "Chinese Cymbal",
+            53: "Ride Bell",
+            54: "Tambourine",
+            55: "Splash Cymbal",
+            56: "Cowbell",
+            57: "Crash Cymbal 2",
+            58: "Vibraslap",
+            59: "Ride Cymbal 2",
+            60: "Hi Bongo",
+            61: "Low Bongo",
+            62: "Mute Hi Conga",
+            63: "Open Hi Conga",
+            64: "Low Conga",
+            65: "High Timbale",
+            66: "Low Timbale",
+            67: "High Agogo",
+            68: "Low Agogo",
+            69: "Cabasa",
+            70: "Maracas",
+            71: "Short Whistle",
+            72: "Long Whistle",
+            73: "Short Guiro",
+            74: "Long Guiro",
+            75: "Claves",
+            76: "Hi Wood Block",
+            77: "Low Wood Block",
+            78: "Mute Cuica",
+            79: "Open Cuica",
+            80: "Mute Triangle",
+            81: "Open Triangle"
+        }
+
+    def acoustic_bass_drum(self):
+        return Note(35 - 12)
+
+    def bass_drum_1(self):
+        return Note(36 - 12)
+
+    def side_stick(self):
+        return Note(37 - 12)
+
+    def acoustic_snare(self):
+        return Note(38 - 12)
+
+    def hand_clap(self):
+        return Note(39 - 12)
+
+    def electric_snare(self):
+        return Note(40 - 12)
+
+    def low_floor_tom(self):
+        return Note(41 - 12)
+
+    def closed_hi_hat(self):
+        return Note(42 - 12)
+
+    def high_floor_tom(self):
+        return Note(43 - 12)
+
+    def pedal_hi_hat(self):
+        return Note(44 - 12)
+
+    def low_tom(self):
+        return Note(45 - 12)
+
+    def open_hi_hat(self):
+        return Note(46 - 12)
+
+    def low_mid_tom(self):
+        return Note(47 - 12)
+
+    def hi_mid_tom(self):
+        return Note(48 - 12)
+
+    def crash_cymbal_1(self):
+        return Note(49 - 12)
+
+    def high_tom(self):
+        return Note(50 - 12)
+
+    def ride_cymbal_1(self):
+        return Note(51 - 12)
+
+    def chinese_cymbal(self):
+        return Note(52 - 12)
+
+    def ride_bell(self):
+        return Note(53 - 12)
+
+    def tambourine(self):
+        return Note(54 - 12)
+
+    def splash_cymbal(self):
+        return Note(55 - 12)
+
+    def cowbell(self):
+        return Note(56 - 12)
+
+    def crash_cymbal_2(self):
+        return Note(57 - 12)
+
+    def vibraslap(self):
+        return Note(58 - 12)
+
+    def ride_cymbal_2(self):
+        return Note(59 - 12)
+
+    def hi_bongo(self):
+        return Note(60 - 12)
+
+    def low_bongo(self):
+        return Note(61 - 12)
+
+    def mute_hi_conga(self):
+        return Note(62 - 12)
+
+    def open_hi_conga(self):
+        return Note(63 - 12)
+
+    def low_conga(self):
+        return Note(64 - 12)
+
+    def high_timbale(self):
+        return Note(65 - 12)
+
+    def low_timbale(self):
+        return Note(66 - 12)
+
+    def high_agogo(self):
+        return Note(67 - 12)
+
+    def low_agogo(self):
+        return Note(68 - 12)
+
+    def cabasa(self):
+        return Note(69 - 12)
+
+    def maracas(self):
+        return Note(70 - 12)
+
+    def short_whistle(self):
+        return Note(71 - 12)
+
+    def long_whistle(self):
+        return Note(72 - 12)
+
+    def short_guiro(self):
+        return Note(73 - 12)
+
+    def long_guiro(self):
+        return Note(74 - 12)
+
+    def claves(self):
+        return Note(75 - 12)
+
+    def hi_wood_block(self):
+        return Note(76 - 12)
+
+    def low_wood_block(self):
+        return Note(77 - 12)
+
+    def mute_cuica(self):
+        return Note(78 - 12)
+
+    def open_cuica(self):
+        return Note(79 - 12)
+
+    def mute_triangle(self):
+        return Note(80 - 12)
+
+    def open_triangle(self):
+        return Note(81 - 12)
+
