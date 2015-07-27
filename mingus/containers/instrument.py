@@ -251,8 +251,12 @@ class MidiInstrument(Instrument):
         'Gunshot',
         ]
 
-    def __init__(self, name=''):
-        self.name = name
+    def __init__(self, instrument_nr=1):
+        self.instrument_nr = instrument_nr
+        try:
+            self.name = self.names[instrument_nr -1]
+        except IndexError:
+            self.name = 'Unknown Instrument'
 
 class MidiPercussionInstrument(Instrument):
     def __init__(self):
