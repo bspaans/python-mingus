@@ -41,6 +41,8 @@ class Note(object):
     name = 'C'
     octave = 4
     dynamics = {}
+    channel = 1
+    velocity = 64
 
     def __init__(self, name='C', octave=4, dynamics={}):
         if type(name) == str:
@@ -58,6 +60,13 @@ class Note(object):
             raise NoteFormatError("Don't know what to do with name object: "
                     "'%s'" % name)
 
+    
+    def set_channel(self, channel):
+        self.channel = channel
+        
+    def set_velocity(self, velocity):
+        self.velocity = velocity
+    
     def set_note(self, name='C', octave=4, dynamics={}):
         """Set the note to name in octave with dynamics.
 
