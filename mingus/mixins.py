@@ -2,6 +2,10 @@
 
 import copy
 
+class CloneMixin(object):
+    def clone(self):
+        return copy.deepcopy(self)
+
 class TransposeMixin(object):
     def set_transpose(self, amount):
         return self
@@ -19,7 +23,3 @@ class TransposeMixin(object):
 class NotesMixin(object):
     def get_notes(self):
         return []
-
-class CloneMixin(object):
-    def clone(self):
-        return copy.deepcopy(self)
