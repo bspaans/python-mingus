@@ -1,7 +1,20 @@
-#!/usr/bin/python 
+#!/usr/bin/env python 
 
-class Note(object):
-    pass
+from mixins import TransposeMixin, NotesMixin, CloneMixin
+
+class Note(TransposeMixin, NotesMixin, CloneMixin):
+
+    def __init__(self, note = None):
+        self.note = 0
+        if type(note) == int:
+            self.note = note
+
+    def set_transpose(self, amount):
+        self.note += amount
+        return self
+
+    def get_notes(self):
+        return [self]
 
 class TiedNote(Note):
     pass
