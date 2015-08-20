@@ -6,6 +6,15 @@ class CloneMixin(object):
     def clone(self):
         return copy.deepcopy(self)
 
+class NotesMixin(object):
+
+    def get_notes(self):
+        return []
+
+class NotesSequenceMixin(object):
+    def get_notes_sequence(self):
+        return [self.get_notes()]
+
 class TransposeMixin(object):
     def set_transpose(self, amount):
         return self
@@ -139,7 +148,3 @@ class TransposeMixin(object):
         return self.set_transpose(-11)
     def set_octave_down(self):
         return self.set_transpose(-12)
-
-class NotesMixin(object):
-    def get_notes(self):
-        return []
