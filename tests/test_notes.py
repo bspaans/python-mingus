@@ -6,8 +6,8 @@ from hamcrest import *
 
 def test_Note_transpose():
     n = Note(60)
-    assert_that(n.transpose(5).note, equal_to(65))
-    assert_that(n.transpose(-5).note, equal_to(55))
+    assert_that(n.perfect_fourth_up().note, equal_to(65))
+    assert_that(n.perfect_fourth_down().note, equal_to(55))
     assert_that(n.note, equal_to(60))
 
 def test_Note_set_transpose():
