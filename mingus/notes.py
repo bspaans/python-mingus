@@ -16,14 +16,24 @@ class Note(TransposeMixin, NotesMixin, CloneMixin):
     def get_notes(self):
         return [self]
 
-class TiedNote(Note):
-    pass
+class Rest(Note):
+    def get_notes(self):
+        return []
 
 class NoteGrouping(TransposeMixin, CloneMixin, NotesMixin):
     def __init__(self, notes = None):
         self.notes = []
+        self.add(notes)
+
+    def _add_notes_if_copyable(self, notes):
+        if hasattr(notes, "get_notes") and hasattr(notes, "clone"):
+            self.notes.extend(notes.clone().get_notes())
+
+    def add(self, notes):
         if type(notes) == list:
-            self.notes = notes
+            for n in notes:
+                self._add_notes_if_copyable(n)
+        self._add_notes_if_copyable(notes)
 
     def set_transpose(self, amount):
         for n in self.notes:
@@ -33,5 +43,14 @@ class NoteGrouping(TransposeMixin, CloneMixin, NotesMixin):
     def get_notes(self):
         return self.notes
 
-class NoteSequence(object):
-    pass
+class NotesSequence(TransposeMixin, CloneMixin):
+    def __init__(self):
+        self.sequence = []
+
+    def add(self, notes):
+        self.sequence.append(notes)
+
+    def set_transpose(self, amount):
+        for notes in self.sequence:
+            notes.set_transpose(amount)
+        return self
