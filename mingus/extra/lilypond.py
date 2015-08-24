@@ -212,7 +212,7 @@ def to_pdf(ly_string, filename):
 def save_string_and_execute_LilyPond(ly_string, filename, command):
     """A helper function for to_png and to_pdf. Should not be used directly."""
     ly_string = '\\version "2.10.33"\n' + ly_string
-    if filename[-4] in ['.pdf' or '.png']:
+    if filename[-4:] in ['.pdf', '.png']:
         filename = filename[:-4]
     try:
         f = open(filename + '.ly', 'w')
@@ -225,4 +225,3 @@ def save_string_and_execute_LilyPond(ly_string, filename, command):
     p = subprocess.Popen(command, shell=True).wait()
     os.remove(filename + '.ly')
     return True
-
