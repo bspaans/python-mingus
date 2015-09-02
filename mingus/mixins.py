@@ -7,7 +7,6 @@ class CloneMixin(object):
         return copy.deepcopy(self)
 
 class CommonEqualityMixin(object):
-
     def __eq__(self, other):
         return (isinstance(other, self.__class__)
                 and self.__dict__ == other.__dict__)
@@ -18,6 +17,10 @@ class CommonEqualityMixin(object):
 class NotesMixin(object):
     def get_notes(self):
         return []
+    def set_change_duration(self, duration):
+        return self
+    def change_duration(self, duration):
+        return self.clone().set_change_duration(duration)
     def lowest_note(self):
         return self.get_notes()[0]
     def highest_note(self):

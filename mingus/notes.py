@@ -66,12 +66,28 @@ class Note(TransposeMixin, NotesMixin, CloneMixin, NotesSequenceMixin, CommonEqu
         self._base_name = 'A'
         self._octave = 4
         self._accidentals = 0
+        self._infinite_duration = True
+        self._duration = 0
         if type(note) == int:
             self.from_int(note)
         elif type(note) == str:
             self.from_string(note)
         elif isinstance(note, Note):
             self.from_note(note)
+
+    def set_change_duration(self, duration):
+        self._infinite_duration = False
+        self._duration = duration
+        return self
+
+    def get_duration(self):
+        return self._duration
+
+    def get_duration_in_seconds(self, bpm):
+        return 0.0
+
+    def get_duration_in_milliseconds(self, bpm):
+        return 0
 
     def get_base_name(self):
         return self._base_name
@@ -133,11 +149,15 @@ class Note(TransposeMixin, NotesMixin, CloneMixin, NotesSequenceMixin, CommonEqu
     def get_notes(self):
         return [self]
 
+    def __getitem__(self, key):
+        if key == 0:
+            return self
+        raise "keyerror: trying to get element of a note. This is not a grouping."
+
 
 class Rest(Note):
     def get_notes(self):
         return []
-
 
 class NoteGrouping(TransposeMixin, CloneMixin, NotesMixin, NotesSequenceMixin, AugmentDiminishMixin):
     def __init__(self, notes = None):
@@ -160,28 +180,47 @@ class NoteGrouping(TransposeMixin, CloneMixin, NotesMixin, NotesSequenceMixin, A
     def set_diminish(self):
         return self.walk(lambda n: n.set_diminish())
 
+    def set_change_duration(self, duration):
+        return self.walk(lambda n: n.set_change_duration(duration))
+
     def get_notes(self):
         return sorted(self.notes, key=int)
 
     def __getitem__(self, key):
         return self.get_notes()[key]
 
-class NotesSequence(TransposeMixin, CloneMixin, NotesMixin, NotesSequenceMixin):
+class NotesSequence(TransposeMixin, CloneMixin, NotesMixin, NotesSequenceMixin, AugmentDiminishMixin):
+
     def __init__(self):
         self.sequence = []
 
     def add(self, notes):
-        self.sequence.append(notes)
+        self.sequence.append(NoteGrouping(notes))
+        return self
+
+    def append(self, item):
+        return self.add(item)
 
     def set_transpose(self, amount):
-        self.walk(lambda n: n.set_transpose(amount)) 
-        return self
+        return self.walk(lambda n: n.set_transpose(amount)) 
+
+    def set_augment(self):
+        return self.walk(lambda n: n.set_augment())
+
+    def set_diminish(self):
+        return self.walk(lambda n: n.set_diminish())
+
+    def set_change_duration(self, duration):
+        return self.walk(lambda n: n.set_change_duration(duration))
 
     def get_notes(self):
         result = []
         for notes in self.sequence:
             result.extend(notes.get_notes())
-        return result
+        return sorted(result, key=int)
 
     def get_notes_sequence(self):
         return self.sequence
+
+    def __getitem__(self, key):
+        return self.sequence[key]
