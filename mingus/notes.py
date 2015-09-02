@@ -1,6 +1,6 @@
 #!/usr/bin/env python 
 
-from mixins import TransposeMixin, NotesMixin, CloneMixin, NotesSequenceMixin, CommonEqualityMixin
+from mixins import TransposeMixin, NotesMixin, CloneMixin, NotesSequenceMixin, CommonEqualityMixin, AugmentDiminishMixin
 import re 
 
 NOTE_MATCHER = re.compile("^(A|B|C|D|E|F|G)([#|b]*)([0-9]*)$")
@@ -42,23 +42,25 @@ LOOKUP_FLATS = {
   11: ('B', 0),
 }
 
-def _parse_notes(notes):
-    if hasattr(notes, "get_notes") and hasattr(notes, "clone"):
-        return notes.clone().get_notes()
-    elif type(notes) == int:
-        return [Note(notes)]
-    elif type(notes) == str:
-        return [Note(notes)]
-    elif type(notes) == list:
-        result = []
-        for n in notes:
-            result.extend(_parse_notes(n))
-        return result
-    elif notes is None:
-        return []
-    raise Exception("Don't know how to parse all these notes: " + str(notes))
+class NotesParser(object):
+    @staticmethod
+    def parse(notes):
+        if hasattr(notes, "get_notes") and hasattr(notes, "clone"):
+            return notes.clone().get_notes()
+        elif type(notes) == int:
+            return [Note(notes)]
+        elif type(notes) == str:
+            return [Note(notes)]
+        elif type(notes) == list:
+            result = []
+            for n in notes:
+                result.extend(NotesParser.parse(n))
+            return result
+        elif notes is None:
+            return []
+        raise Exception("Don't know how to parse all these notes: " + str(notes))
 
-class Note(TransposeMixin, NotesMixin, CloneMixin, NotesSequenceMixin, CommonEqualityMixin):
+class Note(TransposeMixin, NotesMixin, CloneMixin, NotesSequenceMixin, CommonEqualityMixin, AugmentDiminishMixin):
 
     def __init__(self, note = None):
         self._base_name = 'A'
@@ -68,6 +70,8 @@ class Note(TransposeMixin, NotesMixin, CloneMixin, NotesSequenceMixin, CommonEqu
             self.from_int(note)
         elif type(note) == str:
             self.from_string(note)
+        elif isinstance(note, Note):
+            self.from_note(note)
 
     def get_base_name(self):
         return self._base_name
@@ -100,6 +104,11 @@ class Note(TransposeMixin, NotesMixin, CloneMixin, NotesSequenceMixin, CommonEqu
             return
         raise Exception("Unknown note format: " + note)
 
+    def from_note(self, note):
+        self._base_name = note._base_name
+        self._octave = note._octave
+        self._accidentals = note._accidentals
+
     def __int__(self):
         result = (int(self._octave) + 1) * 12
         result += NOTE_OFFSETS[self._base_name]
@@ -108,8 +117,17 @@ class Note(TransposeMixin, NotesMixin, CloneMixin, NotesSequenceMixin, CommonEqu
 
     def set_transpose(self, amount):
         acc = self._accidentals
-        self.from_int(int(self) - acc + amount)
-        self._accidentals = acc
+        use_sharps = amount % 12 in [0, 2, 4, 5, 7, 9, 11]
+        self.from_int(int(self) - acc + amount, use_sharps)
+        self._accidentals += acc
+        return self
+
+    def set_augment(self):
+        self._accidentals += 1
+        return self
+
+    def set_diminish(self):
+        self._accidentals -= 1
         return self
 
     def get_notes(self):
@@ -121,20 +139,32 @@ class Rest(Note):
         return []
 
 
-class NoteGrouping(TransposeMixin, CloneMixin, NotesMixin, NotesSequenceMixin):
+class NoteGrouping(TransposeMixin, CloneMixin, NotesMixin, NotesSequenceMixin, AugmentDiminishMixin):
     def __init__(self, notes = None):
         self.notes = []
         self.add(notes)
 
     def add(self, notes):
-        self.notes.extend(_parse_notes(notes))
-
-    def set_transpose(self, amount):
-        self.walk(lambda n: n.set_transpose(amount))
+        self.notes.extend(NotesParser.parse(notes))
         return self
 
+    def append(self, item):
+        return self.add(item)
+
+    def set_transpose(self, amount):
+        return self.walk(lambda n: n.set_transpose(amount))
+
+    def set_augment(self):
+        return self.walk(lambda n: n.set_augment())
+
+    def set_diminish(self):
+        return self.walk(lambda n: n.set_diminish())
+
     def get_notes(self):
-        return self.notes
+        return sorted(self.notes, key=int)
+
+    def __getitem__(self, key):
+        return self.get_notes()[key]
 
 class NotesSequence(TransposeMixin, CloneMixin, NotesMixin, NotesSequenceMixin):
     def __init__(self):
@@ -144,7 +174,7 @@ class NotesSequence(TransposeMixin, CloneMixin, NotesMixin, NotesSequenceMixin):
         self.sequence.append(notes)
 
     def set_transpose(self, amount):
-        self.walk(lambda n: n.set_transpose(amount))
+        self.walk(lambda n: n.set_transpose(amount)) 
         return self
 
     def get_notes(self):

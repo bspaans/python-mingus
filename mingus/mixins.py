@@ -18,13 +18,28 @@ class CommonEqualityMixin(object):
 class NotesMixin(object):
     def get_notes(self):
         return []
+    def lowest_note(self):
+        return self.get_notes()[0]
+    def highest_note(self):
+        return self.get_notes()[-1]
     def walk(self, func):
         for n in self.get_notes():
             func(n)
+        return self
 
 class NotesSequenceMixin(object):
     def get_notes_sequence(self):
         return [self.get_notes()]
+
+class AugmentDiminishMixin(object):
+    def set_augment(self):
+        pass
+    def augment(self):
+        return self.clone().set_augment()
+    def set_diminish(self):
+        pass
+    def diminish(self):
+        return self.clone().set_diminish()
 
 class TransposeMixin(object):
     def set_transpose(self, amount):
@@ -40,8 +55,6 @@ class TransposeMixin(object):
     def minor_third_up(self):
         return self.transpose(3)
     def major_third_up(self):
-        return self.transpose(4)
-    def minor_fourth_up(self):
         return self.transpose(4)
     def major_fourth_up(self):
         return self.transpose(5)
@@ -73,8 +86,6 @@ class TransposeMixin(object):
         return self.set_transpose(3)
     def set_major_third_up(self):
         return self.set_transpose(4)
-    def set_minor_fourth_up(self):
-        return self.set_transpose(4)
     def set_major_fourth_up(self):
         return self.set_transpose(5)
     def set_perfect_fourth_up(self):
@@ -105,8 +116,6 @@ class TransposeMixin(object):
         return self.transpose(-3)
     def major_third_down(self):
         return self.transpose(-4)
-    def minor_fourth_down(self):
-        return self.transpose(-4)
     def major_fourth_down(self):
         return self.transpose(-5)
     def perfect_fourth_down(self):
@@ -136,8 +145,6 @@ class TransposeMixin(object):
     def set_minor_third_down(self):
         return self.set_transpose(-3)
     def set_major_third_down(self):
-        return self.set_transpose(-4)
-    def set_minor_fourth_down(self):
         return self.set_transpose(-4)
     def set_major_fourth_down(self):
         return self.set_transpose(-5)
