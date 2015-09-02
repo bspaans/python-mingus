@@ -68,6 +68,9 @@ class Note(TransposeMixin, NotesMixin, CloneMixin, NotesSequenceMixin, CommonEqu
         self._accidentals = 0
         self._infinite_duration = True
         self._duration = 0
+        self._parse_note(note)
+        
+    def _parse_note(self, note):
         if type(note) == int:
             self.from_int(note)
         elif type(note) == str:
@@ -83,11 +86,20 @@ class Note(TransposeMixin, NotesMixin, CloneMixin, NotesSequenceMixin, CommonEqu
     def get_duration(self):
         return self._duration
 
+    # TODO
     def get_duration_in_seconds(self, bpm):
         return 0.0
-
+    # TODO
     def get_duration_in_milliseconds(self, bpm):
         return 0
+
+    def set_base_name(self, name):
+        if name not in NOTE_OFFSETS.keys():
+            raise Exception, "Not a valid base name: %s" % str(name)
+        self._base_name = name
+
+    def set_accidentals(self, accidentals):
+        self._accidentals = accidentals
 
     def get_base_name(self):
         return self._base_name
@@ -188,6 +200,10 @@ class NoteGrouping(TransposeMixin, CloneMixin, NotesMixin, NotesSequenceMixin, A
 
     def __getitem__(self, key):
         return self.get_notes()[key]
+    def __str__(self): 
+        return str(self.get_notes())
+    def __repr__(self):
+        return "%s <%s>" % (type(self).__name__, str(self))
 
 class NotesSequence(TransposeMixin, CloneMixin, NotesMixin, NotesSequenceMixin, AugmentDiminishMixin):
 

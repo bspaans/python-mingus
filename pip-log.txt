@@ -1,0 +1,22 @@
+Downloading/unpacking hamcrest
+  Getting page http://pypi.python.org/simple/hamcrest
+  Could not fetch URL http://pypi.python.org/simple/hamcrest: HTTP Error 404: Not Found
+  Will skip URL http://pypi.python.org/simple/hamcrest when looking for download links for hamcrest
+  Getting page http://pypi.python.org/simple/
+Exception:
+Traceback (most recent call last):
+  File "/usr/lib/python2.6/dist-packages/pip.py", line 252, in main
+    self.run(options, args)
+  File "/usr/lib/python2.6/dist-packages/pip.py", line 408, in run
+    requirement_set.install_files(finder, force_root_egg_info=self.bundle)
+  File "/usr/lib/python2.6/dist-packages/pip.py", line 1750, in install_files
+    url = finder.find_requirement(req_to_install, upgrade=self.upgrade)
+  File "/usr/lib/python2.6/dist-packages/pip.py", line 996, in find_requirement
+    url_name = self._find_url_name(Link(self.index_urls[0]), url_name, req)
+  File "/usr/lib/python2.6/dist-packages/pip.py", line 1075, in _find_url_name
+    for link in page.links:
+  File "/usr/lib/python2.6/dist-packages/pip.py", line 2220, in links
+    url = self.clean_link(urlparse.urljoin(self.url, url))
+  File "/usr/lib/python2.6/dist-packages/pip.py", line 2266, in clean_link
+    lambda match: '%%%2x' % ord(match.group(0)), url)
+KeyboardInterrupt
