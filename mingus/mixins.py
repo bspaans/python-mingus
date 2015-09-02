@@ -44,6 +44,28 @@ class AugmentDiminishMixin(object):
     def diminish(self):
         return self.clone().set_diminish()
 
+class StepMixin(object):
+    def next(self, note, step = 1):
+        pass
+
+    def second_up(self, note):
+        return self.next(note, step=1)
+
+    def third_up(self, note):
+        return self.next(note, step=2)
+
+    def fourth_up(self, note):
+        return self.next(note, step=3)
+
+    def fifth_up(self, note):
+        return self.next(note, step=4)
+
+    def sixth_up(self, note):
+        return self.next(note, step=5)
+
+    def seventh_up(self, note):
+        return self.next(note, step=6)
+
 class TransposeMixin(object):
     def set_transpose(self, amount):
         return self

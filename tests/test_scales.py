@@ -11,7 +11,6 @@ NOTES_SET = set(['C4', 'C#4', 'Db4', 'D4', 'D#4',
     'C5'])
 
 def _scale_tester(scale, notes_in_scale):
-    print scale.scale
     for s in notes_in_scale:
         assert_that(Note(s) in scale, 
         "Note %s should be part of this scale" % s)
@@ -95,28 +94,55 @@ def test_Diatonic_next():
     assert_that(scale.next(Note('B5')), equal_to(Note('C6')))
     assert_that(scale.next(Note('G#5')), equal_to(Note('A5')))
 
-def _triad_tester(triad, notes):
+def _chord_tester(triad, notes):
     for ix, note in enumerate(notes):
         assert_that(triad[ix], equal_to(Note(note)),
             "Note %d of %s should be %s" % (ix, str(triad), note))
 
 def test_Diatonic_triad():
     scale = Diatonic(Note('C4'))
-    _triad_tester(scale.triad('C4'), ['C4', 'E4', 'G4'])
-    _triad_tester(scale.triad('D4'), ['D4', 'F4', 'A4'])
-    _triad_tester(scale.triad('E4'), ['E4', 'G4', 'B4'])
-    _triad_tester(scale.triad('F4'), ['F4', 'A4', 'C5'])
-    _triad_tester(scale.triad('G4'), ['G4', 'B4', 'D5'])
-    _triad_tester(scale.triad('A4'), ['A4', 'C5', 'E5'])
-    _triad_tester(scale.triad('B4'), ['B4', 'D5', 'F5'])
+    _chord_tester(scale.triad('C4'), ['C4', 'E4', 'G4'])
+    _chord_tester(scale.triad('D4'), ['D4', 'F4', 'A4'])
+    _chord_tester(scale.triad('E4'), ['E4', 'G4', 'B4'])
+    _chord_tester(scale.triad('F4'), ['F4', 'A4', 'C5'])
+    _chord_tester(scale.triad('G4'), ['G4', 'B4', 'D5'])
+    _chord_tester(scale.triad('A4'), ['A4', 'C5', 'E5'])
+    _chord_tester(scale.triad('B4'), ['B4', 'D5', 'F5'])
 
 def test_Diatonic_triads():
     scale = Diatonic(Note('C4'))
     triads = scale.triads()
-    _triad_tester(triads[0], ['C4', 'E4', 'G4'])
-    _triad_tester(triads[1], ['D4', 'F4', 'A4'])
-    _triad_tester(triads[2], ['E4', 'G4', 'B4'])
-    _triad_tester(triads[3], ['F4', 'A4', 'C5'])
-    _triad_tester(triads[4], ['G4', 'B4', 'D5'])
-    _triad_tester(triads[5], ['A4', 'C5', 'E5'])
-    _triad_tester(triads[6], ['B4', 'D5', 'F5'])
+    _chord_tester(triads[0], ['C4', 'E4', 'G4'])
+    _chord_tester(triads[1], ['D4', 'F4', 'A4'])
+    _chord_tester(triads[2], ['E4', 'G4', 'B4'])
+    _chord_tester(triads[3], ['F4', 'A4', 'C5'])
+    _chord_tester(triads[4], ['G4', 'B4', 'D5'])
+    _chord_tester(triads[5], ['A4', 'C5', 'E5'])
+    _chord_tester(triads[6], ['B4', 'D5', 'F5'])
+
+def test_Diatonic_seventh():
+    scale = Diatonic(Note('C4'))
+    _chord_tester(scale.seventh('C4'), ['C4', 'E4', 'G4', 'B4'])
+    _chord_tester(scale.seventh('D4'), ['D4', 'F4', 'A4', 'C5'])
+    _chord_tester(scale.seventh('E4'), ['E4', 'G4', 'B4', 'D5'])
+    _chord_tester(scale.seventh('F4'), ['F4', 'A4', 'C5', 'E5'])
+    _chord_tester(scale.seventh('G4'), ['G4', 'B4', 'D5', 'F5'])
+    _chord_tester(scale.seventh('A4'), ['A4', 'C5', 'E5', 'G5'])
+    _chord_tester(scale.seventh('B4'), ['B4', 'D5', 'F5', 'A5'])
+
+def test_Diatonic_sevenths():
+    scale = Diatonic(Note('C4'))
+    sevenths = scale.sevenths()
+    _chord_tester(sevenths[0], ['C4', 'E4', 'G4', 'B4'])
+    _chord_tester(sevenths[1], ['D4', 'F4', 'A4', 'C5'])
+    _chord_tester(sevenths[2], ['E4', 'G4', 'B4', 'D5'])
+    _chord_tester(sevenths[3], ['F4', 'A4', 'C5', 'E5'])
+    _chord_tester(sevenths[4], ['G4', 'B4', 'D5', 'F5'])
+    _chord_tester(sevenths[5], ['A4', 'C5', 'E5', 'G5'])
+    _chord_tester(sevenths[6], ['B4', 'D5', 'F5', 'A5'])
+
+def test_Diatonic_transpose():
+    scale = Diatonic(Note('C4'))
+    assert_that(Note('Bb4') not in scale)
+    scale = scale.major_fourth_up()
+    assert_that(Note('Bb4') in scale)
