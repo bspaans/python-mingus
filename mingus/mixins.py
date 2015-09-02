@@ -6,10 +6,21 @@ class CloneMixin(object):
     def clone(self):
         return copy.deepcopy(self)
 
-class NotesMixin(object):
+class CommonEqualityMixin(object):
 
+    def __eq__(self, other):
+        return (isinstance(other, self.__class__)
+                and self.__dict__ == other.__dict__)
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+class NotesMixin(object):
     def get_notes(self):
         return []
+    def walk(self, func):
+        for n in self.get_notes():
+            func(n)
 
 class NotesSequenceMixin(object):
     def get_notes_sequence(self):
