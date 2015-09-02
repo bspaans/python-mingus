@@ -17,6 +17,12 @@ def test_Chord_major_triad_on_Note():
     assert_that(chord[1], equal_to(Note('E4')))
     assert_that(chord[2], equal_to(Note('G4')))
 
+def test_Chord_major_triad_on_int():
+    chord = Chords.major_triad(60)
+    assert_that(chord[0], equal_to(Note('C4')))
+    assert_that(chord[1], equal_to(Note('E4')))
+    assert_that(chord[2], equal_to(Note('G4')))
+
 def test_Chord_minor_triad():
     chord = Chords.minor_triad('C4')
     assert_that(chord[0], equal_to(Note('C4')))
@@ -132,3 +138,4 @@ def test_Chord_dominant_flat_ninth():
     assert_that(chord[2], equal_to(Note('G4')))
     assert_that(chord[3], equal_to(Note('Bb4')))
     assert_that(chord[4], equal_to(Note('Db5')))
+
