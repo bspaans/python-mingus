@@ -83,3 +83,40 @@ def test_Diatonic_on_Fsharp4():
     scale = Diatonic(Note('F#4'))
     in_scale = ['C#4', 'D#4', 'E#4', 'F#4', 'G#4', 'A#4', 'B4', 'C#5', 'C#6', 'C#0']
     _scale_tester(scale, in_scale)
+
+def test_Diatonic_next():
+    scale = Diatonic(Note('C4'))
+    assert_that(scale.next(Note('C5')), equal_to(Note('D5')))
+    assert_that(scale.next(Note('D5')), equal_to(Note('E5')))
+    assert_that(scale.next(Note('E5')), equal_to(Note('F5')))
+    assert_that(scale.next(Note('F5')), equal_to(Note('G5')))
+    assert_that(scale.next(Note('G5')), equal_to(Note('A5')))
+    assert_that(scale.next(Note('A5')), equal_to(Note('B5')))
+    assert_that(scale.next(Note('B5')), equal_to(Note('C6')))
+    assert_that(scale.next(Note('G#5')), equal_to(Note('A5')))
+
+def _triad_tester(triad, notes):
+    for ix, note in enumerate(notes):
+        assert_that(triad[ix], equal_to(Note(note)),
+            "Note %d of %s should be %s" % (ix, str(triad), note))
+
+def test_Diatonic_triad():
+    scale = Diatonic(Note('C4'))
+    _triad_tester(scale.triad('C4'), ['C4', 'E4', 'G4'])
+    _triad_tester(scale.triad('D4'), ['D4', 'F4', 'A4'])
+    _triad_tester(scale.triad('E4'), ['E4', 'G4', 'B4'])
+    _triad_tester(scale.triad('F4'), ['F4', 'A4', 'C5'])
+    _triad_tester(scale.triad('G4'), ['G4', 'B4', 'D5'])
+    _triad_tester(scale.triad('A4'), ['A4', 'C5', 'E5'])
+    _triad_tester(scale.triad('B4'), ['B4', 'D5', 'F5'])
+
+def test_Diatonic_triads():
+    scale = Diatonic(Note('C4'))
+    triads = scale.triads()
+    _triad_tester(triads[0], ['C4', 'E4', 'G4'])
+    _triad_tester(triads[1], ['D4', 'F4', 'A4'])
+    _triad_tester(triads[2], ['E4', 'G4', 'B4'])
+    _triad_tester(triads[3], ['F4', 'A4', 'C5'])
+    _triad_tester(triads[4], ['G4', 'B4', 'D5'])
+    _triad_tester(triads[5], ['A4', 'C5', 'E5'])
+    _triad_tester(triads[6], ['B4', 'D5', 'F5'])
