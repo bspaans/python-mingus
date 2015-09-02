@@ -95,6 +95,35 @@ def test_Note_transpose_up_no_accidentals():
     assert_that(Note('C4').major_seventh_up(), equal_to(Note('B4')))
     assert_that(Note('C4').octave_up(), equal_to(Note('C5')))
 
+def test_Note_transpose_up_no_accidentals():
+    assert_that(Note('G4').minor_second_up(), equal_to(Note('Ab4')))
+    assert_that(Note('G4').major_second_up(), equal_to(Note('A4')))
+    assert_that(Note('G4').minor_third_up(), equal_to(Note('Bb4')))
+    assert_that(Note('G4').major_third_up(), equal_to(Note('B4')))
+    assert_that(Note('G4').major_fourth_up(), equal_to(Note('C5')))
+    assert_that(Note('G4').minor_fifth_up(), equal_to(Note('Db5')))
+    assert_that(Note('G4').major_fifth_up(), equal_to(Note('D5')))
+    assert_that(Note('G4').minor_sixth_up(), equal_to(Note('Eb5')))
+    assert_that(Note('G4').major_sixth_up(), equal_to(Note('E5')))
+    assert_that(Note('G4').minor_seventh_up(), equal_to(Note('F5')))
+    assert_that(Note('G4').major_seventh_up(), equal_to(Note('F#5')))
+    assert_that(Note('G4').octave_up(), equal_to(Note('G5')))
+
+def test_Note_transpose_up_no_accidentals():
+    assert_that(Note('F4').minor_second_up(), equal_to(Note('Gb4')))
+    assert_that(Note('F4').major_second_up(), equal_to(Note('G4')))
+    assert_that(Note('F4').minor_third_up(), equal_to(Note('Ab4')))
+    assert_that(Note('F4').major_third_up(), equal_to(Note('A4')))
+    assert_that(Note('F4').major_fourth_up(), equal_to(Note('Bb4')))
+    # TODO 
+    #assert_that(Note('F4').minor_fifth_up(), equal_to(Note('Cb4')))
+    assert_that(Note('F4').major_fifth_up(), equal_to(Note('C5')))
+    assert_that(Note('F4').minor_sixth_up(), equal_to(Note('Db5')))
+    assert_that(Note('F4').major_sixth_up(), equal_to(Note('D5')))
+    assert_that(Note('F4').minor_seventh_up(), equal_to(Note('Eb5')))
+    assert_that(Note('F4').major_seventh_up(), equal_to(Note('E5')))
+    assert_that(Note('F4').octave_up(), equal_to(Note('F5')))
+
 def test_Note_transpose_up_sharp():
     assert_that(Note('C#4').minor_second_up(), equal_to(Note('Db#4')))
     assert_that(Note('C#4').major_second_up(), equal_to(Note('D#4')))
