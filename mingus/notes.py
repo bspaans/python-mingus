@@ -133,7 +133,7 @@ class Note(TransposeMixin, NotesMixin, CloneMixin, NotesSequenceMixin, CommonEqu
 
     def set_transpose(self, amount):
         acc = self._accidentals
-        use_sharps = amount % 12 in [0, 2, 4, 5, 7, 9, 11]
+        use_sharps = amount % 12 in [0, 2, 4, 7, 9, 11]
         self.from_int(int(self) - acc + amount, use_sharps)
         self._accidentals += acc
         return self
