@@ -66,6 +66,17 @@ class StepMixin(object):
     def seventh_up(self, note):
         return self.next(note, step=6)
 
+class Dim(object):
+    def __init__(self, transpose_amount):
+        self.amount = transpose_amount
+    def update(self, note):
+        return note.set_diminish()
+class Aug(object):
+    def __init__(self, transpose_amount):
+        self.amount = transpose_amount
+    def update(self, note):
+        return note.set_augment()
+
 class TransposeMixin(object):
     def set_transpose(self, amount):
         return self

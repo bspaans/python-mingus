@@ -102,6 +102,7 @@ class Scale(StepMixin, NotesMixin, CloneMixin, TransposeMixin):
     def build_scale(self, note):
         self._notes_to_scale_representation([0], note)
 
+
 class Diatonic(Scale):
     def build_scale(self, note):
         self._notes_to_scale_representation([0, 2, 4, 5, 7, 9, 11], note)
