@@ -71,6 +71,8 @@ class TransposeMixin(object):
         return self
     def transpose(self, amount):
         return self.clone().set_transpose(amount)
+    def transpose_list(self, lst):
+        return [ self.transpose(amount) for amount in lst ]
     
     # IMMUTABLE TRANSPOSE UP
     def minor_second_up(self):

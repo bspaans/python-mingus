@@ -1,19 +1,22 @@
 #!/usr/bin/env python
 
-from chords import BaseTransposer
 from notes import Note, NoteGrouping
 from mixins import StepMixin, NotesMixin, CloneMixin, TransposeMixin
 
 class Scale(StepMixin, NotesMixin, CloneMixin, TransposeMixin):
+
     def __init__(self, on_note):
         self.on_note = Note(on_note)
         self._scale = set([])
         self.build_scale(self.on_note)
-    def _scale_builder(self, intervals, base_note):
-        notes = BaseTransposer(intervals).transpose_base(base_note)
+
+    def _notes_to_scale_representation(self, intervals, base_note):
+        notes = base_note.transpose_list(intervals)
         self._scale = [ (n.get_base_name(), n.get_accidentals()) for n in notes ]
+
     def __contains__(self, item):
         return self.is_in_scale(item)
+
     def _get_note_index_in_scale(self, note):
         if note in self:
             lookup = (note.get_base_name(), note.get_accidentals())
@@ -28,7 +31,7 @@ class Scale(StepMixin, NotesMixin, CloneMixin, TransposeMixin):
         raise Exception, "Next note not found. This is a bug and should be raised"
 
     def _note_from_scale_representation(self, scale_note):
-        new_note = Note()
+        new_note = Note(self.on_note)
         new_note.set_base_name(scale_note[0])
         new_note.set_accidentals(scale_note[1])
         return new_note
@@ -86,16 +89,19 @@ class Scale(StepMixin, NotesMixin, CloneMixin, TransposeMixin):
         self.on_note.set_transpose(amount)
         self.build_scale(self.on_note)
         return self
+
     def __str__(self): 
         return str(self.get_notes())
+
     def __repr__(self):
         return "%s scale <%s>" % (type(self).__name__, str(self))
 
     def is_in_scale(self, item):
         return (item.get_base_name(), item.get_accidentals()) in self._scale
+
     def build_scale(self, note):
-        pass
+        self._notes_to_scale_representation([0], note)
 
 class Diatonic(Scale):
     def build_scale(self, note):
-        self._scale_builder([0, 2, 4, 5, 7, 9, 11], note)
+        self._notes_to_scale_representation([0, 2, 4, 5, 7, 9, 11], note)
