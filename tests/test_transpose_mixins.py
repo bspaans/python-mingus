@@ -91,3 +91,4 @@ def test_Diatonic_tranpose_mixin():
     obj_Cb4 = Diatonic('Cb4')
     obj_Csharp4 = Diatonic('C#4')
     _test_transpose_mixin_contract(obj_C4, obj_Cb4, obj_Csharp4)
+

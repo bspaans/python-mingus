@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from mingus.scales import Diatonic
+from mingus.scales import *
 from mingus.notes import Note
 from hamcrest import *
 
@@ -146,3 +146,38 @@ def test_Diatonic_transpose():
     assert_that(Note('Bb4') not in scale)
     scale = scale.major_fourth_up()
     assert_that(Note('Bb4') in scale)
+
+def test_Dorian_on_C4():
+    scale = Dorian(Note('C4'))
+    in_scale = ['C4', 'D4', 'Eb4', 'F4', 'G4', 'A4', 'Bb4', 'C5', 'C6', 'C0']
+    _scale_tester(scale, in_scale)
+
+def test_Dorian_on_D4():
+    scale = Dorian(Note('D4'))
+    in_scale = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5', 'C6', 'C0']
+    _scale_tester(scale, in_scale)
+
+def test_Phrygian_on_E4():
+    scale = Phrygian(Note('E4'))
+    in_scale = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5', 'C6', 'C0']
+    _scale_tester(scale, in_scale)
+
+def test_Lydian_on_F4():
+    scale = Lydian(Note('F4'))
+    in_scale = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5', 'C6', 'C0']
+    _scale_tester(scale, in_scale)
+
+def test_Mixolydian_on_G4():
+    scale = Mixolydian(Note('G4'))
+    in_scale = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5', 'C6', 'C0']
+    _scale_tester(scale, in_scale)
+
+def test_Aeolian_on_A4():
+    scale = Aeolian(Note('A4'))
+    in_scale = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5', 'C6', 'C0']
+    _scale_tester(scale, in_scale)
+
+def test_Locrian_on_B4():
+    scale = Locrian(Note('B4'))
+    in_scale = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5', 'C6', 'C0']
+    _scale_tester(scale, in_scale)
