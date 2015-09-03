@@ -2,6 +2,7 @@
 
 from notes import Note, NoteGrouping
 from mixins import Dim, Aug
+import re
 
 
 CHORDS = {
@@ -44,8 +45,33 @@ CHORDS = {
 def _chord_to_notes(chord, on_note):
     return NoteGrouping(Note(on_note).transpose_list(CHORDS[chord]))
 
+_CHORD_MATCHER = re.compile("^(A|B|C|D|E|F|G)([#|b]*)([0-9]*)(.*)$")
+
 class Chords(object):
-    pass
+
+    @staticmethod
+    def normalize_shorthand_extension(extension):
+        extension = extension.replace("min", "m")
+        extension = extension.replace("mi", "m")
+        extension = extension.replace("-", "m")
+        extension = extension.replace("maj", "M")
+        extension = extension.replace("ma", "M")
+        return extension
+
+    @staticmethod
+    def from_string(shorthand):
+        m = _CHORD_MATCHER.match(shorthand)
+        if m is None:
+            raise Exception("Unknown chord format: " + shorthand)
+        
+        base_name, accidentals, octave, extension = m.group(1), m.group(2), m.group(3), m.group(4)
+        extension = Chords.normalize_shorthand_extension(extension)
+        if extension not in SHORTHAND:
+            raise Exception("Unknown chord extensions: " + extension)
+
+        note = Note("%s%s%s" % (base_name, accidentals, octave))
+        return SHORTHAND[extension](note)
+         
 
 
 # Make all the chords in CHORDS into static methods on the Chords class

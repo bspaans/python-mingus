@@ -60,6 +60,7 @@ class NotesParser(object):
             return []
         raise Exception("Don't know how to parse all these notes: " + str(notes))
 
+
 class Note(TransposeMixin, NotesMixin, CloneMixin, NotesSequenceMixin, CommonEqualityMixin, AugmentDiminishMixin):
 
     def __init__(self, note = None):
@@ -127,6 +128,7 @@ class Note(TransposeMixin, NotesMixin, CloneMixin, NotesSequenceMixin, CommonEqu
         if m is not None:
             name, accidentals, octave = m.group(1), m.group(2), m.group(3)
             self._base_name = name
+            octave = octave if octave.isdigit() else "4"
             self._octave = int(octave)
             self._accidentals = sum(1 if a == '#' else -1 for a in accidentals)
             return
@@ -167,7 +169,7 @@ class Note(TransposeMixin, NotesMixin, CloneMixin, NotesSequenceMixin, CommonEqu
     def __getitem__(self, key):
         if key == 0:
             return self
-        raise "keyerror: trying to get element of a note. This is not a grouping."
+        raise "keyerror: trying to get element of a Note. This is not a grouping."
 
 
 class Rest(Note):
@@ -210,13 +212,23 @@ class NoteGrouping(TransposeMixin, CloneMixin, NotesMixin, NotesSequenceMixin, A
     def __len__(self):
         return len(self.notes)
 
+
 class NotesSequence(TransposeMixin, CloneMixin, NotesMixin, NotesSequenceMixin, AugmentDiminishMixin):
 
-    def __init__(self):
+    def __init__(self, init_with = None):
         self.sequence = []
+        self.add(init_with)
 
     def add(self, notes):
-        self.sequence.append(NoteGrouping(notes))
+        if notes is None:
+            return self
+        elif hasattr(notes, "get_notes") or type(notes) is str:
+            self.sequence.append(NoteGrouping(notes))
+        elif type(notes) is list:
+            for n in notes:
+                self.add(n)
+        else:
+            raise Exception("Unsupported type. This could be a bug in mingus.")
         return self
 
     def append(self, item):
