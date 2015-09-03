@@ -115,8 +115,8 @@ def test_Note_transpose_up_no_accidentals():
     assert_that(Note('F4').minor_third_up(), equal_to(Note('Ab4')))
     assert_that(Note('F4').major_third_up(), equal_to(Note('A4')))
     assert_that(Note('F4').major_fourth_up(), equal_to(Note('Bb4')))
-    # TODO 
-    #assert_that(Note('F4').minor_fifth_up(), equal_to(Note('Cb4')))
+    assert_that(Note('Bb4').minor_fifth_up(), equal_to(Note('Fb5')))
+    assert_that(Note('F4').minor_fifth_up(), equal_to(Note('Cb4')))
     assert_that(Note('F4').major_fifth_up(), equal_to(Note('C5')))
     assert_that(Note('F4').minor_sixth_up(), equal_to(Note('Db5')))
     assert_that(Note('F4').major_sixth_up(), equal_to(Note('D5')))

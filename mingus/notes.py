@@ -39,7 +39,7 @@ _LOOKUP_FLATS = {
   8: ('A', -1),
   9: ('A', 0),
   10: ('B', -1),
-  11: ('B', 0),
+  11: ('C', -1),
 }
 
 class NotesParser(object):
