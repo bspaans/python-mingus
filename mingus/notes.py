@@ -3,7 +3,7 @@
 from mixins import TransposeMixin, NotesMixin, CloneMixin, NotesSequenceMixin, CommonEqualityMixin, AugmentDiminishMixin
 import re 
 
-NOTE_MATCHER = re.compile("^(A|B|C|D|E|F|G)([#|b]*)([0-9]*)$")
+_NOTE_MATCHER = re.compile("^(A|B|C|D|E|F|G)([#|b]*)([0-9]*)$")
 NOTE_OFFSETS = {
     'C': 0,
     'D': 2,
@@ -13,7 +13,7 @@ NOTE_OFFSETS = {
     'A': 9,
     'B': 11
 }
-LOOKUP_SHARPS = {
+_LOOKUP_SHARPS = {
   0: ('C', 0),
   1: ('C', 1),
   2: ('D', 0),
@@ -27,7 +27,7 @@ LOOKUP_SHARPS = {
   10: ('A', 1),
   11: ('B', 0),
 }
-LOOKUP_FLATS = {
+_LOOKUP_FLATS = {
   0: ('C', 0),
   1: ('D', -1),
   2: ('D', 0),
@@ -119,11 +119,11 @@ class Note(TransposeMixin, NotesMixin, CloneMixin, NotesSequenceMixin, CommonEqu
     def from_int(self, i, use_sharps = True):
         self._octave = (i / 12) - 1
         offset = i - (self._octave + 1) * 12
-        lookup = LOOKUP_SHARPS if use_sharps else LOOKUP_FLATS
+        lookup = _LOOKUP_SHARPS if use_sharps else _LOOKUP_FLATS
         self._base_name, self._accidentals = lookup[offset]
 
     def from_string(self, note):
-        m = NOTE_MATCHER.match(note)
+        m = _NOTE_MATCHER.match(note)
         if m is not None:
             name, accidentals, octave = m.group(1), m.group(2), m.group(3)
             self._base_name = name
@@ -145,9 +145,12 @@ class Note(TransposeMixin, NotesMixin, CloneMixin, NotesSequenceMixin, CommonEqu
 
     def set_transpose(self, amount):
         acc = self._accidentals
-        use_sharps = amount % 12 in [0, 2, 4, 7, 9, 11]
-        self.from_int(int(self) - acc + amount, use_sharps)
+        transpose_amount = amount if type(amount) == int else amount.amount
+        use_sharps = transpose_amount % 12 in [0, 2, 4, 7, 9, 11]
+        self.from_int(int(self) - acc + transpose_amount, use_sharps)
         self._accidentals += acc
+        if type(amount) != int:
+            amount.update(self)
         return self
 
     def set_augment(self):
@@ -204,6 +207,8 @@ class NoteGrouping(TransposeMixin, CloneMixin, NotesMixin, NotesSequenceMixin, A
         return str(self.get_notes())
     def __repr__(self):
         return "%s <%s>" % (type(self).__name__, str(self))
+    def __len__(self):
+        return len(self.notes)
 
 class NotesSequence(TransposeMixin, CloneMixin, NotesMixin, NotesSequenceMixin, AugmentDiminishMixin):
 
