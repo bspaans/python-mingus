@@ -222,6 +222,8 @@ class NotesSequence(TransposeMixin, CloneMixin, NotesMixin, NotesSequenceMixin, 
     def add(self, notes):
         if notes is None:
             return self
+        elif isinstance(notes, NotesSequence):
+            self.sequence.extend(notes.get_notes_sequence())
         elif hasattr(notes, "get_notes") or type(notes) is str:
             self.sequence.append(NoteGrouping(notes))
         elif type(notes) is list:
