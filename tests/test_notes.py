@@ -172,31 +172,3 @@ def test_Note_set_transpose():
     assert_that(n.set_transpose(5), equal_to(Note(65)))
     assert_that(n.set_transpose(-10), equal_to(Note(55)))
     assert_that(n, equal_to(Note(55)))
-
-
-def test_NotesSequence_transpose():
-    n1 = Note(20)
-    n2 = Note(100)
-    ng = NoteGrouping([40])
-    r = Rest()
-    ns = NotesSequence()
-    ns.add(n1)
-    ns.add(n2)
-    ns.add(ng)
-    ns.add(r)
-    assert_that(ns.transpose(5).sequence[0].get_notes()[0], equal_to(Note(25)))
-    assert_that(ns.transpose(5).sequence[2].get_notes()[0], equal_to(Note(45)))
-    assert_that(n1, equal_to(Note(20)))
-
-def test_NotesSequence_set_transpose():
-    n1 = Note(20)
-    n2 = Note(100)
-    ng = NoteGrouping([40])
-    r = Rest()
-    ns = NotesSequence()
-    ns.add(n1)
-    ns.add(n2)
-    ns.add(ng)
-    ns.add(r)
-    assert_that(ns.set_transpose(5).sequence[0].get_notes()[0], equal_to(Note(25)))
-    assert_that(ns.sequence[2].get_notes()[0], equal_to(Note(45)))
