@@ -149,3 +149,15 @@ def test_Chord_dominant_flat_five():
 def test_Chord_hendrix_chord():
     chord = Chords.hendrix_chord('C4')
     _chord_tester(chord, ['C4', 'E4', 'G4', 'Bb4', 'Eb5'])
+
+def test_Chord_from_string():
+    _chord_tester(Chords.from_string('Cmaj7'), ['C4', 'E4', 'G4', 'B4'])
+    _chord_tester(Chords.from_string('C4maj7'), ['C4', 'E4', 'G4', 'B4'])
+    _chord_tester(Chords.from_string('CM7'), ['C4', 'E4', 'G4', 'B4'])
+    _chord_tester(Chords.from_string('Cm7'), ['C4', 'Eb4', 'G4', 'Bb4'])
+    _chord_tester(Chords.from_string('Cmin7'), ['C4', 'Eb4', 'G4', 'Bb4'])
+    _chord_tester(Chords.from_string('Cmi7'), ['C4', 'Eb4', 'G4', 'Bb4'])
+    _chord_tester(Chords.from_string('C-7'), ['C4', 'Eb4', 'G4', 'Bb4'])
+    _chord_tester(Chords.from_string('C3-7'), ['C3', 'Eb3', 'G3', 'Bb3'])
+
+

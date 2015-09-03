@@ -10,6 +10,9 @@ class Scale(StepMixin, NotesMixin, CloneMixin, TransposeMixin):
         self._scale = set([])
         self.build_scale(self.on_note)
 
+    def get_base_note(self):
+        return self.on_note
+
     def _notes_to_scale_representation(self, intervals, base_note):
         notes = base_note.transpose_list(intervals)
         self._scale = [ (n.get_base_name(), n.get_accidentals()) for n in notes ]
