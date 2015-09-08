@@ -19,6 +19,9 @@ class test_LilyPond(unittest.TestCase):
         self.fbar = Bar('F', (6, 8))
         self.tbar = Bar('C', (4, 4))
         self.mbar = Bar('C', (4, 4))
+        self.a_minor_bar = Bar('a', (4, 4))
+        self.b_flat_minor_bar = Bar('bb', (4, 4))
+        self.f_sharp_minor_bar = Bar('f#', (4, 4))
         for y in [self.commonbar, self.ebar, self.fbar]:
             map(lambda x: y + x, ['C', 'E', 'G', 'B'])
         map(lambda x: self.tbar.place_notes(NoteContainer(x), 6), [
@@ -100,6 +103,12 @@ class test_LilyPond(unittest.TestCase):
                          "{ \\time 4/4 \\key e \\major c'4 e'4 g'4 b'4 }")
         self.assertEqual(LilyPond.from_Bar(self.fbar),
                          "{ \\time 6/8 \\key f \\major c'8 e'8 g'8 b'8 }")
+        self.assertEqual(LilyPond.from_Bar(self.a_minor_bar),
+                         "{ \\time 4/4 \\key a \\minor }")
+        self.assertEqual(LilyPond.from_Bar(self.b_flat_minor_bar),
+                         "{ \\time 4/4 \\key bes \\minor }")
+        self.assertEqual(LilyPond.from_Bar(self.f_sharp_minor_bar),
+                         "{ \\time 4/4 \\key fis \\minor }")
 
     def test_from_Track(self):
         self.assertEqual(LilyPond.from_Track(self.track1),
