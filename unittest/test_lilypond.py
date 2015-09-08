@@ -141,7 +141,12 @@ class test_LilyPond(unittest.TestCase):
         self.assert_(LilyPond.to_pdf(LilyPond.from_Bar(self.tbar), 'pdftest2'))
         self.assert_(LilyPond.to_pdf(LilyPond.from_Bar(self.mbar), 'pdftest3'))
 
+    def test_to_png(self):
+        self.assert_(LilyPond.to_png('{ %s }'
+                      % LilyPond.from_NoteContainer(NoteContainer('C'),
+                     value.dots(8)), 'pn1'))
+        self.assert_(LilyPond.to_png(LilyPond.from_Bar(self.tbar), 'pn2'))
+        self.assert_(LilyPond.to_png(LilyPond.from_Bar(self.mbar), 'pn3'))
 
 def suite():
     return unittest.TestLoader().loadTestsFromTestCase(test_LilyPond)
-
