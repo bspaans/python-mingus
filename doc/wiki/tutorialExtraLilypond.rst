@@ -4,7 +4,7 @@
 The LilyPond module provides some methods to help you generate files in the LilyPond format. This allows you to create sheet music from some of the objects in mingus.containers.
 
 
->>> import mingus.extra.LilyPond as LilyPond
+>>> import mingus.extra.lilypond as LilyPond
 
 
 
