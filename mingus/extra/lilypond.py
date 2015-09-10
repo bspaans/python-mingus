@@ -22,6 +22,7 @@
 This allows you to create sheet music from some of the objects in
 mingus.containers.
 """
+from mingus.containers import Note
 
 from mingus.core.keys import Key
 from mingus.containers.mt_exceptions import (NoteFormatError,
@@ -126,7 +127,8 @@ def from_Bar(bar, showkey=True, showtime=True):
 
     # Process the key
     if showkey:
-        key = '\\key %s \\major ' % from_Note(bar.key, False, standalone=False)
+        key_note = Note(bar.key.key[0].upper() + bar.key.key[1:])
+        key = '\\key %s \\%s ' % (from_Note(key_note, False, standalone=False), bar.key.mode)
         result = key
     else:
         result = ''
