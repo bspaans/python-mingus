@@ -29,6 +29,7 @@ attached to the Sequencer.
 """
 
 from mingus.containers.instrument import MidiInstrument
+from mingus.containers.instrument import MidiPercussionInstrument
 
 class Sequencer(object):
 
@@ -36,7 +37,7 @@ class Sequencer(object):
 
     You can use the Sequencer object either by creating a subclass and
     implementing some of the events (init, play_event, stop_event, cc_event,
-    instr_event) or by attaching observer objects via 'attach' and catching 
+    instr_event) or by attaching observer objects via 'attach' and catching
     the messages in the notify(msg_type, param_dict) function of your object.
 
     See SequencerObserver for a pre made, easy to extend base class that can
@@ -65,6 +66,7 @@ class Sequencer(object):
 
     def __init__(self):
         self.listeners = []
+        self.is_general_midi = False
         self.init()
 
         # Events Implement some of these functions when subclassing
@@ -106,8 +108,13 @@ class Sequencer(object):
         for c in self.listeners:
             c.notify(msg_type, params)
 
-    def set_instrument(self, channel, instr, bank=0):
+    def set_instrument(self, channel, instr, bank=None):
         """Set the channel to the instrument _instr_."""
+        if bank is None:
+            if self.is_general_midi:
+                bank = 0 if channel != 9 else 1
+            else:
+                bank=0
         self.instr_event(channel, instr, bank)
         self.notify_listeners(self.MSG_INSTR, {'channel': int(channel),
             'instr': int(instr), 'bank': int(bank)})
@@ -323,6 +330,8 @@ class Sequencer(object):
                 except:
                     i = 1
                 self.set_instrument(channels[x], i)
+            elif isinstance(instr, MidiPercussionInstrument):
+                self.set_instrument(channels[x], 128)
             else:
                 self.set_instrument(channels[x], 1)
         current_bar = 0
