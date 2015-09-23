@@ -112,7 +112,7 @@ class Sequencer(object):
         """Set the channel to the instrument _instr_."""
         if bank is None:
             if self.is_general_midi:
-                bank = 0 if channel != 9 else 1
+                bank = 0 if channel != 9 else 128
             else:
                 bank=0
         self.instr_event(channel, instr, bank)
@@ -331,7 +331,7 @@ class Sequencer(object):
                     i = 1
                 self.set_instrument(channels[x], i)
             elif isinstance(instr, MidiPercussionInstrument):
-                self.set_instrument(channels[x], 128)
+                self.set_instrument(channels[x], 0)
             else:
                 self.set_instrument(channels[x], 1)
         current_bar = 0
@@ -369,4 +369,3 @@ class Sequencer(object):
     def pan(self, channel, value):
         """Set the panning."""
         return self.control_change(channel, 10, value)
-
