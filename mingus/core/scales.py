@@ -154,7 +154,7 @@ class Diatonic(_Scale):
     """
 
     type = 'diatonic'
-        
+
     def __init__(self, note, semitones, octaves=1):
         """Create the diatonic scale starting on the chosen note.
 
@@ -378,6 +378,28 @@ class HarmonicMajor(_Scale):
         notes[5] = diminish(notes[5])
         return notes * self.octaves + [notes[0]]
 
+class HemitonicMajor(_Scale):
+
+    """The hemitonic pentatonic major scale.
+
+    Example:
+    >>> print HarmonicMajor('C')
+    Ascending:  C G D A E C
+    Descending: C D E G A C
+    """
+
+    type = 'major'
+
+    def __init__(self, note, octaves=1):
+        """Create the hemitonic major scale starting on the chosen note."""
+        super(HemitonicMajor, self).__init__(note, octaves)
+        self.name = '{0} hemitonic pentatonic major'.format(self.tonic)
+
+    def ascending(self):
+        notes = Major(self.tonic).ascending()[:-1]
+        notes.pop(3)
+        notes.pop(5)
+        return notes * self.octaves + [notes[0]]
 
 # The minor scales
 
@@ -448,7 +470,7 @@ class MelodicMinor(_Scale):
         notes[5] = augment(notes[5])
         notes[6] = augment(notes[6])
         return notes * self.octaves + [notes[0]]
-        
+
     def descending(self):
         notes = NaturalMinor(self.tonic).descending()[:-1]
         return notes * self.octaves + [notes[0]]
