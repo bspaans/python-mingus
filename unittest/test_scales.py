@@ -171,7 +171,7 @@ class test_scales(unittest.TestCase):
                 ['F', 'E', 'Db', 'C', 'Bb', 'A', 'G', 'F'])
             }, scales.HarmonicMajor, 'harmonic major scale')
 
-    def test_hemitonic_major(self):
+    def test_pentatonic_major(self):
         self.scaleTest({
             'C': (
                 ['C', 'D', 'E', 'G', 'A', 'C'],
@@ -182,7 +182,7 @@ class test_scales(unittest.TestCase):
             'F': (
                 ['F', 'G', 'A', 'C', 'D', 'F'],
                 ['F', 'D', 'C', 'A', 'G', 'F'])
-            }, scales.HemitonicMajor, 'hemitonic pentatonic major scale')
+            }, scales.PentatonicMajor, 'pentatonic major scale')
 
     def test_natural_minor(self):
         self.scaleTest({
@@ -311,4 +311,3 @@ class test_scales(unittest.TestCase):
 
 def suite():
     return unittest.TestLoader().loadTestsFromTestCase(test_scales)
-

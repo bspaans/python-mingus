@@ -38,6 +38,7 @@ Ancient scales
 The major scales
  * Major(note)
  * HarmonicMajor(note)
+ * PentatonicMajor(note)
 
 The minor scales
  * NaturalMinor(note)
@@ -378,12 +379,12 @@ class HarmonicMajor(_Scale):
         notes[5] = diminish(notes[5])
         return notes * self.octaves + [notes[0]]
 
-class HemitonicMajor(_Scale):
+class PentatonicMajor(_Scale):
 
-    """The hemitonic pentatonic major scale.
+    """The pentatonic major scale.
 
     Example:
-    >>> print HarmonicMajor('C')
+    >>> print PentatonicMajor('C')
     Ascending:  C G D A E C
     Descending: C D E G A C
     """
@@ -391,9 +392,9 @@ class HemitonicMajor(_Scale):
     type = 'major'
 
     def __init__(self, note, octaves=1):
-        """Create the hemitonic major scale starting on the chosen note."""
-        super(HemitonicMajor, self).__init__(note, octaves)
-        self.name = '{0} hemitonic pentatonic major'.format(self.tonic)
+        """Create the pentatonic major scale starting on the chosen note."""
+        super(PentatonicMajor, self).__init__(note, octaves)
+        self.name = '{0} pentatonic major'.format(self.tonic)
 
     def ascending(self):
         notes = Major(self.tonic).ascending()[:-1]
@@ -625,4 +626,3 @@ class Octatonic(_Scale):
         notes.append(intervals.major_seventh(notes[0]))
         notes[-2] = intervals.major_sixth(notes[0])
         return notes * self.octaves + [notes[0]]
-
