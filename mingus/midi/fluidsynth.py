@@ -208,4 +208,3 @@ def main_volume(channel, value):
 
 def set_instrument(channel, instr, bank=0):
     return midi.set_instrument(channel, instr, bank)
-
