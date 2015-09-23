@@ -157,7 +157,7 @@ class test_scales(unittest.TestCase):
                 ['F', 'G', 'A', 'Bb', 'C', 'D', 'E', 'F'],
                 ['F', 'E', 'D', 'C', 'Bb', 'A', 'G', 'F'])
             }, scales.Major, 'major scale')
-                
+
     def test_harmonic_major(self):
         self.scaleTest({
             'C': (
@@ -170,6 +170,19 @@ class test_scales(unittest.TestCase):
                 ['F', 'G', 'A', 'Bb', 'C', 'Db', 'E', 'F'],
                 ['F', 'E', 'Db', 'C', 'Bb', 'A', 'G', 'F'])
             }, scales.HarmonicMajor, 'harmonic major scale')
+
+    def test_hemitonic_major(self):
+        self.scaleTest({
+            'C': (
+                ['C', 'D', 'E', 'G', 'A', 'C'],
+                ['C', 'A', 'G', 'E', 'D', 'C']),
+            'A': (
+                ['A', 'B', 'C#', 'E', 'F#', 'A'],
+                ['A', 'F#', 'E', 'C#', 'B', 'A']),
+            'F': (
+                ['F', 'G', 'A', 'C', 'D', 'F'],
+                ['F', 'D', 'C', 'A', 'G', 'F'])
+            }, scales.HemitonicMajor, 'hemitonic pentatonic major scale')
 
     def test_natural_minor(self):
         self.scaleTest({
