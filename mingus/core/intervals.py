@@ -31,8 +31,8 @@ This modules also contains other useful helper functions like measure,
 determine, invert, is_consonant and is_dissonant.
 """
 
-import notes
-import keys
+from mingus.core import notes
+from mingus.core import keys
 
 def interval(key, start_note, interval):
     """Return the note found at the interval starting from start_note in the

@@ -13,10 +13,9 @@ import sys
 if sys.platform != 'win32':
     raise RuntimeError('Intended for use on win32 platform')
 import time
-import exceptions
 from ctypes import windll, c_buffer, c_void_p, c_int, byref
 
-class Win32MidiException(exceptions.Exception): pass
+class Win32MidiException(Exception): pass
 
 class Win32MidiPlayer():
     

@@ -96,10 +96,10 @@ from_shorthand (a lot) and their inversions.
  * from_shorthand - Generates chords from shorthand (eg. 'Cmin7')
 """
 
-import intervals
-import notes
-import keys
-from mt_exceptions import NoteFormatError, FormatError
+from mingus.core import intervals
+from mingus.core import notes
+from mingus.core import keys
+from mingus.core.mt_exceptions import NoteFormatError, FormatError
 
 _triads_cache = {}
 

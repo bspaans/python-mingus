@@ -17,9 +17,9 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from note import Note
+from mingus.containers.note import Note
 from mingus.core import intervals, chords, progressions
-from mt_exceptions import UnexpectedObjectError
+from mingus.containers.mt_exceptions import UnexpectedObjectError
 
 class NoteContainer(object):
 

@@ -29,9 +29,9 @@ This module provides methods which can convert progressions to chords and
 vice versa.
 """
 
-import notes
-import chords
-import intervals
+from mingus.core import notes
+from mingus.core import chords
+from mingus.core import intervals
 numerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']
 numeral_intervals = [0, 2, 4, 5, 7, 9, 11]
 

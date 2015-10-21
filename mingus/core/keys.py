@@ -22,8 +22,8 @@
 This module provides a simple interface for dealing with keys.
 """
 
-from mt_exceptions import FormatError, NoteFormatError, RangeError
-import notes
+from mingus.core.mt_exceptions import FormatError, NoteFormatError, RangeError
+from mingus.core import notes
 import operator
 from itertools import cycle, islice
 

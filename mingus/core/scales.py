@@ -52,10 +52,10 @@ Other scales
  * Octatonic(note)
 """
 
-import intervals
-from notes import augment, diminish, reduce_accidentals
-from keys import keys, get_notes
-from mt_exceptions import NoteFormatError, FormatError, RangeError
+from mingus.core import intervals
+from mingus.core.notes import augment, diminish, reduce_accidentals
+from mingus.core.keys import keys, get_notes
+from mingus.core.mt_exceptions import NoteFormatError, FormatError, RangeError
 
 def determine(notes):
     """Determine the scales containing the notes.
