@@ -390,9 +390,8 @@ class MidiFile:
 
 if __name__ == '__main__':
     from sys import argv
-    from mingus.midi import fluidsynth
-    import MidiFileOut
-    fluidsynth.init()
+    from mingus.midi import fluidsynth, midi_file_out
+    fluidsynth.init(argv[2])
     (m, bpm) = MIDI_to_Composition(argv[1])
-    MidiFileOut.write_Composition('test.mid', m, bpm)
+    midi_file_out.write_Composition('test.mid', m, bpm)
 

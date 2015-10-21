@@ -71,7 +71,7 @@ class Instrument(object):
 
     def notes_in_range(self, notes):
         """An alias for can_play_notes."""
-        return can_play_notes(notes)
+        return self.can_play_notes(notes)
 
     def can_play_notes(self, notes):
         """Test if the notes lie within the range of the instrument.
