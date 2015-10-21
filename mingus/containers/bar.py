@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
@@ -22,6 +23,7 @@ from mingus.core import progressions, keys
 from mingus.containers.note_container import NoteContainer
 from mingus.containers.note import Note
 from mingus.containers.mt_exceptions import MeterFormatError
+from six.moves import range
 
 class Bar(object):
     """A bar object.

@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 # Real-time MIDI playback in Win32
 # No extra dlls or modules needed, uses built-in ctypes module.
 # By Ben Fisher, 2009, GPLv3

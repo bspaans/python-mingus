@@ -27,8 +27,10 @@ messages in the notify(msg_type, param_dict) function of your object.
 See SequencerObserver for a pre made, easy to extend base class that can be
 attached to the Sequencer.
 """
+from __future__ import absolute_import
 
 from mingus.containers.instrument import MidiInstrument
+from six.moves import range
 
 class Sequencer(object):
 
@@ -346,7 +348,7 @@ class Sequencer(object):
         self.notify_listeners(self.MSG_PLAY_COMPOSITION, {'composition'
                               : composition, 'channels': channels, 'bpm': bpm})
         if channels == None:
-            channels = map(lambda x: x + 1, range(len(composition.tracks)))
+            channels = [x + 1 for x in range(len(composition.tracks))]
         return self.play_Tracks(composition.tracks, channels, bpm)
 
     def modulation(self, channel, value):

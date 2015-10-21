@@ -22,6 +22,8 @@
 This allows you to create sheet music from some of the objects in
 mingus.containers.
 """
+from __future__ import absolute_import
+from __future__ import print_function
 from mingus.containers import Note
 
 from mingus.core.keys import Key
@@ -30,6 +32,7 @@ from mingus.containers.mt_exceptions import (NoteFormatError,
 import mingus.core.value as value
 import os
 import subprocess
+from six.moves import range
 
 def from_Note(note, process_octaves=True, standalone=True):
     """Get a Note object and return the LilyPond equivalent in a string.
@@ -223,7 +226,7 @@ def save_string_and_execute_LilyPond(ly_string, filename, command):
     except:
         return False
     command = 'lilypond %s -o "%s" "%s.ly"' % (command, filename, filename)
-    print 'Executing: %s' % command
+    print('Executing: %s' % command)
     p = subprocess.Popen(command, shell=True).wait()
     os.remove(filename + '.ly')
     return True

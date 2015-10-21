@@ -23,6 +23,7 @@
 The MIDI file format specification I used can be found here:
 http://www.sonicspot.com/guide/midifiles.html
 """
+from __future__ import absolute_import
 
 from binascii import a2b_hex
 from struct import pack, unpack
@@ -30,6 +31,7 @@ from math import log
 from mingus.midi.midi_events import *
 from mingus.core.keys import Key, major_keys, minor_keys
 from mingus.containers.note import Note
+from six.moves import range
 
 class MidiTrack(object):
 

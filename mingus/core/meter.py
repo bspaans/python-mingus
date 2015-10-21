@@ -22,6 +22,7 @@
 A meter is represented by a tuple. 4/4 time would look like (4,4), 3/4 like
 (3,4), etc.
 """
+from __future__ import absolute_import
 
 import math
 common_time = (4, 4)

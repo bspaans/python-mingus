@@ -23,13 +23,14 @@ module.
 Caution: this will throw Win32MidiException if there is no device, or device
 can't be opened.
 """
+from __future__ import absolute_import
 
 import sys
 # We should be able to import this module on non-win32 systems without 
 # raising exceptions. So instead, raise in the init() method.
 if sys.platform=='win32':
-    import win32midi
-    from win32midi import Win32MidiException
+    from mingus.midi import win32midi
+    from mingus.midi.win32midi import Win32MidiException
     
 from datetime import datetime
 from mingus.midi.sequencer import Sequencer

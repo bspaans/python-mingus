@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
@@ -21,6 +22,7 @@ from mingus.containers.mt_exceptions import InstrumentRangeError
 from mingus.containers.note_container import NoteContainer
 from mingus.containers.bar import Bar
 import mingus.core.value as value
+from six.moves import range
 
 class Track(object):
 
@@ -62,9 +64,8 @@ class Track(object):
         """
         if self.instrument != None:
             if not self.instrument.can_play_notes(note):
-                raise InstrumentRangeError, \
-                    "Note '%s' is not in range of the instrument (%s)" % (note,
-                        self.instrument)
+                raise InstrumentRangeError("Note '%s' is not in range of the instrument (%s)" % (note,
+                        self.instrument))
         if duration == None:
             duration = 4
 

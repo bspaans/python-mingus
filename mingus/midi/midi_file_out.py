@@ -19,9 +19,12 @@
 
 """Functions that can generate MIDI files from the objects in
 mingus.containers."""
+from __future__ import absolute_import
+from __future__ import print_function
 
 from mingus.midi.midi_track import MidiTrack
 from binascii import a2b_hex
+from six.moves import range
 
 class MidiFile(object):
 
@@ -55,16 +58,16 @@ class MidiFile(object):
         try:
             f = open(file, 'wb')
         except:
-            print "Couldn't open '%s' for writing." % file
+            print("Couldn't open '%s' for writing." % file)
             return False
         try:
             f.write(dat)
         except:
-            print 'An error occured while writing data to %s.' % file
+            print('An error occured while writing data to %s.' % file)
             return False
         f.close()
         if verbose:
-            print 'Written %d bytes to %s.' % (len(dat), file)
+            print('Written %d bytes to %s.' % (len(dat), file))
         return True
 
 

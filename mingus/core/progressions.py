@@ -28,10 +28,12 @@ more complex progressions, like: #V7, bIIdim7, etc.
 This module provides methods which can convert progressions to chords and
 vice versa.
 """
+from __future__ import absolute_import
 
 from mingus.core import notes
 from mingus.core import chords
 from mingus.core import intervals
+from six.moves import range
 numerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']
 numeral_intervals = [0, 2, 4, 5, 7, 9, 11]
 
@@ -82,10 +84,10 @@ def to_chords(progression, key='C'):
             r = chords.chord_shorthand[suffix](r[0])
 
         while acc < 0:
-            r = map(notes.diminish, r)
+            r = [notes.diminish(x) for x in r]
             acc += 1
         while acc > 0:
-            r = map(notes.augment, r)
+            r = [notes.augment(x) for x in r]
             acc -= 1
         result.append(r)
     return result

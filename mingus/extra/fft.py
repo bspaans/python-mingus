@@ -22,6 +22,7 @@
 
 This module can also convert the found frequencies to Note objects.
 """
+from __future__ import absolute_import
 
 import wave
 import struct
@@ -29,6 +30,8 @@ import numpy
 from mingus.containers.note import Note
 from numpy.fft import fft as _fft
 import operator
+from six.moves import range
+from six.moves import zip
 
 # Making a frequency-amplitude table   Adapted some ideas and source from:
 # http://xoomer.virgilio.it/sam_psy/psych/sound_proc/sound_proc_python.html
@@ -38,7 +41,7 @@ import operator
 # the frequencies we need to look up.
 
 _log_cache = []
-for x in xrange(129):
+for x in range(129):
     _log_cache.append(Note().from_int(x).to_hertz())
 _last_asked = None
 
@@ -104,7 +107,7 @@ def find_frequencies(data, freq=44100, bits=16):
     # Generate the frequencies and zip with the amplitudes
     s = freq / float(n)
     freqArray = numpy.arange(0, uniquePts * s, s)
-    return zip(freqArray, p)
+    return list(zip(freqArray, p))
 
 def find_notes(freqTable, maxNote=100):
     """Convert the (frequencies, amplitude) list to a (Note, amplitude) list."""

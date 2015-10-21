@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
@@ -242,7 +243,8 @@ class NoteContainer(object):
         elif hasattr(notes, 'name'):
             return self.remove_note(notes)
         else:
-            map(lambda x: self.remove_note(x), notes)
+            for x in notes:
+                self.remove_note(x)
             return self.notes
 
     def remove_duplicate_notes(self):

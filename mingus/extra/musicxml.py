@@ -29,6 +29,7 @@ and is supported by over 100 applications.
 
 http://www.musicxml.org/xml.html
 """
+from __future__ import absolute_import
 
 import xml
 from xml.dom.minidom import Document
@@ -39,6 +40,8 @@ from mingus.containers.composition import Composition
 from mingus.containers.track import Track
 from mingus.core import value
 import datetime
+from functools import reduce
+from six.moves import range
 
 def _gcd(a=None, b=None, terms=None):
     """Return greatest common divisor using Euclid's Algorithm."""
@@ -313,13 +316,13 @@ def write_Composition(composition, filename, zip=False):
         zf = zipfile.ZipFile(filename + '.mxl', mode='w',
                              compression=zipfile.ZIP_DEFLATED)
         zi = zipfile.ZipInfo('META-INF' + os.sep + 'container.xml')
-        zi.external_attr = 0660 << 16L
+        zi.external_attr = 0o660 << 16
         zf.writestr(zi,
                     "<?xml version='1.0' encoding='UTF-8'?>"
                     "<container><rootfiles><rootfile full-path='{0}.xml'/>"
                     "</rootfiles></container>".format(filename))
         zi = zipfile.ZipInfo(filename + '.xml')
-        zi.external_attr = 0660 << 16L
+        zi.external_attr = 0o660 << 16
         zf.writestr(zi, text)
         zf.close()
 

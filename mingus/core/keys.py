@@ -21,11 +21,12 @@
 
 This module provides a simple interface for dealing with keys.
 """
+from __future__ import absolute_import
 
 from mingus.core.mt_exceptions import FormatError, NoteFormatError, RangeError
 from mingus.core import notes
-import operator
 from itertools import cycle, islice
+from six.moves import range
 
 keys = [
         ('Cb', 'ab'), #  7 b
@@ -106,15 +107,14 @@ def get_notes(key='C'):
     >>> get_notes('c')
     ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb']
     """
-    if _key_cache.has_key(key):
+    if key in _key_cache:
         return _key_cache[key]
     if not is_valid_key(key):
         raise NoteFormatError("unrecognized format for key '%s'" % key)
     result = []
 
     # Calculate notes
-    altered_notes = map(operator.itemgetter(0),
-            get_key_signature_accidentals(key))
+    altered_notes = [x[0] for x in get_key_signature_accidentals(key)]
 
     if get_key_signature(key) < 0:
         symbol = 'b'

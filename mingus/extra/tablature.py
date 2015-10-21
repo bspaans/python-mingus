@@ -18,10 +18,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 """Functions to convert mingus.containers to pretty ASCII tablature."""
+from __future__ import absolute_import
 
 import mingus.extra.tunings as tunings
 from mingus.core.mt_exceptions import RangeError, FingerError
 import os
+from six.moves import range
 
 default_tuning = tunings.get_tuning('Guitar', 'Standard', 6, 1)
 
@@ -365,7 +367,7 @@ def from_Composition(composition, width=80):
         for tracks in composition:
             tuning = tracks.get_tuning()
             ascii = []
-            for x in xrange(bars):
+            for x in range(bars):
                 if barindex + x < len(tracks):
                     bar = tracks[barindex + x]
                     r = from_Bar(bar, w, tuning, collapse=False)
