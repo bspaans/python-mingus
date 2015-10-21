@@ -31,6 +31,7 @@ from __future__ import absolute_import
 import time
 from ctypes import *
 from ctypes.util import find_library
+import six
 
 lib = find_library('fluidsynth') or find_library('libfluidsynth')\
      or find_library('libfluidsynth-1')
@@ -140,6 +141,11 @@ def fluid_synth_write_s16_stereo(synth, len):
     fluid_synth_write_s16(synth, len, buf, 0, 2, buf, 1, 2)
     return numpy.fromstring(buf[:], dtype=numpy.int16)
 
+def str_binary(s):
+    if isinstance(s, six.text_type):
+        return s.encode()
+    return s
+
 class Synth:
 
     """Synth represents a FluidSynth synthesizer."""
@@ -153,11 +159,11 @@ class Synth:
           samplerate: output samplerate in Hz, default is 44100 Hz
         """
         st = new_fluid_settings()
-        fluid_settings_setnum(st, 'synth.gain', gain)
-        fluid_settings_setnum(st, 'synth.sample-rate', samplerate)
+        fluid_settings_setnum(st, b'synth.gain', gain)
+        fluid_settings_setnum(st, b'synth.sample-rate', samplerate)
 
         # No reason to limit ourselves to 16 channels
-        fluid_settings_setint(st, 'synth.midi-channels', 256)
+        fluid_settings_setint(st, b'synth.midi-channels', 256)
         self.settings = st
         self.synth = new_fluid_synth(st)
         self.audio_driver = None
@@ -180,18 +186,20 @@ class Synth:
         which drivers were compiled into FluidSynth for your platform.
         """
         if driver is not None:
+            driver = str_binary(driver)
+
             assert driver in [
-                    'alsa',
-                    'oss',
-                    'jack',
-                    'portaudio',
-                    'sndmgr',
-                    'coreaudio',
-                    'Direct Sound',
-                    'dsound',
-                    'pulseaudio'
+                    b'alsa',
+                    b'oss',
+                    b'jack',
+                    b'portaudio',
+                    b'sndmgr',
+                    b'coreaudio',
+                    b'Direct Sound',
+                    b'dsound',
+                    b'pulseaudio'
                     ]
-            fluid_settings_setstr(self.settings, 'audio.driver', driver)
+            fluid_settings_setstr(self.settings, b'audio.driver', driver)
         self.audio_driver = new_fluid_audio_driver(self.settings, self.synth)
 
     def delete(self):
@@ -202,7 +210,7 @@ class Synth:
 
     def sfload(self, filename, update_midi_preset=0):
         """Load SoundFont and return its IDi."""
-        return fluid_synth_sfload(self.synth, filename, update_midi_preset)
+        return fluid_synth_sfload(self.synth, str_binary(filename), update_midi_preset)
 
     def sfunload(self, sfid, update_midi_preset=0):
         """Unload a SoundFont and free memory it used."""
