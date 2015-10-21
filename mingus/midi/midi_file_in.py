@@ -328,7 +328,7 @@ class MidiFile:
         except:
             raise IOError("Couldn't read track header from file. Byte %d."
                     % self.bytes_read)
-        if h != 'MTrk':
+        if h != b'MTrk':
             raise HeaderError('Not a valid Track header. Byte %d.'
                     % self.bytes_read)
 
