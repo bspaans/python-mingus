@@ -22,6 +22,7 @@ from mingus.containers.mt_exceptions import InstrumentRangeError, UnexpectedObje
 from mingus.containers.note_container import NoteContainer
 from mingus.containers.bar import Bar
 import mingus.core.value as value
+import six
 from six.moves import range
 
 class Track(object):
@@ -104,7 +105,7 @@ class Track(object):
         tun = self.get_tuning()
 
         def add_chord(chord, duration):
-            if type(chord) == list:
+            if isinstance(chord, list):
                 for c in chord:
                     add_chord(c, duration * 2)
             else:
@@ -178,7 +179,7 @@ class Track(object):
             return self.add_bar(value)
         elif hasattr(value, 'notes'):
             return self.add_notes(value)
-        elif hasattr(value, 'name') or type(value) == str:
+        elif hasattr(value, 'name') or isinstance(value, six.string_types):
             return self.add_notes(value)
 
     def test_integrity(self):

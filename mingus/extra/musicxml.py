@@ -43,6 +43,9 @@ import datetime
 from functools import reduce
 from six.moves import range
 
+import six
+str = six.text_type
+
 def _gcd(a=None, b=None, terms=None):
     """Return greatest common divisor using Euclid's Algorithm."""
     if terms:

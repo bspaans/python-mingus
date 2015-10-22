@@ -46,7 +46,7 @@ class StringTuning(object):
 
         # convert to Note
         for x in tuning:
-            if type(x) == list:
+            if isinstance(x, list):
                 self.tuning.append([Note(n) for n in x])
             else:
                 self.tuning.append(Note(x))
@@ -60,7 +60,7 @@ class StringTuning(object):
         """Return the average number of courses per string."""
         c = 0
         for x in self.tuning:
-            if type(x) == list:
+            if isinstance(x, list):
                 c += len(x)
             else:
                 c += 1
@@ -81,10 +81,10 @@ class StringTuning(object):
         [12, 5]
         """
         result = []
-        if type(note) == str:
+        if isinstance(note, six.string_types):
             note = Note(note)
         for x in self.tuning:
-            if type(x) == list:
+            if isinstance(x, list):
                 base = x[0]
             else:
                 base = x
@@ -204,7 +204,7 @@ class StringTuning(object):
 
         # Convert to NoteContainer if necessary
         n = notes
-        if notes != [] and type(notes) == list and type(notes[0]) == str:
+        if notes != [] and isinstance(notes, list) and isinstance(notes[0], six.string_types):
             n = NoteContainer(notes)
 
         # Check number of note names.
@@ -294,7 +294,7 @@ class StringTuning(object):
         [(0, 'E'), (5, 'A'), (8, 'C'), (12, 'E')]
         """
         n = notelist
-        if notelist != [] and type(notelist[0]) == str:
+        if notelist != [] and isinstance(notelist[0], six.string_types):
             n = NoteContainer(notelist)
         result = []
         names = [x.name for x in n]
@@ -324,7 +324,7 @@ class StringTuning(object):
         if 0 <= string < self.count_strings():
             if 0 <= fret <= maxfret:
                 s = self.tuning[string]
-                if type(s) == list:
+                if isinstance(s, list):
                     s = s[0]
                 n = Note(int(s) + fret)
                 n.string = string

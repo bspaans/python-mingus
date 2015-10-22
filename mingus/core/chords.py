@@ -101,6 +101,7 @@ from mingus.core import intervals
 from mingus.core import notes
 from mingus.core import keys
 from mingus.core.mt_exceptions import NoteFormatError, FormatError
+import six
 from six.moves import range
 
 _triads_cache = {}
@@ -751,7 +752,7 @@ def from_shorthand(shorthand_string, slash=None):
     Special: '5', 'NC', 'hendrix'
     """
     # warning reduce??
-    if type(shorthand_string) == list:
+    if isinstance(shorthand_string, list):
         res = []
         for x in shorthand_string:
             res.append(from_shorthand(x))
@@ -806,13 +807,13 @@ def from_shorthand(shorthand_string, slash=None):
         res = chord_shorthand[short_chord](name)
         if slash != None:
             # Add slashed chords
-            if type(slash) == str:
+            if isinstance(slash, six.string_types):
                 if notes.is_valid_note(slash):
                     res = [slash] + res
                 else:
                     raise NoteFormatError("Unrecognised note '%s' in slash chord'%s'" % (slash,
                             slash + shorthand_string))
-            elif type(slash) == list:
+            elif isinstance(slash, list):
                 # Add polychords
                 r = slash
                 for n in res:

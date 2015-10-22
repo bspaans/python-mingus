@@ -207,7 +207,7 @@ class MidiTrack(object):
 
         Can be an integer or a variable length byte.
         """
-        if type(delta_time) == int:
+        if isinstance(delta_time, int):
             delta_time = self.int_to_varbyte(delta_time)
         self.delta_time = delta_time
 

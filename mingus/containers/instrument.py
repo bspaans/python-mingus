@@ -20,6 +20,7 @@ from __future__ import absolute_import
 
 from mingus.containers.note import Note
 from mingus.containers.mt_exceptions import UnexpectedObjectError
+import six
 
 class Instrument(object):
 
@@ -47,7 +48,7 @@ class Instrument(object):
 
         A range is a tuple of two Notes or note strings.
         """
-        if type(range[0]) == str:
+        if isinstance(range[0], six.string_types):
             range[0] = Note(range[0])
             range[1] = Note(range[1])
         if not hasattr(range[0], 'name'):
@@ -60,7 +61,7 @@ class Instrument(object):
 
         Return True if so, False otherwise.
         """
-        if type(note) == str:
+        if isinstance(note, six.string_types):
             note = Note(note)
         if not hasattr(note, 'name'):
             raise UnexpectedObjectError("Unexpected object '%s'. "
@@ -80,7 +81,7 @@ class Instrument(object):
         """
         if hasattr(notes, 'notes'):
             notes = notes.notes
-        if type(notes) != list:
+        if not isinstance(notes, list):
             notes = [notes]
         for n in notes:
             if not self.note_in_range(n):

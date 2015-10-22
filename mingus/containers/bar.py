@@ -23,6 +23,7 @@ from mingus.core import progressions, keys
 from mingus.containers.note_container import NoteContainer
 from mingus.containers.note import Note
 from mingus.containers.mt_exceptions import MeterFormatError
+import six
 from six.moves import range
 
 class Bar(object):
@@ -41,7 +42,7 @@ class Bar(object):
 
     def __init__(self, key='C', meter=(4, 4)):
         # warning should check types
-        if type(key) == str:
+        if isinstance(key, six.string_types):
             key = keys.Key(key)
         self.key = key
         self.set_meter(meter)
@@ -90,9 +91,9 @@ class Bar(object):
             pass
         elif hasattr(notes, 'name'):
             notes = NoteContainer(notes)
-        elif type(notes) == str:
+        elif isinstance(notes, six.string_types):
             notes = NoteContainer(notes)
-        elif type(notes) == list:
+        elif isinstance(notes, list):
             notes = NoteContainer(notes)
         if self.current_beat + 1.0 / duration <= self.length or self.length\
              == 0.0:
@@ -227,9 +228,9 @@ class Bar(object):
             pass
         elif hasattr(value, 'name'):
             value = NoteContainer(value)
-        elif type(value) == str:
+        elif isinstance(value, six.string_types):
             value = NoteContainer(value)
-        elif type(value) == list:
+        elif isinstance(value, list):
             res = NoteContainer()
             for x in value:
                 res + x
