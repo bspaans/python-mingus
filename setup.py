@@ -35,6 +35,8 @@ http://mingus.googlecode.com
             'License :: OSI Approved :: GNU General Public License (GPL)',
             'Operating System :: OS Independent',
             'Programming Language :: Python',
+            'Programming Language :: Python :: 2.7',
+            'Programming Language :: Python :: 3.4',
             'Topic :: Artistic Software',
             'Topic :: Education',
             'Topic :: Multimedia',
