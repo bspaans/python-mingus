@@ -52,10 +52,10 @@ Other scales
  * Octatonic(note)
 """
 
-import intervals
-from notes import augment, diminish, reduce_accidentals
-from keys import keys, get_notes
-from mt_exceptions import NoteFormatError, FormatError, RangeError
+from mingus.core import intervals
+from mingus.core.notes import augment, diminish, reduce_accidentals
+from mingus.core.keys import keys, get_notes
+from mingus.core.mt_exceptions import NoteFormatError, FormatError, RangeError
 
 def determine(notes):
     """Determine the scales containing the notes.
@@ -148,13 +148,13 @@ class Diatonic(_Scale):
     """The diatonic scale.
 
     Example:
-    >>> print Diatonic('C', (3, 7))
+    >>> print(Diatonic('C', (3, 7)))
     Ascending:  C D E F G A B C
     Descending: C B A G F E D C
     """
 
     type = 'diatonic'
-        
+
     def __init__(self, note, semitones, octaves=1):
         """Create the diatonic scale starting on the chosen note.
 
@@ -183,7 +183,7 @@ class Ionian(_Scale):
     """The ionian scale.
 
     Example:
-    >>> print Ionian('C')
+    >>> print(Ionian('C'))
     Ascending:  C D E F G A B C
     Descending: C B A G F E D C
     """
@@ -205,7 +205,7 @@ class Dorian(_Scale):
     """The dorian scale.
 
     Example:
-    >>> print Dorian('D')
+    >>> print(Dorian('D'))
     Ascending:  D E F G A B C D
     Descending: D C B A G F E D
     """
@@ -227,7 +227,7 @@ class Phrygian(_Scale):
     """The phrygian scale.
 
     Example:
-    >>> print Phrygian('E')
+    >>> print(Phrygian('E'))
     Ascending:  E F G A B C D E
     Descending: E D C B A G F E
     """
@@ -249,7 +249,7 @@ class Lydian(_Scale):
     """The lydian scale.
 
     Example:
-    >>> print Lydian('F')
+    >>> print(Lydian('F'))
     Ascending:  F G A B C D E F
     Descending: F E D C B A G F
     """
@@ -271,7 +271,7 @@ class Mixolydian(_Scale):
     """The mixolydian scale.
 
     Example:
-    >>> print Mixolydian('G')
+    >>> print(Mixolydian('G'))
     Ascending:  G A B C D E F G
     Descending: G F E D C B A G
     """
@@ -293,7 +293,7 @@ class Aeolian(_Scale):
     """The aeolian scale.
 
     Example:
-    >>> print Aeolian('A')
+    >>> print(Aeolian('A'))
     Ascending:  A B C D E F G A
     Descending: A G F E D C B A
     """
@@ -315,7 +315,7 @@ class Locrian(_Scale):
     """The locrian scale.
 
     Example:
-    >>> print Locrian('B')
+    >>> print(Locrian('B'))
     Ascending:  B C D E F G A B
     Descending: B A G F E D C B
     """
@@ -339,7 +339,7 @@ class Major(_Scale):
     """The major scale.
 
     Example:
-    >>> print Major('A')
+    >>> print(Major('A'))
     Ascending:  A B C# D E F# G# A
     Descending: A G# F# E D C# B A
     """
@@ -361,7 +361,7 @@ class HarmonicMajor(_Scale):
     """The harmonic major scale.
 
     Example:
-    >>> print HarmonicMajor('C')
+    >>> print(HarmonicMajor('C'))
     Ascending:  C D E F G Ab B C
     Descending: C B Ab G F E D C
     """
@@ -386,7 +386,7 @@ class NaturalMinor(_Scale):
     """The natural minor scale.
 
     Example:
-    >>> print NaturalMinor('A')
+    >>> print(NaturalMinor('A'))
     Ascending:  A B C D E F G A
     Descending: A G F E D C B A
     """
@@ -408,7 +408,7 @@ class HarmonicMinor(_Scale):
     """The harmonic minor scale.
 
     Example:
-    >>> print HarmonicMinor('A')
+    >>> print(HarmonicMinor('A'))
     Ascending:  A B C D E F G# A
     Descending: A G# F E D C B A
     """
@@ -431,7 +431,7 @@ class MelodicMinor(_Scale):
     """The melodic minor scale.
 
     Example:
-    >>> print MelodicMinor('A')
+    >>> print(MelodicMinor('A'))
     Ascending:  A B C D E F# G# A
     Descending: A G F E D C B A
     """
@@ -448,7 +448,7 @@ class MelodicMinor(_Scale):
         notes[5] = augment(notes[5])
         notes[6] = augment(notes[6])
         return notes * self.octaves + [notes[0]]
-        
+
     def descending(self):
         notes = NaturalMinor(self.tonic).descending()[:-1]
         return notes * self.octaves + [notes[0]]
@@ -459,7 +459,7 @@ class Bachian(_Scale):
     """The Bachian scale.
 
     Example:
-    >>> print Bachian('A')
+    >>> print(Bachian('A'))
     Ascending:  A B C D E F# G# A
     Descending: A G# F# E D C B A
     """
@@ -482,7 +482,7 @@ class MinorNeapolitan(_Scale):
     """The minor Neapolitan scale.
 
     Example:
-    >>> print MinorNeapolitan('A')
+    >>> print(MinorNeapolitan('A'))
     Ascending:  A Bb C D E F G# A
     Descending: A G F E D C Bb A
     """
@@ -512,10 +512,10 @@ class Chromatic(_Scale):
     """The chromatic scale.
 
     Examples:
-    >>> print Chromatic('C')
+    >>> print(Chromatic('C'))
     Ascending:  C C# D D# E F F# G G# A A# B C
     Descending: C B Bb A Ab G Gb F E Eb D Db C
-    >>> print Chromatic('f')
+    >>> print(Chromatic('f'))
     Ascending:  F F# G Ab A Bb B C Db D Eb E F
     Descending: F E Eb D Db C B Bb A Ab G Gb F
     """
@@ -557,7 +557,7 @@ class WholeTone(_Scale):
     """The whole tone scale.
 
     Example:
-    >>> print WholeTone('C')
+    >>> print(WholeTone('C'))
     Ascending:  C D E F# G# A# C
     Descending: C A# G# F# E D C
     """
@@ -581,7 +581,7 @@ class Octatonic(_Scale):
     """The octatonic scale.
 
     Example:
-    >>> print Octatonic('C')
+    >>> print(Octatonic('C'))
     Ascending:  C D Eb F Gb Ab A B C
     Descending: C B A Ab Gb F Eb D C
     """

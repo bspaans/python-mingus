@@ -37,6 +37,9 @@ import operator
 # So before we do any performance critical calculations we set up a cache of all
 # the frequencies we need to look up.
 
+def xrange(x):
+    return iter(range(x))
+
 _log_cache = []
 for x in xrange(129):
     _log_cache.append(Note().from_int(x).to_hertz())

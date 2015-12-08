@@ -26,7 +26,7 @@ It handles conversions from integers to notes and vice versa and thus
 enables simple calculations.
 """
 
-from mt_exceptions import NoteFormatError, RangeError, FormatError
+from mingus.core.mt_exceptions import NoteFormatError, RangeError, FormatError
 
 _note_dict = {
     'C': 0,
@@ -72,7 +72,7 @@ def is_enharmonic(note1, note2):
 
 def is_valid_note(note):
     """Return True if note is in a recognised format. False if not."""
-    if not _note_dict.has_key(note[0]):
+    if note[0] not in _note_dict:
         return False
     for post in note[1:]:
         if post != 'b' and post != '#':

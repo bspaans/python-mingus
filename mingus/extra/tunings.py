@@ -376,7 +376,7 @@ def add_tuning(instrument, description, tuning):
     >>> tuning.add_tuning('Guitar', 'twelve string', tw_string)
     """
     t = StringTuning(instrument, description, tuning)
-    if _known.has_key(str.upper(instrument)):
+    if str.upper(instrument) in _known:
         _known[str.upper(instrument)][1][str.upper(description)] = t
     else:
         _known[str.upper(instrument)] = (instrument,
@@ -399,7 +399,7 @@ def get_tuning(instrument, description, nr_of_strings=None, nr_of_courses=None):
     for x in keys:
         if (searchi not in keys and x.find(searchi) == 0 or searchi in keys and
                 x == searchi):
-            for (desc, tun) in _known[x][1].iteritems():
+            for (desc, tun) in _known[x][1].items():
                 if desc.find(searchd) == 0:
                     if nr_of_strings is None and nr_of_courses is None:
                         return tun

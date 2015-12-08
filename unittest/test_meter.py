@@ -81,7 +81,7 @@ class test_meter(unittest.TestCase):
             13,
             14,
             15,
-            ] + range(17, 31):
+            ] + list(range(17, 31)):
             self.assert_(not meter.valid_beat_duration(x),
                          '%d should not be a valid beat duration' % x)
 

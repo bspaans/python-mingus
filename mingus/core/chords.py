@@ -96,10 +96,10 @@ from_shorthand (a lot) and their inversions.
  * from_shorthand - Generates chords from shorthand (eg. 'Cmin7')
 """
 
-import intervals
-import notes
-import keys
-from mt_exceptions import NoteFormatError, FormatError
+from mingus.core import intervals
+from mingus.core import notes
+from mingus.core import keys
+from mingus.core.mt_exceptions import NoteFormatError, FormatError
 
 _triads_cache = {}
 
@@ -178,9 +178,9 @@ def triads(key):
 
     Implemented using a cache.
     """
-    if _triads_cache.has_key(key):
+    if key in _triads_cache:
         return _triads_cache[key]
-    res = map(lambda x: triad(x, key), keys.get_notes(key))
+    res = list(map(lambda x: triad(x, key), keys.get_notes(key)))
     _triads_cache[key] = res
     return res
 
@@ -232,9 +232,9 @@ def seventh(note, key):
 
 def sevenths(key):
     """Return all the sevenths chords in key in a list."""
-    if _sevenths_cache.has_key(key):
+    if key in _sevenths_cache:
         return _sevenths_cache[key]
-    res = map(lambda x: seventh(x, key), keys.get_notes(key))
+    res = list(map(lambda x: seventh(x, key), keys.get_notes(key)))
     _sevenths_cache[key] = res
     return res
 
@@ -722,7 +722,7 @@ def from_shorthand(shorthand_string, slash=None):
     Recognised abbreviations: the letters "m" and "M" in the following
     abbreviations can always be substituted by respectively "min", "mi" or
     "-" and "maj" or "ma".
-    
+
     Example:
     >>> from_shorthand('Amin7') == from_shorthand('Am7')
     True
@@ -766,8 +766,7 @@ def from_shorthand(shorthand_string, slash=None):
 
     # Get the note name
     if not notes.is_valid_note(shorthand_string[0]):
-        raise NoteFormatError, "Unrecognised note '%s' in chord '%s'"\
-             % (shorthand_string[0], shorthand_string)
+        raise NoteFormatError("Unrecognised note '{}' in chord '{}'".format(shorthand_string[0], shorthand_string))
     name = shorthand_string[0]
 
     # Look for accidentals
@@ -800,7 +799,7 @@ def from_shorthand(shorthand_string, slash=None):
     shorthand_start = len(name)
 
     short_chord = shorthand_string[shorthand_start:]
-    if chord_shorthand.has_key(short_chord):
+    if short_chord in chord_shorthand:
         res = chord_shorthand[short_chord](name)
         if slash != None:
             # Add slashed chords
@@ -808,9 +807,8 @@ def from_shorthand(shorthand_string, slash=None):
                 if notes.is_valid_note(slash):
                     res = [slash] + res
                 else:
-                    raise NoteFormatError, \
-                        "Unrecognised note '%s' in slash chord'%s'" % (slash,
-                            slash + shorthand_string)
+                    raise NoteFormatError("Unrecognised note '{}' in slash chord'{}'".format(slash,
+                                                                                             slash + shorthand_string))
             elif type(slash) == list:
                 # Add polychords
                 r = slash
@@ -820,7 +818,7 @@ def from_shorthand(shorthand_string, slash=None):
                 return r
         return res
     else:
-        raise FormatError, 'Unknown shorthand: %s' % shorthand_string
+        raise FormatError('Unknown shorthand: {}'.format(shorthand_string))
 
 def determine(chord, shorthand=False, no_inversions=False, no_polychords=False):
     """Name a chord.
@@ -1196,7 +1194,7 @@ def int_desc(tries):
 
 def determine_polychords(chord, shorthand=False):
     """Determine the polychords in chord.
-    
+
     This function can handle anything from polychords based on two triads to
     6 note extended chords.
     """

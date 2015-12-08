@@ -19,9 +19,9 @@
 
 from mingus.core import meter as _meter
 from mingus.core import progressions, keys
-from note_container import NoteContainer
-from note import Note
-from mt_exceptions import MeterFormatError
+from mingus.containers.note_container import NoteContainer
+from mingus.containers.note import Note
+from mingus.containers.mt_exceptions import MeterFormatError
 
 class Bar(object):
     """A bar object.

@@ -36,7 +36,7 @@ class Sequencer(object):
 
     You can use the Sequencer object either by creating a subclass and
     implementing some of the events (init, play_event, stop_event, cc_event,
-    instr_event) or by attaching observer objects via 'attach' and catching 
+    instr_event) or by attaching observer objects via 'attach' and catching
     the messages in the notify(msg_type, param_dict) function of your object.
 
     See SequencerObserver for a pre made, easy to extend base class that can
@@ -346,7 +346,7 @@ class Sequencer(object):
         self.notify_listeners(self.MSG_PLAY_COMPOSITION, {'composition'
                               : composition, 'channels': channels, 'bpm': bpm})
         if channels == None:
-            channels = map(lambda x: x + 1, range(len(composition.tracks)))
+            channels = list(map(lambda x: x + 1, range(len(composition.tracks))))
         return self.play_Tracks(composition.tracks, channels, bpm)
 
     def modulation(self, channel, value):
