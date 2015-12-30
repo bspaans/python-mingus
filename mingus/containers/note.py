@@ -44,7 +44,8 @@ class Note(object):
     channel = 1
     velocity = 64
 
-    def __init__(self, name='C', octave=4, dynamics={}):
+    def __init__(self, name='C', octave=4, dynamics=None):
+        dynamics = dynamics if dynamics else {}
         if type(name) == str:
             self.set_note(name, octave, dynamics)
         elif hasattr(name, 'name'):
@@ -299,3 +300,52 @@ class Note(object):
         """Return a helpful representation for printing Note classes."""
         return "'%s-%d'" % (self.name, self.octave)
 
+class TemporalNote(Note):
+    """
+    >>> from mingus.extra.lilypond import from_Note
+    >>> note = TemporalNote(name='C', octave=2)
+    >>> repr(note)
+    "'C-2'"
+    >>> from_Note(note, standalone=False)
+    'c,4'
+    """
+    def __init__(self, name='C', octave=4, dynamics=None, duration_denominator=4):
+        super(TemporalNote, self).__init__(name=name, octave=octave, dynamics=dynamics)
+        self.duration_denominator = duration_denominator
+
+def temporal_note_factory(duration_denominator=None):
+    def func_composer(func):
+        def inner_fn(note_name, octave=4):
+            if isinstance(note_name, (list, set)):
+                return [TemporalNote(note,
+                                     octave=octave,
+                                     duration_denominator=duration_denominator) for note in note_name]
+            else:
+                return TemporalNote(note_name, octave=octave, duration_denominator=duration_denominator)
+        return inner_fn
+    return func_composer
+
+@temporal_note_factory(1)
+def WholeNoteFactory(note_name, octave=4):
+    pass
+
+@temporal_note_factory(2)
+def HalfNoteFactory(note_name, octave=4):
+    pass
+
+@temporal_note_factory(4)
+def QuarterNoteFactory(note_name, octave=4):
+    pass
+
+@temporal_note_factory(8)
+def EightNoteFactory(note_name, octave=4):
+    pass
+
+@temporal_note_factory(8)
+def SixteenthNoteFactory(note_name, octave=16):
+    pass
+
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()

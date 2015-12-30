@@ -162,6 +162,24 @@ chord_shorthand_meaning = {  # Triads Augmented chords Suspended chords Sevenths
     '5': ' perfect fifth',
     }
 
+def chord_note_and_family(chord_symbol):
+    """
+    >>> chord_note_and_family("FM6")
+    ('F', 'M6')
+    >>> chord_note_and_family("Gbsus4")
+    ('Gb', 'sus4')
+    """
+    from mingus.core.notes import reduce_accidentals
+    chord_note=[chord_symbol[0]]
+    if '#' in chord_symbol or 'b' in chord_symbol:
+        for n in chord_symbol[1:]:
+            if n == '#' or n == 'b':
+                chord_note.append(n)
+            else:
+                break
+
+    return ''.join(chord_note), chord_symbol[len(chord_note):]
+
 def triad(note, key):
     """Return the triad on note in key as a list.
 
@@ -220,6 +238,9 @@ def augmented_triad(note):
     """
     return [note, intervals.major_third(note),
             notes.augment(intervals.major_fifth(note))]
+
+def create_dominant_seventh_symbol(note):
+    return determine_seventh(dominant_seventh(note), shorthand=True)[0]
 
 def seventh(note, key):
     """Return the seventh chord on note in key.
@@ -1280,3 +1301,51 @@ chord_shorthand = {  # Triads Augmented chords Suspended chords Sevenths Sixths
     '7b12': hendrix_chord,
     '5': lambda x: [x, intervals.perfect_fifth(x)]
     }
+
+class TemporalChord(object):
+    def __init__(self, name, octave=3, dynamics=None, duration_denominator=4):
+        self.name = name
+        self.octave = octave
+        self.dynamics = dynamics
+        self.duration_denominator = duration_denominator
+        self.root_note, self.family = chord_note_and_family(name)
+
+    def get_temporal_root(self):
+        from mingus.containers.note import TemporalNote
+        return TemporalNote(self.root_note, octave=self.octave)
+
+def temporal_note_chord_factory(duration_denominator=None):
+    def func_composer(func):
+        def inner_fn(chord, octave=4):
+            if isinstance(chord, (list, set)):
+                return [TemporalChord(note,
+                                      octave=octave,
+                                      duration_denominator=duration_denominator) for note in chord]
+            else:
+                return TemporalChord(chord, octave=octave, duration_denominator=duration_denominator)
+        return inner_fn
+    return func_composer
+
+@temporal_note_chord_factory(1)
+def WholNoteChordFactory(note_name, octave=4):
+    pass
+
+@temporal_note_chord_factory(2)
+def HalfNoteChordFactory(note_name, octave=4):
+    pass
+
+@temporal_note_chord_factory(4)
+def QuarterNoteChordFactory(note_name, octave=4):
+    pass
+
+@temporal_note_chord_factory(8)
+def EightNoteChordFactory(note_name, octave=4):
+    pass
+
+@temporal_note_chord_factory(8)
+def SixteenthNoteChordFactory(note_name, octave=16):
+    pass
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()

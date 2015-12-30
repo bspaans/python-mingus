@@ -32,8 +32,20 @@ vice versa.
 from mingus.core import notes
 from mingus.core import chords
 from mingus.core import intervals
+from mingus.core.keys import get_notes
 numerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']
 numeral_intervals = [0, 2, 4, 5, 7, 9, 11]
+
+def twelve_bar_blues_chord_progression(key):
+    from mingus.core.harmony import MODE_CHORD_FUNCTIONS
+    key_notes = get_notes(key)
+    aChord = chords.create_dominant_seventh_symbol(key)
+    bChord = chords.create_dominant_seventh_symbol(key_notes[3])
+    cChord = chords.determine_seventh(MODE_CHORD_FUNCTIONS[1](key), shorthand=True)[0]
+    dChord = chords.determine_seventh(MODE_CHORD_FUNCTIONS[4](key), shorthand=True)[0]
+    return [aChord, bChord, aChord, aChord,
+            bChord, bChord, aChord, aChord,
+            cChord, dChord, aChord, aChord]
 
 def to_chords(progression, key='C'):
     """Convert a list of chord functions or a string to a list of chords.

@@ -56,6 +56,8 @@ from mingus.core import intervals
 from mingus.core.notes import augment, diminish, reduce_accidentals
 from mingus.core.keys import keys, get_notes
 from mingus.core.mt_exceptions import NoteFormatError, FormatError, RangeError
+from mingus.containers.note import Note as TemporalNote
+from itertools import cycle
 
 def determine(notes):
     """Determine the scales containing the notes.
@@ -140,6 +142,32 @@ class _Scale(object):
         else:
             raise FormatError("Unrecognised direction '%s'" % direction)
 
+    def generate(self, length, ascending=True, start_degree=1, undulating=False, starting_octave=None):
+        """
+
+        Generate given number of notes from the scale, either continuously rising or falling or as
+        an undulating wave (i.e., up an octave, then down, then up again, etc.)
+
+        >>> list(Blues('F').generate(length=9))
+        ['F', 'Ab', 'Bb', 'B', 'C', 'Eb', 'F', 'Ab', 'Bb']
+
+        >>> list(Blues('F').generate(length=7, undulating=True))
+        ['F', 'Ab', 'Bb', 'B', 'C', 'Eb', 'F']
+
+        >>> [repr(note) for note in Blues('F').generate(length=13, undulating=True, starting_octave=1)]
+        ["'F-1'", "'Ab-1'", "'Bb-1'", "'B-1'", "'C-1'", "'Eb-1'", "'F-2'", "'Eb-1'", "'C-1'", "'B-1'", "'Bb-1'", "'Ab-1'", "'F-1'"]
+        """
+        wave = (self.ascending()[:-1] + self.descending()[:-1]) if ascending else (
+            self.descending()[:-1] + self.ascending()[:-1])
+        incline = (self.ascending() if ascending else self.descending())[:-1]
+        alternating_octaves = cycle([starting_octave,
+                                     starting_octave+1]) if starting_octave is not None else None
+        for key in cycle(wave if undulating else incline):
+            octave = starting_octave if (key !=  self.tonic or starting_octave is None) else next(alternating_octaves)
+            yield TemporalNote(key, octave=octave) if starting_octave is not None else key
+            length -= 1
+            if length == 0:
+                break
 
 # The diatonic scales
 
@@ -331,6 +359,50 @@ class Locrian(_Scale):
         notes = Diatonic(self.tonic, (1, 4)).ascending()[:-1]
         return notes * self.octaves + [notes[0]]
 
+
+BLUES_INTERVALS = [
+    intervals.minor_third,
+    intervals.major_second,
+    intervals.minor_second,
+    intervals.minor_second,
+    intervals.minor_third,
+    intervals.major_second,
+]
+
+class Blues(_Scale):
+
+    """The blues scale
+
+    Example:
+    >>> print(Blues('C'))
+    Ascending:  C Eb F Gb G Bb C
+    Descending: C Bb G Gb F Eb C
+
+    >>> f_blues = Blues('F')
+    >>> print(f_blues)
+    Ascending:  F Ab Bb B C Eb F
+    Descending: F Eb C B Bb Ab F
+
+    >>> f_blues.degree(4)
+    'B'
+    """
+
+    type = 'major'
+
+    def __init__(self, note, octaves=1):
+        """Create the major scale starting on the chosen note."""
+        super(Blues, self).__init__(note, octaves)
+        self.name = '{} blues'.format(self.tonic)
+
+    def ascending(self):
+        notes = [self.tonic]
+        current_note = self.tonic
+        for ival in BLUES_INTERVALS:
+            new_note = reduce_accidentals(ival(current_note))
+            notes.append(new_note)
+            current_note = new_note
+
+        return notes
 
 # The major scales
 
@@ -604,3 +676,7 @@ class Octatonic(_Scale):
         notes[-2] = intervals.major_sixth(notes[0])
         return notes * self.octaves + [notes[0]]
 
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()
