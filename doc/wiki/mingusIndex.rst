@@ -32,7 +32,7 @@ Tutorials
    :name: minguscore
 
    doc/wiki/tutorialNote
-   doc/wiki/tutorialDiatonic
+   doc/wiki/tutorialKeys
    doc/wiki/tutorialIntervals
    doc/wiki/tutorialChords
    doc/wiki/tutorialScales
@@ -83,7 +83,6 @@ API docs
    :caption: mingus.core
 
    doc/wiki/refMingusCoreNotes
-   doc/wiki/refMingusCoreDiatonic
    doc/wiki/refMingusCoreIntervals
    doc/wiki/refMingusCoreChords
    doc/wiki/refMingusCoreScales

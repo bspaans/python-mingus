@@ -314,7 +314,7 @@ Exercises
 You can learn more about `mingus.core.chords in the reference section <refMingusCoreChords>`_.
 
   * `Tutorial 1 - Working with Notes <tutorialNote>`_
-  * `Tutorial 2 - Keys and the Diatonic Scale <tutorialDiatonic>`_
+  * `Tutorial 2 - Keys and the Diatonic Scale <tutorialKeys>`_
   * `Tutorial 3 - Intervals <tutorialIntervals>`_
   * Tutorial 4 - Triads, Sevenths and Extended Chords 
   * `Tutorial 5 - Scales <tutorialScales>`_

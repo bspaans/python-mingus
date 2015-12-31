@@ -201,5 +201,5 @@ Exercises
 
 You can learn more about `mingus.core.notes <refMingusCoreNotes>`_ in the reference section.
 
-* `Tutorial 2 - Keys and the Diatonic Scale <tutorialDiatonic>`_
+* `Tutorial 2 - Keys and the Diatonic Scale <tutorialKeys>`_
 * :doc:`Back to Index </index>`
