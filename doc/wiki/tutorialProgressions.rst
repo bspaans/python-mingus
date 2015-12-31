@@ -95,7 +95,7 @@ Substitutions
 You can learn more about `mingus.core.progressions <refMingusCoreProgressions>`_ in the reference section.
 
   * `Tutorial 1 - Working with Notes <tutorialNote>`_
-  * `Tutorial 2 - Keys and the Diatonic Scale <tutorialDiatonic>`_
+  * `Tutorial 2 - Keys and the Diatonic Scale <tutorialKeys>`_
   * `Tutorial 3 - Intervals <tutorialIntervals>`_
   * `Tutorial 4 - Triads, Sevenths and Extended Chords <tutorialChords>`_
   * `Tutorial 5 - Scales <tutorialScales>`_
