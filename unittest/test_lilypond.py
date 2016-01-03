@@ -1,6 +1,8 @@
+from __future__ import absolute_import
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import sys
+from six.moves import map
 sys.path += ['../']
 import unittest
 import mingus.extra.lilypond as LilyPond
@@ -23,18 +25,13 @@ class test_LilyPond(unittest.TestCase):
         self.b_flat_minor_bar = Bar('bb', (4, 4))
         self.f_sharp_minor_bar = Bar('f#', (4, 4))
         for y in [self.commonbar, self.ebar, self.fbar]:
-            map(lambda x: y + x, ['C', 'E', 'G', 'B'])
-        map(lambda x: self.tbar.place_notes(NoteContainer(x), 6), [
-            'C',
-            'E',
-            'G',
-            'B',
-            'C',
-            'E',
-            ])
-        map(lambda x: self.mbar.place_notes(NoteContainer(x), 4), ['C', 'E'])
-        map(lambda x: self.mbar.place_notes(NoteContainer(x), 6), ['G', 'B', 'C'
-            ])
+            list(map(lambda x: y + x, ['C', 'E', 'G', 'B']))
+        for x in ['C', 'E', 'G', 'B', 'C', 'E']:
+            self.tbar.place_notes(NoteContainer(x), 6)
+        for x in ['C', 'E']:
+            self.mbar.place_notes(NoteContainer(x), 4)
+        for x in ['G', 'B', 'C']:
+            self.mbar.place_notes(NoteContainer(x), 6)
         self.track1 = Track()
         self.track1 + self.commonbar
         self.track2 = Track()

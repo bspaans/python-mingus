@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import sys
@@ -14,10 +15,12 @@ class test_intervals(unittest.TestCase):
     def test_seconds(self):
         secs_c = {'C': 'D', 'E': 'F', 'D': 'E'}
         secs_fsharp = {'F#': 'G#', 'A#': 'B', 'E#': 'F#'}
-        map(lambda x: self.assertEqual(secs_c[x], intervals.second(x, 'C'),
-            'Invalid second for %s in key C' % x), secs_c.keys())
-        map(lambda x: self.assertEqual(secs_fsharp[x], intervals.second(x, 'F#'
-            ), 'Invalid second for %s in key F#' % x), secs_fsharp.keys())
+        for x in secs_c.keys():
+            self.assertEqual(secs_c[x], intervals.second(x, 'C'),
+                'Invalid second for %s in key C' % x)
+        for x in secs_fsharp.keys():
+            self.assertEqual(secs_fsharp[x], intervals.second(x, 'F#'),
+                'Invalid second for %s in key F#' % x)
 
     def test_minor_unison(self):
         minors = {

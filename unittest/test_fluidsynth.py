@@ -1,6 +1,8 @@
+from __future__ import absolute_import
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import sys
+from six.moves import range
 sys.path += ['../']
 from mingus.midi import fluidsynth
 from mingus.containers import *

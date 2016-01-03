@@ -1,6 +1,8 @@
+from __future__ import absolute_import
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import sys
+from six.moves import map
 sys.path = ['../'] + sys.path
 import mingus.core.notes as notes
 from mingus.core.mt_exceptions import RangeError
@@ -9,29 +11,29 @@ import unittest
 class test_notes(unittest.TestCase):
     def setUp(self):
         self.base_notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
-        self.sharps = map(lambda x: x + '#', self.base_notes)
-        self.flats = map(lambda x: x + 'b', self.base_notes)
-        self.exotic = map(lambda x: x + 'b###b#', self.base_notes)
+        self.sharps = [x + '#' for x in self.base_notes]
+        self.flats = [x + 'b' for x in self.base_notes]
+        self.exotic = [x + 'b###b#' for x in self.base_notes]
 
     def test_base_note_validity(self):
-        map(lambda x: self.assert_(notes.is_valid_note(x), 'Base notes A-G'),
-                self.base_notes)
+        for x in self.base_notes:
+            self.assert_(notes.is_valid_note(x), 'Base notes A-G')
 
     def test_sharp_note_validity(self):
-        map(lambda x: self.assert_(notes.is_valid_note(x), 'Sharp notes A#-G#'
-            ), self.sharps)
+        for x in self.sharps:
+            self.assert_(notes.is_valid_note(x), 'Sharp notes A#-G#')
 
     def test_flat_note_validity(self):
-        map(lambda x: self.assert_(notes.is_valid_note(x), 'Flat notes Ab-Gb'),
-                self.flats)
+        for x in self.flats:
+            self.assert_(notes.is_valid_note(x), 'Flat notes Ab-Gb')
 
     def test_exotic_note_validity(self):
-        map(lambda x: self.assert_(notes.is_valid_note(x),
-            'Exotic notes Ab##b#-Gb###b#'), self.exotic)
+        for x in self.exotic:
+            self.assert_(notes.is_valid_note(x), 'Exotic notes Ab##b#-Gb###b#')
 
     def test_faulty_note_invalidity(self):
-        map(lambda x: self.assertEqual(False, notes.is_valid_note(x),
-            'Faulty notes'), ['asdasd', 'C###f', 'c', 'd', 'E*'])
+        for x in ['asdasd', 'C###f', 'c', 'd', 'E*']:
+            self.assertEqual(False, notes.is_valid_note(x), 'Faulty notes')
 
     def test_int_to_note(self):
         known = {
@@ -51,8 +53,8 @@ class test_notes(unittest.TestCase):
 
     def test_invalid_int_to_note(self):
         faulty = [-1, 12, 13, 123123, -123]
-        map(lambda x: self.assertRaises(RangeError, notes.int_to_note, x),
-            faulty)
+        for x in faulty:
+            self.assertRaises(RangeError, notes.int_to_note, x)
 
     def test_reduce_accidentals(self):
         known = {
@@ -86,9 +88,10 @@ class test_notes(unittest.TestCase):
                 'Cb': 'C',
                 'Cbb': 'Cb'
                 }
-        map(lambda x: self.assertEqual(known[x], notes.augment(x),
-            'The augmented note of %s is not %s, expecting %s' % (x,
-                notes.augment(x), known[x])), known.keys())
+        for x in known.keys():
+            self.assertEqual(known[x], notes.augment(x),
+                'The augmented note of %s is not %s, expecting %s' % (x,
+                    notes.augment(x), known[x]))
 
     def test_diminish(self):
         known = {
@@ -97,9 +100,10 @@ class test_notes(unittest.TestCase):
                 'C##': 'C#',
                 'Cb': 'Cbb'
                 }
-        map(lambda x: self.assertEqual(known[x], notes.diminish(x),
-            'The diminished note of %s is not %s, expecting %s' % (x,
-                notes.diminish(x), known[x])), known.keys())
+        for x in known.keys():
+            self.assertEqual(known[x], notes.diminish(x),
+                'The diminished note of %s is not %s, expecting %s' % (x,
+                    notes.diminish(x), known[x]))
 
 
 def suite():

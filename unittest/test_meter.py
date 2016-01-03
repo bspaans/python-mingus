@@ -1,9 +1,11 @@
+from __future__ import absolute_import
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import sys
 sys.path += ['../']
 import mingus.core.meter as meter
 import unittest
+from six.moves import range
 
 
 class test_meter(unittest.TestCase):
@@ -81,27 +83,25 @@ class test_meter(unittest.TestCase):
             13,
             14,
             15,
-            ] + range(17, 31):
+            ] + list(range(17, 31)):
             self.assert_(not meter.valid_beat_duration(x),
                          '%d should not be a valid beat duration' % x)
 
     def test_is_compound(self):
-        map(lambda x: self.assert_(meter.is_compound(x),
-            '%d/%d should be a compound meter' % x), self.compound_meters)
+        for x in self.compound_meters:
+            self.assert_(meter.is_compound(x), '%d/%d should be a compound meter' % x)
 
     def test_is_simple(self):
-        map(lambda x: self.assert_(meter.is_simple(x),
-            '%d/%d should be a simple meter' % x), self.simple_meters)
+        for x in self.simple_meters:
+            self.assert_(meter.is_simple(x), '%d/%d should be a simple meter' % x)
 
     def test_is_valid_meter(self):
-        map(lambda x: self.assert_(meter.is_valid(x),
-            '%d/%d should be a valid meter' % x), self.compound_meters
-             + self.simple_meters)
+        for x in self.compound_meters + self.simple_meters:
+            self.assert_(meter.is_valid(x), '%d/%d should be a valid meter' % x)
 
     def test_is_asymmetrical(self):
-        map(lambda x: self.assert_(meter.is_asymmetrical(x),
-            '%d/%d should be a asymmetrical meter' % x),
-            self.asymmetrical_meters)
+        for x in self.asymmetrical_meters:
+            self.assert_(meter.is_asymmetrical(x), '%d/%d should be a asymmetrical meter' % x)
 
     def test_is_full(self):
         pass

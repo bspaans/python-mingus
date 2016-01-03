@@ -22,6 +22,7 @@
 Remember: you need a running fluidsynth server process listening at port
 9800 to pass this test.
 """
+from __future__ import absolute_import
 
 import unittest
 import test_fluidsynth

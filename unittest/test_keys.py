@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import sys
@@ -35,7 +36,7 @@ class test_keys(unittest.TestCase):
     def test_get_notes(self):
         for k in self.scale.keys():
             self.assertEqual(self.scale[k], keys.get_notes(k),
-            'Invalid notes for key %s' % self.scale[k])
+                'Invalid notes for key %s' % self.scale[k])
 
     def test_relative_major(self):
         known = {
