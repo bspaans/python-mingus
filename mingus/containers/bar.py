@@ -104,7 +104,7 @@ class Bar(object):
         """Place notes at the given index."""
         for x in self.bar:
             if x[0] == at:
-                x[0][2] += notes
+                x[2] += notes
 
     def place_rest(self, duration):
         """Place a rest of given duration on the current_beat.
@@ -133,14 +133,14 @@ class Bar(object):
     def change_note_duration(self, at, to):
         """Change the note duration at the given index to the given
         duration."""
-        if valid_beat_duration(to):
+        if _meter.valid_beat_duration(to):
             diff = 0
             for x in self.bar:
                 if diff != 0:
-                    x[0][0] -= diff
+                    x[0] -= diff
                 if x[0] == at:
-                    cur = x[0][1]
-                    x[0][1] = to
+                    cur = x[1]
+                    x[1] = to
                     diff = 1 / cur - 1 / to
 
     def get_range(self):
