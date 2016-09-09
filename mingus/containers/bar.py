@@ -142,6 +142,7 @@ class Bar(object):
                     cur = x[1]
                     x[1] = to
                     diff = 1 / cur - 1 / to
+                    self.current_beat -= diff
 
     def get_range(self):
         """Return the highest and the lowest note in a tuple."""
