@@ -26,7 +26,7 @@ It handles conversions from integers to notes and vice versa and thus
 enables simple calculations.
 """
 
-from mt_exceptions import NoteFormatError, RangeError, FormatError
+from .mt_exceptions import NoteFormatError, RangeError, FormatError
 
 _note_dict = {
     'C': 0,
