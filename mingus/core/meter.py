@@ -57,7 +57,7 @@ def is_compound(meter):
     >>> is_compound((4,4))
     False
     """
-    return is_valid(meter) and meter[0] % 3 == 0
+    return is_valid(meter) and meter[0] % 3 == 0 and 6 <= meter[0]
 
 def is_simple(meter):
     """Return True if meter is a simple meter, False otherwise.
