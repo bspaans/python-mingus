@@ -48,9 +48,11 @@ A meter is represented by a tuple. 4/4 time would look like (4,4), 3/4 like
       Examples:
       
       >>> is_compound((3,4))
-      True
+      False
       >>> is_compound((4,4))
       False
+      >>> is_compound((6,8))
+      True
 
 
 ----
