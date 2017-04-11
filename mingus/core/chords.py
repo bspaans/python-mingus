@@ -52,6 +52,7 @@ Generate Absolute Chords
    * minor_ninth
    * major_ninth
    * dominant_ninth
+   * minor_seventh_flat_ninth
  * Elevenths
    * minor_eleventh
    * eleventh
@@ -150,6 +151,7 @@ chord_shorthand_meaning = {  # Triads Augmented chords Suspended chords Sevenths
     '7#9': ' dominant sharp ninth',
     'M9': ' major ninth',
     'm9': ' minor ninth',
+    'm7b9': ' minor flat ninth',
     '7#11': ' lydian dominant seventh',
     'm11': ' minor eleventh',
     'M13': ' major thirteenth',
@@ -346,6 +348,17 @@ def minor_ninth(note):
     ['C', 'Eb', 'G', 'Bb', 'D']
     """
     return minor_seventh(note) + [intervals.major_second(note)]
+
+def minor_flat_ninth(note):
+    """Build a minor flat ninth chord on note.
+
+    Example:
+    >>> minor_ninth('C')
+    ['C', 'Eb', 'G', 'Bb', 'Db']
+    """
+    res = dominant_ninth(note)
+    return minor_seventh(note) + [intervals.minor_second(note)]
+    return res
 
 def major_ninth(note):
     """Build a major ninth chord on note.
@@ -738,7 +751,7 @@ def from_shorthand(shorthand_string, slash=None):
 
     Sixths: '6', 'm6', 'M6', '6/7' or '67', '6/9' or '69'
 
-    Ninths: '9' or 'add9', 'M9', 'm9', '7b9', '7#9'
+    Ninths: '9' or 'add9', 'M9', 'm9', '7b9', '7#9', 'm7b9'
 
     Elevenths: '11' or 'add11', '7#11', 'm11'
 
@@ -1270,6 +1283,7 @@ chord_shorthand = {  # Triads Augmented chords Suspended chords Sevenths Sixths
     '9': dominant_ninth,
     '7b9': dominant_flat_ninth,
     '7#9': dominant_sharp_ninth,
+    'm7b9': minor_flat_ninth,
     'M9': major_ninth,
     'm9': minor_ninth,
     '7#11': lydian_dominant_seventh,
