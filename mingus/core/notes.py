@@ -142,6 +142,39 @@ def remove_redundant_accidentals(note):
         val += 1
     return result
 
+def to_major(note):
+    """ convert note to relative major.
+
+    Examples:
+    >>> to_major('C')
+    'D#'
+    >>> to_major('D')
+    'F'
+    """
+    note_int = note_to_int()
+    note_int += 3
+    if note_int > 11:
+        note_int -= 12
+    result = int_to_note(note_int)
+    return result
+
+def to_minor(note):
+    """ convert note to relative minor.
+
+    Examples:
+    >>> to_major('C')
+    'D#'
+    >>> to_major('D')
+    'F'
+    """
+    note_int = note_to_int()
+    note_int -= 3
+    if note_int < 0:
+        note_int += 12
+    result = int_to_note(note_int)
+    return result
+
+
 def augment(note):
     """Augment a given note.
 
