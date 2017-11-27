@@ -184,15 +184,17 @@ class Bar(object):
         """Return a list of lists [place_in_beat, possible_chords]."""
         chords = []
         for x in self.bar:
-            chords.append([x[0], x[2].determine(shorthand)])
+            if x[2] is not None:
+                chords.append([x[0], x[2].determine(shorthand)])
         return chords
 
     def determine_progression(self, shorthand=False):
         """Return a list of lists [place_in_beat, possible_progressions]."""
         res = []
         for x in self.bar:
-            res.append([x[0], progressions.determine(x[2].get_note_names(),
-                       self.key.key, shorthand)])
+            if x[2] is not None:
+                res.append([x[0], progressions.determine(x[2].get_note_names(),
+                           self.key.key, shorthand)])
         return res
 
     def get_note_names(self):
