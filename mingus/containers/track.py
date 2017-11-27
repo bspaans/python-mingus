@@ -38,11 +38,13 @@ class Track(object):
     instrument = None
     name = 'Untitled'  # Will be looked for when saving a MIDI file.
     tuning = None  # Used by tablature
+    style = None
 
-    def __init__(self, instrument=None):
+    def __init__(self, instrument=None, style=None):
         self.bars = []
         self.instrument = instrument
-
+        self.style = style 
+        
     def add_bar(self, bar):
         """Add a Bar to the current track."""
         self.bars.append(bar)
