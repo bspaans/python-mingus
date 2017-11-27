@@ -238,7 +238,13 @@ class Bar(object):
 
     def __repr__(self):
         """Enable str() and repr() for Bars."""
-        return str(self.bar)
+        output = ''
+        note_timings = [str(note_info[1]) for note_info in self.bar]
+        notes        = [str(note_info[2]).replace('\'', '').replace('-', '') for note_info in self.bar]
+        output += 'Note Timings: '
+        output += ', '.join(note_timings)
+        output += '\n       Notes: ' + ', '.join(notes)
+        return str(output)
 
     def __len__(self):
         """Enable the len() method for Bars."""
