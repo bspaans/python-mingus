@@ -122,7 +122,7 @@ class NoteContainer(object):
         """Empty the container and add the note described in the startnote and
         shorthand.
 
-        See core.intervals for the recognized format.
+        See mgen.intervals for the recognized format.
 
         Examples:
         >>> nc = NoteContainer()
@@ -181,7 +181,7 @@ class NoteContainer(object):
     def is_consonant(self, include_fourths=True):
         """Test whether the notes are consonants.
 
-        See the core.intervals module for a longer description on
+        See the mgen.intervals module for a longer description on
         consonance.
         """
         return self._consonance_test(intervals.is_consonant, include_fourths)
@@ -189,7 +189,7 @@ class NoteContainer(object):
     def is_perfect_consonant(self, include_fourths=True):
         """Test whether the notes are perfect consonants.
 
-        See the core.intervals module for a longer description on
+        See the mgen.intervals module for a longer description on
         consonance.
         """
         return self._consonance_test(intervals.is_perfect_consonant,
@@ -198,7 +198,7 @@ class NoteContainer(object):
     def is_imperfect_consonant(self):
         """Test whether the notes are imperfect consonants.
 
-        See the core.intervals module for a longer description on
+        See the mgen.intervals module for a longer description on
         consonance.
         """
         return self._consonance_test(intervals.is_imperfect_consonant)
@@ -206,7 +206,7 @@ class NoteContainer(object):
     def is_dissonant(self, include_fourths=False):
         """Test whether the notes are dissonants.
 
-        See the core.intervals module for a longer description.
+        See the mgen.intervals module for a longer description.
         """
         return not self.is_consonant(not include_fourths)
 
@@ -355,4 +355,3 @@ class NoteContainer(object):
             if x not in other:
                 return False
         return True
-
