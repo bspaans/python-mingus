@@ -46,7 +46,10 @@ def is_valid(meter):
 
     Examples for meters are (3,4) for 3/4, (4,4) for 4/4, etc.
     """
-    return meter[0] > 0 and valid_beat_duration(meter[1])
+    if len(meter) != 2:
+        return False
+    else:
+        return meter[0] > 0 and valid_beat_duration(meter[1])
 
 def is_compound(meter):
     """Return True if meter is a compound meter, False otherwise.
@@ -80,4 +83,3 @@ def is_asymmetrical(meter):
     False
     """
     return is_valid(meter) and meter[0] % 2 == 1
-
