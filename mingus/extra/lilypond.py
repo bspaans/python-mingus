@@ -197,21 +197,23 @@ def from_Composition(composition):
 def from_Suite(suite):
     pass
 
-def to_png(ly_string, filename):
+def to_png(ly_string, filename, lilypond_installation='lilypond'):
     """Save a string in LilyPond format to a PNG.
 
     LilyPond in the $PATH is needed.
     """
-    return save_string_and_execute_LilyPond(ly_string, filename, '-fpng')
+    return save_string_and_execute_LilyPond(ly_string, filename, '-fpng',
+                                            lilypond_installation=lilypond_installation)
 
-def to_pdf(ly_string, filename):
+def to_pdf(ly_string, filename, lilypond_installation='lilypond'):
     """Save a string in LilyPond format to a PDF.
 
     LilyPond in the $PATH is needed.
     """
-    return save_string_and_execute_LilyPond(ly_string, filename, '-fpdf')
+    return save_string_and_execute_LilyPond(ly_string, filename, '-fpdf',
+                                            lilypond_installation=lilypond_installation)
 
-def save_string_and_execute_LilyPond(ly_string, filename, command):
+def save_string_and_execute_LilyPond(ly_string, filename, command, lilypond_installation):
     """A helper function for to_png and to_pdf. Should not be used directly."""
     ly_string = '\\version "2.10.33"\n' + ly_string
     if filename[-4:] in ['.pdf', '.png']:
@@ -222,8 +224,9 @@ def save_string_and_execute_LilyPond(ly_string, filename, command):
         f.close()
     except:
         return False
-    command = 'lilypond %s -o "%s" "%s.ly"' % (command, filename, filename)
-    print 'Executing: %s' % command
+
+    command = lilypond_installation + ' %s -s -o "%s" "%s.ly"' % (command, filename, filename)
+    # print 'Executing: %s' % command
     p = subprocess.Popen(command, shell=True).wait()
     os.remove(filename + '.ly')
     return True
