@@ -17,9 +17,9 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from note import Note
+from .note import Note
 from mingus.core import intervals, chords, progressions
-from mt_exceptions import UnexpectedObjectError
+from .mt_exceptions import UnexpectedObjectError
 
 class NoteContainer(object):
 
@@ -242,7 +242,7 @@ class NoteContainer(object):
         elif hasattr(notes, 'name'):
             return self.remove_note(notes)
         else:
-            map(lambda x: self.remove_note(x), notes)
+            list(map(lambda x: self.remove_note(x), notes))
             return self.notes
 
     def remove_duplicate_notes(self):

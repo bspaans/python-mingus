@@ -178,9 +178,9 @@ class StringTuning(object):
 
             table[string][fret] = (name, dest_frets)
             """
-            res = [[[] for x in xrange(maxfret + 2)] for x in
-                   xrange(len(self.tuning) - 1)]
-            for x in xrange(0, len(self.tuning) - 1):
+            res = [[[] for x in range(maxfret + 2)] for x in
+                   range(len(self.tuning) - 1)]
+            for x in range(0, len(self.tuning) - 1):
                 addedNone = -1
                 next = fretdict[x + 1]
                 for (fret, name) in fretdict[x]:
@@ -211,7 +211,7 @@ class StringTuning(object):
 
         # Make string-fret dictionary
         fretdict = []
-        for x in xrange(0, len(self.tuning)):
+        for x in range(0, len(self.tuning)):
             fretdict.append(self.find_note_names(notes, x, maxfret))
 
         # Build table
@@ -260,7 +260,7 @@ class StringTuning(object):
         # Return semi-sorted list
         s = sorted(result, key=lambda x: sum([t if t is not None else 1000
                    for (i, t) in enumerate(x)]))
-        s = filter(lambda a: fingers_needed(a) <= max_fingers, s)
+        s = [a for a in s if fingers_needed(a) <= max_fingers]
         if not return_best_as_NoteContainer:
             return s
         else:
@@ -299,7 +299,7 @@ class StringTuning(object):
 
         # Base of the string
         s = int(self.tuning[string]) % 12
-        for x in xrange(0, maxfret + 1):
+        for x in range(0, maxfret + 1):
             if (s + x) % 12 in int_notes:
                 result.append((x, names[int_notes.index((s + x) % 12)]))
         return result
@@ -376,7 +376,7 @@ def add_tuning(instrument, description, tuning):
     >>> tuning.add_tuning('Guitar', 'twelve string', tw_string)
     """
     t = StringTuning(instrument, description, tuning)
-    if _known.has_key(str.upper(instrument)):
+    if str.upper(instrument) in _known:
         _known[str.upper(instrument)][1][str.upper(description)] = t
     else:
         _known[str.upper(instrument)] = (instrument,
@@ -395,11 +395,11 @@ def get_tuning(instrument, description, nr_of_strings=None, nr_of_courses=None):
     """
     searchi = str.upper(instrument)
     searchd = str.upper(description)
-    keys = _known.keys()
+    keys = list(_known.keys())
     for x in keys:
         if (searchi not in keys and x.find(searchi) == 0 or searchi in keys and
                 x == searchi):
-            for (desc, tun) in _known[x][1].iteritems():
+            for (desc, tun) in _known[x][1].items():
                 if desc.find(searchd) == 0:
                     if nr_of_strings is None and nr_of_courses is None:
                         return tun
@@ -429,21 +429,21 @@ def get_tunings(instrument=None, nr_of_strings=None, nr_of_courses=None):
     if instrument is not None:
         search = str.upper(instrument)
     result = []
-    keys = _known.keys()
+    keys = list(_known.keys())
     inkeys = search in keys
     for x in keys:
         if (instrument is None or not inkeys and x.find(search) == 0 or
                 inkeys and search == x):
             if nr_of_strings is None and nr_of_courses is None:
-                result += _known[x][1].values()
+                result += list(_known[x][1].values())
             elif nr_of_strings is not None and nr_of_courses is None:
-                result += [y for y in _known[x][1].itervalues()
+                result += [y for y in _known[x][1].values()
                            if y.count_strings() == nr_of_strings]
             elif nr_of_strings is None and nr_of_courses is not None:
-                result += [y for y in _known[x][1].itervalues()
+                result += [y for y in _known[x][1].values()
                            if y.count_courses() == nr_of_courses]
             else:
-                result += [y for y in _known[x][1].itervalues()
+                result += [y for y in _known[x][1].values()
                            if y.count_strings() == nr_of_strings
                             and y.count_courses() == nr_of_courses]
     return result

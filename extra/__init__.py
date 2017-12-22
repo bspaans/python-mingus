@@ -17,8 +17,8 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import lilypond
-from tunings import StringTuning
+from . import lilypond
+from .tunings import StringTuning
 __all__ = [
     'lilypond',
     'fft',

@@ -29,9 +29,9 @@ This module provides methods which can convert progressions to chords and
 vice versa.
 """
 
-import notes
-import chords
-import intervals
+from . import notes
+from . import chords
+from . import intervals
 numerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']
 numeral_intervals = [0, 2, 4, 5, 7, 9, 11]
 
@@ -82,10 +82,10 @@ def to_chords(progression, key='C'):
             r = chords.chord_shorthand[suffix](r[0])
 
         while acc < 0:
-            r = map(notes.diminish, r)
+            r = list(map(notes.diminish, r))
             acc += 1
         while acc > 0:
-            r = map(notes.augment, r)
+            r = list(map(notes.augment, r))
             acc -= 1
         result.append(r)
     return result

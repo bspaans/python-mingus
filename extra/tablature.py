@@ -195,7 +195,7 @@ def from_NoteContainer(notes, width=80, tuning=None):
 
         # Produce ASCII
         for i in range(len(result)):
-            if i not in res.keys():
+            if i not in list(res.keys()):
                 result[i] += '-' * w + '|'
             else:
                 d = w - len(res[i])
@@ -276,7 +276,7 @@ def from_Bar(bar, width=40, tuning=None, collapse=True):
             # Add to result
             for i in range(len(result)):
                 dur = int(((1.0 / duration) * qsize) * 4) - maxlen
-                if i not in d.keys():
+                if i not in list(d.keys()):
                     result[i] += '-' * maxlen + '-' * dur
                 else:
                     result[i] += ('%' + str(maxlen) + 's') % d[i] + '-' * dur
@@ -365,7 +365,7 @@ def from_Composition(composition, width=80):
         for tracks in composition:
             tuning = tracks.get_tuning()
             ascii = []
-            for x in xrange(bars):
+            for x in range(bars):
                 if barindex + x < len(tracks):
                     bar = tracks[barindex + x]
                     r = from_Bar(bar, w, tuning, collapse=False)

@@ -65,7 +65,7 @@ class MidiFile:
         (header, track_data) = self.parse_midi_file(file)
         c = Composition()
         if header[2]['fps']:
-            print "Don't know how to parse this yet"
+            print("Don't know how to parse this yet")
             return c
         ticks_per_beat = header[2]['ticks_per_beat']
         for track in track_data:
@@ -154,16 +154,16 @@ class MidiFile:
                             key = 'A'
                         else:
                             key = 'C'
-                        for i in xrange(abs(sharps)):
+                        for i in range(abs(sharps)):
                             if sharps < 0:
                                 key = intervals.major_fourth(key)
                             else:
                                 key = intervals.major_fifth(key)
                         b.key = Note(key)
                     else:
-                        print 'Unsupported META event', event['meta_event']
+                        print('Unsupported META event', event['meta_event'])
                 else:
-                    print 'Unsupported MIDI event', event
+                    print('Unsupported MIDI event', event)
             t + b
             c.tracks.append(t)
         return (c, bpm)
@@ -233,9 +233,8 @@ class MidiFile:
         else:
             SMPTE_frames = (value & 0x7F00) >> 2
             if SMPTE_frames not in [24, 25, 29, 30]:
-                raise TimeDivisionError, \
-                    "'%d' is not a valid value for the number of SMPTE frames"\
-                     % SMPTE_frames
+                raise TimeDivisionError("'%d' is not a valid value for the number of SMPTE frames"\
+                     % SMPTE_frames)
             clock_ticks = (value & 0x00FF) >> 2
             return {'fps': True, 'SMPTE_frames': SMPTE_frames,
                     'clock_ticks': clock_ticks}
@@ -255,7 +254,7 @@ class MidiFile:
             chunk_size -= chunk_delta
             events.append([delta_time, event])
         if chunk_size < 0:
-            print 'yikes.', self.bytes_read, chunk_size
+            print('yikes.', self.bytes_read, chunk_size)
         return events
 
     def parse_midi_event(self, fp):
@@ -388,7 +387,7 @@ class MidiFile:
 
 if __name__ == '__main__':
     from sys import argv
-    import fluidsynth
+    from . import fluidsynth
     import MidiFileOut
     fluidsynth.init()
     (m, bpm) = MIDI_to_Composition(argv[1])
