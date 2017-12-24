@@ -64,7 +64,7 @@ class test_meter(unittest.TestCase):
             1024,
             2048,
             ]:
-            self.assert_(meter.valid_beat_duration(x),
+            self.assertTrue(meter.valid_beat_duration(x),
                          '%d should be a valid beat duration' % x)
 
     def test_invalid_beat_duration(self):
@@ -81,27 +81,27 @@ class test_meter(unittest.TestCase):
             13,
             14,
             15,
-            ] + range(17, 31):
-            self.assert_(not meter.valid_beat_duration(x),
+            ] + list(range(17, 31)):
+            self.assertTrue(not meter.valid_beat_duration(x),
                          '%d should not be a valid beat duration' % x)
 
     def test_is_compound(self):
-        map(lambda x: self.assert_(meter.is_compound(x),
-            '%d/%d should be a compound meter' % x), self.compound_meters)
+        list(map(lambda x: self.assertTrue(meter.is_compound(x),
+            '%d/%d should be a compound meter' % x), self.compound_meters))
 
     def test_is_simple(self):
-        map(lambda x: self.assert_(meter.is_simple(x),
-            '%d/%d should be a simple meter' % x), self.simple_meters)
+        list(map(lambda x: self.assertTrue(meter.is_simple(x),
+            '%d/%d should be a simple meter' % x), self.simple_meters))
 
     def test_is_valid_meter(self):
-        map(lambda x: self.assert_(meter.is_valid(x),
+        list(map(lambda x: self.assertTrue(meter.is_valid(x),
             '%d/%d should be a valid meter' % x), self.compound_meters
-             + self.simple_meters)
+             + self.simple_meters))
 
     def test_is_asymmetrical(self):
-        map(lambda x: self.assert_(meter.is_asymmetrical(x),
+        list(map(lambda x: self.assertTrue(meter.is_asymmetrical(x),
             '%d/%d should be a asymmetrical meter' % x),
-            self.asymmetrical_meters)
+            self.asymmetrical_meters))
 
     def test_is_full(self):
         pass

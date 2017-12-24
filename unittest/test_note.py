@@ -17,22 +17,22 @@ class test_Note(unittest.TestCase):
         self.b5 = Note('B', 5)
 
     def test_cmp(self):
-        self.assert_(self.c1 <= self.b5)
-        self.assert_(self.c < self.b5)
-        self.assert_(self.c1 < self.b5)
-        self.assert_(self.c2 < self.b5)
-        self.assert_(self.c > self.b4, '%s %s' % (self.c, self.b4))
-        self.assert_(self.c1 < self.b4)
-        self.assert_(self.c2 < self.b4)
-        self.assert_(self.b4 < self.b5)
-        self.assert_(Note('C') > Note('Cb'))
-        self.assert_(self.c > None)
+        self.assertTrue(self.c1 <= self.b5)
+        self.assertTrue(self.c < self.b5)
+        self.assertTrue(self.c1 < self.b5)
+        self.assertTrue(self.c2 < self.b5)
+        self.assertTrue(self.c > self.b4, '%s %s' % (self.c, self.b4))
+        self.assertTrue(self.c1 < self.b4)
+        self.assertTrue(self.c2 < self.b4)
+        self.assertTrue(self.b4 < self.b5)
+        self.assertTrue(Note('C') > Note('Cb'))
+        self.assertTrue(self.c > None)
 
     def test_eq(self):
-        self.assert_(self.c != self.c1)
-        self.assert_(self.c == self.c)
-        self.assert_(Note('C') == Note('C'))
-        self.assert_(self.c != None)
+        self.assertTrue(self.c != self.c1)
+        self.assertTrue(self.c == self.c)
+        self.assertTrue(Note('C') == Note('C'))
+        self.assertTrue(self.c != None)
 
     def test_to_int(self):
         self.assertEqual(48, Note('C', 4))
@@ -43,11 +43,11 @@ class test_Note(unittest.TestCase):
 
     def test_set_note(self):
         n = Note()
-        self.assert_(n.set_note('C', 5, {}))
+        self.assertTrue(n.set_note('C', 5, {}))
         n.empty()
-        self.assert_(n.set_note('C-5'))
-        self.assert_(n.set_note('C', 5))
-        self.assert_(n.set_note('C#-12', 5))
+        self.assertTrue(n.set_note('C-5'))
+        self.assertTrue(n.set_note('C', 5))
+        self.assertTrue(n.set_note('C#-12', 5))
         self.assertRaises(NoteFormatError, n.set_note, 'H')
         self.assertRaises(NoteFormatError, n.set_note, 'C 23')
         self.assertRaises(NoteFormatError, n.set_note, 'C# 123')
@@ -97,22 +97,22 @@ class test_Note(unittest.TestCase):
         self.assertEqual(Note('C', 1), Note().from_int(12))
 
     def test_measure(self):
-        self.assert_(Note('C').measure(Note('D')) == 2)
-        self.assert_(Note('D').measure(Note('C')) == -2)
+        self.assertTrue(Note('C').measure(Note('D')) == 2)
+        self.assertTrue(Note('D').measure(Note('C')) == -2)
 
     def test_to_shorthand(self):
-        self.assert_(Note('C-0').to_shorthand() == 'C,,')
-        self.assert_(Note('C-2').to_shorthand() == 'C')
-        self.assert_(Note('C-3').to_shorthand() == 'c')
-        self.assert_(Note('C-4').to_shorthand() == "c'")
-        self.assert_(Note('C-9').to_shorthand() == "c''''''")
+        self.assertTrue(Note('C-0').to_shorthand() == 'C,,')
+        self.assertTrue(Note('C-2').to_shorthand() == 'C')
+        self.assertTrue(Note('C-3').to_shorthand() == 'c')
+        self.assertTrue(Note('C-4').to_shorthand() == "c'")
+        self.assertTrue(Note('C-9').to_shorthand() == "c''''''")
 
     def test_from_shorthand(self):
-        self.assert_(Note().from_shorthand('C,,') == Note('C-0'))
-        self.assert_(Note().from_shorthand('C') == Note('C-2'))
-        self.assert_(Note().from_shorthand('c') == Note('C-3'))
-        self.assert_(Note().from_shorthand("c'") == Note('C-4'))
-        self.assert_(Note().from_shorthand("c''''''") == Note('C-9'))
+        self.assertTrue(Note().from_shorthand('C,,') == Note('C-0'))
+        self.assertTrue(Note().from_shorthand('C') == Note('C-2'))
+        self.assertTrue(Note().from_shorthand('c') == Note('C-3'))
+        self.assertTrue(Note().from_shorthand("c'") == Note('C-4'))
+        self.assertTrue(Note().from_shorthand("c''''''") == Note('C-9'))
 
 
 def suite():

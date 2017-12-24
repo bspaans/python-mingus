@@ -17,7 +17,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from mt_exceptions import InstrumentRangeError
+from .mt_exceptions import InstrumentRangeError
 from mingus.containers.note_container import NoteContainer
 from mingus.containers.bar import Bar
 import mingus.core.value as value
@@ -62,9 +62,8 @@ class Track(object):
         """
         if self.instrument != None:
             if not self.instrument.can_play_notes(note):
-                raise InstrumentRangeError, \
-                    "Note '%s' is not in range of the instrument (%s)" % (note,
-                        self.instrument)
+                raise InstrumentRangeError("Note '%s' is not in range of the instrument (%s)" % (note,
+                        self.instrument))
         if duration == None:
             duration = 4
 

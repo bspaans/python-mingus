@@ -86,74 +86,74 @@ class test_chords(unittest.TestCase):
     def test_tonic(self):
         tonic_dict = {'C': ['C', 'E', 'G'], 'E': ['E', 'G#', 'B'], 'B': ['B',
                       'D#', 'F#']}
-        map(lambda x: self.assertEqual(chords.tonic(x), tonic_dict[x]),
-            tonic_dict.keys())
+        list(map(lambda x: self.assertEqual(chords.tonic(x), tonic_dict[x]),
+            list(tonic_dict.keys())))
 
     def test_tonic7(self):
         tonic_dict = {'C': ['C', 'E', 'G', 'B'], 'E': ['E', 'G#', 'B', 'D#'],
                       'B': ['B', 'D#', 'F#', 'A#']}
-        map(lambda x: self.assertEqual(chords.tonic7(x), tonic_dict[x]),
-            tonic_dict.keys())
+        list(map(lambda x: self.assertEqual(chords.tonic7(x), tonic_dict[x]),
+            list(tonic_dict.keys())))
 
     def test_dominant(self):
         tonic_dict = {'C': ['G', 'B', 'D'], 'E': ['B', 'D#', 'F#'], 'B': ['F#',
                       'A#', 'C#']}
-        map(lambda x: self.assertEqual(chords.dominant(x), tonic_dict[x]),
-            tonic_dict.keys())
+        list(map(lambda x: self.assertEqual(chords.dominant(x), tonic_dict[x]),
+            list(tonic_dict.keys())))
 
     def test_dominant7(self):
         tonic_dict = {'C': ['G', 'B', 'D', 'F'], 'E': ['B', 'D#', 'F#', 'A'],
                       'B': ['F#', 'A#', 'C#', 'E']}
-        map(lambda x: self.assertEqual(chords.dominant7(x), tonic_dict[x]),
-            tonic_dict.keys())
+        list(map(lambda x: self.assertEqual(chords.dominant7(x), tonic_dict[x]),
+            list(tonic_dict.keys())))
 
     def test_subdominant(self):
         tonic_dict = {'C': ['F', 'A', 'C'], 'E': ['A', 'C#', 'E'], 'B': ['E',
                       'G#', 'B']}
-        map(lambda x: self.assertEqual(chords.subdominant(x), tonic_dict[x]),
-            tonic_dict.keys())
+        list(map(lambda x: self.assertEqual(chords.subdominant(x), tonic_dict[x]),
+            list(tonic_dict.keys())))
 
     def test_subdominant7(self):
         tonic_dict = {'C': ['F', 'A', 'C', 'E'], 'E': ['A', 'C#', 'E', 'G#'],
                       'B': ['E', 'G#', 'B', 'D#']}
-        map(lambda x: self.assertEqual(chords.subdominant7(x), tonic_dict[x]),
-            tonic_dict.keys())
+        list(map(lambda x: self.assertEqual(chords.subdominant7(x), tonic_dict[x]),
+            list(tonic_dict.keys())))
 
     def test_submediant(self):
         tonic_dict = {'C': ['A', 'C', 'E'], 'E': ['C#', 'E', 'G#'], 'B': ['G#',
                       'B', 'D#']}
-        map(lambda x: self.assertEqual(chords.submediant(x), tonic_dict[x]),
-            tonic_dict.keys())
+        list(map(lambda x: self.assertEqual(chords.submediant(x), tonic_dict[x]),
+            list(tonic_dict.keys())))
 
     def test_submediant7(self):
         tonic_dict = {'C': ['A', 'C', 'E', 'G'], 'E': ['C#', 'E', 'G#', 'B'],
                       'B': ['G#', 'B', 'D#', 'F#']}
-        map(lambda x: self.assertEqual(chords.submediant7(x), tonic_dict[x]),
-            tonic_dict.keys())
+        list(map(lambda x: self.assertEqual(chords.submediant7(x), tonic_dict[x]),
+            list(tonic_dict.keys())))
 
     def test_supertonic(self):
         tonic_dict = {'C': ['D', 'F', 'A'], 'E': ['F#', 'A', 'C#'], 'B': ['C#',
                       'E', 'G#']}
-        map(lambda x: self.assertEqual(chords.supertonic(x), tonic_dict[x]),
-            tonic_dict.keys())
+        list(map(lambda x: self.assertEqual(chords.supertonic(x), tonic_dict[x]),
+            list(tonic_dict.keys())))
 
     def test_supertonic7(self):
         tonic_dict = {'C': ['D', 'F', 'A', 'C'], 'E': ['F#', 'A', 'C#', 'E'],
                       'B': ['C#', 'E', 'G#', 'B']}
-        map(lambda x: self.assertEqual(chords.supertonic7(x), tonic_dict[x]),
-            tonic_dict.keys())
+        list(map(lambda x: self.assertEqual(chords.supertonic7(x), tonic_dict[x]),
+            list(tonic_dict.keys())))
 
     def test_mediant(self):
         tonic_dict = {'C': ['E', 'G', 'B'], 'E': ['G#', 'B', 'D#'], 'B': ['D#',
                       'F#', 'A#']}
-        map(lambda x: self.assertEqual(chords.mediant(x), tonic_dict[x]),
-            tonic_dict.keys())
+        list(map(lambda x: self.assertEqual(chords.mediant(x), tonic_dict[x]),
+            list(tonic_dict.keys())))
 
     def test_mediant7(self):
         tonic_dict = {'C': ['E', 'G', 'B', 'D'], 'E': ['G#', 'B', 'D#', 'F#'],
                       'B': ['D#', 'F#', 'A#', 'C#']}
-        map(lambda x: self.assertEqual(chords.mediant7(x), tonic_dict[x]),
-            tonic_dict.keys())
+        list(map(lambda x: self.assertEqual(chords.mediant7(x), tonic_dict[x]),
+            list(tonic_dict.keys())))
 
     def test_determine_triad(self):
         self.chordsTest([
@@ -228,9 +228,9 @@ class test_chords(unittest.TestCase):
         what_func,
         what_desc,
         ):
-        map(lambda x: map(lambda y: self.assert_(y in what_func(x[1]),
+        list(map(lambda x: [self.assertTrue(y in what_func(x[1]),
             "The %s '%s' should be in '%s', but is not." % (what_desc, y,
-            what_func(x[1]))), x[0]), values)
+            what_func(x[1]))) for y in x[0]], values))
 
     def test_from_shorthand(self):
         answers = {  # Triads Augmented Sevenths Sixths 6/9 Slash chords
@@ -340,9 +340,9 @@ class test_chords(unittest.TestCase):
                 'G',
                 ],
             }
-        map(lambda x: self.assertEqual(answers[x], chords.from_shorthand(x),
+        list(map(lambda x: self.assertEqual(answers[x], chords.from_shorthand(x),
             'The shorthand of %s is not %s, expecting %s' % (x,
-            chords.from_shorthand(x), answers[x])), answers.keys())
+            chords.from_shorthand(x), answers[x])), list(answers.keys())))
 
     def test_malformed_from_shorthand(self):
         for x in ['Bollocks', 'Asd', 'Bbasd@#45']:
@@ -350,15 +350,15 @@ class test_chords(unittest.TestCase):
             self.assertRaises(NoteFormatError, chords.from_shorthand, x[1:])
 
     def test_determine(self):
-        map(lambda x: self.assertEqual(True,
+        list(map(lambda x: self.assertEqual(True,
             chords.determine(chords.from_shorthand('C' + x)) != [],
-            "'C%s' should return a value" % x), chords.chord_shorthand.keys())
-        map(lambda x: self.assertEqual('C' + chords.chord_shorthand_meaning[x],
+            "'C%s' should return a value" % x), list(chords.chord_shorthand.keys())))
+        list(map(lambda x: self.assertEqual('C' + chords.chord_shorthand_meaning[x],
             chords.determine(chords.from_shorthand('C' + x))[0],
             "The proper naming of '%s' is not '%s',expecting '%s'" % ('C' + x,
             chords.determine(chords.from_shorthand('C' + x)), 'C'
              + chords.chord_shorthand_meaning[x])), [x for x in
-            chords.chord_shorthand.keys() if x != '5'])
+            list(chords.chord_shorthand.keys()) if x != '5']))
         self.chordsTest([[['A13'], [
             'A',
             'C#',

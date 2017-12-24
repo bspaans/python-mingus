@@ -30,7 +30,7 @@ progression = [
 key = 'C'
 chords = progressions.to_chords(progression, key)
 if not fluidsynth.init(SF2):
-    print "Couldn't load soundfont", SF2
+    print("Couldn't load soundfont", SF2)
     sys.exit(1)
 while 1:
     i = 0
@@ -39,7 +39,7 @@ while 1:
         l = Note(c[0].name)
         p = c[1]
         l.octave_down()
-        print ch.determine(chords[i])[0]
+        print(ch.determine(chords[i])[0])
 
         # Play chord and lowered first note
 
@@ -76,4 +76,4 @@ while 1:
         fluidsynth.stop_Note(l)
         fluidsynth.stop_Note(p)
         i += 1
-    print '-' * 20
+    print('-' * 20)

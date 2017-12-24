@@ -19,9 +19,9 @@ class test_Instrument(unittest.TestCase):
 
     def test_note_in_range(self):
         for x in self.notes:
-            self.assert_(self.i.note_in_range(x))
-            self.assert_(self.p.note_in_range(x))
-            self.assert_(self.g.note_in_range(x))
+            self.assertTrue(self.i.note_in_range(x))
+            self.assertTrue(self.p.note_in_range(x))
+            self.assertTrue(self.g.note_in_range(x))
         for x in self.noteslow + self.noteshigh:
             self.assertEqual(False, self.p.note_in_range(x),
                              '%s should not be able to be played by a Piano'
@@ -31,9 +31,9 @@ class test_Instrument(unittest.TestCase):
                               % x)
 
     def test_can_play_notes(self):
-        self.assert_(self.i.can_play_notes(self.notes))
-        self.assert_(self.p.can_play_notes(self.notes))
-        self.assert_(self.g.can_play_notes(self.notes))
+        self.assertTrue(self.i.can_play_notes(self.notes))
+        self.assertTrue(self.p.can_play_notes(self.notes))
+        self.assertTrue(self.g.can_play_notes(self.notes))
         self.assertEqual(False, self.p.can_play_notes(self.noteslow))
         self.assertEqual(False, self.g.can_play_notes(self.noteslow))
         self.assertEqual(False, self.p.can_play_notes(self.noteshigh))

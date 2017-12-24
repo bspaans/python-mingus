@@ -38,7 +38,7 @@ import operator
 # the frequencies we need to look up.
 
 _log_cache = []
-for x in xrange(129):
+for x in range(129):
     _log_cache.append(Note().from_int(x).to_hertz())
 _last_asked = None
 
@@ -104,7 +104,7 @@ def find_frequencies(data, freq=44100, bits=16):
     # Generate the frequencies and zip with the amplitudes
     s = freq / float(n)
     freqArray = numpy.arange(0, uniquePts * s, s)
-    return zip(freqArray, p)
+    return list(zip(freqArray, p))
 
 def find_notes(freqTable, maxNote=100):
     """Convert the (frequencies, amplitude) list to a (Note, amplitude) list."""

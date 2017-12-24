@@ -35,83 +35,83 @@ class test_progressions(unittest.TestCase):
                          'M'))
 
     def test_substitute(self):
-        self.assert_('III' in progressions.substitute(['I'], 0))
-        self.assert_('VI' in progressions.substitute(['I'], 0))
-        self.assert_('V' in progressions.substitute(['VII'], 0))
-        self.assert_('V7' in progressions.substitute(['VII'], 0))
-        self.assert_('VII' in progressions.substitute(['V7'], 0))
-        self.assert_('VIIdim7' in progressions.substitute(['V7'], 0))
-        self.assert_('IIdim7' in progressions.substitute(['V7'], 0))
-        self.assert_('IIdim7' in progressions.substitute(['VIIdim7'], 0))
-        self.assert_('bIIdim7' in progressions.substitute(['bVIIdim7'], 0))
-        self.assert_('I' in progressions.substitute(['VI'], 0))
-        self.assert_('IIM' in progressions.substitute(['VIIm'], 0))
+        self.assertTrue('III' in progressions.substitute(['I'], 0))
+        self.assertTrue('VI' in progressions.substitute(['I'], 0))
+        self.assertTrue('V' in progressions.substitute(['VII'], 0))
+        self.assertTrue('V7' in progressions.substitute(['VII'], 0))
+        self.assertTrue('VII' in progressions.substitute(['V7'], 0))
+        self.assertTrue('VIIdim7' in progressions.substitute(['V7'], 0))
+        self.assertTrue('IIdim7' in progressions.substitute(['V7'], 0))
+        self.assertTrue('IIdim7' in progressions.substitute(['VIIdim7'], 0))
+        self.assertTrue('bIIdim7' in progressions.substitute(['bVIIdim7'], 0))
+        self.assertTrue('I' in progressions.substitute(['VI'], 0))
+        self.assertTrue('IIM' in progressions.substitute(['VIIm'], 0))
 
     def test_substitute_harmonic(self):
-        self.assert_('III' in progressions.substitute_harmonic(['I'], 0))
-        self.assert_([] == progressions.substitute_harmonic(['IM'], 0))
-        self.assert_('III' in progressions.substitute_harmonic(['IM'], 0, True))
+        self.assertTrue('III' in progressions.substitute_harmonic(['I'], 0))
+        self.assertTrue([] == progressions.substitute_harmonic(['IM'], 0))
+        self.assertTrue('III' in progressions.substitute_harmonic(['IM'], 0, True))
 
     def test_substitute_minor_for_major(self):
-        self.assert_('IM' in progressions.substitute_minor_for_major(['VIm'],
+        self.assertTrue('IM' in progressions.substitute_minor_for_major(['VIm'],
                      0))
-        self.assert_('I' in progressions.substitute_minor_for_major(['VI'], 0))
-        self.assert_('IM7' in progressions.substitute_minor_for_major(['VIm7'],
+        self.assertTrue('I' in progressions.substitute_minor_for_major(['VI'], 0))
+        self.assertTrue('IM7' in progressions.substitute_minor_for_major(['VIm7'],
                      0))
-        self.assert_('bIM7' in progressions.substitute_minor_for_major(['bVIm7'
+        self.assertTrue('bIM7' in progressions.substitute_minor_for_major(['bVIm7'
                      ], 0))
-        self.assert_('#IM7' in progressions.substitute_minor_for_major(['#VIm7'
+        self.assertTrue('#IM7' in progressions.substitute_minor_for_major(['#VIm7'
                      ], 0))
 
     def test_substitute_major_for_minor(self):
-        self.assert_('VIm' in progressions.substitute_major_for_minor(['IM'],
+        self.assertTrue('VIm' in progressions.substitute_major_for_minor(['IM'],
                      0))
-        self.assert_('VIm7' in progressions.substitute_major_for_minor(['IM7'],
+        self.assertTrue('VIm7' in progressions.substitute_major_for_minor(['IM7'],
                      0))
-        self.assert_('VI' in progressions.substitute_major_for_minor(['I'], 0))
-        self.assert_('bVI' in progressions.substitute_major_for_minor(['bI'],
+        self.assertTrue('VI' in progressions.substitute_major_for_minor(['I'], 0))
+        self.assertTrue('bVI' in progressions.substitute_major_for_minor(['bI'],
                      0))
-        self.assert_('#VI' in progressions.substitute_major_for_minor(['#I'],
+        self.assertTrue('#VI' in progressions.substitute_major_for_minor(['#I'],
                      0))
 
     def test_substitute_diminished_for_diminished(self):
-        self.assert_(progressions.substitute_diminished_for_diminished(['VII'],
+        self.assertTrue(progressions.substitute_diminished_for_diminished(['VII'],
                      0)
                       == progressions.substitute_diminished_for_diminished(['VIIdim'
                      ], 0))
-        self.assert_('IIdim'
+        self.assertTrue('IIdim'
                       in progressions.substitute_diminished_for_diminished(['VII'
                      ], 0))
-        self.assert_('bIIdim'
+        self.assertTrue('bIIdim'
                       in progressions.substitute_diminished_for_diminished(['bVII'
                      ], 0))
-        self.assert_('#IIdim'
+        self.assertTrue('#IIdim'
                       in progressions.substitute_diminished_for_diminished(['#VII'
                      ], 0))
 
     def test_substitute_diminished_for_dominant(self):
-        self.assert_(progressions.substitute_diminished_for_dominant(['VII'], 0)
+        self.assertTrue(progressions.substitute_diminished_for_dominant(['VII'], 0)
                       == progressions.substitute_diminished_for_dominant(['VIIdim'
                      ], 0))
-        self.assert_('Vdom7'
+        self.assertTrue('Vdom7'
                       in progressions.substitute_diminished_for_dominant(['VII'
                      ], 0))
-        self.assert_('bVIIdom7'
+        self.assertTrue('bVIIdom7'
                       in progressions.substitute_diminished_for_dominant(['VII'
                      ], 0))
-        self.assert_('bIIdom7'
+        self.assertTrue('bIIdom7'
                       in progressions.substitute_diminished_for_dominant(['VII'
                      ], 0))
-        self.assert_('bbIIdom7'
+        self.assertTrue('bbIIdom7'
                       in progressions.substitute_diminished_for_dominant(['bVII'
                      ], 0))
-        self.assert_('IVdom7'
+        self.assertTrue('IVdom7'
                       in progressions.substitute_diminished_for_dominant(['VII'
                      ], 0))
-        self.assert_('bIVdom7'
+        self.assertTrue('bIVdom7'
                       in progressions.substitute_diminished_for_dominant(['bVII'
                      ], 0))
-        self.assert_('#IVdom7'
+        self.assertTrue('#IVdom7'
                       in progressions.substitute_diminished_for_dominant(['#VII'
                      ], 0))
 

@@ -26,7 +26,7 @@ It handles conversions from integers to notes and vice versa and thus
 enables simple calculations.
 """
 
-from mt_exceptions import NoteFormatError, RangeError, FormatError
+from .mt_exceptions import NoteFormatError, RangeError, FormatError
 
 _note_dict = {
     'C': 0,
@@ -55,7 +55,7 @@ def int_to_note(note_int, accidentals='#'):
     >>> int_to_note(3, 'b')
     'Eb'
     """
-    if note_int not in range(12):
+    if note_int not in list(range(12)):
         raise RangeError('int out of bounds (0-11): %d' % note_int)
     ns = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
     nf = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
@@ -72,7 +72,7 @@ def is_enharmonic(note1, note2):
 
 def is_valid_note(note):
     """Return True if note is in a recognised format. False if not."""
-    if not _note_dict.has_key(note[0]):
+    if note[0] not in _note_dict:
         return False
     for post in note[1:]:
         if post != 'b' and post != '#':

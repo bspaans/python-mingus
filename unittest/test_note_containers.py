@@ -106,45 +106,45 @@ class test_NoteContainers(unittest.TestCase):
                          False))
 
     def test_is_consonant(self):
-        self.assert_(NoteContainer().from_chord('Am').is_consonant())
-        self.assert_(NoteContainer().from_chord('C').is_consonant())
-        self.assert_(NoteContainer().from_chord('G').is_consonant())
-        self.assert_(NoteContainer().from_chord('Dm').is_consonant())
-        self.assert_(NoteContainer().from_chord('E').is_consonant())
-        self.assert_(not NoteContainer().from_chord('E7').is_consonant())
-        self.assert_(not NoteContainer().from_chord('Am7').is_consonant())
-        self.assert_(not NoteContainer().from_chord('Gdim').is_consonant())
+        self.assertTrue(NoteContainer().from_chord('Am').is_consonant())
+        self.assertTrue(NoteContainer().from_chord('C').is_consonant())
+        self.assertTrue(NoteContainer().from_chord('G').is_consonant())
+        self.assertTrue(NoteContainer().from_chord('Dm').is_consonant())
+        self.assertTrue(NoteContainer().from_chord('E').is_consonant())
+        self.assertTrue(not NoteContainer().from_chord('E7').is_consonant())
+        self.assertTrue(not NoteContainer().from_chord('Am7').is_consonant())
+        self.assertTrue(not NoteContainer().from_chord('Gdim').is_consonant())
 
     def test_is_perfect_consonant(self):
-        self.assert_(NoteContainer(['A', 'E']).is_perfect_consonant())
-        self.assert_(NoteContainer(['A-4', 'A-6']).is_perfect_consonant())
-        self.assert_(NoteContainer(['A', 'D']).is_perfect_consonant())
-        self.assert_(not NoteContainer(['A', 'D']).is_perfect_consonant(False))
-        self.assert_(not NoteContainer().from_chord('Am'
+        self.assertTrue(NoteContainer(['A', 'E']).is_perfect_consonant())
+        self.assertTrue(NoteContainer(['A-4', 'A-6']).is_perfect_consonant())
+        self.assertTrue(NoteContainer(['A', 'D']).is_perfect_consonant())
+        self.assertTrue(not NoteContainer(['A', 'D']).is_perfect_consonant(False))
+        self.assertTrue(not NoteContainer().from_chord('Am'
                      ).is_perfect_consonant())
-        self.assert_(not NoteContainer().from_chord('C').is_perfect_consonant())
-        self.assert_(not NoteContainer().from_chord('G').is_perfect_consonant())
-        self.assert_(not NoteContainer().from_chord('Dm'
+        self.assertTrue(not NoteContainer().from_chord('C').is_perfect_consonant())
+        self.assertTrue(not NoteContainer().from_chord('G').is_perfect_consonant())
+        self.assertTrue(not NoteContainer().from_chord('Dm'
                      ).is_perfect_consonant())
-        self.assert_(not NoteContainer().from_chord('E').is_perfect_consonant())
+        self.assertTrue(not NoteContainer().from_chord('E').is_perfect_consonant())
 
     def test_is_imperfect_consonant(self):
-        self.assert_(NoteContainer(['A', 'C']).is_imperfect_consonant())
-        self.assert_(NoteContainer(['A', 'C#']).is_imperfect_consonant())
-        self.assert_(NoteContainer(['A', 'F']).is_imperfect_consonant())
-        self.assert_(NoteContainer(['A', 'F#']).is_imperfect_consonant())
-        self.assert_(not NoteContainer(['A', 'B']).is_imperfect_consonant())
-        self.assert_(not NoteContainer(['A', 'E']).is_imperfect_consonant())
-        self.assert_(not NoteContainer(['A-4', 'A-5']).is_imperfect_consonant())
+        self.assertTrue(NoteContainer(['A', 'C']).is_imperfect_consonant())
+        self.assertTrue(NoteContainer(['A', 'C#']).is_imperfect_consonant())
+        self.assertTrue(NoteContainer(['A', 'F']).is_imperfect_consonant())
+        self.assertTrue(NoteContainer(['A', 'F#']).is_imperfect_consonant())
+        self.assertTrue(not NoteContainer(['A', 'B']).is_imperfect_consonant())
+        self.assertTrue(not NoteContainer(['A', 'E']).is_imperfect_consonant())
+        self.assertTrue(not NoteContainer(['A-4', 'A-5']).is_imperfect_consonant())
 
     def test_is_dissonant(self):
-        self.assert_(NoteContainer().from_chord('E7').is_dissonant())
-        self.assert_(NoteContainer().from_chord('Am7').is_dissonant())
-        self.assert_(NoteContainer().from_chord('Gdim').is_dissonant())
-        self.assert_(not NoteContainer().from_chord('Am').is_dissonant())
-        self.assert_(not NoteContainer().from_chord('C').is_dissonant())
-        self.assert_(not NoteContainer().from_chord('G').is_dissonant())
-        self.assert_(not NoteContainer().from_chord('Dm').is_dissonant())
+        self.assertTrue(NoteContainer().from_chord('E7').is_dissonant())
+        self.assertTrue(NoteContainer().from_chord('Am7').is_dissonant())
+        self.assertTrue(NoteContainer().from_chord('Gdim').is_dissonant())
+        self.assertTrue(not NoteContainer().from_chord('Am').is_dissonant())
+        self.assertTrue(not NoteContainer().from_chord('C').is_dissonant())
+        self.assertTrue(not NoteContainer().from_chord('G').is_dissonant())
+        self.assertTrue(not NoteContainer().from_chord('Dm').is_dissonant())
 
 
 def suite():

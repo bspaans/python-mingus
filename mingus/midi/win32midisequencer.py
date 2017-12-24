@@ -28,8 +28,8 @@ import sys
 # We should be able to import this module on non-win32 systems without 
 # raising exceptions. So instead, raise in the init() method.
 if sys.platform=='win32':
-    import win32midi
-    from win32midi import Win32MidiException
+    from . import win32midi
+    from .win32midi import Win32MidiException
     
 from datetime import datetime
 from mingus.midi.sequencer import Sequencer

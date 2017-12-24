@@ -13,7 +13,7 @@ class test_Tablature(unittest.TestCase):
         self.guitar = tunings.get_tuning('Guitar', 'standard', 6, 1)
 
     def test__get_qsize(self):
-        self.assert_(tablature._get_qsize(self.guitar, 4) == 0)
+        self.assertTrue(tablature._get_qsize(self.guitar, 4) == 0)
 
 
 def suite():

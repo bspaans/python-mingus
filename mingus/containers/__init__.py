@@ -17,10 +17,10 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from note import Note
-from note_container import NoteContainer
-from bar import Bar
-from track import Track
-from composition import Composition
-from suite import Suite
-from instrument import Instrument, Piano, Guitar, MidiInstrument
+from .note import Note
+from .note_container import NoteContainer
+from .bar import Bar
+from .track import Track
+from .composition import Composition
+from .suite import Suite
+from .instrument import Instrument, Piano, Guitar, MidiInstrument

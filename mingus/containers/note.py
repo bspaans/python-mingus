@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from mingus.core import notes, intervals
-from mt_exceptions import NoteFormatError
+from .mt_exceptions import NoteFormatError
 from math import log
 
 class Note(object):

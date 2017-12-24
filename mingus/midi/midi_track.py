@@ -27,7 +27,7 @@ http://www.sonicspot.com/guide/midifiles.html
 from binascii import a2b_hex
 from struct import pack, unpack
 from math import log
-from midi_events import *
+from .midi_events import *
 from mingus.core.keys import Key, major_keys, minor_keys
 from mingus.containers.note import Note
 

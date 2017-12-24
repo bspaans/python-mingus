@@ -31,7 +31,7 @@ class test_fluidsynth(unittest.TestCase):
         b + m
         b + o
         b + p
-        self.assert_(fluidsynth.play_Bar(b), 0)
+        self.assertTrue(fluidsynth.play_Bar(b), 0)
 
     def test_main_volume(self):
         for x in range(0, 128, 20):
@@ -47,16 +47,16 @@ class test_fluidsynth(unittest.TestCase):
             time.sleep(0.25)
 
     def test_playnote(self):
-        self.assert_(fluidsynth.play_Note(Note('C')))
+        self.assertTrue(fluidsynth.play_Note(Note('C')))
         time.sleep(0.25)
         fluidsynth.stop_Note(Note('C'))
 
     def test_playnotecontainer(self):
-        self.assert_(fluidsynth.play_NoteContainer(NoteContainer(['C', 'E', 'G'
+        self.assertTrue(fluidsynth.play_NoteContainer(NoteContainer(['C', 'E', 'G'
                      ]), 0))
         time.sleep(0.25)
         fluidsynth.stop_NoteContainer(NoteContainer(['C', 'E', 'G']), 0)
-        self.assert_(fluidsynth.play_NoteContainer(NoteContainer(['E', 'G',
+        self.assertTrue(fluidsynth.play_NoteContainer(NoteContainer(['E', 'G',
                      Note('C', 6)]), 0))
         time.sleep(0.25)
         fluidsynth.stop_NoteContainer(NoteContainer(['E', 'G', Note('C', 6)]),
@@ -67,7 +67,7 @@ class test_fluidsynth(unittest.TestCase):
         b + Note('C')
         b + Note('E')
         b + Note('G')
-        self.assert_(fluidsynth.play_Bar(b), 0)
+        self.assertTrue(fluidsynth.play_Bar(b), 0)
 
     def test_playbars(self):
         b = Bar()
@@ -79,7 +79,7 @@ class test_fluidsynth(unittest.TestCase):
         c + 'Gb'
         c + 'B'
         c + Note('C', 5)
-        self.assert_(fluidsynth.play_Bars([b, c], [1, 2]), 0)
+        self.assertTrue(fluidsynth.play_Bars([b, c], [1, 2]), 0)
 
     def test_changing_bpm_bar(self):
         b = Bar()
@@ -89,7 +89,7 @@ class test_fluidsynth(unittest.TestCase):
         b + Note('E')
         b + n
         b + Note('Eb')
-        self.assert_(fluidsynth.play_Bar(b, 0, 120))
+        self.assertTrue(fluidsynth.play_Bar(b, 0, 120))
 
     def test_changing_bpm_bars(self):
         b = Bar()
@@ -99,7 +99,7 @@ class test_fluidsynth(unittest.TestCase):
         b + Note('E')
         b + n
         b + Note('Eb')
-        self.assert_(fluidsynth.play_Bars([b, b], [1, 2], 120))
+        self.assertTrue(fluidsynth.play_Bars([b, b], [1, 2], 120))
 
     def test_changing_bpm_track(self):
         b = Bar()
@@ -112,7 +112,7 @@ class test_fluidsynth(unittest.TestCase):
         t = Track()
         t + b
         t + b
-        self.assert_(fluidsynth.play_Track(t), 0)
+        self.assertTrue(fluidsynth.play_Track(t), 0)
 
     def test_track(self):
         b = Bar()
@@ -123,7 +123,7 @@ class test_fluidsynth(unittest.TestCase):
         t = Track()
         t + b
         t + b
-        self.assert_(fluidsynth.play_Track(t), 0)
+        self.assertTrue(fluidsynth.play_Track(t), 0)
 
     def test_tracks(self):
         b = Bar()
@@ -142,7 +142,7 @@ class test_fluidsynth(unittest.TestCase):
         t2 = Track()
         t2 + b
         t2 + b
-        self.assert_(fluidsynth.play_Tracks([t, t2], [0, 1]))
+        self.assertTrue(fluidsynth.play_Tracks([t, t2], [0, 1]))
 
     def test_composition(self):
         m = MidiInstrument('Vibraphone')
@@ -166,7 +166,7 @@ class test_fluidsynth(unittest.TestCase):
         c = Composition()
         c + t
         c + t2
-        self.assert_(fluidsynth.play_Composition(c))
+        self.assertTrue(fluidsynth.play_Composition(c))
 
 
 def suite():

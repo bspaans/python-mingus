@@ -223,7 +223,7 @@ def save_string_and_execute_LilyPond(ly_string, filename, command):
     except:
         return False
     command = 'lilypond %s -o "%s" "%s.ly"' % (command, filename, filename)
-    print 'Executing: %s' % command
+    print('Executing: %s' % command)
     p = subprocess.Popen(command, shell=True).wait()
     os.remove(filename + '.ly')
     return True

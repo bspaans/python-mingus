@@ -57,21 +57,21 @@ bass_channel = 4
 solo_channel = 13
 random_solo_channel = False
 if not fluidsynth.init(SF2):
-    print "Couldn't load soundfont", SF2
+    print("Couldn't load soundfont", SF2)
     sys.exit(1)
 chords = progressions.to_chords(progression, key)
 loop = 1
 while loop < song_end:
     i = 0
     if random_solo_channel:
-        solo_channel = choice(range(5, 8) + [11])
+        solo_channel = choice(list(range(5, 8)) + [11])
     for chord in chords:
         c = NoteContainer(chords[i])
         l = Note(c[0].name)
         n = Note('C')
         l.octave_down()
         l.octave_down()
-        print ch.determine(chords[i])[0]
+        print(ch.determine(chords[i])[0])
 
         if not swing and play_chords and loop > chord_start and loop\
              < chord_end:
@@ -109,7 +109,7 @@ while loop < song_end:
                         if beats[t - 1] and not beats[t + 1]:
                             n = Note(choice(c).name)
                 fluidsynth.play_Note(n, solo_channel, randrange(80, 110))
-                print n
+                print(n)
 
             # Repeat chord on half of the bar
 
@@ -171,5 +171,5 @@ while loop < song_end:
         fluidsynth.stop_Note(l, bass_channel)
         fluidsynth.stop_Note(n, solo_channel)
         i += 1
-    print '-' * 20
+    print('-' * 20)
     loop += 1

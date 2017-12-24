@@ -23,18 +23,18 @@ class test_LilyPond(unittest.TestCase):
         self.b_flat_minor_bar = Bar('bb', (4, 4))
         self.f_sharp_minor_bar = Bar('f#', (4, 4))
         for y in [self.commonbar, self.ebar, self.fbar]:
-            map(lambda x: y + x, ['C', 'E', 'G', 'B'])
-        map(lambda x: self.tbar.place_notes(NoteContainer(x), 6), [
+            list(map(lambda x: y + x, ['C', 'E', 'G', 'B']))
+        list(map(lambda x: self.tbar.place_notes(NoteContainer(x), 6), [
             'C',
             'E',
             'G',
             'B',
             'C',
             'E',
-            ])
-        map(lambda x: self.mbar.place_notes(NoteContainer(x), 4), ['C', 'E'])
-        map(lambda x: self.mbar.place_notes(NoteContainer(x), 6), ['G', 'B', 'C'
-            ])
+            ]))
+        list(map(lambda x: self.mbar.place_notes(NoteContainer(x), 4), ['C', 'E']))
+        list(map(lambda x: self.mbar.place_notes(NoteContainer(x), 6), ['G', 'B', 'C'
+            ]))
         self.track1 = Track()
         self.track1 + self.commonbar
         self.track2 = Track()
@@ -135,18 +135,18 @@ class test_LilyPond(unittest.TestCase):
                          value.dots(4, 2), standalone=False), "c'4..")
 
     def test_to_pdf(self):
-        self.assert_(LilyPond.to_pdf('{ %s }'
+        self.assertTrue(LilyPond.to_pdf('{ %s }'
                       % LilyPond.from_NoteContainer(NoteContainer('C'),
                      value.dots(8)), 'pdftest first test'))
-        self.assert_(LilyPond.to_pdf(LilyPond.from_Bar(self.tbar), 'pdftest2'))
-        self.assert_(LilyPond.to_pdf(LilyPond.from_Bar(self.mbar), 'pdftest3'))
+        self.assertTrue(LilyPond.to_pdf(LilyPond.from_Bar(self.tbar), 'pdftest2'))
+        self.assertTrue(LilyPond.to_pdf(LilyPond.from_Bar(self.mbar), 'pdftest3'))
 
     def test_to_png(self):
-        self.assert_(LilyPond.to_png('{ %s }'
+        self.assertTrue(LilyPond.to_png('{ %s }'
                       % LilyPond.from_NoteContainer(NoteContainer('C'),
                      value.dots(8)), 'pn1'))
-        self.assert_(LilyPond.to_png(LilyPond.from_Bar(self.tbar), 'pn2'))
-        self.assert_(LilyPond.to_png(LilyPond.from_Bar(self.mbar), 'pn3'))
+        self.assertTrue(LilyPond.to_png(LilyPond.from_Bar(self.tbar), 'pn2'))
+        self.assertTrue(LilyPond.to_png(LilyPond.from_Bar(self.mbar), 'pn3'))
 
 def suite():
     return unittest.TestLoader().loadTestsFromTestCase(test_LilyPond)

@@ -62,14 +62,14 @@ def load_img(name):
             image = image.convert()
         else:
             image = image.convert_alpha()
-    except pygame.error, message:
-        print "Error: couldn't load image: ", fullname
-        raise SystemExit, message
+    except pygame.error as message:
+        print("Error: couldn't load image: ", fullname)
+        raise SystemExit(message)
     return (image, image.get_rect())
 
 
 if not fluidsynth.init(SF2):
-    print "Couldn't load soundfont", SF2
+    print("Couldn't load soundfont", SF2)
     sys.exit(1)
 
 pygame.init()

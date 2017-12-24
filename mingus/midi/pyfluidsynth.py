@@ -34,7 +34,7 @@ from ctypes.util import find_library
 lib = find_library('fluidsynth') or find_library('libfluidsynth')\
      or find_library('libfluidsynth-1')
 if lib is None:
-    raise ImportError, "Couldn't find the FluidSynth library."
+    raise ImportError("Couldn't find the FluidSynth library.")
 
 _fl = CDLL(lib)
 
