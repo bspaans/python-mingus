@@ -23,7 +23,7 @@
 The MIDI file format specification I used can be found here:
 http://www.sonicspot.com/guide/midifiles.html
 """
-from __future__ import absolute_import
+from __future__ import absolute_import, division
 
 from binascii import a2b_hex
 from struct import pack, unpack
@@ -227,7 +227,7 @@ class MidiTrack(object):
     def set_tempo_event(self, bpm):
         """Calculate the microseconds per quarter note."""
         ms_per_min = 60000000
-        mpqn = a2b_hex('%06x' % (ms_per_min / bpm))
+        mpqn = a2b_hex('%06x' % (ms_per_min // bpm))
         return self.delta_time + META_EVENT + SET_TEMPO + b'\x03' + mpqn
 
     def set_meter(self, meter=(4, 4)):
