@@ -96,10 +96,10 @@ from_shorthand (a lot) and their inversions.
  * from_shorthand - Generates chords from shorthand (eg. 'Cmin7')
 """
 
-import intervals
-import notes
-import keys
-from mt_exceptions import NoteFormatError, FormatError
+import mingus.core.intervals as intervals
+import mingus.core.notes as notes
+import mingus.core.keys as keys
+from mingus.core.mt_exceptions import NoteFormatError, FormatError
 
 _triads_cache = {}
 
@@ -766,8 +766,8 @@ def from_shorthand(shorthand_string, slash=None):
 
     # Get the note name
     if not notes.is_valid_note(shorthand_string[0]):
-        raise NoteFormatError, "Unrecognised note '%s' in chord '%s'"\
-             % (shorthand_string[0], shorthand_string)
+        raise NoteFormatError("Unrecognised note '%s' in chord '%s'"\
+             % (shorthand_string[0], shorthand_string))
     name = shorthand_string[0]
 
     # Look for accidentals
@@ -808,9 +808,8 @@ def from_shorthand(shorthand_string, slash=None):
                 if notes.is_valid_note(slash):
                     res = [slash] + res
                 else:
-                    raise NoteFormatError, \
-                        "Unrecognised note '%s' in slash chord'%s'" % (slash,
-                            slash + shorthand_string)
+                    raise NoteFormatError("Unrecognised note '%s' in slash chord'%s'" % (slash,
+                            slash + shorthand_string))
             elif type(slash) == list:
                 # Add polychords
                 r = slash
@@ -820,7 +819,7 @@ def from_shorthand(shorthand_string, slash=None):
                 return r
         return res
     else:
-        raise FormatError, 'Unknown shorthand: %s' % shorthand_string
+        raise FormatError('Unknown shorthand: %s' % shorthand_string)
 
 def determine(chord, shorthand=False, no_inversions=False, no_polychords=False):
     """Name a chord.
