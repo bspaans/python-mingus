@@ -38,7 +38,9 @@ class NoteContainer(object):
 
     notes = []
 
-    def __init__(self, notes=[]):
+    def __init__(self, notes=None):
+        if notes is None:
+            notes = []
         self.empty()
         self.add_notes(notes)
 
@@ -46,12 +48,14 @@ class NoteContainer(object):
         """Empty the container."""
         self.notes = []
 
-    def add_note(self, note, octave=None, dynamics={}):
+    def add_note(self, note, octave=None, dynamics=None):
         """Add a note to the container and sorts the notes from low to high.
 
         The note can either be a string, in which case you could also use
         the octave and dynamics arguments, or a Note object.
         """
+        if dynamics is None:
+            dynamics = {}
         if isinstance(note, six.string_types):
             if octave is not None:
                 note = Note(note, octave, dynamics)

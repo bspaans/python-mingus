@@ -51,7 +51,7 @@ def add_headers(
     author="",
     email="",
     description="",
-    tunings=[],
+    tunings=None,
 ):
     """Create a nice header in the form of a list of strings using the
     information that has been filled in.
@@ -60,6 +60,8 @@ def add_headers(
     should be an integer and 'tunings' a list of tunings representing the
     instruments.
     """
+    if tunings is None:
+        tunings = []
     result = [""]
     title = str.upper(title)
     result += [str.center("  ".join(title), width)]

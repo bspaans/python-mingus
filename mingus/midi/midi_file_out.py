@@ -34,7 +34,9 @@ class MidiFile(object):
     tracks = []
     time_division = b"\x00\x48"
 
-    def __init__(self, tracks=[]):
+    def __init__(self, tracks=None):
+        if tracks is None:
+            tracks = []
         self.reset()
         self.tracks = tracks
 

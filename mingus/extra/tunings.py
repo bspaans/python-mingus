@@ -96,7 +96,7 @@ class StringTuning(object):
                 result.append(None)
         return result
 
-    def find_fingering(self, notes, max_distance=4, not_strings=[]):
+    def find_fingering(self, notes, max_distance=4, not_strings=None):
         """Return a list [(string, fret)] of possible fingerings for
         'notes'.
 
@@ -110,6 +110,8 @@ class StringTuning(object):
         >>> t.find_fingering(['E-4', 'B-4'])
         [[(0, 7), (1, 7)], [(1, 0), (0, 14)]]
         """
+        if not_strings is None:
+            not_strings = []
         if notes is None:
             return []
         if len(notes) == 0:

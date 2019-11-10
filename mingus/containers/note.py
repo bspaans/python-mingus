@@ -48,7 +48,9 @@ class Note(object):
     channel = 1
     velocity = 64
 
-    def __init__(self, name="C", octave=4, dynamics={}):
+    def __init__(self, name="C", octave=4, dynamics=None):
+        if dynamics is None:
+            dynamics = {}
         if isinstance(name, six.string_types):
             self.set_note(name, octave, dynamics)
         elif hasattr(name, "name"):
@@ -71,12 +73,14 @@ class Note(object):
     def set_velocity(self, velocity):
         self.velocity = velocity
 
-    def set_note(self, name="C", octave=4, dynamics={}):
+    def set_note(self, name="C", octave=4, dynamics=None):
         """Set the note to name in octave with dynamics.
 
         Return the objects if it succeeded, raise an NoteFormatError
         otherwise.
         """
+        if dynamics is None:
+            dynamics = {}
         dash_index = name.split("-")
         if len(dash_index) == 1:
             if notes.is_valid_note(name):
