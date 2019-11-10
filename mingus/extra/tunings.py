@@ -28,6 +28,7 @@ import mingus.core.notes as notes
 import six
 from six.moves import range
 
+
 class StringTuning(object):
 
     """A class to store and work with tunings and fingerings."""
@@ -122,8 +123,7 @@ class StringTuning(object):
                 if len(notes) > 0:
                     # recursively find fingerings for
                     # remaining notes
-                    r = self.find_fingering(notes, max_distance, not_strings
-                             + [string])
+                    r = self.find_fingering(notes, max_distance, not_strings + [string])
                     if r != []:
                         for f in r:
                             result.append([(string, fret)] + f)
@@ -145,8 +145,14 @@ class StringTuning(object):
                 res.append((frets, r))
         return [r for (_, r) in sorted(res)]
 
-    def find_chord_fingering(self, notes, max_distance=4, maxfret=18,
-            max_fingers=4, return_best_as_NoteContainer=False):
+    def find_chord_fingering(
+        self,
+        notes,
+        max_distance=4,
+        maxfret=18,
+        max_fingers=4,
+        return_best_as_NoteContainer=False,
+    ):
         """Return a list of fret lists that are considered possible fingerings.
 
         This function only looks at and matches on the note _names_ so it
@@ -157,6 +163,7 @@ class StringTuning(object):
         >>> t.find_chord_fingering(NoteContainer().from_chord('Am'))
         [[0, 0, 2, 2, 1, 0], [0, 3, 2, 2, 1, 0], ......]
         """
+
         def follow(string, next, name, prev=-1):
             """Follow the fret 'next' on 'string'; build result on the way."""
             if string >= len(self.tuning) - 1:
@@ -169,8 +176,7 @@ class StringTuning(object):
                         if prev < 0:
                             result.append([(next, name)] + sub)
                         else:
-                            if sub[0][0] == 0 or abs(sub[0][0] - prev)\
-                                 < max_distance:
+                            if sub[0][0] == 0 or abs(sub[0][0] - prev) < max_distance:
                                 result.append([(next, name)] + sub)
             for s in follow(string + 1, maxfret + 1, None, next):
                 result.append([(next, name)] + s)
@@ -181,15 +187,15 @@ class StringTuning(object):
 
             table[string][fret] = (name, dest_frets)
             """
-            res = [[[] for x in range(maxfret + 2)] for x in
-                   range(len(self.tuning) - 1)]
+            res = [
+                [[] for x in range(maxfret + 2)] for x in range(len(self.tuning) - 1)
+            ]
             for x in range(0, len(self.tuning) - 1):
                 addedNone = -1
                 next = fretdict[x + 1]
                 for (fret, name) in fretdict[x]:
                     for (f2, n2) in next:
-                        if n2 != name and (f2 == 0 or abs(fret - f2)
-                                 < max_distance):
+                        if n2 != name and (f2 == 0 or abs(fret - f2) < max_distance):
                             if res[x][fret] != []:
                                 res[x][fret][1].append((f2, n2))
                             else:
@@ -204,7 +210,11 @@ class StringTuning(object):
 
         # Convert to NoteContainer if necessary
         n = notes
-        if notes != [] and isinstance(notes, list) and isinstance(notes[0], six.string_types):
+        if (
+            notes != []
+            and isinstance(notes, list)
+            and isinstance(notes[0], six.string_types)
+        ):
             n = NoteContainer(notes)
 
         # Check number of note names.
@@ -256,13 +266,20 @@ class StringTuning(object):
 
                             # Add to result
                             if covered and names != []:
-                                result.append([y[0] if y[1]
-                                         is not None else y[1] for y in
-                                        subresult])
+                                result.append(
+                                    [
+                                        y[0] if y[1] is not None else y[1]
+                                        for y in subresult
+                                    ]
+                                )
 
         # Return semi-sorted list
-        s = sorted(result, key=lambda x: sum([t if t is not None else 1000
-                   for (i, t) in enumerate(x)]))
+        s = sorted(
+            result,
+            key=lambda x: sum(
+                [t if t is not None else 1000 for (i, t) in enumerate(x)]
+            ),
+        )
         s = [a for a in s if fingers_needed(a) <= max_fingers]
         if not return_best_as_NoteContainer:
             return s
@@ -331,40 +348,43 @@ class StringTuning(object):
                 n.fret = fret
                 return n
             else:
-                raise RangeError("Fret '%d' on string '%d' is out of range"
-                        % (string, fret))
+                raise RangeError(
+                    "Fret '%d' on string '%d' is out of range" % (string, fret)
+                )
         else:
             raise RangeError("String '%d' out of range" % string)
 
 
 def fingers_needed(fingering):
     """Return the number of fingers needed to play the given fingering."""
-    split = False # True if an open string must be played, thereby making any
-                  # subsequent strings impossible to bar with the index finger
-    indexfinger = False # True if the index finger was already accounted for
-                        # in the count
-    minimum = min(finger for finger in fingering if finger) # the index finger
-                                                            # plays the lowest
-                                                            # finger position
+    split = False  # True if an open string must be played, thereby making any
+    # subsequent strings impossible to bar with the index finger
+    indexfinger = False  # True if the index finger was already accounted for
+    # in the count
+    minimum = min(finger for finger in fingering if finger)  # the index finger
+    # plays the lowest
+    # finger position
     result = 0
     for finger in reversed(fingering):
-        if finger == 0: # an open string is played
-            split = True # subsequent strings are impossible to bar with the
-                         # index finger
+        if finger == 0:  # an open string is played
+            split = True  # subsequent strings are impossible to bar with the
+            # index finger
         else:
-            if not split and finger == minimum: # if an open string hasn't been
-                                                # played and this is a job for
-                                                # the index finger:
-                if not indexfinger: # if the index finger hasn't been accounted
-                                    # for:
+            if not split and finger == minimum:  # if an open string hasn't been
+                # played and this is a job for
+                # the index finger:
+                if not indexfinger:  # if the index finger hasn't been accounted
+                    # for:
                     result += 1
-                    indexfinger = True # index finger has now been accounted for
+                    indexfinger = True  # index finger has now been accounted for
             else:
                 result += 1
     return result
 
+
 # The index
 _known = {}
+
 
 def add_tuning(instrument, description, tuning):
     """Add a new tuning to the index.
@@ -382,8 +402,8 @@ def add_tuning(instrument, description, tuning):
     if str.upper(instrument) in _known:
         _known[str.upper(instrument)][1][str.upper(description)] = t
     else:
-        _known[str.upper(instrument)] = (instrument,
-                {str.upper(description): t})
+        _known[str.upper(instrument)] = (instrument, {str.upper(description): t})
+
 
 def get_tuning(instrument, description, nr_of_strings=None, nr_of_courses=None):
     """Get the first tuning that satisfies the constraints.
@@ -400,8 +420,12 @@ def get_tuning(instrument, description, nr_of_strings=None, nr_of_courses=None):
     searchd = str.upper(description)
     keys = list(_known.keys())
     for x in keys:
-        if (searchi not in keys and x.find(searchi) == 0 or searchi in keys and
-                x == searchi):
+        if (
+            searchi not in keys
+            and x.find(searchi) == 0
+            or searchi in keys
+            and x == searchi
+        ):
             for (desc, tun) in six.iteritems(_known[x][1]):
                 if desc.find(searchd) == 0:
                     if nr_of_strings is None and nr_of_courses is None:
@@ -413,9 +437,12 @@ def get_tuning(instrument, description, nr_of_strings=None, nr_of_courses=None):
                         if tun.count_courses() == nr_of_courses:
                             return tun
                     else:
-                        if tun.count_courses() == nr_of_courses\
-                             and tun.count_strings() == nr_of_strings:
+                        if (
+                            tun.count_courses() == nr_of_courses
+                            and tun.count_strings() == nr_of_strings
+                        ):
                             return tun
+
 
 def get_tunings(instrument=None, nr_of_strings=None, nr_of_courses=None):
     """Search tunings on instrument, strings, courses or a combination.
@@ -428,277 +455,311 @@ def get_tunings(instrument=None, nr_of_strings=None, nr_of_courses=None):
     >>> tunings.get_tunings(nr_of_string = 4)
     >>> tunings.get_tunings('bass')
     """
-    search = ''
+    search = ""
     if instrument is not None:
         search = str.upper(instrument)
     result = []
     keys = list(_known.keys())
     inkeys = search in keys
     for x in keys:
-        if (instrument is None or not inkeys and x.find(search) == 0 or
-                inkeys and search == x):
+        if (
+            instrument is None
+            or not inkeys
+            and x.find(search) == 0
+            or inkeys
+            and search == x
+        ):
             if nr_of_strings is None and nr_of_courses is None:
                 result += list(_known[x][1].values())
             elif nr_of_strings is not None and nr_of_courses is None:
-                result += [y for y in six.itervalues(_known[x][1])
-                           if y.count_strings() == nr_of_strings]
+                result += [
+                    y
+                    for y in six.itervalues(_known[x][1])
+                    if y.count_strings() == nr_of_strings
+                ]
             elif nr_of_strings is None and nr_of_courses is not None:
-                result += [y for y in six.itervalues(_known[x][1])
-                           if y.count_courses() == nr_of_courses]
+                result += [
+                    y
+                    for y in six.itervalues(_known[x][1])
+                    if y.count_courses() == nr_of_courses
+                ]
             else:
-                result += [y for y in six.itervalues(_known[x][1])
-                           if y.count_strings() == nr_of_strings
-                            and y.count_courses() == nr_of_courses]
+                result += [
+                    y
+                    for y in six.itervalues(_known[x][1])
+                    if y.count_strings() == nr_of_strings
+                    and y.count_courses() == nr_of_courses
+                ]
     return result
+
 
 def get_instruments():
     """Return a sorted list of instruments that have string tunings defined
     for them."""
     return sorted([_known[upname][0] for upname in _known])
 
-add_tuning('Baglamas (Greek)', 'Modal D standard tuning', [['D-4', 'D-5'],
-           ['A-4', 'A-4'], ['D-5', 'D-5']])
-add_tuning('Bajo quinto', 'Standard tuning.', [['A-2', 'A-1'], ['D-3', 'D-2'],
-           ['G-2', 'G-2'], ['C-3', 'C-3'], ['F-3', 'F-3']])
-add_tuning('Bajo Sexto', 'Standard tuning', [
-    ['E-2', 'E-1'],
-    ['A-2', 'A-1'],
-    ['D-3', 'D-2'],
-    ['G-2', 'G-2'],
-    ['C-3', 'C-3'],
-    ['F-3', 'F-3'],
-    ])
-add_tuning('Bandola Oriental', 'Standard tuning.', [['G-3', 'G-3'], ['D-4',
-           'D-4'], ['A-4', 'A-4'], ['E-5', 'E-5']])
-add_tuning('Banjo (bass)',
-           'A cello banjo is sometimes called a "bass banjo",but there are true bass banjos as well'
-           , ['E-1', 'A-1', 'D-2', 'G-2'])
-add_tuning('Banjo (cello)', 'Standard tuning. Same as cello and mandocello',
-           ['C-2', 'G-2', 'D-3', 'A-3'])
-add_tuning('Banjo (tenor)', 'Standard tenor jazz tuning', ['C-3', 'G-3', 'D-4',
-           'A-4'])
-add_tuning('Banjo (tenor)', 'Irish tenor tuning', ['G-2', 'D-3', 'A-3', 'E-4'])
-add_tuning('Banjo (5-string)', 'Open G tuning', ['G-4', 'D-3', 'G-3', 'B-3',
-           'D-4'])
-add_tuning('Baritone guitar', 'Standard 5th lower tuning', [
-    'A-1',
-    'D-2',
-    'G-2',
-    'C-3',
-    'E-3',
-    'A-3',
-    ])
-add_tuning('Baritone guitar', 'Octave lower tuning', [
-    'E-1',
-    'A-1',
-    'D-2',
-    'G-2',
-    'B-2',
-    'E-3',
-    ])
-add_tuning('Bass guitar', 'Standard 4-string tuning', ['E-1', 'A-1', 'D-2',
-           'G-2'])
-add_tuning('Bass guitar', 'Standard 5-string tuning', ['B-0', 'E-1', 'A-1',
-           'D-2', 'G-2'])
-add_tuning('Bass guitar', 'Alternate 5-string tuning', ['E-1', 'A-1', 'D-2',
-           'G-2', 'C-3'])
-add_tuning('Bass guitar', 'Standard 6-string tuning', [
-    'B-0',
-    'E-1',
-    'A-1',
-    'D-2',
-    'G-2',
-    'C-3',
-    ])
-add_tuning('Cello', 'Standard tuning', ['C-2', 'G-2', 'D-3', 'A-3'])
-add_tuning('Cello', '"5th Suite" tuning', ['C-2', 'G-2', 'D-3', 'G-3'])
-add_tuning('Cello banjo', 'Standard tuning', ['C-2', 'G-2', 'D-3', 'A-3'])
-add_tuning('Charango', 'Standard C6 tuning. 3rd course is an octave pair.',
-           [['G-4', 'G-4'], ['C-4', 'C-4'], ['E-5', 'E-4'], ['A-4', 'A-4'],
-           ['E-5', 'E-5']])
-add_tuning('Charangon', 'F6 tuning', [['C-4', 'C-4'], ['F-4', 'F-4'], ['A-5',
-           'A-4'], ['D-5', 'D-5'], ['A-5', 'A-5']])
-add_tuning('Charangon', 'G6 tuning', [['D-4', 'D-4'], ['G-4', 'G-4'], ['B-5',
-           'B-4'], ['E-5', 'E-5'], ['B-5', 'B-5']])
-add_tuning('Cuatro', 'Standard tuning', [['B-3', 'B-2'], ['E-4', 'E-3'], ['A-3'
-           , 'A-3'], ['D-4', 'D-4'], ['G-4', 'G-4']])
-add_tuning('Double bass', 'Orchestral tuning', ['E-1', 'A-1', 'D-2', 'G-2'])
-add_tuning('Dulcimer',
-           'Ionian Tuning (The traditional dulcimer is fretted diatonically whole, whole, half, whole, whole, half, whole. )'
-           , ['A-3', 'A-3', 'D-3'])
-add_tuning('Dulcimer', 'Mixolydian Tuning', ['D-4', 'A-3', 'D-3'])
-add_tuning('Dulcimer', 'Dorian Tuning', ['G-3', 'A-3', 'D-3'])
-add_tuning('Dulcimer', 'Aeolian Tuning', ['C-4', 'A-3', 'D-3'])
-add_tuning('Fiddle', 'Standard tuning', ['G-3', 'D-4', 'A-4', 'E-5'])
-add_tuning('Fiddle', 'Cajun tuning', ['F-3', 'C-4', 'G-4', 'F-5'])
-add_tuning('Fiddle', 'Open G tuning', ['G-3', 'D-4', 'G-4', 'B-4'])
-add_tuning('Fiddle', 'Sawmill tuning', ['G-3', 'D-4', 'G-4', 'D-5'])
-add_tuning('Fiddle', '"Gee-dad"', ['G-3', 'D-4', 'A-4', 'D-5'])
-add_tuning('Fiddle', 'Open D tuning', ['D-3', 'D-4', 'A-4', 'D-5'])
-add_tuning('Fiddle', 'Old-timey D tuning', ['A-3', 'D-4', 'A-4', 'E-5'])
-add_tuning('Fiddle', 'Cross Tuning, High bass, high counter', ['A-3', 'E-4',
-           'A-4', 'E-5'])
-add_tuning('Gadulka', '3 playing strings, with up to 10 sympathetic strings.',
-           ['A-3', 'E-3', 'A-4'])
-add_tuning('Greek Bouzouki', 'Standard F6 tuning', [['C-3', 'C-4'], ['F-3',
-           'F-4'], ['A-3', 'A-3'], ['D-4', 'D-4']])
-add_tuning('Greek Bouzouki', 'Standard F6 tuning', [['D-3', 'D-4'], ['A-3',
-           'A-3'], ['D-4', 'D-4']])
-add_tuning('Guitar', 'Standard tuning', [
-    'E-2',
-    'A-2',
-    'D-3',
-    'G-3',
-    'B-3',
-    'E-4',
-    ])
-add_tuning('Guitar', '*DADGAD* Dsus4 tuning', [
-    'D-2',
-    'A-2',
-    'D-3',
-    'G-3',
-    'A-3',
-    'D-4',
-    ])
-add_tuning('Guitar', 'Double drop D tuning', [
-    'D-2',
-    'A-2',
-    'D-3',
-    'G-3',
-    'B-3',
-    'D-4',
-    ])
-add_tuning('Guitar', 'Drop D tuning', [
-    'D-2',
-    'A-2',
-    'D-3',
-    'G-3',
-    'B-3',
-    'E-4',
-    ])
-add_tuning('Guitar', 'Open C major tuning', [
-    'C-2',
-    'G-2',
-    'C-3',
-    'G-3',
-    'C-3',
-    'E-4',
-    ])
-add_tuning('Guitar', 'Open E minor tuning', [
-    'E-2',
-    'B-2',
-    'E-3',
-    'G-3',
-    'B-3',
-    'E-4',
-    ])
-add_tuning('Guitar', 'Open G major tuning', [
-    'D-2',
-    'G-2',
-    'D-3',
-    'G-3',
-    'B-3',
-    'D-4',
-    ])
-add_tuning('Guitar',
-           'Standard tuning. Some players tune the second course G string to unison to minimize breakage.'
-           , [
-    ['E-2', 'E-3'],
-    ['A-2', 'A-3'],
-    ['D-3', 'D-4'],
-    ['G-3', 'G-4'],
-    ['B-3', 'B-3'],
-    ['E-4', 'E-4'],
-    ])
-add_tuning('Guitar Banjo', 'Standard guitar tuning', [
-    'E-2',
-    'A-2',
-    'D-3',
-    'G-3',
-    'B-3',
-    'E-4',
-    ])
-add_tuning("Guitarrón", 'Standard tuning', [
-    'A-1',
-    'D-2',
-    'G-2',
-    'C-3',
-    'E-3',
-    'A-2',
-    ])
-add_tuning('Huapanguera', '', ['G-2', ['D-3', 'D-4'], ['G-3', 'G-3'], ['B-3',
-           'B-3'], 'E-3'])
-add_tuning('Irish bouzouki', 'Irish tuning (octaves)', [['G-3', 'G-2'], ['D-4',
-           'D-3'], ['A-3', 'A-3'], ['D-4', 'D-4']])
-add_tuning('Irish bouzouki', 'Irish tuning (unison pairs)', [['G-2', 'G-2'],
-           ['D-3', 'D-3'], ['A-3', 'A-3'], ['D-4', 'D-4']])
-add_tuning('Irish bouzouki', '"Mandolin" tuning (octaves)', [['G-3', 'G-2'],
-           ['D-4', 'D-3'], ['A-3', 'A-3'], ['E-4', 'E-4']])
-add_tuning('Irish bouzouki', '"Mandolin" tuning (unison pairs)', [['G-2', 'G-2'
-           ], ['D-3', 'D-3'], ['A-3', 'A-3'], ['E-4', 'E-4']])
-add_tuning('Irish bouzouki', 'Modal D tuning (octaves)', [['A-3', 'A-2'], ['D-4'
-           , 'D-3'], ['A-3', 'A-3'], ['D-4', 'D-4']])
-add_tuning('Irish bouzouki', 'Modal D tuning (unison pairs)', [['A-2', 'A-2'],
-           ['D-3', 'D-3'], ['A-3', 'A-3'], ['D-4', 'D-4']])
-add_tuning('Mandobass', 'Standard tuning', ['E-1', 'A-1', 'D-2', 'G-2'])
-add_tuning('Mandola',
-           'Standard tuning. Pitched a 5th below mandolin tuning.  Known in Europe as the tenor mandola.'
-           , [['C-3', 'C-3'], ['G-3', 'G-3'], ['D-4', 'D-4'], ['A-4', 'A-4']])
-add_tuning('Mandocello', 'Standard tuning. Pitched an octave below the mandola.'
-           , [['C-2', 'C-2'], ['G-2', 'G-2'], ['D-3', 'D-3'], ['A-3', 'A-3']])
-add_tuning('Mandolin', 'Standard tuning', [['G-3', 'G-3'], ['D-4', 'D-4'],
-           ['A-4', 'A-4'], ['E-5', 'E-5']])
-add_tuning('Mandolin (piccolo)', 'Standard tuning', [['C-4', 'C-4'], ['G-4',
-           'G-4'], ['D-5', 'D-5'], ['A-5', 'A-5']])
-add_tuning('Mandolin (Octave)',
-           'Standard tuning. Known in Europe as the octave mandola.  Pitched an octave below the mandolin.'
-           , [['G-2', 'G-2'], ['D-3', 'D-3'], ['A-3', 'A-3'], ['E-4', 'E-4']])
-add_tuning('Mejorana', 'Standard tuning', ['D-4', 'A-4', 'A-3', 'B-3', 'E-4'])
-add_tuning('Mejorana', 'Alternative tuning', ['D-4', 'G-4', 'G-3', 'B-3', 'E-3'
-           ])
-add_tuning('Octave Guitar', 'see *Soprano guitar*', [
-    'E-3',
-    'A-4',
-    'D-4',
-    'G-4',
-    'B-4',
-    'E-5',
-    ])
-add_tuning('Requinto', 'Standard tuning', [
-    'A-2',
-    'D-3',
-    'G-3',
-    'C-4',
-    'E-4',
-    'A-4',
-    ])
-add_tuning('Ronroco', 'Standard C6 tuning (tuned an octave below the charango).'
-           , [['G-3', 'G-3'], ['C-3', 'C-3'], ['E-4', 'E-3'], ['A-3', 'A-3'],
-           ['E-4', 'E-4']])
-add_tuning('Soprano guitar', 'Standard tuning', [
-    'E-3',
-    'A-4',
-    'D-4',
-    'G-4',
-    'B-4',
-    'E-5',
-    ])
-add_tuning('Taro patch',
-           'Standard C6 tuning. The taro patch is a double-string ukulele.',
-           [['G-3', 'G-4'], ['C-3', 'C-4'], ['E-4', 'E-4'], ['A-4', 'A-4']])
-add_tuning('Tenor guitar', 'Standard tuning.', ['C-3', 'G-3', 'D-4', 'A-4'])
-add_tuning('Tiple', 'Standard Colombian G6 tuning.', [['D-4', 'D-3', 'D-4'],
-           ['G-4', 'G-3', 'G-4'], ['B-3', 'B-3', 'B-3'], ['E-4', 'E-4', 'E-4']])
-add_tuning('Tres', 'Standard C major tuning', [['G-4', 'G-3'], ['C-4', 'C-4'],
-           ['E-4', 'E-3']])
-add_tuning('Ukulele', 'Standard C6 tuning for soprano, concert and tenor.',
-           ['G-4', 'C-4', 'E-4', 'A-4'])
-add_tuning('Viola', 'Standard tuning. Pitched a 5th below the violin.', ['C-3',
-           'G-3', 'D-4', 'A-4'])
-add_tuning('Violin', 'Standard tuning', ['G-3', 'D-4', 'A-4', 'E-5'])
-add_tuning('Violin', 'Cajun tuning to accompany accordion', ['F-3', 'C-4', 'G-4'
-           , 'D-5'])
-add_tuning('Walaycho', 'F6 tuning', [['C-4', 'C-4'], ['F-4', 'F-4'], ['A-5',
-           'A-4'], ['D-5', 'D-5'], ['A-5', 'A-5']])
-add_tuning('Walaycho', 'G6 tuning', [['D-4', 'D-4'], ['G-4', 'G-4'], ['B-5',
-           'B-4'], ['E-5', 'E-5'], ['B-5', 'B-5']])
+
+add_tuning(
+    "Baglamas (Greek)",
+    "Modal D standard tuning",
+    [["D-4", "D-5"], ["A-4", "A-4"], ["D-5", "D-5"]],
+)
+add_tuning(
+    "Bajo quinto",
+    "Standard tuning.",
+    [["A-2", "A-1"], ["D-3", "D-2"], ["G-2", "G-2"], ["C-3", "C-3"], ["F-3", "F-3"]],
+)
+add_tuning(
+    "Bajo Sexto",
+    "Standard tuning",
+    [
+        ["E-2", "E-1"],
+        ["A-2", "A-1"],
+        ["D-3", "D-2"],
+        ["G-2", "G-2"],
+        ["C-3", "C-3"],
+        ["F-3", "F-3"],
+    ],
+)
+add_tuning(
+    "Bandola Oriental",
+    "Standard tuning.",
+    [["G-3", "G-3"], ["D-4", "D-4"], ["A-4", "A-4"], ["E-5", "E-5"]],
+)
+add_tuning(
+    "Banjo (bass)",
+    'A cello banjo is sometimes called a "bass banjo",but there are true bass banjos as well',
+    ["E-1", "A-1", "D-2", "G-2"],
+)
+add_tuning(
+    "Banjo (cello)",
+    "Standard tuning. Same as cello and mandocello",
+    ["C-2", "G-2", "D-3", "A-3"],
+)
+add_tuning("Banjo (tenor)", "Standard tenor jazz tuning", ["C-3", "G-3", "D-4", "A-4"])
+add_tuning("Banjo (tenor)", "Irish tenor tuning", ["G-2", "D-3", "A-3", "E-4"])
+add_tuning("Banjo (5-string)", "Open G tuning", ["G-4", "D-3", "G-3", "B-3", "D-4"])
+add_tuning(
+    "Baritone guitar",
+    "Standard 5th lower tuning",
+    ["A-1", "D-2", "G-2", "C-3", "E-3", "A-3",],
+)
+add_tuning(
+    "Baritone guitar",
+    "Octave lower tuning",
+    ["E-1", "A-1", "D-2", "G-2", "B-2", "E-3",],
+)
+add_tuning("Bass guitar", "Standard 4-string tuning", ["E-1", "A-1", "D-2", "G-2"])
+add_tuning(
+    "Bass guitar", "Standard 5-string tuning", ["B-0", "E-1", "A-1", "D-2", "G-2"]
+)
+add_tuning(
+    "Bass guitar", "Alternate 5-string tuning", ["E-1", "A-1", "D-2", "G-2", "C-3"]
+)
+add_tuning(
+    "Bass guitar",
+    "Standard 6-string tuning",
+    ["B-0", "E-1", "A-1", "D-2", "G-2", "C-3",],
+)
+add_tuning("Cello", "Standard tuning", ["C-2", "G-2", "D-3", "A-3"])
+add_tuning("Cello", '"5th Suite" tuning', ["C-2", "G-2", "D-3", "G-3"])
+add_tuning("Cello banjo", "Standard tuning", ["C-2", "G-2", "D-3", "A-3"])
+add_tuning(
+    "Charango",
+    "Standard C6 tuning. 3rd course is an octave pair.",
+    [["G-4", "G-4"], ["C-4", "C-4"], ["E-5", "E-4"], ["A-4", "A-4"], ["E-5", "E-5"]],
+)
+add_tuning(
+    "Charangon",
+    "F6 tuning",
+    [["C-4", "C-4"], ["F-4", "F-4"], ["A-5", "A-4"], ["D-5", "D-5"], ["A-5", "A-5"]],
+)
+add_tuning(
+    "Charangon",
+    "G6 tuning",
+    [["D-4", "D-4"], ["G-4", "G-4"], ["B-5", "B-4"], ["E-5", "E-5"], ["B-5", "B-5"]],
+)
+add_tuning(
+    "Cuatro",
+    "Standard tuning",
+    [["B-3", "B-2"], ["E-4", "E-3"], ["A-3", "A-3"], ["D-4", "D-4"], ["G-4", "G-4"]],
+)
+add_tuning("Double bass", "Orchestral tuning", ["E-1", "A-1", "D-2", "G-2"])
+add_tuning(
+    "Dulcimer",
+    "Ionian Tuning (The traditional dulcimer is fretted diatonically whole, whole, half, whole, whole, half, whole. )",
+    ["A-3", "A-3", "D-3"],
+)
+add_tuning("Dulcimer", "Mixolydian Tuning", ["D-4", "A-3", "D-3"])
+add_tuning("Dulcimer", "Dorian Tuning", ["G-3", "A-3", "D-3"])
+add_tuning("Dulcimer", "Aeolian Tuning", ["C-4", "A-3", "D-3"])
+add_tuning("Fiddle", "Standard tuning", ["G-3", "D-4", "A-4", "E-5"])
+add_tuning("Fiddle", "Cajun tuning", ["F-3", "C-4", "G-4", "F-5"])
+add_tuning("Fiddle", "Open G tuning", ["G-3", "D-4", "G-4", "B-4"])
+add_tuning("Fiddle", "Sawmill tuning", ["G-3", "D-4", "G-4", "D-5"])
+add_tuning("Fiddle", '"Gee-dad"', ["G-3", "D-4", "A-4", "D-5"])
+add_tuning("Fiddle", "Open D tuning", ["D-3", "D-4", "A-4", "D-5"])
+add_tuning("Fiddle", "Old-timey D tuning", ["A-3", "D-4", "A-4", "E-5"])
+add_tuning(
+    "Fiddle", "Cross Tuning, High bass, high counter", ["A-3", "E-4", "A-4", "E-5"]
+)
+add_tuning(
+    "Gadulka",
+    "3 playing strings, with up to 10 sympathetic strings.",
+    ["A-3", "E-3", "A-4"],
+)
+add_tuning(
+    "Greek Bouzouki",
+    "Standard F6 tuning",
+    [["C-3", "C-4"], ["F-3", "F-4"], ["A-3", "A-3"], ["D-4", "D-4"]],
+)
+add_tuning(
+    "Greek Bouzouki",
+    "Standard F6 tuning",
+    [["D-3", "D-4"], ["A-3", "A-3"], ["D-4", "D-4"]],
+)
+add_tuning("Guitar", "Standard tuning", ["E-2", "A-2", "D-3", "G-3", "B-3", "E-4",])
+add_tuning(
+    "Guitar", "*DADGAD* Dsus4 tuning", ["D-2", "A-2", "D-3", "G-3", "A-3", "D-4",]
+)
+add_tuning(
+    "Guitar", "Double drop D tuning", ["D-2", "A-2", "D-3", "G-3", "B-3", "D-4",]
+)
+add_tuning("Guitar", "Drop D tuning", ["D-2", "A-2", "D-3", "G-3", "B-3", "E-4",])
+add_tuning("Guitar", "Open C major tuning", ["C-2", "G-2", "C-3", "G-3", "C-3", "E-4",])
+add_tuning("Guitar", "Open E minor tuning", ["E-2", "B-2", "E-3", "G-3", "B-3", "E-4",])
+add_tuning("Guitar", "Open G major tuning", ["D-2", "G-2", "D-3", "G-3", "B-3", "D-4",])
+add_tuning(
+    "Guitar",
+    "Standard tuning. Some players tune the second course G string to unison to minimize breakage.",
+    [
+        ["E-2", "E-3"],
+        ["A-2", "A-3"],
+        ["D-3", "D-4"],
+        ["G-3", "G-4"],
+        ["B-3", "B-3"],
+        ["E-4", "E-4"],
+    ],
+)
+add_tuning(
+    "Guitar Banjo",
+    "Standard guitar tuning",
+    ["E-2", "A-2", "D-3", "G-3", "B-3", "E-4",],
+)
+add_tuning("Guitarrón", "Standard tuning", ["A-1", "D-2", "G-2", "C-3", "E-3", "A-2",])
+add_tuning(
+    "Huapanguera", "", ["G-2", ["D-3", "D-4"], ["G-3", "G-3"], ["B-3", "B-3"], "E-3"]
+)
+add_tuning(
+    "Irish bouzouki",
+    "Irish tuning (octaves)",
+    [["G-3", "G-2"], ["D-4", "D-3"], ["A-3", "A-3"], ["D-4", "D-4"]],
+)
+add_tuning(
+    "Irish bouzouki",
+    "Irish tuning (unison pairs)",
+    [["G-2", "G-2"], ["D-3", "D-3"], ["A-3", "A-3"], ["D-4", "D-4"]],
+)
+add_tuning(
+    "Irish bouzouki",
+    '"Mandolin" tuning (octaves)',
+    [["G-3", "G-2"], ["D-4", "D-3"], ["A-3", "A-3"], ["E-4", "E-4"]],
+)
+add_tuning(
+    "Irish bouzouki",
+    '"Mandolin" tuning (unison pairs)',
+    [["G-2", "G-2"], ["D-3", "D-3"], ["A-3", "A-3"], ["E-4", "E-4"]],
+)
+add_tuning(
+    "Irish bouzouki",
+    "Modal D tuning (octaves)",
+    [["A-3", "A-2"], ["D-4", "D-3"], ["A-3", "A-3"], ["D-4", "D-4"]],
+)
+add_tuning(
+    "Irish bouzouki",
+    "Modal D tuning (unison pairs)",
+    [["A-2", "A-2"], ["D-3", "D-3"], ["A-3", "A-3"], ["D-4", "D-4"]],
+)
+add_tuning("Mandobass", "Standard tuning", ["E-1", "A-1", "D-2", "G-2"])
+add_tuning(
+    "Mandola",
+    "Standard tuning. Pitched a 5th below mandolin tuning.  Known in Europe as the tenor mandola.",
+    [["C-3", "C-3"], ["G-3", "G-3"], ["D-4", "D-4"], ["A-4", "A-4"]],
+)
+add_tuning(
+    "Mandocello",
+    "Standard tuning. Pitched an octave below the mandola.",
+    [["C-2", "C-2"], ["G-2", "G-2"], ["D-3", "D-3"], ["A-3", "A-3"]],
+)
+add_tuning(
+    "Mandolin",
+    "Standard tuning",
+    [["G-3", "G-3"], ["D-4", "D-4"], ["A-4", "A-4"], ["E-5", "E-5"]],
+)
+add_tuning(
+    "Mandolin (piccolo)",
+    "Standard tuning",
+    [["C-4", "C-4"], ["G-4", "G-4"], ["D-5", "D-5"], ["A-5", "A-5"]],
+)
+add_tuning(
+    "Mandolin (Octave)",
+    "Standard tuning. Known in Europe as the octave mandola.  Pitched an octave below the mandolin.",
+    [["G-2", "G-2"], ["D-3", "D-3"], ["A-3", "A-3"], ["E-4", "E-4"]],
+)
+add_tuning("Mejorana", "Standard tuning", ["D-4", "A-4", "A-3", "B-3", "E-4"])
+add_tuning("Mejorana", "Alternative tuning", ["D-4", "G-4", "G-3", "B-3", "E-3"])
+add_tuning(
+    "Octave Guitar", "see *Soprano guitar*", ["E-3", "A-4", "D-4", "G-4", "B-4", "E-5",]
+)
+add_tuning("Requinto", "Standard tuning", ["A-2", "D-3", "G-3", "C-4", "E-4", "A-4",])
+add_tuning(
+    "Ronroco",
+    "Standard C6 tuning (tuned an octave below the charango).",
+    [["G-3", "G-3"], ["C-3", "C-3"], ["E-4", "E-3"], ["A-3", "A-3"], ["E-4", "E-4"]],
+)
+add_tuning(
+    "Soprano guitar", "Standard tuning", ["E-3", "A-4", "D-4", "G-4", "B-4", "E-5",]
+)
+add_tuning(
+    "Taro patch",
+    "Standard C6 tuning. The taro patch is a double-string ukulele.",
+    [["G-3", "G-4"], ["C-3", "C-4"], ["E-4", "E-4"], ["A-4", "A-4"]],
+)
+add_tuning("Tenor guitar", "Standard tuning.", ["C-3", "G-3", "D-4", "A-4"])
+add_tuning(
+    "Tiple",
+    "Standard Colombian G6 tuning.",
+    [
+        ["D-4", "D-3", "D-4"],
+        ["G-4", "G-3", "G-4"],
+        ["B-3", "B-3", "B-3"],
+        ["E-4", "E-4", "E-4"],
+    ],
+)
+add_tuning(
+    "Tres", "Standard C major tuning", [["G-4", "G-3"], ["C-4", "C-4"], ["E-4", "E-3"]]
+)
+add_tuning(
+    "Ukulele",
+    "Standard C6 tuning for soprano, concert and tenor.",
+    ["G-4", "C-4", "E-4", "A-4"],
+)
+add_tuning(
+    "Viola",
+    "Standard tuning. Pitched a 5th below the violin.",
+    ["C-3", "G-3", "D-4", "A-4"],
+)
+add_tuning("Violin", "Standard tuning", ["G-3", "D-4", "A-4", "E-5"])
+add_tuning(
+    "Violin", "Cajun tuning to accompany accordion", ["F-3", "C-4", "G-4", "D-5"]
+)
+add_tuning(
+    "Walaycho",
+    "F6 tuning",
+    [["C-4", "C-4"], ["F-4", "F-4"], ["A-5", "A-4"], ["D-5", "D-5"], ["A-5", "A-5"]],
+)
+add_tuning(
+    "Walaycho",
+    "G6 tuning",
+    [["D-4", "D-4"], ["G-4", "G-4"], ["B-5", "B-4"], ["E-5", "E-5"], ["B-5", "B-5"]],
+)

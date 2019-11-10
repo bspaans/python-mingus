@@ -36,7 +36,8 @@ from pygame.locals import *
 from mingus.containers import *
 from mingus.midi import fluidsynth
 from os import sys
-SF2 = 'soundfont.sf2'
+
+SF2 = "soundfont.sf2"
 
 PAD_PLACEMENT = [  # high, mid, low, snare bass, crash, ride, open, close
     (190, 20),
@@ -48,7 +49,7 @@ PAD_PLACEMENT = [  # high, mid, low, snare bass, crash, ride, open, close
     (470, 160),
     (20, 160),
     (20, 300),
-    ]
+]
 FADEOUT = 0.125  # coloration fadout time (1 tick = 0.001)
 
 
@@ -74,7 +75,7 @@ if not fluidsynth.init(SF2):
 
 pygame.init()
 screen = pygame.display.set_mode((610, 500))
-(pad, pad_rect) = load_img('pad.png')
+(pad, pad_rect) = load_img("pad.png")
 hit = pygame.Surface(pad_rect.size)  # Used to display which pad was hit
 
 track = pygame.Surface((610, 45))
@@ -82,7 +83,7 @@ track.fill((0, 0, 0))
 pygame.draw.rect(track, (255, 0, 0), track.get_rect(), 1)
 for y in range(1, 9):
     pygame.draw.line(track, (255, 0, 0), (0, y * 5), (610, y * 5), 1)
-pygame.display.set_caption('mingus drum')
+pygame.display.set_caption("mingus drum")
 
 
 def play_note(note):
@@ -90,25 +91,25 @@ def play_note(note):
     play request to fluidsynth"""
 
     index = None
-    if note == Note('B', 2):
+    if note == Note("B", 2):
         index = 0
-    elif note == Note('A', 2):
+    elif note == Note("A", 2):
         index = 1
-    elif note == Note('G', 2):
+    elif note == Note("G", 2):
         index = 2
-    elif note == Note('E', 2):
+    elif note == Note("E", 2):
         index = 3
-    elif note == Note('C', 2):
+    elif note == Note("C", 2):
         index = 4
-    elif note == Note('A', 3):
+    elif note == Note("A", 3):
         index = 5
-    elif note == Note('B', 3):
+    elif note == Note("B", 3):
         index = 6
-    elif note == Note('A#', 2):
+    elif note == Note("A#", 2):
         index = 7
-    elif note == Note('G#', 2):
+    elif note == Note("G#", 2):
         index = 8
-    if index != None and status == 'record':
+    if index != None and status == "record":
         playing.append([index, tick])
         recorded.append([index, tick, note])
         recorded_buffer.append([index, tick])
@@ -126,14 +127,14 @@ high_barrier = 0.50
 playing = []  # Notes playing right now
 recorded = []  # Recorded notes. A list of all the notes entered.
 recorded_buffer = []  # Recorded notes that are in the display window (ie. their
-                      # tick is between low and high barrier)
+# tick is between low and high barrier)
 played = 0  # Used to keep track of the place in the recording, when status is
-            # 'play'
+# 'play'
 buffered = 0  # Used to keep track of the buffer, when status is 'play'
 need_buffer = True  # This is only False when status is 'play' and there are no
-                    # more notes to buffer
+# more notes to buffer
 
-status = 'stopped'
+status = "stopped"
 while not quit:
     screen.fill((0, 0, 0))
 
@@ -189,30 +190,30 @@ while not quit:
             quit = True
         if event.type == KEYDOWN:
             if event.key == K_KP0:
-                play_note(Note('E', 2))  # snare
+                play_note(Note("E", 2))  # snare
             elif event.key == K_KP1 or event.key == K_SPACE:
-                play_note(Note('C', 2))  # bass
+                play_note(Note("C", 2))  # bass
             elif event.key == K_KP_ENTER:
-                play_note(Note('B', 2))  # high tom
+                play_note(Note("B", 2))  # high tom
             elif event.key == K_KP2:
-                play_note(Note('A', 2))  # middle tom
+                play_note(Note("A", 2))  # middle tom
             elif event.key == K_KP3:
-                play_note(Note('G', 2))  # low tom
+                play_note(Note("G", 2))  # low tom
             elif event.key == K_KP4:
-                play_note(Note('A', 3))  # crash
+                play_note(Note("A", 3))  # crash
             elif event.key == K_KP5:
-                play_note(Note('G#', 2))  # hihat closed
+                play_note(Note("G#", 2))  # hihat closed
             elif event.key == K_KP6:
-                play_note(Note('A#', 2))  # hihat opened
+                play_note(Note("A#", 2))  # hihat opened
             elif event.key == K_KP9:
-                play_note(Note('B', 3))  # ride
-            if status == 'record':
+                play_note(Note("B", 3))  # ride
+            if status == "record":
                 if event.key == K_p:
 
                     # Starts playing mode, which a lot of variables have to be
                     # adjusted for
 
-                    status = 'play'
+                    status = "play"
                     tick = 0.0
                     low_barrier = 0.0
                     high_barrier = 0.50
@@ -229,20 +230,20 @@ while not quit:
                             buffered += 1
                         else:
                             break
-            elif status == 'stopped':
+            elif status == "stopped":
                 if event.key == K_r:
-                    status = 'record'
+                    status = "record"
             if event.key == K_ESCAPE:
                 quit = True
 
-    if status == 'play':
+    if status == "play":
         try:
             while recorded[played][1] <= tick:
                 playing.append([recorded[played][0], recorded[played][1]])
                 fluidsynth.play_Note(recorded[played][2], 9, 100)
                 played += 1
                 if played == len(recorded) - 1:
-                    status = 'stopped'
+                    status = "stopped"
         except:
             pass
 
@@ -250,8 +251,7 @@ while not quit:
 
         try:
             while need_buffer and recorded[buffered][1] <= high_barrier:
-                recorded_buffer.append([recorded[buffered][0],
-                                       recorded[buffered][1]])
+                recorded_buffer.append([recorded[buffered][0], recorded[buffered][1]])
                 buffered += 1
                 if buffered >= len(recorded) - 1:
                     buffered = len(recorded) - 1
@@ -259,6 +259,6 @@ while not quit:
         except:
             pass
     pygame.display.update()
-    if status != 'stopped':
+    if status != "stopped":
         tick += 0.001
 pygame.quit()

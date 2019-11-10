@@ -1,4 +1,7 @@
 
+format:
+	python -m black mingus mingus_examples unittest setup.py
+
 install:
 	python setup.py install
 

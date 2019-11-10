@@ -46,6 +46,7 @@ for x in range(129):
     _log_cache.append(Note().from_int(x).to_hertz())
 _last_asked = None
 
+
 def _find_log_index(f):
     """Look up the index of the frequency f in the frequency table.
 
@@ -86,6 +87,7 @@ def _find_log_index(f):
     _last_asked = (begin, f)
     return begin
 
+
 def find_frequencies(data, freq=44100, bits=16):
     """Convert audio data into a frequency-amplitude table using fast fourier
     transformation.
@@ -110,6 +112,7 @@ def find_frequencies(data, freq=44100, bits=16):
     freqArray = numpy.arange(0, uniquePts * s, s)
     return list(zip(freqArray, p))
 
+
 def find_notes(freqTable, maxNote=100):
     """Convert the (frequencies, amplitude) list to a (Note, amplitude) list."""
     res = [0] * 129
@@ -121,13 +124,13 @@ def find_notes(freqTable, maxNote=100):
                 res[f] += ampl
             else:
                 res[128] += ampl
-    return [(Note().from_int(x) if x < 128 else None, n) for (x, n) in
-            enumerate(res)]
+    return [(Note().from_int(x) if x < 128 else None, n) for (x, n) in enumerate(res)]
+
 
 def data_from_file(file):
     """Return (first channel data, sample frequency, sample width) from a .wav
     file."""
-    fp = wave.open(file, 'r')
+    fp = wave.open(file, "r")
     data = fp.readframes(fp.getnframes())
     channels = fp.getnchannels()
     freq = fp.getframerate()
@@ -135,7 +138,7 @@ def data_from_file(file):
 
     # Unpack bytes -- warning currently only tested with 16 bit wavefiles. 32
     # bit not supported.
-    data = struct.unpack(('%sh' % fp.getnframes()) * channels, data)
+    data = struct.unpack(("%sh" % fp.getnframes()) * channels, data)
 
     # Only use first channel
     channel1 = []
@@ -147,11 +150,13 @@ def data_from_file(file):
     fp.close()
     return (channel1, freq, bits)
 
+
 def find_Note(data, freq, bits):
     """Get the frequencies, feed them to find_notes and the return the Note
     with the highest amplitude."""
     data = find_frequencies(data, freq, bits)
     return sorted(find_notes(data), key=operator.itemgetter(1))[-1][0]
+
 
 def analyze_chunks(data, freq, bits, chunksize=512):
     """Cut the one channel data in chunks and analyzes them separately.
@@ -165,7 +170,8 @@ def analyze_chunks(data, freq, bits, chunksize=512):
         data = data[chunksize:]
     return res
 
-def find_melody(file='440_480_clean.wav', chunksize=512):
+
+def find_melody(file="440_480_clean.wav", chunksize=512):
     """Cut the sample into chunks and analyze each chunk.
 
     Return a list [(Note, chunks)] where chunks is the number of chunks
@@ -188,4 +194,3 @@ def find_melody(file='440_480_clean.wav', chunksize=512):
         else:
             res.append((d, 1))
     return [(x, freq) for (x, freq) in res]
-

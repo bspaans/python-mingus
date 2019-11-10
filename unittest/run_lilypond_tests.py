@@ -22,5 +22,6 @@ from __future__ import absolute_import
 
 import unittest
 import test_lilypond
+
 suite = unittest.TestSuite([test_lilypond.suite()])
 unittest.TextTestRunner(verbosity=2).run(suite)

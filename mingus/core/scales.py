@@ -59,6 +59,7 @@ from mingus.core.keys import keys, get_notes
 from mingus.core.mt_exceptions import NoteFormatError, FormatError, RangeError
 from six.moves import range
 
+
 def determine(notes):
     """Determine the scales containing the notes.
 
@@ -73,13 +74,15 @@ def determine(notes):
 
     for key in keys:
         for scale in _Scale.__subclasses__():
-            if scale.type == 'major':
-                if (notes <= set(scale(key[0]).ascending()) or
-                        notes <= set(scale(key[0]).descending())):
+            if scale.type == "major":
+                if notes <= set(scale(key[0]).ascending()) or notes <= set(
+                    scale(key[0]).descending()
+                ):
                     res.append(scale(key[0]).name)
-            elif scale.type == 'minor':
-                if (notes <= set(scale(get_notes(key[1])[0]).ascending()) or
-                        notes <= set(scale(get_notes(key[1])[0]).descending())):
+            elif scale.type == "minor":
+                if notes <= set(
+                    scale(get_notes(key[1])[0]).ascending()
+                ) or notes <= set(scale(get_notes(key[1])[0]).descending()):
                     res.append(scale(get_notes(key[1])[0]).name)
     return res
 
@@ -102,8 +105,9 @@ class _Scale(object):
         return "<Scale object ('{0}')>".format(self.name)
 
     def __str__(self):
-        return 'Ascending:  {0}\nDescending: {1}'.format(
-                ' '.join(self.ascending()), ' '.join(self.descending()))
+        return "Ascending:  {0}\nDescending: {1}".format(
+            " ".join(self.ascending()), " ".join(self.descending())
+        )
 
     def __eq__(self, other):
         if self.ascending() == other.ascending():
@@ -125,7 +129,7 @@ class _Scale(object):
         """Return the list of descending notes."""
         return list(reversed(self.ascending()))
 
-    def degree(self, degree_number, direction='a'):
+    def degree(self, degree_number, direction="a"):
         """Return the asked scale degree.
 
         The direction of the scale is 'a' for ascending (default) and 'd'
@@ -133,17 +137,18 @@ class _Scale(object):
         """
         if degree_number < 1:
             raise RangeError("degree '%s' out of range" % degree_number)
-        if direction == 'a':
+        if direction == "a":
             notes = self.ascending()[:-1]
-            return notes[degree_number-1]
-        elif direction == 'd':
+            return notes[degree_number - 1]
+        elif direction == "d":
             notes = reversed(self.descending())[:-1]
-            return notes[degree_number-1]
+            return notes[degree_number - 1]
         else:
             raise FormatError("Unrecognised direction '%s'" % direction)
 
 
 # The diatonic scales
+
 
 class Diatonic(_Scale):
 
@@ -155,8 +160,8 @@ class Diatonic(_Scale):
     Descending: C B A G F E D C
     """
 
-    type = 'diatonic'
-        
+    type = "diatonic"
+
     def __init__(self, note, semitones, octaves=1):
         """Create the diatonic scale starting on the chosen note.
 
@@ -165,8 +170,7 @@ class Diatonic(_Scale):
         """
         super(Diatonic, self).__init__(note, octaves)
         self.semitones = semitones
-        self.name = '{0} diatonic, semitones in {1}'.format(self.tonic,
-                self.semitones)
+        self.name = "{0} diatonic, semitones in {1}".format(self.tonic, self.semitones)
 
     def ascending(self):
         notes = [self.tonic]
@@ -180,6 +184,7 @@ class Diatonic(_Scale):
 
 # Ancient scales
 
+
 class Ionian(_Scale):
 
     """The ionian scale.
@@ -190,12 +195,12 @@ class Ionian(_Scale):
     Descending: C B A G F E D C
     """
 
-    type = 'ancient'
+    type = "ancient"
 
     def __init__(self, note, octaves=1):
         """Create the ionian mode scale starting on the chosen note."""
         super(Ionian, self).__init__(note, octaves)
-        self.name = '{0} ionian'.format(self.tonic)
+        self.name = "{0} ionian".format(self.tonic)
 
     def ascending(self):
         notes = Diatonic(self.tonic, (3, 7)).ascending()[:-1]
@@ -212,12 +217,12 @@ class Dorian(_Scale):
     Descending: D C B A G F E D
     """
 
-    type = 'ancient'
+    type = "ancient"
 
     def __init__(self, note, octaves=1):
         """Create the dorian mode scale starting on the chosen note."""
         super(Dorian, self).__init__(note, octaves)
-        self.name = '{0} dorian'.format(self.tonic)
+        self.name = "{0} dorian".format(self.tonic)
 
     def ascending(self):
         notes = Diatonic(self.tonic, (2, 6)).ascending()[:-1]
@@ -234,12 +239,12 @@ class Phrygian(_Scale):
     Descending: E D C B A G F E
     """
 
-    type = 'ancient'
+    type = "ancient"
 
     def __init__(self, note, octaves=1):
         """Create the phrygian mode scale starting on the chosen note."""
         super(Phrygian, self).__init__(note, octaves)
-        self.name = '{0} phrygian'.format(self.tonic)
+        self.name = "{0} phrygian".format(self.tonic)
 
     def ascending(self):
         notes = Diatonic(self.tonic, (1, 5)).ascending()[:-1]
@@ -256,12 +261,12 @@ class Lydian(_Scale):
     Descending: F E D C B A G F
     """
 
-    type = 'ancient'
+    type = "ancient"
 
     def __init__(self, note, octaves=1):
         """Create the lydian mode scale starting on the chosen note."""
         super(Lydian, self).__init__(note, octaves)
-        self.name = '{0} lydian'.format(self.tonic)
+        self.name = "{0} lydian".format(self.tonic)
 
     def ascending(self):
         notes = Diatonic(self.tonic, (4, 7)).ascending()[:-1]
@@ -278,12 +283,12 @@ class Mixolydian(_Scale):
     Descending: G F E D C B A G
     """
 
-    type = 'ancient'
+    type = "ancient"
 
     def __init__(self, note, octaves=1):
         """Create the mixolydian mode scale starting on the chosen note."""
         super(Mixolydian, self).__init__(note, octaves)
-        self.name = '{0} mixolydian'.format(self.tonic)
+        self.name = "{0} mixolydian".format(self.tonic)
 
     def ascending(self):
         notes = Diatonic(self.tonic, (3, 6)).ascending()[:-1]
@@ -300,12 +305,12 @@ class Aeolian(_Scale):
     Descending: A G F E D C B A
     """
 
-    type = 'ancient'
+    type = "ancient"
 
     def __init__(self, note, octaves=1):
         """Create the aeolian mode scale starting on the chosen note."""
         super(Aeolian, self).__init__(note, octaves)
-        self.name = '{0} aeolian'.format(self.tonic)
+        self.name = "{0} aeolian".format(self.tonic)
 
     def ascending(self):
         notes = Diatonic(self.tonic, (2, 5)).ascending()[:-1]
@@ -322,12 +327,12 @@ class Locrian(_Scale):
     Descending: B A G F E D C B
     """
 
-    type = 'ancient'
+    type = "ancient"
 
     def __init__(self, note, octaves=1):
         """Create the locrian mode scale starting on the chosen note."""
         super(Locrian, self).__init__(note, octaves)
-        self.name = '{0} locrian'.format(self.tonic)
+        self.name = "{0} locrian".format(self.tonic)
 
     def ascending(self):
         notes = Diatonic(self.tonic, (1, 4)).ascending()[:-1]
@@ -335,6 +340,7 @@ class Locrian(_Scale):
 
 
 # The major scales
+
 
 class Major(_Scale):
 
@@ -346,12 +352,12 @@ class Major(_Scale):
     Descending: A G# F# E D C# B A
     """
 
-    type = 'major'
+    type = "major"
 
     def __init__(self, note, octaves=1):
         """Create the major scale starting on the chosen note."""
         super(Major, self).__init__(note, octaves)
-        self.name = '{0} major'.format(self.tonic)
+        self.name = "{0} major".format(self.tonic)
 
     def ascending(self):
         notes = get_notes(self.tonic)
@@ -368,12 +374,12 @@ class HarmonicMajor(_Scale):
     Descending: C B Ab G F E D C
     """
 
-    type = 'major'
+    type = "major"
 
     def __init__(self, note, octaves=1):
         """Create the harmonic major scale starting on the chosen note."""
         super(HarmonicMajor, self).__init__(note, octaves)
-        self.name = '{0} harmonic major'.format(self.tonic)
+        self.name = "{0} harmonic major".format(self.tonic)
 
     def ascending(self):
         notes = Major(self.tonic).ascending()[:-1]
@@ -382,6 +388,7 @@ class HarmonicMajor(_Scale):
 
 
 # The minor scales
+
 
 class NaturalMinor(_Scale):
 
@@ -393,12 +400,12 @@ class NaturalMinor(_Scale):
     Descending: A G F E D C B A
     """
 
-    type = 'minor'
+    type = "minor"
 
     def __init__(self, note, octaves=1):
         """Return the natural minor scale starting on the chosen note."""
         super(NaturalMinor, self).__init__(note, octaves)
-        self.name = '{0} natural minor'.format(self.tonic)
+        self.name = "{0} natural minor".format(self.tonic)
 
     def ascending(self):
         notes = get_notes(self.tonic.lower())
@@ -415,12 +422,12 @@ class HarmonicMinor(_Scale):
     Descending: A G# F E D C B A
     """
 
-    type = 'minor'
+    type = "minor"
 
     def __init__(self, note, octaves=1):
         """Create the harmonic minor scale starting on the chosen note."""
         super(HarmonicMinor, self).__init__(note, octaves)
-        self.name = '{0} harmonic minor'.format(self.tonic)
+        self.name = "{0} harmonic minor".format(self.tonic)
 
     def ascending(self):
         notes = NaturalMinor(self.tonic).ascending()[:-1]
@@ -438,19 +445,19 @@ class MelodicMinor(_Scale):
     Descending: A G F E D C B A
     """
 
-    type = 'minor'
+    type = "minor"
 
     def __init__(self, note, octaves=1):
         """Create the melodic minor scale starting on the chosen note."""
         super(MelodicMinor, self).__init__(note, octaves)
-        self.name = '{0} melodic minor'.format(self.tonic)
+        self.name = "{0} melodic minor".format(self.tonic)
 
     def ascending(self):
         notes = NaturalMinor(self.tonic).ascending()[:-1]
         notes[5] = augment(notes[5])
         notes[6] = augment(notes[6])
         return notes * self.octaves + [notes[0]]
-        
+
     def descending(self):
         notes = NaturalMinor(self.tonic).descending()[:-1]
         return notes * self.octaves + [notes[0]]
@@ -466,13 +473,13 @@ class Bachian(_Scale):
     Descending: A G# F# E D C B A
     """
 
-    type = 'minor'
+    type = "minor"
 
     def __init__(self, note, octaves=1):
         """Create the Bachian (also known as "real melodic minor" and "jazz")
         scale starting on the chosen note."""
         super(Bachian, self).__init__(note, octaves)
-        self.name = '{0} Bachian'.format(self.tonic)
+        self.name = "{0} Bachian".format(self.tonic)
 
     def ascending(self):
         notes = MelodicMinor(self.tonic).ascending()[:-1]
@@ -489,12 +496,12 @@ class MinorNeapolitan(_Scale):
     Descending: A G F E D C Bb A
     """
 
-    type = 'minor'
+    type = "minor"
 
     def __init__(self, note, octaves=1):
         """Create the minor Neapolitan scale starting on the chosen note."""
         super(MinorNeapolitan, self).__init__(note, octaves)
-        self.name = '{0} minor Neapolitan'.format(self.tonic)
+        self.name = "{0} minor Neapolitan".format(self.tonic)
 
     def ascending(self):
         notes = HarmonicMinor(self.tonic).ascending()[:-1]
@@ -509,6 +516,7 @@ class MinorNeapolitan(_Scale):
 
 # Other scales
 
+
 class Chromatic(_Scale):
 
     """The chromatic scale.
@@ -522,19 +530,19 @@ class Chromatic(_Scale):
     Descending: F E Eb D Db C B Bb A Ab G Gb F
     """
 
-    type = 'other'
+    type = "other"
 
     def __init__(self, key, octaves=1):
         """Create the chromatic scale in the chosen key."""
         self.key = key
         self.tonic = get_notes(key)[0]
         self.octaves = octaves
-        self.name = '{0} chromatic'.format(self.tonic)
+        self.name = "{0} chromatic".format(self.tonic)
 
     def ascending(self):
         notes = [self.tonic]
         for note in get_notes(self.key)[1:] + [self.tonic]:
-            if intervals.determine(notes[-1], note) == ('major second'):
+            if intervals.determine(notes[-1], note) == ("major second"):
                 notes.append(augment(notes[-1]))
                 notes.append(note)
             else:
@@ -545,7 +553,7 @@ class Chromatic(_Scale):
     def descending(self):
         notes = [self.tonic]
         for note in reversed(get_notes(self.key)):
-            if intervals.determine(note, notes[-1]) == ('major second'):
+            if intervals.determine(note, notes[-1]) == ("major second"):
                 notes.append(reduce_accidentals(diminish(notes[-1])))
                 notes.append(note)
             else:
@@ -564,12 +572,12 @@ class WholeTone(_Scale):
     Descending: C A# G# F# E D C
     """
 
-    type = 'other'
+    type = "other"
 
     def __init__(self, note, octaves=1):
         """Create the whole tone scale starting on the chosen note."""
         super(WholeTone, self).__init__(note, octaves)
-        self.name = '{0} whole tone'.format(self.tonic)
+        self.name = "{0} whole tone".format(self.tonic)
 
     def ascending(self):
         notes = [self.tonic]
@@ -588,21 +596,20 @@ class Octatonic(_Scale):
     Descending: C B A Ab Gb F Eb D C
     """
 
-    type = 'other'
+    type = "other"
 
     def __init__(self, note, octaves=1):
         """Create the octatonic (also known as "diminshed") scale starting
         on the chosen note."""
         super(Octatonic, self).__init__(note, octaves)
-        self.name = '{0} octatonic'.format(self.tonic)
+        self.name = "{0} octatonic".format(self.tonic)
 
     def ascending(self):
         notes = [self.tonic]
         for i in range(3):
             notes.extend(
-                    [intervals.major_second(notes[-1]),
-                        intervals.minor_third(notes[-1])])
+                [intervals.major_second(notes[-1]), intervals.minor_third(notes[-1])]
+            )
         notes.append(intervals.major_seventh(notes[0]))
         notes[-2] = intervals.major_sixth(notes[0])
         return notes * self.octaves + [notes[0]]
-

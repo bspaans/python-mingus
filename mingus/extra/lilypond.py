@@ -27,12 +27,12 @@ from __future__ import print_function
 from mingus.containers import Note
 
 from mingus.core.keys import Key
-from mingus.containers.mt_exceptions import (NoteFormatError,
-        UnexpectedObjectError)
+from mingus.containers.mt_exceptions import NoteFormatError, UnexpectedObjectError
 import mingus.core.value as value
 import os
 import subprocess
 from six.moves import range
+
 
 def from_Note(note, process_octaves=True, standalone=True):
     """Get a Note object and return the LilyPond equivalent in a string.
@@ -43,7 +43,7 @@ def from_Note(note, process_octaves=True, standalone=True):
     to let from_NoteContainer make use of this function.
     """
     # Throw exception
-    if not hasattr(note, 'name'):
+    if not hasattr(note, "name"):
         return False
 
     # Lower the case of the name
@@ -51,10 +51,10 @@ def from_Note(note, process_octaves=True, standalone=True):
 
     # Convert #'s and b's to 'is' and 'es' suffixes
     for accidental in note.name[1:]:
-        if accidental == '#':
-            result += 'is'
-        elif accidental == 'b':
-            result += 'es'
+        if accidental == "#":
+            result += "is"
+        elif accidental == "b":
+            result += "es"
 
     # Place ' and , for octaves
     if process_octaves:
@@ -65,12 +65,13 @@ def from_Note(note, process_octaves=True, standalone=True):
                 oct -= 1
         elif oct < 3:
             while oct < 3:
-                result += ','
+                result += ","
                 oct += 1
     if standalone:
-        return '{ %s }' % result
+        return "{ %s }" % result
     else:
         return result
+
 
 def from_NoteContainer(nc, duration=None, standalone=True):
     """Get a NoteContainer object and return the LilyPond equivalent in a
@@ -82,22 +83,22 @@ def from_NoteContainer(nc, duration=None, standalone=True):
     here to be used by from_Bar.
     """
     # Throw exception
-    if nc is not None and not hasattr(nc, 'notes'):
+    if nc is not None and not hasattr(nc, "notes"):
         return False
 
     # Return rests for None or empty lists
     if nc is None or len(nc.notes) == 0:
-        result = 'r'
+        result = "r"
     elif len(nc.notes) == 1:
 
-    # Return a single note if the list contains only one note
+        # Return a single note if the list contains only one note
         result = from_Note(nc.notes[0], standalone=False)
     else:
         # Return the notes grouped in '<' and '>'
-        result = '<'
+        result = "<"
         for notes in nc.notes:
-            result += from_Note(notes, standalone=False) + ' '
-        result = result[:-1] + '>'
+            result += from_Note(notes, standalone=False) + " "
+        result = result[:-1] + ">"
 
     # Add the duration
     if duration != None:
@@ -106,17 +107,18 @@ def from_NoteContainer(nc, duration=None, standalone=True):
         # Special case: check for longa and breve in the duration (issue #37)
         dur = parsed_value[0]
         if dur == value.longa:
-            result += '\\longa'
+            result += "\\longa"
         elif dur == value.breve:
-            result += '\\breve'
+            result += "\\breve"
         else:
             result += str(int(parsed_value[0]))
         for i in range(parsed_value[1]):
-            result += '.'
+            result += "."
     if not standalone:
         return result
     else:
-        return '{ %s }' % result
+        return "{ %s }" % result
+
 
 def from_Bar(bar, showkey=True, showtime=True):
     """Get a Bar object and return the LilyPond equivalent in a string.
@@ -125,16 +127,19 @@ def from_Bar(bar, showkey=True, showtime=True):
     key and the time should be shown.
     """
     # Throw exception
-    if not hasattr(bar, 'bar'):
+    if not hasattr(bar, "bar"):
         return False
 
     # Process the key
     if showkey:
         key_note = Note(bar.key.key[0].upper() + bar.key.key[1:])
-        key = '\\key %s \\%s ' % (from_Note(key_note, False, standalone=False), bar.key.mode)
+        key = "\\key %s \\%s " % (
+            from_Note(key_note, False, standalone=False),
+            bar.key.mode,
+        )
         result = key
     else:
-        result = ''
+        result = ""
 
     # Handle the NoteContainers
     latest_ratio = (1, 1)
@@ -143,35 +148,38 @@ def from_Bar(bar, showkey=True, showtime=True):
         parsed_value = value.determine(bar_entry[1])
         ratio = parsed_value[2:]
         if ratio == latest_ratio:
-            result += from_NoteContainer(bar_entry[2], bar_entry[1],
-                    standalone=False) + ' '
+            result += (
+                from_NoteContainer(bar_entry[2], bar_entry[1], standalone=False) + " "
+            )
         else:
             if ratio_has_changed:
-                result += '}'
-            result += '\\times %d/%d {' % (ratio[1], ratio[0])
-            result += from_NoteContainer(bar_entry[2], bar_entry[1],
-                    standalone=False) + ' '
+                result += "}"
+            result += "\\times %d/%d {" % (ratio[1], ratio[0])
+            result += (
+                from_NoteContainer(bar_entry[2], bar_entry[1], standalone=False) + " "
+            )
             latest_ratio = ratio
             ratio_has_changed = True
     if ratio_has_changed:
-        result += '}'
+        result += "}"
 
     # Process the time
     if showtime:
-        return '{ \\time %d/%d %s}' % (bar.meter[0], bar.meter[1], result)
+        return "{ \\time %d/%d %s}" % (bar.meter[0], bar.meter[1], result)
     else:
-        return '{ %s}' % result
+        return "{ %s}" % result
+
 
 def from_Track(track):
     """Process a Track object and return the LilyPond equivalent in a string."""
     # Throw exception
-    if not hasattr(track, 'bars'):
+    if not hasattr(track, "bars"):
         return False
-    lastkey = Key('C')
+    lastkey = Key("C")
     lasttime = (4, 4)
 
     # Handle the Bars:
-    result = ''
+    result = ""
     for bar in track.bars:
         if lastkey != bar.key:
             showkey = True
@@ -181,52 +189,60 @@ def from_Track(track):
             showtime = True
         else:
             showtime = False
-        result += from_Bar(bar, showkey, showtime) + ' '
+        result += from_Bar(bar, showkey, showtime) + " "
         lastkey = bar.key
         lasttime = bar.meter
-    return '{ %s}' % result
+    return "{ %s}" % result
+
 
 def from_Composition(composition):
     """Return the LilyPond equivalent of a Composition in a string."""
     # warning Throw exception
-    if not hasattr(composition, 'tracks'):
+    if not hasattr(composition, "tracks"):
         return False
-    result = '\\header { title = "%s" composer = "%s" opus = "%s" } '\
-         % (composition.title, composition.author, composition.subtitle)
+    result = '\\header { title = "%s" composer = "%s" opus = "%s" } ' % (
+        composition.title,
+        composition.author,
+        composition.subtitle,
+    )
     for track in composition.tracks:
-        result += from_Track(track) + ' '
+        result += from_Track(track) + " "
     return result[:-1]
+
 
 def from_Suite(suite):
     pass
+
 
 def to_png(ly_string, filename):
     """Save a string in LilyPond format to a PNG.
 
     LilyPond in the $PATH is needed.
     """
-    return save_string_and_execute_LilyPond(ly_string, filename, '-fpng')
+    return save_string_and_execute_LilyPond(ly_string, filename, "-fpng")
+
 
 def to_pdf(ly_string, filename):
     """Save a string in LilyPond format to a PDF.
 
     LilyPond in the $PATH is needed.
     """
-    return save_string_and_execute_LilyPond(ly_string, filename, '-fpdf')
+    return save_string_and_execute_LilyPond(ly_string, filename, "-fpdf")
+
 
 def save_string_and_execute_LilyPond(ly_string, filename, command):
     """A helper function for to_png and to_pdf. Should not be used directly."""
     ly_string = '\\version "2.10.33"\n' + ly_string
-    if filename[-4:] in ['.pdf', '.png']:
+    if filename[-4:] in [".pdf", ".png"]:
         filename = filename[:-4]
     try:
-        f = open(filename + '.ly', 'w')
+        f = open(filename + ".ly", "w")
         f.write(ly_string)
         f.close()
     except:
         return False
     command = 'lilypond %s -o "%s" "%s.ly"' % (command, filename, filename)
-    print('Executing: %s' % command)
+    print("Executing: %s" % command)
     p = subprocess.Popen(command, shell=True).wait()
-    os.remove(filename + '.ly')
+    os.remove(filename + ".ly")
     return True

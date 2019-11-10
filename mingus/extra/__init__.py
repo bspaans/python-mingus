@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
@@ -20,12 +21,5 @@ from __future__ import absolute_import
 
 from mingus.extra import lilypond
 from mingus.extra.tunings import StringTuning
-__all__ = [
-    'lilypond',
-    'fft',
-    'musicxml',
-    'tunings',
-    'tablature',
-    'StringTuning'
-    ]
 
+__all__ = ["lilypond", "fft", "musicxml", "tunings", "tablature", "StringTuning"]

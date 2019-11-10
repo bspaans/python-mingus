@@ -25,7 +25,8 @@ from mingus.core.mt_exceptions import RangeError, FingerError
 import os
 from six.moves import range
 
-default_tuning = tunings.get_tuning('Guitar', 'Standard', 6, 1)
+default_tuning = tunings.get_tuning("Guitar", "Standard", 6, 1)
+
 
 def begin_track(tuning, padding=2):
     """Helper function that builds the first few characters of every bar."""
@@ -36,15 +37,22 @@ def begin_track(tuning, padding=2):
     # Build result
     res = []
     for x in names:
-        r = ' %s' % x
+        r = " %s" % x
         spaces = basesize - len(r)
-        r += ' ' * spaces + '||' + '-' * padding
+        r += " " * spaces + "||" + "-" * padding
         res.append(r)
     return res
 
 
-def add_headers(width=80, title='Untitled', subtitle='', author='', email='',
-        description='', tunings=[]):
+def add_headers(
+    width=80,
+    title="Untitled",
+    subtitle="",
+    author="",
+    email="",
+    description="",
+    tunings=[],
+):
     """Create a nice header in the form of a list of strings using the
     information that has been filled in.
 
@@ -52,20 +60,19 @@ def add_headers(width=80, title='Untitled', subtitle='', author='', email='',
     should be an integer and 'tunings' a list of tunings representing the
     instruments.
     """
-    result = ['']
+    result = [""]
     title = str.upper(title)
-    result += [str.center('  '.join(title), width)]
-    if subtitle != '':
-        result += ['', str.center(str.title(subtitle), width)]
-    if author != '' or email != '':
-        result += ['', '']
-        if email != '':
-            result += [str.center('Written by: %s <%s>' % (author, email),
-                       width)]
+    result += [str.center("  ".join(title), width)]
+    if subtitle != "":
+        result += ["", str.center(str.title(subtitle), width)]
+    if author != "" or email != "":
+        result += ["", ""]
+        if email != "":
+            result += [str.center("Written by: %s <%s>" % (author, email), width)]
         else:
-            result += [str.center('Written by: %s' % author, width)]
-    if description != '':
-        result += ['', '']
+            result += [str.center("Written by: %s" % author, width)]
+    if description != "":
+        result += ["", ""]
         words = description.split()
         lines = []
         line = []
@@ -80,14 +87,18 @@ def add_headers(width=80, title='Untitled', subtitle='', author='', email='',
                 last = len(word) + 1
         lines.append(line)
         for line in lines:
-            result += [str.center(' '.join(line), width)]
+            result += [str.center(" ".join(line), width)]
     if tunings != []:
-        result += ['', '', str.center('Instruments', width)]
+        result += ["", "", str.center("Instruments", width)]
         for (i, tuning) in enumerate(tunings):
-            result += ['', str.center('%d. %s' % (i + 1, tuning.instrument),
-                       width), str.center(tuning.description, width)]
-    result += ['', '']
+            result += [
+                "",
+                str.center("%d. %s" % (i + 1, tuning.instrument), width),
+                str.center(tuning.description, width),
+            ]
+    result += ["", ""]
     return result
+
 
 def from_Note(note, width=80, tuning=None):
     """Return a string made out of ASCII tablature representing a Note object
@@ -108,7 +119,7 @@ def from_Note(note, width=80, tuning=None):
     (s, f) = (-1, -1)
 
     # Do an attribute check
-    if hasattr(note, 'string') and hasattr(note, 'fret'):
+    if hasattr(note, "string") and hasattr(note, "fret"):
         n = tuning.get_Note(note.string, note.fret)
         if n is not None and int(n) == int(note):
             (s, f) = (note.string, note.fret)
@@ -129,17 +140,19 @@ def from_Note(note, width=80, tuning=None):
         for i in range(len(result)):
             d = len(fret)
             if i != s:
-                result[i] += '-' * w + '|'
+                result[i] += "-" * w + "|"
             else:
                 d = w - len(fret)
-                result[i] += '-' * (d / 2) + fret
+                result[i] += "-" * (d / 2) + fret
                 d = (w - d / 2) - len(fret)
-                result[i] += '-' * d + '|'
+                result[i] += "-" * d + "|"
     else:
-        raise RangeError("No fret found that could play note '%s'. "
-                "Note out of range." % note)
+        raise RangeError(
+            "No fret found that could play note '%s'. " "Note out of range." % note
+        )
     result.reverse()
     return os.linesep.join(result)
+
 
 def from_NoteContainer(notes, width=80, tuning=None):
     """Return a string made out of ASCII tablature representing a
@@ -164,7 +177,7 @@ def from_NoteContainer(notes, width=80, tuning=None):
         f = []
         attr = []
         for note in notes:
-            if hasattr(note, 'string') and hasattr(note, 'fret'):
+            if hasattr(note, "string") and hasattr(note, "fret"):
                 n = tuning.get_Note(note.string, note.fret)
                 if n is not None and int(n) == int(note):
                     f += (note.string, note.fret)
@@ -198,16 +211,17 @@ def from_NoteContainer(notes, width=80, tuning=None):
         # Produce ASCII
         for i in range(len(result)):
             if i not in res:
-                result[i] += '-' * w + '|'
+                result[i] += "-" * w + "|"
             else:
                 d = w - len(res[i])
-                result[i] += '-' * (d / 2) + res[i]
+                result[i] += "-" * (d / 2) + res[i]
                 d = (w - d / 2) - len(res[i])
-                result[i] += '-' * d + '|'
+                result[i] += "-" * d + "|"
     else:
-        raise FingerError('No playable fingering found for: %s' % notes)
+        raise FingerError("No playable fingering found for: %s" % notes)
     result.reverse()
     return os.linesep.join(result)
+
 
 def from_Bar(bar, width=40, tuning=None, collapse=True):
     """Convert a mingus.containers.Bar object to ASCII tablature.
@@ -238,7 +252,7 @@ def from_Bar(bar, width=40, tuning=None, collapse=True):
             attr = []
             if notes is not None:
                 for note in notes:
-                    if hasattr(note, 'string') and hasattr(note, 'fret'):
+                    if hasattr(note, "string") and hasattr(note, "fret"):
                         n = tuning.get_Note(note.string, note.fret)
                         if n is not None and int(n) == int(note):
                             f.append((note.string, note.fret))
@@ -279,27 +293,30 @@ def from_Bar(bar, width=40, tuning=None, collapse=True):
             for i in range(len(result)):
                 dur = int(((1.0 / duration) * qsize) * 4) - maxlen
                 if i not in d:
-                    result[i] += '-' * maxlen + '-' * dur
+                    result[i] += "-" * maxlen + "-" * dur
                 else:
-                    result[i] += ('%' + str(maxlen) + 's') % d[i] + '-' * dur
+                    result[i] += ("%" + str(maxlen) + "s") % d[i] + "-" * dur
         else:
-            raise FingerError('No playable fingering found for: %s' % notes)
+            raise FingerError("No playable fingering found for: %s" % notes)
 
     # Padding at the end
     l = len(result[i]) + 1
     for i in range(len(result)):
-        result[i] += (width - l) * '-' + '|'
+        result[i] += (width - l) * "-" + "|"
     result.reverse()
 
     # Mark quarter notes
-    pad = ' ' * int(((1.0 / bar.meter[1]) * qsize) * 4 - 1)
-    r = ' ' * (result[0].find('||') + 2 + max(2, qsize / 2)) + ('*' + pad)\
-         * bar.meter[0]
-    r += ' ' * (len(result[0]) - len(r))
+    pad = " " * int(((1.0 / bar.meter[1]) * qsize) * 4 - 1)
+    r = (
+        " " * (result[0].find("||") + 2 + max(2, qsize / 2))
+        + ("*" + pad) * bar.meter[0]
+    )
+    r += " " * (len(result[0]) - len(r))
     if not collapse:
         return [r] + result
     else:
         return os.linesep.join([r] + result)
+
 
 def from_Track(track, maxwidth=80, tuning=None):
     """Convert a mingus.containers.Track object to an ASCII tablature string.
@@ -317,15 +334,16 @@ def from_Track(track, maxwidth=80, tuning=None):
     lastlen = 0
     for bar in track:
         r = from_Bar(bar, width, tuning, collapse=False)
-        barstart = r[1].find('||') + 2
+        barstart = r[1].find("||") + 2
         if (len(r[0]) + lastlen) - barstart < maxwidth and result != []:
             for i in range(1, len(r) + 1):
                 item = r[len(r) - i]
                 result[-i] += item[barstart:]
         else:
-            result += ['', ''] + r
+            result += ["", ""] + r
         lastlen = len(result[-1])
     return os.linesep.join(result)
+
 
 def from_Composition(composition, width=80):
     """Convert a mingus.containers.Composition to an ASCII tablature string.
@@ -353,7 +371,7 @@ def from_Composition(composition, width=80):
         composition.email,
         composition.description,
         instr_tunings,
-        )
+    )
 
     # Some variables
     w = _get_width(width)
@@ -371,11 +389,11 @@ def from_Composition(composition, width=80):
                 if barindex + x < len(tracks):
                     bar = tracks[barindex + x]
                     r = from_Bar(bar, w, tuning, collapse=False)
-                    barstart = r[1].find('||') + 2
+                    barstart = r[1].find("||") + 2
 
                     # Add extra '||' to quarter note marks to connect tracks.
                     if notfirst:
-                        r[0] = (r[0])[:barstart - 2] + '||' + (r[0])[barstart:]
+                        r[0] = (r[0])[: barstart - 2] + "||" + (r[0])[barstart:]
 
                     # Add bar to ascii
                     if ascii != []:
@@ -387,16 +405,17 @@ def from_Composition(composition, width=80):
 
             # Add extra '||' to connect tracks
             if notfirst and ascii != []:
-                pad = ascii[-1].find('||')
-                result += [' ' * pad + '||', ' ' * pad + '||']
+                pad = ascii[-1].find("||")
+                result += [" " * pad + "||", " " * pad + "||"]
             else:
                 notfirst = True
 
             # Finally, add ascii to result
             result += ascii
-        result += ['', '', '']
+        result += ["", "", ""]
         barindex += bars
     return os.linesep.join(result)
+
 
 def from_Suite(suite, maxwidth=80):
     """Convert a mingus.containers.Suite to an ASCII tablature string, complete
@@ -405,23 +424,29 @@ def from_Suite(suite, maxwidth=80):
     This function makes use of the Suite's title, subtitle, author, email
     and description attributes.
     """
-    subtitle = str(len(suite.compositions)) + ' Compositions' if suite.subtitle\
-         == '' else suite.subtitle
-    result = os.linesep.join(add_headers(
-        maxwidth,
-        suite.title,
-        subtitle,
-        suite.author,
-        suite.email,
-        suite.description,
-        ))
-    hr = maxwidth * '='
+    subtitle = (
+        str(len(suite.compositions)) + " Compositions"
+        if suite.subtitle == ""
+        else suite.subtitle
+    )
+    result = os.linesep.join(
+        add_headers(
+            maxwidth,
+            suite.title,
+            subtitle,
+            suite.author,
+            suite.email,
+            suite.description,
+        )
+    )
+    hr = maxwidth * "="
     n = os.linesep
     result = n + hr + n + result + n + hr + n + n
     for comp in suite:
         c = from_Composition(comp, maxwidth)
         result += c + n + hr + n + n
     return result
+
 
 def _get_qsize(tuning, width):
     """Return a reasonable quarter note size for 'tuning' and 'width'."""
@@ -432,6 +457,7 @@ def _get_qsize(tuning, width):
     # x * 4 + 0.5x - barsize = 0 4.5x = barsize x = barsize / 4.5
     return max(0, int(barsize / 4.5))
 
+
 def _get_width(maxwidth):
     """Return the width of a single bar, when width of the page is given."""
     width = maxwidth / 3
@@ -440,4 +466,3 @@ def _get_width(maxwidth):
     elif 60 < maxwidth <= 120:
         width = maxwidth / 2
     return width
-

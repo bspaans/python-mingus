@@ -26,6 +26,7 @@ from mingus.midi.midi_track import MidiTrack
 from binascii import a2b_hex
 from six.moves import range
 
+
 class MidiFile(object):
 
     """A class that generates MIDI files from MidiTracks."""
@@ -39,14 +40,13 @@ class MidiFile(object):
 
     def get_midi_data(self):
         """Collect and return the raw, binary MIDI data from the tracks."""
-        tracks = [t.get_midi_data() for t in self.tracks if t.track_data != b'']
-        return self.header() + b''.join(tracks)
+        tracks = [t.get_midi_data() for t in self.tracks if t.track_data != b""]
+        return self.header() + b"".join(tracks)
 
     def header(self):
         """Return a header for type 1 MIDI file."""
-        tracks = a2b_hex('%04x' % len([t for t in self.tracks if
-            t.track_data != '']))
-        return b'MThd\x00\x00\x00\x06\x00\x01' + tracks + self.time_division
+        tracks = a2b_hex("%04x" % len([t for t in self.tracks if t.track_data != ""]))
+        return b"MThd\x00\x00\x00\x06\x00\x01" + tracks + self.time_division
 
     def reset(self):
         """Reset every track."""
@@ -56,18 +56,18 @@ class MidiFile(object):
         """Collect the data from get_midi_data and write to file."""
         dat = self.get_midi_data()
         try:
-            f = open(file, 'wb')
+            f = open(file, "wb")
         except:
             print("Couldn't open '%s' for writing." % file)
             return False
         try:
             f.write(dat)
         except:
-            print('An error occured while writing data to %s.' % file)
+            print("An error occured while writing data to %s." % file)
             return False
         f.close()
         if verbose:
-            print('Written %d bytes to %s.' % (len(dat), file))
+            print("Written %d bytes to %s." % (len(dat), file))
         return True
 
 
@@ -81,12 +81,13 @@ def write_Note(file, note, bpm=120, repeat=0, verbose=False):
     t = MidiTrack(bpm)
     m.tracks = [t]
     while repeat >= 0:
-        t.set_deltatime(b'\x00')
+        t.set_deltatime(b"\x00")
         t.play_Note(note)
         t.set_deltatime(b"\x48")
         t.stop_Note(note)
         repeat -= 1
     return m.write_file(file, verbose)
+
 
 def write_NoteContainer(file, notecontainer, bpm=120, repeat=0, verbose=False):
     """Write a mingus.NoteContainer to a MIDI file."""
@@ -94,12 +95,13 @@ def write_NoteContainer(file, notecontainer, bpm=120, repeat=0, verbose=False):
     t = MidiTrack(bpm)
     m.tracks = [t]
     while repeat >= 0:
-        t.set_deltatime(b'\x00')
+        t.set_deltatime(b"\x00")
         t.play_NoteContainer(notecontainer)
         t.set_deltatime(b"\x48")
         t.stop_NoteContainer(notecontainer)
         repeat -= 1
     return m.write_file(file, verbose)
+
 
 def write_Bar(file, bar, bpm=120, repeat=0, verbose=False):
     """Write a mingus.Bar to a MIDI file.
@@ -113,6 +115,7 @@ def write_Bar(file, bar, bpm=120, repeat=0, verbose=False):
         t.play_Bar(bar)
         repeat -= 1
     return m.write_file(file, verbose)
+
 
 def write_Track(file, track, bpm=120, repeat=0, verbose=False):
     """Write a mingus.Track to a MIDI file.
@@ -130,6 +133,7 @@ def write_Track(file, track, bpm=120, repeat=0, verbose=False):
         repeat -= 1
     return m.write_file(file, verbose)
 
+
 def write_Composition(file, composition, bpm=120, repeat=0, verbose=False):
     """Write a mingus.Composition to a MIDI file."""
     m = MidiFile()
@@ -143,14 +147,16 @@ def write_Composition(file, composition, bpm=120, repeat=0, verbose=False):
         repeat -= 1
     return m.write_file(file, verbose)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     from mingus.containers.NoteContainer import NoteContainer
     from mingus.containers.Bar import Bar
     from mingus.containers.Track import Track
     from mingus.containers.Instrument import MidiInstrument
+
     b = Bar()
-    b2 = Bar('Ab', (3, 4))
-    n = NoteContainer(['A', 'C', 'E'])
+    b2 = Bar("Ab", (3, 4))
+    n = NoteContainer(["A", "C", "E"])
     t = Track()
     b + n
     b + []
@@ -164,10 +170,9 @@ if __name__ == '__main__':
     m = MidiInstrument()
     m.instrument_nr = 13
     t.instrument = m
-    t.name = 'Track Name Test'
-    write_NoteContainer('test.mid', n)
-    write_Bar('test2.mid', b)
-    write_Bar('test3.mid', b, 200)
-    write_Bar('test4.mid', b2, 200, 2)
-    write_Track('test5.mid', t, 120)
-
+    t.name = "Track Name Test"
+    write_NoteContainer("test.mid", n)
+    write_Bar("test2.mid", b)
+    write_Bar("test3.mid", b, 200)
+    write_Bar("test4.mid", b2, 200, 2)
+    write_Track("test5.mid", t, 120)
