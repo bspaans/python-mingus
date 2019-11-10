@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 #    mingus - Music theory Python package, generate_wiki_docs module.
@@ -176,7 +176,7 @@ def generate_package_wikidocs(package_string, file_prefix='ref',
         file_suffix='.wiki'):
     d = Documize()
     package = eval(package_string)
-    print '\nGenerating documentation for package {0}'.format(package_string)
+    print('\nGenerating documentation for package {0}'.format(package_string))
     for element in dir(package):
         if not callable(element) and not element.startswith('__'):
             fullname = '{0}.{1}'.format(package_string, element)
@@ -187,34 +187,36 @@ def generate_package_wikidocs(package_string, file_prefix='ref',
             for parts in fullname.split('.'):
                 wikiname += parts.capitalize()
             wikiname += file_suffix
-            print 'Writing {0}...'.format(wikiname),
+            print('Writing {0}...'.format(wikiname), end=' ')
             result = d.output_wiki()
             try:
                 f = open(os.path.join(sys.argv[1], wikiname), 'w')
                 try:
                     f.write(result)
-                    print 'OK'
+                    print('OK')
                 except:
-                    print "ERROR. Couldn't write to file."
+                    print("ERROR. Couldn't write to file.")
                 f.close()
             except:
-                print "ERROR. Couldn't open file for writing."
+                print("ERROR. Couldn't open file for writing.")
+
 
 def main():
-    print 'mingus version 0.5, Copyright (C) 2008-2015, Bart Spaans\n'
-    print 'mingus comes with ABSOLUTELY NO WARRANTY. This is free'
-    print 'software and you are welcome to redistribute it under'
-    print 'certain conditions.'
+    print("mingus version 0.5, Copyright (C) 2008-2015, Bart Spaans\n"
+          "mingus comes with ABSOLUTELY NO WARRANTY. This is free\n"
+          "software and you are welcome to redistribute it under\n"
+          "certain conditions.")
     if len(sys.argv) == 1:
-        print '\n\nUsage:', sys.argv[0], 'OUTPUT-DIRECTORY'
+        print('\n\nUsage:', sys.argv[0], 'OUTPUT-DIRECTORY')
         sys.exit(1)
     elif not os.path.isdir(sys.argv[1]):
-        print '\n\nError: not a valid directory:', sys.argv[1]
+        print('\n\nError: not a valid directory:', sys.argv[1])
         sys.exit(1)
     generate_package_wikidocs('mingus.core', 'ref', '.rst')
     generate_package_wikidocs('mingus.midi', 'ref', '.rst')
     generate_package_wikidocs('mingus.containers', 'ref', '.rst')
     generate_package_wikidocs('mingus.extra', 'ref', '.rst')
+
 
 if __name__ == '__main__':
     main()
