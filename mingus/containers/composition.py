@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
@@ -20,6 +21,7 @@ from __future__ import absolute_import
 
 from mingus.containers.mt_exceptions import UnexpectedObjectError
 
+
 class Composition(object):
 
     """A composition object.
@@ -29,11 +31,11 @@ class Composition(object):
     Composition can be stored together in Suites.
     """
 
-    title = 'Untitled'
-    subtitle = ''
-    author = ''
-    email = ''
-    description = ''
+    title = "Untitled"
+    subtitle = ""
+    author = ""
+    email = ""
+    description = ""
     tracks = []
     selected_tracks = []
 
@@ -59,9 +61,11 @@ class Composition(object):
         Raise an UnexpectedObjectError if the argument is not a
         mingus.containers.Track object.
         """
-        if not hasattr(track, 'bars'):
-            raise UnexpectedObjectError("Unexpected object '%s', "
-                    "expecting a mingus.containers.Track object" % track)
+        if not hasattr(track, "bars"):
+            raise UnexpectedObjectError(
+                "Unexpected object '%s', "
+                "expecting a mingus.containers.Track object" % track
+            )
         self.tracks.append(track)
         self.selected_tracks = [len(self.tracks) - 1]
 
@@ -73,12 +77,12 @@ class Composition(object):
         for n in self.selected_tracks:
             self.tracks[n] + note
 
-    def set_title(self, title='Untitled', subtitle=''):
+    def set_title(self, title="Untitled", subtitle=""):
         """Set the title and subtitle of the piece."""
         self.title = title
         self.subtitle = subtitle
 
-    def set_author(self, author='', email=''):
+    def set_author(self, author="", email=""):
         """Set the title and author of the piece."""
         self.author = author
         self.email = email
@@ -88,7 +92,7 @@ class Composition(object):
 
         Notes, note strings, NoteContainers, Bars and Tracks are accepted.
         """
-        if hasattr(value, 'bars'):
+        if hasattr(value, "bars"):
             return self.add_track(value)
         else:
             return self.add_note(value)
@@ -107,8 +111,7 @@ class Composition(object):
 
     def __repr__(self):
         """Return a string representing the class."""
-        result = ''
+        result = ""
         for x in self.tracks:
             result += str(x)
         return result
-

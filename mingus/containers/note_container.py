@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
@@ -22,6 +23,7 @@ from mingus.containers.note import Note
 from mingus.core import intervals, chords, progressions
 from mingus.containers.mt_exceptions import UnexpectedObjectError
 import six
+
 
 class NoteContainer(object):
 
@@ -60,9 +62,11 @@ class NoteContainer(object):
                     note = Note(note, self.notes[-1].octave + 1, dynamics)
                 else:
                     note = Note(note, self.notes[-1].octave, dynamics)
-        if not hasattr(note, 'name'):
-            raise UnexpectedObjectError("Object '%s' was not expected. "
-                    "Expecting a mingus.containers.Note object." % note)
+        if not hasattr(note, "name"):
+            raise UnexpectedObjectError(
+                "Object '%s' was not expected. "
+                "Expecting a mingus.containers.Note object." % note
+            )
         if note not in self.notes:
             self.notes.append(note)
             self.notes.sort()
@@ -78,11 +82,11 @@ class NoteContainer(object):
         or even:
         >>> notes = [['C', 5, {'volume': 20}], ['E', 6, {'volume': 20}]]
         """
-        if hasattr(notes, 'notes'):
+        if hasattr(notes, "notes"):
             for x in notes.notes:
                 self.add_note(x)
             return self.notes
-        elif hasattr(notes, 'name'):
+        elif hasattr(notes, "name"):
             self.add_note(notes)
             return self.notes
         elif isinstance(notes, six.string_types):
@@ -141,11 +145,11 @@ class NoteContainer(object):
         self.add_notes([startnote, n])
         return self
 
-    def from_progression(self, shorthand, key='C'):
+    def from_progression(self, shorthand, key="C"):
         """Shortcut to from_progression_shorthand."""
         return self.from_progression_shorthand(shorthand, key)
 
-    def from_progression_shorthand(self, shorthand, key='C'):
+    def from_progression_shorthand(self, shorthand, key="C"):
         """Empty the container and add the notes described in the progressions
         shorthand (eg. 'IIm6', 'V7', etc).
 
@@ -194,8 +198,7 @@ class NoteContainer(object):
         See the core.intervals module for a longer description on
         consonance.
         """
-        return self._consonance_test(intervals.is_perfect_consonant,
-                include_fourths)
+        return self._consonance_test(intervals.is_perfect_consonant, include_fourths)
 
     def is_imperfect_consonant(self):
         """Test whether the notes are imperfect consonants.
@@ -241,7 +244,7 @@ class NoteContainer(object):
         """
         if isinstance(notes, six.string_types):
             return self.remove_note(notes)
-        elif hasattr(notes, 'name'):
+        elif hasattr(notes, "name"):
             return self.remove_note(notes)
         else:
             for x in notes:
@@ -358,4 +361,3 @@ class NoteContainer(object):
             if x not in other:
                 return False
         return True
-

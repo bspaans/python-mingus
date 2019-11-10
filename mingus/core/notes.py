@@ -30,18 +30,11 @@ from __future__ import absolute_import
 from mingus.core.mt_exceptions import NoteFormatError, RangeError, FormatError
 from six.moves import range
 
-_note_dict = {
-    'C': 0,
-    'D': 2,
-    'E': 4,
-    'F': 5,
-    'G': 7,
-    'A': 9,
-    'B': 11
-    }
-fifths = ['F', 'C', 'G', 'D', 'A', 'E', 'B']
+_note_dict = {"C": 0, "D": 2, "E": 4, "F": 5, "G": 7, "A": 9, "B": 11}
+fifths = ["F", "C", "G", "D", "A", "E", "B"]
 
-def int_to_note(note_int, accidentals='#'):
+
+def int_to_note(note_int, accidentals="#"):
     """Convert integers in the range of 0-11 to notes in the form of C or C#
     or Db.
 
@@ -58,28 +51,31 @@ def int_to_note(note_int, accidentals='#'):
     'Eb'
     """
     if note_int not in range(12):
-        raise RangeError('int out of bounds (0-11): %d' % note_int)
-    ns = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
-    nf = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
-    if accidentals == '#':
+        raise RangeError("int out of bounds (0-11): %d" % note_int)
+    ns = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+    nf = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"]
+    if accidentals == "#":
         return ns[note_int]
-    elif accidentals == 'b':
+    elif accidentals == "b":
         return nf[note_int]
     else:
         raise FormatError("'%s' not valid as accidental" % accidentals)
 
+
 def is_enharmonic(note1, note2):
     """Test whether note1 and note2 are enharmonic, i.e. they sound the same."""
     return note_to_int(note1) == note_to_int(note2)
+
 
 def is_valid_note(note):
     """Return True if note is in a recognised format. False if not."""
     if note[0] not in _note_dict:
         return False
     for post in note[1:]:
-        if post != 'b' and post != '#':
+        if post != "b" and post != "#":
             return False
     return True
+
 
 def note_to_int(note):
     """Convert notes in the form of C, C#, Cb, C##, etc. to an integer in the
@@ -94,11 +90,12 @@ def note_to_int(note):
 
     # Check for '#' and 'b' postfixes
     for post in note[1:]:
-        if post == 'b':
+        if post == "b":
             val -= 1
-        elif post == '#':
+        elif post == "#":
             val += 1
     return val % 12
+
 
 def reduce_accidentals(note):
     """Reduce any extra accidentals to proper notes.
@@ -109,16 +106,17 @@ def reduce_accidentals(note):
     """
     val = note_to_int(note[0])
     for token in note[1:]:
-        if token == 'b':
+        if token == "b":
             val -= 1
-        elif token == '#':
+        elif token == "#":
             val += 1
         else:
             raise NoteFormatError("Unknown note format '%s'" % note)
     if val >= note_to_int(note[0]):
-        return int_to_note(val%12)
+        return int_to_note(val % 12)
     else:
-        return int_to_note(val%12, 'b')
+        return int_to_note(val % 12, "b")
+
 
 def remove_redundant_accidentals(note):
     """Remove redundant sharps and flats from the given note.
@@ -131,9 +129,9 @@ def remove_redundant_accidentals(note):
     """
     val = 0
     for token in note[1:]:
-        if token == 'b':
+        if token == "b":
             val -= 1
-        elif token == '#':
+        elif token == "#":
             val += 1
     result = note[0]
     while val > 0:
@@ -144,6 +142,7 @@ def remove_redundant_accidentals(note):
         val += 1
     return result
 
+
 def augment(note):
     """Augment a given note.
 
@@ -153,10 +152,11 @@ def augment(note):
     >>> augment('Cb')
     'C'
     """
-    if note[-1] != 'b':
-        return note + '#'
+    if note[-1] != "b":
+        return note + "#"
     else:
         return note[:-1]
+
 
 def diminish(note):
     """Diminish a given note.
@@ -167,8 +167,7 @@ def diminish(note):
     >>> diminish('C#')
     'C'
     """
-    if note[-1] != '#':
-        return note + 'b'
+    if note[-1] != "#":
+        return note + "b"
     else:
         return note[:-1]
-

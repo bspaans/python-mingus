@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
@@ -26,6 +27,7 @@ from mingus.containers.mt_exceptions import MeterFormatError
 import six
 from six.moves import range
 
+
 class Bar(object):
     """A bar object.
 
@@ -34,13 +36,13 @@ class Bar(object):
     Bars can be stored together with Instruments in Tracks.
     """
 
-    key = 'C'
+    key = "C"
     meter = (4, 4)
     current_beat = 0.0
     length = 0.0
     bar = []
 
-    def __init__(self, key='C', meter=(4, 4)):
+    def __init__(self, key="C", meter=(4, 4)):
         # warning should check types
         if isinstance(key, six.string_types):
             key = keys.Key(key)
@@ -70,9 +72,11 @@ class Bar(object):
             self.meter = (0, 0)
             self.length = 0.0
         else:
-            raise MeterFormatError("The meter argument '%s' is not an "
-                    "understood representation of a meter. "
-                    "Expecting a tuple." % meter)
+            raise MeterFormatError(
+                "The meter argument '%s' is not an "
+                "understood representation of a meter. "
+                "Expecting a tuple." % meter
+            )
 
     def place_notes(self, notes, duration):
         """Place the notes on the current_beat.
@@ -87,16 +91,15 @@ class Bar(object):
         """
         # note should be able to be one of strings, lists, Notes or
         # NoteContainers
-        if hasattr(notes, 'notes'):
+        if hasattr(notes, "notes"):
             pass
-        elif hasattr(notes, 'name'):
+        elif hasattr(notes, "name"):
             notes = NoteContainer(notes)
         elif isinstance(notes, six.string_types):
             notes = NoteContainer(notes)
         elif isinstance(notes, list):
             notes = NoteContainer(notes)
-        if self.current_beat + 1.0 / duration <= self.length or self.length\
-             == 0.0:
+        if self.current_beat + 1.0 / duration <= self.length or self.length == 0.0:
             self.bar.append([self.current_beat, duration, notes])
             self.current_beat += 1.0 / duration
             return True
@@ -194,8 +197,14 @@ class Bar(object):
         """Return a list of lists [place_in_beat, possible_progressions]."""
         res = []
         for x in self.bar:
-            res.append([x[0], progressions.determine(x[2].get_note_names(),
-                       self.key.key, shorthand)])
+            res.append(
+                [
+                    x[0],
+                    progressions.determine(
+                        x[2].get_note_names(), self.key.key, shorthand
+                    ),
+                ]
+            )
         return res
 
     def get_note_names(self):
@@ -224,9 +233,9 @@ class Bar(object):
         The value should be a NoteContainer, or a string/list/Note
         understood by the NoteContainer.
         """
-        if hasattr(value, 'notes'):
+        if hasattr(value, "notes"):
             pass
-        elif hasattr(value, 'name'):
+        elif hasattr(value, "name"):
             value = NoteContainer(value)
         elif isinstance(value, six.string_types):
             value = NoteContainer(value)
@@ -251,4 +260,3 @@ class Bar(object):
             if self.bar[b] != other.bar[b]:
                 return False
         return True
-

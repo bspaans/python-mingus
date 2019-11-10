@@ -16,18 +16,19 @@ from mingus.midi import fluidsynth
 import time
 import sys
 from random import random
-SF2 = 'soundfont_example.sf2'
+
+SF2 = "soundfont_example.sf2"
 progression = [
-    'I',
-    'vi',
-    'ii',
-    'iii7',
-    'I7',
-    'viidom7',
-    'iii7',
-    'V7',
-    ]
-key = 'C'
+    "I",
+    "vi",
+    "ii",
+    "iii7",
+    "I7",
+    "viidom7",
+    "iii7",
+    "V7",
+]
+key = "C"
 chords = progressions.to_chords(progression, key)
 if not fluidsynth.init(SF2):
     print "Couldn't load soundfont", SF2
@@ -76,4 +77,4 @@ while 1:
         fluidsynth.stop_Note(l)
         fluidsynth.stop_Note(p)
         i += 1
-    print '-' * 20
+    print "-" * 20

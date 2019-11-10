@@ -32,6 +32,7 @@ import mingus.core.intervals as intervals
 import binascii
 from six.moves import range
 
+
 def MIDI_to_Composition(file):
     """Convert a MIDI file to a mingus.containers.Composition and return it
     in a tuple with the last used tempo in beats per minute (this will
@@ -42,6 +43,7 @@ def MIDI_to_Composition(file):
     """
     m = MidiFile()
     return m.MIDI_to_Composition(file)
+
 
 class HeaderError(Exception):
     pass
@@ -67,17 +69,17 @@ class MidiFile:
     def MIDI_to_Composition(self, file):
         (header, track_data) = self.parse_midi_file(file)
         c = Composition()
-        if header[2]['fps']:
+        if header[2]["fps"]:
             print("Don't know how to parse this yet")
             return c
-        ticks_per_beat = header[2]['ticks_per_beat']
+        ticks_per_beat = header[2]["ticks_per_beat"]
         for track in track_data:
             t = Track()
             b = Bar()
             metronome = 1  # Tick once every quarter note
             thirtyseconds = 8  # 8 thirtyseconds in a quarter note
             meter = (4, 4)
-            key = 'C'
+            key = "C"
             for e in track:
                 (deltatime, event) = e
                 duration = float(deltatime) / (ticks_per_beat * 4.0)
@@ -94,69 +96,71 @@ class MidiFile:
                         b = Bar(key, meter)
                         b.place_notes(NoteContainer(), duration)
 
-                if event['event'] == 8:
+                if event["event"] == 8:
                     if deltatime == 0:
                         pass
-                elif event['event'] == 9:
+                elif event["event"] == 9:
                     # note on
-                    n = Note(notes.int_to_note(event['param1'] % 12),
-                             event['param1'] / 12 - 1)
-                    n.channel = event['channel']
-                    n.velocity = event['param2']
+                    n = Note(
+                        notes.int_to_note(event["param1"] % 12),
+                        event["param1"] / 12 - 1,
+                    )
+                    n.channel = event["channel"]
+                    n.velocity = event["param2"]
                     if len(b.bar) > 0:
                         b.bar[-1][2] + n
                     else:
                         b + n
-                elif event['event'] == 10:
+                elif event["event"] == 10:
                     # note aftertouch
                     pass
-                elif event['event'] == 11:
+                elif event["event"] == 11:
                     # controller select
                     pass
-                elif event['event'] == 12:
+                elif event["event"] == 12:
                     # program change
                     i = MidiInstrument()
-                    i.instrument_nr = event['param1']
+                    i.instrument_nr = event["param1"]
                     t.instrument = i
-                elif event['event'] == 0x0f:
+                elif event["event"] == 0x0F:
                     # meta event Text
-                    if event['meta_event'] == 1:
+                    if event["meta_event"] == 1:
                         pass
-                    elif event['meta_event'] == 3:
+                    elif event["meta_event"] == 3:
                         # Track name
-                        t.name = event['data']
-                    elif event['meta_event'] == 6:
+                        t.name = event["data"]
+                    elif event["meta_event"] == 6:
                         # Marker
                         pass
-                    elif event['meta_event'] == 7:
+                    elif event["meta_event"] == 7:
                         # Cue Point
                         pass
-                    elif event['meta_event'] == 47:
+                    elif event["meta_event"] == 47:
                         # End of Track
                         pass
-                    elif event['meta_event'] == 81:
+                    elif event["meta_event"] == 81:
                         # Set tempo warning Only the last change in bpm will get
                         # saved currently
-                        mpqn = self.bytes_to_int(event['data'])
+                        mpqn = self.bytes_to_int(event["data"])
                         bpm = 60000000 / mpqn
-                    elif event['meta_event'] == 88:
+                    elif event["meta_event"] == 88:
                         # Time Signature
-                        d = event['data']
+                        d = event["data"]
                         thirtyseconds = self.bytes_to_int(d[3])
                         metronome = self.bytes_to_int(d[2]) / 24.0
                         denom = 2 ** self.bytes_to_int(d[1])
                         numer = self.bytes_to_int(d[0])
                         meter = (numer, denom)
                         b.set_meter(meter)
-                    elif event['meta_event'] == 89:
+                    elif event["meta_event"] == 89:
                         # Key Signature
-                        d = event['data']
+                        d = event["data"]
                         sharps = self.bytes_to_int(d[0])
                         minor = self.bytes_to_int(d[0])
                         if minor:
-                            key = 'A'
+                            key = "A"
                         else:
-                            key = 'C'
+                            key = "C"
                         for i in range(abs(sharps)):
                             if sharps < 0:
                                 key = intervals.major_fourth(key)
@@ -164,9 +168,9 @@ class MidiFile:
                                 key = intervals.major_fifth(key)
                         b.key = Note(key)
                     else:
-                        print('Unsupported META event', event['meta_event'])
+                        print("Unsupported META event", event["meta_event"])
                 else:
-                    print('Unsupported MIDI event', event)
+                    print("Unsupported MIDI event", event)
             t + b
             c.tracks.append(t)
         return (c, bpm)
@@ -176,9 +180,10 @@ class MidiFile:
         format type, number of tracks and parsed time division information."""
         # Check header
         try:
-            if fp.read(4) != 'MThd':
-                raise HeaderError('Not a valid MIDI file header. Byte %d.'
-                        % self.bytes_read)
+            if fp.read(4) != "MThd":
+                raise HeaderError(
+                    "Not a valid MIDI file header. Byte %d." % self.bytes_read
+                )
             self.bytes_read += 4
         except:
             raise IOError("Couldn't read from file.")
@@ -188,8 +193,9 @@ class MidiFile:
             chunk_size = self.bytes_to_int(fp.read(4))
             self.bytes_read += 4
         except:
-            raise IOError("Couldn't read chunk size from file. Byte %d."
-                    % self.bytes_read)
+            raise IOError(
+                "Couldn't read chunk size from file. Byte %d." % self.bytes_read
+            )
 
         # Expect chunk size to be at least 6
         if chunk_size < 6:
@@ -198,8 +204,7 @@ class MidiFile:
             format_type = self.bytes_to_int(fp.read(2))
             self.bytes_read += 2
             if format_type not in [0, 1, 2]:
-                raise FormatError('%d is not a valid MIDI format.'
-                        % format_type)
+                raise FormatError("%d is not a valid MIDI format." % format_type)
         except:
             raise IOError("Couldn't read format type from file.")
         try:
@@ -207,8 +212,9 @@ class MidiFile:
             time_division = self.parse_time_division(fp.read(2))
             self.bytes_read += 4
         except:
-            raise IOError("Couldn't read number of tracks "
-                    "and/or time division from tracks.")
+            raise IOError(
+                "Couldn't read number of tracks " "and/or time division from tracks."
+            )
 
         chunk_size -= 6
         if chunk_size % 2 == 1:
@@ -232,15 +238,20 @@ class MidiFile:
         # otherwise in ticks_per_beat
         value = self.bytes_to_int(bytes)
         if not value & 0x8000:
-            return {'fps': False, 'ticks_per_beat': value & 0x7FFF}
+            return {"fps": False, "ticks_per_beat": value & 0x7FFF}
         else:
             SMPTE_frames = (value & 0x7F00) >> 2
             if SMPTE_frames not in [24, 25, 29, 30]:
-                raise TimeDivisionError("'%d' is not a valid value for the number of SMPTE frames"\
-                     % SMPTE_frames)
+                raise TimeDivisionError(
+                    "'%d' is not a valid value for the number of SMPTE frames"
+                    % SMPTE_frames
+                )
             clock_ticks = (value & 0x00FF) >> 2
-            return {'fps': True, 'SMPTE_frames': SMPTE_frames,
-                    'clock_ticks': clock_ticks}
+            return {
+                "fps": True,
+                "SMPTE_frames": SMPTE_frames,
+                "clock_ticks": clock_ticks,
+            }
 
     def parse_track(self, fp):
         """Parse a MIDI track from its header to its events.
@@ -257,7 +268,7 @@ class MidiFile:
             chunk_size -= chunk_delta
             events.append([delta_time, event])
         if chunk_size < 0:
-            print('yikes.', self.bytes_read, chunk_size)
+            print("yikes.", self.bytes_read, chunk_size)
         return events
 
     def parse_midi_event(self, fp):
@@ -271,21 +282,21 @@ class MidiFile:
             chunk_size += 1
             self.bytes_read += 1
         except:
-            raise IOError("Couldn't read event type "
-                    "and channel data from file.")
+            raise IOError("Couldn't read event type " "and channel data from file.")
 
         # Get the nibbles
-        event_type = (ec & 0xf0) >> 4
-        channel = ec & 0x0f
+        event_type = (ec & 0xF0) >> 4
+        channel = ec & 0x0F
 
         # I don't know what these events are supposed to do, but I keep finding
         # them. The parser ignores them.
         if event_type < 8:
-            raise FormatError('Unknown event type %d. Byte %d.' % (event_type,
-                self.bytes_read))
+            raise FormatError(
+                "Unknown event type %d. Byte %d." % (event_type, self.bytes_read)
+            )
 
         # Meta events can have strings of variable length
-        if event_type == 0x0f:
+        if event_type == 0x0F:
             try:
                 meta_event = self.bytes_to_int(fp.read(1))
                 (length, chunk_delta) = self.parse_varbyte_as_int(fp)
@@ -294,8 +305,10 @@ class MidiFile:
                 self.bytes_read += 1 + length
             except:
                 raise IOError("Couldn't read meta event from file.")
-            return ({'event': event_type, 'meta_event': meta_event,
-                'data': data}, chunk_size)
+            return (
+                {"event": event_type, "meta_event": meta_event, "data": data},
+                chunk_size,
+            )
         elif event_type in [12, 13]:
             # Program change and Channel aftertouch events only have one
             # parameter
@@ -306,8 +319,10 @@ class MidiFile:
             except:
                 raise IOError("Couldn't read MIDI event parameters from file.")
             param1 = self.bytes_to_int(param1)
-            return ({'event': event_type, 'channel': channel,
-                'param1': param1}, chunk_size)
+            return (
+                {"event": event_type, "channel": channel, "param1": param1},
+                chunk_size,
+            )
         else:
             try:
                 param1 = fp.read(1)
@@ -318,8 +333,15 @@ class MidiFile:
                 raise IOError("Couldn't read MIDI event parameters from file.")
             param1 = self.bytes_to_int(param1)
             param2 = self.bytes_to_int(param2)
-            return ({'event': event_type, 'channel': channel, 'param1': param1,
-                'param2': param2}, chunk_size)
+            return (
+                {
+                    "event": event_type,
+                    "channel": channel,
+                    "param1": param1,
+                    "param2": param2,
+                },
+                chunk_size,
+            )
 
     def parse_track_header(self, fp):
         """Return the size of the track chunk."""
@@ -328,11 +350,11 @@ class MidiFile:
             h = fp.read(4)
             self.bytes_read += 4
         except:
-            raise IOError("Couldn't read track header from file. Byte %d."
-                    % self.bytes_read)
-        if h != b'MTrk':
-            raise HeaderError('Not a valid Track header. Byte %d.'
-                    % self.bytes_read)
+            raise IOError(
+                "Couldn't read track header from file. Byte %d." % self.bytes_read
+            )
+        if h != b"MTrk":
+            raise HeaderError("Not a valid Track header. Byte %d." % self.bytes_read)
 
         # Parse the size of the header
         try:
@@ -351,9 +373,9 @@ class MidiFile:
         track data and the number of bytes read.
         """
         try:
-            f = open(file, 'r')
+            f = open(file, "r")
         except:
-            raise IOError('File not found')
+            raise IOError("File not found")
         self.bytes_read = 0
         header = self.parse_midi_file_header(f)
         tracks = header[1]
@@ -388,10 +410,10 @@ class MidiFile:
             return (result, bytes_read)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from sys import argv
     from mingus.midi import fluidsynth, midi_file_out
+
     fluidsynth.init(argv[2])
     (m, bpm) = MIDI_to_Composition(argv[1])
-    midi_file_out.write_Composition('test.mid', m, bpm)
-
+    midi_file_out.write_Composition("test.mid", m, bpm)

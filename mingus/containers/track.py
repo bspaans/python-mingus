@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
@@ -25,6 +26,7 @@ import mingus.core.value as value
 import six
 from six.moves import range
 
+
 class Track(object):
 
     """A track object.
@@ -39,7 +41,7 @@ class Track(object):
 
     bars = []
     instrument = None
-    name = 'Untitled'  # Will be looked for when saving a MIDI file.
+    name = "Untitled"  # Will be looked for when saving a MIDI file.
     tuning = None  # Used by tablature
 
     def __init__(self, instrument=None):
@@ -65,8 +67,10 @@ class Track(object):
         """
         if self.instrument != None:
             if not self.instrument.can_play_notes(note):
-                raise InstrumentRangeError("Note '%s' is not in range of the instrument (%s)" % (note,
-                        self.instrument))
+                raise InstrumentRangeError(
+                    "Note '%s' is not in range of the instrument (%s)"
+                    % (note, self.instrument)
+                )
         if duration == None:
             duration = 4
 
@@ -86,7 +90,7 @@ class Track(object):
         track."""
         for bar in self.bars:
             for beat, duration, notes in bar:
-                yield beat, duration, notes 
+                yield beat, duration, notes
 
     def from_chords(self, chords, duration=1):
         """Add chords to the Track.
@@ -111,8 +115,9 @@ class Track(object):
             else:
                 chord = NoteContainer().from_chord(chord)
                 if tun:
-                    chord = tun.find_chord_fingering(chord,
-                            return_best_as_NoteContainer=True)
+                    chord = tun.find_chord_fingering(
+                        chord, return_best_as_NoteContainer=True
+                    )
                 if not self.add_notes(chord, duration):
                     # This should be the standard behaviour of add_notes
                     dur = self.bars[-1].value_left()
@@ -175,11 +180,11 @@ class Track(object):
 
         Notes, notes as string, NoteContainers and Bars accepted.
         """
-        if hasattr(value, 'bar'):
+        if hasattr(value, "bar"):
             return self.add_bar(value)
-        elif hasattr(value, 'notes'):
+        elif hasattr(value, "notes"):
             return self.add_notes(value)
-        elif hasattr(value, 'name') or isinstance(value, six.string_types):
+        elif hasattr(value, "name") or isinstance(value, six.string_types):
             return self.add_notes(value)
 
     def test_integrity(self):
@@ -207,9 +212,11 @@ class Track(object):
         Throw an UnexpectedObjectError if the value being set is not a
         mingus.containers.Bar object.
         """
-        if not hasattr(value, 'bar'):
-            raise UnexpectedObjectError("Unexpected object '%s', "
-                    "expecting a mingus.containers.Barobject" % value)
+        if not hasattr(value, "bar"):
+            raise UnexpectedObjectError(
+                "Unexpected object '%s', "
+                "expecting a mingus.containers.Barobject" % value
+            )
         self.bars[index] = value
 
     def __repr__(self):
@@ -219,4 +226,3 @@ class Track(object):
     def __len__(self):
         """Enable the len() function for Tracks."""
         return len(self.bars)
-

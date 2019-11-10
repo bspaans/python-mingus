@@ -29,6 +29,7 @@ from __future__ import absolute_import
 
 from mingus.midi.sequencer import Sequencer
 
+
 class SequencerObserver(object):
 
     """An easy to extend base class that can be used to observe a Sequencer.
@@ -84,35 +85,34 @@ class SequencerObserver(object):
 
     def notify(self, msg_type, params):
         if msg_type == Sequencer.MSG_PLAY_INT:
-            self.play_int_note_event(params['note'], params['channel'],
-                    params['velocity'])
+            self.play_int_note_event(
+                params["note"], params["channel"], params["velocity"]
+            )
         elif msg_type == Sequencer.MSG_STOP_INT:
-            self.stop_int_note_event(params['note'], params['channel'])
+            self.stop_int_note_event(params["note"], params["channel"])
         elif msg_type == Sequencer.MSG_CC:
-            self.cc_event(params['channel'], params['control'], params['value'])
+            self.cc_event(params["channel"], params["control"], params["value"])
         elif msg_type == Sequencer.MSG_INSTR:
-            self.instr_event(params['channel'], params['instr'], params['bank'])
+            self.instr_event(params["channel"], params["instr"], params["bank"])
         elif msg_type == Sequencer.MSG_SLEEP:
-            self.sleep(params['s'])
+            self.sleep(params["s"])
         elif msg_type == Sequencer.MSG_PLAY_NOTE:
-            self.play_Note(params['note'], params['channel'],
-                    params['velocity'])
+            self.play_Note(params["note"], params["channel"], params["velocity"])
         elif msg_type == Sequencer.MSG_STOP_NOTE:
-            self.stop_Note(params['note'], params['channel'])
+            self.stop_Note(params["note"], params["channel"])
         elif msg_type == Sequencer.MSG_PLAY_NC:
-            self.play_NoteContainer(params['notes'], params['channel'])
+            self.play_NoteContainer(params["notes"], params["channel"])
         elif msg_type == Sequencer.MSG_STOP_NC:
-            self.stop_NoteContainer(params['notes'], params['channel'])
+            self.stop_NoteContainer(params["notes"], params["channel"])
         elif msg_type == Sequencer.MSG_PLAY_BAR:
-            self.play_Bar(params['bar'], params['channel'], params['bpm'])
+            self.play_Bar(params["bar"], params["channel"], params["bpm"])
         elif msg_type == Sequencer.MSG_PLAY_BARS:
-            self.play_Bars(params['bars'], params['channels'], params['bpm'])
+            self.play_Bars(params["bars"], params["channels"], params["bpm"])
         elif msg_type == Sequencer.MSG_PLAY_TRACK:
-            self.play_Track(params['track'], params['channel'], params['bpm'])
+            self.play_Track(params["track"], params["channel"], params["bpm"])
         elif msg_type == Sequencer.MSG_PLAY_TRACKS:
-            self.play_Tracks(params['tracks'], params['channels'],
-                    params['bpm'])
+            self.play_Tracks(params["tracks"], params["channels"], params["bpm"])
         elif msg_type == Sequencer.MSG_PLAY_COMPOSITION:
-            self.play_Composition(params['composition'], params['channels'],
-                    params['bpm'])
-
+            self.play_Composition(
+                params["composition"], params["channels"], params["bpm"]
+            )

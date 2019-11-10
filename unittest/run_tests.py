@@ -66,7 +66,7 @@ core = [
     test_meter,
     test_progressions,
     test_value,
-    ]
+]
 containers = [
     test_note,
     test_note_containers,
@@ -75,13 +75,8 @@ containers = [
     test_track,
     test_composition,
     test_suite,
-    ]
-extra = [
-        test_fft, 
-        test_tunings, 
-        test_tablature, 
-        test_musicxml
-        ]
+]
+extra = [test_fft, test_tunings, test_tablature, test_musicxml]
 
 # Run all tests
 
