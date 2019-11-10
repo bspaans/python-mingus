@@ -151,10 +151,10 @@ def write_Composition(file, composition, bpm=120, repeat=0, verbose=False):
 
 
 if __name__ == "__main__":
-    from mingus.containers.NoteContainer import NoteContainer
-    from mingus.containers.Bar import Bar
-    from mingus.containers.Track import Track
-    from mingus.containers.Instrument import MidiInstrument
+    from mingus.containers.note_container import NoteContainer
+    from mingus.containers.bar import Bar
+    from mingus.containers.track import Track
+    from mingus.containers.instrument import MidiInstrument
 
     b = Bar()
     b2 = Bar("Ab", (3, 4))
