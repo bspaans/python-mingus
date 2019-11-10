@@ -19,11 +19,14 @@
 
 """Dozens of standard tunings, a StringTuning class and some functions to help
 you search through them."""
+from __future__ import absolute_import
 
 from mingus.containers.note import Note
 from mingus.containers.note_container import NoteContainer
 from mingus.core.mt_exceptions import RangeError
 import mingus.core.notes as notes
+import six
+from six.moves import range
 
 class StringTuning(object):
 
@@ -43,7 +46,7 @@ class StringTuning(object):
 
         # convert to Note
         for x in tuning:
-            if type(x) == list:
+            if isinstance(x, list):
                 self.tuning.append([Note(n) for n in x])
             else:
                 self.tuning.append(Note(x))
@@ -57,7 +60,7 @@ class StringTuning(object):
         """Return the average number of courses per string."""
         c = 0
         for x in self.tuning:
-            if type(x) == list:
+            if isinstance(x, list):
                 c += len(x)
             else:
                 c += 1
@@ -78,10 +81,10 @@ class StringTuning(object):
         [12, 5]
         """
         result = []
-        if type(note) == str:
+        if isinstance(note, six.string_types):
             note = Note(note)
         for x in self.tuning:
-            if type(x) == list:
+            if isinstance(x, list):
                 base = x[0]
             else:
                 base = x
@@ -178,9 +181,9 @@ class StringTuning(object):
 
             table[string][fret] = (name, dest_frets)
             """
-            res = [[[] for x in xrange(maxfret + 2)] for x in
-                   xrange(len(self.tuning) - 1)]
-            for x in xrange(0, len(self.tuning) - 1):
+            res = [[[] for x in range(maxfret + 2)] for x in
+                   range(len(self.tuning) - 1)]
+            for x in range(0, len(self.tuning) - 1):
                 addedNone = -1
                 next = fretdict[x + 1]
                 for (fret, name) in fretdict[x]:
@@ -201,7 +204,7 @@ class StringTuning(object):
 
         # Convert to NoteContainer if necessary
         n = notes
-        if notes != [] and type(notes) == list and type(notes[0]) == str:
+        if notes != [] and isinstance(notes, list) and isinstance(notes[0], six.string_types):
             n = NoteContainer(notes)
 
         # Check number of note names.
@@ -211,7 +214,7 @@ class StringTuning(object):
 
         # Make string-fret dictionary
         fretdict = []
-        for x in xrange(0, len(self.tuning)):
+        for x in range(0, len(self.tuning)):
             fretdict.append(self.find_note_names(notes, x, maxfret))
 
         # Build table
@@ -260,7 +263,7 @@ class StringTuning(object):
         # Return semi-sorted list
         s = sorted(result, key=lambda x: sum([t if t is not None else 1000
                    for (i, t) in enumerate(x)]))
-        s = filter(lambda a: fingers_needed(a) <= max_fingers, s)
+        s = [a for a in s if fingers_needed(a) <= max_fingers]
         if not return_best_as_NoteContainer:
             return s
         else:
@@ -291,7 +294,7 @@ class StringTuning(object):
         [(0, 'E'), (5, 'A'), (8, 'C'), (12, 'E')]
         """
         n = notelist
-        if notelist != [] and type(notelist[0]) == str:
+        if notelist != [] and isinstance(notelist[0], six.string_types):
             n = NoteContainer(notelist)
         result = []
         names = [x.name for x in n]
@@ -299,7 +302,7 @@ class StringTuning(object):
 
         # Base of the string
         s = int(self.tuning[string]) % 12
-        for x in xrange(0, maxfret + 1):
+        for x in range(0, maxfret + 1):
             if (s + x) % 12 in int_notes:
                 result.append((x, names[int_notes.index((s + x) % 12)]))
         return result
@@ -321,7 +324,7 @@ class StringTuning(object):
         if 0 <= string < self.count_strings():
             if 0 <= fret <= maxfret:
                 s = self.tuning[string]
-                if type(s) == list:
+                if isinstance(s, list):
                     s = s[0]
                 n = Note(int(s) + fret)
                 n.string = string
@@ -376,7 +379,7 @@ def add_tuning(instrument, description, tuning):
     >>> tuning.add_tuning('Guitar', 'twelve string', tw_string)
     """
     t = StringTuning(instrument, description, tuning)
-    if _known.has_key(str.upper(instrument)):
+    if str.upper(instrument) in _known:
         _known[str.upper(instrument)][1][str.upper(description)] = t
     else:
         _known[str.upper(instrument)] = (instrument,
@@ -395,11 +398,11 @@ def get_tuning(instrument, description, nr_of_strings=None, nr_of_courses=None):
     """
     searchi = str.upper(instrument)
     searchd = str.upper(description)
-    keys = _known.keys()
+    keys = list(_known.keys())
     for x in keys:
         if (searchi not in keys and x.find(searchi) == 0 or searchi in keys and
                 x == searchi):
-            for (desc, tun) in _known[x][1].iteritems():
+            for (desc, tun) in six.iteritems(_known[x][1]):
                 if desc.find(searchd) == 0:
                     if nr_of_strings is None and nr_of_courses is None:
                         return tun
@@ -429,21 +432,21 @@ def get_tunings(instrument=None, nr_of_strings=None, nr_of_courses=None):
     if instrument is not None:
         search = str.upper(instrument)
     result = []
-    keys = _known.keys()
+    keys = list(_known.keys())
     inkeys = search in keys
     for x in keys:
         if (instrument is None or not inkeys and x.find(search) == 0 or
                 inkeys and search == x):
             if nr_of_strings is None and nr_of_courses is None:
-                result += _known[x][1].values()
+                result += list(_known[x][1].values())
             elif nr_of_strings is not None and nr_of_courses is None:
-                result += [y for y in _known[x][1].itervalues()
+                result += [y for y in six.itervalues(_known[x][1])
                            if y.count_strings() == nr_of_strings]
             elif nr_of_strings is None and nr_of_courses is not None:
-                result += [y for y in _known[x][1].itervalues()
+                result += [y for y in six.itervalues(_known[x][1])
                            if y.count_courses() == nr_of_courses]
             else:
-                result += [y for y in _known[x][1].itervalues()
+                result += [y for y in six.itervalues(_known[x][1])
                            if y.count_strings() == nr_of_strings
                             and y.count_courses() == nr_of_courses]
     return result

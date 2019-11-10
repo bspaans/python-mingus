@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
@@ -19,9 +20,11 @@
 
 from mingus.core import meter as _meter
 from mingus.core import progressions, keys
-from note_container import NoteContainer
-from note import Note
-from mt_exceptions import MeterFormatError
+from mingus.containers.note_container import NoteContainer
+from mingus.containers.note import Note
+from mingus.containers.mt_exceptions import MeterFormatError
+import six
+from six.moves import range
 
 class Bar(object):
     """A bar object.
@@ -39,7 +42,7 @@ class Bar(object):
 
     def __init__(self, key='C', meter=(4, 4)):
         # warning should check types
-        if type(key) == str:
+        if isinstance(key, six.string_types):
             key = keys.Key(key)
         self.key = key
         self.set_meter(meter)
@@ -88,9 +91,9 @@ class Bar(object):
             pass
         elif hasattr(notes, 'name'):
             notes = NoteContainer(notes)
-        elif type(notes) == str:
+        elif isinstance(notes, six.string_types):
             notes = NoteContainer(notes)
-        elif type(notes) == list:
+        elif isinstance(notes, list):
             notes = NoteContainer(notes)
         if self.current_beat + 1.0 / duration <= self.length or self.length\
              == 0.0:
@@ -133,7 +136,7 @@ class Bar(object):
     def change_note_duration(self, at, to):
         """Change the note duration at the given index to the given
         duration."""
-        if valid_beat_duration(to):
+        if _meter.valid_beat_duration(to):
             diff = 0
             for x in self.bar:
                 if diff != 0:
@@ -225,9 +228,9 @@ class Bar(object):
             pass
         elif hasattr(value, 'name'):
             value = NoteContainer(value)
-        elif type(value) == str:
+        elif isinstance(value, six.string_types):
             value = NoteContainer(value)
-        elif type(value) == list:
+        elif isinstance(value, list):
             res = NoteContainer()
             for x in value:
                 res + x

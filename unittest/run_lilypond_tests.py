@@ -18,6 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 """Separated LilyPond tests."""
+from __future__ import absolute_import
 
 import unittest
 import test_lilypond

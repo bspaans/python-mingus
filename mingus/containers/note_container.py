@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
@@ -17,9 +18,10 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from note import Note
+from mingus.containers.note import Note
 from mingus.core import intervals, chords, progressions
-from mt_exceptions import UnexpectedObjectError
+from mingus.containers.mt_exceptions import UnexpectedObjectError
+import six
 
 class NoteContainer(object):
 
@@ -48,7 +50,7 @@ class NoteContainer(object):
         The note can either be a string, in which case you could also use
         the octave and dynamics arguments, or a Note object.
         """
-        if type(note) == str:
+        if isinstance(note, six.string_types):
             if octave is not None:
                 note = Note(note, octave, dynamics)
             elif len(self.notes) == 0:
@@ -83,11 +85,11 @@ class NoteContainer(object):
         elif hasattr(notes, 'name'):
             self.add_note(notes)
             return self.notes
-        elif type(notes) == str:
+        elif isinstance(notes, six.string_types):
             self.add_note(notes)
             return self.notes
         for x in notes:
-            if type(x) == list and len(x) != 1:
+            if isinstance(x, list) and len(x) != 1:
                 if len(x) == 2:
                     self.add_note(x[0], x[1])
                 else:
@@ -132,7 +134,7 @@ class NoteContainer(object):
         ['F-3', 'C-4']
         """
         self.empty()
-        if type(startnote) == str:
+        if isinstance(startnote, six.string_types):
             startnote = Note(startnote)
         n = Note(startnote.name, startnote.octave, startnote.dynamics)
         n.transpose(shorthand, up)
@@ -219,7 +221,7 @@ class NoteContainer(object):
         """
         res = []
         for x in self.notes:
-            if type(note) == str:
+            if isinstance(note, six.string_types):
                 if x.name != note:
                     res.append(x)
                 else:
@@ -237,12 +239,13 @@ class NoteContainer(object):
         This function accepts a list of Note objects or notes as strings and
         also single strings or Note objects.
         """
-        if type(notes) == str:
+        if isinstance(notes, six.string_types):
             return self.remove_note(notes)
         elif hasattr(notes, 'name'):
             return self.remove_note(notes)
         else:
-            map(lambda x: self.remove_note(x), notes)
+            for x in notes:
+                self.remove_note(x)
             return self.notes
 
     def remove_duplicate_notes(self):
@@ -316,7 +319,7 @@ class NoteContainer(object):
         >>> n
         ['B-4', 'E-4', 'G-4']
         """
-        if type(value) == str:
+        if isinstance(value, six.string_types):
             n = Note(value)
             self.notes[item] = n
         else:

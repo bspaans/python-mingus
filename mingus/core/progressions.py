@@ -28,10 +28,13 @@ more complex progressions, like: #V7, bIIdim7, etc.
 This module provides methods which can convert progressions to chords and
 vice versa.
 """
+from __future__ import absolute_import
 
-import notes
-import chords
-import intervals
+from mingus.core import notes
+from mingus.core import chords
+from mingus.core import intervals
+import six
+from six.moves import range
 numerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']
 numeral_intervals = [0, 2, 4, 5, 7, 9, 11]
 
@@ -59,7 +62,7 @@ def to_chords(progression, key='C'):
     you a major seventh chord. If you specifically want a dominanth seventh,
     use Idom7.
     """
-    if type(progression) == str:
+    if isinstance(progression, six.string_types):
         progression = [progression]
     result = []
     for chord in progression:
@@ -82,10 +85,10 @@ def to_chords(progression, key='C'):
             r = chords.chord_shorthand[suffix](r[0])
 
         while acc < 0:
-            r = map(notes.diminish, r)
+            r = [notes.diminish(x) for x in r]
             acc += 1
         while acc > 0:
-            r = map(notes.augment, r)
+            r = [notes.augment(x) for x in r]
             acc -= 1
         result.append(r)
     return result
@@ -108,7 +111,7 @@ def determine(chord, key, shorthand=False):
     result = []
 
     # Handle lists of chords
-    if type(chord[0]) == list:
+    if isinstance(chord[0], list):
         for c in chord:
             result.append(determine(c, key, shorthand))
         return result

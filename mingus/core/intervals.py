@@ -30,9 +30,10 @@ returns 'A'.
 This modules also contains other useful helper functions like measure,
 determine, invert, is_consonant and is_dissonant.
 """
+from __future__ import absolute_import
 
-import notes
-import keys
+from mingus.core import notes
+from mingus.core import keys
 
 def interval(key, start_note, interval):
     """Return the note found at the interval starting from start_note in the
@@ -213,7 +214,7 @@ def get_interval(note, interval, key='C'):
     This will produce mostly theoretical sound results, but you should use
     the minor and major functions to work around the corner cases.
     """
-    intervals = map(lambda x: (notes.note_to_int(key) + x) % 12, [
+    intervals = [(notes.note_to_int(key) + x) % 12 for x in [
         0,
         2,
         4,
@@ -221,7 +222,7 @@ def get_interval(note, interval, key='C'):
         7,
         9,
         11,
-        ])
+        ]]
     key_notes = keys.get_notes(key)
     for x in key_notes:
         if x[0] == note[0]:

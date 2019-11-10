@@ -30,10 +30,11 @@ To start using FluidSynth with mingus, do:
 
 Now you are ready to play Notes, NoteContainers, etc.
 """
+from __future__ import absolute_import
 
 from mingus.midi.sequencer import Sequencer
 from mingus.containers.instrument import MidiInstrument
-import pyfluidsynth as fs
+from mingus.midi import pyfluidsynth as fs
 import time
 import wave
 
@@ -189,9 +190,9 @@ def control_change(channel, control, value):
     """Send a control change event on channel."""
     return midi.control_change(channel, control, value)
 
-def set_instrument(channel, midi_instr):
+def set_instrument(channel, midi_instr, bank=0):
     """Set the midi instrument on channel."""
-    return midi.set_instrument(channel, midi_instr)
+    return midi.set_instrument(channel, midi_instr, bank)
 
 def stop_everything():
     """Stop all the playing notes on all channels."""
@@ -206,6 +207,4 @@ def pan(channel, value):
 def main_volume(channel, value):
     return midi.main_volume(channel, value)
 
-def set_instrument(channel, instr, bank=0):
-    return midi.set_instrument(channel, instr, bank)
 

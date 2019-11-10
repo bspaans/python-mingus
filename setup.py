@@ -1,4 +1,8 @@
-from distutils.core import setup
+try:
+    from setuptools import setup
+except ImportError:
+    from distutils.core import setup
+
 
 setup(name= "mingus",
       version = "0.5.2",
@@ -27,6 +31,9 @@ http://mingus.googlecode.com
                          'mingus_examples/pygame-drum/pygame-drum.py']),\
             ('mingus_examples/pygame-piano', ['mingus_examples/pygame-piano/pygame-piano.py',
                                'mingus_examples/pygame-piano/keys.png'])],
+      install_requires = [
+          'six',
+      ],
       license="GPLv3",
       classifiers = [
             'Intended Audience :: Developers',
@@ -35,6 +42,8 @@ http://mingus.googlecode.com
             'License :: OSI Approved :: GNU General Public License (GPL)',
             'Operating System :: OS Independent',
             'Programming Language :: Python',
+            'Programming Language :: Python :: 2.7',
+            'Programming Language :: Python :: 3.4',
             'Topic :: Artistic Software',
             'Topic :: Education',
             'Topic :: Multimedia',

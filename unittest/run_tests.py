@@ -22,6 +22,7 @@
 Invoke this file from the command line, from within the 'unittest' directory
 to run all the testcases.
 """
+from __future__ import absolute_import
 
 import unittest
 

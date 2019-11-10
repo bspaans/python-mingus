@@ -37,6 +37,8 @@ up your code. This module is here to help do the conversion.
 
 Medieval backwards compatibility privided.
 """
+from __future__ import absolute_import
+from six.moves import range
 
 longa = 0.25
 breve = 0.5

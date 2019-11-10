@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
@@ -17,8 +18,8 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from sequencer import Sequencer
-from sequencer_observer import SequencerObserver
+from mingus.midi.sequencer import Sequencer
+from mingus.midi.sequencer_observer import SequencerObserver
 __all__ = [
     'Sequencer',
     'SequencerObserver',

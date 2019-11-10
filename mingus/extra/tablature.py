@@ -18,10 +18,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 """Functions to convert mingus.containers to pretty ASCII tablature."""
+from __future__ import absolute_import
 
 import mingus.extra.tunings as tunings
 from mingus.core.mt_exceptions import RangeError, FingerError
 import os
+from six.moves import range
 
 default_tuning = tunings.get_tuning('Guitar', 'Standard', 6, 1)
 
@@ -195,7 +197,7 @@ def from_NoteContainer(notes, width=80, tuning=None):
 
         # Produce ASCII
         for i in range(len(result)):
-            if i not in res.keys():
+            if i not in res:
                 result[i] += '-' * w + '|'
             else:
                 d = w - len(res[i])
@@ -276,7 +278,7 @@ def from_Bar(bar, width=40, tuning=None, collapse=True):
             # Add to result
             for i in range(len(result)):
                 dur = int(((1.0 / duration) * qsize) * 4) - maxlen
-                if i not in d.keys():
+                if i not in d:
                     result[i] += '-' * maxlen + '-' * dur
                 else:
                     result[i] += ('%' + str(maxlen) + 's') % d[i] + '-' * dur
@@ -365,7 +367,7 @@ def from_Composition(composition, width=80):
         for tracks in composition:
             tuning = tracks.get_tuning()
             ascii = []
-            for x in xrange(bars):
+            for x in range(bars):
                 if barindex + x < len(tracks):
                     bar = tracks[barindex + x]
                     r = from_Bar(bar, w, tuning, collapse=False)

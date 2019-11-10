@@ -19,16 +19,19 @@
 
 """Functions that can generate MIDI files from the objects in
 mingus.containers."""
+from __future__ import absolute_import
+from __future__ import print_function
 
-from midi_track import MidiTrack
+from mingus.midi.midi_track import MidiTrack
 from binascii import a2b_hex
+from six.moves import range
 
 class MidiFile(object):
 
     """A class that generates MIDI files from MidiTracks."""
 
     tracks = []
-    time_division = "\x00\x48"
+    time_division = b"\x00\x48"
 
     def __init__(self, tracks=[]):
         self.reset()
@@ -36,14 +39,14 @@ class MidiFile(object):
 
     def get_midi_data(self):
         """Collect and return the raw, binary MIDI data from the tracks."""
-        tracks = [t.get_midi_data() for t in self.tracks if t.track_data != '']
-        return self.header() + ''.join(tracks)
+        tracks = [t.get_midi_data() for t in self.tracks if t.track_data != b'']
+        return self.header() + b''.join(tracks)
 
     def header(self):
         """Return a header for type 1 MIDI file."""
         tracks = a2b_hex('%04x' % len([t for t in self.tracks if
             t.track_data != '']))
-        return 'MThd\x00\x00\x00\x06\x00\x01' + tracks + self.time_division
+        return b'MThd\x00\x00\x00\x06\x00\x01' + tracks + self.time_division
 
     def reset(self):
         """Reset every track."""
@@ -55,16 +58,16 @@ class MidiFile(object):
         try:
             f = open(file, 'wb')
         except:
-            print "Couldn't open '%s' for writing." % file
+            print("Couldn't open '%s' for writing." % file)
             return False
         try:
             f.write(dat)
         except:
-            print 'An error occured while writing data to %s.' % file
+            print('An error occured while writing data to %s.' % file)
             return False
         f.close()
         if verbose:
-            print 'Written %d bytes to %s.' % (len(dat), file)
+            print('Written %d bytes to %s.' % (len(dat), file))
         return True
 
 
@@ -78,9 +81,9 @@ def write_Note(file, note, bpm=120, repeat=0, verbose=False):
     t = MidiTrack(bpm)
     m.tracks = [t]
     while repeat >= 0:
-        t.set_deltatime('\x00')
+        t.set_deltatime(b'\x00')
         t.play_Note(note)
-        t.set_deltatime("\x48")
+        t.set_deltatime(b"\x48")
         t.stop_Note(note)
         repeat -= 1
     return m.write_file(file, verbose)
@@ -91,9 +94,9 @@ def write_NoteContainer(file, notecontainer, bpm=120, repeat=0, verbose=False):
     t = MidiTrack(bpm)
     m.tracks = [t]
     while repeat >= 0:
-        t.set_deltatime('\x00')
+        t.set_deltatime(b'\x00')
         t.play_NoteContainer(notecontainer)
-        t.set_deltatime("\x48")
+        t.set_deltatime(b"\x48")
         t.stop_NoteContainer(notecontainer)
         repeat -= 1
     return m.write_file(file, verbose)

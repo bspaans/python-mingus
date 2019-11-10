@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
@@ -18,8 +19,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from mingus.core import notes, intervals
-from mt_exceptions import NoteFormatError
+from mingus.containers.mt_exceptions import NoteFormatError
 from math import log
+import six
 
 class Note(object):
 
@@ -45,7 +47,7 @@ class Note(object):
     velocity = 64
 
     def __init__(self, name='C', octave=4, dynamics={}):
-        if type(name) == str:
+        if isinstance(name, six.string_types):
             self.set_note(name, octave, dynamics)
         elif hasattr(name, 'name'):
             # Hardcopy Note object
@@ -54,7 +56,7 @@ class Note(object):
                 self.channel = name.channel
             if hasattr(name, 'velocity'):
                 self.velocity = name.velocity
-        elif type(name) == int:
+        elif isinstance(name, int):
             self.from_int(name)
         else:
             raise NoteFormatError("Don't know what to do with name object: "

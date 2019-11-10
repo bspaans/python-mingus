@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
@@ -18,7 +19,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from mingus.containers.note import Note
-from mt_exceptions import UnexpectedObjectError
+from mingus.containers.mt_exceptions import UnexpectedObjectError
+import six
 
 class Instrument(object):
 
@@ -46,7 +48,7 @@ class Instrument(object):
 
         A range is a tuple of two Notes or note strings.
         """
-        if type(range[0]) == str:
+        if isinstance(range[0], six.string_types):
             range[0] = Note(range[0])
             range[1] = Note(range[1])
         if not hasattr(range[0], 'name'):
@@ -59,7 +61,7 @@ class Instrument(object):
 
         Return True if so, False otherwise.
         """
-        if type(note) == str:
+        if isinstance(note, six.string_types):
             note = Note(note)
         if not hasattr(note, 'name'):
             raise UnexpectedObjectError("Unexpected object '%s'. "
@@ -70,7 +72,7 @@ class Instrument(object):
 
     def notes_in_range(self, notes):
         """An alias for can_play_notes."""
-        return can_play_notes(notes)
+        return self.can_play_notes(notes)
 
     def can_play_notes(self, notes):
         """Test if the notes lie within the range of the instrument.
@@ -79,7 +81,7 @@ class Instrument(object):
         """
         if hasattr(notes, 'notes'):
             notes = notes.notes
-        if type(notes) != list:
+        if not isinstance(notes, list):
             notes = [notes]
         for n in notes:
             if not self.note_in_range(n):

@@ -25,6 +25,7 @@ fired; this SequencerObserver intercepts the event messages and calls the
 proper function so you only have to implement the functions for the events
 you need to see.
 """
+from __future__ import absolute_import
 
 from mingus.midi.sequencer import Sequencer
 
