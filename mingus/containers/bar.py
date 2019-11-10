@@ -1,8 +1,5 @@
-from __future__ import absolute_import
-
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-
 #    mingus - Music theory Python package, bar module.
 #    Copyright (C) 2008-2009, Bart Spaans
 #
@@ -19,13 +16,15 @@ from __future__ import absolute_import
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from mingus.core import meter as _meter
-from mingus.core import progressions, keys
-from mingus.containers.note_container import NoteContainer
-from mingus.containers.note import Note
-from mingus.containers.mt_exceptions import MeterFormatError
+from __future__ import absolute_import
+
 import six
 from six.moves import range
+
+from mingus.containers.mt_exceptions import MeterFormatError
+from mingus.containers.note_container import NoteContainer
+from mingus.core import meter as _meter
+from mingus.core import progressions, keys
 
 
 class Bar(object):

@@ -23,10 +23,12 @@ This module provides a simple interface for dealing with keys.
 """
 from __future__ import absolute_import
 
-from mingus.core.mt_exceptions import FormatError, NoteFormatError, RangeError
-from mingus.core import notes
 from itertools import cycle, islice
+
 from six.moves import range
+
+from mingus.core import notes
+from mingus.core.mt_exceptions import NoteFormatError, RangeError
 
 keys = [
     ("Cb", "ab"),  #  7 b

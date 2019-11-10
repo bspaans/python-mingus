@@ -32,11 +32,11 @@ Now you are ready to play Notes, NoteContainers, etc.
 """
 from __future__ import absolute_import
 
-from mingus.midi.sequencer import Sequencer
-from mingus.containers.instrument import MidiInstrument
-from mingus.midi import pyfluidsynth as fs
 import time
 import wave
+
+from mingus.midi import pyfluidsynth as fs
+from mingus.midi.sequencer import Sequencer
 
 
 class FluidSynthSequencer(Sequencer):

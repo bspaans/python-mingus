@@ -1,5 +1,7 @@
 from __future__ import absolute_import
 
+import sys
+
 # Real-time MIDI playback in Win32
 # No extra dlls or modules needed, uses built-in ctypes module.
 # By Ben Fisher, 2009, GPLv3
@@ -10,13 +12,10 @@ from __future__ import absolute_import
 # Must call .openDevice() before use!
 # Remember to call .closeDevice() when done.
 
-
-import sys
-
 if sys.platform != "win32":
     raise RuntimeError("Intended for use on win32 platform")
 import time
-from ctypes import windll, c_buffer, c_void_p, c_int, byref
+from ctypes import windll, c_void_p, c_int, byref
 
 
 class Win32MidiException(Exception):
