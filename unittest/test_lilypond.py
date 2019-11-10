@@ -132,18 +132,18 @@ class test_LilyPond(unittest.TestCase):
                          value.dots(4, 2), standalone=False), "c'4..")
 
     def test_to_pdf(self):
-        self.assert_(LilyPond.to_pdf('{ %s }'
+        self.assertTrue(LilyPond.to_pdf('{ %s }'
                       % LilyPond.from_NoteContainer(NoteContainer('C'),
                      value.dots(8)), 'pdftest first test'))
-        self.assert_(LilyPond.to_pdf(LilyPond.from_Bar(self.tbar), 'pdftest2'))
-        self.assert_(LilyPond.to_pdf(LilyPond.from_Bar(self.mbar), 'pdftest3'))
+        self.assertTrue(LilyPond.to_pdf(LilyPond.from_Bar(self.tbar), 'pdftest2'))
+        self.assertTrue(LilyPond.to_pdf(LilyPond.from_Bar(self.mbar), 'pdftest3'))
 
     def test_to_png(self):
-        self.assert_(LilyPond.to_png('{ %s }'
+        self.assertTrue(LilyPond.to_png('{ %s }'
                       % LilyPond.from_NoteContainer(NoteContainer('C'),
                      value.dots(8)), 'pn1'))
-        self.assert_(LilyPond.to_png(LilyPond.from_Bar(self.tbar), 'pn2'))
-        self.assert_(LilyPond.to_png(LilyPond.from_Bar(self.mbar), 'pn3'))
+        self.assertTrue(LilyPond.to_png(LilyPond.from_Bar(self.tbar), 'pn2'))
+        self.assertTrue(LilyPond.to_png(LilyPond.from_Bar(self.mbar), 'pn3'))
 
 def suite():
     return unittest.TestLoader().loadTestsFromTestCase(test_LilyPond)

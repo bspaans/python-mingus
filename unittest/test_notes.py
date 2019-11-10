@@ -17,19 +17,19 @@ class test_notes(unittest.TestCase):
 
     def test_base_note_validity(self):
         for x in self.base_notes:
-            self.assert_(notes.is_valid_note(x), 'Base notes A-G')
+            self.assertTrue(notes.is_valid_note(x), 'Base notes A-G')
 
     def test_sharp_note_validity(self):
         for x in self.sharps:
-            self.assert_(notes.is_valid_note(x), 'Sharp notes A#-G#')
+            self.assertTrue(notes.is_valid_note(x), 'Sharp notes A#-G#')
 
     def test_flat_note_validity(self):
         for x in self.flats:
-            self.assert_(notes.is_valid_note(x), 'Flat notes Ab-Gb')
+            self.assertTrue(notes.is_valid_note(x), 'Flat notes Ab-Gb')
 
     def test_exotic_note_validity(self):
         for x in self.exotic:
-            self.assert_(notes.is_valid_note(x), 'Exotic notes Ab##b#-Gb###b#')
+            self.assertTrue(notes.is_valid_note(x), 'Exotic notes Ab##b#-Gb###b#')
 
     def test_faulty_note_invalidity(self):
         for x in ['asdasd', 'C###f', 'c', 'd', 'E*']:

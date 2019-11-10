@@ -231,7 +231,7 @@ class test_chords(unittest.TestCase):
         ):
         for x in values:
             for y in x[0]:
-                self.assert_(y in what_func(x[1]),
+                self.assertTrue(y in what_func(x[1]),
                     "The %s '%s' should be in '%s', but is not." % (
                         what_desc, y, what_func(x[1])))
 
