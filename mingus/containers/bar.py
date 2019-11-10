@@ -1,5 +1,5 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
+
 #    mingus - Music theory Python package, bar module.
 #    Copyright (C) 2008-2009, Bart Spaans
 #

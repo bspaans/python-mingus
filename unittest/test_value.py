@@ -1,6 +1,5 @@
 from __future__ import absolute_import
 
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 import mingus.core.value as value
 import unittest

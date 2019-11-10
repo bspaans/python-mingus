@@ -1,7 +1,6 @@
-from __future__ import absolute_import
-
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
+
+from __future__ import absolute_import
 
 #    mingus - Music theory Python package, instrument module.
 #    Copyright (C) 2008-2009, Bart Spaans
