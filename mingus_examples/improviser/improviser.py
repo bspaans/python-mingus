@@ -65,7 +65,7 @@ loop = 1
 while loop < song_end:
     i = 0
     if random_solo_channel:
-        solo_channel = choice(range(5, 8) + [11])
+        solo_channel = choice(list(range(5, 8)) + [11])
     for chord in chords:
         c = NoteContainer(chords[i])
         l = Note(c[0].name)

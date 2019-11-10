@@ -141,7 +141,7 @@ class _Scale(object):
             notes = self.ascending()[:-1]
             return notes[degree_number - 1]
         elif direction == "d":
-            notes = reversed(self.descending())[:-1]
+            notes = list(reversed(self.descending())[:-1])
             return notes[degree_number - 1]
         else:
             raise FormatError("Unrecognised direction '%s'" % direction)
