@@ -24,6 +24,7 @@ This module can also convert the found frequencies to Note objects.
 """
 from __future__ import absolute_import
 
+import math
 import wave
 import struct
 import numpy
@@ -96,7 +97,7 @@ def find_frequencies(data, freq=44100, bits=16):
     # Fast fourier transform
     n = len(data)
     p = _fft(data)
-    uniquePts = numpy.ceil((n + 1) / 2.0)
+    uniquePts = math.ceil((n + 1) / 2.0)
 
     # Scale by the length (n) and square the value to get the amplitude
     p = [(abs(x) / float(n)) ** 2 * 2 for x in p[0:uniquePts]]
