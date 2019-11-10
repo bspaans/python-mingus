@@ -1,12 +1,12 @@
 
 format:
-	python -m black mingus mingus_examples unittest setup.py
+	python -m black mingus mingus_examples unittest
 
 install:
 	python setup.py install
 
 clean:
-	sudo rm -rf build/ dist/
+	rm -rf build/ dist/
 
 register:
 	python setup.py register

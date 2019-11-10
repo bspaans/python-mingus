@@ -48,6 +48,10 @@ http://mingus.googlecode.com
         ),
     ],
     install_requires=["six",],
+    extras_require={
+        "fft": ["numpy"],
+        "fluidsynth": ["numpy"],
+    },
     license="GPLv3",
     classifiers=[
         "Intended Audience :: Developers",
