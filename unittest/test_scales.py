@@ -9,7 +9,7 @@ import unittest
 
 class test_scales(unittest.TestCase):
     def scaleTest(self, answer_dict, scale, name):
-        for k in answer_dict.keys():
+        for k in answer_dict:
             if name == 'diatonic scale':
                 self.assertEqual(
                         answer_dict[k][0],

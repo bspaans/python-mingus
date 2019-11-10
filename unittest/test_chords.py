@@ -87,73 +87,73 @@ class test_chords(unittest.TestCase):
     def test_tonic(self):
         tonic_dict = {'C': ['C', 'E', 'G'], 'E': ['E', 'G#', 'B'], 'B': ['B',
                       'D#', 'F#']}
-        for x in tonic_dict.keys():
+        for x in tonic_dict:
             self.assertEqual(chords.tonic(x), tonic_dict[x])
 
     def test_tonic7(self):
         tonic_dict = {'C': ['C', 'E', 'G', 'B'], 'E': ['E', 'G#', 'B', 'D#'],
                       'B': ['B', 'D#', 'F#', 'A#']}
-        for x in tonic_dict.keys():
+        for x in tonic_dict:
             self.assertEqual(chords.tonic7(x), tonic_dict[x])
 
     def test_dominant(self):
         tonic_dict = {'C': ['G', 'B', 'D'], 'E': ['B', 'D#', 'F#'], 'B': ['F#',
                       'A#', 'C#']}
-        for x in tonic_dict.keys():
+        for x in tonic_dict:
             self.assertEqual(chords.dominant(x), tonic_dict[x])
 
     def test_dominant7(self):
         tonic_dict = {'C': ['G', 'B', 'D', 'F'], 'E': ['B', 'D#', 'F#', 'A'],
                       'B': ['F#', 'A#', 'C#', 'E']}
-        for x in tonic_dict.keys():
+        for x in tonic_dict:
             self.assertEqual(chords.dominant7(x), tonic_dict[x])
 
     def test_subdominant(self):
         tonic_dict = {'C': ['F', 'A', 'C'], 'E': ['A', 'C#', 'E'], 'B': ['E',
                       'G#', 'B']}
-        for x in tonic_dict.keys():
+        for x in tonic_dict:
             self.assertEqual(chords.subdominant(x), tonic_dict[x])
 
     def test_subdominant7(self):
         tonic_dict = {'C': ['F', 'A', 'C', 'E'], 'E': ['A', 'C#', 'E', 'G#'],
                       'B': ['E', 'G#', 'B', 'D#']}
-        for x in tonic_dict.keys():
+        for x in tonic_dict:
             self.assertEqual(chords.subdominant7(x), tonic_dict[x])
 
     def test_submediant(self):
         tonic_dict = {'C': ['A', 'C', 'E'], 'E': ['C#', 'E', 'G#'], 'B': ['G#',
                       'B', 'D#']}
-        for x in tonic_dict.keys():
+        for x in tonic_dict:
             self.assertEqual(chords.submediant(x), tonic_dict[x])
 
     def test_submediant7(self):
         tonic_dict = {'C': ['A', 'C', 'E', 'G'], 'E': ['C#', 'E', 'G#', 'B'],
                       'B': ['G#', 'B', 'D#', 'F#']}
-        for x in tonic_dict.keys():
+        for x in tonic_dict:
             self.assertEqual(chords.submediant7(x), tonic_dict[x])
 
     def test_supertonic(self):
         tonic_dict = {'C': ['D', 'F', 'A'], 'E': ['F#', 'A', 'C#'], 'B': ['C#',
                       'E', 'G#']}
-        for x in tonic_dict.keys():
+        for x in tonic_dict:
             self.assertEqual(chords.supertonic(x), tonic_dict[x])
 
     def test_supertonic7(self):
         tonic_dict = {'C': ['D', 'F', 'A', 'C'], 'E': ['F#', 'A', 'C#', 'E'],
                       'B': ['C#', 'E', 'G#', 'B']}
-        for x in tonic_dict.keys():
+        for x in tonic_dict:
             self.assertEqual(chords.supertonic7(x), tonic_dict[x])
 
     def test_mediant(self):
         tonic_dict = {'C': ['E', 'G', 'B'], 'E': ['G#', 'B', 'D#'], 'B': ['D#',
                       'F#', 'A#']}
-        for x in tonic_dict.keys():
+        for x in tonic_dict:
             self.assertEqual(chords.mediant(x), tonic_dict[x])
 
     def test_mediant7(self):
         tonic_dict = {'C': ['E', 'G', 'B', 'D'], 'E': ['G#', 'B', 'D#', 'F#'],
                       'B': ['D#', 'F#', 'A#', 'C#']}
-        for x in tonic_dict.keys():
+        for x in tonic_dict:
             self.assertEqual(chords.mediant7(x), tonic_dict[x])
 
     def test_determine_triad(self):
@@ -343,7 +343,7 @@ class test_chords(unittest.TestCase):
                 'G',
                 ],
             }
-        for x in answers.keys():
+        for x in answers:
             self.assertEqual(answers[x], chords.from_shorthand(x),
                 'The shorthand of %s is not %s, expecting %s' % (
                     x, chords.from_shorthand(x), answers[x]))
@@ -354,11 +354,11 @@ class test_chords(unittest.TestCase):
             self.assertRaises(NoteFormatError, chords.from_shorthand, x[1:])
 
     def test_determine(self):
-        for x in chords.chord_shorthand.keys():
+        for x in chords.chord_shorthand:
             self.assertEqual(True,
                 chords.determine(chords.from_shorthand('C' + x)) != [],
                 "'C%s' should return a value" % x)
-        for x in (x for x in chords.chord_shorthand.keys() if x != '5'):
+        for x in (x for x in chords.chord_shorthand if x != '5'):
             self.assertEqual('C' + chords.chord_shorthand_meaning[x],
                 chords.determine(chords.from_shorthand('C' + x))[0],
                 "The proper naming of '%s' is not '%s',expecting '%s'" % ('C' + x,

@@ -34,7 +34,7 @@ class test_keys(unittest.TestCase):
                 keys.get_key_signature_accidentals('Cb'))
 
     def test_get_notes(self):
-        for k in self.scale.keys():
+        for k in self.scale:
             self.assertEqual(self.scale[k], keys.get_notes(k),
                 'Invalid notes for key %s' % self.scale[k])
 
@@ -47,7 +47,7 @@ class test_keys(unittest.TestCase):
                 'd': 'F',
                 'b': 'D',
                 }
-        for k in known.keys():
+        for k in known:
             self.assertEqual(known[k], keys.relative_major(k),
                     'The major of %s is not %s, expecting %s' % (k,
                         keys.relative_major(k), known[k]))
@@ -60,7 +60,7 @@ class test_keys(unittest.TestCase):
                 'G': 'e',
                 'F': 'd'
                 }
-        for k in known.keys():
+        for k in known:
             self.assertEqual(known[k], keys.relative_minor(k),
                     'The minor of %s is not %s, expecting %s' % (k,
                         keys.relative_minor(k), known[k]))

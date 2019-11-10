@@ -155,7 +155,7 @@ def _bar2musicxml(bar):
             dot = doc.createElement('dot')
             for i in range(0, time[1]):
                 note.appendChild(dot)
-            if beat in value.musicxml.keys():
+            if beat in value.musicxml:
                 type_node = doc.createElement('type')
                 type_node.appendChild(doc.createTextNode(value.musicxml[beat]))
                 note.appendChild(type_node)

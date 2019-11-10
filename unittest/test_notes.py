@@ -46,7 +46,7 @@ class test_notes(unittest.TestCase):
                 (8, 'b'): 'Ab',
                 (11, 'b'): 'B'
                 }
-        for k in known.keys():
+        for k in known:
             self.assertEqual(known[k], notes.int_to_note(k[0], k[1]),
                     '%s with "%s" not corrisponding to %s, expecting %s' % (
                         k[0], k[1], notes.int_to_note(k[0], k[1]), known[k]))
@@ -66,7 +66,7 @@ class test_notes(unittest.TestCase):
                 'B##': 'C#',
                 'C####': 'E'
                 }
-        for k in known.keys():
+        for k in known:
             self.assertEqual(known[k], notes.reduce_accidentals(k),
                     'The reduced note of %s is not %s, expecting %s' % (k,
                         notes.reduce_accidentals(k), known[k]))
@@ -76,7 +76,7 @@ class test_notes(unittest.TestCase):
                 'C##b': 'C#',
                 'Eb##b': 'E'
                 }
-        for k in known.keys():
+        for k in known:
             self.assertEqual(known[k], notes.remove_redundant_accidentals(k),
                     'The simplified note of %s is not %s, expecting %s' % (k,
                         notes.remove_redundant_accidentals(k), known[k]))
@@ -88,7 +88,7 @@ class test_notes(unittest.TestCase):
                 'Cb': 'C',
                 'Cbb': 'Cb'
                 }
-        for x in known.keys():
+        for x in known:
             self.assertEqual(known[x], notes.augment(x),
                 'The augmented note of %s is not %s, expecting %s' % (x,
                     notes.augment(x), known[x]))
@@ -100,7 +100,7 @@ class test_notes(unittest.TestCase):
                 'C##': 'C#',
                 'Cb': 'Cbb'
                 }
-        for x in known.keys():
+        for x in known:
             self.assertEqual(known[x], notes.diminish(x),
                 'The diminished note of %s is not %s, expecting %s' % (x,
                     notes.diminish(x), known[x]))

@@ -15,10 +15,10 @@ class test_intervals(unittest.TestCase):
     def test_seconds(self):
         secs_c = {'C': 'D', 'E': 'F', 'D': 'E'}
         secs_fsharp = {'F#': 'G#', 'A#': 'B', 'E#': 'F#'}
-        for x in secs_c.keys():
+        for x in secs_c:
             self.assertEqual(secs_c[x], intervals.second(x, 'C'),
                 'Invalid second for %s in key C' % x)
-        for x in secs_fsharp.keys():
+        for x in secs_fsharp:
             self.assertEqual(secs_fsharp[x], intervals.second(x, 'F#'),
                 'Invalid second for %s in key F#' % x)
 
@@ -30,7 +30,7 @@ class test_intervals(unittest.TestCase):
             'C#': 'C',
             'Cbb': 'Cbbb',
             }
-        for x in minors.keys():
+        for x in minors:
             self.assertEqual(minors[x], intervals.minor_unison(x),
                              'The minor unison of %s is not %s, expecting %s'
                               % (x, intervals.minor_unison(x), minors[x]))
@@ -60,7 +60,7 @@ class test_intervals(unittest.TestCase):
             'G': 'Ab',
             'Gb': 'Abb',
             }
-        for x in minors.keys():
+        for x in minors:
             self.assertEqual(minors[x], intervals.minor_second(x),
                              'The minor second of %s is not %s, expecting %s'
                               % (x, intervals.minor_second(x), minors[x]))
@@ -82,7 +82,7 @@ class test_intervals(unittest.TestCase):
             'B': 'C#',
             'B#': 'C##',
             }
-        for x in majors.keys():
+        for x in majors:
             self.assertEqual(majors[x], intervals.major_second(x),
                              'The major second of %s is not %s, expecting %s'
                               % (x, intervals.major_second(x), majors[x]))
@@ -103,7 +103,7 @@ class test_intervals(unittest.TestCase):
             'Bb': 'Db',
             'B#': 'D#',
             }
-        for x in minors.keys():
+        for x in minors:
             self.assertEqual(minors[x], intervals.minor_third(x),
                              'The minor third of %s is not %s, expecting %s'
                               % (x, intervals.minor_third(x), minors[x]))
@@ -124,7 +124,7 @@ class test_intervals(unittest.TestCase):
             'Ab': 'C',
             'A#': 'C##',
             }
-        for x in majors.keys():
+        for x in majors:
             self.assertEqual(majors[x], intervals.major_third(x),
                              'The major third of %s is not %s, expecting %s'
                               % (x, intervals.major_third(x), majors[x]))
@@ -141,7 +141,7 @@ class test_intervals(unittest.TestCase):
             'F#': 'Bb',
             'F##': 'B',
             }
-        for x in minors.keys():
+        for x in minors:
             self.assertEqual(minors[x], intervals.minor_fourth(x),
                              'The minor fourth of %s is not %s, expecting %s'
                               % (x, intervals.minor_fourth(x), minors[x]))
@@ -159,7 +159,7 @@ class test_intervals(unittest.TestCase):
             'F': 'Bb',
             'Fb': 'Bbb',
             }
-        for x in majors.keys():
+        for x in majors:
             self.assertEqual(majors[x], intervals.major_fourth(x),
                              'The major fourth of %s is not %s, expecting %s'
                               % (x, intervals.major_fourth(x), majors[x]))
@@ -176,7 +176,7 @@ class test_intervals(unittest.TestCase):
             'A#': 'E',
             'Ab': 'Ebb',
             }
-        for x in minors.keys():
+        for x in minors:
             self.assertEqual(minors[x], intervals.minor_fifth(x),
                              'The minor fifth of %s is not %s, expecting %s'
                               % (x, intervals.minor_fifth(x), minors[x]))
@@ -194,7 +194,7 @@ class test_intervals(unittest.TestCase):
             'F': 'C',
             'Fb': 'Cb',
             }
-        for x in majors.keys():
+        for x in majors:
             self.assertEqual(majors[x], intervals.major_fifth(x),
                              'The major fifth of %s is not %s, expecting %s'
                               % (x, intervals.major_fifth(x), majors[x]))
@@ -211,7 +211,7 @@ class test_intervals(unittest.TestCase):
             'F#': 'D',
             'Fb': 'Dbb',
             }
-        for x in minors.keys():
+        for x in minors:
             self.assertEqual(minors[x], intervals.minor_sixth(x),
                              'The minor sixth of %s is not %s, expecting %s'
                               % (x, intervals.minor_sixth(x), minors[x]))
@@ -229,7 +229,7 @@ class test_intervals(unittest.TestCase):
             'F': 'D',
             'Fb': 'Db',
             }
-        for x in majors.keys():
+        for x in majors:
             self.assertEqual(majors[x], intervals.major_sixth(x),
                              'The major sixth of %s is not %s, expecting %s'
                               % (x, intervals.major_sixth(x), majors[x]))
@@ -246,7 +246,7 @@ class test_intervals(unittest.TestCase):
             'B': 'A',
             'Bb': 'Ab',
             }
-        for x in minors.keys():
+        for x in minors:
             self.assertEqual(minors[x], intervals.minor_seventh(x),
                              'The minor seventh of %s is not %s, expecting %s'
                               % (x, intervals.minor_seventh(x), minors[x]))
@@ -264,7 +264,7 @@ class test_intervals(unittest.TestCase):
             'F': 'E',
             'Fb': 'Eb',
             }
-        for x in majors.keys():
+        for x in majors:
             self.assertEqual(majors[x], intervals.major_seventh(x),
                              'The major seventh of %s is not %s, expecting %s'
                               % (x, intervals.major_seventh(x), majors[x]))
