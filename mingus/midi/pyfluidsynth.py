@@ -202,7 +202,7 @@ def str_binary(s):
     return s
 
 
-class Synth:
+class Synth(object):
 
     """Synth represents a FluidSynth synthesizer."""
 

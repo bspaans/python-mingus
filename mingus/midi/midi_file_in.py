@@ -58,7 +58,7 @@ class FormatError(Exception):
     pass
 
 
-class MidiFile:
+class MidiFile(object):
 
     """A class that parses a MIDI file."""
 

@@ -22,7 +22,7 @@ class Win32MidiException(Exception):
     pass
 
 
-class Win32MidiPlayer:
+class Win32MidiPlayer(object):
     def __init__(self):
         self.midiOutOpenErrorCodes = {
             (
