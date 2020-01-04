@@ -7,14 +7,18 @@ Project Conventions
 * **Source code formatting:** use [black][]. A recipe for running it is provided in the Makefile: just `make format`.
 
 
-Development Dependencies
-------------------------
+Development setup
+-----------------
 
-After setting up your virtual environment, install development dependencies:
+* Set up a Python virtual environment with `python -m venv venv` at the root of this project.
+* Run `make dev` to install the project in editable mode and install dependencies.
 
 ```shell
-$ pip install -r requirements-dev.in
+$ python -m venv venv
+$ make dev
 ```
+
+The Makefile is already configured to use Python from the virtual environment `venv`; for running other commands, activate it using `source venv/bin/activate`.
 
 
 [black]: https://black.readthedocs.io/en/stable/
