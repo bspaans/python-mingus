@@ -6,7 +6,7 @@ except ImportError:
 
 setup(
     name="mingus",
-    version="0.5.2",
+    version="0.6.0",
     description="mingus is a music package for Python",
     long_description="""mingus is a package for Python used by programmers, musicians, \
 composers and researchers to make and investigate music. At the core of mingus is music theory, \
