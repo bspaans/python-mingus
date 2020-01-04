@@ -1,25 +1,36 @@
 from __future__ import absolute_import
 
-# -*- coding: utf-8 -*-
-import sys
+import os
+import shutil
+import tempfile
+import time
+import unittest
+
 from six.moves import range
 
-sys.path += ["../"]
-from mingus.midi import fluidsynth
 from mingus.containers import *
-import unittest
-import time
+from mingus.midi import fluidsynth
 from mingus.midi.sequencer_observer import SequencerObserver
 
 
 class test_fluidsynth(unittest.TestCase):
     def setUp(self):
-        fluidsynth.init(
-            "/home/bspaans/workspace/fluidsynth/ChoriumRevA.SF2", file="test.wav"
-        )
+        soundfont = os.getenv("SOUNDFONT")
+        if soundfont is None:
+            raise ValueError(
+                "A soundfont (*.sf2) file path must be provided in the SOUNDFONT environment variable"
+            )
+
+        self.tempdir = tempfile.mkdtemp()
+        output_file = os.path.join(self.tempdir, "test.wav")
+
+        fluidsynth.init(soundfont, file=output_file)
         fluidsynth.set_instrument(0, 0)
         s = SequencerObserver()
         fluidsynth.midi.attach(s)
+
+    def tearDown(self):
+        shutil.rmtree(self.tempdir)
 
     def test_bar_velocity(self):
         b = Bar()

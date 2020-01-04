@@ -5,6 +5,17 @@ format:
 install:
 	python setup.py install
 
+test:
+	(cd unittest; python run_tests.py)
+
+test-fluidsynth:
+	(cd unittest; python run_fluidsynth_tests.py)
+
+test-lilypond:
+	(cd unittest; python run_lilypond_tests.py)
+
+test-all: test test-fluidsynth test-lilypond
+
 clean:
 	rm -rf build/ dist/
 

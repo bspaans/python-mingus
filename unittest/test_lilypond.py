@@ -1,11 +1,12 @@
 from __future__ import absolute_import
 
-# -*- coding: utf-8 -*-
+import os
+import shutil
 import sys
+import tempfile
+import unittest
 from six.moves import map
 
-sys.path += ["../"]
-import unittest
 import mingus.extra.lilypond as LilyPond
 import mingus.core.value as value
 from mingus.containers.note import Note
@@ -17,6 +18,11 @@ from mingus.containers.composition import Composition
 
 class test_LilyPond(unittest.TestCase):
     def setUp(self):
+        # LilyPond output files are created in current working directory
+        self.tempdir = tempfile.mkdtemp()
+        self.oldcwd = os.getcwd()
+        os.chdir(self.tempdir)
+
         self.commonbar = Bar()
         self.ebar = Bar("E", (4, 4))
         self.fbar = Bar("F", (6, 8))
@@ -43,6 +49,10 @@ class test_LilyPond(unittest.TestCase):
         self.composition2 = Composition()
         self.composition2.add_track(self.track1)
         self.composition2.add_track(self.track2)
+
+    def tearDown(self):
+        os.chdir(self.oldcwd)
+        shutil.rmtree(self.tempdir)
 
     def test_from_Note(self):
         self.assertEqual(LilyPond.from_Note(Note("C"), standalone=False), "c'")
