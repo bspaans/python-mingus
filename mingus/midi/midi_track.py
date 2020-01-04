@@ -26,12 +26,13 @@ http://www.sonicspot.com/guide/midifiles.html
 from __future__ import absolute_import, division
 
 from binascii import a2b_hex
-from struct import pack, unpack
 from math import log
-from mingus.midi.midi_events import *
-from mingus.core.keys import Key, major_keys, minor_keys
-from mingus.containers.note import Note
+from struct import pack
+
 from six.moves import range
+
+from mingus.core.keys import Key, major_keys, minor_keys
+from mingus.midi.midi_events import *
 
 
 class MidiTrack(object):

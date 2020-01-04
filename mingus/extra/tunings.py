@@ -40,7 +40,7 @@ class StringTuning(object):
         should be a list of strings or a list of lists of strings that
         denote courses.
 
-        See tunings.add_tuning for examples.
+        See add_tuning for examples.
         """
         self.instrument = instrument
         self.tuning = []
@@ -75,7 +75,7 @@ class StringTuning(object):
         should either be a string or a Note object.
 
         Example:
-        >>> t = tunings.StringTuning('test', 'test', ['A-3', 'E-4'])
+        >>> t = StringTuning('test', 'test', ['A-3', 'E-4'])
         >>> t.find_frets(Note('C-4')
         [3, None]
         >>> t.find_frets(Note('A-4')
@@ -96,7 +96,7 @@ class StringTuning(object):
                 result.append(None)
         return result
 
-    def find_fingering(self, notes, max_distance=4, not_strings=[]):
+    def find_fingering(self, notes, max_distance=4, not_strings=None):
         """Return a list [(string, fret)] of possible fingerings for
         'notes'.
 
@@ -106,10 +106,12 @@ class StringTuning(object):
         used internally to recurse.
 
         Example:
-        >>> t = tunings.StringTuning('test', 'test', ['A-3', 'E-4', 'A-5'])
+        >>> t = StringTuning('test', 'test', ['A-3', 'E-4', 'A-5'])
         >>> t.find_fingering(['E-4', 'B-4'])
         [[(0, 7), (1, 7)], [(1, 0), (0, 14)]]
         """
+        if not_strings is None:
+            not_strings = []
         if notes is None:
             return []
         if len(notes) == 0:
@@ -159,7 +161,7 @@ class StringTuning(object):
         does more than find_fingering.
 
         Example:
-        >>> t = tunings.get_tuning('guitar', 'standard', 6, 1)
+        >>> t = get_tuning('guitar', 'standard', 6, 1)
         >>> t.find_chord_fingering(NoteContainer().from_chord('Am'))
         [[0, 0, 2, 2, 1, 0], [0, 3, 2, 2, 1, 0], ......]
         """
@@ -306,7 +308,7 @@ class StringTuning(object):
         Notelist should be a list of Notes, note-strings or a NoteContainer.
 
         Example:
-        >>> t = tunings.StringTuning('test', 'test', ['A-3', 'A-4'])
+        >>> t = StringTuning('test', 'test', ['A-3', 'A-4'])
         >>> t.find_note_names(['A', 'C', 'E'], 0, 12)
         [(0, 'E'), (5, 'A'), (8, 'C'), (12, 'E')]
         """
@@ -330,8 +332,8 @@ class StringTuning(object):
         Throw a RangeError if either the fret or string is unplayable.
 
         Examples:
-        >>> t = tunings.StringTuning('test', 'test', ['A-3', 'A-4'])
-        >>> t,get_Note(0, 0)
+        >>> t = StringTuning('test', 'test', ['A-3', 'A-4'])
+        >>> t.get_Note(0, 0)
         'A-3'
         >>> t.get_Note(0, 1)
         'A#-3'
@@ -396,7 +398,7 @@ def add_tuning(instrument, description, tuning):
     >>> std_strings = ['E-2', 'A-2', 'D-3', 'G-3', 'B-3', 'E-4']
     >>> tuning.add_tuning('Guitar', 'standard', std_strings)
     >>> tw_strings = [['E-2', 'E-3'], ['A-2', 'A-3'], ...........]
-    >>> tuning.add_tuning('Guitar', 'twelve string', tw_string)
+    >>> tuning.add_tuning('Guitar', 'twelve string', tw_strings)
     """
     t = StringTuning(instrument, description, tuning)
     if str.upper(instrument) in _known:
@@ -413,8 +415,8 @@ def get_tuning(instrument, description, nr_of_strings=None, nr_of_courses=None):
     'Bass Guitar'.
 
     Example:
-    >>> tunings.get_tuning('guitar', 'standard')
-    <tunings.StringTuning instance at 0x139ac20>
+    >>> get_tuning('guitar', 'standard')
+    <StringTuning instance at 0x139ac20>
     """
     searchi = str.upper(instrument)
     searchd = str.upper(description)
@@ -452,8 +454,8 @@ def get_tunings(instrument=None, nr_of_strings=None, nr_of_courses=None):
     'ba' yields all the instruments starting with 'ba'.
 
     Example:
-    >>> tunings.get_tunings(nr_of_string = 4)
-    >>> tunings.get_tunings('bass')
+    >>> get_tunings(nr_of_string = 4)
+    >>> get_tunings('bass')
     """
     search = ""
     if instrument is not None:

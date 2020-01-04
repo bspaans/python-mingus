@@ -51,7 +51,7 @@ def add_headers(
     author="",
     email="",
     description="",
-    tunings=[],
+    tunings=None,
 ):
     """Create a nice header in the form of a list of strings using the
     information that has been filled in.
@@ -60,6 +60,8 @@ def add_headers(
     should be an integer and 'tunings' a list of tunings representing the
     instruments.
     """
+    if tunings is None:
+        tunings = []
     result = [""]
     title = str.upper(title)
     result += [str.center("  ".join(title), width)]
@@ -143,8 +145,8 @@ def from_Note(note, width=80, tuning=None):
                 result[i] += "-" * w + "|"
             else:
                 d = w - len(fret)
-                result[i] += "-" * (d / 2) + fret
-                d = (w - d / 2) - len(fret)
+                result[i] += "-" * (d // 2) + fret
+                d = (w - d // 2) - len(fret)
                 result[i] += "-" * d + "|"
     else:
         raise RangeError(
@@ -214,8 +216,8 @@ def from_NoteContainer(notes, width=80, tuning=None):
                 result[i] += "-" * w + "|"
             else:
                 d = w - len(res[i])
-                result[i] += "-" * (d / 2) + res[i]
-                d = (w - d / 2) - len(res[i])
+                result[i] += "-" * (d // 2) + res[i]
+                d = (w - d // 2) - len(res[i])
                 result[i] += "-" * d + "|"
     else:
         raise FingerError("No playable fingering found for: %s" % notes)
@@ -239,7 +241,7 @@ def from_Bar(bar, width=40, tuning=None, collapse=True):
 
     # Size of a quarter note
     qsize = _get_qsize(tuning, width)
-    result = begin_track(tuning, max(2, qsize / 2))
+    result = begin_track(tuning, max(2, qsize // 2))
 
     # Add bar
     for entry in bar.bar:
@@ -308,7 +310,7 @@ def from_Bar(bar, width=40, tuning=None, collapse=True):
     # Mark quarter notes
     pad = " " * int(((1.0 / bar.meter[1]) * qsize) * 4 - 1)
     r = (
-        " " * (result[0].find("||") + 2 + max(2, qsize / 2))
+        " " * (result[0].find("||") + 2 + max(2, qsize // 2))
         + ("*" + pad) * bar.meter[0]
     )
     r += " " * (len(result[0]) - len(r))

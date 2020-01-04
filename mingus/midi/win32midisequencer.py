@@ -31,11 +31,8 @@ import sys
 # raising exceptions. So instead, raise in the init() method.
 if sys.platform == "win32":
     from mingus.midi import win32midi
-    from mingus.midi.win32midi import Win32MidiException
 
-from datetime import datetime
 from mingus.midi.sequencer import Sequencer
-from mingus.containers.instrument import MidiInstrument
 
 
 class Win32MidiSequencer(Sequencer):

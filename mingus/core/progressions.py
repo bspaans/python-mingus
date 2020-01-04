@@ -523,7 +523,7 @@ def interval_diff(progression1, progression2, interval):
     return acc
 
 
-def skip(roman_numeral, skip=1):
+def skip(roman_numeral, skip_count=1):
     """Skip the given places to the next roman numeral.
 
     Examples:
@@ -534,5 +534,5 @@ def skip(roman_numeral, skip=1):
     >>> skip('I', 2)
     'III'
     """
-    i = numerals.index(roman_numeral) + skip
+    i = numerals.index(roman_numeral) + skip_count
     return numerals[i % 7]

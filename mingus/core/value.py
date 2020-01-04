@@ -142,7 +142,7 @@ def subtract(value1, value2):
     useful for taking differences.
 
     Example:
-    >>> substract(quarter, eighth)
+    >>> subtract(quarter, eighth)
     8.0
     """
     return 1 / (1.0 / value1 - 1.0 / value2)

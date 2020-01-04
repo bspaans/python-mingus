@@ -34,7 +34,9 @@ class MidiFile(object):
     tracks = []
     time_division = b"\x00\x48"
 
-    def __init__(self, tracks=[]):
+    def __init__(self, tracks=None):
+        if tracks is None:
+            tracks = []
         self.reset()
         self.tracks = tracks
 
@@ -149,10 +151,10 @@ def write_Composition(file, composition, bpm=120, repeat=0, verbose=False):
 
 
 if __name__ == "__main__":
-    from mingus.containers.NoteContainer import NoteContainer
-    from mingus.containers.Bar import Bar
-    from mingus.containers.Track import Track
-    from mingus.containers.Instrument import MidiInstrument
+    from mingus.containers.note_container import NoteContainer
+    from mingus.containers.bar import Bar
+    from mingus.containers.track import Track
+    from mingus.containers.instrument import MidiInstrument
 
     b = Bar()
     b2 = Bar("Ab", (3, 4))

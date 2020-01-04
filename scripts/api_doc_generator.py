@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 #    mingus - Music theory Python package, generate_wiki_docs module.
@@ -22,6 +22,7 @@
 
 This module builds the reference documentation for mingus.
 """
+from __future__ import print_function
 
 import mingus
 from mingus.core import *
@@ -33,6 +34,29 @@ import inspect
 import sys
 import os
 import inspect
+import six
+
+
+if six.PY2:
+    _wrapper_descriptor = type(Exception.__init__)
+    _method_wrapper = type(Exception.__eq__.__init__)
+    _method_descriptor = type(str.index)
+else:
+    _wrapper_descriptor = types.WrapperDescriptorType
+    _method_wrapper = types.MethodWrapperType
+    _method_descriptor = types.MethodDescriptorType
+
+_SKIPPED_CLASS_SUPERTYPES = (_wrapper_descriptor, _method_wrapper, _method_descriptor)
+_METHOD_TYPES = (types.FunctionType, types.MethodType)
+
+
+def _is_class(cls):
+    return issubclass(cls, object) and not issubclass(cls, _SKIPPED_CLASS_SUPERTYPES)
+
+
+def _is_method(obj):
+    return type(obj) in _METHOD_TYPES
+
 
 class Documize(object):
 
@@ -42,11 +66,38 @@ class Documize(object):
     classes = []
     attributes = []
 
+    _ALLOWED_DUNDER_METHODS = {
+        '__add__',
+        '__del__',
+        '__eq__',
+        '__ge__',
+        '__getitem__',
+        '__gt__',
+        '__init__',
+        '__int__',
+        '__le__',
+        '__len__',
+        '__lt__',
+        '__ne__',
+        '__nonzero__',
+        '__repr__',
+        '__setitem__',
+        '__str__',
+        '__sub__',
+    }
+
     def __init__(self, module_string=''):
         self.set_module(module_string)
 
+    def _filter_dunder_attributes(self, attrs):
+        return (
+            attr
+            for attr in attrs
+            if not attr.startswith('__') or attr in self._ALLOWED_DUNDER_METHODS
+        )
+
     def process_element_recursively(self, element_string, element_evaled, is_class = False):
-        for element in dir(element_evaled):
+        for element in self._filter_dunder_attributes(dir(element_evaled)):
             e = eval('{0}.{1}'.format(element_string, element))
             if not callable(e):
                 self.generate_non_callable_docs(element_string, element, e, is_class)
@@ -98,13 +149,13 @@ class Documize(object):
                 self.classes.append(res)
 
     def generate_callable_wikidocs(self, module_string, element_string, evaled, is_class = False):
-        if type(evaled) in [types.FunctionType, types.MethodType]:
+        if _is_method(evaled):
             docs = self.generate_function_wikidocs(element_string, evaled, is_class)
             if not is_class:
                 self.functions.append(docs)
             else:
                 self.classes.append(docs)
-        elif type(evaled) == types.ClassType:
+        elif _is_class(type(evaled)):
             self.classes.append('\n.. class:: ' + element_string + '\n\n')
             module_string = module_string + "." + element_string
             self.process_element_recursively(module_string, evaled, True)
@@ -128,7 +179,7 @@ class Documize(object):
             try:
                 if defaults != None and len(defaults) >= len(args) - n:
                     res += '{0}={1}, '.format(args[n], defaults[n - (len(args) - len(defaults))])
-                    
+
                     def_values.append((args[n], defaults[n - (len(args) - len(defaults))]))
                 else:
                     res += '{0}, '.format(args[n])
@@ -176,7 +227,7 @@ def generate_package_wikidocs(package_string, file_prefix='ref',
         file_suffix='.wiki'):
     d = Documize()
     package = eval(package_string)
-    print '\nGenerating documentation for package {0}'.format(package_string)
+    print('\nGenerating documentation for package {0}'.format(package_string))
     for element in dir(package):
         if not callable(element) and not element.startswith('__'):
             fullname = '{0}.{1}'.format(package_string, element)
@@ -187,34 +238,36 @@ def generate_package_wikidocs(package_string, file_prefix='ref',
             for parts in fullname.split('.'):
                 wikiname += parts.capitalize()
             wikiname += file_suffix
-            print 'Writing {0}...'.format(wikiname),
+            print('Writing {0}...'.format(wikiname), end=' ')
             result = d.output_wiki()
             try:
                 f = open(os.path.join(sys.argv[1], wikiname), 'w')
                 try:
                     f.write(result)
-                    print 'OK'
+                    print('OK')
                 except:
-                    print "ERROR. Couldn't write to file."
+                    print("ERROR. Couldn't write to file.")
                 f.close()
             except:
-                print "ERROR. Couldn't open file for writing."
+                print("ERROR. Couldn't open file for writing.")
+
 
 def main():
-    print 'mingus version 0.5, Copyright (C) 2008-2015, Bart Spaans\n'
-    print 'mingus comes with ABSOLUTELY NO WARRANTY. This is free'
-    print 'software and you are welcome to redistribute it under'
-    print 'certain conditions.'
+    print("mingus version 0.5, Copyright (C) 2008-2015, Bart Spaans\n"
+          "mingus comes with ABSOLUTELY NO WARRANTY. This is free\n"
+          "software and you are welcome to redistribute it under\n"
+          "certain conditions.")
     if len(sys.argv) == 1:
-        print '\n\nUsage:', sys.argv[0], 'OUTPUT-DIRECTORY'
+        print('\n\nUsage:', sys.argv[0], 'OUTPUT-DIRECTORY')
         sys.exit(1)
     elif not os.path.isdir(sys.argv[1]):
-        print '\n\nError: not a valid directory:', sys.argv[1]
+        print('\n\nError: not a valid directory:', sys.argv[1])
         sys.exit(1)
     generate_package_wikidocs('mingus.core', 'ref', '.rst')
     generate_package_wikidocs('mingus.midi', 'ref', '.rst')
     generate_package_wikidocs('mingus.containers', 'ref', '.rst')
     generate_package_wikidocs('mingus.extra', 'ref', '.rst')
+
 
 if __name__ == '__main__':
     main()

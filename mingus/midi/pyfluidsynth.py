@@ -28,9 +28,9 @@ FluidSynth works on all major platforms, so pyFluidSynth should also.
 """
 from __future__ import absolute_import
 
-import time
 from ctypes import *
 from ctypes.util import find_library
+
 import six
 
 lib = (
@@ -202,7 +202,7 @@ def str_binary(s):
     return s
 
 
-class Synth:
+class Synth(object):
 
     """Synth represents a FluidSynth synthesizer."""
 

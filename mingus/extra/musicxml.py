@@ -31,19 +31,18 @@ http://www.musicxml.org/xml.html
 """
 from __future__ import absolute_import
 
-import xml
-from xml.dom.minidom import Document
-from mingus.core import notes
-from mingus.core.keys import major_keys, minor_keys
-from mingus.containers.instrument import MidiInstrument
-from mingus.containers.composition import Composition
-from mingus.containers.track import Track
-from mingus.core import value
 import datetime
 from functools import reduce
-from six.moves import range
+from xml.dom.minidom import Document
 
 import six
+from six.moves import range
+
+from mingus.containers.composition import Composition
+from mingus.containers.instrument import MidiInstrument
+from mingus.containers.track import Track
+from mingus.core import value
+from mingus.core.keys import major_keys, minor_keys
 
 str = six.text_type
 
