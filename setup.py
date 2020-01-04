@@ -18,12 +18,10 @@ On top of that are several packages that deal  with classical notation, MIDI (se
 loading and saving), MusicXML, ASCII tablature, and many other useful and plain cool things \
 like LilyPond and FluidSynth support. Everything is fully documentated, put into simple \
 APIs and has a tutorial making it easy to jump straight in.
-
-http://mingus.googlecode.com
 """,
     author="Bart Spaans",
     author_email="bart.spaans@gmail.com",
-    url="http://github.com/bspaans/python-mingus",
+    url="https://github.com/bspaans/python-mingus",
     packages=[
         "mingus",
         "mingus.core",
