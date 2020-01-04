@@ -14,6 +14,16 @@ from mingus.midi.sequencer_observer import SequencerObserver
 
 
 class test_fluidsynth(unittest.TestCase):
+    """
+    You must provide the path to a SoundFont file (*.sf2) in the SOUNDFONT
+    environment variable.
+
+    In case you're looking for one, you can download a free and open SoundFont
+    from the website below. Note that you will need to uncompress the .tar.xz
+    archive to get the actual .sf2 file.
+
+    https://freepats.zenvoid.org/SoundSets/general-midi.html
+    """
     def setUp(self):
         soundfont = os.getenv("SOUNDFONT")
         if soundfont is None:
