@@ -23,6 +23,10 @@ containers in mingus.containers real-time. To work with this module, you'll
 need fluidsynth and a nice instrument collection (look here:
 http://www.hammersound.net, go to Sounds → Soundfont Library → Collections).
 
+An alternative is the FreePats project. You can download a SoundFont from
+https://freepats.zenvoid.org/SoundSets/general-midi.html. Note that you will
+need to uncompress the .tar.xz archive to get the actual .sf2 file.
+
 To start using FluidSynth with mingus, do:
 >>> from mingus.midi import fluidsynth
 >>> fluidsynth.init('soundfontlocation.sf2')
