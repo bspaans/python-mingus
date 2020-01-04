@@ -29,13 +29,21 @@ clean:
 build:
 	python setup.py sdist bdist_wheel
 
+sign-build: build
+	(\
+		cd dist; \
+		rm -f *.asc; \
+		for a in *.whl *.gz; do \
+			gpg --armor --detach-sign "$$a"; \
+		done)
+
 upload:
 	twine upload dist/*
 
 tag:
-	git tag $$(python setup.py --version)
+	git tag -s $$(python setup.py --version)
 
-release: clean build upload tag
+release: clean build sign-build upload tag
 
 .PHONY: format \
 	dev install \
