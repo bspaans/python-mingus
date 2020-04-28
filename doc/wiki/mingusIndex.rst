@@ -3,7 +3,7 @@
 
 .. image:: doc/wiki/lpexample.png
 
-*mingus* is an advanced, cross-platform music theory and notation package for `Python <http://www.python.org>`_ with MIDI file and playback support. It can be used to play around with music theory, to build editors, educational tools and other applications that need to process and/or play music. It can also be used to create sheet music with `LilyPond <http://www.lilypond.org LilyPond>`_.
+*mingus* is an advanced, cross-platform music theory and notation package for `Python <http://www.python.org>`_ with MIDI file and playback support. It can be used to play around with music theory, to build editors, educational tools and other applications that need to process and/or play music. It can also be used to create sheet music with `LilyPond <http://www.lilypond.org>`_.
 
 ===============
 Getting Started
