@@ -29,36 +29,49 @@ This module provides methods which can convert progressions to chords and
 vice versa.
 """
 
-import mingus.core.notes as notes
-import mingus.core.chords as chords
-import mingus.core.intervals as intervals
+from mingus.core import notes
+from mingus.core import chords
+from mingus.core import intervals
+from mingus.core.keys import get_notes
 numerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']
 numeral_intervals = [0, 2, 4, 5, 7, 9, 11]
+
+def twelve_bar_blues_chord_progression(key):
+    from mingus.core.harmony import MODE_CHORD_FUNCTIONS
+    key_notes = get_notes(key)
+    aChord = chords.create_dominant_seventh_symbol(key)
+    bChord = chords.create_dominant_seventh_symbol(key_notes[3])
+    cChord = chords.determine_seventh(MODE_CHORD_FUNCTIONS[1](key), shorthand=True)[0]
+    dChord = chords.determine_seventh(MODE_CHORD_FUNCTIONS[4](key), shorthand=True)[0]
+    return [aChord, bChord, aChord, aChord,
+            bChord, bChord, aChord, aChord,
+            cChord, dChord, aChord, aChord]
 
 def to_chords(progression, key='C'):
     """Convert a list of chord functions or a string to a list of chords.
 
     Examples:
     >>> to_chords(['I', 'V7'])
-    [['C', 'E', 'G'], ['G', 'B', 'D', 'F']]
+    [['C', 'E', 'G'], ['G', 'B', 'D', 'F']] 
     >>> to_chords('I7')
-    [['C', 'E', 'G', 'B']]
+    [['C', 'E', 'G', 'B']] // NOTE: this is Mingus' 'diatonic parsing' where in jazz this would mean I7 = Idom7 -> C E G Bb
 
     Any number of accidentals can be used as prefix to augment or diminish;
     for example: bIV or #I.
-    
+
     All the chord abbreviations in the chord module can be used as suffixes;
     for example: Im7, IVdim7, etc.
-    
+
     You can combine prefixes and suffixes to manage complex progressions:
     #vii7, #iidim7, iii7, etc.
-    
+
     Using 7 as suffix is ambiguous, since it is classicly used to denote the
     seventh chord when talking about progressions instead of just the
     dominant seventh chord. We have taken the classic route; I7 will get
     you a major seventh chord. If you specifically want a dominanth seventh,
     use Idom7.
     """
+    #print('Warning: mingus.core.progressions.to_chords() is unsafe without using sw.parse_progression()')
     if type(progression) == str:
         progression = [progression]
     result = []
@@ -68,11 +81,11 @@ def to_chords(progression, key='C'):
 
         # There is no roman numeral parsing, just a simple check. Sorry to
         # disappoint. warning Should throw exception
-        if roman_numeral not in numerals:
+        if roman_numeral.upper() not in numerals:
             return []
 
         # These suffixes don't need any post processing
-        if suffix == '7' or suffix == '':
+        if suffix == '7' or suffix == '':#or 'm' in suffix:
             roman_numeral += suffix
 
             # ahh Python. Everything is a dict.
@@ -82,10 +95,10 @@ def to_chords(progression, key='C'):
             r = chords.chord_shorthand[suffix](r[0])
 
         while acc < 0:
-            r = map(notes.diminish, r)
+            r = list(map(notes.diminish, r))
             acc += 1
         while acc > 0:
-            r = map(notes.augment, r)
+            r = list(map(notes.augment, r))
             acc -= 1
         result.append(r)
     return result
@@ -218,17 +231,20 @@ def parse_string(progression):
     roman_numeral = ''
     suffix = ''
     i = 0
-    for c in progression:
+    for c in progression: # c as in character, not chord
         if c == '#':
             acc += 1
         elif c == 'b':
             acc -= 1
         elif c.upper() == 'I' or c.upper() == 'V':
-            roman_numeral += c.upper()
+            roman_numeral += c.upper() 
         else:
             break
         i += 1
-    suffix = progression[i:]
+    suffix = progression[i:].replace('I', 'i') # added lower as was getting a KeyError: 'dIm7' but don't want to break e.g. M7/m7 with .lower()
+    if progression[0] == progression[0].lower() and progression[0].lower() != 'b': # if roman numeral is lower-case in the original input:
+        print(f'progressions.parse_string() is adding m suffix to chord: {progression}')
+        suffix = 'm'+suffix
     return (roman_numeral, acc, suffix)
 
 def tuple_to_string(prog_tuple):

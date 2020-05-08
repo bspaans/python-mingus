@@ -54,6 +54,7 @@ Generate Absolute Chords
    * dominant_ninth
  * Elevenths
    * minor_eleventh
+   * minor_eleventh_flat_five (NEW)
    * eleventh
  * Thirteenths
    * minor_thirteenth
@@ -96,9 +97,9 @@ from_shorthand (a lot) and their inversions.
  * from_shorthand - Generates chords from shorthand (eg. 'Cmin7')
 """
 
-import mingus.core.intervals as intervals
-import mingus.core.notes as notes
-import mingus.core.keys as keys
+from mingus.core import intervals
+from mingus.core import notes
+from mingus.core import keys
 from mingus.core.mt_exceptions import NoteFormatError, FormatError
 
 _triads_cache = {}
@@ -134,6 +135,7 @@ chord_shorthand_meaning = {  # Triads Augmented chords Suspended chords Sevenths
     'dom7': ' dominant seventh',
     '7': ' dominant seventh',
     'm7b5': ' half diminished seventh',
+    'm11b5': ' minor eleven flat five',
     'dim7': ' diminished seventh',
     'm/M7': ' minor/major seventh',
     'mM7': ' minor/major seventh',
@@ -162,6 +164,27 @@ chord_shorthand_meaning = {  # Triads Augmented chords Suspended chords Sevenths
     '5': ' perfect fifth',
     }
 
+def chord_note_and_family(chord_symbol):
+    """
+    >>> chord_note_and_family("FM6")
+    ('F', 'M6')
+    >>> chord_note_and_family("Gbsus4")
+    ('Gb', 'sus4')
+    """
+    from mingus.core.notes import reduce_accidentals
+    
+    
+    
+    chord_note=[chord_symbol[0]]
+    if '#' in chord_symbol or 'b' in chord_symbol:
+        for n in chord_symbol[1:]:
+            if n == '#' or n == 'b':
+                chord_note.append(n)
+            else:
+                break
+
+    return ''.join(chord_note), chord_symbol[len(chord_note):]
+
 def triad(note, key):
     """Return the triad on note in key as a list.
 
@@ -178,9 +201,9 @@ def triads(key):
 
     Implemented using a cache.
     """
-    if _triads_cache.has_key(key):
+    if key in _triads_cache:
         return _triads_cache[key]
-    res = map(lambda x: triad(x, key), keys.get_notes(key))
+    res = list(map(lambda x: triad(x, key), keys.get_notes(key)))
     _triads_cache[key] = res
     return res
 
@@ -221,6 +244,9 @@ def augmented_triad(note):
     return [note, intervals.major_third(note),
             notes.augment(intervals.major_fifth(note))]
 
+def create_dominant_seventh_symbol(note):
+    return determine_seventh(dominant_seventh(note), shorthand=True)[0]
+
 def seventh(note, key):
     """Return the seventh chord on note in key.
 
@@ -232,9 +258,9 @@ def seventh(note, key):
 
 def sevenths(key):
     """Return all the sevenths chords in key in a list."""
-    if _sevenths_cache.has_key(key):
+    if key in _sevenths_cache:
         return _sevenths_cache[key]
-    res = map(lambda x: seventh(x, key), keys.get_notes(key))
+    res = list(map(lambda x: seventh(x, key), keys.get_notes(key)))
     _sevenths_cache[key] = res
     return res
 
@@ -282,6 +308,13 @@ def minor_seventh_flat_five(note):
     See half_diminished_seventh(note) for docs.
     """
     return half_diminished_seventh(note)
+
+def minor_eleventh_flat_five(note):
+    """Build a minor eleven flat five chord on note - new
+    """
+    print('nb. this function (in mingus.core.chords) might need adjusting octave 4th -> 11th')
+    return half_diminished_seventh(note) + [intervals.major_fourth(note)]
+
 
 def diminished_seventh(note):
     """Build a diminished seventh chord on note.
@@ -511,6 +544,14 @@ def lydian_dominant_seventh(note):
     """
     return (dominant_seventh(note) +
             [notes.augment(intervals.perfect_fourth(note))])
+    
+def lydian_major_seventh(note):
+    """Build the lydian major seventh (M7#11) on note.
+
+    """
+    return (major_seventh(note) +
+            [notes.augment(intervals.perfect_fourth(note))])
+
 
 def hendrix_chord(note):
     """Build the famous Hendrix chord (7b12).
@@ -621,7 +662,7 @@ def I7(key):
     return tonic7(key)
 
 def ii(key):
-    return supertonic(key)
+    return supertonic(key) # note that progressions.to_chords['ii'] will come and pick this up (major 2nd chord due to mingus' classical approach). Instead, that fn has been re-written to try to except lower-casing and add a minor suffix
 
 def II(key):
     return supertonic(key)
@@ -722,7 +763,7 @@ def from_shorthand(shorthand_string, slash=None):
     Recognised abbreviations: the letters "m" and "M" in the following
     abbreviations can always be substituted by respectively "min", "mi" or
     "-" and "maj" or "ma".
-    
+
     Example:
     >>> from_shorthand('Amin7') == from_shorthand('Am7')
     True
@@ -762,12 +803,13 @@ def from_shorthand(shorthand_string, slash=None):
     shorthand_string = shorthand_string.replace('mi', 'm')
     shorthand_string = shorthand_string.replace('-', 'm')
     shorthand_string = shorthand_string.replace('maj', 'M')
+    shorthand_string = shorthand_string.replace('Maj', 'M')
     shorthand_string = shorthand_string.replace('ma', 'M')
+    shorthand_string = shorthand_string.replace('o', 'dim').replace('ddimm','dom')
 
     # Get the note name
     if not notes.is_valid_note(shorthand_string[0]):
-        raise NoteFormatError("Unrecognised note '%s' in chord '%s'"\
-             % (shorthand_string[0], shorthand_string))
+        raise NoteFormatError("Unrecognised note '{}' in chord '{}'".format(shorthand_string[0], shorthand_string))
     name = shorthand_string[0]
 
     # Look for accidentals
@@ -800,7 +842,7 @@ def from_shorthand(shorthand_string, slash=None):
     shorthand_start = len(name)
 
     short_chord = shorthand_string[shorthand_start:]
-    if chord_shorthand.has_key(short_chord):
+    if short_chord in chord_shorthand:
         res = chord_shorthand[short_chord](name)
         if slash != None:
             # Add slashed chords
@@ -808,8 +850,8 @@ def from_shorthand(shorthand_string, slash=None):
                 if notes.is_valid_note(slash):
                     res = [slash] + res
                 else:
-                    raise NoteFormatError("Unrecognised note '%s' in slash chord'%s'" % (slash,
-                            slash + shorthand_string))
+                    raise NoteFormatError("Unrecognised note '{}' in slash chord'{}'".format(slash,
+                                                                                             slash + shorthand_string))
             elif type(slash) == list:
                 # Add polychords
                 r = slash
@@ -819,7 +861,7 @@ def from_shorthand(shorthand_string, slash=None):
                 return r
         return res
     else:
-        raise FormatError('Unknown shorthand: %s' % shorthand_string)
+        raise FormatError('Unknown shorthand: {}'.format(shorthand_string))
 
 def determine(chord, shorthand=False, no_inversions=False, no_polychords=False):
     """Name a chord.
@@ -1195,7 +1237,7 @@ def int_desc(tries):
 
 def determine_polychords(chord, shorthand=False):
     """Determine the polychords in chord.
-    
+
     This function can handle anything from polychords based on two triads to
     6 note extended chords.
     """
@@ -1234,6 +1276,8 @@ def determine_polychords(chord, shorthand=False):
 chord_shorthand = {  # Triads Augmented chords Suspended chords Sevenths Sixths
                      # Ninths Elevenths Thirteenths Altered Chords Special
     'm': minor_triad,
+    '-': minor_triad,
+    ' min': minor_triad,
     'M': major_triad,
     '': major_triad,
     'dim': diminished_triad,
@@ -1256,6 +1300,7 @@ chord_shorthand = {  # Triads Augmented chords Suspended chords Sevenths Sixths
     '7': dominant_seventh,
     'dom7': dominant_seventh,
     'm7b5': minor_seventh_flat_five,
+    'm11b5': minor_eleventh_flat_five,
     'dim7': diminished_seventh,
     'm/M7': minor_major_seventh,
     'mM7': minor_major_seventh,
@@ -1272,6 +1317,7 @@ chord_shorthand = {  # Triads Augmented chords Suspended chords Sevenths Sixths
     'M9': major_ninth,
     'm9': minor_ninth,
     '7#11': lydian_dominant_seventh,
+    'M7(#11)': lydian_major_seventh,
     'm11': minor_eleventh,
     'M13': major_thirteenth,
     'm13': minor_thirteenth,
@@ -1281,3 +1327,51 @@ chord_shorthand = {  # Triads Augmented chords Suspended chords Sevenths Sixths
     '7b12': hendrix_chord,
     '5': lambda x: [x, intervals.perfect_fifth(x)]
     }
+
+class TemporalChord(object):
+    def __init__(self, name, octave=3, dynamics=None, duration_denominator=4):
+        self.name = name
+        self.octave = octave
+        self.dynamics = dynamics
+        self.duration_denominator = duration_denominator
+        self.root_note, self.family = chord_note_and_family(name)
+
+    def get_temporal_root(self):
+        from mingus.containers.note import TemporalNote
+        return TemporalNote(self.root_note, octave=self.octave)
+
+def temporal_note_chord_factory(duration_denominator=None):
+    def func_composer(func):
+        def inner_fn(chord, octave=4):
+            if isinstance(chord, (list, set)):
+                return [TemporalChord(note,
+                                      octave=octave,
+                                      duration_denominator=duration_denominator) for note in chord]
+            else:
+                return TemporalChord(chord, octave=octave, duration_denominator=duration_denominator)
+        return inner_fn
+    return func_composer
+
+@temporal_note_chord_factory(1)
+def WholNoteChordFactory(note_name, octave=4):
+    pass
+
+@temporal_note_chord_factory(2)
+def HalfNoteChordFactory(note_name, octave=4):
+    pass
+
+@temporal_note_chord_factory(4)
+def QuarterNoteChordFactory(note_name, octave=4):
+    pass
+
+@temporal_note_chord_factory(8)
+def EightNoteChordFactory(note_name, octave=4):
+    pass
+
+@temporal_note_chord_factory(8)
+def SixteenthNoteChordFactory(note_name, octave=16):
+    pass
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()

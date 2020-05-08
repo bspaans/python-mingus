@@ -26,7 +26,7 @@ little overview:
 The diatonic scales
  * Diatonic(note, semitones)
 
-Ancient scales
+Ancient scales (modes)
  * Ionian(note)
  * Dorian(note)
  * Phrygian(note)
@@ -34,6 +34,7 @@ Ancient scales
  * Mixolydian(note)
  * Aeolian(note)
  * Locrian(note)
+ ** new in Sidewinder: modes of the harmonic and melodic minor scales
 
 The major scales
  * Major(note)
@@ -45,17 +46,29 @@ The minor scales
  * MelodicMinor(note)
  * Bachian(note)
  * MinorNeapolitan(note)
+ 
+The bebop scales (new in Sidewinder)
+ * MajorBebop(note)
+ * DorianBebop(note)
+ * AltDorianBebop(note)
+ * MixolydianBebop(note) # aka dominant bebop
+ * MelodicMinorBebop(note)
+ * HarmonicMinorBebop(note)
 
 Other scales
  * Chromatic(note)
  * WholeTone(note)
  * Octatonic(note)
+ ** new in Sidewinder: major and minor pentatonics
+ ** new in Sidewinder: super-ultra-hyper-mega-meta 'scales' (lydian and mixolydian)
 """
 
-import mingus.core.intervals as intervals
+from mingus.core import intervals
 from mingus.core.notes import augment, diminish, reduce_accidentals
 from mingus.core.keys import keys, get_notes
 from mingus.core.mt_exceptions import NoteFormatError, FormatError, RangeError
+from mingus.containers.note import Note as TemporalNote
+from itertools import cycle
 
 def determine(notes):
     """Determine the scales containing the notes.
@@ -140,6 +153,32 @@ class _Scale(object):
         else:
             raise FormatError("Unrecognised direction '%s'" % direction)
 
+    def generate(self, length, ascending=True, start_degree=1, undulating=False, starting_octave=None):
+        """
+
+        Generate given number of notes from the scale, either continuously rising or falling or as
+        an undulating wave (i.e., up an octave, then down, then up again, etc.)
+
+        >>> list(Blues('F').generate(length=9))
+        ['F', 'Ab', 'Bb', 'B', 'C', 'Eb', 'F', 'Ab', 'Bb']
+
+        >>> list(Blues('F').generate(length=7, undulating=True))
+        ['F', 'Ab', 'Bb', 'B', 'C', 'Eb', 'F']
+
+        >>> [repr(note) for note in Blues('F').generate(length=13, undulating=True, starting_octave=1)]
+        ["'F-1'", "'Ab-1'", "'Bb-1'", "'B-1'", "'C-1'", "'Eb-1'", "'F-2'", "'Eb-1'", "'C-1'", "'B-1'", "'Bb-1'", "'Ab-1'", "'F-1'"]
+        """
+        wave = (self.ascending()[:-1] + self.descending()[:-1]) if ascending else (
+            self.descending()[:-1] + self.ascending()[:-1])
+        incline = (self.ascending() if ascending else self.descending())[:-1]
+        alternating_octaves = cycle([starting_octave,
+                                     starting_octave+1]) if starting_octave is not None else None
+        for key in cycle(wave if undulating else incline):
+            octave = starting_octave if (key !=  self.tonic or starting_octave is None) else next(alternating_octaves)
+            yield TemporalNote(key, octave=octave) if starting_octave is not None else key
+            length -= 1
+            if length == 0:
+                break
 
 # The diatonic scales
 
@@ -148,13 +187,13 @@ class Diatonic(_Scale):
     """The diatonic scale.
 
     Example:
-    >>> print Diatonic('C', (3, 7))
+    >>> print(Diatonic('C', (3, 7)))
     Ascending:  C D E F G A B C
     Descending: C B A G F E D C
     """
 
     type = 'diatonic'
-        
+
     def __init__(self, note, semitones, octaves=1):
         """Create the diatonic scale starting on the chosen note.
 
@@ -176,14 +215,14 @@ class Diatonic(_Scale):
         return notes * self.octaves + [notes[0]]
 
 
-# Ancient scales
+# Major modes
 
 class Ionian(_Scale):
 
     """The ionian scale.
 
     Example:
-    >>> print Ionian('C')
+    >>> print(Ionian('C'))
     Ascending:  C D E F G A B C
     Descending: C B A G F E D C
     """
@@ -205,7 +244,7 @@ class Dorian(_Scale):
     """The dorian scale.
 
     Example:
-    >>> print Dorian('D')
+    >>> print(Dorian('D'))
     Ascending:  D E F G A B C D
     Descending: D C B A G F E D
     """
@@ -227,7 +266,7 @@ class Phrygian(_Scale):
     """The phrygian scale.
 
     Example:
-    >>> print Phrygian('E')
+    >>> print(Phrygian('E'))
     Ascending:  E F G A B C D E
     Descending: E D C B A G F E
     """
@@ -249,7 +288,7 @@ class Lydian(_Scale):
     """The lydian scale.
 
     Example:
-    >>> print Lydian('F')
+    >>> print(Lydian('F'))
     Ascending:  F G A B C D E F
     Descending: F E D C B A G F
     """
@@ -271,7 +310,7 @@ class Mixolydian(_Scale):
     """The mixolydian scale.
 
     Example:
-    >>> print Mixolydian('G')
+    >>> print(Mixolydian('G'))
     Ascending:  G A B C D E F G
     Descending: G F E D C B A G
     """
@@ -293,7 +332,7 @@ class Aeolian(_Scale):
     """The aeolian scale.
 
     Example:
-    >>> print Aeolian('A')
+    >>> print(Aeolian('A'))
     Ascending:  A B C D E F G A
     Descending: A G F E D C B A
     """
@@ -315,7 +354,7 @@ class Locrian(_Scale):
     """The locrian scale.
 
     Example:
-    >>> print Locrian('B')
+    >>> print(Locrian('B'))
     Ascending:  B C D E F G A B
     Descending: B A G F E D C B
     """
@@ -331,6 +370,49 @@ class Locrian(_Scale):
         notes = Diatonic(self.tonic, (1, 4)).ascending()[:-1]
         return notes * self.octaves + [notes[0]]
 
+BLUES_INTERVALS = [
+    intervals.minor_third,
+    intervals.major_second,
+    intervals.minor_second,
+    intervals.minor_second,
+    intervals.minor_third,
+    intervals.major_second,
+]
+
+class Blues(_Scale):
+
+    """The blues scale
+
+    Example:
+    >>> print(Blues('C'))
+    Ascending:  C Eb F Gb G Bb C
+    Descending: C Bb G Gb F Eb C
+
+    >>> f_blues = Blues('F')
+    >>> print(f_blues)
+    Ascending:  F Ab Bb B C Eb F
+    Descending: F Eb C B Bb Ab F
+
+    >>> f_blues.degree(4)
+    'B'
+    """
+
+    type = 'major'
+
+    def __init__(self, note, octaves=1):
+        """Create the major scale starting on the chosen note."""
+        super(Blues, self).__init__(note, octaves)
+        self.name = '{} blues'.format(self.tonic)
+
+    def ascending(self):
+        notes = [self.tonic]
+        current_note = self.tonic
+        for ival in BLUES_INTERVALS:
+            new_note = reduce_accidentals(ival(current_note))
+            notes.append(new_note)
+            current_note = new_note
+
+        return notes
 
 # The major scales
 
@@ -339,7 +421,7 @@ class Major(_Scale):
     """The major scale.
 
     Example:
-    >>> print Major('A')
+    >>> print(Major('A'))
     Ascending:  A B C# D E F# G# A
     Descending: A G# F# E D C# B A
     """
@@ -352,7 +434,10 @@ class Major(_Scale):
         self.name = '{0} major'.format(self.tonic)
 
     def ascending(self):
-        notes = get_notes(self.tonic)
+        try:
+            notes = get_notes(self.tonic) # this fails with G# (for ex), see mingus.core.keys.keys (i.e. missing in that list)
+        except NoteFormatError:
+            notes = Diatonic(self.tonic, (3,7)).ascending()
         return notes * self.octaves + [notes[0]]
 
 
@@ -361,7 +446,7 @@ class HarmonicMajor(_Scale):
     """The harmonic major scale.
 
     Example:
-    >>> print HarmonicMajor('C')
+    >>> print(HarmonicMajor('C'))
     Ascending:  C D E F G Ab B C
     Descending: C B Ab G F E D C
     """
@@ -386,7 +471,7 @@ class NaturalMinor(_Scale):
     """The natural minor scale.
 
     Example:
-    >>> print NaturalMinor('A')
+    >>> print(NaturalMinor('A'))
     Ascending:  A B C D E F G A
     Descending: A G F E D C B A
     """
@@ -408,7 +493,7 @@ class HarmonicMinor(_Scale):
     """The harmonic minor scale.
 
     Example:
-    >>> print HarmonicMinor('A')
+    >>> print(HarmonicMinor('A'))
     Ascending:  A B C D E F G# A
     Descending: A G# F E D C B A
     """
@@ -431,7 +516,7 @@ class MelodicMinor(_Scale):
     """The melodic minor scale.
 
     Example:
-    >>> print MelodicMinor('A')
+    >>> print(MelodicMinor('A'))
     Ascending:  A B C D E F# G# A
     Descending: A G F E D C B A
     """
@@ -448,7 +533,7 @@ class MelodicMinor(_Scale):
         notes[5] = augment(notes[5])
         notes[6] = augment(notes[6])
         return notes * self.octaves + [notes[0]]
-        
+
     def descending(self):
         notes = NaturalMinor(self.tonic).descending()[:-1]
         return notes * self.octaves + [notes[0]]
@@ -459,7 +544,7 @@ class Bachian(_Scale):
     """The Bachian scale.
 
     Example:
-    >>> print Bachian('A')
+    >>> print(Bachian('A'))
     Ascending:  A B C D E F# G# A
     Descending: A G# F# E D C B A
     """
@@ -482,7 +567,7 @@ class MinorNeapolitan(_Scale):
     """The minor Neapolitan scale.
 
     Example:
-    >>> print MinorNeapolitan('A')
+    >>> print(MinorNeapolitan('A'))
     Ascending:  A Bb C D E F G# A
     Descending: A G F E D C Bb A
     """
@@ -504,6 +589,411 @@ class MinorNeapolitan(_Scale):
         notes[6] = diminish(notes[6])
         return notes * self.octaves + [notes[0]]
 
+# Harmonic minor modes
+
+class LocrianNat6(_Scale):
+
+    """The locrian natural 6 scale.
+
+    Example:
+    >>> print(LocrianNat6('C'))
+    Ascending:  C Db Eb F Gb A Bb C
+    Descending: C Bb A Gb F Eb Db C
+    """
+
+    type = 'ancient'
+
+    def __init__(self, note, octaves=1):
+        """Create the locrian nat6 mode scale starting on the chosen note."""
+        super(LocrianNat6, self).__init__(note, octaves)
+        self.name = '{0} locrian nat6'.format(self.tonic)
+
+    def ascending(self):
+        relative_tonic = TemporalNote().from_int(int(TemporalNote(self.tonic))-2).name
+        notes = HarmonicMinor(relative_tonic).ascending()[:-1][1:] + HarmonicMinor(relative_tonic).ascending()[:-1][:1]
+        return notes * self.octaves + [notes[0]]
+    
+class IonianSharp5(_Scale):
+
+    """The ionian #5 (augmented) scale.
+
+    Example:
+    >>> print(IonianSharp5('C'))
+    Ascending:  C D E F G# A B C
+    Descending: C B A G# F E D C
+    """
+
+    type = 'ancient'
+
+    def __init__(self, note, octaves=1):
+        """Create the ionian #5 mode scale starting on the chosen note."""
+        super(IonianSharp5, self).__init__(note, octaves)
+        self.name = '{0} ionian #5'.format(self.tonic)
+
+    def ascending(self):
+        relative_tonic = TemporalNote().from_int(int(TemporalNote(self.tonic))-3).name
+        notes = HarmonicMinor(relative_tonic).ascending()[:-1][2:] + HarmonicMinor(relative_tonic).ascending()[:-1][:2]
+        return notes * self.octaves + [notes[0]]
+
+class DorianSharp4(_Scale):
+
+    """The dorian #4 scale.
+
+    Example:
+    >>> print(DorianSharp4('C'))
+    Ascending:  C D Eb F# G A Bb C
+    Descending: C Bb A G F# Eb D C
+    """
+
+    type = 'ancient'
+
+    def __init__(self, note, octaves=1):
+        """Create the dorian #4 mode scale starting on the chosen note."""
+        super(DorianSharp4, self).__init__(note, octaves)
+        self.name = '{0} dorian #4'.format(self.tonic)
+
+    def ascending(self):
+        relative_tonic = TemporalNote().from_int(int(TemporalNote(self.tonic))-5).name
+        notes = HarmonicMinor(relative_tonic).ascending()[:-1][3:] + HarmonicMinor(relative_tonic).ascending()[:-1][:3]
+        return notes * self.octaves + [notes[0]]
+
+class PhrygianDominant(_Scale):
+
+    """The phrygian dominant scale.
+
+    Example:
+    >>> print(PhrygianDominant('C'))
+    Ascending:  C Db E F G Ab Bb C
+    Descending: C Bb Ab G F E Db C
+    """
+
+    type = 'ancient'
+
+    def __init__(self, note, octaves=1):
+        """Create the phrygian dominant mode scale starting on the chosen note."""
+        super(PhrygianDominant, self).__init__(note, octaves)
+        self.name = '{0} phrygian dominant'.format(self.tonic)
+
+    def ascending(self):
+        relative_tonic = TemporalNote().from_int(int(TemporalNote(self.tonic))-7).name
+        notes = HarmonicMinor(relative_tonic).ascending()[:-1][4:] + HarmonicMinor(relative_tonic).ascending()[:-1][:4]
+        return notes * self.octaves + [notes[0]]
+
+class LydianSharp2(_Scale):
+
+    """The lydian #2 (#9) scale.
+
+    Example:
+    >>> print(LydianSharp2('C'))
+    Ascending:  C D# E F# G A B C
+    Descending: C B A G F# E D# C
+    """
+
+    type = 'ancient'
+
+    def __init__(self, note, octaves=1):
+        """Create the lydian #2 mode scale starting on the chosen note."""
+        super(LydianSharp2, self).__init__(note, octaves)
+        self.name = '{0} lydian #2'.format(self.tonic)
+
+    def ascending(self):
+        relative_tonic = TemporalNote().from_int(int(TemporalNote(self.tonic))-8).name
+        notes = HarmonicMinor(relative_tonic).ascending()[:-1][5:] + HarmonicMinor(relative_tonic).ascending()[:-1][:5]
+        return notes * self.octaves + [notes[0]]
+
+class AlteredDominantbb7(_Scale):
+
+    """The altered dominant bb7 (superlocrian bb7) scale.
+
+    Example:
+    >>> print(AlteredDominantbb7('C'))
+    Ascending:  C Db Eb Fb Gb Ab Bbb C
+    Descending: C Bbb Ab Gb Fb Eb Db C
+    """
+
+    type = 'ancient'
+
+    def __init__(self, note, octaves=1):
+        """Create the altered dominant bb7 (superlocrian bb7) mode scale starting on the chosen note."""
+        super(AlteredDominantbb7, self).__init__(note, octaves)
+        self.name = '{0} altered dominant bb7'.format(self.tonic)
+
+    def ascending(self):
+        relative_tonic = TemporalNote().from_int(int(TemporalNote(self.tonic))-11).name
+        notes = HarmonicMinor(relative_tonic).ascending()[:-1][6:] + HarmonicMinor(relative_tonic).ascending()[:-1][:6]
+        return notes * self.octaves + [notes[0]]
+
+# Melodic minor modes
+
+class Dorianb2(_Scale):
+
+    """The dorian flat 2 (phrygian nat6) scale.
+
+    Example:
+    >>> print(Dorianb2('C'))
+    Ascending:  C Db Eb F G A Bb C
+    Descending: C Bb A G F Eb Db C
+    """
+
+    type = 'ancient'
+
+    def __init__(self, note, octaves=1):
+        """Create the dorian b2 mode scale starting on the chosen note."""
+        super(Dorianb2, self).__init__(note, octaves)
+        self.name = '{0} dorian b2'.format(self.tonic)
+
+    def ascending(self):
+        relative_tonic = TemporalNote().from_int(int(TemporalNote(self.tonic))-2).name
+        notes = MelodicMinor(relative_tonic).ascending()[:-1][1:] + MelodicMinor(relative_tonic).ascending()[:-1][:1]
+        return notes * self.octaves + [notes[0]]
+    
+class LydianSharp5(_Scale):
+
+    """The lydian #5 (augmented) scale.
+
+    Example:
+    >>> print(LydianSharp5('C'))
+    Ascending:  C D E F# G# A B C
+    Descending: C B A G# F# E D C
+    """
+
+    type = 'ancient'
+
+    def __init__(self, note, octaves=1):
+        """Create the lydian #5 mode scale starting on the chosen note."""
+        super(LydianSharp5, self).__init__(note, octaves)
+        self.name = '{0} lydian #5'.format(self.tonic)
+
+    def ascending(self):
+        relative_tonic = TemporalNote().from_int(int(TemporalNote(self.tonic))-3).name
+        notes = MelodicMinor(relative_tonic).ascending()[:-1][2:] + MelodicMinor(relative_tonic).ascending()[:-1][:2]
+        return notes * self.octaves + [notes[0]]
+
+class LydianDominant(_Scale):
+
+    """The lydian dominant (overtone, lydian b7) scale.
+
+    Example:
+    >>> print(LydianDominant('C'))
+    Ascending:  C D E F# G A Bb C
+    Descending: C Bb A G F# E D C
+    """
+
+    type = 'ancient'
+
+    def __init__(self, note, octaves=1):
+        """Create the lydian dominant mode scale starting on the chosen note."""
+        super(LydianDominant, self).__init__(note, octaves)
+        self.name = '{0} lydian dominant'.format(self.tonic)
+
+    def ascending(self):
+        relative_tonic = TemporalNote().from_int(int(TemporalNote(self.tonic))-5).name
+        notes = MelodicMinor(relative_tonic).ascending()[:-1][3:] + MelodicMinor(relative_tonic).ascending()[:-1][:3]
+        return notes * self.octaves + [notes[0]]
+
+class Mixolydianb6(_Scale):
+
+    """The mixolydian b6 scale.
+
+    Example:
+    >>> print(Mixolydianb6('C'))
+    Ascending:  C D E F G Ab Bb C
+    Descending: C Bb Ab G F E D C
+    """
+
+    type = 'ancient'
+
+    def __init__(self, note, octaves=1):
+        """Create the mixolydian b6 mode scale starting on the chosen note."""
+        super(Mixolydianb6, self).__init__(note, octaves)
+        self.name = '{0} mixolydian b6'.format(self.tonic)
+
+    def ascending(self):
+        relative_tonic = TemporalNote().from_int(int(TemporalNote(self.tonic))-7).name
+        notes = MelodicMinor(relative_tonic).ascending()[:-1][4:] + MelodicMinor(relative_tonic).ascending()[:-1][:4]
+        return notes * self.octaves + [notes[0]]
+
+class LocrianNat2(_Scale):
+
+    """The locrian natural 2 (half-diminished) scale.
+
+    Example:
+    >>> print(LocrianNat2('C'))
+    Ascending:  C D Eb F Gb Ab Bb C
+    Descending: C Bb Ab Gb F Eb D C
+    """
+
+    type = 'ancient'
+
+    def __init__(self, note, octaves=1):
+        """Create the locrian natural 2 mode scale starting on the chosen note."""
+        super(LocrianNat2, self).__init__(note, octaves)
+        self.name = '{0} locrian nat2'.format(self.tonic)
+
+    def ascending(self):
+        relative_tonic = TemporalNote().from_int(int(TemporalNote(self.tonic))-9).name
+        notes = MelodicMinor(relative_tonic).ascending()[:-1][5:] + MelodicMinor(relative_tonic).ascending()[:-1][:5]
+        return notes * self.octaves + [notes[0]]
+
+class AlteredDominant(_Scale):
+
+    """The altered dominant (superlocrian) scale.
+
+    Example:
+    >>> print(AlteredDominant('C'))
+    Ascending:  C Db Eb Fb Gb Ab Bb C
+    Descending: C Bb Ab Gb Fb Eb Db C
+    """
+
+    type = 'ancient'
+
+    def __init__(self, note, octaves=1):
+        """Create the altered dominant (superlocrian) mode scale starting on the chosen note."""
+        super(AlteredDominant, self).__init__(note, octaves)
+        self.name = '{0} altered dominant'.format(self.tonic)
+
+    def ascending(self):
+        relative_tonic = TemporalNote().from_int(int(TemporalNote(self.tonic))-11).name
+        notes = MelodicMinor(relative_tonic).ascending()[:-1][6:] + MelodicMinor(relative_tonic).ascending()[:-1][:6]
+        return notes * self.octaves + [notes[0]]
+
+# Bebop scales
+        
+class MajorBebop(_Scale):
+
+    """The major bebop scale.
+
+    Example:
+    >>> print(Major('C'))
+    Ascending:  C D E F G G# A B C
+    Descending: C B A G# F E D C
+    """
+
+    type = 'bebop'
+
+    def __init__(self, note, octaves=1):
+        """Create the major bebop scale starting on the chosen note."""
+        super(MajorBebop, self).__init__(note, octaves)
+        self.name = '{0} major bebop'.format(self.tonic)
+
+    def ascending(self):
+        notes = Major(self.tonic).ascending()[:-3]
+        notes.append(intervals.minor_sixth(notes[0]))
+        notes += Major(self.tonic).ascending()[-3:-1]
+        return notes * self.octaves + [notes[0]]
+    
+class DorianBebop(_Scale):
+
+    """The dorian bebop scale.
+
+    Example:
+    >>> print(DorianBebop('C'))
+    Ascending:  C D Eb E F G A Bb C
+    Descending: C Bb A G F E Eb D C
+    """
+
+    type = 'bebop'
+
+    def __init__(self, note, octaves=1):
+        """Create the dorian bebop scale starting on the chosen note."""
+        super(DorianBebop, self).__init__(note, octaves)
+        self.name = '{0} dorian bebop'.format(self.tonic)
+
+    def ascending(self):
+        notes = Dorian(self.tonic).ascending()[:3]
+        notes.append(intervals.major_third(notes[0]))
+        notes += Dorian(self.tonic).ascending()[3:-1]
+        return notes * self.octaves + [notes[0]]
+
+class DorianBebopAlt(_Scale):
+
+    """The alternative dorian bebop scale.
+
+    Example:
+    >>> print(DorianBebopAlt('C'))
+    Ascending:  C D Eb F G A Bb B C
+    Descending: C B Bb A G F Eb D C
+    """
+
+    type = 'bebop'
+
+    def __init__(self, note, octaves=1):
+        """Create the alternative dorian bebop scale starting on the chosen note."""
+        super(DorianBebopAlt, self).__init__(note, octaves)
+        self.name = '{0} alternative dorian bebop'.format(self.tonic)
+
+    def ascending(self):
+        notes = Dorian(self.tonic).ascending()[:7]
+        notes.append(intervals.major_seventh(notes[0]))
+        return notes * self.octaves + [notes[0]]
+    
+class MixolydianBebop(_Scale):
+
+    """The mixolydian (dominant) bebop scale.
+
+    Example:
+    >>> print(MixolydianBebop('C'))
+    Ascending:  C D E F G A Bb B C
+    Descending: C B Bb A G F E D C
+    """
+
+    type = 'bebop'
+
+    def __init__(self, note, octaves=1):
+        """Create the mixolydian (dominant) bebop scale starting on the chosen note."""
+        super(MixolydianBebop, self).__init__(note, octaves)
+        self.name = '{0} mixolydian bebop'.format(self.tonic)
+
+    def ascending(self):
+        notes = Mixolydian(self.tonic).ascending()[:7]
+        notes.append(intervals.major_seventh(notes[0]))
+        return notes * self.octaves + [notes[0]]
+    
+class MelodicMinorBebop(_Scale):
+
+    """The melodic minor bebop scale.
+
+    Example:
+    >>> print(MelodicMinorBebop('C'))
+    Ascending:  C D Eb F G Ab A B C
+    Descending: C B A Ab G F Eb D C
+    """
+
+    type = 'bebop'
+
+    def __init__(self, note, octaves=1):
+        """Create the melodic minor bebop scale starting on the chosen note."""
+        super(MelodicMinorBebop, self).__init__(note, octaves)
+        self.name = '{0} melodic minor bebop'.format(self.tonic)
+
+    def ascending(self):
+        notes = MelodicMinor(self.tonic).ascending()[:5]
+        notes.append(intervals.minor_sixth(notes[0]))
+        notes += MelodicMinor(self.tonic).ascending()[5:-1]
+        return notes * self.octaves + [notes[0]]
+    
+class HarmonicMinorBebop(_Scale):
+
+    """The harmonic minor bebop scale.
+
+    Example:
+    >>> print(HarmonicMinorBebop('C'))
+    Ascending:  C D Eb F G Ab Bb B C
+    Descending: C B Bb Ab G F Eb D C
+    """
+
+    type = 'bebop'
+
+    def __init__(self, note, octaves=1):
+        """Create the harmonic minor bebop scale starting on the chosen note."""
+        super(HarmonicMinorBebop, self).__init__(note, octaves)
+        self.name = '{0} harmonic minor bebop'.format(self.tonic)
+
+    def ascending(self):
+        notes = HarmonicMinor(self.tonic).ascending()[:6]
+        notes.append(intervals.minor_seventh(notes[0]))
+        notes += HarmonicMinor(self.tonic).ascending()[6:-1]
+        return notes * self.octaves + [notes[0]]
 
 # Other scales
 
@@ -512,10 +1002,10 @@ class Chromatic(_Scale):
     """The chromatic scale.
 
     Examples:
-    >>> print Chromatic('C')
+    >>> print(Chromatic('C'))
     Ascending:  C C# D D# E F F# G G# A A# B C
     Descending: C B Bb A Ab G Gb F E Eb D Db C
-    >>> print Chromatic('f')
+    >>> print(Chromatic('f'))
     Ascending:  F F# G Ab A Bb B C Db D Eb E F
     Descending: F E Eb D Db C B Bb A Ab G Gb F
     """
@@ -557,7 +1047,7 @@ class WholeTone(_Scale):
     """The whole tone scale.
 
     Example:
-    >>> print WholeTone('C')
+    >>> print(WholeTone('C'))
     Ascending:  C D E F# G# A# C
     Descending: C A# G# F# E D C
     """
@@ -574,14 +1064,63 @@ class WholeTone(_Scale):
         for note in range(5):
             notes.append(intervals.major_second(notes[-1]))
         return notes * self.octaves + [notes[0]]
+    
+class Pentatonic(_Scale):
 
+    """The (major) pentatonic scale.
+
+    Example:
+    >>> print(Pentatonic('C'))
+    Ascending:  C D E G A C
+    Descending: C A G E D C
+    """
+
+    type = 'other'
+
+    def __init__(self, note, octaves=1):
+        """Create the pentatonic scale starting on the chosen note."""
+        super(Pentatonic, self).__init__(note, octaves)
+        self.name = '{0} pentatonic'.format(self.tonic)
+
+    def ascending(self):
+        notes = [self.tonic]
+        notes.append(intervals.major_second(notes[0]))
+        notes.append(intervals.major_third(notes[0]))
+        notes.append(intervals.perfect_fifth(notes[0]))
+        notes.append(intervals.major_sixth(notes[0]))
+        return notes * self.octaves + [notes[0]]
+
+class MinorPentatonic(_Scale):
+
+    """The minor pentatonic scale.
+
+    Example:
+    >>> print(MinorPentatonic('C'))
+    Ascending:  C Eb F G Bb C
+    Descending: C Bb G F Eb C
+    """
+
+    type = 'other'
+
+    def __init__(self, note, octaves=1):
+        """Create the minor pentatonic scale starting on the chosen note."""
+        super(MinorPentatonic, self).__init__(note, octaves)
+        self.name = '{0} minor pentatonic'.format(self.tonic)
+
+    def ascending(self):
+        notes = [self.tonic]
+        notes.append(intervals.minor_third(notes[0]))
+        notes.append(intervals.perfect_fourth(notes[0]))
+        notes.append(intervals.perfect_fifth(notes[0]))
+        notes.append(intervals.minor_seventh(notes[0]))
+        return notes * self.octaves + [notes[0]]
 
 class Octatonic(_Scale):
 
     """The octatonic scale.
 
     Example:
-    >>> print Octatonic('C')
+    >>> print(Octatonic('C'))
     Ascending:  C D Eb F Gb Ab A B C
     Descending: C B A Ab Gb F Eb D C
     """
@@ -589,7 +1128,7 @@ class Octatonic(_Scale):
     type = 'other'
 
     def __init__(self, note, octaves=1):
-        """Create the octatonic (also known as "diminshed") scale starting
+        """Create the octatonic (also known as "whole-half diminished") scale starting
         on the chosen note."""
         super(Octatonic, self).__init__(note, octaves)
         self.name = '{0} octatonic'.format(self.tonic)
@@ -603,4 +1142,156 @@ class Octatonic(_Scale):
         notes.append(intervals.major_seventh(notes[0]))
         notes[-2] = intervals.major_sixth(notes[0])
         return notes * self.octaves + [notes[0]]
+    
+class HalfWholeDiminished(_Scale):
 
+    """The second octatonic scale.
+
+    Example:
+    >>> print(HalfWholeDiminished('C'))
+    Ascending:  C Db Eb E Gb G A Bb C
+    Descending: C Bb A G Gb E Eb Db C
+    """
+
+    type = 'other'
+
+    def __init__(self, note, octaves=1):
+        """Create the half-whole diminished scale starting
+        on the chosen note."""
+        super(HalfWholeDiminished, self).__init__(note, octaves)
+        self.name = '{0} half-whole diminished'.format(self.tonic)
+
+    def ascending(self):
+        notes = [self.tonic]
+        for i in range(3):
+            notes.extend(
+                    [intervals.minor_second(notes[-1]),
+                        intervals.minor_third(notes[-1])])
+        notes.append(intervals.minor_seventh(notes[0]))
+        notes[-2] = intervals.major_sixth(notes[0])
+        return notes * self.octaves + [notes[0]]
+
+# Super-ultra-hyper-mega-meta scales (https://www.youtube.com/watch?v=DnBr070vcNE) (more 'sounds' than 'scales')
+        
+class SuperUltraHyperMegaMetaLydian(_Scale):
+
+    """The super-ultra-hyper-mega-meta lydian scale.
+    
+    This is the sound of continually brightening around the cycle of fifths (getting 'more lydian'), 
+    in both ascending and descending forms.
+
+    Example:
+    >>> print(SuperUltraHyperMegaMetaLydian('C'))
+    Ascending:  C D E F#, G A B C#, D E F# G, A B C# D#, ...
+    Descending: C B A, G F# E, D C# B, A G# F#, ...
+    """
+
+    type = 'other'
+
+    def __init__(self, note, octaves=1):
+        """Create the SUHMM lydian scale starting on the chosen note."""
+        super(SuperUltraHyperMegaMetaLydian, self).__init__(note, octaves)
+        self.name = '{0} SUHMM lydian'.format(self.tonic)
+
+    def ascending(self):
+        tonic = self.tonic
+        notes = []
+        for i in range(self.octaves*2):
+            notes += [reduce_accidentals(note) for note in list(Lydian(tonic).ascending()[:4])] # 4 creates overlap on the fifth
+            tonic = intervals.perfect_fifth(tonic)
+        
+        if self.octaves == 1:
+            return notes
+        else:
+            return notes[:1-self.octaves]
+        
+    def descending(self):
+        tonic = self.tonic
+        notes = []
+        for i in range(self.octaves*3):
+            notes += [reduce_accidentals(note) for note in list(Lydian(tonic).descending()[:3])] # 3 = 7 - 4
+            tonic = intervals.perfect_fifth(tonic)
+        
+        if self.octaves == 1:
+            return notes[:-1]
+        else:
+            return notes[:-1-self.octaves]  
+        
+    def generate(self, i):
+        print('Please use ascending() and descending() methods instead of generate() for SUHMM scales')
+        return False
+
+class SuperUltraHyperMegaMetaMixolydian(_Scale):
+
+    """The super-ultra-hyper-mega-meta mixolydian scale.
+    
+    This is the sound of continually darkening around the cycle of fifths (getting 'more mixolydian'), 
+    in both ascending and descending forms.
+
+    Example:
+    >>> print(SuperUltraHyperMegaMetaMixolydian('C'))
+    Ascending:  C D E, F G A, Bb C D, Eb F G, ... 
+    Descending: C Bb A G, F Eb D C, Bb Ab G F, Eb Db C Bb, ...
+    """
+
+    type = 'other'
+
+    def __init__(self, note, octaves=1):
+        """Create the SUHMM mixolydian scale starting on the chosen note."""
+        super(SuperUltraHyperMegaMetaMixolydian, self).__init__(note, octaves)
+        self.name = '{0} SUHMM mixolydian'.format(self.tonic)
+
+    def ascending(self):
+        tonic = self.tonic
+        notes = []
+        for i in range(self.octaves*3):
+            notes += [reduce_accidentals(note) for note in list(Mixolydian(tonic).ascending()[:3])]
+            tonic = intervals.perfect_fourth(tonic)
+        
+        if self.octaves == 1:
+            return notes[:-1]
+        else:
+            return notes[:-self.octaves]
+        
+    def descending(self):
+        tonic = self.tonic
+        notes = []
+        for i in range(self.octaves*2):
+            notes += [reduce_accidentals(note) for note in list(Mixolydian(tonic).descending()[:4])]
+            tonic = intervals.perfect_fourth(tonic)
+        
+        if self.octaves == 1:
+            return notes
+        else:
+            return notes[:-self.octaves]  
+        
+    def generate(self, i):
+        print('Please use ascending() and descending() methods instead of generate() for SUHMM scales')
+        return False
+
+## draft code for more variants:
+## major ascending
+#tonic = 'C' 
+#out = []
+#for i in range(20):
+#    out += [reduce_accidentals(note) for note in list(scales.Major(tonic).ascending()[:4])]
+#    tonic = intervals.perfect_fifth(tonic)
+#    
+## major descending (like lydian descending but slower) (looks correct at start but begins duplicating notes...)
+#tonic = 'C' 
+#out = []
+#for i in range(20):
+#    out += [reduce_accidentals(note) for note in list(scales.Major(tonic).descending()[:7]) + list(scales.Major(tonic).descending()[:3])] 
+#    tonic = intervals.perfect_fifth(tonic)
+#
+## dorian ascending
+#tonic = 'C' 
+#out = []
+#for i in range(20):
+#    out += [reduce_accidentals(note) for note in list(scales.Dorian(tonic).ascending()[:4])]
+#    tonic = intervals.perfect_fifth(tonic)
+
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()

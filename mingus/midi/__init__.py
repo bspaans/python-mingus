@@ -17,13 +17,14 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from sequencer import Sequencer
-from sequencer_observer import SequencerObserver
+from mingus.midi.sequencer import Sequencer
+from mingus.midi.sequencer_observer import SequencerObserver
+
 __all__ = [
     'Sequencer',
     'SequencerObserver',
     'midi_file_in',
     'midi_file_out',
     'midi_track',
-    'fluidsynth',
+    #'fluidsynth',
     ]

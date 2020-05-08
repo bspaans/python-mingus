@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from mingus.core import notes, intervals
-from mt_exceptions import NoteFormatError
+from mingus.containers.mt_exceptions import NoteFormatError
 from math import log
 
 class Note(object):
@@ -44,7 +44,8 @@ class Note(object):
     channel = 1
     velocity = 64
 
-    def __init__(self, name='C', octave=4, dynamics={}):
+    def __init__(self, name='C', octave=4, dynamics=None):
+        dynamics = dynamics if dynamics else {}
         if type(name) == str:
             self.set_note(name, octave, dynamics)
         elif hasattr(name, 'name'):
@@ -60,13 +61,13 @@ class Note(object):
             raise NoteFormatError("Don't know what to do with name object: "
                     "'%s'" % name)
 
-    
+
     def set_channel(self, channel):
         self.channel = channel
-        
+
     def set_velocity(self, velocity):
         self.velocity = velocity
-    
+
     def set_note(self, name='C', octave=4, dynamics={}):
         """Set the note to name in octave with dynamics.
 
@@ -250,7 +251,7 @@ class Note(object):
     def __int__(self):
         """Return the current octave multiplied by twelve and add
         notes.note_to_int to it.
-        
+
         This means a C-0 returns 0, C-1 returns 12, etc. This method allows
         you to use int() on Notes.
         """
@@ -260,7 +261,7 @@ class Note(object):
                 res += 1
             elif n == 'b':
                 res -= 1
-        return res
+        return int(res)
 
     def __lt__(self, other):
         """Enable the comparing operators on Notes (>, <, \ ==, !=, >= and <=).
@@ -281,6 +282,11 @@ class Note(object):
         """Compare Notes for equality by comparing their note values."""
         if other is None:
             return False
+        
+        # added as was getting erros from play_Bar.set_key
+        if type(other) == str:
+            other = Note(other)
+        
         return int(self) == int(other)
 
     def __ne__(self, other):
@@ -299,3 +305,52 @@ class Note(object):
         """Return a helpful representation for printing Note classes."""
         return "'%s-%d'" % (self.name, self.octave)
 
+class TemporalNote(Note):
+    """
+    >>> from mingus.extra.lilypond import from_Note
+    >>> note = TemporalNote(name='C', octave=2)
+    >>> repr(note)
+    "'C-2'"
+    >>> from_Note(note, standalone=False)
+    'c,4'
+    """
+    def __init__(self, name='C', octave=4, dynamics=None, duration_denominator=4):
+        super(TemporalNote, self).__init__(name=name, octave=octave, dynamics=dynamics)
+        self.duration_denominator = duration_denominator
+
+def temporal_note_factory(duration_denominator=None):
+    def func_composer(func):
+        def inner_fn(note_name, octave=4):
+            if isinstance(note_name, (list, set)):
+                return [TemporalNote(note,
+                                     octave=octave,
+                                     duration_denominator=duration_denominator) for note in note_name]
+            else:
+                return TemporalNote(note_name, octave=octave, duration_denominator=duration_denominator)
+        return inner_fn
+    return func_composer
+
+@temporal_note_factory(1)
+def WholeNoteFactory(note_name, octave=4):
+    pass
+
+@temporal_note_factory(2)
+def HalfNoteFactory(note_name, octave=4):
+    pass
+
+@temporal_note_factory(4)
+def QuarterNoteFactory(note_name, octave=4):
+    pass
+
+@temporal_note_factory(8)
+def EightNoteFactory(note_name, octave=4):
+    pass
+
+@temporal_note_factory(8)
+def SixteenthNoteFactory(note_name, octave=16):
+    pass
+
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()

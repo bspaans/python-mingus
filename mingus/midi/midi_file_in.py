@@ -28,6 +28,7 @@ from mingus.containers.instrument import MidiInstrument
 import mingus.core.notes as notes
 import mingus.core.intervals as intervals
 import binascii
+import numpy as np
 
 def MIDI_to_Composition(file):
     """Convert a MIDI file to a mingus.containers.Composition and return it
@@ -63,21 +64,36 @@ class MidiFile:
 
     def MIDI_to_Composition(self, file):
         (header, track_data) = self.parse_midi_file(file)
+#        print('MIDI_to_Composition:', track_data[1])
+#        print('===')
+#        print(track_data[2])
+#        for j in track_data[2]:
+#            if j[1]['event'] == 9 or j[1]['event'] == 8:
+#                print('MIDI_to_Composition:', j[0], j[1]['event'], Note(notes.int_to_note(j[1]['param1'] % 12))) 
+
         c = Composition()
         if header[2]['fps']:
-            print "Don't know how to parse this yet"
+            print("Don't know how to parse this yet")
             return c
         ticks_per_beat = header[2]['ticks_per_beat']
-        for track in track_data:
+        for track_idx, track in enumerate(track_data):
             t = Track()
             b = Bar()
             metronome = 1  # Tick once every quarter note
             thirtyseconds = 8  # 8 thirtyseconds in a quarter note
             meter = (4, 4)
             key = 'C'
-            for e in track:
+            
+            NOTE_ON_counter = 0
+            for event_idx, e in enumerate(track):
                 (deltatime, event) = e
                 duration = float(deltatime) / (ticks_per_beat * 4.0)
+                
+                if NOTE_ON_counter == 0 and duration != 0 and event['event'] == 9: # then we need to add a rest before playing
+                    b.place_rest(1.0/duration)
+                    NOTE_ON_counter += 1
+                
+            # this logic is nice and clear...     
                 if duration != 0.0:
                     duration = 1.0 / duration
                     if len(b.bar) > 0:
@@ -97,7 +113,7 @@ class MidiFile:
                 elif event['event'] == 9:
                     # note on
                     n = Note(notes.int_to_note(event['param1'] % 12),
-                             event['param1'] / 12 - 1)
+                             np.floor(event['param1'] / 12)) # this was event['param1']/12 - 1 but that gives skewed, incorrect octaves
                     n.channel = event['channel']
                     n.velocity = event['param2']
                     if len(b.bar) > 0:
@@ -139,31 +155,31 @@ class MidiFile:
                     elif event['meta_event'] == 88:
                         # Time Signature
                         d = event['data']
-                        thirtyseconds = self.bytes_to_int(d[3])
-                        metronome = self.bytes_to_int(d[2]) / 24.0
-                        denom = 2 ** self.bytes_to_int(d[1])
-                        numer = self.bytes_to_int(d[0])
+                        thirtyseconds = d[3] #self.bytes_to_int(d[3])
+                        metronome = d[2]//24.0 #self.bytes_to_int(d[2]) / 24.0
+                        denom = 2**d[1] #2 ** self.bytes_to_int(d[1])
+                        numer = d[0]#self.bytes_to_int(d[0])
                         meter = (numer, denom)
                         b.set_meter(meter)
                     elif event['meta_event'] == 89:
                         # Key Signature
                         d = event['data']
-                        sharps = self.bytes_to_int(d[0])
-                        minor = self.bytes_to_int(d[0])
+                        sharps = d[0] #self.bytes_to_int(d[0])
+                        minor = d[0] #self.bytes_to_int(d[0])
                         if minor:
                             key = 'A'
                         else:
                             key = 'C'
-                        for i in xrange(abs(sharps)):
+                        for i in range(abs(sharps)):
                             if sharps < 0:
                                 key = intervals.major_fourth(key)
                             else:
                                 key = intervals.major_fifth(key)
                         b.key = Note(key)
                     else:
-                        print 'Unsupported META event', event['meta_event']
+                        print('Unsupported META event', event['meta_event'])
                 else:
-                    print 'Unsupported MIDI event', event
+                    print('Unsupported MIDI event', event)
             t + b
             c.tracks.append(t)
         return (c, bpm)
@@ -172,13 +188,14 @@ class MidiFile:
         """Read the header of a MIDI file and return a tuple containing the
         format type, number of tracks and parsed time division information."""
         # Check header
-        try:
-            if fp.read(4) != 'MThd':
-                raise HeaderError('Not a valid MIDI file header. Byte %d.'
-                        % self.bytes_read)
-            self.bytes_read += 4
-        except:
-            raise IOError("Couldn't read from file.")
+
+#        try:
+        if fp.read(4) != b'MThd':
+            raise HeaderError('Not a valid MIDI file header. Byte %d.'
+                    % self.bytes_read)
+        self.bytes_read += 4
+#        except:
+#            raise IOError("Couldn't read from file.")
 
         # Parse chunk size
         try:
@@ -207,11 +224,11 @@ class MidiFile:
             raise IOError("Couldn't read number of tracks "
                     "and/or time division from tracks.")
 
-        chunk_size -= 6
+        #chunk_size -= 6
         if chunk_size % 2 == 1:
             raise FormatError("Won't parse this.")
-        fp.read(chunk_size / 2)
-        self.bytes_read += chunk_size / 2
+#        fp.read(chunk_size // 2)
+#        self.bytes_read += chunk_size // 2
         return (format_type, number_of_tracks, time_division)
 
     def bytes_to_int(self, bytes):
@@ -233,9 +250,9 @@ class MidiFile:
         else:
             SMPTE_frames = (value & 0x7F00) >> 2
             if SMPTE_frames not in [24, 25, 29, 30]:
-                raise TimeDivisionError, \
+                raise TimeDivisionError(
                     "'%d' is not a valid value for the number of SMPTE frames"\
-                     % SMPTE_frames
+                     % SMPTE_frames)
             clock_ticks = (value & 0x00FF) >> 2
             return {'fps': True, 'SMPTE_frames': SMPTE_frames,
                     'clock_ticks': clock_ticks}
@@ -255,7 +272,7 @@ class MidiFile:
             chunk_size -= chunk_delta
             events.append([delta_time, event])
         if chunk_size < 0:
-            print 'yikes.', self.bytes_read, chunk_size
+            print('yikes.', self.bytes_read, chunk_size)
         return events
 
     def parse_midi_event(self, fp):
@@ -272,8 +289,8 @@ class MidiFile:
             raise IOError("Couldn't read event type "
                     "and channel data from file.")
 
-        # Get the nibbles
-        event_type = (ec & 0xf0) >> 4
+        # Get the nibbles        
+        event_type = (ec & 0xf0) >> 4 
         channel = ec & 0x0f
 
         # I don't know what these events are supposed to do, but I keep finding
@@ -316,6 +333,11 @@ class MidiFile:
                 raise IOError("Couldn't read MIDI event parameters from file.")
             param1 = self.bytes_to_int(param1)
             param2 = self.bytes_to_int(param2)
+            
+            # "It is common for a note on with 0 velocity to be interpreted as NOTE OFF." https://stackoverflow.com/questions/48687756/midi-note-on-event-without-off-event
+            # this should resolve Lilypad midi files which don't seem to use ec 8 to signify NOTE OFF
+            if param2 == 0:
+                event_type = 8
             return ({'event': event_type, 'channel': channel, 'param1': param1,
                 'param2': param2}, chunk_size)
 
@@ -328,7 +350,8 @@ class MidiFile:
         except:
             raise IOError("Couldn't read track header from file. Byte %d."
                     % self.bytes_read)
-        if h != 'MTrk':
+            
+        if h != b'MTrk':
             raise HeaderError('Not a valid Track header. Byte %d.'
                     % self.bytes_read)
 
@@ -349,7 +372,7 @@ class MidiFile:
         track data and the number of bytes read.
         """
         try:
-            f = open(file, 'r')
+            f = open(file, 'rb') 
         except:
             raise IOError('File not found')
         self.bytes_read = 0

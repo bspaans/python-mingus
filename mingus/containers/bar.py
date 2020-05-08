@@ -19,9 +19,9 @@
 
 from mingus.core import meter as _meter
 from mingus.core import progressions, keys
-from note_container import NoteContainer
-from note import Note
-from mt_exceptions import MeterFormatError
+from mingus.containers.note_container import NoteContainer
+from mingus.containers.note import Note
+from mingus.containers.mt_exceptions import MeterFormatError
 
 class Bar(object):
     """A bar object.
@@ -45,11 +45,21 @@ class Bar(object):
         self.set_meter(meter)
         self.empty()
 
+    #Convenient Python operator overloading
+
+    def __iadd__(self, other):
+        self.temporal_notes.append(other)
+        return self
+
     def empty(self):
         """Empty the Bar, remove all the NoteContainers."""
+        self.temporal_notes = []
         self.bar = []
         self.current_beat = 0.0
         return self.bar
+
+    def set_chord_notes(self, chords):
+        self.chords = chords
 
     def set_meter(self, meter):
         """Set the meter of this bar.
@@ -70,6 +80,10 @@ class Bar(object):
             raise MeterFormatError("The meter argument '%s' is not an "
                     "understood representation of a meter. "
                     "Expecting a tuple." % meter)
+
+    def extend(self, temporal_notes):
+        for note in temporal_notes:
+            self.temporal_notes.append(note)
 
     def place_notes(self, notes, duration):
         """Place the notes on the current_beat.

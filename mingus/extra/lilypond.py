@@ -30,6 +30,76 @@ from mingus.containers.mt_exceptions import (NoteFormatError,
 import mingus.core.value as value
 import os
 import subprocess
+from mingus.core.chords import from_shorthand, determine, chord_note_and_family
+from mingus.core import chords
+from mingus.containers.bar import Bar
+from mingus.containers.note import TemporalNote
+from mingus.core.chords import TemporalChord
+
+CHORDS_WITH_EQUIVALENT_NOTATION = ['sus2', 'sus4', 'm', '7', 'm7', 'aug', 'dim', 'dim7', '11', 'm11', '6', 'm6',
+                                   '9', 'm9', '11', 'm11', '13', 'm13']
+
+CHORD_FAMILY_TRANSLATION = {
+    'M7': '{note_lowercase}:maj7',
+    'M': '{note_lowercase}:maj',
+    'm7b5': '{note_lowercase}:m7.5-',
+    'mM7': '{note_lowercase}:m7+',
+    'M9': '{note_lowercase}:maj9',
+    'M13': '{note_lowercase}:maj13.11',
+}
+
+def from_Chord(chord):
+    """
+    Returns Lilypad notation for (temporal) chords
+
+
+    >>> chord = determine(chords.suspended_fourth_triad('C'), shorthand=True)[0]
+    >>> chord
+    'Csus4'
+    >>> from_shorthand(chord)
+    ['C', 'F', 'G']
+    >>> from_Chord(TemporalChord(chord))
+    'c4:sus4'
+
+    >>> from_Chord(TemporalChord(determine(chords.major_seventh('F'), shorthand=True)[0]))
+    'f4:maj7'
+
+    >>> from_Chord(TemporalChord(determine(chords.major_seventh('Fb'), shorthand=True)[0]))
+    'fes4:maj7'
+
+    >>> from_Chord(TemporalChord(determine(chords.major_triad('C'), shorthand=True)[0]))
+    'c4:maj'
+
+    >>> chord = determine(chords.major_triad('C'), shorthand=True)[0]
+    >>> from_Chord(TemporalChord(chord, duration_denominator=2))
+    'c2:maj'
+
+    >>> from_Chord(TemporalChord(determine(chords.minor_triad('C'), shorthand=True)[0]))
+    'c4:m'
+
+    >>> from_Chord(TemporalChord(determine(chords.augmented_triad('C'), shorthand=True)[0]))
+    'c4:aug'
+
+    >>> from_Chord(TemporalChord(determine(chords.suspended_second_triad('C'), shorthand=True)[0]))
+    'c4:sus2'
+
+    >>> from_Chord(TemporalChord(determine(chords.eleventh('C'), shorthand=True)[0]))
+    'c4:11'
+
+    >>> from_Chord(TemporalChord(determine(chords.half_diminished_seventh('C'), shorthand=True)[0]))
+    'c4:m7.5-'
+
+    """
+    if not isinstance(chord, TemporalChord):
+        raise SyntaxError("Takes TemporalChord instances only")
+    # note, family = chord_note_and_family(chord.name)
+    if chord.family in CHORDS_WITH_EQUIVALENT_NOTATION:
+        format_string = '{note_lowercase}:{family}'
+    else:
+        format_string = CHORD_FAMILY_TRANSLATION[chord.family]
+    lowered_note = from_Note(chord.get_temporal_root(), standalone=False)
+    note_name = "{}{}".format(lowered_note, chord.duration_denominator)
+    return format_string.format(note_lowercase=note_name, family=chord.family)
 
 def from_Note(note, process_octaves=True, standalone=True):
     """Get a Note object and return the LilyPond equivalent in a string.
@@ -38,10 +108,19 @@ def from_Note(note, process_octaves=True, standalone=True):
     ignored. If standalone is True, the result can be used by functions
     like to_png and will produce a valid output. The argument is mostly here
     to let from_NoteContainer make use of this function.
+
+    >>> from_Note(TemporalNote('C', octave=5),standalone=False)
+    "c''"
+
+    >>> from_Note(TemporalNote('C', octave=3),standalone=False)
+    'c'
+
+    >>> from_Note(TemporalNote('C', octave=1),standalone=False)
+    'c,,'
     """
     # Throw exception
-    if not hasattr(note, 'name'):
-        return False
+    if not isinstance(note, TemporalNote):
+        raise SyntaxError("Need to be provided a temporal note")
 
     # Lower the case of the name
     result = note.name[0].lower()
@@ -55,15 +134,10 @@ def from_Note(note, process_octaves=True, standalone=True):
 
     # Place ' and , for octaves
     if process_octaves:
-        oct = note.octave
-        if oct >= 4:
-            while oct > 3:
-                result += "'"
-                oct -= 1
-        elif oct < 3:
-            while oct < 3:
-                result += ','
-                oct += 1
+        if note.octave >= 4:
+            result += "'" * (note.octave - 3)
+        elif note.octave < 3:
+            result += ',' * abs(3 - note.octave)
     if standalone:
         return '{ %s }' % result
     else:
@@ -120,44 +194,30 @@ def from_Bar(bar, showkey=True, showtime=True):
 
     The showkey and showtime parameters can be set to determine whether the
     key and the time should be shown.
+
+    >>> from mingus.containers.note import QuarterNoteFactory as Q, HalfNoteFactory as H
+    >>> from mingus.core.chords import HalfNoteChordFactory as HC
+    >>> bar = Bar()
+    >>> bar.extend(Q(['C','D']))
+    >>> bar += H('E')
+    >>> cmaj_triad = determine(chords.major_triad('C'),shorthand=True)[0]
+    >>> c7 = determine(chords.dominant_seventh('C'),shorthand=True)[0]
+    >>> bar.set_chord_notes([HC(cmaj_triad), HC(c7)])
+    >>> print(from_Bar(bar))
+    << \\time 4/4 \chords { c2:maj c2:7 } { c'4 d'4 e'2 }>>
     """
-    # Throw exception
-    if not hasattr(bar, 'bar'):
-        return False
 
-    # Process the key
-    if showkey:
-        key_note = Note(bar.key.key[0].upper() + bar.key.key[1:])
-        key = '\\key %s \\%s ' % (from_Note(key_note, False, standalone=False), bar.key.mode)
-        result = key
-    else:
-        result = ''
-
-    # Handle the NoteContainers
-    latest_ratio = (1, 1)
-    ratio_has_changed = False
-    for bar_entry in bar.bar:
-        parsed_value = value.determine(bar_entry[1])
-        ratio = parsed_value[2:]
-        if ratio == latest_ratio:
-            result += from_NoteContainer(bar_entry[2], bar_entry[1],
-                    standalone=False) + ' '
-        else:
-            if ratio_has_changed:
-                result += '}'
-            result += '\\times %d/%d {' % (ratio[1], ratio[0])
-            result += from_NoteContainer(bar_entry[2], bar_entry[1],
-                    standalone=False) + ' '
-            latest_ratio = ratio
-            ratio_has_changed = True
-    if ratio_has_changed:
-        result += '}'
+    result = ' '.join(['{}{}'.format(from_Note(note, standalone=False), note.duration_denominator) for note in bar.temporal_notes])
+    result = "{ %s }"%result if bar.temporal_notes else ""
+    if bar.chords:
+        result = "\\chords { %s } %s"%(' '.join([from_Chord(chord_notes) for chord_notes in bar.chords]),
+                                       result)
 
     # Process the time
     if showtime:
-        return '{ \\time %d/%d %s}' % (bar.meter[0], bar.meter[1], result)
+        return '<< \\time %d/%d %s>>' % (bar.meter[0], bar.meter[1], result)
     else:
-        return '{ %s}' % result
+        return '<< %s>>' % result
 
 def from_Track(track):
     """Process a Track object and return the LilyPond equivalent in a string."""
@@ -223,7 +283,11 @@ def save_string_and_execute_LilyPond(ly_string, filename, command):
     except:
         return False
     command = 'lilypond %s -o "%s" "%s.ly"' % (command, filename, filename)
-    print 'Executing: %s' % command
+    print('Executing: {}'.format(command))
     p = subprocess.Popen(command, shell=True).wait()
     os.remove(filename + '.ly')
     return True
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()
