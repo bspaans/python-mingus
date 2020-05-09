@@ -129,7 +129,7 @@ def find_notes(freqTable, maxNote=100):
 def data_from_file(file):
     """Return (first channel data, sample frequency, sample width) from a .wav
     file."""
-    fp = wave.open(file, "r")
+    fp = wave.open(file, "rb")
     data = fp.readframes(fp.getnframes())
     channels = fp.getnchannels()
     freq = fp.getframerate()

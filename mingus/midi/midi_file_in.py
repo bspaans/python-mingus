@@ -372,7 +372,7 @@ class MidiFile(object):
         track data and the number of bytes read.
         """
         try:
-            f = open(file, "r")
+            f = open(file, "rb")
         except:
             raise IOError("File not found")
         self.bytes_read = 0
