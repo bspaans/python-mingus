@@ -1,12 +1,9 @@
+# -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
-# -*- coding: utf-8 -*-
-
-import sys
-
-sys.path += ["../"]
-import mingus.core.scales as scales
 import unittest
+
+import mingus.core.scales as scales
 
 
 class test_scales(unittest.TestCase):
@@ -450,7 +447,3 @@ class test_scales(unittest.TestCase):
         self.assertNotEqual(scales.NaturalMinor("A"), scales.MelodicMinor("A"))
         self.assertNotEqual(scales.Major("F"), scales.Major("D"))
         self.assertNotEqual(scales.Ionian("E"), scales.Dorian("E"))
-
-
-def suite():
-    return unittest.TestLoader().loadTestsFromTestCase(test_scales)

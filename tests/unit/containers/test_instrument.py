@@ -1,12 +1,10 @@
+# -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
-# -*- coding: utf-8 -*-
-import sys
+import unittest
 
-sys.path += ["../"]
 from mingus.containers.instrument import Instrument, Piano, Guitar
 from mingus.containers.note_container import NoteContainer
-import unittest
 
 
 class test_Instrument(unittest.TestCase):
@@ -47,7 +45,3 @@ class test_Instrument(unittest.TestCase):
             False,
             self.g.can_play_notes(NoteContainer(["A", "B", "C", "D", "E", "F", "G",])),
         )
-
-
-def suite():
-    return unittest.TestLoader().loadTestsFromTestCase(test_Instrument)

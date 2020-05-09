@@ -1,11 +1,9 @@
+# -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
-# -*- coding: utf-8 -*-
-import sys
-
-sys.path += ["../"]
-import mingus.core.intervals as intervals
 import unittest
+
+import mingus.core.intervals as intervals
 
 
 class test_intervals(unittest.TestCase):
@@ -396,7 +394,3 @@ class test_intervals(unittest.TestCase):
         self.assertTrue(intervals.is_dissonant("C", "F#"))
         self.assertTrue(intervals.is_dissonant("C", "Bb"))
         self.assertTrue(intervals.is_dissonant("C", "B"))
-
-
-def suite():
-    return unittest.TestLoader().loadTestsFromTestCase(test_intervals)

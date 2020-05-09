@@ -146,7 +146,3 @@ class test_progressions(unittest.TestCase):
         self.assertEqual(
             ["bii", "bIVM6"], progressions.determine(["Db", "Fb", "Ab"], "C", True)
         )
-
-
-def suite():
-    return unittest.TestLoader().loadTestsFromTestCase(test_progressions)

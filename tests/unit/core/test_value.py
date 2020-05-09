@@ -84,7 +84,3 @@ class test_value(unittest.TestCase):
         self.assertEqual(value.septuplet(32, False), 28)
         self.assertEqual(value.septuplet(64, False), 56)
         self.assertEqual(value.septuplet(128, False), 112)
-
-
-def suite():
-    return unittest.TestLoader().loadTestsFromTestCase(test_value)

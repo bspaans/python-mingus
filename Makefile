@@ -4,7 +4,7 @@ PATH := $(project_dir)/venv/bin:$(PATH)
 all:
 
 format:
-	python -m black mingus mingus_examples unittest
+	python -m black mingus mingus_examples tests
 
 dev:
 	pip install -e '.[fft,fluidsynth]' -r requirements-dev.in
@@ -12,14 +12,16 @@ dev:
 install:
 	pip install .
 
-test:
-	(cd unittest; python run_tests.py)
+test: test-unit
+
+test-unit:
+	python -m unittest discover tests.unit
 
 test-fluidsynth:
-	(cd unittest; python run_fluidsynth_tests.py)
+	python -m unittest tests.integration.test_fluidsynth
 
 test-lilypond:
-	(cd unittest; python run_lilypond_tests.py)
+	python -m unittest tests.integration.test_lilypond
 
 test-all: test test-fluidsynth test-lilypond
 
@@ -47,6 +49,6 @@ release: clean build sign-build upload tag
 
 .PHONY: format \
 	dev install \
-	test test-fluidsynth test-lilypond test-all \
+	test test-unit test-fluidsynth test-lilypond test-all \
 	clean build \
 	upload tag release

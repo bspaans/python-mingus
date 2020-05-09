@@ -1,12 +1,10 @@
+# -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
-# -*- coding: utf-8 -*-
-import sys
-
-sys.path += ["../"]
-from mingus.containers.note_container import NoteContainer
-from mingus.containers.note import Note
 import unittest
+
+from mingus.containers.note import Note
+from mingus.containers.note_container import NoteContainer
 
 
 class test_NoteContainers(unittest.TestCase):
@@ -137,7 +135,3 @@ class test_NoteContainers(unittest.TestCase):
         self.assertTrue(not NoteContainer().from_chord("C").is_dissonant())
         self.assertTrue(not NoteContainer().from_chord("G").is_dissonant())
         self.assertTrue(not NoteContainer().from_chord("Dm").is_dissonant())
-
-
-def suite():
-    return unittest.TestLoader().loadTestsFromTestCase(test_NoteContainers)

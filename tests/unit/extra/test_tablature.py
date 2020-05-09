@@ -1,12 +1,10 @@
+# -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
-# -*- coding: utf-8 -*-
-import sys
+import unittest
 
-sys.path += ["../"]
 import mingus.extra.tablature as tablature
 import mingus.extra.tunings as tunings
-import unittest
 
 
 class test_Tablature(unittest.TestCase):
@@ -15,7 +13,3 @@ class test_Tablature(unittest.TestCase):
 
     def test__get_qsize(self):
         self.assertTrue(tablature._get_qsize(self.guitar, 4) == 0)
-
-
-def suite():
-    return unittest.TestLoader().loadTestsFromTestCase(test_Tablature)

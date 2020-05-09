@@ -189,7 +189,3 @@ class test_LilyPond(unittest.TestCase):
         )
         self.assertTrue(LilyPond.to_png(LilyPond.from_Bar(self.tbar), "pn2"))
         self.assertTrue(LilyPond.to_png(LilyPond.from_Bar(self.mbar), "pn3"))
-
-
-def suite():
-    return unittest.TestLoader().loadTestsFromTestCase(test_LilyPond)

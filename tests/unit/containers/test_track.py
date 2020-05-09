@@ -1,13 +1,10 @@
+# -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
-# -*- coding: utf-8 -*-
-import sys
-
-sys.path += ["../"]
-from mingus.containers.track import Track
-from mingus.containers.bar import Bar
-from mingus.containers.instrument import Instrument, Piano, Guitar
 import unittest
+
+from mingus.containers.instrument import Instrument, Piano, Guitar
+from mingus.containers.track import Track
 
 
 class test_Track(unittest.TestCase):
@@ -29,7 +26,3 @@ class test_Track(unittest.TestCase):
         s + "E"
         s + "G#"
         self.assertEqual(s, t)
-
-
-def suite():
-    return unittest.TestLoader().loadTestsFromTestCase(test_Track)

@@ -1,16 +1,11 @@
 from __future__ import absolute_import
-import sys
 
-sys.path += ["../"]
-
-import mingus.extra.musicxml as mxl
 import unittest
+
+# noinspection PyUnresolvedReferences
+import mingus.extra.musicxml as mxl
 
 
 class test_MusicXML(unittest.TestCase):
     def setUp(self):
         pass
-
-
-def suite():
-    return unittest.TestLoader().loadTestsFromTestCase(test_MusicXML)

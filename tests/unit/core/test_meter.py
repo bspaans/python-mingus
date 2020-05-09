@@ -1,12 +1,11 @@
+# -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
-# -*- coding: utf-8 -*-
-import sys
-
-sys.path += ["../"]
-import mingus.core.meter as meter
 import unittest
+
 from six.moves import range
+
+import mingus.core.meter as meter
 
 
 class test_meter(unittest.TestCase):
@@ -96,7 +95,3 @@ class test_meter(unittest.TestCase):
 
     def test_is_full(self):
         pass
-
-
-def suite():
-    return unittest.TestLoader().loadTestsFromTestCase(test_meter)

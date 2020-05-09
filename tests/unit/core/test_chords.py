@@ -468,7 +468,3 @@ class test_chords(unittest.TestCase):
             lambda x: chords.determine_polychords(x, True),
             "polychord naming",
         )
-
-
-def suite():
-    return unittest.TestLoader().loadTestsFromTestCase(test_chords)

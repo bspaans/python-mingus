@@ -1,12 +1,9 @@
+# -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
-# -*- coding: utf-8 -*-
-import sys
-
-sys.path += ["../"]
-import mingus.core.keys as keys
-from mingus.core.mt_exceptions import NoteFormatError, KeyError
 import unittest
+
+import mingus.core.keys as keys
 
 
 class test_keys(unittest.TestCase):
@@ -71,7 +68,3 @@ class test_keys(unittest.TestCase):
                 "The minor of %s is not %s, expecting %s"
                 % (k, keys.relative_minor(k), known[k]),
             )
-
-
-def suite():
-    return unittest.TestLoader().loadTestsFromTestCase(test_keys)

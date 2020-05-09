@@ -1,13 +1,11 @@
+# -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
-# -*- coding: utf-8 -*-
-import sys
+import unittest
 
-sys.path += ["../"]
 import mingus.extra.tunings as tunings
 from mingus.containers.note import Note
 from mingus.core.mt_exceptions import RangeError
-import unittest
 
 
 class test_Tunings(unittest.TestCase):
@@ -84,7 +82,3 @@ class test_Tunings(unittest.TestCase):
         self.assertRaises(RangeError, self.guitar6.get_Note, 7, 3)
         self.assertRaises(RangeError, self.guitar6.get_Note, 3, -1)
         self.assertRaises(RangeError, self.guitar6.get_Note, 3, 25)
-
-
-def suite():
-    return unittest.TestLoader().loadTestsFromTestCase(test_Tunings)

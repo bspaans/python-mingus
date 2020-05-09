@@ -108,7 +108,3 @@ class test_notes(unittest.TestCase):
                 "The diminished note of %s is not %s, expecting %s"
                 % (x, notes.diminish(x), known[x]),
             )
-
-
-def suite():
-    return unittest.TestLoader().loadTestsFromTestCase(test_notes)

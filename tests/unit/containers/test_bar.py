@@ -1,15 +1,12 @@
+# -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
-# -*- coding: utf-8 -*-
-import sys
+import unittest
 
-sys.path += ["../"]
-from mingus.core.keys import Key
 from mingus.containers.bar import Bar
 from mingus.containers.note import Note
 from mingus.containers.note_container import NoteContainer
-from mingus.containers.mt_exceptions import MeterFormatError
-import unittest
+from mingus.core.keys import Key
 
 
 class test_Bar(unittest.TestCase):
@@ -121,7 +118,3 @@ class test_Bar(unittest.TestCase):
         b + ["C", "E", "G"]
         b + ["F", "A", "C"]
         self.assertEqual([[0.0, ["I"]], [0.25, ["IV"]]], b.determine_progression(True))
-
-
-def suite():
-    return unittest.TestLoader().loadTestsFromTestCase(test_Bar)

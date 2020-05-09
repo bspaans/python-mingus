@@ -1,12 +1,10 @@
+# -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
-# -*- coding: utf-8 -*-
-import sys
-
-sys.path += ["../"]
-from mingus.containers.note import Note
 import unittest
+
 from mingus.containers.mt_exceptions import NoteFormatError
+from mingus.containers.note import Note
 
 
 class test_Note(unittest.TestCase):
@@ -114,7 +112,3 @@ class test_Note(unittest.TestCase):
         self.assertTrue(Note().from_shorthand("c") == Note("C-3"))
         self.assertTrue(Note().from_shorthand("c'") == Note("C-4"))
         self.assertTrue(Note().from_shorthand("c''''''") == Note("C-9"))
-
-
-def suite():
-    return unittest.TestLoader().loadTestsFromTestCase(test_Note)

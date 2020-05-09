@@ -20,6 +20,9 @@ class test_fluidsynth(unittest.TestCase):
 
     Check the :py:mod:`mingus.midi.fluidsynth` module for tips on finding
     SoundFonts.
+
+    Remember: you need a running fluidsynth server process listening at port
+    9800 to pass this test.
     """
 
     def setUp(self):
@@ -191,7 +194,3 @@ class test_fluidsynth(unittest.TestCase):
         c + t
         c + t2
         self.assertTrue(fluidsynth.play_Composition(c))
-
-
-def suite():
-    return unittest.TestLoader().loadTestsFromTestCase(test_fluidsynth)
