@@ -75,6 +75,9 @@ class MidiTrack(object):
         if self.change_instrument:
             self.set_instrument(channel, self.instrument)
             self.change_instrument = False
+
+        assert 0 <= velocity <= 0x7f
+
         self.track_data += self.note_on(channel, int(note) + 12, velocity)
 
     def play_NoteContainer(self, notecontainer):
@@ -175,15 +178,18 @@ class MidiTrack(object):
         return self.header() + self.track_data + self.end_of_track()
 
     def midi_event(self, event_type, channel, param1, param2=None):
-        """Convert and return the paraters as a MIDI event in bytes."""
-        assert event_type < 0x80 and event_type >= 0
-        assert channel < 16 and channel >= 0
-        tc = a2b_hex("%x%x" % (event_type, channel))
-        if param2 is None:
-            params = a2b_hex("%02x" % param1)
-        else:
-            params = a2b_hex("%02x%02x" % (param1, param2))
-        return self.delta_time + tc + params
+        """Convert and return the parameters as a MIDI event in bytes."""
+        assert 0 <= event_type < 16
+        assert 0 <= channel < 16
+        assert 0 <= param1 <= 0x7f
+        assert param2 is None or 0 <= param2 <= 0x7f
+
+        status_byte = channel | (event_type << 4)
+        params = [param1]
+        if param2 is not None:
+            params.append(param2)
+
+        return self.delta_time + bytes([status_byte] + params)
 
     def note_off(self, channel, note, velocity):
         """Return bytes for a 'note off' event."""
