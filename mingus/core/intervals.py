@@ -66,7 +66,7 @@ def unison(note, key=None):
     >>> unison('C')
     'C'
     """
-    return interval(key, note, 0)
+    return interval(note, note, 0)
 
 
 def second(note, key):

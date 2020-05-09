@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
+import doctest
 import unittest
 
+import mingus.containers.note
 from mingus.containers.mt_exceptions import NoteFormatError
 from mingus.containers.note import Note
 
@@ -136,3 +138,8 @@ class test_Note(unittest.TestCase):
             Note("A", 4, {"velocity": 200})
         with self.assertRaises(ValueError):
             Note("A", 4, {"velocity": -1})
+
+
+def load_tests(loader, tests, ignore):
+    tests.addTests(doctest.DocTestSuite(mingus.containers.note))
+    return tests

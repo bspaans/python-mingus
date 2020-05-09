@@ -55,9 +55,11 @@ def is_compound(meter):
 
     Examples:
     >>> is_compound((3,4))
-    True
+    False
     >>> is_compound((4,4))
     False
+    >>> is_compound((6,8))
+    True
     """
     return is_valid(meter) and meter[0] % 3 == 0 and 6 <= meter[0]
 

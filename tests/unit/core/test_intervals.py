@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
+import doctest
 import unittest
 
 import mingus.core.intervals as intervals
@@ -394,3 +394,8 @@ class test_intervals(unittest.TestCase):
         self.assertTrue(intervals.is_dissonant("C", "F#"))
         self.assertTrue(intervals.is_dissonant("C", "Bb"))
         self.assertTrue(intervals.is_dissonant("C", "B"))
+
+
+def load_tests(loader, tests, ignore):
+    tests.addTests(doctest.DocTestSuite(intervals))
+    return tests

@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
+import doctest
 import unittest
 
 from six.moves import range
@@ -95,3 +95,8 @@ class test_meter(unittest.TestCase):
 
     def test_is_full(self):
         pass
+
+
+def load_tests(loader, tests, ignore):
+    tests.addTests(doctest.DocTestSuite(meter))
+    return tests

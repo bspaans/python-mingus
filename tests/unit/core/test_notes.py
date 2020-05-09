@@ -1,13 +1,10 @@
 from __future__ import absolute_import
 
-# -*- coding: utf-8 -*-
-import sys
-from six.moves import map
+import doctest
+import unittest
 
-sys.path = ["../"] + sys.path
 import mingus.core.notes as notes
 from mingus.core.mt_exceptions import RangeError
-import unittest
 
 
 class test_notes(unittest.TestCase):
@@ -108,3 +105,8 @@ class test_notes(unittest.TestCase):
                 "The diminished note of %s is not %s, expecting %s"
                 % (x, notes.diminish(x), known[x]),
             )
+
+
+def load_tests(loader, tests, ignore):
+    tests.addTests(doctest.DocTestSuite(notes))
+    return tests

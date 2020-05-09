@@ -1,8 +1,9 @@
 from __future__ import absolute_import
 
-# -*- coding: utf-8 -*-
-import mingus.core.value as value
+import doctest
 import unittest
+
+import mingus.core.value as value
 
 
 class test_value(unittest.TestCase):
@@ -84,3 +85,8 @@ class test_value(unittest.TestCase):
         self.assertEqual(value.septuplet(32, False), 28)
         self.assertEqual(value.septuplet(64, False), 56)
         self.assertEqual(value.septuplet(128, False), 112)
+
+
+def load_tests(loader, tests, ignore):
+    tests.addTests(doctest.DocTestSuite(value))
+    return tests

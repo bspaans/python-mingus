@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #    mingus - Music theory Python package, value module.
 #    Copyright (C) 2008-2009, Bart Spaans, Javier Palanca
 #
@@ -36,7 +34,7 @@ up your code. This module is here to help do the conversion.
 
 Medieval backwards compatibility privided.
 """
-from __future__ import absolute_import
+from __future__ import absolute_import, division
 from six.moves import range
 
 longa = 0.25
@@ -156,12 +154,12 @@ def dots(value, nr=1):
     thirty second notes.
 
     Examples:
-    >>> dots(eighth)
-    5.3333333333333333
-    >>> dots(eighth, 2)
-    4.5714285714285712
-    >>> dots(quarter)
-    2.6666666666666665
+    >>> round(dots(eighth), 6)
+    5.333333
+    >>> round(dots(eighth, 2), 6)
+    4.571429
+    >>> round(dots(quarter), 6)
+    2.666667
     """
     return (0.5 * value) / (1.0 - 0.5 ** (nr + 1))
 
@@ -174,9 +172,9 @@ def triplet(value):
 
     Examples:
     >>> triplet(eighth)
-    12
+    12.0
     >>> triplet(4)
-    6
+    6.0
     """
     return tuplet(value, 3, 2)
 
@@ -189,9 +187,9 @@ def quintuplet(value):
 
     Examples:
     >>> quintuplet(8)
-    10
+    10.0
     >>> quintuplet(4)
-    5
+    5.0
     """
     return tuplet(value, 5, 4)
 
@@ -211,9 +209,9 @@ def septuplet(value, in_fourths=True):
 
     Examples:
     >>> septuplet(8)
-    14
+    14.0
     >>> septuplet(8, False)
-    7
+    7.0
     """
     if in_fourths:
         return tuplet(value, 7, 4)
@@ -231,7 +229,7 @@ def tuplet(value, rat1, rat2):
 
     Example:
     >>> tuplet(8, 3, 2)
-    12
+    12.0
     """
     return (rat1 * value) / float(rat2)
 

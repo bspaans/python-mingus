@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
+import doctest
 import unittest
 
 import mingus.core.keys as keys
@@ -68,3 +68,8 @@ class test_keys(unittest.TestCase):
                 "The minor of %s is not %s, expecting %s"
                 % (k, keys.relative_minor(k), known[k]),
             )
+
+
+def load_tests(loader, tests, ignore):
+    tests.addTests(doctest.DocTestSuite(keys))
+    return tests

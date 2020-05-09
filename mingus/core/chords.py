@@ -396,7 +396,7 @@ def dominant_flat_ninth(note):
     """Build a dominant flat ninth chord on note.
 
     Example:
-    >>> dominant_ninth('C')
+    >>> dominant_flat_ninth('C')
     ['C', 'E', 'G', 'Bb', 'Db']
     """
     res = dominant_ninth(note)
@@ -408,7 +408,7 @@ def dominant_sharp_ninth(note):
     """Build a dominant sharp ninth chord on note.
 
     Example:
-    >>> dominant_ninth('C')
+    >>> dominant_sharp_ninth('C')
     ['C', 'E', 'G', 'Bb', 'D#']
     """
     res = dominant_ninth(note)
@@ -953,11 +953,11 @@ def determine_triad(triad, shorthand=False, no_inversions=False, placeholder=Non
 
     Examples:
     >>> determine_triad(['A', 'C', 'E'])
-    'A minor triad'
+    ['A minor triad', 'C major sixth, second inversion']
     >>> determine_triad(['C', 'E', 'A'])
-    'A minor triad, first inversion'
+    ['C major sixth', 'A minor triad, first inversion']
     >>> determine_triad(['A', 'C', 'E'], True)
-    'Am'
+    ['Am', 'CM6']
     """
     if len(triad) != 3:
         # warning: raise exception: not a triad
@@ -1031,7 +1031,7 @@ def determine_seventh(
 
     Example:
     >>> determine_seventh(['C', 'E', 'G', 'B'])
-    ['C major seventh']
+    ['C major seventh', 'Em|CM']
     """
     if len(seventh) != 4:
         # warning raise exception: seventh chord is not a seventh chord

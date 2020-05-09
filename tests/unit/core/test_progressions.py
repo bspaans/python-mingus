@@ -1,10 +1,7 @@
 from __future__ import absolute_import
 
-# -*- coding: utf-8 -*-
-import sys
-
-sys.path = ["../"] + sys.path
 import unittest
+
 import mingus.core.progressions as progressions
 
 

@@ -1,12 +1,10 @@
 from __future__ import absolute_import
 
-# -*- coding: utf-8 -*-
-import sys
-
-sys.path = ["../"] + sys.path
-import mingus.core.chords as chords
-from mingus.core.mt_exceptions import RangeError, FormatError, NoteFormatError
+import doctest
 import unittest
+
+import mingus.core.chords as chords
+from mingus.core.mt_exceptions import FormatError, NoteFormatError
 
 
 class test_chords(unittest.TestCase):
@@ -468,3 +466,8 @@ class test_chords(unittest.TestCase):
             lambda x: chords.determine_polychords(x, True),
             "polychord naming",
         )
+
+
+def load_tests(loader, tests, ignore):
+    tests.addTests(doctest.DocTestSuite(chords))
+    return tests

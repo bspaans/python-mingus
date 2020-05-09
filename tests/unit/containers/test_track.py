@@ -1,8 +1,9 @@
-# -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
+import doctest
 import unittest
 
+import mingus.containers.track
 from mingus.containers.instrument import Instrument, Piano, Guitar
 from mingus.containers.track import Track
 
@@ -26,3 +27,8 @@ class test_Track(unittest.TestCase):
         s + "E"
         s + "G#"
         self.assertEqual(s, t)
+
+
+def load_tests(loader, tests, ignore):
+    tests.addTests(doctest.DocTestSuite(mingus.containers.note))
+    return tests
