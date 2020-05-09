@@ -20,16 +20,20 @@
 from __future__ import absolute_import
 from __future__ import print_function
 
-from mingus.containers.note import Note
-from mingus.containers.note_container import NoteContainer
+import binascii
+
+from six import binary_type
+from six.moves import range
+
+import mingus.core.intervals as intervals
+import mingus.core.notes as notes
 from mingus.containers.bar import Bar
-from mingus.containers.track import Track
 from mingus.containers.composition import Composition
 from mingus.containers.instrument import MidiInstrument
-import mingus.core.notes as notes
-import mingus.core.intervals as intervals
-import binascii
-from six.moves import range
+from mingus.containers.note import Note
+from mingus.containers.note_container import NoteContainer
+from mingus.containers.track import Track
+from mingus.core.keys import Key
 
 
 def MIDI_to_Composition(file):
@@ -102,7 +106,7 @@ class MidiFile(object):
                     # note on
                     n = Note(
                         notes.int_to_note(event["param1"] % 12),
-                        event["param1"] / 12 - 1,
+                        event["param1"] // 12 - 1,
                     )
                     n.channel = event["channel"]
                     n.velocity = event["param2"]
@@ -127,7 +131,7 @@ class MidiFile(object):
                         pass
                     elif event["meta_event"] == 3:
                         # Track name
-                        t.name = event["data"]
+                        t.name = event["data"].decode("ascii")
                     elif event["meta_event"] == 6:
                         # Marker
                         pass
@@ -141,7 +145,7 @@ class MidiFile(object):
                         # Set tempo warning Only the last change in bpm will get
                         # saved currently
                         mpqn = self.bytes_to_int(event["data"])
-                        bpm = 60000000 / mpqn
+                        bpm = 60000000 // mpqn
                     elif event["meta_event"] == 88:
                         # Time Signature
                         d = event["data"]
@@ -165,7 +169,7 @@ class MidiFile(object):
                                 key = intervals.major_fourth(key)
                             else:
                                 key = intervals.major_fifth(key)
-                        b.key = Note(key)
+                        b.key = Key(key)
                     else:
                         print("Unsupported META event", event["meta_event"])
                 else:
@@ -179,7 +183,7 @@ class MidiFile(object):
         format type, number of tracks and parsed time division information."""
         # Check header
         try:
-            if fp.read(4) != "MThd":
+            if fp.read(4) != b"MThd":
                 raise HeaderError(
                     "Not a valid MIDI file header. Byte %d." % self.bytes_read
                 )
@@ -218,12 +222,18 @@ class MidiFile(object):
         chunk_size -= 6
         if chunk_size % 2 == 1:
             raise FormatError("Won't parse this.")
-        fp.read(chunk_size / 2)
-        self.bytes_read += chunk_size / 2
+        byte_size = chunk_size // 2
+        fp.read(byte_size)
+        self.bytes_read += byte_size
         return (format_type, number_of_tracks, time_division)
 
-    def bytes_to_int(self, bytes):
-        return int(binascii.b2a_hex(bytes), 16)
+    def bytes_to_int(self, _bytes):
+        if isinstance(_bytes, binary_type):
+            return int(binascii.b2a_hex(_bytes), 16)
+        elif isinstance(_bytes, int):
+            return _bytes
+        else:
+            raise TypeError("Unexpected type: %s" % type(_bytes))
 
     def parse_time_division(self, bytes):
         """Parse the time division found in the header of a MIDI file and
