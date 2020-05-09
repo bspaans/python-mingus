@@ -61,17 +61,8 @@ class MidiTrack(object):
         To set the channel on which to play this note, set Note.channel, the
         same goes for Note.velocity.
         """
-        velocity = 64
-        channel = 1
-        if hasattr(note, "dynamics"):
-            if "velocity" in note.dynamics:
-                velocity = note.dynamics["velocity"]
-            if "channel" in note.dynamics:
-                channel = note.dynamics["channel"]
-        if hasattr(note, "channel"):
-            channel = note.channel
-        if hasattr(note, "velocity"):
-            velocity = note.velocity
+        channel = note.channel
+        velocity = note.velocity
         if self.change_instrument:
             self.set_instrument(channel, self.instrument)
             self.change_instrument = False
@@ -130,17 +121,8 @@ class MidiTrack(object):
 
     def stop_Note(self, note):
         """Add a note_off event for note to event_track."""
-        velocity = 64
-        channel = 1
-        if hasattr(note, "dynamics"):
-            if "velocity" in note.dynamics:
-                velocity = note.dynamics["velocity"]
-            if "channel" in note.dynamics:
-                channel = note.dynamics["channel"]
-        if hasattr(note, "channel"):
-            channel = note.channel
-        if hasattr(note, "velocity"):
-            velocity = note.velocity
+        channel = note.channel
+        velocity = note.velocity
         self.track_data += self.note_off(channel, int(note) + 12, velocity)
 
     def stop_NoteContainer(self, notecontainer):

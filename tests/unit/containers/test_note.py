@@ -112,3 +112,25 @@ class test_Note(unittest.TestCase):
         self.assertTrue(Note().from_shorthand("c") == Note("C-3"))
         self.assertTrue(Note().from_shorthand("c'") == Note("C-4"))
         self.assertTrue(Note().from_shorthand("c''''''") == Note("C-9"))
+
+    def test_velocity(self):
+        self.assertEqual(42, Note("A", 4, {"velocity": 42}).velocity)
+        self.assertEqual(64, Note("A", 4, {"channel": 2}).velocity)  # default velocity
+        self.assertEqual(42, Note(Note("A", 4, {"velocity": 42})).velocity)
+
+    def test_channel(self):
+        self.assertEqual(1, Note("A", 4, {"velocity": 100}).channel)  # default channel
+        self.assertEqual(4, Note("A", 4, {"channel": 4}).channel)
+        self.assertEqual(4, Note(Note("A", 4, {"channel": 4})).channel)
+
+    def test_invalid_channel(self):
+        with self.assertRaises(ValueError):
+            Note("A", 4, {"channel": 100})
+        with self.assertRaises(ValueError):
+            Note("A", 4, {"channel": -1})
+
+    def test_invalid_velocity(self):
+        with self.assertRaises(ValueError):
+            Note("A", 4, {"velocity": 200})
+        with self.assertRaises(ValueError):
+            Note("A", 4, {"velocity": -1})

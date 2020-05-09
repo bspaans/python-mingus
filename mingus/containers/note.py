@@ -23,6 +23,11 @@ from mingus.containers.mt_exceptions import NoteFormatError
 from math import log
 import six
 
+_DEFAULT_NAME = "C"
+_DEFAULT_OCTAVE = 4
+_DEFAULT_CHANNEL = 1
+_DEFAULT_VELOCITY = 64
+
 
 class Note(object):
 
@@ -41,11 +46,10 @@ class Note(object):
     and chords.
     """
 
-    name = "C"
-    octave = 4
-    dynamics = {}
-    channel = 1
-    velocity = 64
+    name = _DEFAULT_NAME
+    octave = _DEFAULT_OCTAVE
+    channel = _DEFAULT_CHANNEL
+    velocity = _DEFAULT_VELOCITY
 
     def __init__(self, name="C", octave=4, dynamics=None):
         if dynamics is None:
@@ -55,10 +59,6 @@ class Note(object):
         elif hasattr(name, "name"):
             # Hardcopy Note object
             self.set_note(name.name, name.octave, name.dynamics)
-            if hasattr(name, "channel"):
-                self.channel = name.channel
-            if hasattr(name, "velocity"):
-                self.velocity = name.velocity
         elif isinstance(name, int):
             self.from_int(name)
         else:
@@ -66,10 +66,21 @@ class Note(object):
                 "Don't know what to do with name object: " "'%s'" % name
             )
 
+    @property
+    def dynamics(self):
+        return {
+            "channel": self.channel,
+            "velocity": self.velocity,
+        }
+
     def set_channel(self, channel):
+        if not 0 <= channel < 16:
+            raise ValueError("MIDI channel must be 0-15")
         self.channel = channel
 
     def set_velocity(self, velocity):
+        if not 0 <= velocity < 128:
+            raise ValueError("MIDI velocity must be 0-127")
         self.velocity = velocity
 
     def set_note(self, name="C", octave=4, dynamics=None):
@@ -80,12 +91,16 @@ class Note(object):
         """
         if dynamics is None:
             dynamics = {}
+        if "channel" in dynamics:
+            self.set_channel(dynamics["channel"])
+        if "velocity" in dynamics:
+            self.set_velocity(dynamics["velocity"])
+
         dash_index = name.split("-")
         if len(dash_index) == 1:
             if notes.is_valid_note(name):
                 self.name = name
                 self.octave = octave
-                self.dynamics = dynamics
                 return self
             else:
                 raise NoteFormatError(
@@ -93,10 +108,10 @@ class Note(object):
                     "representation of a note in mingus" % name
                 )
         elif len(dash_index) == 2:
-            if notes.is_valid_note(dash_index[0]):
-                self.name = dash_index[0]
-                self.octave = int(dash_index[1])
-                self.dynamics = dynamics
+            note, octave = dash_index
+            if notes.is_valid_note(note):
+                self.name = note
+                self.octave = int(octave)
                 return self
             else:
                 raise NoteFormatError(
@@ -107,9 +122,12 @@ class Note(object):
 
     def empty(self):
         """Remove the data in the instance."""
+        # TODO: Review these two. This seems to leave the object in an invalid state
         self.name = ""
-        octave = 0
-        dynamics = {}
+        self.octave = 0
+
+        self.channel = _DEFAULT_CHANNEL
+        self.velocity = _DEFAULT_VELOCITY
 
     def augment(self):
         """Call notes.augment with this note as argument."""
