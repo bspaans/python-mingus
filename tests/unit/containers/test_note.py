@@ -117,11 +117,13 @@ class test_Note(unittest.TestCase):
         self.assertEqual(42, Note("A", 4, {"velocity": 42}).velocity)
         self.assertEqual(64, Note("A", 4, {"channel": 2}).velocity)  # default velocity
         self.assertEqual(42, Note(Note("A", 4, {"velocity": 42})).velocity)
+        self.assertEqual(42, Note("A", 4, velocity=42).velocity)
 
     def test_channel(self):
         self.assertEqual(1, Note("A", 4, {"velocity": 100}).channel)  # default channel
         self.assertEqual(4, Note("A", 4, {"channel": 4}).channel)
         self.assertEqual(4, Note(Note("A", 4, {"channel": 4})).channel)
+        self.assertEqual(8, Note("A", 4, channel=8).channel)
 
     def test_invalid_channel(self):
         with self.assertRaises(ValueError):

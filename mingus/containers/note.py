@@ -51,9 +51,15 @@ class Note(object):
     channel = _DEFAULT_CHANNEL
     velocity = _DEFAULT_VELOCITY
 
-    def __init__(self, name="C", octave=4, dynamics=None):
+    def __init__(self, name="C", octave=4, dynamics=None, velocity=None, channel=None):
         if dynamics is None:
             dynamics = {}
+
+        if velocity is not None:
+            dynamics["velocity"] = velocity
+        if channel is not None:
+            dynamics["channel"] = channel
+
         if isinstance(name, six.string_types):
             self.set_note(name, octave, dynamics)
         elif hasattr(name, "name"):
@@ -83,7 +89,7 @@ class Note(object):
             raise ValueError("MIDI velocity must be 0-127")
         self.velocity = velocity
 
-    def set_note(self, name="C", octave=4, dynamics=None):
+    def set_note(self, name="C", octave=4, dynamics=None, velocity=None, channel=None):
         """Set the note to name in octave with dynamics.
 
         Return the objects if it succeeded, raise an NoteFormatError
@@ -91,10 +97,16 @@ class Note(object):
         """
         if dynamics is None:
             dynamics = {}
+
+        if velocity is not None:
+            self.set_velocity(velocity)
+        elif "velocity" in dynamics:
+            self.set_velocity(dynamics["velocity"])
+
+        if channel is not None:
+            self.set_channel(channel)
         if "channel" in dynamics:
             self.set_channel(dynamics["channel"])
-        if "velocity" in dynamics:
-            self.set_velocity(dynamics["velocity"])
 
         dash_index = name.split("-")
         if len(dash_index) == 1:
