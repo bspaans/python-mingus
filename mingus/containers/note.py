@@ -190,7 +190,7 @@ class Note(object):
         """
         # int(Note("A")) == 57
         diff = self.__int__() - 57
-        return 2 ** (diff / 12.0) * 440
+        return 2 ** (diff / 12.0) * standard_pitch
 
     def from_hertz(self, hertz, standard_pitch=440):
         """Set the Note name and pitch, calculated from the hertz value.
