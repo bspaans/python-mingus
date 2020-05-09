@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
-from scales import Diatonic, Scale
-from notes import Note, NotesSequence
-import chords
+from .scales import Diatonic, Scale
+from .notes import Note, NotesSequence
+from . import chords
 import re
 
 _PROG_MATCHER = re.compile("^([IV]*)(.*)$")
@@ -138,4 +138,4 @@ class Progression(object):
             raise Exception("Unknown shorthand extension: " + extension)
 
     def from_string_list(self, str_list):
-        return NotesSequence(map(self.from_string, str_list))
+        return NotesSequence(list(map(self.from_string, str_list)))

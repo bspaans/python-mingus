@@ -2,7 +2,7 @@
 
 from mingus.progressions import Progression
 from mingus.notes import Note
-from common import _chord_tester
+from .common import _chord_tester
 from hamcrest import *
 
 def test_Progression_constructor_from_None():

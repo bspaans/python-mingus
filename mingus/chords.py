@@ -1,7 +1,7 @@
 #!/usr/bin/env python 
 
-from notes import Note, NoteGrouping
-from mixins import Dim, Aug
+from .notes import Note, NoteGrouping
+from .mixins import Dim, Aug
 import re
 
 
@@ -75,7 +75,7 @@ class Chords(object):
 
 
 # Make all the chords in CHORDS into static methods on the Chords class
-for chord in CHORDS.iterkeys():
+for chord in CHORDS.keys():
     def create_chord_func(on_chord):
         def func(note):
             return _chord_to_notes(on_chord, note)

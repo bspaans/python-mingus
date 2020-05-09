@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
-from notes import Note, NoteGrouping
-from mixins import StepMixin, NotesMixin, CloneMixin, TransposeMixin, Aug, Dim
+from .notes import Note, NoteGrouping
+from .mixins import StepMixin, NotesMixin, CloneMixin, TransposeMixin, Aug, Dim
 
 class Scale(StepMixin, NotesMixin, CloneMixin, TransposeMixin):
 
@@ -31,7 +31,7 @@ class Scale(StepMixin, NotesMixin, CloneMixin, TransposeMixin):
         for ix, n in enumerate(self._scale):
             if n[0] == note.get_base_name():
                 return ix
-        raise Exception, "Next note not found. This is a bug and should be raised"
+        raise Exception("Next note not found. This is a bug and should be raised")
 
     def _note_from_scale_representation(self, scale_note):
         new_note = Note(self.on_note)
@@ -41,7 +41,7 @@ class Scale(StepMixin, NotesMixin, CloneMixin, TransposeMixin):
 
     def next(self, note, step = 1):
         if step > len(self._scale):
-            raise Exception, "Unsupported step size"
+            raise Exception("Unsupported step size")
         note = Note(note)
         index = self._get_note_index_in_scale(note)
         next_ix = (index + step) % (len(self._scale))

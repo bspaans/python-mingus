@@ -1,6 +1,6 @@
 #!/usr/bin/env python 
 
-from mixins import TransposeMixin, NotesMixin, CloneMixin, NotesSequenceMixin, CommonEqualityMixin, AugmentDiminishMixin
+from .mixins import TransposeMixin, NotesMixin, CloneMixin, NotesSequenceMixin, CommonEqualityMixin, AugmentDiminishMixin
 import re 
 
 _NOTE_MATCHER = re.compile("^(A|B|C|D|E|F|G)([#|b]*)([0-9]*)$")
@@ -95,8 +95,8 @@ class Note(TransposeMixin, NotesMixin, CloneMixin, NotesSequenceMixin, CommonEqu
         return 0
 
     def set_base_name(self, name):
-        if name not in NOTE_OFFSETS.keys():
-            raise Exception, "Not a valid base name: %s" % str(name)
+        if name not in list(NOTE_OFFSETS.keys()):
+            raise Exception("Not a valid base name: %s" % str(name))
         self._base_name = name
 
     def set_accidentals(self, accidentals):
@@ -118,7 +118,7 @@ class Note(TransposeMixin, NotesMixin, CloneMixin, NotesSequenceMixin, CommonEqu
         return str(self)
 
     def from_int(self, i, use_sharps = True):
-        self._octave = (i / 12) - 1
+        self._octave = (i // 12) - 1
         offset = i - (self._octave + 1) * 12
         lookup = _LOOKUP_SHARPS if use_sharps else _LOOKUP_FLATS
         self._base_name, self._accidentals = lookup[offset]
@@ -169,7 +169,7 @@ class Note(TransposeMixin, NotesMixin, CloneMixin, NotesSequenceMixin, CommonEqu
     def __getitem__(self, key):
         if key == 0:
             return self
-        raise "keyerror: trying to get element of a Note. This is not a grouping."
+        raise KeyError("trying to get element of a Note. This is not a grouping.")
 
 
 class Rest(Note):

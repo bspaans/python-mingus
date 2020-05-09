@@ -3,7 +3,7 @@
 from mingus.chords import Chords
 from mingus.notes import Note
 from hamcrest import *
-from common import _chord_tester
+from .common import _chord_tester
 
 
 def test_Chord_major_triad():
