@@ -1,3 +1,5 @@
-black
+black; python_version >= '3.6'
+PyHamcrest
+pytest
 twine
 wheel
