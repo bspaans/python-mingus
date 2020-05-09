@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 from hamcrest import *
 from mingus.notes import Note, NoteGrouping, NotesSequence
 from mingus.scales import Diatonic

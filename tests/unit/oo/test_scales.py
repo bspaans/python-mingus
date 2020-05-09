@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 from mingus.scales import *
 from mingus.notes import Note
 from hamcrest import *

@@ -1,5 +1,3 @@
-#!/usr/bin/env python 
-
 from mingus.progressions import Progression
 from mingus.notes import Note
 from .common import _chord_tester

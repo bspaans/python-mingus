@@ -1,5 +1,3 @@
-#!/usr/bin/env python 
-
 from mingus.notes import Note
 from hamcrest import *
 
@@ -9,4 +7,3 @@ def _chord_tester(chord, notes):
     for ix, note in enumerate(notes):
         assert_that(chord[ix], equal_to(Note(note)),
             "Note %d of %s should be %s" % (ix, str(chord), note))
-

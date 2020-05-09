@@ -1,5 +1,3 @@
-#!/usr/bin/env python 
-
 from mingus.notes import NotesSequence, Note, NoteGrouping, Rest
 from hamcrest import *
 

@@ -1,5 +1,3 @@
-#!/usr/bin/env python 
-
 from mingus.chords import Chords
 from mingus.notes import Note
 from hamcrest import *
@@ -159,5 +157,3 @@ def test_Chord_from_string():
     _chord_tester(Chords.from_string('Cmi7'), ['C4', 'Eb4', 'G4', 'Bb4'])
     _chord_tester(Chords.from_string('C-7'), ['C4', 'Eb4', 'G4', 'Bb4'])
     _chord_tester(Chords.from_string('C3-7'), ['C3', 'Eb3', 'G3', 'Bb3'])
-
-
