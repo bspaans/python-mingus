@@ -1,10 +1,8 @@
-#!/usr/bin/env python
-
 from .notes import Note, NoteGrouping
 from .mixins import StepMixin, NotesMixin, CloneMixin, TransposeMixin, Aug, Dim
 
-class Scale(StepMixin, NotesMixin, CloneMixin, TransposeMixin):
 
+class Scale(StepMixin, NotesMixin, CloneMixin, TransposeMixin):
     def __init__(self, on_note):
         self.on_note = Note(on_note)
         self._scale = set([])
@@ -15,7 +13,7 @@ class Scale(StepMixin, NotesMixin, CloneMixin, TransposeMixin):
 
     def _notes_to_scale_representation(self, intervals, base_note):
         notes = base_note.transpose_list(intervals)
-        self._scale = [ (n.get_base_name(), n.get_accidentals()) for n in notes ]
+        self._scale = [(n.get_base_name(), n.get_accidentals()) for n in notes]
 
     def __contains__(self, item):
         return self.is_in_scale(item)
@@ -25,7 +23,7 @@ class Scale(StepMixin, NotesMixin, CloneMixin, TransposeMixin):
             lookup = (note.get_base_name(), note.get_accidentals())
             return self._scale.index(lookup)
 
-        # this is a best guess that fails when the base name 
+        # this is a best guess that fails when the base name
         # of the note is not in the scale at all.
         # have to decide what to do in that case...
         for ix, n in enumerate(self._scale):
@@ -39,7 +37,7 @@ class Scale(StepMixin, NotesMixin, CloneMixin, TransposeMixin):
         new_note.set_accidentals(scale_note[1])
         return new_note
 
-    def next(self, note, step = 1):
+    def next(self, note, step=1):
         if step > len(self._scale):
             raise Exception("Unsupported step size")
         note = Note(note)
@@ -93,7 +91,7 @@ class Scale(StepMixin, NotesMixin, CloneMixin, TransposeMixin):
         self.build_scale(self.on_note)
         return self
 
-    def __str__(self): 
+    def __str__(self):
         return str(self.get_notes())
 
     def __repr__(self):
@@ -110,28 +108,35 @@ class Diatonic(Scale):
     def build_scale(self, note):
         self._notes_to_scale_representation([0, 2, 4, 5, 7, 9, 11], note)
 
+
 class Ionian(Diatonic):
     pass
+
 
 class Dorian(Scale):
     def build_scale(self, note):
         self._notes_to_scale_representation([0, 2, 3, 5, 7, 9, 10], note)
 
+
 class Phrygian(Scale):
     def build_scale(self, note):
         self._notes_to_scale_representation([0, 1, 3, 5, 7, 8, 10], note)
+
 
 class Lydian(Scale):
     def build_scale(self, note):
         self._notes_to_scale_representation([0, 2, 4, Aug(5), 7, 9, 11], note)
 
+
 class Mixolydian(Scale):
     def build_scale(self, note):
         self._notes_to_scale_representation([0, 2, 4, 5, 7, 9, 10], note)
 
+
 class Aeolian(Scale):
     def build_scale(self, note):
         self._notes_to_scale_representation([0, 2, 3, 5, 7, 8, 10], note)
+
 
 class Locrian(Scale):
     def build_scale(self, note):
