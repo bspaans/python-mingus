@@ -195,7 +195,7 @@ class Sequencer(object):
 
     def stop_NoteContainer(self, nc, channel=1):
         """Stop playing the notes in NoteContainer nc."""
-        self.notify_listeners(self.MSG_PLAY_NC, {"notes": nc, "channel": channel})
+        self.notify_listeners(self.MSG_STOP_NC, {"notes": nc, "channel": channel})
         if nc is None:
             return True
         for note in nc:
