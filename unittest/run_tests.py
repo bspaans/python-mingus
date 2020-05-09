@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 #    mingus - Music theory Python package, run_tests module.
@@ -22,6 +22,7 @@
 Invoke this file from the command line, from within the 'unittest' directory
 to run all the testcases.
 """
+from __future__ import absolute_import
 
 import unittest
 
@@ -65,7 +66,7 @@ core = [
     test_meter,
     test_progressions,
     test_value,
-    ]
+]
 containers = [
     test_note,
     test_note_containers,
@@ -74,13 +75,8 @@ containers = [
     test_track,
     test_composition,
     test_suite,
-    ]
-extra = [
-        test_fft, 
-        test_tunings, 
-        test_tablature, 
-        test_musicxml
-        ]
+]
+extra = [test_fft, test_tunings, test_tablature, test_musicxml]
 
 # Run all tests
 

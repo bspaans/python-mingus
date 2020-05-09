@@ -1,5 +1,6 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
+
+from __future__ import absolute_import
 
 #    mingus - Music theory Python package, note module.
 #    Copyright (C) 2008-2009, Bart Spaans
@@ -20,6 +21,8 @@
 from mingus.core import notes, intervals
 from mingus.containers.mt_exceptions import NoteFormatError
 from math import log
+import six
+
 
 class Note(object):
 
@@ -38,28 +41,31 @@ class Note(object):
     and chords.
     """
 
-    name = 'C'
+    name = "C"
     octave = 4
     dynamics = {}
     channel = 1
     velocity = 64
 
-    def __init__(self, name='C', octave=4, dynamics=None):
-        dynamics = dynamics if dynamics else {}
-        if type(name) == str:
+    def __init__(self, name="C", octave=4, dynamics=None):
+        if dynamics is None:
+            dynamics = {}
+        if isinstance(name, six.string_types):
+
             self.set_note(name, octave, dynamics)
-        elif hasattr(name, 'name'):
+        elif hasattr(name, "name"):
             # Hardcopy Note object
             self.set_note(name.name, name.octave, name.dynamics)
-            if hasattr(name, 'channel'):
+            if hasattr(name, "channel"):
                 self.channel = name.channel
-            if hasattr(name, 'velocity'):
+            if hasattr(name, "velocity"):
                 self.velocity = name.velocity
-        elif type(name) == int:
+        elif isinstance(name, int):
             self.from_int(name)
         else:
-            raise NoteFormatError("Don't know what to do with name object: "
-                    "'%s'" % name)
+            raise NoteFormatError(
+                "Don't know what to do with name object: " "'%s'" % name
+            )
 
 
     def set_channel(self, channel):
@@ -68,13 +74,15 @@ class Note(object):
     def set_velocity(self, velocity):
         self.velocity = velocity
 
-    def set_note(self, name='C', octave=4, dynamics={}):
+    def set_note(self, name="C", octave=4, dynamics=None):
         """Set the note to name in octave with dynamics.
 
         Return the objects if it succeeded, raise an NoteFormatError
         otherwise.
         """
-        dash_index = name.split('-')
+        if dynamics is None:
+            dynamics = {}
+        dash_index = name.split("-")
         if len(dash_index) == 1:
             if notes.is_valid_note(name):
                 self.name = name
@@ -82,8 +90,10 @@ class Note(object):
                 self.dynamics = dynamics
                 return self
             else:
-                raise NoteFormatError("The string '%s' is not a valid "
-                        "representation of a note in mingus" % name)
+                raise NoteFormatError(
+                    "The string '%s' is not a valid "
+                    "representation of a note in mingus" % name
+                )
         elif len(dash_index) == 2:
             if notes.is_valid_note(dash_index[0]):
                 self.name = dash_index[0]
@@ -91,13 +101,15 @@ class Note(object):
                 self.dynamics = dynamics
                 return self
             else:
-                raise NoteFormatError("The string '%s' is not a valid "
-                        "representation of a note in mingus" % name)
+                raise NoteFormatError(
+                    "The string '%s' is not a valid "
+                    "representation of a note in mingus" % name
+                )
         return False
 
     def empty(self):
         """Remove the data in the instance."""
-        self.name = ''
+        self.name = ""
         octave = 0
         dynamics = {}
 
@@ -188,8 +200,9 @@ class Note(object):
         The standard_pitch argument can be used to set the pitch of A-4,
         from which the rest is calculated.
         """
-        value = ((log((float(hertz) * 1024) / standard_pitch, 2) +
-            1.0 / 24) * 12 + 9)  # notes.note_to_int("A")
+        value = (
+            log((float(hertz) * 1024) / standard_pitch, 2) + 1.0 / 24
+        ) * 12 + 9  # notes.note_to_int("A")
         self.name = notes.int_to_note(int(value) % 12)
         self.octave = int(value / 12) - 6
         return self
@@ -213,7 +226,7 @@ class Note(object):
             res = str.lower(self.name)
         o = self.octave - 3
         while o < -1:
-            res += ','
+            res += ","
             o += 1
         while o > 0:
             res += "'"
@@ -231,18 +244,18 @@ class Note(object):
         >>> Note().from_shorthand("c'")
         'C-4'
         """
-        name = ''
+        name = ""
         octave = 0
         for x in shorthand:
-            if x in ['a', 'b', 'c', 'd', 'e', 'f', 'g']:
+            if x in ["a", "b", "c", "d", "e", "f", "g"]:
                 name = str.upper(x)
                 octave = 3
-            elif x in ['A', 'B', 'C', 'D', 'E', 'F', 'G']:
+            elif x in ["A", "B", "C", "D", "E", "F", "G"]:
                 name = x
                 octave = 2
-            elif x in ['#', 'b']:
+            elif x in ["#", "b"]:
                 name += x
-            elif x == ',':
+            elif x == ",":
                 octave -= 1
             elif x == "'":
                 octave += 1
@@ -257,9 +270,9 @@ class Note(object):
         """
         res = self.octave * 12 + notes.note_to_int(self.name[0])
         for n in self.name[1:]:
-            if n == '#':
+            if n == "#":
                 res += 1
-            elif n == 'b':
+            elif n == "b":
                 res -= 1
         return int(res)
 
@@ -293,7 +306,7 @@ class Note(object):
         return not self == other
 
     def __gt__(self, other):
-        return not(self < other or self == other)
+        return not (self < other or self == other)
 
     def __le__(self, other):
         return self < other or self == other
@@ -305,52 +318,3 @@ class Note(object):
         """Return a helpful representation for printing Note classes."""
         return "'%s-%d'" % (self.name, self.octave)
 
-class TemporalNote(Note):
-    """
-    >>> from mingus.extra.lilypond import from_Note
-    >>> note = TemporalNote(name='C', octave=2)
-    >>> repr(note)
-    "'C-2'"
-    >>> from_Note(note, standalone=False)
-    'c,4'
-    """
-    def __init__(self, name='C', octave=4, dynamics=None, duration_denominator=4):
-        super(TemporalNote, self).__init__(name=name, octave=octave, dynamics=dynamics)
-        self.duration_denominator = duration_denominator
-
-def temporal_note_factory(duration_denominator=None):
-    def func_composer(func):
-        def inner_fn(note_name, octave=4):
-            if isinstance(note_name, (list, set)):
-                return [TemporalNote(note,
-                                     octave=octave,
-                                     duration_denominator=duration_denominator) for note in note_name]
-            else:
-                return TemporalNote(note_name, octave=octave, duration_denominator=duration_denominator)
-        return inner_fn
-    return func_composer
-
-@temporal_note_factory(1)
-def WholeNoteFactory(note_name, octave=4):
-    pass
-
-@temporal_note_factory(2)
-def HalfNoteFactory(note_name, octave=4):
-    pass
-
-@temporal_note_factory(4)
-def QuarterNoteFactory(note_name, octave=4):
-    pass
-
-@temporal_note_factory(8)
-def EightNoteFactory(note_name, octave=4):
-    pass
-
-@temporal_note_factory(8)
-def SixteenthNoteFactory(note_name, octave=16):
-    pass
-
-
-if __name__ == '__main__':
-    import doctest
-    doctest.testmod()

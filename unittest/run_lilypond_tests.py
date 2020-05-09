@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 #    mingus - Music theory Python package, run_lilypond_tests module.
@@ -18,8 +18,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 """Separated LilyPond tests."""
+from __future__ import absolute_import
 
 import unittest
 import test_lilypond
+
 suite = unittest.TestSuite([test_lilypond.suite()])
 unittest.TextTestRunner(verbosity=2).run(suite)

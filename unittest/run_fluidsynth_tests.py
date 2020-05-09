@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 #    mingus - Music theory Python package, run_fluidsynth_tests module.
@@ -22,8 +22,10 @@
 Remember: you need a running fluidsynth server process listening at port
 9800 to pass this test.
 """
+from __future__ import absolute_import
 
 import unittest
 import test_fluidsynth
+
 suite = unittest.TestSuite([test_fluidsynth.suite()])
 unittest.TextTestRunner(verbosity=2).run(suite)

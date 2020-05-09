@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 #    mingus - Music theory Python package
@@ -18,4 +17,3 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 """See README."""
-

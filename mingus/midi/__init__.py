@@ -1,5 +1,6 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
+
+from __future__ import absolute_import
 
 #    mingus - Music theory Python package, midi package.
 #    Copyright (C) 2008-2009, Bart Spaans
@@ -21,10 +22,12 @@ from mingus.midi.sequencer import Sequencer
 from mingus.midi.sequencer_observer import SequencerObserver
 
 __all__ = [
-    'Sequencer',
-    'SequencerObserver',
-    'midi_file_in',
-    'midi_file_out',
-    'midi_track',
-    #'fluidsynth',
-    ]
+
+    "Sequencer",
+    "SequencerObserver",
+    "midi_file_in",
+    "midi_file_out",
+    "midi_track",
+    "fluidsynth",
+]
+

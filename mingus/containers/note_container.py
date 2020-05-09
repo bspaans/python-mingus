@@ -1,5 +1,6 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
+
+from __future__ import absolute_import
 
 #    mingus - Music theory Python package, note_container module.
 #    Copyright (C) 2008-2009, Bart Spaans
@@ -20,6 +21,7 @@
 from mingus.containers.note import Note
 from mingus.core import intervals, chords, progressions
 from mingus.containers.mt_exceptions import UnexpectedObjectError
+import six
 
 class NoteContainer(object):
 
@@ -34,7 +36,9 @@ class NoteContainer(object):
 
     notes = []
 
-    def __init__(self, notes=[]):
+    def __init__(self, notes=None):
+        if notes is None:
+            notes = []
         self.empty()
         self.add_notes(notes)
 
@@ -42,13 +46,15 @@ class NoteContainer(object):
         """Empty the container."""
         self.notes = []
 
-    def add_note(self, note, octave=None, dynamics={}):
+    def add_note(self, note, octave=None, dynamics=None):
         """Add a note to the container and sorts the notes from low to high.
 
         The note can either be a string, in which case you could also use
         the octave and dynamics arguments, or a Note object.
         """
-        if type(note) == str:
+        if dynamics is None:
+            dynamics = {}
+        if isinstance(note, six.string_types):
             if octave is not None:
                 note = Note(note, octave, dynamics)
             elif len(self.notes) == 0:
@@ -58,9 +64,11 @@ class NoteContainer(object):
                     note = Note(note, self.notes[-1].octave + 1, dynamics)
                 else:
                     note = Note(note, self.notes[-1].octave, dynamics)
-        if not hasattr(note, 'name'):
-            raise UnexpectedObjectError("Object '%s' was not expected. "
-                    "Expecting a mingus.containers.Note object." % note)
+        if not hasattr(note, "name"):
+            raise UnexpectedObjectError(
+                "Object '%s' was not expected. "
+                "Expecting a mingus.containers.Note object." % note
+            )
         if note not in self.notes:
             self.notes.append(note)
             self.notes.sort()
@@ -76,18 +84,18 @@ class NoteContainer(object):
         or even:
         >>> notes = [['C', 5, {'volume': 20}], ['E', 6, {'volume': 20}]]
         """
-        if hasattr(notes, 'notes'):
+        if hasattr(notes, "notes"):
             for x in notes.notes:
                 self.add_note(x)
             return self.notes
-        elif hasattr(notes, 'name'):
+        elif hasattr(notes, "name"):
             self.add_note(notes)
             return self.notes
-        elif type(notes) == str:
+        elif isinstance(notes, six.string_types):
             self.add_note(notes)
             return self.notes
         for x in notes:
-            if type(x) == list and len(x) != 1:
+            if isinstance(x, list) and len(x) != 1:
                 if len(x) == 2:
                     self.add_note(x[0], x[1])
                 else:
@@ -132,18 +140,18 @@ class NoteContainer(object):
         ['F-3', 'C-4']
         """
         self.empty()
-        if type(startnote) == str:
+        if isinstance(startnote, six.string_types):
             startnote = Note(startnote)
         n = Note(startnote.name, startnote.octave, startnote.dynamics)
         n.transpose(shorthand, up)
         self.add_notes([startnote, n])
         return self
 
-    def from_progression(self, shorthand, key='C'):
+    def from_progression(self, shorthand, key="C"):
         """Shortcut to from_progression_shorthand."""
         return self.from_progression_shorthand(shorthand, key)
 
-    def from_progression_shorthand(self, shorthand, key='C'):
+    def from_progression_shorthand(self, shorthand, key="C"):
         """Empty the container and add the notes described in the progressions
         shorthand (eg. 'IIm6', 'V7', etc).
 
@@ -192,8 +200,7 @@ class NoteContainer(object):
         See the core.intervals module for a longer description on
         consonance.
         """
-        return self._consonance_test(intervals.is_perfect_consonant,
-                include_fourths)
+        return self._consonance_test(intervals.is_perfect_consonant, include_fourths)
 
     def is_imperfect_consonant(self):
         """Test whether the notes are imperfect consonants.
@@ -219,7 +226,7 @@ class NoteContainer(object):
         """
         res = []
         for x in self.notes:
-            if type(note) == str:
+            if isinstance(note, six.string_types):
                 if x.name != note:
                     res.append(x)
                 else:
@@ -237,12 +244,13 @@ class NoteContainer(object):
         This function accepts a list of Note objects or notes as strings and
         also single strings or Note objects.
         """
-        if type(notes) == str:
+        if isinstance(notes, six.string_types):
             return self.remove_note(notes)
-        elif hasattr(notes, 'name'):
+        elif hasattr(notes, "name"):
             return self.remove_note(notes)
         else:
-            list(map(lambda x: self.remove_note(x), notes))
+            for x in notes:
+                self.remove_note(x)
             return self.notes
 
     def remove_duplicate_notes(self):
@@ -316,7 +324,7 @@ class NoteContainer(object):
         >>> n
         ['B-4', 'E-4', 'G-4']
         """
-        if type(value) == str:
+        if isinstance(value, six.string_types):
             n = Note(value)
             self.notes[item] = n
         else:
@@ -355,4 +363,3 @@ class NoteContainer(object):
             if x not in other:
                 return False
         return True
-

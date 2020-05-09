@@ -1,5 +1,6 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
+
+from __future__ import absolute_import
 
 #    mingus - Music theory Python package, suite module.
 #    Copyright (C) 2008-2009, Bart Spaans
@@ -26,11 +27,11 @@ class Suite(object):
     The Suite class is a datastructure that stores Composition objects.
     """
 
-    title = 'Untitled'
-    subtitle = ''
-    author = ''
-    email = ''
-    description = ''
+    title = "Untitled"
+    subtitle = ""
+    author = ""
+    email = ""
+    description = ""
     compositions = []
 
     def __init__(self):
@@ -42,18 +43,20 @@ class Suite(object):
         Raise an UnexpectedObjectError when the supplied argument is not a
         Composition object.
         """
-        if not hasattr(composition, 'tracks'):
-            raise UnexpectedObjectError("Object '%s' not expected. Expecting "
-                    "a mingus.containers.Composition object." % composition)
+        if not hasattr(composition, "tracks"):
+            raise UnexpectedObjectError(
+                "Object '%s' not expected. Expecting "
+                "a mingus.containers.Composition object." % composition
+            )
         self.compositions.append(composition)
         return self
 
-    def set_author(self, author, email=''):
+    def set_author(self, author, email=""):
         """Set the author of the suite."""
         self.author = author
         self.email = email
 
-    def set_title(self, title, subtitle=''):
+    def set_title(self, title, subtitle=""):
         """Set the title and the subtitle of the suite."""
         self.title = title
         self.subtitle = subtitle
@@ -68,13 +71,14 @@ class Suite(object):
 
     def __setitem__(self, index, value):
         """Enable the '[] =' notation."""
-        if not hasattr(value, 'tracks'):
-            raise UnexpectedObjectError("Object '%s' is not expected. "
-                    "Expecting a "
-                    "mingus.containers.Composition object." % value)
+        if not hasattr(value, "tracks"):
+            raise UnexpectedObjectError(
+                "Object '%s' is not expected. "
+                "Expecting a "
+                "mingus.containers.Composition object." % value
+            )
         self.compositions[index] = value
 
     def __add__(self, composition):
         """Enable the '+' operator for Compositions."""
         return self.add_composition(composition)
-

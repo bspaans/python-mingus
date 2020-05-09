@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
 
@@ -44,22 +43,23 @@ from mingus.core import notes, chords
 from mingus.containers import *
 from mingus.midi import fluidsynth
 from os import sys
-SF2 = 'soundfont.sf2'
+
+SF2 = "soundfont.sf2"
 OCTAVES = 5  # number of octaves to show
 LOWEST = 2  # lowest octave to show
 FADEOUT = 0.25  # coloration fadeout time (1 tick = 0.001)
 WHITE_KEY = 0
 BLACK_KEY = 1
 WHITE_KEYS = [
-    'C',
-    'D',
-    'E',
-    'F',
-    'G',
-    'A',
-    'B',
-    ]
-BLACK_KEYS = ['C#', 'D#', 'F#', 'G#', 'A#']
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "A",
+    "B",
+]
+BLACK_KEYS = ["C#", "D#", "F#", "G#", "A#"]
 
 
 def load_img(name):
@@ -72,29 +72,29 @@ def load_img(name):
             image = image.convert()
         else:
             image = image.convert_alpha()
-    except pygame.error, message:
-        print "Error: couldn't load image: ", fullname
-        raise SystemExit, message
+    except pygame.error as message:
+        print("Error: couldn't load image: ", fullname)
+        raise SystemExit(message)
     return (image, image.get_rect())
 
 
 if not fluidsynth.init(SF2):
-    print "Couldn't load soundfont", SF2
+    print("Couldn't load soundfont", SF2)
     sys.exit(1)
 
 pygame.init()
 pygame.font.init()
-font = pygame.font.SysFont('monospace', 12)
+font = pygame.font.SysFont("monospace", 12)
 screen = pygame.display.set_mode((640, 480))
 
-(key_graphic, kgrect) = load_img('keys.png')
+(key_graphic, kgrect) = load_img("keys.png")
 (width, height) = (kgrect.width, kgrect.height)
 white_key_width = width / 7
 
 # Reset display to wrap around the keyboard image
 
 pygame.display.set_mode((OCTAVES * width, height + 20))
-pygame.display.set_caption('mingus piano')
+pygame.display.set_caption("mingus piano")
 octave = 4
 channel = 8
 
@@ -163,7 +163,7 @@ def play_note(note):
     if det != []:
         det = det[0]
     else:
-        det = ''
+        det = ""
 
     # And render it onto the text surface
 
@@ -224,71 +224,71 @@ while not quit:
             quit = True
         if event.type == KEYDOWN:
             if event.key == K_z:
-                play_note(Note('C', octave))
+                play_note(Note("C", octave))
             elif event.key == K_s:
-                play_note(Note('C#', octave))
+                play_note(Note("C#", octave))
             elif event.key == K_x:
-                play_note(Note('D', octave))
+                play_note(Note("D", octave))
             elif event.key == K_d:
-                play_note(Note('D#', octave))
+                play_note(Note("D#", octave))
             elif event.key == K_c:
-                play_note(Note('E', octave))
+                play_note(Note("E", octave))
             elif event.key == K_v:
-                play_note(Note('F', octave))
+                play_note(Note("F", octave))
             elif event.key == K_g:
-                play_note(Note('F#', octave))
+                play_note(Note("F#", octave))
             elif event.key == K_b:
-                play_note(Note('G', octave))
+                play_note(Note("G", octave))
             elif event.key == K_h:
-                play_note(Note('G#', octave))
+                play_note(Note("G#", octave))
             elif event.key == K_n:
-                play_note(Note('A', octave))
+                play_note(Note("A", octave))
             elif event.key == K_j:
-                play_note(Note('A#', octave))
+                play_note(Note("A#", octave))
             elif event.key == K_m:
-                play_note(Note('B', octave))
+                play_note(Note("B", octave))
             elif event.key == K_COMMA:
-                play_note(Note('C', octave + 1))
+                play_note(Note("C", octave + 1))
             elif event.key == K_l:
-                play_note(Note('C#', octave + 1))
+                play_note(Note("C#", octave + 1))
             elif event.key == K_PERIOD:
-                play_note(Note('D', octave + 1))
+                play_note(Note("D", octave + 1))
             elif event.key == K_SEMICOLON:
-                play_note(Note('D#', octave + 1))
+                play_note(Note("D#", octave + 1))
             elif event.key == K_SLASH:
-                play_note(Note('E', octave + 1))
+                play_note(Note("E", octave + 1))
             elif event.key == K_q:
-                play_note(Note('B', octave))
+                play_note(Note("B", octave))
             elif event.key == K_w:
-                play_note(Note('C', octave + 1))
+                play_note(Note("C", octave + 1))
             elif event.key == K_3:
-                play_note(Note('C#', octave + 1))
+                play_note(Note("C#", octave + 1))
             elif event.key == K_e:
-                play_note(Note('D', octave + 1))
+                play_note(Note("D", octave + 1))
             elif event.key == K_4:
-                play_note(Note('D#', octave + 1))
+                play_note(Note("D#", octave + 1))
             elif event.key == K_r:
-                play_note(Note('E', octave + 1))
+                play_note(Note("E", octave + 1))
             elif event.key == K_t:
-                play_note(Note('F', octave + 1))
+                play_note(Note("F", octave + 1))
             elif event.key == K_6:
-                play_note(Note('F#', octave + 1))
+                play_note(Note("F#", octave + 1))
             elif event.key == K_y:
-                play_note(Note('G', octave + 1))
+                play_note(Note("G", octave + 1))
             elif event.key == K_7:
-                play_note(Note('G#', octave + 1))
+                play_note(Note("G#", octave + 1))
             elif event.key == K_u:
-                play_note(Note('A', octave + 1))
+                play_note(Note("A", octave + 1))
             elif event.key == K_8:
-                play_note(Note('A#', octave + 1))
+                play_note(Note("A#", octave + 1))
             elif event.key == K_i:
-                play_note(Note('B', octave + 1))
+                play_note(Note("B", octave + 1))
             elif event.key == K_o:
-                play_note(Note('C', octave + 2))
+                play_note(Note("C", octave + 2))
             elif event.key == K_0:
-                play_note(Note('C#', octave + 2))
+                play_note(Note("C#", octave + 2))
             elif event.key == K_p:
-                play_note(Note('D', octave + 2))
+                play_note(Note("D", octave + 2))
             elif event.key == K_MINUS:
                 octave -= 1
             elif event.key == K_EQUALS:

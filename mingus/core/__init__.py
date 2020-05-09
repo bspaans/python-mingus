@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 #    mingus - Mingus - Music theory Python module, core package.
@@ -18,13 +17,13 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 __all__ = [
-    'notes',
-    'keys',
-    'intervals',
-    'chords',
-    'scales',
-    'meter',
-    'progressions',
-    'mt_exceptions',
-    'value',
-    ]
+    "notes",
+    "keys",
+    "intervals",
+    "chords",
+    "scales",
+    "meter",
+    "progressions",
+    "mt_exceptions",
+    "value",
+]

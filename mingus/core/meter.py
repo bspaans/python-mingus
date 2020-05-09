@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 #    mingus - Music theory Python package, meter module.
@@ -22,10 +21,11 @@
 A meter is represented by a tuple. 4/4 time would look like (4,4), 3/4 like
 (3,4), etc.
 """
+from __future__ import absolute_import
 
-import math
 common_time = (4, 4)
 cut_time = (2, 2)
+
 
 def valid_beat_duration(duration):
     """Return True when log2(duration) is an integer."""
@@ -41,12 +41,14 @@ def valid_beat_duration(duration):
             r /= 2
         return True
 
+
 def is_valid(meter):
     """Return True if meter is a valid tuple representation of a meter.
 
     Examples for meters are (3,4) for 3/4, (4,4) for 4/4, etc.
     """
     return meter[0] > 0 and valid_beat_duration(meter[1])
+
 
 def is_compound(meter):
     """Return True if meter is a compound meter, False otherwise.
@@ -57,7 +59,8 @@ def is_compound(meter):
     >>> is_compound((4,4))
     False
     """
-    return is_valid(meter) and meter[0] % 3 == 0
+    return is_valid(meter) and meter[0] % 3 == 0 and 6 <= meter[0]
+
 
 def is_simple(meter):
     """Return True if meter is a simple meter, False otherwise.
@@ -70,6 +73,7 @@ def is_simple(meter):
     """
     return is_valid(meter)
 
+
 def is_asymmetrical(meter):
     """Return True if meter is an asymmetrical meter, False otherwise.
 
@@ -80,4 +84,3 @@ def is_asymmetrical(meter):
     False
     """
     return is_valid(meter) and meter[0] % 2 == 1
-

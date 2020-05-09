@@ -188,8 +188,10 @@ Compound meter is a meter in which each measure is divided into three or more or
 
 
 >>> meter.is_compound((3, 4))
-True
+False
 >>> meter.is_compound((6, 8))
+True
+>>> meter.is_compound((9, 16))
 True
 >>> meter.is_compound((4, 4))
 False

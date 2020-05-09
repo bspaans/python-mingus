@@ -1,7 +1,9 @@
-#!/usr/bin/python
+from __future__ import absolute_import
+
 # -*- coding: utf-8 -*-
 import sys
-sys.path += ['../']
+
+sys.path += ["../"]
 from mingus.containers.track import Track
 from mingus.containers.bar import Bar
 from mingus.containers.instrument import Instrument, Piano, Guitar
@@ -9,7 +11,6 @@ import unittest
 
 
 class test_Track(unittest.TestCase):
-
     def setUp(self):
         self.i = Track(Instrument())
         self.p = Track(Piano())
@@ -21,16 +22,14 @@ class test_Track(unittest.TestCase):
 
     def test_transpose(self):
         t = Track()
-        t + 'C'
-        t + 'E'
-        t.transpose('3')
+        t + "C"
+        t + "E"
+        t.transpose("3")
         s = Track()
-        s + 'E'
-        s + 'G#'
+        s + "E"
+        s + "G#"
         self.assertEqual(s, t)
 
 
 def suite():
     return unittest.TestLoader().loadTestsFromTestCase(test_Track)
-
-

@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 #    mingus - Music theory Python package, bar module.
@@ -17,11 +16,16 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import absolute_import
+
+import six
+from six.moves import range
+
+from mingus.containers.mt_exceptions import MeterFormatError
+from mingus.containers.note_container import NoteContainer
 from mingus.core import meter as _meter
 from mingus.core import progressions, keys
-from mingus.containers.note_container import NoteContainer
-from mingus.containers.note import Note
-from mingus.containers.mt_exceptions import MeterFormatError
+
 
 class Bar(object):
     """A bar object.
@@ -31,15 +35,15 @@ class Bar(object):
     Bars can be stored together with Instruments in Tracks.
     """
 
-    key = 'C'
+    key = "C"
     meter = (4, 4)
     current_beat = 0.0
     length = 0.0
     bar = []
 
-    def __init__(self, key='C', meter=(4, 4)):
+    def __init__(self, key="C", meter=(4, 4)):
         # warning should check types
-        if type(key) == str:
+        if isinstance(key, six.string_types):
             key = keys.Key(key)
         self.key = key
         self.set_meter(meter)
@@ -77,9 +81,11 @@ class Bar(object):
             self.meter = (0, 0)
             self.length = 0.0
         else:
-            raise MeterFormatError("The meter argument '%s' is not an "
-                    "understood representation of a meter. "
-                    "Expecting a tuple." % meter)
+            raise MeterFormatError(
+                "The meter argument '%s' is not an "
+                "understood representation of a meter. "
+                "Expecting a tuple." % meter
+            )
 
     def extend(self, temporal_notes):
         for note in temporal_notes:
@@ -98,16 +104,15 @@ class Bar(object):
         """
         # note should be able to be one of strings, lists, Notes or
         # NoteContainers
-        if hasattr(notes, 'notes'):
+        if hasattr(notes, "notes"):
             pass
-        elif hasattr(notes, 'name'):
+        elif hasattr(notes, "name"):
             notes = NoteContainer(notes)
-        elif type(notes) == str:
+        elif isinstance(notes, six.string_types):
             notes = NoteContainer(notes)
-        elif type(notes) == list:
+        elif isinstance(notes, list):
             notes = NoteContainer(notes)
-        if self.current_beat + 1.0 / duration <= self.length or self.length\
-             == 0.0:
+        if self.current_beat + 1.0 / duration <= self.length or self.length == 0.0:
             self.bar.append([self.current_beat, duration, notes])
             self.current_beat += 1.0 / duration
             return True
@@ -147,7 +152,7 @@ class Bar(object):
     def change_note_duration(self, at, to):
         """Change the note duration at the given index to the given
         duration."""
-        if valid_beat_duration(to):
+        if _meter.valid_beat_duration(to):
             diff = 0
             for x in self.bar:
                 if diff != 0:
@@ -205,8 +210,14 @@ class Bar(object):
         """Return a list of lists [place_in_beat, possible_progressions]."""
         res = []
         for x in self.bar:
-            res.append([x[0], progressions.determine(x[2].get_note_names(),
-                       self.key.key, shorthand)])
+            res.append(
+                [
+                    x[0],
+                    progressions.determine(
+                        x[2].get_note_names(), self.key.key, shorthand
+                    ),
+                ]
+            )
         return res
 
     def get_note_names(self):
@@ -235,13 +246,13 @@ class Bar(object):
         The value should be a NoteContainer, or a string/list/Note
         understood by the NoteContainer.
         """
-        if hasattr(value, 'notes'):
+        if hasattr(value, "notes"):
             pass
-        elif hasattr(value, 'name'):
+        elif hasattr(value, "name"):
             value = NoteContainer(value)
-        elif type(value) == str:
+        elif isinstance(value, six.string_types):
             value = NoteContainer(value)
-        elif type(value) == list:
+        elif isinstance(value, list):
             res = NoteContainer()
             for x in value:
                 res + x
@@ -262,4 +273,3 @@ class Bar(object):
             if self.bar[b] != other.bar[b]:
                 return False
         return True
-

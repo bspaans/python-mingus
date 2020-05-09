@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 #    mingus - Music theory Python package, midi_track module.
@@ -23,37 +22,24 @@
 The MIDI file format specification I used can be found here:
 http://www.sonicspot.com/guide/midifiles.html
 """
+from __future__ import absolute_import, division
 
 from binascii import a2b_hex
-from struct import pack, unpack
 from math import log
-from mingus.midi.midi_events import *
+
+from struct import pack
+
+from six.moves import range
+
 from mingus.core.keys import Key, major_keys, minor_keys
-from mingus.containers.note import Note
-from mingus.core import notes, intervals
-
-def note_int(note): # duplicate of mingus.containers.note.Note.__int__(self)
-        """Return the current octave multiplied by twelve and add
-        notes.note_to_int to it.
-
-        This means a C-0 returns 0, C-1 returns 12, etc. This method allows
-        you to use int() on Notes.
-        """
-        res = note.octave * 12 + notes.note_to_int(note.name[0])
-        for n in note.name[1:]:
-            if n == '#':
-                res += 1
-            elif n == 'b':
-                res -= 1
-        return int(res)
+from mingus.midi.midi_events import *
 
 class MidiTrack(object):
 
     """A class used to generate MIDI events from the objects in
     mingus.containers."""
-
-    track_data = b''
-    delta_time = b'\x00'
+    track_data = b""
+    delta_time = b"\x00"
     delay = 0
     bpm = 120
     change_instrument = False
@@ -61,8 +47,7 @@ class MidiTrack(object):
     
 
     def __init__(self, start_bpm=120):
-        self.note_int = note_int
-        self.track_data = b''
+        self.track_data = b""
         self.set_tempo(start_bpm)
 
     def end_of_track(self):
@@ -78,14 +63,14 @@ class MidiTrack(object):
         """
         velocity = 64
         channel = 1
-        if hasattr(note, 'dynamics'):
-            if 'velocity' in note.dynamics:
-                velocity = note.dynamics['velocity']
-            if 'channel' in note.dynamics:
-                channel = note.dynamics['channel']
-        if hasattr(note, 'channel'):
+        if hasattr(note, "dynamics"):
+            if "velocity" in note.dynamics:
+                velocity = note.dynamics["velocity"]
+            if "channel" in note.dynamics:
+                channel = note.dynamics["channel"]
+        if hasattr(note, "channel"):
             channel = note.channel
-        if hasattr(note, 'velocity'):
+        if hasattr(note, "velocity"):
             velocity = note.velocity
         if self.change_instrument:
             self.set_instrument(channel, self.instrument)
@@ -121,7 +106,7 @@ class MidiTrack(object):
             else:
                 self.set_deltatime(self.delay)
                 self.delay = 0
-                if hasattr(x[2], 'bpm'):
+                if hasattr(x[2], "bpm"):
                     self.set_deltatime(0)
                     self.set_tempo(x[2].bpm)
                 self.play_NoteContainer(x[2])
@@ -131,11 +116,11 @@ class MidiTrack(object):
     def play_Track(self, track):
         """Convert a Track object to MIDI events and write them to the
         track_data."""
-        if hasattr(track, 'name'):
+        if hasattr(track, "name"):
             self.set_track_name(track.name)
         self.delay = 0
         instr = track.instrument
-        if hasattr(instr, 'instrument_nr'):
+        if hasattr(instr, "instrument_nr"):
             self.change_instrument = True
             self.instrument = instr.instrument_nr
         for bar in track:
@@ -145,14 +130,14 @@ class MidiTrack(object):
         """Add a note_off event for note to event_track."""
         velocity = 64
         channel = 1
-        if hasattr(note, 'dynamics'):
-            if 'velocity' in note.dynamics:
-                velocity = note.dynamics['velocity']
-            if 'channel' in note.dynamics:
-                channel = note.dynamics['channel']
-        if hasattr(note, 'channel'):
+        if hasattr(note, "dynamics"):
+            if "velocity" in note.dynamics:
+                velocity = note.dynamics["velocity"]
+            if "channel" in note.dynamics:
+                channel = note.dynamics["channel"]
+        if hasattr(note, "channel"):
             channel = note.channel
-        if hasattr(note, 'velocity'):
+        if hasattr(note, "velocity"):
             velocity = note.velocity
         self.track_data += self.note_off(channel, int(note) + 12, velocity)
 
@@ -180,8 +165,7 @@ class MidiTrack(object):
         call this function when you're done adding data (when you're not
         using get_midi_data).
         """
-        chunk_size = a2b_hex('%08x' % (len(self.track_data)
-                              + len(self.end_of_track())))
+        chunk_size = a2b_hex("%08x" % (len(self.track_data) + len(self.end_of_track())))
         return TRACK_HEADER + chunk_size
 
     def get_midi_data(self):
@@ -195,11 +179,11 @@ class MidiTrack(object):
         """Convert and return the paraters as a MIDI event in bytes."""
         assert event_type < 0x80 and event_type >= 0
         assert channel < 16 and channel >= 0
-        tc = a2b_hex('%x%x' % (event_type, channel))
+        tc = a2b_hex("%x%x" % (event_type, channel))
         if param2 is None:
-            params = a2b_hex('%02x' % param1)
+            params = a2b_hex("%02x" % param1)
         else:
-            params = a2b_hex('%02x%02x' % (param1, param2))
+            params = a2b_hex("%02x%02x" % (param1, param2))
         return self.delta_time + tc + params
 
     def note_off(self, channel, note, velocity):
@@ -216,16 +200,15 @@ class MidiTrack(object):
 
     def reset(self):
         """Reset track_data and delta_time."""
-        self.track_data = b''
-        self.delta_time = b'\x00'
+        self.track_data = b""
+        self.delta_time = b"\x00"
 
     def set_deltatime(self, delta_time):
         """Set the delta_time.
 
         Can be an integer or a variable length byte.
         """
-#        print('set d_t')
-        if type(delta_time) == int:
+        if isinstance(delta_time, int):
             delta_time = self.int_to_varbyte(delta_time)
         self.delta_time = delta_time
 
@@ -245,11 +228,8 @@ class MidiTrack(object):
     def set_tempo_event(self, bpm):
         """Calculate the microseconds per quarter note."""
         ms_per_min = 60000000
-        mpqn = a2b_hex('%06x' % int(ms_per_min / bpm))
-#        print(type(mpqn))
-#        print(META_EVENT)
-#        print(type(META_EVENT))
-        return self.delta_time + META_EVENT + SET_TEMPO + b'\x03' + mpqn
+        mpqn = a2b_hex("%06x" % (ms_per_min // bpm))
+        return self.delta_time + META_EVENT + SET_TEMPO + b"\x03" + mpqn
 
     def set_meter(self, meter=(4, 4)):
         """Add a time signature event for meter to track_data."""
@@ -257,30 +237,36 @@ class MidiTrack(object):
 
     def time_signature_event(self, meter=(4, 4)):
         """Return a time signature event for meter."""
-        numer = a2b_hex('%02x' % meter[0])
-        denom = a2b_hex('%02x' % int(log(meter[1], 2)))
-        return self.delta_time + META_EVENT + TIME_SIGNATURE + b'\x04' + numer\
-             + denom + b'\x18\x08'
+        numer = a2b_hex("%02x" % meter[0])
+        denom = a2b_hex("%02x" % int(log(meter[1], 2)))
+        return (
+            self.delta_time
+            + META_EVENT
+            + TIME_SIGNATURE
+            + b"\x04"
+            + numer
+            + denom
+            + b"\x18\x08"
+        )
 
-    def set_key(self, key='C'):
+    def set_key(self, key="C"):
         """Add a key signature event to the track_data."""
         if isinstance(key, Key):
             key = key.name[0]
         self.track_data += self.key_signature_event(key)
 
-    def key_signature_event(self, key='C'):
+    def key_signature_event(self, key="C"):
         """Return the bytes for a key signature event."""
         if str(key).islower():
             val = minor_keys.index(key) - 7
-            mode = b'\x01'
+            mode = b"\x01"
         else:
             val = major_keys.index(key) - 7
-            mode = b'\x00'
+            mode = b"\x00"
         if val < 0:
             val = 256 + val
-        key = a2b_hex('%02x' % val)
-        return self.delta_time + META_EVENT + KEY_SIGNATURE + b'\x02' + key\
-             + mode
+        key = a2b_hex("%02x" % val)
+        return self.delta_time + META_EVENT + KEY_SIGNATURE + b"\x02" + key + mode
 
     def set_track_name(self, name):
         """Add a meta event for the track."""
@@ -289,10 +275,7 @@ class MidiTrack(object):
     def track_name_event(self, name):
         """Return the bytes for a track name meta event."""
         l = self.int_to_varbyte(len(name))
-#        print(name)
-        if type(name) == str:
-            name = bytes(name, 'ascii')
-        return b'\x00' + META_EVENT + TRACK_NAME + l + name 
+        return b"\x00" + META_EVENT + TRACK_NAME + l + name.encode("ascii")
 
     def int_to_varbyte(self, value):
         """Convert an integer into a variable length byte.
@@ -312,5 +295,4 @@ class MidiTrack(object):
         # Set the first bit on every one but the last bit.
         for i in range(len(bytes) - 1):
             bytes[i] = bytes[i] | 0x80
-        return pack('%sB' % len(bytes), *bytes)
-
+        return pack("%sB" % len(bytes), *bytes)

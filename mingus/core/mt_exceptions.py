@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 #    mingus - Music theory Python package, mt_exceptions module.
@@ -16,6 +15,7 @@
 #
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 
 class Error(Exception):
 
@@ -45,4 +45,3 @@ class RangeError(Error):
 class FingerError(Error):
 
     pass
-

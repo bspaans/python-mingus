@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 #    Music theory Python package, intervals module.
@@ -30,9 +29,11 @@ returns 'A'.
 This modules also contains other useful helper functions like measure,
 determine, invert, is_consonant and is_dissonant.
 """
+from __future__ import absolute_import
 
 from mingus.core import notes
 from mingus.core import keys
+
 
 def interval(key, start_note, interval):
     """Return the note found at the interval starting from start_note in the
@@ -52,6 +53,7 @@ def interval(key, start_note, interval):
             index = notes_in_key.index(n)
     return notes_in_key[(index + interval) % 7]
 
+
 def unison(note, key=None):
     """Return the unison of note.
 
@@ -66,6 +68,7 @@ def unison(note, key=None):
     """
     return interval(key, note, 0)
 
+
 def second(note, key):
     """Take the diatonic second of note in key.
 
@@ -78,6 +81,7 @@ def second(note, key):
     'F#'
     """
     return interval(key, note, 1)
+
 
 def third(note, key):
     """Take the diatonic third of note in key.
@@ -92,6 +96,7 @@ def third(note, key):
     """
     return interval(key, note, 2)
 
+
 def fourth(note, key):
     """Take the diatonic fourth of note in key.
 
@@ -104,6 +109,7 @@ def fourth(note, key):
     'A#'
     """
     return interval(key, note, 3)
+
 
 def fifth(note, key):
     """Take the diatonic fifth of note in key.
@@ -118,6 +124,7 @@ def fifth(note, key):
     """
     return interval(key, note, 4)
 
+
 def sixth(note, key):
     """Take the diatonic sixth of note in key.
 
@@ -130,6 +137,7 @@ def sixth(note, key):
     'C#'
     """
     return interval(key, note, 5)
+
 
 def seventh(note, key):
     """Take the diatonic seventh of note in key.
@@ -144,84 +152,96 @@ def seventh(note, key):
     """
     return interval(key, note, 6)
 
+
 def minor_unison(note):
     return notes.diminish(note)
+
 
 def major_unison(note):
     return note
 
+
 def augmented_unison(note):
     return notes.augment(note)
 
+
 def minor_second(note):
-    sec = second(note[0], 'C')
+    sec = second(note[0], "C")
     return augment_or_diminish_until_the_interval_is_right(note, sec, 1)
 
+
 def major_second(note):
-    sec = second(note[0], 'C')
+    sec = second(note[0], "C")
     return augment_or_diminish_until_the_interval_is_right(note, sec, 2)
 
+
 def minor_third(note):
-    trd = third(note[0], 'C')
+    trd = third(note[0], "C")
     return augment_or_diminish_until_the_interval_is_right(note, trd, 3)
 
+
 def major_third(note):
-    trd = third(note[0], 'C')
+    trd = third(note[0], "C")
     return augment_or_diminish_until_the_interval_is_right(note, trd, 4)
 
+
 def minor_fourth(note):
-    frt = fourth(note[0], 'C')
+    frt = fourth(note[0], "C")
     return augment_or_diminish_until_the_interval_is_right(note, frt, 4)
 
+
 def major_fourth(note):
-    frt = fourth(note[0], 'C')
+    frt = fourth(note[0], "C")
     return augment_or_diminish_until_the_interval_is_right(note, frt, 5)
+
 
 def perfect_fourth(note):
     return major_fourth(note)
 
+
 def minor_fifth(note):
-    fif = fifth(note[0], 'C')
+    fif = fifth(note[0], "C")
     return augment_or_diminish_until_the_interval_is_right(note, fif, 6)
 
+
 def major_fifth(note):
-    fif = fifth(note[0], 'C')
+    fif = fifth(note[0], "C")
     return augment_or_diminish_until_the_interval_is_right(note, fif, 7)
+
 
 def perfect_fifth(note):
     return major_fifth(note)
 
+
 def minor_sixth(note):
-    sth = sixth(note[0], 'C')
+    sth = sixth(note[0], "C")
     return augment_or_diminish_until_the_interval_is_right(note, sth, 8)
 
+
 def major_sixth(note):
-    sth = sixth(note[0], 'C')
+    sth = sixth(note[0], "C")
     return augment_or_diminish_until_the_interval_is_right(note, sth, 9)
 
+
 def minor_seventh(note):
-    sth = seventh(note[0], 'C')
+    sth = seventh(note[0], "C")
     return augment_or_diminish_until_the_interval_is_right(note, sth, 10)
 
+
 def major_seventh(note):
-    sth = seventh(note[0], 'C')
+    sth = seventh(note[0], "C")
     return augment_or_diminish_until_the_interval_is_right(note, sth, 11)
 
-def get_interval(note, interval, key='C'):
+
+def get_interval(note, interval, key="C"):
     """Return the note an interval (in half notes) away from the given note.
 
     This will produce mostly theoretical sound results, but you should use
     the minor and major functions to work around the corner cases.
     """
-    intervals = list(map(lambda x: (notes.note_to_int(key) + x) % 12, [
-        0,
-        2,
-        4,
-        5,
-        7,
-        9,
-        11,
-        ]))
+
+    intervals = [(notes.note_to_int(key) + x) % 12 for x in [0, 2, 4, 5, 7, 9, 11,]]
+
     key_notes = keys.get_notes(key)
     for x in key_notes:
         if x[0] == note[0]:
@@ -229,8 +249,8 @@ def get_interval(note, interval, key='C'):
     if result in intervals:
         return key_notes[intervals.index(result)] + note[1:]
     else:
-        return notes.diminish(key_notes[intervals.index((result + 1) % 12)]
-                               + note[1:])
+        return notes.diminish(key_notes[intervals.index((result + 1) % 12)] + note[1:])
+
 
 def measure(note1, note2):
     """Return an integer in the range of 0-11, determining the half note steps
@@ -247,6 +267,7 @@ def measure(note1, note2):
         return 12 - res * -1
     else:
         return res
+
 
 def augment_or_diminish_until_the_interval_is_right(note1, note2, interval):
     """A helper function for the minor and major functions.
@@ -265,9 +286,9 @@ def augment_or_diminish_until_the_interval_is_right(note1, note2, interval):
     # minor seventh of Cb and get Bbb instead of B######### as the result
     val = 0
     for token in note2[1:]:
-        if token == '#':
+        if token == "#":
             val += 1
-        elif token == 'b':
+        elif token == "b":
             val -= 1
 
     # These are some checks to see if we have generated too much #'s or too much
@@ -289,6 +310,7 @@ def augment_or_diminish_until_the_interval_is_right(note1, note2, interval):
         val += 1
     return result
 
+
 def invert(interval):
     """Invert an interval.
 
@@ -300,6 +322,7 @@ def invert(interval):
     res = list(interval)
     interval.reverse()
     return res
+
 
 def determine(note1, note2, shorthand=False):
     """Name the interval between note1 and note2.
@@ -323,13 +346,14 @@ def determine(note1, note2, shorthand=False):
     """
     # Corner case for unisons ('A' and 'Ab', for instance)
     if note1[0] == note2[0]:
+
         def get_val(note):
             """Private function: count the value of accidentals."""
             r = 0
             for x in note[1:]:
-                if x == 'b':
+                if x == "b":
                     r -= 1
-                elif x == '#':
+                elif x == "#":
                     r += 1
             return r
 
@@ -337,20 +361,20 @@ def determine(note1, note2, shorthand=False):
         y = get_val(note2)
         if x == y:
             if not shorthand:
-                return 'major unison'
-            return '1'
+                return "major unison"
+            return "1"
         elif x < y:
             if not shorthand:
-                return 'augmented unison'
-            return '#1'
+                return "augmented unison"
+            return "#1"
         elif x - y == 1:
             if not shorthand:
-                return 'minor unison'
-            return 'b1'
+                return "minor unison"
+            return "b1"
         else:
             if not shorthand:
-                return 'diminished unison'
-            return 'bb1'
+                return "diminished unison"
+            return "bb1"
 
     # Other intervals
     n1 = notes.fifths.index(note1[0])
@@ -361,14 +385,14 @@ def determine(note1, note2, shorthand=False):
 
     # [name, shorthand_name, half notes for major version of this interval]
     fifth_steps = [
-        ['unison', '1', 0],
-        ['fifth', '5', 7],
-        ['second', '2', 2],
-        ['sixth', '6', 9],
-        ['third', '3', 4],
-        ['seventh', '7', 11],
-        ['fourth', '4', 5],
-        ]
+        ["unison", "1", 0],
+        ["fifth", "5", 7],
+        ["second", "2", 2],
+        ["sixth", "6", 9],
+        ["third", "3", 4],
+        ["seventh", "7", 11],
+        ["fourth", "4", 5],
+    ]
 
     # Count half steps between note1 and note2
     half_notes = measure(note1, note2)
@@ -383,29 +407,30 @@ def determine(note1, note2, shorthand=False):
     # major or perfect
     if maj == half_notes:
         # Corner cases for perfect fifths and fourths
-        if current[0] == 'fifth':
+        if current[0] == "fifth":
             if not shorthand:
-                return 'perfect fifth'
-        elif current[0] == 'fourth':
+                return "perfect fifth"
+        elif current[0] == "fourth":
             if not shorthand:
-                return 'perfect fourth'
+                return "perfect fourth"
         if not shorthand:
-            return 'major ' + current[0]
+            return "major " + current[0]
         return current[1]
     elif maj + 1 <= half_notes:
         # if maj + 1 is equal to half_notes, the interval is augmented.
         if not shorthand:
-            return 'augmented ' + current[0]
-        return '#' * (half_notes - maj) + current[1]
+            return "augmented " + current[0]
+        return "#" * (half_notes - maj) + current[1]
     elif maj - 1 == half_notes:
         # etc.
         if not shorthand:
-            return 'minor ' + current[0]
-        return 'b' + current[1]
+            return "minor " + current[0]
+        return "b" + current[1]
     elif maj - 2 >= half_notes:
         if not shorthand:
-            return 'diminished ' + current[0]
-        return 'b' * (maj - half_notes) + current[1]
+            return "diminished " + current[0]
+        return "b" * (maj - half_notes) + current[1]
+
 
 def from_shorthand(note, interval, up=True):
     """Return the note on interval up or down.
@@ -424,14 +449,14 @@ def from_shorthand(note, interval, up=True):
 
     # [shorthand, interval function up, interval function down]
     shorthand_lookup = [
-        ['1', major_unison, major_unison],
-        ['2', major_second, minor_seventh],
-        ['3', major_third, minor_sixth],
-        ['4', major_fourth, major_fifth],
-        ['5', major_fifth, major_fourth],
-        ['6', major_sixth, minor_third],
-        ['7', major_seventh, minor_second],
-        ]
+        ["1", major_unison, major_unison],
+        ["2", major_second, minor_seventh],
+        ["3", major_third, minor_sixth],
+        ["4", major_fourth, major_fifth],
+        ["5", major_fifth, major_fourth],
+        ["6", major_sixth, minor_third],
+        ["7", major_seventh, minor_second],
+    ]
 
     # Looking up last character in interval in shorthand_lookup and calling that
     # function.
@@ -449,18 +474,19 @@ def from_shorthand(note, interval, up=True):
 
     # Collect accidentals
     for x in interval:
-        if x == '#':
+        if x == "#":
             if up:
                 val = notes.augment(val)
             else:
                 val = notes.diminish(val)
-        elif x == 'b':
+        elif x == "b":
             if up:
                 val = notes.diminish(val)
             else:
                 val = notes.augment(val)
         else:
             return val
+
 
 def is_consonant(note1, note2, include_fourths=True):
     """Return True if the interval is consonant.
@@ -475,8 +501,10 @@ def is_consonant(note1, note2, include_fourths=True):
     In classical music the fourth is considered dissonant when used
     contrapuntal, which is why you can choose to exclude it.
     """
-    return (is_perfect_consonant(note1, note2, include_fourths) or
-            is_imperfect_consonant(note1, note2))
+    return is_perfect_consonant(
+        note1, note2, include_fourths
+    ) or is_imperfect_consonant(note1, note2)
+
 
 def is_perfect_consonant(note1, note2, include_fourths=True):
     """Return True if the interval is a perfect consonant one.
@@ -490,6 +518,7 @@ def is_perfect_consonant(note1, note2, include_fourths=True):
     dhalf = measure(note1, note2)
     return dhalf in [0, 7] or include_fourths and dhalf == 5
 
+
 def is_imperfect_consonant(note1, note2):
     """Return True id the interval is an imperfect consonant one.
 
@@ -497,6 +526,7 @@ def is_imperfect_consonant(note1, note2):
     sixths.
     """
     return measure(note1, note2) in [3, 4, 8, 9]
+
 
 def is_dissonant(note1, note2, include_fourths=False):
     """Return True if the insterval is dissonant.
@@ -508,4 +538,3 @@ def is_dissonant(note1, note2, include_fourths=False):
     can be changed by setting exclude_fourths to True.
     """
     return not is_consonant(note1, note2, not include_fourths)
-

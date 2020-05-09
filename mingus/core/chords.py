@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 #    mingus - Music theory Python package, chords module.
@@ -96,11 +95,14 @@ Useful Functions
 from_shorthand (a lot) and their inversions.
  * from_shorthand - Generates chords from shorthand (eg. 'Cmin7')
 """
+from __future__ import absolute_import
 
 from mingus.core import intervals
 from mingus.core import notes
 from mingus.core import keys
 from mingus.core.mt_exceptions import NoteFormatError, FormatError
+import six
+from six.moves import range
 
 _triads_cache = {}
 
@@ -196,6 +198,7 @@ def triad(note, key):
     """
     return [note, intervals.third(note, key), intervals.fifth(note, key)]
 
+
 def triads(key):
     """Return all the triads in key.
 
@@ -203,9 +206,10 @@ def triads(key):
     """
     if key in _triads_cache:
         return _triads_cache[key]
-    res = list(map(lambda x: triad(x, key), keys.get_notes(key)))
+    res = [triad(x, key) for x in keys.get_notes(key)]
     _triads_cache[key] = res
     return res
+
 
 def major_triad(note):
     """Build a major triad on note.
@@ -216,6 +220,7 @@ def major_triad(note):
     """
     return [note, intervals.major_third(note), intervals.perfect_fifth(note)]
 
+
 def minor_triad(note):
     """Build a minor triad on note.
 
@@ -224,6 +229,7 @@ def minor_triad(note):
     ['C', 'Eb', 'G']
     """
     return [note, intervals.minor_third(note), intervals.perfect_fifth(note)]
+
 
 def diminished_triad(note):
     """Build a diminished triad on note.
@@ -234,6 +240,7 @@ def diminished_triad(note):
     """
     return [note, intervals.minor_third(note), intervals.minor_fifth(note)]
 
+
 def augmented_triad(note):
     """Build an augmented triad on note.
 
@@ -241,8 +248,12 @@ def augmented_triad(note):
     >>> augmented_triad('C')
     ['C', 'E', 'G#']
     """
-    return [note, intervals.major_third(note),
-            notes.augment(intervals.major_fifth(note))]
+    return [
+        note,
+        intervals.major_third(note),
+        notes.augment(intervals.major_fifth(note)),
+    ]
+
 
 def create_dominant_seventh_symbol(note):
     return determine_seventh(dominant_seventh(note), shorthand=True)[0]
@@ -256,13 +267,16 @@ def seventh(note, key):
     """
     return triad(note, key) + [intervals.seventh(note, key)]
 
+
 def sevenths(key):
     """Return all the sevenths chords in key in a list."""
     if key in _sevenths_cache:
         return _sevenths_cache[key]
-    res = list(map(lambda x: seventh(x, key), keys.get_notes(key)))
+    res = [seventh(x, key) for x in keys.get_notes(key)]
+
     _sevenths_cache[key] = res
     return res
+
 
 def major_seventh(note):
     """Build a major seventh on note.
@@ -273,6 +287,7 @@ def major_seventh(note):
     """
     return major_triad(note) + [intervals.major_seventh(note)]
 
+
 def minor_seventh(note):
     """Build a minor seventh on note.
 
@@ -282,6 +297,7 @@ def minor_seventh(note):
     """
     return minor_triad(note) + [intervals.minor_seventh(note)]
 
+
 def dominant_seventh(note):
     """Build a dominant seventh on note.
 
@@ -290,6 +306,7 @@ def dominant_seventh(note):
     ['C', 'E', 'G', 'Bb']
     """
     return major_triad(note) + [intervals.minor_seventh(note)]
+
 
 def half_diminished_seventh(note):
     """Build a half diminished seventh (also known as "minor seventh flat
@@ -301,6 +318,7 @@ def half_diminished_seventh(note):
     """
     return diminished_triad(note) + [intervals.minor_seventh(note)]
 
+
 def minor_seventh_flat_five(note):
     """Build a minor seventh flat five (also known as "half diminished
     seventh") chord on note.
@@ -309,13 +327,14 @@ def minor_seventh_flat_five(note):
     """
     return half_diminished_seventh(note)
 
+  
 def minor_eleventh_flat_five(note):
     """Build a minor eleven flat five chord on note - new
     """
     print('nb. this function (in mingus.core.chords) might need adjusting octave 4th -> 11th')
     return half_diminished_seventh(note) + [intervals.major_fourth(note)]
 
-
+  
 def diminished_seventh(note):
     """Build a diminished seventh chord on note.
 
@@ -323,8 +342,8 @@ def diminished_seventh(note):
     >>> diminished_seventh('C')
     ['C', 'Eb', 'Gb', 'Bbb']
     """
-    return (diminished_triad(note) +
-            [notes.diminish(intervals.minor_seventh(note))])
+    return diminished_triad(note) + [notes.diminish(intervals.minor_seventh(note))]
+
 
 def minor_major_seventh(note):
     """Build a minor major seventh chord on note.
@@ -335,6 +354,7 @@ def minor_major_seventh(note):
     """
     return minor_triad(note) + [intervals.major_seventh(note)]
 
+
 def minor_sixth(note):
     """Build a minor sixth chord on note.
 
@@ -343,6 +363,7 @@ def minor_sixth(note):
     ['C', 'Eb', 'G', 'A']
     """
     return minor_triad(note) + [intervals.major_sixth(note)]
+
 
 def major_sixth(note):
     """Build a major sixth chord on note.
@@ -353,6 +374,7 @@ def major_sixth(note):
     """
     return major_triad(note) + [intervals.major_sixth(note)]
 
+
 def dominant_sixth(note):
     """Build the altered chord 6/7 on note.
 
@@ -361,6 +383,7 @@ def dominant_sixth(note):
     ['C', 'E', 'G', 'A', 'Bb']
     """
     return major_sixth(note) + [intervals.minor_seventh(note)]
+
 
 def sixth_ninth(note):
     """Build the sixth/ninth chord on note.
@@ -371,6 +394,7 @@ def sixth_ninth(note):
     """
     return major_sixth(note) + [intervals.major_second(note)]
 
+
 def minor_ninth(note):
     """Build a minor ninth chord on note.
 
@@ -379,6 +403,7 @@ def minor_ninth(note):
     ['C', 'Eb', 'G', 'Bb', 'D']
     """
     return minor_seventh(note) + [intervals.major_second(note)]
+
 
 def major_ninth(note):
     """Build a major ninth chord on note.
@@ -389,6 +414,7 @@ def major_ninth(note):
     """
     return major_seventh(note) + [intervals.major_second(note)]
 
+
 def dominant_ninth(note):
     """Build a dominant ninth chord on note.
 
@@ -397,6 +423,7 @@ def dominant_ninth(note):
     ['C', 'E', 'G', 'Bb', 'D']
     """
     return dominant_seventh(note) + [intervals.major_second(note)]
+
 
 def dominant_flat_ninth(note):
     """Build a dominant flat ninth chord on note.
@@ -409,6 +436,7 @@ def dominant_flat_ninth(note):
     res[4] = intervals.minor_second(note)
     return res
 
+
 def dominant_sharp_ninth(note):
     """Build a dominant sharp ninth chord on note.
 
@@ -420,6 +448,7 @@ def dominant_sharp_ninth(note):
     res[4] = notes.augment(intervals.major_second(note))
     return res
 
+
 def eleventh(note):
     """Build an eleventh chord on note.
 
@@ -427,8 +456,13 @@ def eleventh(note):
     >>> eleventh('C')
     ['C', 'G', 'Bb', 'F']
     """
-    return [note, intervals.perfect_fifth(note), intervals.minor_seventh(note),
-            intervals.perfect_fourth(note)]
+    return [
+        note,
+        intervals.perfect_fifth(note),
+        intervals.minor_seventh(note),
+        intervals.perfect_fourth(note),
+    ]
+
 
 def minor_eleventh(note):
     """Build a minor eleventh chord on note.
@@ -439,6 +473,7 @@ def minor_eleventh(note):
     """
     return minor_seventh(note) + [intervals.perfect_fourth(note)]
 
+
 def minor_thirteenth(note):
     """Build a minor thirteenth chord on note.
 
@@ -447,6 +482,7 @@ def minor_thirteenth(note):
     ['C', 'Eb', 'G', 'Bb', 'D', 'A']
     """
     return minor_ninth(note) + [intervals.major_sixth(note)]
+
 
 def major_thirteenth(note):
     """Build a major thirteenth chord on note.
@@ -457,6 +493,7 @@ def major_thirteenth(note):
     """
     return major_ninth(note) + [intervals.major_sixth(note)]
 
+
 def dominant_thirteenth(note):
     """Build a dominant thirteenth chord on note.
 
@@ -466,9 +503,11 @@ def dominant_thirteenth(note):
     """
     return dominant_ninth(note) + [intervals.major_sixth(note)]
 
+
 def suspended_triad(note):
     """An alias for suspended_fourth_triad."""
     return suspended_fourth_triad(note)
+
 
 def suspended_second_triad(note):
     """Build a suspended second triad on note.
@@ -479,6 +518,7 @@ def suspended_second_triad(note):
     """
     return [note, intervals.major_second(note), intervals.perfect_fifth(note)]
 
+
 def suspended_fourth_triad(note):
     """Build a suspended fourth triad on note.
 
@@ -487,6 +527,7 @@ def suspended_fourth_triad(note):
     ['C', 'F', 'G']
     """
     return [note, intervals.perfect_fourth(note), intervals.perfect_fifth(note)]
+
 
 def suspended_seventh(note):
     """Build a suspended (flat) seventh chord on note.
@@ -497,6 +538,7 @@ def suspended_seventh(note):
     """
     return suspended_fourth_triad(note) + [intervals.minor_seventh(note)]
 
+
 def suspended_fourth_ninth(note):
     """Build a suspended fourth flat ninth chord on note.
 
@@ -505,6 +547,7 @@ def suspended_fourth_ninth(note):
     ['C', 'F', 'G', 'Db']
     """
     return suspended_fourth_triad(note) + [intervals.minor_second(note)]
+
 
 def augmented_major_seventh(note):
     """Build an augmented major seventh chord on note.
@@ -515,6 +558,7 @@ def augmented_major_seventh(note):
     """
     return augmented_triad(note) + [intervals.major_seventh(note)]
 
+
 def augmented_minor_seventh(note):
     """Build an augmented minor seventh chord on note.
 
@@ -523,6 +567,7 @@ def augmented_minor_seventh(note):
     ['C', 'E', 'G#', 'Bb']
     """
     return augmented_triad(note) + [intervals.minor_seventh(note)]
+
 
 def dominant_flat_five(note):
     """Build a dominant flat five chord on note.
@@ -535,6 +580,7 @@ def dominant_flat_five(note):
     res[2] = notes.diminish(res[2])
     return res
 
+
 def lydian_dominant_seventh(note):
     """Build the lydian dominant seventh (7#11) on note.
 
@@ -544,7 +590,8 @@ def lydian_dominant_seventh(note):
     """
     return (dominant_seventh(note) +
             [notes.augment(intervals.perfect_fourth(note))])
-    
+  
+  
 def lydian_major_seventh(note):
     """Build the lydian major seventh (M7#11) on note.
 
@@ -552,7 +599,7 @@ def lydian_major_seventh(note):
     return (major_seventh(note) +
             [notes.augment(intervals.perfect_fourth(note))])
 
-
+  
 def hendrix_chord(note):
     """Build the famous Hendrix chord (7b12).
 
@@ -561,6 +608,7 @@ def hendrix_chord(note):
     ['C', 'E', 'G', 'Bb', 'Eb']
     """
     return dominant_seventh(note) + [intervals.minor_third(note)]
+
 
 def tonic(key):
     """Return the tonic chord in key.
@@ -573,9 +621,11 @@ def tonic(key):
     """
     return triads(key)[0]
 
+
 def tonic7(key):
     """Return the seventh chord in key."""
     return sevenths(key)[0]
+
 
 def supertonic(key):
     """Return the supertonic chord in key.
@@ -586,9 +636,11 @@ def supertonic(key):
     """
     return triads(key)[1]
 
+
 def supertonic7(key):
     """Return the supertonic seventh chord in key."""
     return sevenths(key)[1]
+
 
 def mediant(key):
     """Return the mediant chord in key.
@@ -599,9 +651,11 @@ def mediant(key):
     """
     return triads(key)[2]
 
+
 def mediant7(key):
     """Returns the mediant seventh chord in key."""
     return sevenths(key)[2]
+
 
 def subdominant(key):
     """Return the subdominant chord in key.
@@ -612,9 +666,11 @@ def subdominant(key):
     """
     return triads(key)[3]
 
+
 def subdominant7(key):
     """Return the subdominant seventh chord in key."""
     return sevenths(key)[3]
+
 
 def dominant(key):
     """Return the dominant chord in key.
@@ -625,9 +681,11 @@ def dominant(key):
     """
     return triads(key)[4]
 
+
 def dominant7(key):
     """Return the dominant seventh chord in key."""
     return sevenths(key)[4]
+
 
 def submediant(key):
     """Return the submediant chord in key.
@@ -638,9 +696,11 @@ def submediant(key):
     """
     return triads(key)[5]
 
+
 def submediant7(key):
     """Return the submediant seventh chord in key."""
     return sevenths(key)[5]
+
 
 def subtonic(key):
     """Return the subtonic chord in key.
@@ -651,91 +711,119 @@ def subtonic(key):
     """
     return triads(key)[6]
 
+
 def subtonic7(key):
     """Return the subtonic seventh chord in key."""
     return sevenths(key)[6]
 
+
 def I(key):
     return tonic(key)
+
 
 def I7(key):
     return tonic7(key)
 
+
 def ii(key):
     return supertonic(key) # note that progressions.to_chords['ii'] will come and pick this up (major 2nd chord due to mingus' classical approach). Instead, that fn has been re-written to try to except lower-casing and add a minor suffix
+
 
 def II(key):
     return supertonic(key)
 
+
 def ii7(key):
     return supertonic7(key)
+
 
 def II7(key):
     return supertonic7(key)
 
+
 def iii(key):
     return mediant(key)
+
 
 def III(key):
     return mediant(key)
 
+
 def iii7(key):
     return mediant7(key)
+
 
 def III7(key):
     return mediant7(key)
 
+
 def IV(key):
     return subdominant(key)
+
 
 def IV7(key):
     return subdominant7(key)
 
+
 def V(key):
     return dominant(key)
+
 
 def V7(key):
     return dominant7(key)
 
+
 def vi(key):
     return submediant(key)
+
 
 def VI(key):
     return submediant(key)
 
+
 def vi7(key):
     return submediant7(key)
+
 
 def VI7(key):
     return submediant7(key)
 
+
 def vii(key):
     return subtonic(key)
+
 
 def VII(key):
     return subtonic(key)
 
+
 def vii7(key):
     return subtonic(key)
 
+
 def VII7(key):
     return subtonic7(key)
+
 
 def invert(chord):
     """Invert a given chord one time."""
     return chord[1:] + [chord[0]]
 
+
 def first_inversion(chord):
     """Return the first inversion of a chord."""
     return invert(chord)
+
 
 def second_inversion(chord):
     """Return the second inversion of chord."""
     return invert(invert(chord))
 
+
 def third_inversion(chord):
     """Return the third inversion of chord."""
     return invert(invert(invert(chord)))
+
 
 def from_shorthand(shorthand_string, slash=None):
     """Take a chord written in shorthand and return the notes in the chord.
@@ -790,12 +878,12 @@ def from_shorthand(shorthand_string, slash=None):
     Special: '5', 'NC', 'hendrix'
     """
     # warning reduce??
-    if type(shorthand_string) == list:
+    if isinstance(shorthand_string, list):
         res = []
         for x in shorthand_string:
             res.append(from_shorthand(x))
         return res
-    if shorthand_string in ['NC', 'N.C.']:
+    if shorthand_string in ["NC", "N.C."]:
         return []
 
     # Shrink shorthand_string to a format recognised by chord_shorthand
@@ -805,18 +893,19 @@ def from_shorthand(shorthand_string, slash=None):
     shorthand_string = shorthand_string.replace('maj', 'M')
     shorthand_string = shorthand_string.replace('Maj', 'M')
     shorthand_string = shorthand_string.replace('ma', 'M')
-    shorthand_string = shorthand_string.replace('o', 'dim').replace('ddimm','dom')
+    shorthand_string = shorthand_string.replace('o', 'dim').replace('ddimm','dom') # Co -> Cdim, Cdom -> Cddimm -> Cdom
 
     # Get the note name
     if not notes.is_valid_note(shorthand_string[0]):
         raise NoteFormatError("Unrecognised note '{}' in chord '{}'".format(shorthand_string[0], shorthand_string))
+
     name = shorthand_string[0]
 
     # Look for accidentals
     for n in shorthand_string[1:]:
-        if n == '#':
+        if n == "#":
             name += n
-        elif n == 'b':
+        elif n == "b":
             name += n
         else:
             break
@@ -824,21 +913,25 @@ def from_shorthand(shorthand_string, slash=None):
     # Look for slashes and polychords '|'
     slash_index = -1
     s = 0
-    rest_of_string = shorthand_string[len(name):]
+    rest_of_string = shorthand_string[len(name) :]
     for n in rest_of_string:
-        if n == '/':
+        if n == "/":
             slash_index = s
-        elif n == '|':
+        elif n == "|":
             # Generate polychord
-            return from_shorthand(shorthand_string[:len(name) + s],
-                    from_shorthand(shorthand_string[len(name) + s + 1:]))
+            return from_shorthand(
+                shorthand_string[: len(name) + s],
+                from_shorthand(shorthand_string[len(name) + s + 1 :]),
+            )
         s += 1
 
     # Generate slash chord
-    if slash_index != -1 and rest_of_string not in ['m/M7', '6/9', '6/7']:
-        res = shorthand_string[:len(name) + slash_index]
-        return from_shorthand(shorthand_string[:len(name) + slash_index],
-                              shorthand_string[len(name) + slash_index + 1:])
+    if slash_index != -1 and rest_of_string not in ["m/M7", "6/9", "6/7"]:
+        res = shorthand_string[: len(name) + slash_index]
+        return from_shorthand(
+            shorthand_string[: len(name) + slash_index],
+            shorthand_string[len(name) + slash_index + 1 :],
+        )
     shorthand_start = len(name)
 
     short_chord = shorthand_string[shorthand_start:]
@@ -846,13 +939,17 @@ def from_shorthand(shorthand_string, slash=None):
         res = chord_shorthand[short_chord](name)
         if slash != None:
             # Add slashed chords
-            if type(slash) == str:
+            if isinstance(slash, six.string_types):
                 if notes.is_valid_note(slash):
                     res = [slash] + res
                 else:
-                    raise NoteFormatError("Unrecognised note '{}' in slash chord'{}'".format(slash,
-                                                                                             slash + shorthand_string))
-            elif type(slash) == list:
+
+                    raise NoteFormatError(
+                        "Unrecognised note '%s' in slash chord'%s'"
+                        % (slash, slash + shorthand_string)
+                    )
+            elif isinstance(slash, list):
+
                 # Add polychords
                 r = slash
                 for n in res:
@@ -861,7 +958,10 @@ def from_shorthand(shorthand_string, slash=None):
                 return r
         return res
     else:
-        raise FormatError('Unknown shorthand: {}'.format(shorthand_string))
+
+        raise FormatError("Unknown shorthand: %s" % shorthand_string)
+
+
 
 def determine(chord, shorthand=False, no_inversions=False, no_polychords=False):
     """Name a chord.
@@ -879,19 +979,16 @@ def determine(chord, shorthand=False, no_inversions=False, no_polychords=False):
     elif len(chord) == 4:
         return determine_seventh(chord, shorthand, no_inversions, no_polychords)
     elif len(chord) == 5:
-        return determine_extended_chord5(chord, shorthand, no_inversions,
-                no_polychords)
+        return determine_extended_chord5(chord, shorthand, no_inversions, no_polychords)
     elif len(chord) == 6:
-        return determine_extended_chord6(chord, shorthand, no_inversions,
-                no_polychords)
+        return determine_extended_chord6(chord, shorthand, no_inversions, no_polychords)
     elif len(chord) == 7:
-        return determine_extended_chord7(chord, shorthand, no_inversions,
-                no_polychords)
+        return determine_extended_chord7(chord, shorthand, no_inversions, no_polychords)
     else:
         return determine_polychords(chord, shorthand)
 
-def determine_triad(triad, shorthand=False, no_inversions=False,
-        placeholder=None):
+
+def determine_triad(triad, shorthand=False, no_inversions=False, placeholder=None):
     """Name the triad; return answers in a list.
 
     The third argument should not be given. If shorthand is True the answers
@@ -921,52 +1018,55 @@ def determine_triad(triad, shorthand=False, no_inversions=False,
             result.append((short, tries, triad[0]))
 
         intval = intval1 + intval2
-        if intval == '25':
-            add_result('sus2')
-        elif intval == '3b7':
-            add_result('dom7')  # changed from just '7'
-        elif intval == '3b5':
-            add_result('7b5')  # why not b5?
-        elif intval == '35':
-            add_result('M')
-        elif intval == '3#5':
-            add_result('aug')
-        elif intval == '36':
-            add_result('M6')
-        elif intval == '37':
-            add_result('M7')
-        elif intval == 'b3b5':
-            add_result('dim')
-        elif intval == 'b35':
-            add_result('m')
-        elif intval == 'b36':
-            add_result('m6')
-        elif intval == 'b3b7':
-            add_result('m7')
-        elif intval == 'b37':
-            add_result('m/M7')
-        elif intval == '45':
-            add_result('sus4')
-        elif intval == '5b7':
-            add_result('m7')
-        elif intval == '57':
-            add_result('M7')
+        if intval == "25":
+            add_result("sus2")
+        elif intval == "3b7":
+            add_result("dom7")  # changed from just '7'
+        elif intval == "3b5":
+            add_result("7b5")  # why not b5?
+        elif intval == "35":
+            add_result("M")
+        elif intval == "3#5":
+            add_result("aug")
+        elif intval == "36":
+            add_result("M6")
+        elif intval == "37":
+            add_result("M7")
+        elif intval == "b3b5":
+            add_result("dim")
+        elif intval == "b35":
+            add_result("m")
+        elif intval == "b36":
+            add_result("m6")
+        elif intval == "b3b7":
+            add_result("m7")
+        elif intval == "b37":
+            add_result("m/M7")
+        elif intval == "45":
+            add_result("sus4")
+        elif intval == "5b7":
+            add_result("m7")
+        elif intval == "57":
+            add_result("M7")
         if tries != 3 and not no_inversions:
-            return inversion_exhauster([triad[-1]] + triad[:-1], shorthand,
-                                       tries + 1, result)
+            return inversion_exhauster(
+                [triad[-1]] + triad[:-1], shorthand, tries + 1, result
+            )
         else:
             res = []
             for r in result:
                 if shorthand:
                     res.append(r[2] + r[0])
                 else:
-                    res.append(r[2] + chord_shorthand_meaning[r[0]] +
-                            int_desc(r[1]))
+                    res.append(r[2] + chord_shorthand_meaning[r[0]] + int_desc(r[1]))
             return res
+
     return inversion_exhauster(triad, shorthand, 1, [])
 
-def determine_seventh(seventh, shorthand=False, no_inversion=False,
-        no_polychords=False):
+
+def determine_seventh(
+    seventh, shorthand=False, no_inversion=False, no_polychords=False
+):
     """Determine the type of seventh chord; return the results in a list,
     ordered on inversions.
 
@@ -1002,48 +1102,49 @@ def determine_seventh(seventh, shorthand=False, no_inversion=False,
         # Recognizing sevenths
         for triad in triads:
             # Basic triads
-            triad = triad[len(seventh[0]):]
-            if triad == 'm':
-                if intval3 == 'minor seventh':
-                    add_result('m7')
-                elif intval3 == 'major seventh':
-                    add_result('m/M7')
-                elif intval3 == 'major sixth':
-                    add_result('m6')
-            elif triad == 'M':
-                if intval3 == 'major seventh':
-                    add_result('M7')
-                elif intval3 == 'minor seventh':
-                    add_result('7')
-                elif intval3 == 'major sixth':
-                    add_result('M6')
-            elif triad == 'dim':
-                if intval3 == 'minor seventh':
-                    add_result('m7b5')
-                elif intval3 == 'diminished seventh':
-                    add_result('dim7')
-            elif triad == 'aug':
-                if intval3 == 'minor seventh':
-                    add_result('m7+')
-                if intval3 == 'major seventh':
-                    add_result('M7+')
-            elif triad == 'sus4':
-                if intval3 == 'minor seventh':
-                    add_result('sus47')
-                elif intval3 == 'minor second':
-                    add_result('sus4b9')
-            elif triad == 'm7':
+            triad = triad[len(seventh[0]) :]
+            if triad == "m":
+                if intval3 == "minor seventh":
+                    add_result("m7")
+                elif intval3 == "major seventh":
+                    add_result("m/M7")
+                elif intval3 == "major sixth":
+                    add_result("m6")
+            elif triad == "M":
+                if intval3 == "major seventh":
+                    add_result("M7")
+                elif intval3 == "minor seventh":
+                    add_result("7")
+                elif intval3 == "major sixth":
+                    add_result("M6")
+            elif triad == "dim":
+                if intval3 == "minor seventh":
+                    add_result("m7b5")
+                elif intval3 == "diminished seventh":
+                    add_result("dim7")
+            elif triad == "aug":
+                if intval3 == "minor seventh":
+                    add_result("m7+")
+                if intval3 == "major seventh":
+                    add_result("M7+")
+            elif triad == "sus4":
+                if intval3 == "minor seventh":
+                    add_result("sus47")
+                elif intval3 == "minor second":
+                    add_result("sus4b9")
+            elif triad == "m7":
 
-            # Other
-                if intval3 == 'perfect fourth':
-                    add_result('11')
-            elif triad == '7b5':
-                if intval3 == 'minor seventh':
-                    add_result('7b5')
+                # Other
+                if intval3 == "perfect fourth":
+                    add_result("11")
+            elif triad == "7b5":
+                if intval3 == "minor seventh":
+                    add_result("7b5")
 
         if tries != 4 and not no_inversion:
-            return inversion_exhauster([seventh[-1]] + seventh[:-1], shorthand,
-                    tries + 1, result, polychords)
+            return inversion_exhauster(
+                [seventh[-1]] + seventh[:-1], shorthand, tries + 1, result, polychords
+            )
         else:
             # Return results
             res = []
@@ -1054,13 +1155,15 @@ def determine_seventh(seventh, shorthand=False, no_inversion=False,
                 if shorthand:
                     res.append(x[2] + x[0])
                 else:
-                    res.append(x[2] + chord_shorthand_meaning[x[0]]
-                                + int_desc(x[1]))
+                    res.append(x[2] + chord_shorthand_meaning[x[0]] + int_desc(x[1]))
             return res + polychords
+
     return inversion_exhauster(seventh, shorthand, 1, [], [])
 
-def determine_extended_chord5(chord, shorthand=False, no_inversions=False,
-        no_polychords=False):
+
+def determine_extended_chord5(
+    chord, shorthand=False, no_inversions=False, no_polychords=False
+):
     """Determine the names of an extended chord."""
     if len(chord) != 5:
         # warning raise exeption: not an extended chord
@@ -1068,6 +1171,7 @@ def determine_extended_chord5(chord, shorthand=False, no_inversions=False,
 
     def inversion_exhauster(chord, shorthand, tries, result, polychords):
         """Recursive helper function."""
+
         def add_result(short):
             result.append((short, tries, chord[0]))
 
@@ -1080,62 +1184,60 @@ def determine_extended_chord5(chord, shorthand=False, no_inversions=False,
 
         intval4 = intervals.determine(chord[0], chord[4])
         for seventh in sevenths:
-            seventh = seventh[len(chord[0]):]
-            if seventh == 'M7':
-                if intval4 == 'major second':
-                    add_result('M9')
-            elif seventh == 'm7':
-                if intval4 == 'major second':
-                    add_result('m9')
-                elif intval4 == 'perfect fourth':
-                    add_result('m11')
-            elif seventh == '7':
-                if intval4 == 'major second':
-                    add_result('9')
-                elif intval4 == 'minor second':
-                    add_result('7b9')
-                elif intval4 == 'augmented second':
-                    add_result('7#9')
-                elif intval4 == 'minor third':
-                    add_result('7b12')
-                elif intval4 == 'augmented fourth':
-                    add_result('7#11')
-                elif intval4 == 'major sixth':
-                    add_result('13')
-            elif seventh == 'M6':
-                if intval4 == 'major second':
-                    add_result('6/9')
-                elif intval4 == 'minor seventh':
-                    add_result('6/7')
+            seventh = seventh[len(chord[0]) :]
+            if seventh == "M7":
+                if intval4 == "major second":
+                    add_result("M9")
+            elif seventh == "m7":
+                if intval4 == "major second":
+                    add_result("m9")
+                elif intval4 == "perfect fourth":
+                    add_result("m11")
+            elif seventh == "7":
+                if intval4 == "major second":
+                    add_result("9")
+                elif intval4 == "minor second":
+                    add_result("7b9")
+                elif intval4 == "augmented second":
+                    add_result("7#9")
+                elif intval4 == "minor third":
+                    add_result("7b12")
+                elif intval4 == "augmented fourth":
+                    add_result("7#11")
+                elif intval4 == "major sixth":
+                    add_result("13")
+            elif seventh == "M6":
+                if intval4 == "major second":
+                    add_result("6/9")
+                elif intval4 == "minor seventh":
+                    add_result("6/7")
         if tries != 5 and not no_inversions:
-            return inversion_exhauster([chord[-1]] + chord[:-1], shorthand,
-                    tries + 1, result, polychords)
+            return inversion_exhauster(
+                [chord[-1]] + chord[:-1], shorthand, tries + 1, result, polychords
+            )
         else:
             res = []
             for r in result:
                 if shorthand:
                     res.append(r[2] + r[0])
                 else:
-                    res.append(r[2] + chord_shorthand_meaning[r[0]]
-                                + int_desc(r[1]))
+                    res.append(r[2] + chord_shorthand_meaning[r[0]] + int_desc(r[1]))
             return res + polychords
 
     return inversion_exhauster(chord, shorthand, 1, [], [])
 
-def determine_extended_chord6(chord, shorthand=False, no_inversions=False,
-        no_polychords=False):
+
+def determine_extended_chord6(
+    chord, shorthand=False, no_inversions=False, no_polychords=False
+):
     """Determine the names of an 6 note chord."""
     if len(chord) != 6:
         # warning raise exeption: not an extended chord
         return False
 
     def inversion_exhauster(
-        chord,
-        shorthand,
-        tries,
-        result,
-        polychords,
-        ):
+        chord, shorthand, tries, result, polychords,
+    ):
         """Recursive helper function"""
 
         # Determine polychords
@@ -1148,40 +1250,43 @@ def determine_extended_chord6(chord, shorthand=False, no_inversions=False,
         ch = determine_extended_chord5(chord[:5], True, True, True)
         intval5 = intervals.determine(chord[0], chord[5])
         for c in ch:
-            c = c[len(chord[0]):]
-            if c == '9':
-                if intval5 == 'perfect fourth':
-                    add_result('11')
-                elif intval5 == 'augmented fourth':
-                    add_result('7#11')
-                elif intval5 == 'major sixth':
-                    add_result('13')
-            elif c == 'm9':
-                if intval5 == 'perfect fourth':
-                    add_result('m11')
-                elif intval5 == 'major sixth':
-                    add_result('m13')
-            elif c == 'M9':
-                if intval5 == 'perfect fourth':
-                    add_result('M11')
-                elif intval5 == 'major sixth':
-                    add_result('M13')
+            c = c[len(chord[0]) :]
+            if c == "9":
+                if intval5 == "perfect fourth":
+                    add_result("11")
+                elif intval5 == "augmented fourth":
+                    add_result("7#11")
+                elif intval5 == "major sixth":
+                    add_result("13")
+            elif c == "m9":
+                if intval5 == "perfect fourth":
+                    add_result("m11")
+                elif intval5 == "major sixth":
+                    add_result("m13")
+            elif c == "M9":
+                if intval5 == "perfect fourth":
+                    add_result("M11")
+                elif intval5 == "major sixth":
+                    add_result("M13")
         if tries != 6 and not no_inversions:
-            return inversion_exhauster([chord[-1]] + chord[:-1], shorthand,
-                    tries + 1, result, polychords)
+            return inversion_exhauster(
+                [chord[-1]] + chord[:-1], shorthand, tries + 1, result, polychords
+            )
         else:
             res = []
             for r in result:
                 if shorthand:
                     res.append(r[2] + r[0])
                 else:
-                    res.append(r[2] + chord_shorthand_meaning[r[0]] +
-                            int_desc(r[1]))
+                    res.append(r[2] + chord_shorthand_meaning[r[0]] + int_desc(r[1]))
             return res + polychords
+
     return inversion_exhauster(chord, shorthand, 1, [], [])
 
-def determine_extended_chord7(chord, shorthand=False, no_inversions=False,
-        no_polychords=False):
+
+def determine_extended_chord7(
+    chord, shorthand=False, no_inversions=False, no_polychords=False
+):
     """Determine the names of an 7 note chord."""
     if len(chord) != 7:
         # warning raise exeption: not an extended chord
@@ -1199,41 +1304,43 @@ def determine_extended_chord7(chord, shorthand=False, no_inversions=False,
         ch = determine_extended_chord6(chord[:6], True, True, True)
         intval6 = intervals.determine(chord[0], chord[6])
         for c in ch:
-            c = c[len(chord[0]):]
-            if c == '11':
-                if intval6 == 'major sixth':
-                    add_result('13')
-            elif c == 'm11':
-                if intval6 == 'major sixth':
-                    add_result('m13')
-            elif c == 'M11':
-                if intval6 == 'major sixth':
-                    add_result('M13')
+            c = c[len(chord[0]) :]
+            if c == "11":
+                if intval6 == "major sixth":
+                    add_result("13")
+            elif c == "m11":
+                if intval6 == "major sixth":
+                    add_result("m13")
+            elif c == "M11":
+                if intval6 == "major sixth":
+                    add_result("M13")
         if tries != 6:
-            return inversion_exhauster([chord[-1]] + chord[:-1], shorthand,
-                                       tries + 1, result, polychords)
+            return inversion_exhauster(
+                [chord[-1]] + chord[:-1], shorthand, tries + 1, result, polychords
+            )
         else:
             res = []
             for r in result:
                 if shorthand:
                     res.append(r[2] + r[0])
                 else:
-                    res.append(r[2] + chord_shorthand_meaning[r[0]]
-                                + int_desc(r[1]))
+                    res.append(r[2] + chord_shorthand_meaning[r[0]] + int_desc(r[1]))
             return res + polychords
 
     return inversion_exhauster(chord, shorthand, 1, [], [])
 
+
 def int_desc(tries):
     """Return the inversion of the triad in a string."""
     if tries == 1:
-        return ''
+        return ""
     elif tries == 2:
-        return ', first inversion'
+        return ", first inversion"
     elif tries == 3:
-        return ', second inversion'
+        return ", second inversion"
     elif tries == 4:
-        return ', third inversion'
+        return ", third inversion"
+
 
 def determine_polychords(chord, shorthand=False):
     """Determine the polychords in chord.
@@ -1242,9 +1349,13 @@ def determine_polychords(chord, shorthand=False):
     6 note extended chords.
     """
     polychords = []
-    function_list = [determine_triad, determine_seventh,
-                     determine_extended_chord5, determine_extended_chord6,
-                     determine_extended_chord7]
+    function_list = [
+        determine_triad,
+        determine_seventh,
+        determine_extended_chord5,
+        determine_extended_chord6,
+        determine_extended_chord7,
+    ]
 
     # Range tracking.
     if len(chord) <= 3:
@@ -1252,24 +1363,25 @@ def determine_polychords(chord, shorthand=False):
     elif len(chord) > 14:
         return []
     elif len(chord) - 3 <= 5:
-        function_nr = range(0, len(chord) - 3)
+        function_nr = list(range(0, len(chord) - 3))
     else:
-        function_nr = range(0, 5)
+        function_nr = list(range(0, 5))
     for f in function_nr:
         for f2 in function_nr:
             # The clever part: Try the function_list[f] on the len(chord) - (3 +
             # f) last notes of the chord. Then try the function_list[f2] on the
             # f2 + 3 first notes of the chord. Thus, trying all possible
             # combinations.
-            for chord1 in function_list[f](chord[len(chord) - (3 + f):], True,
-                    True, True):
-                for chord2 in function_list[f2](chord[:f2 + 3], True, True,
-                        True):
-                    polychords.append('%s|%s' % (chord1, chord2))
+            for chord1 in function_list[f](
+                chord[len(chord) - (3 + f) :], True, True, True
+            ):
+                for chord2 in function_list[f2](chord[: f2 + 3], True, True, True):
+                    polychords.append("%s|%s" % (chord1, chord2))
     if shorthand:
         for p in polychords:
-            p = p + ' polychord'
+            p = p + " polychord"
     return polychords
+
 
 # A dictionairy that can be used to present chord abbreviations. This
 # dictionairy is also used in from_shorthand()
@@ -1327,51 +1439,3 @@ chord_shorthand = {  # Triads Augmented chords Suspended chords Sevenths Sixths
     '7b12': hendrix_chord,
     '5': lambda x: [x, intervals.perfect_fifth(x)]
     }
-
-class TemporalChord(object):
-    def __init__(self, name, octave=3, dynamics=None, duration_denominator=4):
-        self.name = name
-        self.octave = octave
-        self.dynamics = dynamics
-        self.duration_denominator = duration_denominator
-        self.root_note, self.family = chord_note_and_family(name)
-
-    def get_temporal_root(self):
-        from mingus.containers.note import TemporalNote
-        return TemporalNote(self.root_note, octave=self.octave)
-
-def temporal_note_chord_factory(duration_denominator=None):
-    def func_composer(func):
-        def inner_fn(chord, octave=4):
-            if isinstance(chord, (list, set)):
-                return [TemporalChord(note,
-                                      octave=octave,
-                                      duration_denominator=duration_denominator) for note in chord]
-            else:
-                return TemporalChord(chord, octave=octave, duration_denominator=duration_denominator)
-        return inner_fn
-    return func_composer
-
-@temporal_note_chord_factory(1)
-def WholNoteChordFactory(note_name, octave=4):
-    pass
-
-@temporal_note_chord_factory(2)
-def HalfNoteChordFactory(note_name, octave=4):
-    pass
-
-@temporal_note_chord_factory(4)
-def QuarterNoteChordFactory(note_name, octave=4):
-    pass
-
-@temporal_note_chord_factory(8)
-def EightNoteChordFactory(note_name, octave=4):
-    pass
-
-@temporal_note_chord_factory(8)
-def SixteenthNoteChordFactory(note_name, octave=16):
-    pass
-
-if __name__ == '__main__':
-    import doctest
-    doctest.testmod()

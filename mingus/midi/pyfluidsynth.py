@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 #    pyFluidSynth
@@ -26,17 +25,23 @@ soundcard yourself.
 
 FluidSynth works on all major platforms, so pyFluidSynth should also.
 """
+from __future__ import absolute_import
 
-import time
 from ctypes import *
 from ctypes.util import find_library
 
-lib = find_library('fluidsynth') or find_library('libfluidsynth')\
-     or find_library('libfluidsynth-1')
+import six
+
+lib = (
+    find_library("fluidsynth")
+    or find_library("libfluidsynth")
+    or find_library("libfluidsynth-1")
+)
 if lib is None:
     raise ImportError("Couldn't find the FluidSynth library.")
 
 _fl = CDLL(lib)
+
 
 def cfunc(name, result, *args):
     """Build and apply a ctypes prototype complete with parameter flags."""
@@ -47,87 +52,136 @@ def cfunc(name, result, *args):
         aflags.append((arg[2], arg[0]) + arg[3:])
     return CFUNCTYPE(result, *atypes)((name, _fl), tuple(aflags))
 
-api_version = '1.2'
 
-new_fluid_settings = cfunc('new_fluid_settings', c_void_p)
-new_fluid_synth = cfunc('new_fluid_synth', c_void_p, ('settings', c_void_p, 1))
-new_fluid_audio_driver = cfunc('new_fluid_audio_driver', c_void_p, ('settings',
-                               c_void_p, 1), ('synth', c_void_p, 1))
-fluid_settings_setstr = cfunc('fluid_settings_setstr', c_int, ('settings',
-                              c_void_p, 1), ('name', c_char_p, 1), ('str',
-                              c_char_p, 1))
-fluid_settings_setnum = cfunc('fluid_settings_setnum', c_int, ('settings',
-                              c_void_p, 1), ('name', c_char_p, 1), ('val',
-                              c_double, 1))
-fluid_settings_setint = cfunc('fluid_settings_setint', c_int, ('settings',
-                              c_void_p, 1), ('name', c_char_p, 1), ('val',
-                              c_int, 1))
-delete_fluid_audio_driver = cfunc('delete_fluid_audio_driver', None, ('driver',
-                                  c_void_p, 1))
-delete_fluid_synth = cfunc('delete_fluid_synth', None, ('synth', c_void_p, 1))
-delete_fluid_settings = cfunc('delete_fluid_settings', None, ('settings',
-                              c_void_p, 1))
-fluid_synth_sfload = cfunc('fluid_synth_sfload', c_int, ('synth', c_void_p, 1),
-                           ('filename', c_char_p, 1), ('update_midi_presets',
-                           c_int, 1))
-fluid_synth_sfunload = cfunc('fluid_synth_sfunload', c_int, ('synth', c_void_p,
-                             1), ('sfid', c_int, 1), ('update_midi_presets',
-                             c_int, 1))
-fluid_synth_program_select = cfunc(
-    'fluid_synth_program_select',
-    c_int,
-    ('synth', c_void_p, 1),
-    ('chan', c_int, 1),
-    ('sfid', c_int, 1),
-    ('bank', c_int, 1),
-    ('preset', c_int, 1),
-    )
-fluid_synth_noteon = cfunc(
-    'fluid_synth_noteon',
-    c_int,
-    ('synth', c_void_p, 1),
-    ('chan', c_int, 1),
-    ('key', c_int, 1),
-    ('vel', c_int, 1),
-    )
-fluid_synth_noteoff = cfunc('fluid_synth_noteoff', c_int, ('synth', c_void_p,
-                            1), ('chan', c_int, 1), ('key', c_int, 1))
-fluid_synth_pitch_bend = cfunc('fluid_synth_pitch_bend', c_int, ('synth',
-                               c_void_p, 1), ('chan', c_int, 1), ('val', c_int,
-                               1))
-fluid_synth_cc = cfunc(
-    'fluid_synth_cc',
-    c_int,
-    ('synth', c_void_p, 1),
-    ('chan', c_int, 1),
-    ('ctrl', c_int, 1),
-    ('val', c_int, 1),
-    )
-fluid_synth_program_change = cfunc('fluid_synth_program_change', c_int, ('synth'
-                                   , c_void_p, 1), ('chan', c_int, 1), ('prg',
-                                   c_int, 1))
-fluid_synth_bank_select = cfunc('fluid_synth_bank_select', c_int, ('synth',
-                                c_void_p, 1), ('chan', c_int, 1), ('bank',
-                                c_int, 1))
-fluid_synth_sfont_select = cfunc('fluid_synth_sfont_select', c_int, ('synth',
-                                 c_void_p, 1), ('chan', c_int, 1), ('sfid',
-                                 c_int, 1))
-fluid_synth_program_reset = cfunc('fluid_synth_program_reset', c_int, ('synth',
-                                  c_void_p, 1))
-fluid_synth_system_reset = cfunc('fluid_synth_system_reset', c_int, ('synth',
-                                 c_void_p, 1))
-fluid_synth_write_s16 = cfunc(
-    'fluid_synth_write_s16',
+api_version = "1.2"
+
+new_fluid_settings = cfunc("new_fluid_settings", c_void_p)
+new_fluid_synth = cfunc("new_fluid_synth", c_void_p, ("settings", c_void_p, 1))
+new_fluid_audio_driver = cfunc(
+    "new_fluid_audio_driver",
     c_void_p,
-    ('synth', c_void_p, 1),
-    ('len', c_int, 1),
-    ('lbuf', c_void_p, 1),
-    ('loff', c_int, 1),
-    ('lincr', c_int, 1),
-    ('rbuf', c_void_p, 1),
-    ('roff', c_int, 1),
-    ('rincr', c_int, 1),
-    )
+    ("settings", c_void_p, 1),
+    ("synth", c_void_p, 1),
+)
+fluid_settings_setstr = cfunc(
+    "fluid_settings_setstr",
+    c_int,
+    ("settings", c_void_p, 1),
+    ("name", c_char_p, 1),
+    ("str", c_char_p, 1),
+)
+fluid_settings_setnum = cfunc(
+    "fluid_settings_setnum",
+    c_int,
+    ("settings", c_void_p, 1),
+    ("name", c_char_p, 1),
+    ("val", c_double, 1),
+)
+fluid_settings_setint = cfunc(
+    "fluid_settings_setint",
+    c_int,
+    ("settings", c_void_p, 1),
+    ("name", c_char_p, 1),
+    ("val", c_int, 1),
+)
+delete_fluid_audio_driver = cfunc(
+    "delete_fluid_audio_driver", None, ("driver", c_void_p, 1)
+)
+delete_fluid_synth = cfunc("delete_fluid_synth", None, ("synth", c_void_p, 1))
+delete_fluid_settings = cfunc("delete_fluid_settings", None, ("settings", c_void_p, 1))
+fluid_synth_sfload = cfunc(
+    "fluid_synth_sfload",
+    c_int,
+    ("synth", c_void_p, 1),
+    ("filename", c_char_p, 1),
+    ("update_midi_presets", c_int, 1),
+)
+fluid_synth_sfunload = cfunc(
+    "fluid_synth_sfunload",
+    c_int,
+    ("synth", c_void_p, 1),
+    ("sfid", c_int, 1),
+    ("update_midi_presets", c_int, 1),
+)
+fluid_synth_program_select = cfunc(
+    "fluid_synth_program_select",
+    c_int,
+    ("synth", c_void_p, 1),
+    ("chan", c_int, 1),
+    ("sfid", c_int, 1),
+    ("bank", c_int, 1),
+    ("preset", c_int, 1),
+)
+fluid_synth_noteon = cfunc(
+    "fluid_synth_noteon",
+    c_int,
+    ("synth", c_void_p, 1),
+    ("chan", c_int, 1),
+    ("key", c_int, 1),
+    ("vel", c_int, 1),
+)
+fluid_synth_noteoff = cfunc(
+    "fluid_synth_noteoff",
+    c_int,
+    ("synth", c_void_p, 1),
+    ("chan", c_int, 1),
+    ("key", c_int, 1),
+)
+fluid_synth_pitch_bend = cfunc(
+    "fluid_synth_pitch_bend",
+    c_int,
+    ("synth", c_void_p, 1),
+    ("chan", c_int, 1),
+    ("val", c_int, 1),
+)
+fluid_synth_cc = cfunc(
+    "fluid_synth_cc",
+    c_int,
+    ("synth", c_void_p, 1),
+    ("chan", c_int, 1),
+    ("ctrl", c_int, 1),
+    ("val", c_int, 1),
+)
+fluid_synth_program_change = cfunc(
+    "fluid_synth_program_change",
+    c_int,
+    ("synth", c_void_p, 1),
+    ("chan", c_int, 1),
+    ("prg", c_int, 1),
+)
+fluid_synth_bank_select = cfunc(
+    "fluid_synth_bank_select",
+    c_int,
+    ("synth", c_void_p, 1),
+    ("chan", c_int, 1),
+    ("bank", c_int, 1),
+)
+fluid_synth_sfont_select = cfunc(
+    "fluid_synth_sfont_select",
+    c_int,
+    ("synth", c_void_p, 1),
+    ("chan", c_int, 1),
+    ("sfid", c_int, 1),
+)
+fluid_synth_program_reset = cfunc(
+    "fluid_synth_program_reset", c_int, ("synth", c_void_p, 1)
+)
+fluid_synth_system_reset = cfunc(
+    "fluid_synth_system_reset", c_int, ("synth", c_void_p, 1)
+)
+fluid_synth_write_s16 = cfunc(
+    "fluid_synth_write_s16",
+    c_void_p,
+    ("synth", c_void_p, 1),
+    ("len", c_int, 1),
+    ("lbuf", c_void_p, 1),
+    ("loff", c_int, 1),
+    ("lincr", c_int, 1),
+    ("rbuf", c_void_p, 1),
+    ("roff", c_int, 1),
+    ("rincr", c_int, 1),
+)
+
 
 def fluid_synth_write_s16_stereo(synth, len):
     """Return generated samples in stereo 16-bit format.
@@ -135,11 +189,19 @@ def fluid_synth_write_s16_stereo(synth, len):
     Return value is a Numpy array of samples.
     """
     import numpy
+
     buf = create_string_buffer(len * 4)
     fluid_synth_write_s16(synth, len, buf, 0, 2, buf, 1, 2)
     return numpy.fromstring(buf[:], dtype=numpy.int16)
 
-class Synth:
+
+def str_binary(s):
+    if isinstance(s, six.text_type):
+        return s.encode()
+    return s
+
+
+class Synth(object):
 
     """Synth represents a FluidSynth synthesizer."""
 
@@ -152,11 +214,11 @@ class Synth:
           samplerate: output samplerate in Hz, default is 44100 Hz
         """
         st = new_fluid_settings()
-        fluid_settings_setnum(st, 'synth.gain', gain)
-        fluid_settings_setnum(st, 'synth.sample-rate', samplerate)
+        fluid_settings_setnum(st, b"synth.gain", gain)
+        fluid_settings_setnum(st, b"synth.sample-rate", samplerate)
 
         # No reason to limit ourselves to 16 channels
-        fluid_settings_setint(st, 'synth.midi-channels', 256)
+        fluid_settings_setint(st, b"synth.midi-channels", 256)
         self.settings = st
         self.synth = new_fluid_synth(st)
         self.audio_driver = None
@@ -179,18 +241,20 @@ class Synth:
         which drivers were compiled into FluidSynth for your platform.
         """
         if driver is not None:
+            driver = str_binary(driver)
+
             assert driver in [
-                    'alsa',
-                    'oss',
-                    'jack',
-                    'portaudio',
-                    'sndmgr',
-                    'coreaudio',
-                    'Direct Sound',
-                    'dsound',
-                    'pulseaudio'
-                    ]
-            fluid_settings_setstr(self.settings, 'audio.driver', driver)
+                b"alsa",
+                b"oss",
+                b"jack",
+                b"portaudio",
+                b"sndmgr",
+                b"coreaudio",
+                b"Direct Sound",
+                b"dsound",
+                b"pulseaudio",
+            ]
+            fluid_settings_setstr(self.settings, b"audio.driver", driver)
         self.audio_driver = new_fluid_audio_driver(self.settings, self.synth)
 
     def delete(self):
@@ -201,7 +265,7 @@ class Synth:
 
     def sfload(self, filename, update_midi_preset=0):
         """Load SoundFont and return its IDi."""
-        return fluid_synth_sfload(self.synth, filename, update_midi_preset)
+        return fluid_synth_sfload(self.synth, str_binary(filename), update_midi_preset)
 
     def sfunload(self, sfid, update_midi_preset=0):
         """Unload a SoundFont and free memory it used."""
@@ -292,5 +356,5 @@ def raw_audio_string(data):
     signed (other formats not currently supported).
     """
     import numpy
-    return data.astype(numpy.int16).tostring()
 
+    return data.astype(numpy.int16).tostring()

@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 #    mingus - Music theory Python package, sequencer module.
@@ -27,8 +26,11 @@ messages in the notify(msg_type, param_dict) function of your object.
 See SequencerObserver for a pre made, easy to extend base class that can be
 attached to the Sequencer.
 """
+from __future__ import absolute_import
 
 from mingus.containers.instrument import MidiInstrument
+from six.moves import range
+
 
 class Sequencer(object):
 
@@ -109,8 +111,10 @@ class Sequencer(object):
     def set_instrument(self, channel, instr, bank=0):
         """Set the channel to the instrument _instr_."""
         self.instr_event(channel, instr, bank)
-        self.notify_listeners(self.MSG_INSTR, {'channel': int(channel),
-            'instr': int(instr), 'bank': int(bank)})
+        self.notify_listeners(
+            self.MSG_INSTR,
+            {"channel": int(channel), "instr": int(instr), "bank": int(bank)},
+        )
 
     def control_change(self, channel, control, value):
         """Send a control change message.
@@ -122,8 +126,10 @@ class Sequencer(object):
         if value < 0 or value > 128:
             return False
         self.cc_event(channel, control, value)
-        self.notify_listeners(self.MSG_CC, {'channel': int(channel),
-            'control': int(control), 'value': int(value)})
+        self.notify_listeners(
+            self.MSG_CC,
+            {"channel": int(channel), "control": int(control), "value": int(value)},
+        )
         return True
 
     def play_Note(self, note, channel=1, velocity=100):
@@ -133,15 +139,23 @@ class Sequencer(object):
         you can set the Note.velocity and Note.channel attributes, which
         will take presedence over the function arguments.
         """
-        if hasattr(note, 'velocity'):
+        if hasattr(note, "velocity"):
             velocity = note.velocity
-        if hasattr(note, 'channel'):
+        if hasattr(note, "channel"):
             channel = note.channel
         self.play_event(int(note) + 12, int(channel), int(velocity))
-        self.notify_listeners(self.MSG_PLAY_INT, {'channel': int(channel),
-            'note': int(note) + 12, 'velocity': int(velocity)})
-        self.notify_listeners(self.MSG_PLAY_NOTE, {'channel': int(channel),
-            'note': note, 'velocity': int(velocity)})
+        self.notify_listeners(
+            self.MSG_PLAY_INT,
+            {
+                "channel": int(channel),
+                "note": int(note) + 12,
+                "velocity": int(velocity),
+            },
+        )
+        self.notify_listeners(
+            self.MSG_PLAY_NOTE,
+            {"channel": int(channel), "note": note, "velocity": int(velocity)},
+        )
         return True
 
     def stop_Note(self, note, channel=1):
@@ -150,13 +164,15 @@ class Sequencer(object):
         If Note.channel is set, it will take presedence over the channel
         argument given here.
         """
-        if hasattr(note, 'channel'):
+        if hasattr(note, "channel"):
             channel = note.channel
         self.stop_event(int(note) + 12, int(channel))
-        self.notify_listeners(self.MSG_STOP_INT, {'channel': int(channel),
-            'note': int(note) + 12})
-        self.notify_listeners(self.MSG_STOP_NOTE, {'channel': int(channel),
-            'note': note})
+        self.notify_listeners(
+            self.MSG_STOP_INT, {"channel": int(channel), "note": int(note) + 12}
+        )
+        self.notify_listeners(
+            self.MSG_STOP_NOTE, {"channel": int(channel), "note": note}
+        )
         return True
 
     def stop_everything(self):
@@ -167,8 +183,9 @@ class Sequencer(object):
 
     def play_NoteContainer(self, nc, channel=1, velocity=100):
         """Play the Notes in the NoteContainer nc."""
-        self.notify_listeners(self.MSG_PLAY_NC, {'notes': nc,
-            'channel': channel, 'velocity': velocity})
+        self.notify_listeners(
+            self.MSG_PLAY_NC, {"notes": nc, "channel": channel, "velocity": velocity}
+        )
         if nc is None:
             return True
         for note in nc:
@@ -178,8 +195,7 @@ class Sequencer(object):
 
     def stop_NoteContainer(self, nc, channel=1):
         """Stop playing the notes in NoteContainer nc."""
-        self.notify_listeners(self.MSG_PLAY_NC, {'notes': nc,
-            'channel': channel})
+        self.notify_listeners(self.MSG_STOP_NC, {"notes": nc, "channel": channel})
         if nc is None:
             return True
         for note in nc:
@@ -196,8 +212,9 @@ class Sequencer(object):
         The tempo can be changed by setting the bpm attribute on a
         NoteContainer.
         """
-        self.notify_listeners(self.MSG_PLAY_BAR, {'bar': bar, 'channel'
-                              : channel, 'bpm': bpm})
+        self.notify_listeners(
+            self.MSG_PLAY_BAR, {"bar": bar, "channel": channel, "bpm": bpm}
+        )
 
         # length of a quarter note
         qn_length = 60.0 / bpm
@@ -207,14 +224,14 @@ class Sequencer(object):
 
             # Change the quarter note length if the NoteContainer has a bpm
             # attribute
-            if hasattr(nc[2], 'bpm'):
+            if hasattr(nc[2], "bpm"):
                 bpm = nc[2].bpm
                 qn_length = 60.0 / bpm
             ms = qn_length * (4.0 / nc[1])
             self.sleep(ms)
-            self.notify_listeners(self.MSG_SLEEP, {'s': ms})
+            self.notify_listeners(self.MSG_SLEEP, {"s": ms})
             self.stop_NoteContainer(nc[2], channel)
-        return {'bpm': bpm}
+        return {"bpm": bpm}
 
     def play_Bars(self, bars, channels, bpm=120):
         """Play several bars (a list of Bar objects) at the same time.
@@ -222,12 +239,13 @@ class Sequencer(object):
         A list of channels should also be provided. The tempo can be changed
         by providing one or more of the NoteContainers with a bpm argument.
         """
-        self.notify_listeners(self.MSG_PLAY_BARS, {'bars': bars,
-            'channels': channels, 'bpm': bpm})
+        self.notify_listeners(
+            self.MSG_PLAY_BARS, {"bars": bars, "channels": channels, "bpm": bpm}
+        )
         qn_length = 60.0 / bpm  # length of a quarter note
         tick = 0.0  # place in beat from 0.0 to bar.length
         cur = [0] * len(bars)  # keeps the index of the NoteContainer under
-                               # investigation in each of the bars
+        # investigation in each of the bars
         playing = []  # The NoteContainers being played.
 
         while tick < bars[0].length:
@@ -244,7 +262,7 @@ class Sequencer(object):
 
                     # Change the length of a quarter note if the NoteContainer
                     # has a bpm attribute
-                    if hasattr(nc, 'bpm'):
+                    if hasattr(nc, "bpm"):
                         bpm = nc.bpm
                         qn_length = 60.0 / bpm
 
@@ -254,7 +272,7 @@ class Sequencer(object):
                 shortest = playing_new[-1][0]
                 ms = qn_length * (4.0 / shortest)
                 self.sleep(ms)
-                self.notify_listeners(self.MSG_SLEEP, {'s': ms})
+                self.notify_listeners(self.MSG_SLEEP, {"s": ms})
             else:
                 # If somehow, playing_new doesn't contain any notes (something
                 # that shouldn't happen when the bar was filled properly), we
@@ -265,7 +283,7 @@ class Sequencer(object):
                     shortest = playing[-1][0]
                     ms = qn_length * (4.0 / shortest)
                     self.sleep(ms)
-                    self.notify_listeners(self.MSG_SLEEP, {'s': ms})
+                    self.notify_listeners(self.MSG_SLEEP, {"s": ms})
                 else:
                     # warning: this could lead to some strange behaviour. OTOH.
                     # Leaving gaps is not the way Bar works. should we do an
@@ -291,19 +309,20 @@ class Sequencer(object):
         for p in playing:
             self.stop_NoteContainer(p[1], p[2])
             playing.remove(p)
-        return {'bpm': bpm}
+        return {"bpm": bpm}
 
     def play_Track(self, track, channel=1, bpm=120):
         """Play a Track object."""
-        self.notify_listeners(self.MSG_PLAY_TRACK, {'track': track, 'channel'
-                              : channel, 'bpm': bpm})
+        self.notify_listeners(
+            self.MSG_PLAY_TRACK, {"track": track, "channel": channel, "bpm": bpm}
+        )
         for bar in track:
             res = self.play_Bar(bar, channel, bpm)
             if res != {}:
-                bpm = res['bpm']
+                bpm = res["bpm"]
             else:
                 return {}
-        return {'bpm': bpm}
+        return {"bpm": bpm}
 
     def play_Tracks(self, tracks, channels, bpm=120):
         """Play a list of Tracks.
@@ -311,8 +330,9 @@ class Sequencer(object):
         If an instance of MidiInstrument is used then the instrument will be
         set automatically.
         """
-        self.notify_listeners(self.MSG_PLAY_TRACKS, {'tracks': tracks,
-            'channels': channels, 'bpm': bpm})
+        self.notify_listeners(
+            self.MSG_PLAY_TRACKS, {"tracks": tracks, "channels": channels, "bpm": bpm}
+        )
 
         # Set the right instruments
         for x in range(len(tracks)):
@@ -335,18 +355,20 @@ class Sequencer(object):
                 playbars.append(tr[current_bar])
             res = self.play_Bars(playbars, channels, bpm)
             if res != {}:
-                bpm = res['bpm']
+                bpm = res["bpm"]
             else:
                 return {}
             current_bar += 1
-        return {'bpm': bpm}
+        return {"bpm": bpm}
 
     def play_Composition(self, composition, channels=None, bpm=120):
         """Play a Composition object."""
-        self.notify_listeners(self.MSG_PLAY_COMPOSITION, {'composition'
-                              : composition, 'channels': channels, 'bpm': bpm})
+        self.notify_listeners(
+            self.MSG_PLAY_COMPOSITION,
+            {"composition": composition, "channels": channels, "bpm": bpm},
+        )
         if channels == None:
-            channels = list(map(lambda x: x + 1, range(len(composition.tracks))))
+            channels = [x + 1 for x in range(len(composition.tracks))]
         return self.play_Tracks(composition.tracks, channels, bpm)
 
     def modulation(self, channel, value):
@@ -360,4 +382,3 @@ class Sequencer(object):
     def pan(self, channel, value):
         """Set the panning."""
         return self.control_change(channel, 10, value)
-

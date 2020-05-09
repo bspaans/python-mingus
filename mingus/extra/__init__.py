@@ -1,5 +1,6 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
+
+from __future__ import absolute_import
 
 #    mingus - Music theory Python package, extra package.
 #    Copyright (C) 2008-2009, Bart Spaans
@@ -19,12 +20,5 @@
 
 from mingus.extra import lilypond
 from mingus.extra.tunings import StringTuning
-__all__ = [
-    'lilypond',
-    'fft',
-    'musicxml',
-    'tunings',
-    'tablature',
-    'StringTuning'
-    ]
 
+__all__ = ["lilypond", "fft", "musicxml", "tunings", "tablature", "StringTuning"]
