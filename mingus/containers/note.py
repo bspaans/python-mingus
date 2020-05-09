@@ -44,8 +44,6 @@ class Note(object):
     name = "C"
     octave = 4
     dynamics = {}
-    channel = 1
-    velocity = 64
 
     def __init__(self, name="C", octave=4, dynamics=None):
         if dynamics is None:
