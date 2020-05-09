@@ -21,6 +21,7 @@ class test_fluidsynth(unittest.TestCase):
     Check the :py:mod:`mingus.midi.fluidsynth` module for tips on finding
     SoundFonts.
     """
+
     def setUp(self):
         soundfont = os.getenv("SOUNDFONT")
         if soundfont is None:

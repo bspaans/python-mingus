@@ -76,7 +76,7 @@ class MidiTrack(object):
             self.set_instrument(channel, self.instrument)
             self.change_instrument = False
 
-        assert 0 <= velocity <= 0x7f
+        assert 0 <= velocity <= 0x7F
 
         self.track_data += self.note_on(channel, int(note) + 12, velocity)
 
@@ -181,8 +181,8 @@ class MidiTrack(object):
         """Convert and return the parameters as a MIDI event in bytes."""
         assert 0 <= event_type < 16
         assert 0 <= channel < 16
-        assert 0 <= param1 <= 0x7f
-        assert param2 is None or 0 <= param2 <= 0x7f
+        assert 0 <= param1 <= 0x7F
+        assert param2 is None or 0 <= param2 <= 0x7F
 
         status_byte = channel | (event_type << 4)
         params = [param1]
