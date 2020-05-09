@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
+import doctest
 import unittest
 
+import mingus.containers.note_container
 from mingus.containers.note import Note
 from mingus.containers.note_container import NoteContainer
 
@@ -135,3 +137,8 @@ class test_NoteContainers(unittest.TestCase):
         self.assertTrue(not NoteContainer().from_chord("C").is_dissonant())
         self.assertTrue(not NoteContainer().from_chord("G").is_dissonant())
         self.assertTrue(not NoteContainer().from_chord("Dm").is_dissonant())
+
+
+def load_tests(loader, tests, ignore):
+    tests.addTests(doctest.DocTestSuite(mingus.containers.note_container))
+    return tests

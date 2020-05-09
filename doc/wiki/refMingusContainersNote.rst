@@ -19,7 +19,13 @@ mingus.containers.note
    .. method:: __gt__(self, other)
 
 
-   .. method:: __init__(self, name=C, octave=4, dynamics={})
+   .. method:: __init__(self, name=C, octave=4, dynamics=None, velocity=None, channel=None)
+
+      :param name:
+      :param octave:
+      :param dynamics: Deprecated. Use `velocity` and `channel` directly.
+      :param velocity:
+      :param channel:
 
 
    .. method:: __int__(self)
@@ -152,12 +158,25 @@ mingus.containers.note
       Call notes.remove_redundant_accidentals on this note's name.
 
 
-   .. method:: set_note(self, name=C, octave=4, dynamics={})
+   .. method:: set_channel(self, channel)
+
+
+   .. method:: set_note(self, name=C, octave=4, dynamics=None, velocity=None, channel=None)
 
       Set the note to name in octave with dynamics.
       
       Return the objects if it succeeded, raise an NoteFormatError
       otherwise.
+
+      :param name:
+      :param octave:
+      :param dynamics: Deprecated. Use `velocity` and `channel` directly.
+      :param velocity:
+      :param channel:
+      :return:
+
+
+   .. method:: set_velocity(self, velocity)
 
 
    .. method:: to_hertz(self, standard_pitch=440)

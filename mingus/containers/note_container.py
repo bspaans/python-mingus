@@ -83,7 +83,7 @@ class NoteContainer(object):
         >>> notes = [['C', 5], ['E', 5], ['G', 6]]
 
         or even:
-        >>> notes = [['C', 5, {'volume': 20}], ['E', 6, {'volume': 20}]]
+        >>> notes = [['C', 5, {'velocity': 20}], ['E', 6, {'velocity': 20}]]
         """
         if hasattr(notes, "notes"):
             for x in notes.notes:

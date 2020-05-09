@@ -52,6 +52,13 @@ class Note(object):
     velocity = _DEFAULT_VELOCITY
 
     def __init__(self, name="C", octave=4, dynamics=None, velocity=None, channel=None):
+        """
+        :param name:
+        :param octave:
+        :param dynamics: Deprecated. Use `velocity` and `channel` directly.
+        :param int velocity: Integer (0-127)
+        :param int channel: Integer (0-15)
+        """
         if dynamics is None:
             dynamics = {}
 
@@ -68,12 +75,13 @@ class Note(object):
         elif isinstance(name, int):
             self.from_int(name)
         else:
-            raise NoteFormatError(
-                "Don't know what to do with name object: " "'%s'" % name
-            )
+            raise NoteFormatError("Don't know what to do with name object: %r" % name)
 
     @property
     def dynamics(self):
+        """
+        .. deprecated:: Provided only for compatibility with existing code.
+        """
         return {
             "channel": self.channel,
             "velocity": self.velocity,
@@ -94,6 +102,13 @@ class Note(object):
 
         Return the objects if it succeeded, raise an NoteFormatError
         otherwise.
+
+        :param name:
+        :param octave:
+        :param dynamics: Deprecated. Use `velocity` and `channel` directly.
+        :param int velocity: Integer (0-127)
+        :param int channel: Integer (0-15)
+        :return:
         """
         if dynamics is None:
             dynamics = {}
@@ -115,10 +130,7 @@ class Note(object):
                 self.octave = octave
                 return self
             else:
-                raise NoteFormatError(
-                    "The string '%s' is not a valid "
-                    "representation of a note in mingus" % name
-                )
+                raise NoteFormatError("Invalid note representation: %r" % name)
         elif len(dash_index) == 2:
             note, octave = dash_index
             if notes.is_valid_note(note):
@@ -126,11 +138,9 @@ class Note(object):
                 self.octave = int(octave)
                 return self
             else:
-                raise NoteFormatError(
-                    "The string '%s' is not a valid "
-                    "representation of a note in mingus" % name
-                )
-        return False
+                raise NoteFormatError("Invalid note representation: %r" % name)
+        else:
+            raise NoteFormatError("Invalid note representation: %r" % name)
 
     def empty(self):
         """Remove the data in the instance."""
