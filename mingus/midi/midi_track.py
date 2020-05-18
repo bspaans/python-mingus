@@ -244,7 +244,7 @@ class MidiTrack(object):
 
     def key_signature_event(self, key="C"):
         """Return the bytes for a key signature event."""
-        if key.islower():
+        if str(key).islower():
             val = minor_keys.index(key) - 7
             mode = b"\x01"
         else:

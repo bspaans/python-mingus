@@ -342,6 +342,12 @@ class MidiFile(object):
                 raise IOError("Couldn't read MIDI event parameters from file.")
             param1 = self.bytes_to_int(param1)
             param2 = self.bytes_to_int(param2)
+
+            # "It is common for a note on with 0 velocity to be interpreted as NOTE OFF." https://stackoverflow.com/questions/48687756/midi-note-on-event-without-off-event
+            # this should resolve Lilypond midi files which don't seem to use ec 8 to signify NOTE OFF
+            if param2 == 0:
+                event_type = 8
+                
             return (
                 {
                     "event": event_type,
