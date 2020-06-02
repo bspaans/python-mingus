@@ -19,7 +19,6 @@
 from __future__ import absolute_import
 
 import six
-from six.moves import range
 
 from mingus.containers.mt_exceptions import MeterFormatError
 from mingus.containers.note_container import NoteContainer
@@ -255,7 +254,4 @@ class Bar(object):
 
     def __eq__(self, other):
         """Enable the '==' operator for Bars."""
-        for b in range(0, len(self.bar) - 1):
-            if self.bar[b] != other.bar[b]:
-                return False
-        return True
+        return self.bar == other.bar

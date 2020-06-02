@@ -16,6 +16,17 @@ class test_NoteContainers(unittest.TestCase):
         self.n3 = NoteContainer(["A", "C", "E"])
         self.n4 = NoteContainer(["A", "C", "E", "F", "G"])
         self.n5 = NoteContainer(["A", "C", "E", "F", "G", "A",])
+        self.n6 = NoteContainer(["A", "E", "C-5"])
+
+    def test_equality(self):
+        different_note_containers = (self.n1, self.n2, self.n3, self.n4, self.n5)
+        for i, note_container_1 in enumerate(different_note_containers):
+            for j, note_container_2 in enumerate(different_note_containers):
+                if i == j:
+                    self.assertEqual(note_container_1, note_container_2)
+                else:
+                    self.assertNotEqual(note_container_1, note_container_2)
+        self.assertEqual(self.n3, self.n6)
 
     def test_add_note(self):
         self.assertEqual(self.n2, self.n2.add_note("A"))

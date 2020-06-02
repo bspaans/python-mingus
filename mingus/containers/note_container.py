@@ -358,8 +358,13 @@ class NoteContainer(object):
         """Return the number of notes in the container."""
         return len(self.notes)
 
+    def __contains__(self, item):
+        return item in self.notes
+
     def __eq__(self, other):
         """Enable the '==' operator for NoteContainer instances."""
+        if len(self) != len(other):
+            return False
         for x in self:
             if x not in other:
                 return False

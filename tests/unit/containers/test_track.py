@@ -15,6 +15,23 @@ class test_Track(unittest.TestCase):
         self.g = Track(Guitar())
         self.tr = Track()
 
+    def test_equality(self):
+        self.assertEqual(self.i, self.p)
+        self.assertEqual(self.i, self.g)
+        self.assertEqual(self.i, self.tr)
+
+        t = Track()
+        t + "C"
+        t + "E"
+        s = Track()
+        s + "E"
+        s + "G#"
+        self.assertNotEqual(t, s)
+        u = Track()
+        u + "E"
+        u + "G#"
+        self.assertEqual(s, u)
+
     def test_add(self):
         pass
 
