@@ -169,12 +169,14 @@ class Bar(object):
     def augment(self):
         """Augment the NoteContainers in Bar."""
         for cont in self.bar:
-            cont[2].augment()
+            if cont[2]:
+                cont[2].augment()
 
     def diminish(self):
         """Diminish the NoteContainers in Bar."""
         for cont in self.bar:
-            cont[2].diminish()
+            if cont[2]:
+                cont[2].diminish()
 
     def transpose(self, interval, up=True):
         """Transpose the notes in the bar up or down the interval.
@@ -182,7 +184,8 @@ class Bar(object):
         Call transpose() on all NoteContainers in the bar.
         """
         for cont in self.bar:
-            cont[2].transpose(interval, up)
+            if cont[2]:
+                cont[2].transpose(interval, up)
 
     def determine_chords(self, shorthand=False):
         """Return a list of lists [place_in_beat, possible_chords]."""
