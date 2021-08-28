@@ -29,12 +29,17 @@ from __future__ import absolute_import
 
 from ctypes import *
 from ctypes.util import find_library
-
+import os
 import six
+
+if hasattr(os, 'add_dll_directory'):
+    os.add_dll_directory(os.getcwd())
 
 lib = (
     find_library("fluidsynth")
     or find_library("libfluidsynth")
+    or find_library('libfluidsynth-3')
+    or find_library('libfluidsynth-2')
     or find_library("libfluidsynth-1")
 )
 if lib is None:
