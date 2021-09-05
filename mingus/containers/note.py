@@ -48,8 +48,6 @@ class Note(object):
 
     name = _DEFAULT_NAME
     octave = _DEFAULT_OCTAVE
-    channel = _DEFAULT_CHANNEL
-    velocity = _DEFAULT_VELOCITY
 
     def __init__(self, name="C", octave=4, dynamics=None, velocity=None, channel=None):
         """
