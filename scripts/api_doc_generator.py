@@ -157,11 +157,11 @@ class Documize(object):
                 self.classes.append(docs)
         elif _is_class(type(evaled)):
             self.classes.append('\n.. class:: ' + element_string + '\n\n')
-            module_string = module_string + "." + element_string
+            module_string += "." + element_string
             self.process_element_recursively(module_string, evaled, True)
         elif hasattr(evaled, '__module__') and evaled.__module__ is not None and evaled.__module__.startswith(module_string):
             self.classes.append('\n.. class:: ' + element_string + '\n\n')
-            module_string = module_string + "." + element_string
+            module_string += "." + element_string
             self.process_element_recursively(module_string, evaled, True)
         else:
             pass

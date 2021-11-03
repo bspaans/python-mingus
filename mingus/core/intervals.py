@@ -292,10 +292,10 @@ def augment_or_diminish_until_the_interval_is_right(note1, note2, interval):
     # These are some checks to see if we have generated too much #'s or too much
     # b's. In these cases we need to convert #'s to b's and vice versa.
     if val > 6:
-        val = val % 12
+        val %= 12
         val = -12 + val
     elif val < -6:
-        val = val % -12
+        val %= -12
         val = 12 + val
 
     # Rebuild the note
