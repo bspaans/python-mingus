@@ -598,7 +598,7 @@ class Octatonic(_Scale):
     type = "other"
 
     def __init__(self, note, octaves=1):
-        """Create the octatonic (also known as "diminshed") scale starting
+        """Create the octatonic (also known as "diminished") scale starting
         on the chosen note."""
         super(Octatonic, self).__init__(note, octaves)
         self.name = "{0} octatonic".format(self.tonic)
