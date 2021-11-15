@@ -24,7 +24,7 @@ from mingus.containers.mt_exceptions import MeterFormatError
 from mingus.containers.note_container import NoteContainer
 from mingus.core import meter as _meter
 from mingus.core import progressions, keys
-
+from typing import Optional
 
 class Bar(object):
     """A bar object.
@@ -117,6 +117,13 @@ class Bar(object):
         """
         return self.place_notes(None, duration)
 
+    def _is_note(self, note: Optional[NoteContainer]) -> bool:
+        """
+        Return whether the 'note' contained in a bar position is an actual NoteContainer.
+        If False, it is a rest (currently represented by None).
+        """
+        return isinstance(note, NoteContainer)
+
     def remove_last_entry(self):
         """Remove the last NoteContainer in the Bar."""
         self.current_beat -= 1.0 / self.bar[-1][1]
@@ -169,13 +176,13 @@ class Bar(object):
     def augment(self):
         """Augment the NoteContainers in Bar."""
         for cont in self.bar:
-            if cont[2]:
+            if self._is_note(cont[2]):
                 cont[2].augment()
 
     def diminish(self):
         """Diminish the NoteContainers in Bar."""
         for cont in self.bar:
-            if cont[2]:
+            if self._is_note(cont[2]):
                 cont[2].diminish()
 
     def transpose(self, interval, up=True):
@@ -184,7 +191,7 @@ class Bar(object):
         Call transpose() on all NoteContainers in the bar.
         """
         for cont in self.bar:
-            if cont[2]:
+            if self._is_note(cont[2]):
                 cont[2].transpose(interval, up)
 
     def determine_chords(self, shorthand=False):
