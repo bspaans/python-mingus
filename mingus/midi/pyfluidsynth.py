@@ -24,17 +24,34 @@ function that returns chunks of audio data and output the data to the
 soundcard yourself.
 
 FluidSynth works on all major platforms, so pyFluidSynth should also.
+
+Under Microsoft Windows, the FluidSynth DLL must be in a known directory. By
+default it will be searched in the current working directory and in
+system-dependent locations (see :py:func:`os.add_dll_directory`). This can be
+changed with the FLUIDSYNTH_DLL_DIR environment variable, which should specify
+the directory where the DLL can be found. If the variable is set but empty, the
+DLL search path will not be touched and only the system defaults will be used.
 """
 from __future__ import absolute_import
 
 from ctypes import *
 from ctypes.util import find_library
-
+import os
 import six
+
+if hasattr(os, "add_dll_directory"):
+    dll_dir = os.getenv("FLUIDSYNTH_DLL_DIR", ".")
+    # If set but empty, do not touch the DLL search path
+    if dll_dir:
+        if dll_dir == ".":
+            dll_dir = os.getcwd()
+        os.add_dll_directory(dll_dir)
 
 lib = (
     find_library("fluidsynth")
     or find_library("libfluidsynth")
+    or find_library('libfluidsynth-3')
+    or find_library('libfluidsynth-2')
     or find_library("libfluidsynth-1")
 )
 if lib is None:
