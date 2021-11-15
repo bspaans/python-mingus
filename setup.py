@@ -45,7 +45,7 @@ APIs and has a tutorial making it easy to jump straight in.
             ],
         ),
     ],
-    install_requires=["six",],
+    install_requires=["six"],
     extras_require={
         "fft": ["numpy"],
         "fluidsynth": ["numpy"],

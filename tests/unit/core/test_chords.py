@@ -376,9 +376,9 @@ class test_chords(unittest.TestCase):
             "A7#11": ["A", "C#", "E", "G", "D#"],
             "Am11": ["A", "C", "E", "G", "D"],
             "Amin11": ["A", "C", "E", "G", "D"],
-            "Amaj13": ["A", "C#", "E", "G#", "B", "F#",],
-            "A13": ["A", "C#", "E", "G", "B", "F#",],
-            "Am13": ["A", "C", "E", "G", "B", "F#",],
+            "Amaj13": ["A", "C#", "E", "G#", "B", "F#"],
+            "A13": ["A", "C#", "E", "G", "B", "F#"],
+            "Am13": ["A", "C", "E", "G", "B", "F#"],
             "A7b9": ["A", "C#", "E", "G", "Bb"],
             "A7#9": ["A", "C#", "E", "G", "B#"],
             "A7b5": ["A", "C#", "Eb", "G"],
@@ -389,8 +389,8 @@ class test_chords(unittest.TestCase):
             "N.C.": [],
             "NC": [],
             "Dm|G": ["G", "B", "D", "F", "A"],
-            "Dm7|G": ["G", "B", "D", "F", "A", "C",],
-            "Am7|G7": ["G", "B", "D", "F", "A", "C", "E", "G",],
+            "Dm7|G": ["G", "B", "D", "F", "A", "C"],
+            "Am7|G7": ["G", "B", "D", "F", "A", "C", "E", "G"],
         }
         for x in answers:
             self.assertEqual(
@@ -425,9 +425,9 @@ class test_chords(unittest.TestCase):
             )
         self.chordsTest(
             [
-                [["A13"], ["A", "C#", "E", "G", "B", "D", "F#",]],
-                [["Am13"], ["A", "C", "E", "G", "B", "D", "F#",]],
-                [["AM13"], ["A", "C#", "E", "G#", "B", "D", "F#",]],
+                [["A13"], ["A", "C#", "E", "G", "B", "D", "F#"]],
+                [["Am13"], ["A", "C", "E", "G", "B", "D", "F#"]],
+                [["AM13"], ["A", "C#", "E", "G#", "B", "D", "F#"]],
             ],
             lambda x: chords.determine(x, True),
             "chord name",
@@ -438,11 +438,11 @@ class test_chords(unittest.TestCase):
             [  # insano test
                 [["FM|Dm"], ["D", "F", "A", "C"]],
                 [["Dm|GM"], ["G", "B", "D", "F", "A"]],
-                [["FM|G7", "FM|GM"], ["G", "B", "D", "F", "A", "C",]],
-                [["Am|G7"], ["G", "B", "D", "F", "A", "C", "E",]],
-                [["Am7|G7"], ["G", "B", "D", "F", "A", "C", "E", "G",]],
-                [["CM9|CM"], ["C", "E", "G", "C", "E", "G", "B", "D",]],
-                [["CM9|CM7"], ["C", "E", "G", "B", "C", "E", "G", "B", "D",]],
+                [["FM|G7", "FM|GM"], ["G", "B", "D", "F", "A", "C"]],
+                [["Am|G7"], ["G", "B", "D", "F", "A", "C", "E"]],
+                [["Am7|G7"], ["G", "B", "D", "F", "A", "C", "E", "G"]],
+                [["CM9|CM"], ["C", "E", "G", "C", "E", "G", "B", "D"]],
+                [["CM9|CM7"], ["C", "E", "G", "B", "C", "E", "G", "B", "D"]],
                 [
                     ["A13|G13"],
                     [

@@ -42,28 +42,28 @@ class test_Tunings(unittest.TestCase):
 
     def test_find_frets(self):
         self.assertTrue(
-            self.guitar6.find_frets("E-1") == [None, None, None, None, None, None,]
+            self.guitar6.find_frets("E-1") == [None, None, None, None, None, None]
         )
         self.assertTrue(
-            self.guitar6.find_frets("E-2") == [0, None, None, None, None, None,]
+            self.guitar6.find_frets("E-2") == [0, None, None, None, None, None]
         )
         self.assertTrue(
-            self.guitar6.find_frets("A-2") == [5, 0, None, None, None, None,]
+            self.guitar6.find_frets("A-2") == [5, 0, None, None, None, None]
         )
         self.assertTrue(
-            self.guitar6.find_frets("D-3") == [10, 5, 0, None, None, None,]
+            self.guitar6.find_frets("D-3") == [10, 5, 0, None, None, None]
         )
         self.assertTrue(
-            self.guitar6.find_frets("G-3") == [15, 10, 5, 0, None, None,]
+            self.guitar6.find_frets("G-3") == [15, 10, 5, 0, None, None]
         )
         self.assertTrue(
-            self.guitar6.find_frets("B-3") == [19, 14, 9, 4, 0, None,]
+            self.guitar6.find_frets("B-3") == [19, 14, 9, 4, 0, None]
         )
         self.assertTrue(
-            self.guitar6.find_frets("E-4") == [24, 19, 14, 9, 5, 0,]
+            self.guitar6.find_frets("E-4") == [24, 19, 14, 9, 5, 0]
         )
         self.assertTrue(
-            self.guitar6.find_frets("E-4", 18) == [None, None, 14, 9, 5, 0,]
+            self.guitar6.find_frets("E-4", 18) == [None, None, 14, 9, 5, 0]
         )
 
     def test_find_fingering(self):

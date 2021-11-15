@@ -239,7 +239,7 @@ def get_interval(note, interval, key="C"):
     This will produce mostly theoretical sound results, but you should use
     the minor and major functions to work around the corner cases.
     """
-    intervals = [(notes.note_to_int(key) + x) % 12 for x in [0, 2, 4, 5, 7, 9, 11,]]
+    intervals = [(notes.note_to_int(key) + x) % 12 for x in [0, 2, 4, 5, 7, 9, 11]]
     key_notes = keys.get_notes(key)
     for x in key_notes:
         if x[0] == note[0]:

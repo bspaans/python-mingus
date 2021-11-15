@@ -15,7 +15,7 @@ class test_NoteContainers(unittest.TestCase):
         self.n2 = NoteContainer("A")
         self.n3 = NoteContainer(["A", "C", "E"])
         self.n4 = NoteContainer(["A", "C", "E", "F", "G"])
-        self.n5 = NoteContainer(["A", "C", "E", "F", "G", "A",])
+        self.n5 = NoteContainer(["A", "C", "E", "F", "G", "A"])
         self.n6 = NoteContainer(["A", "E", "C-5"])
 
     def test_equality(self):

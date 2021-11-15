@@ -43,5 +43,5 @@ class test_Instrument(unittest.TestCase):
         self.assertEqual(False, self.g.can_play_notes(self.noteshigh))
         self.assertEqual(
             False,
-            self.g.can_play_notes(NoteContainer(["A", "B", "C", "D", "E", "F", "G",])),
+            self.g.can_play_notes(NoteContainer(["A", "B", "C", "D", "E", "F", "G"])),
         )

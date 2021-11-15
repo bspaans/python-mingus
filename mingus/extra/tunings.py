@@ -543,12 +543,12 @@ add_tuning("Banjo (5-string)", "Open G tuning", ["G-4", "D-3", "G-3", "B-3", "D-
 add_tuning(
     "Baritone guitar",
     "Standard 5th lower tuning",
-    ["A-1", "D-2", "G-2", "C-3", "E-3", "A-3",],
+    ["A-1", "D-2", "G-2", "C-3", "E-3", "A-3"],
 )
 add_tuning(
     "Baritone guitar",
     "Octave lower tuning",
-    ["E-1", "A-1", "D-2", "G-2", "B-2", "E-3",],
+    ["E-1", "A-1", "D-2", "G-2", "B-2", "E-3"],
 )
 add_tuning("Bass guitar", "Standard 4-string tuning", ["E-1", "A-1", "D-2", "G-2"])
 add_tuning(
@@ -560,7 +560,7 @@ add_tuning(
 add_tuning(
     "Bass guitar",
     "Standard 6-string tuning",
-    ["B-0", "E-1", "A-1", "D-2", "G-2", "C-3",],
+    ["B-0", "E-1", "A-1", "D-2", "G-2", "C-3"],
 )
 add_tuning("Cello", "Standard tuning", ["C-2", "G-2", "D-3", "A-3"])
 add_tuning("Cello", '"5th Suite" tuning', ["C-2", "G-2", "D-3", "G-3"])
@@ -619,17 +619,17 @@ add_tuning(
     "Standard F6 tuning",
     [["D-3", "D-4"], ["A-3", "A-3"], ["D-4", "D-4"]],
 )
-add_tuning("Guitar", "Standard tuning", ["E-2", "A-2", "D-3", "G-3", "B-3", "E-4",])
+add_tuning("Guitar", "Standard tuning", ["E-2", "A-2", "D-3", "G-3", "B-3", "E-4"])
 add_tuning(
-    "Guitar", "*DADGAD* Dsus4 tuning", ["D-2", "A-2", "D-3", "G-3", "A-3", "D-4",]
+    "Guitar", "*DADGAD* Dsus4 tuning", ["D-2", "A-2", "D-3", "G-3", "A-3", "D-4"]
 )
 add_tuning(
-    "Guitar", "Double drop D tuning", ["D-2", "A-2", "D-3", "G-3", "B-3", "D-4",]
+    "Guitar", "Double drop D tuning", ["D-2", "A-2", "D-3", "G-3", "B-3", "D-4"]
 )
-add_tuning("Guitar", "Drop D tuning", ["D-2", "A-2", "D-3", "G-3", "B-3", "E-4",])
-add_tuning("Guitar", "Open C major tuning", ["C-2", "G-2", "C-3", "G-3", "C-3", "E-4",])
-add_tuning("Guitar", "Open E minor tuning", ["E-2", "B-2", "E-3", "G-3", "B-3", "E-4",])
-add_tuning("Guitar", "Open G major tuning", ["D-2", "G-2", "D-3", "G-3", "B-3", "D-4",])
+add_tuning("Guitar", "Drop D tuning", ["D-2", "A-2", "D-3", "G-3", "B-3", "E-4"])
+add_tuning("Guitar", "Open C major tuning", ["C-2", "G-2", "C-3", "G-3", "C-3", "E-4"])
+add_tuning("Guitar", "Open E minor tuning", ["E-2", "B-2", "E-3", "G-3", "B-3", "E-4"])
+add_tuning("Guitar", "Open G major tuning", ["D-2", "G-2", "D-3", "G-3", "B-3", "D-4"])
 add_tuning(
     "Guitar",
     "Standard tuning. Some players tune the second course G string to unison to minimize breakage.",
@@ -645,9 +645,9 @@ add_tuning(
 add_tuning(
     "Guitar Banjo",
     "Standard guitar tuning",
-    ["E-2", "A-2", "D-3", "G-3", "B-3", "E-4",],
+    ["E-2", "A-2", "D-3", "G-3", "B-3", "E-4"],
 )
-add_tuning("Guitarrón", "Standard tuning", ["A-1", "D-2", "G-2", "C-3", "E-3", "A-2",])
+add_tuning("Guitarrón", "Standard tuning", ["A-1", "D-2", "G-2", "C-3", "E-3", "A-2"])
 add_tuning(
     "Huapanguera", "", ["G-2", ["D-3", "D-4"], ["G-3", "G-3"], ["B-3", "B-3"], "E-3"]
 )
@@ -710,16 +710,16 @@ add_tuning(
 add_tuning("Mejorana", "Standard tuning", ["D-4", "A-4", "A-3", "B-3", "E-4"])
 add_tuning("Mejorana", "Alternative tuning", ["D-4", "G-4", "G-3", "B-3", "E-3"])
 add_tuning(
-    "Octave Guitar", "see *Soprano guitar*", ["E-3", "A-4", "D-4", "G-4", "B-4", "E-5",]
+    "Octave Guitar", "see *Soprano guitar*", ["E-3", "A-4", "D-4", "G-4", "B-4", "E-5"]
 )
-add_tuning("Requinto", "Standard tuning", ["A-2", "D-3", "G-3", "C-4", "E-4", "A-4",])
+add_tuning("Requinto", "Standard tuning", ["A-2", "D-3", "G-3", "C-4", "E-4", "A-4"])
 add_tuning(
     "Ronroco",
     "Standard C6 tuning (tuned an octave below the charango).",
     [["G-3", "G-3"], ["C-3", "C-3"], ["E-4", "E-3"], ["A-3", "A-3"], ["E-4", "E-4"]],
 )
 add_tuning(
-    "Soprano guitar", "Standard tuning", ["E-3", "A-4", "D-4", "G-4", "B-4", "E-5",]
+    "Soprano guitar", "Standard tuning", ["E-3", "A-4", "D-4", "G-4", "B-4", "E-5"]
 )
 add_tuning(
     "Taro patch",
