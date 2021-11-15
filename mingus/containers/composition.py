@@ -62,8 +62,7 @@ class Composition(object):
         """
         if not hasattr(track, "bars"):
             raise UnexpectedObjectError(
-                "Unexpected object '%s', "
-                "expecting a mingus.containers.Track object" % track
+                "Unexpected object '%s', " "expecting a mingus.containers.Track object" % track
             )
         self.tracks.append(track)
         self.selected_tracks = [len(self.tracks) - 1]

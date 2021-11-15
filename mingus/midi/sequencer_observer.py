@@ -84,9 +84,7 @@ class SequencerObserver(object):
 
     def notify(self, msg_type, params):
         if msg_type == Sequencer.MSG_PLAY_INT:
-            self.play_int_note_event(
-                params["note"], params["channel"], params["velocity"]
-            )
+            self.play_int_note_event(params["note"], params["channel"], params["velocity"])
         elif msg_type == Sequencer.MSG_STOP_INT:
             self.stop_int_note_event(params["note"], params["channel"])
         elif msg_type == Sequencer.MSG_CC:
@@ -112,6 +110,4 @@ class SequencerObserver(object):
         elif msg_type == Sequencer.MSG_PLAY_TRACKS:
             self.play_Tracks(params["tracks"], params["channels"], params["bpm"])
         elif msg_type == Sequencer.MSG_PLAY_COMPOSITION:
-            self.play_Composition(
-                params["composition"], params["channels"], params["bpm"]
-            )
+            self.play_Composition(params["composition"], params["channels"], params["bpm"])

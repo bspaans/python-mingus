@@ -325,9 +325,7 @@ def write_Composition(composition, filename, zip=False):
         import zipfile
         import os
 
-        zf = zipfile.ZipFile(
-            filename + ".mxl", mode="w", compression=zipfile.ZIP_DEFLATED
-        )
+        zf = zipfile.ZipFile(filename + ".mxl", mode="w", compression=zipfile.ZIP_DEFLATED)
         zi = zipfile.ZipInfo("META-INF" + os.sep + "container.xml")
         zi.external_attr = 0o660 << 16
         zf.writestr(

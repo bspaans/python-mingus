@@ -38,7 +38,7 @@ class Sequencer(object):
 
     You can use the Sequencer object either by creating a subclass and
     implementing some of the events (init, play_event, stop_event, cc_event,
-    instr_event) or by attaching observer objects via 'attach' and catching 
+    instr_event) or by attaching observer objects via 'attach' and catching
     the messages in the notify(msg_type, param_dict) function of your object.
 
     See SequencerObserver for a pre made, easy to extend base class that can
@@ -167,12 +167,8 @@ class Sequencer(object):
         if hasattr(note, "channel"):
             channel = note.channel
         self.stop_event(int(note) + 12, int(channel))
-        self.notify_listeners(
-            self.MSG_STOP_INT, {"channel": int(channel), "note": int(note) + 12}
-        )
-        self.notify_listeners(
-            self.MSG_STOP_NOTE, {"channel": int(channel), "note": note}
-        )
+        self.notify_listeners(self.MSG_STOP_INT, {"channel": int(channel), "note": int(note) + 12})
+        self.notify_listeners(self.MSG_STOP_NOTE, {"channel": int(channel), "note": note})
         return True
 
     def stop_everything(self):
@@ -212,9 +208,7 @@ class Sequencer(object):
         The tempo can be changed by setting the bpm attribute on a
         NoteContainer.
         """
-        self.notify_listeners(
-            self.MSG_PLAY_BAR, {"bar": bar, "channel": channel, "bpm": bpm}
-        )
+        self.notify_listeners(self.MSG_PLAY_BAR, {"bar": bar, "channel": channel, "bpm": bpm})
 
         # length of a quarter note
         qn_length = 60.0 / bpm
@@ -239,9 +233,7 @@ class Sequencer(object):
         A list of channels should also be provided. The tempo can be changed
         by providing one or more of the NoteContainers with a bpm argument.
         """
-        self.notify_listeners(
-            self.MSG_PLAY_BARS, {"bars": bars, "channels": channels, "bpm": bpm}
-        )
+        self.notify_listeners(self.MSG_PLAY_BARS, {"bars": bars, "channels": channels, "bpm": bpm})
         qn_length = 60.0 / bpm  # length of a quarter note
         tick = 0.0  # place in beat from 0.0 to bar.length
         cur = [0] * len(bars)  # keeps the index of the NoteContainer under
@@ -313,9 +305,7 @@ class Sequencer(object):
 
     def play_Track(self, track, channel=1, bpm=120):
         """Play a Track object."""
-        self.notify_listeners(
-            self.MSG_PLAY_TRACK, {"track": track, "channel": channel, "bpm": bpm}
-        )
+        self.notify_listeners(self.MSG_PLAY_TRACK, {"track": track, "channel": channel, "bpm": bpm})
         for bar in track:
             res = self.play_Bar(bar, channel, bpm)
             if res != {}:

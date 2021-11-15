@@ -79,9 +79,9 @@ def determine(notes):
                 ):
                     res.append(scale(key[0]).name)
             elif scale.type == "minor":
-                if notes <= set(
-                    scale(get_notes(key[1])[0]).ascending()
-                ) or notes <= set(scale(get_notes(key[1])[0]).descending()):
+                if notes <= set(scale(get_notes(key[1])[0]).ascending()) or notes <= set(
+                    scale(get_notes(key[1])[0]).descending()
+                ):
                     res.append(scale(get_notes(key[1])[0]).name)
     return res
 
@@ -606,9 +606,7 @@ class Octatonic(_Scale):
     def ascending(self):
         notes = [self.tonic]
         for i in range(3):
-            notes.extend(
-                [intervals.major_second(notes[-1]), intervals.minor_third(notes[-1])]
-            )
+            notes.extend([intervals.major_second(notes[-1]), intervals.minor_third(notes[-1])])
         notes.append(intervals.major_seventh(notes[0]))
         notes[-2] = intervals.major_sixth(notes[0])
         return notes * self.octaves + [notes[0]]

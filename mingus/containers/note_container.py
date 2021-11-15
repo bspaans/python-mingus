@@ -67,8 +67,7 @@ class NoteContainer(object):
                     note = Note(note, self.notes[-1].octave, dynamics)
         if not hasattr(note, "name"):
             raise UnexpectedObjectError(
-                "Object '%s' was not expected. "
-                "Expecting a mingus.containers.Note object." % note
+                "Object '%s' was not expected. " "Expecting a mingus.containers.Note object." % note
             )
         if note not in self.notes:
             self.notes.append(note)

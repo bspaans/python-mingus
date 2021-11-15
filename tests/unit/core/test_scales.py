@@ -46,8 +46,7 @@ class test_scales(unittest.TestCase):
                     scale(k).ascending(),
                     (
                         "The ascending %s of %s is not %s; "
-                        "expecting %s"
-                        % (name, k, scale(k).ascending(), answer_dict[k][0])
+                        "expecting %s" % (name, k, scale(k).ascending(), answer_dict[k][0])
                     ),
                 )
                 self.assertEqual(
@@ -55,8 +54,7 @@ class test_scales(unittest.TestCase):
                     scale(k).descending(),
                     (
                         "The descending %s of %s is not %s; "
-                        "expecting %s"
-                        % (name, k, scale(k).descending(), answer_dict[k][1])
+                        "expecting %s" % (name, k, scale(k).descending(), answer_dict[k][1])
                     ),
                 )
 

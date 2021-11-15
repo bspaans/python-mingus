@@ -26,6 +26,7 @@ from mingus.core import meter as _meter
 from mingus.core import progressions, keys
 from typing import Optional
 
+
 class Bar(object):
     """A bar object.
 
@@ -208,9 +209,7 @@ class Bar(object):
             res.append(
                 [
                     x[0],
-                    progressions.determine(
-                        x[2].get_note_names(), self.key.key, shorthand
-                    ),
+                    progressions.determine(x[2].get_note_names(), self.key.key, shorthand),
                 ]
             )
         return res

@@ -81,10 +81,10 @@ class test_Bar(unittest.TestCase):
 
     def test_transpose_rest(self):
         b = Bar()
-        b.place_notes('C-4', 4)
+        b.place_notes("C-4", 4)
         b.place_rest(4)
         c = Bar()
-        c.place_notes('E-4', 4)
+        c.place_notes("E-4", 4)
         c.place_rest(4)
         b.transpose("3", True)
         self.assertEqual(b, c)
@@ -105,10 +105,10 @@ class test_Bar(unittest.TestCase):
 
     def test_augment_rest(self):
         b = Bar()
-        b.place_notes('C-4', 4)
+        b.place_notes("C-4", 4)
         b.place_rest(4)
         c = Bar()
-        c.place_notes('C#-4', 4)
+        c.place_notes("C#-4", 4)
         c.place_rest(4)
         b.augment()
         self.assertEqual(b, c)
@@ -123,10 +123,10 @@ class test_Bar(unittest.TestCase):
 
     def test_diminish_rest(self):
         b = Bar()
-        b.place_notes('C#-4', 4)
+        b.place_notes("C#-4", 4)
         b.place_rest(4)
         c = Bar()
-        c.place_notes('C-4', 4)
+        c.place_notes("C-4", 4)
         c.place_rest(4)
         b.diminish()
         self.assertEqual(b, c)

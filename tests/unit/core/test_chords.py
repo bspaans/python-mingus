@@ -311,14 +311,16 @@ class test_chords(unittest.TestCase):
         )
 
     def chordsTest(
-        self, values, what_func, what_desc,
+        self,
+        values,
+        what_func,
+        what_desc,
     ):
         for x in values:
             for y in x[0]:
                 self.assertTrue(
                     y in what_func(x[1]),
-                    "The %s '%s' should be in '%s', but is not."
-                    % (what_desc, y, what_func(x[1])),
+                    "The %s '%s' should be in '%s', but is not." % (what_desc, y, what_func(x[1])),
                 )
 
     def test_from_shorthand(self):

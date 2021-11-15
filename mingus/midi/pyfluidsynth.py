@@ -50,8 +50,8 @@ if hasattr(os, "add_dll_directory"):
 lib = (
     find_library("fluidsynth")
     or find_library("libfluidsynth")
-    or find_library('libfluidsynth-3')
-    or find_library('libfluidsynth-2')
+    or find_library("libfluidsynth-3")
+    or find_library("libfluidsynth-2")
     or find_library("libfluidsynth-1")
 )
 if lib is None:
@@ -101,9 +101,7 @@ fluid_settings_setint = cfunc(
     ("name", c_char_p, 1),
     ("val", c_int, 1),
 )
-delete_fluid_audio_driver = cfunc(
-    "delete_fluid_audio_driver", None, ("driver", c_void_p, 1)
-)
+delete_fluid_audio_driver = cfunc("delete_fluid_audio_driver", None, ("driver", c_void_p, 1))
 delete_fluid_synth = cfunc("delete_fluid_synth", None, ("synth", c_void_p, 1))
 delete_fluid_settings = cfunc("delete_fluid_settings", None, ("settings", c_void_p, 1))
 fluid_synth_sfload = cfunc(
@@ -180,12 +178,8 @@ fluid_synth_sfont_select = cfunc(
     ("chan", c_int, 1),
     ("sfid", c_int, 1),
 )
-fluid_synth_program_reset = cfunc(
-    "fluid_synth_program_reset", c_int, ("synth", c_void_p, 1)
-)
-fluid_synth_system_reset = cfunc(
-    "fluid_synth_system_reset", c_int, ("synth", c_void_p, 1)
-)
+fluid_synth_program_reset = cfunc("fluid_synth_program_reset", c_int, ("synth", c_void_p, 1))
+fluid_synth_system_reset = cfunc("fluid_synth_system_reset", c_int, ("synth", c_void_p, 1))
 fluid_synth_write_s16 = cfunc(
     "fluid_synth_write_s16",
     c_void_p,

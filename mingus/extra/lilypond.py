@@ -148,16 +148,12 @@ def from_Bar(bar, showkey=True, showtime=True):
         parsed_value = value.determine(bar_entry[1])
         ratio = parsed_value[2:]
         if ratio == latest_ratio:
-            result += (
-                from_NoteContainer(bar_entry[2], bar_entry[1], standalone=False) + " "
-            )
+            result += from_NoteContainer(bar_entry[2], bar_entry[1], standalone=False) + " "
         else:
             if ratio_has_changed:
                 result += "}"
             result += "\\times %d/%d {" % (ratio[1], ratio[0])
-            result += (
-                from_NoteContainer(bar_entry[2], bar_entry[1], standalone=False) + " "
-            )
+            result += from_NoteContainer(bar_entry[2], bar_entry[1], standalone=False) + " "
             latest_ratio = ratio
             ratio_has_changed = True
     if ratio_has_changed:

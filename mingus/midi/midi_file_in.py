@@ -184,9 +184,7 @@ class MidiFile(object):
         # Check header
         try:
             if fp.read(4) != b"MThd":
-                raise HeaderError(
-                    "Not a valid MIDI file header. Byte %d." % self.bytes_read
-                )
+                raise HeaderError("Not a valid MIDI file header. Byte %d." % self.bytes_read)
             self.bytes_read += 4
         except:
             raise IOError("Couldn't read from file.")
@@ -196,9 +194,7 @@ class MidiFile(object):
             chunk_size = self.bytes_to_int(fp.read(4))
             self.bytes_read += 4
         except:
-            raise IOError(
-                "Couldn't read chunk size from file. Byte %d." % self.bytes_read
-            )
+            raise IOError("Couldn't read chunk size from file. Byte %d." % self.bytes_read)
 
         # Expect chunk size to be at least 6
         if chunk_size < 6:
@@ -215,9 +211,7 @@ class MidiFile(object):
             time_division = self.parse_time_division(fp.read(2))
             self.bytes_read += 4
         except:
-            raise IOError(
-                "Couldn't read number of tracks " "and/or time division from tracks."
-            )
+            raise IOError("Couldn't read number of tracks " "and/or time division from tracks.")
 
         chunk_size -= 6
         if chunk_size % 2 == 1:
@@ -252,8 +246,7 @@ class MidiFile(object):
             SMPTE_frames = (value & 0x7F00) >> 2
             if SMPTE_frames not in [24, 25, 29, 30]:
                 raise TimeDivisionError(
-                    "'%d' is not a valid value for the number of SMPTE frames"
-                    % SMPTE_frames
+                    "'%d' is not a valid value for the number of SMPTE frames" % SMPTE_frames
                 )
             clock_ticks = (value & 0x00FF) >> 2
             return {
@@ -300,9 +293,7 @@ class MidiFile(object):
         # I don't know what these events are supposed to do, but I keep finding
         # them. The parser ignores them.
         if event_type < 8:
-            raise FormatError(
-                "Unknown event type %d. Byte %d." % (event_type, self.bytes_read)
-            )
+            raise FormatError("Unknown event type %d. Byte %d." % (event_type, self.bytes_read))
 
         # Meta events can have strings of variable length
         if event_type == 0x0F:
@@ -359,9 +350,7 @@ class MidiFile(object):
             h = fp.read(4)
             self.bytes_read += 4
         except:
-            raise IOError(
-                "Couldn't read track header from file. Byte %d." % self.bytes_read
-            )
+            raise IOError("Couldn't read track header from file. Byte %d." % self.bytes_read)
         if h != b"MTrk":
             raise HeaderError("Not a valid Track header. Byte %d." % self.bytes_read)
 

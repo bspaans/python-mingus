@@ -133,20 +133,14 @@ while loop < song_end:
                     fluidsynth.play_Note(Note("E", 2), 9, randrange(50, 100))  # snare
                 else:
                     if random() > 0.8 or t == 0:
-                        fluidsynth.play_Note(
-                            Note("C", 2), 9, randrange(20, 100)
-                        )  # bass
+                        fluidsynth.play_Note(Note("C", 2), 9, randrange(20, 100))  # bass
                 if t == 0 and random() > 0.75:
                     fluidsynth.play_Note(Note("C#", 3), 9, randrange(60, 100))  # crash
                 if swing:
                     if random() > 0.9:
-                        fluidsynth.play_Note(
-                            Note("A#", 2), 9, randrange(50, 100)
-                        )  # hihat open
+                        fluidsynth.play_Note(Note("A#", 2), 9, randrange(50, 100))  # hihat open
                     elif random() > 0.6:
-                        fluidsynth.play_Note(
-                            Note("G#", 2), 9, randrange(100, 120)
-                        )  # hihat closed
+                        fluidsynth.play_Note(Note("G#", 2), 9, randrange(100, 120))  # hihat closed
                     if random() > 0.95:
                         fluidsynth.play_Note(Note("E", 2), 9, 100)  # snare
                 elif t % 2 == 0:

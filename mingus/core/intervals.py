@@ -499,9 +499,9 @@ def is_consonant(note1, note2, include_fourths=True):
     In classical music the fourth is considered dissonant when used
     contrapuntal, which is why you can choose to exclude it.
     """
-    return is_perfect_consonant(
-        note1, note2, include_fourths
-    ) or is_imperfect_consonant(note1, note2)
+    return is_perfect_consonant(note1, note2, include_fourths) or is_imperfect_consonant(
+        note1, note2
+    )
 
 
 def is_perfect_consonant(note1, note2, include_fourths=True):

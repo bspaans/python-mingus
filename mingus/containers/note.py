@@ -302,7 +302,7 @@ class Note(object):
     def __int__(self):
         """Return the current octave multiplied by twelve and add
         notes.note_to_int to it.
-        
+
         This means a C-0 returns 0, C-1 returns 12, etc. This method allows
         you to use int() on Notes.
         """

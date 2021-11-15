@@ -226,15 +226,7 @@ class MidiTrack(object):
         """Return a time signature event for meter."""
         numer = a2b_hex("%02x" % meter[0])
         denom = a2b_hex("%02x" % int(log(meter[1], 2)))
-        return (
-            self.delta_time
-            + META_EVENT
-            + TIME_SIGNATURE
-            + b"\x04"
-            + numer
-            + denom
-            + b"\x18\x08"
-        )
+        return self.delta_time + META_EVENT + TIME_SIGNATURE + b"\x04" + numer + denom + b"\x18\x08"
 
     def set_key(self, key="C"):
         """Add a key signature event to the track_data."""

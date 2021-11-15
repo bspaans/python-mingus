@@ -54,8 +54,7 @@ class Instrument(object):
             range[1] = Note(range[1])
         if not hasattr(range[0], "name"):
             raise UnexpectedObjectError(
-                "Unexpected object '%s'. "
-                "Expecting a mingus.containers.Note object" % range[0]
+                "Unexpected object '%s'. " "Expecting a mingus.containers.Note object" % range[0]
             )
         self.range = range
 
@@ -68,8 +67,7 @@ class Instrument(object):
             note = Note(note)
         if not hasattr(note, "name"):
             raise UnexpectedObjectError(
-                "Unexpected object '%s'. "
-                "Expecting a mingus.containers.Note object" % note
+                "Unexpected object '%s'. " "Expecting a mingus.containers.Note object" % note
             )
         if note >= self.range[0] and note <= self.range[1]:
             return True

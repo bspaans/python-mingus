@@ -75,42 +75,22 @@ class test_progressions(unittest.TestCase):
             progressions.substitute_diminished_for_diminished(["VII"], 0)
             == progressions.substitute_diminished_for_diminished(["VIIdim"], 0)
         )
-        self.assertTrue(
-            "IIdim" in progressions.substitute_diminished_for_diminished(["VII"], 0)
-        )
-        self.assertTrue(
-            "bIIdim" in progressions.substitute_diminished_for_diminished(["bVII"], 0)
-        )
-        self.assertTrue(
-            "#IIdim" in progressions.substitute_diminished_for_diminished(["#VII"], 0)
-        )
+        self.assertTrue("IIdim" in progressions.substitute_diminished_for_diminished(["VII"], 0))
+        self.assertTrue("bIIdim" in progressions.substitute_diminished_for_diminished(["bVII"], 0))
+        self.assertTrue("#IIdim" in progressions.substitute_diminished_for_diminished(["#VII"], 0))
 
     def test_substitute_diminished_for_dominant(self):
         self.assertTrue(
             progressions.substitute_diminished_for_dominant(["VII"], 0)
             == progressions.substitute_diminished_for_dominant(["VIIdim"], 0)
         )
-        self.assertTrue(
-            "Vdom7" in progressions.substitute_diminished_for_dominant(["VII"], 0)
-        )
-        self.assertTrue(
-            "bVIIdom7" in progressions.substitute_diminished_for_dominant(["VII"], 0)
-        )
-        self.assertTrue(
-            "bIIdom7" in progressions.substitute_diminished_for_dominant(["VII"], 0)
-        )
-        self.assertTrue(
-            "bbIIdom7" in progressions.substitute_diminished_for_dominant(["bVII"], 0)
-        )
-        self.assertTrue(
-            "IVdom7" in progressions.substitute_diminished_for_dominant(["VII"], 0)
-        )
-        self.assertTrue(
-            "bIVdom7" in progressions.substitute_diminished_for_dominant(["bVII"], 0)
-        )
-        self.assertTrue(
-            "#IVdom7" in progressions.substitute_diminished_for_dominant(["#VII"], 0)
-        )
+        self.assertTrue("Vdom7" in progressions.substitute_diminished_for_dominant(["VII"], 0))
+        self.assertTrue("bVIIdom7" in progressions.substitute_diminished_for_dominant(["VII"], 0))
+        self.assertTrue("bIIdom7" in progressions.substitute_diminished_for_dominant(["VII"], 0))
+        self.assertTrue("bbIIdom7" in progressions.substitute_diminished_for_dominant(["bVII"], 0))
+        self.assertTrue("IVdom7" in progressions.substitute_diminished_for_dominant(["VII"], 0))
+        self.assertTrue("bIVdom7" in progressions.substitute_diminished_for_dominant(["bVII"], 0))
+        self.assertTrue("#IVdom7" in progressions.substitute_diminished_for_dominant(["#VII"], 0))
 
     def test_skip(self):
         self.assertEqual(progressions.skip("I"), "II")
@@ -120,9 +100,7 @@ class test_progressions(unittest.TestCase):
 
     def test_determine(self):
         self.assertEqual(["tonic"], progressions.determine(["C", "E", "G"], "C"))
-        self.assertEqual(
-            ["tonic seventh"], progressions.determine(["C", "E", "G", "B"], "C")
-        )
+        self.assertEqual(["tonic seventh"], progressions.determine(["C", "E", "G", "B"], "C"))
         self.assertEqual(
             ["tonic dominant seventh"],
             progressions.determine(["C", "E", "G", "Bb"], "C"),
@@ -130,9 +108,7 @@ class test_progressions(unittest.TestCase):
         self.assertEqual(["I"], progressions.determine(["C", "E", "G"], "C", True))
         self.assertEqual(["I"], progressions.determine(["E", "G", "C"], "C", True))
         self.assertEqual(["I"], progressions.determine(["G", "C", "E"], "C", True))
-        self.assertEqual(
-            ["V7"], progressions.determine(["G", "B", "D", "F"], "C", True)
-        )
+        self.assertEqual(["V7"], progressions.determine(["G", "B", "D", "F"], "C", True))
         self.assertEqual(
             ["Vm7", "bviiM6"], progressions.determine(["G", "Bb", "D", "F"], "C", True)
         )
@@ -140,6 +116,4 @@ class test_progressions(unittest.TestCase):
             [["I"], ["V"]],
             progressions.determine([["C", "E", "G"], ["G", "B", "D"]], "C", True),
         )
-        self.assertEqual(
-            ["bii", "bIVM6"], progressions.determine(["Db", "Fb", "Ab"], "C", True)
-        )
+        self.assertEqual(["bii", "bIVM6"], progressions.determine(["Db", "Fb", "Ab"], "C", True))

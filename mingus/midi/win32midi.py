@@ -29,12 +29,8 @@ class Win32MidiPlayer(object):
                 64 + 4
             ): "MIDIERR_NODEVICE  No MIDI port was found. This error occurs only when the mapper is opened.",
             (0 + 4): "MMSYSERR_ALLOCATED  The specified resource is already allocated.",
-            (
-                0 + 2
-            ): "MMSYSERR_BADDEVICEID    The specified device identifier is out of range.",
-            (
-                0 + 11
-            ): "MMSYSERR_INVALPARAM    The specified pointer or structure is invalid.",
+            (0 + 2): "MMSYSERR_BADDEVICEID    The specified device identifier is out of range.",
+            (0 + 11): "MMSYSERR_INVALPARAM    The specified pointer or structure is invalid.",
             (0 + 7): "MMSYSERR_NOMEM  The system is unable to allocate or lock memory.",
         }
         self.midiOutShortErrorCodes = {
@@ -57,8 +53,7 @@ class Win32MidiPlayer(object):
         rc = self.winmm.midiOutOpen(byref(self.hmidi), deviceNumber, 0, 0, 0)
         if rc != 0:
             raise Win32MidiException(
-                "Error opening device, "
-                + self.midiOutOpenErrorCodes.get(rc, "Unknown error.")
+                "Error opening device, " + self.midiOutOpenErrorCodes.get(rc, "Unknown error.")
             )
 
     def closeDevice(self):
@@ -66,16 +61,13 @@ class Win32MidiPlayer(object):
         if rc != 0:
             raise Win32MidiException("Error closing device")
 
-    def sendNote(
-        self, pitch, duration=1.0, channel=1, volume=60
-    ):  # duration in seconds
+    def sendNote(self, pitch, duration=1.0, channel=1, volume=60):  # duration in seconds
         midimsg = 0x90 + ((pitch) * 0x100) + (volume * 0x10000) + channel
         mm = c_int(midimsg)
         rc = self.winmm.midiOutShortMsg(self.hmidi, mm)
         if rc != 0:
             raise Win32MidiException(
-                "Error opening device, "
-                + self.midiOutShortErrorCodes.get(rc, "Unknown error.")
+                "Error opening device, " + self.midiOutShortErrorCodes.get(rc, "Unknown error.")
             )
 
         time.sleep(duration)
@@ -86,8 +78,7 @@ class Win32MidiPlayer(object):
         rc = self.winmm.midiOutShortMsg(self.hmidi, mm)
         if rc != 0:
             raise Win32MidiException(
-                "Error sending event, "
-                + self.midiOutShortErrorCodes.get(rc, "Unknown error.")
+                "Error sending event, " + self.midiOutShortErrorCodes.get(rc, "Unknown error.")
             )
 
     def rawNoteOn(self, pitch, channel=1, v=60):
@@ -96,8 +87,7 @@ class Win32MidiPlayer(object):
         rc = self.winmm.midiOutShortMsg(self.hmidi, mm)
         if rc != 0:
             raise Win32MidiException(
-                "Error sending event, "
-                + self.midiOutShortErrorCodes.get(rc, "Unknown error.")
+                "Error sending event, " + self.midiOutShortErrorCodes.get(rc, "Unknown error.")
             )
 
     def rawNoteOff(self, pitch, channel=1):
@@ -106,8 +96,7 @@ class Win32MidiPlayer(object):
         rc = self.winmm.midiOutShortMsg(self.hmidi, mm)
         if rc != 0:
             raise Win32MidiException(
-                "Error sending event, "
-                + self.midiOutShortErrorCodes.get(rc, "Unknown error.")
+                "Error sending event, " + self.midiOutShortErrorCodes.get(rc, "Unknown error.")
             )
 
     def programChange(self, program, channel=1):
@@ -118,8 +107,7 @@ class Win32MidiPlayer(object):
         rc = self.winmm.midiOutShortMsg(self.hmidi, mm)
         if rc != 0:
             raise Win32MidiException(
-                "Error sending event, "
-                + self.midiOutShortErrorCodes.get(rc, "Unknown error.")
+                "Error sending event, " + self.midiOutShortErrorCodes.get(rc, "Unknown error.")
             )
 
     def controllerChange(self, controller, val, channel=1):
@@ -128,6 +116,5 @@ class Win32MidiPlayer(object):
         rc = self.winmm.midiOutShortMsg(self.hmidi, mm)
         if rc != 0:
             raise Win32MidiException(
-                "Error sending event, "
-                + self.midiOutShortErrorCodes.get(rc, "Unknown error.")
+                "Error sending event, " + self.midiOutShortErrorCodes.get(rc, "Unknown error.")
             )

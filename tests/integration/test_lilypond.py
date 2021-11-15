@@ -70,9 +70,7 @@ class test_LilyPond(unittest.TestCase):
         self.assertEqual(LilyPond.from_Note(Note("C", 7), standalone=False), "c''''")
 
     def test_from_NoteContainer(self):
-        self.assertEqual(
-            LilyPond.from_NoteContainer(NoteContainer("C"), standalone=False), "c'"
-        )
+        self.assertEqual(LilyPond.from_NoteContainer(NoteContainer("C"), standalone=False), "c'")
         self.assertEqual(
             LilyPond.from_NoteContainer(NoteContainer("C"), 4, standalone=False), "c'4"
         )
@@ -96,9 +94,7 @@ class test_LilyPond(unittest.TestCase):
             "c'16",
         )
         self.assertEqual(
-            LilyPond.from_NoteContainer(
-                NoteContainer("C"), value.dots(16), standalone=False
-            ),
+            LilyPond.from_NoteContainer(NoteContainer("C"), value.dots(16), standalone=False),
             "c'16.",
         )
         self.assertEqual(
@@ -123,9 +119,7 @@ class test_LilyPond(unittest.TestCase):
             LilyPond.from_Bar(self.fbar),
             "{ \\time 6/8 \\key f \\major c'8 e'8 g'8 b'8 }",
         )
-        self.assertEqual(
-            LilyPond.from_Bar(self.a_minor_bar), "{ \\time 4/4 \\key a \\minor }"
-        )
+        self.assertEqual(LilyPond.from_Bar(self.a_minor_bar), "{ \\time 4/4 \\key a \\minor }")
         self.assertEqual(
             LilyPond.from_Bar(self.b_flat_minor_bar), "{ \\time 4/4 \\key bes \\minor }"
         )
@@ -156,23 +150,18 @@ class test_LilyPond(unittest.TestCase):
 
     def test_dotted_notes(self):
         self.assertEqual(
-            LilyPond.from_NoteContainer(
-                NoteContainer("C"), value.dots(8), standalone=False
-            ),
+            LilyPond.from_NoteContainer(NoteContainer("C"), value.dots(8), standalone=False),
             "c'8.",
         )
         self.assertEqual(
-            LilyPond.from_NoteContainer(
-                NoteContainer("C"), value.dots(4, 2), standalone=False
-            ),
+            LilyPond.from_NoteContainer(NoteContainer("C"), value.dots(4, 2), standalone=False),
             "c'4..",
         )
 
     def test_to_pdf(self):
         self.assertTrue(
             LilyPond.to_pdf(
-                "{ %s }"
-                % LilyPond.from_NoteContainer(NoteContainer("C"), value.dots(8)),
+                "{ %s }" % LilyPond.from_NoteContainer(NoteContainer("C"), value.dots(8)),
                 "pdftest first test",
             )
         )
@@ -182,8 +171,7 @@ class test_LilyPond(unittest.TestCase):
     def test_to_png(self):
         self.assertTrue(
             LilyPond.to_png(
-                "{ %s }"
-                % LilyPond.from_NoteContainer(NoteContainer("C"), value.dots(8)),
+                "{ %s }" % LilyPond.from_NoteContainer(NoteContainer("C"), value.dots(8)),
                 "pn1",
             )
         )

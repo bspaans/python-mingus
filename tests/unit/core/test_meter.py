@@ -62,12 +62,23 @@ class test_meter(unittest.TestCase):
             1024,
             2048,
         ]:
-            self.assertTrue(
-                meter.valid_beat_duration(x), "%d should be a valid beat duration" % x
-            )
+            self.assertTrue(meter.valid_beat_duration(x), "%d should be a valid beat duration" % x)
 
     def test_invalid_beat_duration(self):
-        for x in [0, 3, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15,] + list(range(17, 31)):
+        for x in [
+            0,
+            3,
+            5,
+            6,
+            7,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+        ] + list(range(17, 31)):
             self.assertTrue(
                 not meter.valid_beat_duration(x),
                 "%d should not be a valid beat duration" % x,
@@ -75,9 +86,7 @@ class test_meter(unittest.TestCase):
 
     def test_is_compound(self):
         for x in self.compound_meters:
-            self.assertTrue(
-                meter.is_compound(x), "%d/%d should be a compound meter" % x
-            )
+            self.assertTrue(meter.is_compound(x), "%d/%d should be a compound meter" % x)
 
     def test_is_simple(self):
         for x in self.simple_meters:
@@ -89,9 +98,7 @@ class test_meter(unittest.TestCase):
 
     def test_is_asymmetrical(self):
         for x in self.asymmetrical_meters:
-            self.assertTrue(
-                meter.is_asymmetrical(x), "%d/%d should be a asymmetrical meter" % x
-            )
+            self.assertTrue(meter.is_asymmetrical(x), "%d/%d should be a asymmetrical meter" % x)
 
     def test_is_full(self):
         pass

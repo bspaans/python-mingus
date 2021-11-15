@@ -50,13 +50,13 @@ def to_chords(progression, key="C"):
 
     Any number of accidentals can be used as prefix to augment or diminish;
     for example: bIV or #I.
-    
+
     All the chord abbreviations in the chord module can be used as suffixes;
     for example: Im7, IVdim7, etc.
-    
+
     You can combine prefixes and suffixes to manage complex progressions:
     #vii7, #iidim7, iii7, etc.
-    
+
     Using 7 as suffix is ambiguous, since it is classicly used to denote the
     seventh chord when talking about progressions instead of just the
     dominant seventh chord. We have taken the classic route; I7 will get
@@ -187,9 +187,7 @@ def determine(chord, key, shorthand=False):
                     if shorthand:
                         func += chord_type
                     else:
-                        func = (
-                            func_dict[func] + chords.chord_shorthand_meaning[chord_type]
-                        )
+                        func = func_dict[func] + chords.chord_shorthand_meaning[chord_type]
 
         # Handle b's and #'s (for instance Dbm in key C is bII)
         if shorthand:
@@ -308,13 +306,7 @@ def substitute_minor_for_major(progression, substitute_index, ignore_suffix=Fals
     res = []
 
     # Minor to major substitution
-    if (
-        suff == "m"
-        or suff == "m7"
-        or suff == ""
-        and roman in ["II", "III", "VI"]
-        or ignore_suffix
-    ):
+    if suff == "m" or suff == "m7" or suff == "" and roman in ["II", "III", "VI"] or ignore_suffix:
         n = skip(roman, 2)
         a = interval_diff(roman, n, 3) + acc
         if suff == "m" or ignore_suffix:
@@ -342,13 +334,7 @@ def substitute_major_for_minor(progression, substitute_index, ignore_suffix=Fals
     res = []
 
     # Major to minor substitution
-    if (
-        suff == "M"
-        or suff == "M7"
-        or suff == ""
-        and roman in ["I", "IV", "V"]
-        or ignore_suffix
-    ):
+    if suff == "M" or suff == "M7" or suff == "" and roman in ["I", "IV", "V"] or ignore_suffix:
         n = skip(roman, 5)
         a = interval_diff(roman, n, 9) + acc
         if suff == "M" or ignore_suffix:
@@ -360,9 +346,7 @@ def substitute_major_for_minor(progression, substitute_index, ignore_suffix=Fals
     return res
 
 
-def substitute_diminished_for_diminished(
-    progression, substitute_index, ignore_suffix=False
-):
+def substitute_diminished_for_diminished(progression, substitute_index, ignore_suffix=False):
     """Substitute a diminished chord for another diminished chord.
 
     'dim' and 'dim7' suffixes recognized, and 'VI' if there is no suffix.
@@ -375,13 +359,7 @@ def substitute_diminished_for_diminished(
     res = []
 
     # Diminished progressions
-    if (
-        suff == "dim7"
-        or suff == "dim"
-        or suff == ""
-        and roman in ["VII"]
-        or ignore_suffix
-    ):
+    if suff == "dim7" or suff == "dim" or suff == "" and roman in ["VII"] or ignore_suffix:
         if suff == "":
             suff = "dim"
 
@@ -395,20 +373,12 @@ def substitute_diminished_for_diminished(
     return res
 
 
-def substitute_diminished_for_dominant(
-    progression, substitute_index, ignore_suffix=False
-):
+def substitute_diminished_for_dominant(progression, substitute_index, ignore_suffix=False):
     (roman, acc, suff) = parse_string(progression[substitute_index])
     res = []
 
     # Diminished progressions
-    if (
-        suff == "dim7"
-        or suff == "dim"
-        or suff == ""
-        and roman in ["VII"]
-        or ignore_suffix
-    ):
+    if suff == "dim7" or suff == "dim" or suff == "" and roman in ["VII"] or ignore_suffix:
         if suff == "":
             suff = "dim"
 

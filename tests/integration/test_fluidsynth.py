@@ -78,14 +78,10 @@ class test_fluidsynth(unittest.TestCase):
         fluidsynth.stop_Note(Note("C"))
 
     def test_playnotecontainer(self):
-        self.assertTrue(
-            fluidsynth.play_NoteContainer(NoteContainer(["C", "E", "G"]), 0)
-        )
+        self.assertTrue(fluidsynth.play_NoteContainer(NoteContainer(["C", "E", "G"]), 0))
         time.sleep(0.25)
         fluidsynth.stop_NoteContainer(NoteContainer(["C", "E", "G"]), 0)
-        self.assertTrue(
-            fluidsynth.play_NoteContainer(NoteContainer(["E", "G", Note("C", 6)]), 0)
-        )
+        self.assertTrue(fluidsynth.play_NoteContainer(NoteContainer(["E", "G", Note("C", 6)]), 0))
         time.sleep(0.25)
         fluidsynth.stop_NoteContainer(NoteContainer(["E", "G", Note("C", 6)]), 0)
 

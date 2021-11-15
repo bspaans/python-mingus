@@ -55,8 +55,7 @@ class test_keys(unittest.TestCase):
             self.assertEqual(
                 known[k],
                 keys.relative_major(k),
-                "The major of %s is not %s, expecting %s"
-                % (k, keys.relative_major(k), known[k]),
+                "The major of %s is not %s, expecting %s" % (k, keys.relative_major(k), known[k]),
             )
 
     def test_relative_minor(self):
@@ -65,8 +64,7 @@ class test_keys(unittest.TestCase):
             self.assertEqual(
                 known[k],
                 keys.relative_minor(k),
-                "The minor of %s is not %s, expecting %s"
-                % (k, keys.relative_minor(k), known[k]),
+                "The minor of %s is not %s, expecting %s" % (k, keys.relative_minor(k), known[k]),
             )
 
 
