@@ -79,6 +79,16 @@ class test_Bar(unittest.TestCase):
         b.transpose("3")
         self.assertEqual(b, c)
 
+    def test_transpose_rest(self):
+        b = Bar()
+        b.place_notes('C-4', 4)
+        b.place_rest(4)
+        c = Bar()
+        c.place_notes('E-4', 4)
+        c.place_rest(4)
+        b.transpose("3", True)
+        self.assertEqual(b, c)
+
     def test_augment(self):
         b = Bar()
         c = Bar()
@@ -93,11 +103,31 @@ class test_Bar(unittest.TestCase):
         c.augment()
         self.assertEqual(c, d)
 
+    def test_augment_rest(self):
+        b = Bar()
+        b.place_notes('C-4', 4)
+        b.place_rest(4)
+        c = Bar()
+        c.place_notes('C#-4', 4)
+        c.place_rest(4)
+        b.augment()
+        self.assertEqual(b, c)
+
     def test_diminish(self):
         b = Bar()
         c = Bar()
         b + "A"
         c + "Ab"
+        b.diminish()
+        self.assertEqual(b, c)
+
+    def test_diminish_rest(self):
+        b = Bar()
+        b.place_notes('C#-4', 4)
+        b.place_rest(4)
+        c = Bar()
+        c.place_notes('C-4', 4)
+        c.place_rest(4)
         b.diminish()
         self.assertEqual(b, c)
 
