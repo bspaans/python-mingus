@@ -108,7 +108,7 @@ class Bar(object):
         """Place notes at the given index."""
         for x in self.bar:
             if x[0] == at:
-                x[0][2] += notes
+                x[2] += notes
 
     def place_rest(self, duration):
         """Place a rest of given duration on the current_beat.
