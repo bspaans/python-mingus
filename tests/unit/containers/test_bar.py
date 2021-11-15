@@ -15,6 +15,21 @@ class test_Bar(unittest.TestCase):
         self.c = Bar("E", (2, 2))
         self.meterless = Bar("C", (0, 0))
 
+    def test_equality(self):
+        self.assertEqual(self.b, self.c)
+        self.assertEqual(self.b, self.meterless)
+        self.assertEqual(self.c, self.meterless)
+
+        b1 = Bar("C", (4, 4))
+        b1 + ["A", "C"]
+        b1 + ["D"]
+        b2 = Bar("C", (4, 4))
+        b2 + ["A", "C"]
+        b2 + ["D"]
+        self.assertEqual(b1, b2)
+
+        self.assertNotEqual(b1, self.b)
+
     def test_place_notes_types(self):
         self.assertEqual(True, self.meterless + NoteContainer(["A", "C"]))
         self.assertEqual(True, self.meterless + "A")
@@ -28,7 +43,7 @@ class test_Bar(unittest.TestCase):
 
     def test_set_item(self):
         b = Bar()
-        b + ["A", "C", "E"]
+        b + ["A", "C", "E"]  # A4 C5 E5
         c = Bar()
         c + ["A", "C", "E"]
         self.assertEqual(b, c)
@@ -37,7 +52,10 @@ class test_Bar(unittest.TestCase):
         c[0] = ["A", "C", "E"]
         self.assertEqual(b, c)
         c[0] = Note("A")
-        c[0] = c[0][2] + NoteContainer(["C", "E"])
+        c[0] = c[0][2] + NoteContainer(["C", "E"])  # C4 E4
+        self.assertNotEqual(b, c)
+        c[0] = Note("A")
+        c[0] = c[0][2] + NoteContainer(["C-5", "E"])  # C5 E5
         self.assertEqual(b, c)
         c[0] = Note("A")
         c[0] = c[0][2] + "C"

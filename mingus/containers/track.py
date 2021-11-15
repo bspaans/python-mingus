@@ -196,10 +196,7 @@ class Track(object):
 
     def __eq__(self, other):
         """Enable the '==' operator for tracks."""
-        for x in range(0, len(self.bars) - 1):
-            if self.bars[x] != other.bars[x]:
-                return False
-        return True
+        return self.bars == other.bars
 
     def __getitem__(self, index):
         """Enable the '[]' notation for Tracks."""
