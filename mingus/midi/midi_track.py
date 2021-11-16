@@ -273,5 +273,5 @@ class MidiTrack(object):
 
         # Set the first bit on every one but the last bit.
         for i in range(len(bytes) - 1):
-            bytes[i] = bytes[i] | 0x80
+            bytes[i] |= 0x80
         return pack("%sB" % len(bytes), *bytes)

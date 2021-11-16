@@ -1046,7 +1046,7 @@ def determine_seventh(seventh, shorthand=False, no_inversion=False, no_polychord
 
         # Recognizing polychords
         if tries == 1 and not no_polychords:
-            polychords = polychords + determine_polychords(seventh, shorthand)
+            polychords += determine_polychords(seventh, shorthand)
 
         # Recognizing sevenths
         for triad in triads:
@@ -1324,7 +1324,7 @@ def determine_polychords(chord, shorthand=False):
                     polychords.append("%s|%s" % (chord1, chord2))
     if shorthand:
         for p in polychords:
-            p = p + " polychord"
+            p += " polychord"
     return polychords
 
 

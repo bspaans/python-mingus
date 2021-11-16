@@ -124,7 +124,7 @@ def play_note(note):
         # Getting the x coordinate of a white key can be done automatically
 
         w = WHITE_KEYS.index(note.name) * white_key_width
-        w = w + octave_offset
+        w += octave_offset
 
         # Add a list containing the x coordinate, the tick at the current time
         # and of course the note itself to playing_w
@@ -145,7 +145,7 @@ def play_note(note):
             w = 151
         else:
             w = 187
-        w = w + octave_offset
+        w += octave_offset
         playing_b.append([w, tick, note])
 
     # To find out what sort of chord is being played we have to look at both the

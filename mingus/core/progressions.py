@@ -243,7 +243,7 @@ def tuple_to_string(prog_tuple):
     if acc > 6:
         acc = 0 - acc % 6
     elif acc < -6:
-        acc = acc % 6
+        acc %= 6
     while acc < 0:
         roman = "b" + roman
         acc += 1
