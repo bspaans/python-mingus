@@ -51,6 +51,8 @@ Generate Absolute Chords
    * minor_ninth
    * major_ninth
    * dominant_ninth
+   * minor_add_ninth
+   * major_add_ninth
  * Elevenths
    * minor_eleventh
    * eleventh
@@ -380,6 +382,25 @@ def major_ninth(note):
     ['C', 'E', 'G', 'B', 'D']
     """
     return major_seventh(note) + [intervals.major_second(note)]
+
+def minor_add_ninth(note):
+    """Build a minor ninth chord on note.
+
+    Example:
+    >>> minor_add_ninth('C')
+    ['C', 'Eb', 'G', 'D']
+    """
+    return minor_triad(note) + [intervals.major_second(note)]
+
+
+def major_add_ninth(note):
+    """Build a major ninth chord on note.
+
+    Example:
+    >>> major_add_ninth('C')
+    ['C', 'E', 'G', 'D']
+    """
+    return major_triad(note) + [intervals.major_second(note)]
 
 
 def dominant_ninth(note):
@@ -1370,6 +1391,8 @@ chord_shorthand = {  # Triads Augmented chords Suspended chords Sevenths Sixths
     "7#9": dominant_sharp_ninth,
     "M9": major_ninth,
     "m9": minor_ninth,
+    "add9": major_add_ninth,
+    "madd9": minor_add_ninth,
     "7#11": lydian_dominant_seventh,
     "m11": minor_eleventh,
     "M13": major_thirteenth,
