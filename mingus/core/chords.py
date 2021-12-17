@@ -1328,8 +1328,8 @@ def determine_polychords(chord, shorthand=False):
     return polychords
 
 
-# A dictionairy that can be used to present chord abbreviations. This
-# dictionairy is also used in from_shorthand()
+# A dictionary that can be used to present chord abbreviations. This
+# dictionary is also used in from_shorthand()
 chord_shorthand = {  # Triads Augmented chords Suspended chords Sevenths Sixths
     # Ninths Elevenths Thirteenths Altered Chords Special
     "m": minor_triad,
@@ -1344,10 +1344,12 @@ chord_shorthand = {  # Triads Augmented chords Suspended chords Sevenths Sixths
     "m7+": augmented_minor_seventh,
     "7+": augmented_major_seventh,
     "sus47": suspended_seventh,
+    "7sus4": suspended_seventh,
     "sus4": suspended_fourth_triad,
     "sus2": suspended_second_triad,
     "sus": suspended_triad,
     "11": eleventh,
+    "add11": eleventh,
     "sus4b9": suspended_fourth_ninth,
     "susb9": suspended_fourth_ninth,
     "m7": minor_seventh,
@@ -1366,6 +1368,7 @@ chord_shorthand = {  # Triads Augmented chords Suspended chords Sevenths Sixths
     "6/9": sixth_ninth,
     "69": sixth_ninth,
     "9": dominant_ninth,
+    "add9": dominant_ninth,
     "7b9": dominant_flat_ninth,
     "7#9": dominant_sharp_ninth,
     "M9": major_ninth,
@@ -1375,6 +1378,7 @@ chord_shorthand = {  # Triads Augmented chords Suspended chords Sevenths Sixths
     "M13": major_thirteenth,
     "m13": minor_thirteenth,
     "13": dominant_thirteenth,
+    "add13": dominant_thirteenth,
     "7b5": dominant_flat_five,
     "hendrix": hendrix_chord,
     "7b12": hendrix_chord,
