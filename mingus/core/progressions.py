@@ -278,12 +278,12 @@ def substitute_harmonic(progression, substitute_index, ignore_suffix=False):
     res = []
     (roman, acc, suff) = parse_string(progression[substitute_index])
     if suff == "" or suff == "7" or ignore_suffix:
-        for subs in simple_substitutions:
-            r = subs[1] if roman == subs[0] else None
+        for (subs_0, subs_1, *subs_len) in simple_substitutions:
+            r = subs_1 if roman == subs_0 else None
             if r == None:
-                r = subs[0] if roman == subs[1] else None
+                r = subs_0 if roman == subs_1 else None
             if r != None:
-                suff = suff if suff == "7" else ""
+                suff = suff if suff == '7' else ''
                 res.append(tuple_to_string((r, acc, suff)))
     return res
 
