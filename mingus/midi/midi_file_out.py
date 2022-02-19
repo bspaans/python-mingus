@@ -169,7 +169,7 @@ if __name__ == "__main__":
     t + b
     t + b
     m = MidiInstrument()
-    m.instrument_nr = 13
+    m.number = 13
     t.instrument = m
     t.name = "Track Name Test"
     write_NoteContainer("test.mid", n)

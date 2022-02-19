@@ -19,6 +19,7 @@ from __future__ import absolute_import
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from mingus.core import notes, intervals
+from mingus.containers.midi_percussion import midi_percussion as mp
 from mingus.containers.mt_exceptions import NoteFormatError
 from math import log
 import six
@@ -45,13 +46,7 @@ class Note(object):
     You can use the class NoteContainer to group Notes together in intervals
     and chords.
     """
-
-    name = _DEFAULT_NAME
-    octave = _DEFAULT_OCTAVE
-    channel = _DEFAULT_CHANNEL
-    velocity = _DEFAULT_VELOCITY
-
-    def __init__(self, name="C", octave=4, dynamics=None, velocity=None, channel=None):
+    def __init__(self, name="C", octave=4, dynamics=None, velocity=64, channel=None):
         """
         :param name:
         :param octave:
@@ -62,8 +57,9 @@ class Note(object):
         if dynamics is None:
             dynamics = {}
 
-        if velocity is not None:
-            dynamics["velocity"] = velocity
+        dynamics["velocity"] = velocity
+        self.velocity = velocity
+
         if channel is not None:
             dynamics["channel"] = channel
 
@@ -350,3 +346,26 @@ class Note(object):
     def __repr__(self):
         """Return a helpful representation for printing Note classes."""
         return "'%s-%d'" % (self.name, self.octave)
+
+
+class PercussionNote(Note):
+    """Percusion notes do not have a name of the staff (e.g. C or F#)"""
+
+    # noinspection PyMissingConstructor
+    def __init__(self, name, velocity=64, channel=None, duration=None):
+        """
+        Set duration in milliseconds if you want to stop the instrument before it stops itself.
+        For example, a player might manual stop a triangle after 1 second.
+        """
+        self.name = name
+        self.key_number = mp[name]
+        assert 0 <= velocity < 128, 'Velocity must be between 0 and 127'
+        self.velocity = velocity
+        self.channel = channel
+        self.duration = duration
+
+    def __int__(self):
+        return self.key_number
+
+    def __repr__(self):
+        return self.name

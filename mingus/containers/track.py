@@ -37,14 +37,9 @@ class Track(object):
 
     Tracks can be stored together in Compositions.
     """
-
-    bars = []
-    instrument = None
-    name = "Untitled"  # Will be looked for when saving a MIDI file.
-    tuning = None  # Used by tablature
-
-    def __init__(self, instrument=None):
+    def __init__(self, instrument, bpm=120.0):
         self.bars = []
+        self.bpm = bpm
         self.instrument = instrument
 
     def add_bar(self, bar):

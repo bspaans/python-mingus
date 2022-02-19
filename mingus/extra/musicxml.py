@@ -280,7 +280,7 @@ def _composition2musicxml(comp):
                 # the MIDI
                 # channels?
                 program = doc.createElement("midi-program")
-                program.appendChild(doc.createTextNode(str(t.instrument.instrument_nr)))
+                program.appendChild(doc.createTextNode(str(t.instrument.number)))
                 midi.appendChild(channel)
                 midi.appendChild(program)
                 score_part.appendChild(midi)

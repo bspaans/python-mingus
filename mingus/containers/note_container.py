@@ -18,7 +18,7 @@ from __future__ import absolute_import
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from mingus.containers.note import Note
+from mingus.containers.note import Note, PercussionNote
 from mingus.core import intervals, chords, progressions
 from mingus.containers.mt_exceptions import UnexpectedObjectError
 import six
@@ -65,9 +65,10 @@ class NoteContainer(object):
                     note = Note(note, self.notes[-1].octave + 1, dynamics)
                 else:
                     note = Note(note, self.notes[-1].octave, dynamics)
-        if not hasattr(note, "name"):
+
+        if not (hasattr(note, "name") or isinstance(note, )):
             raise UnexpectedObjectError(
-                "Object '%s' was not expected. " "Expecting a mingus.containers.Note object." % note
+                f"Object {note} was not expected. " "Expecting a mingus.containers.Note object."
             )
         if note not in self.notes:
             self.notes.append(note)

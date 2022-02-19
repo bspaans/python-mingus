@@ -166,3 +166,24 @@ class test_Bar(unittest.TestCase):
         b + ["C", "E", "G"]
         b + ["F", "A", "C"]
         self.assertEqual([[0.0, ["I"]], [0.25, ["IV"]]], b.determine_progression(True))
+
+    def test_play(self):
+        b = Bar()
+        b + ["C", "E", "G"]
+        b + None
+        b + ["F", "A", "C"]
+        score = {}
+        start_time = 3
+        bpm = 120.0
+        channel = 0
+        b.play(start_time, bpm, channel, score)
+
+        self.assertEqual([3, 503, 1003, 1503], list(score.keys()))
+
+        for key in [3, 1003]:
+            self.assertEqual(['start_note']*3, [x['func'] for x in score[key]])
+
+        for key in [503, 1503]:
+            self.assertEqual(['end_note']*3, [x['func'] for x in score[key]])
+
+        print('done')

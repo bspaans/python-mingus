@@ -1,17 +1,18 @@
 """
-This module demonstrates two tracks, each playing a different instrument.
+This module demonstrates two tracks, each playing a different instrument along with a percussion track.
 """
 
 import os
 
-from mingus.containers import Bar, Track
+from mingus.containers import Bar, Track, Note, PercussionNote
 from mingus.containers import MidiInstrument
-from mingus.midi import fluidsynth
+from mingus.midi.fluid_synth2 import FluidSynthPlayer
+from mingus.containers.midi_percussion import MidiPercussion
 
 sound_font = os.getenv('MINGUS_SOUNDFONT')
 assert sound_font, 'Please put the path to a soundfont file in the environment variable: MINGUS_SOUNDFONT'
 
-fluidsynth.init(sound_font)
+fluidsynth = FluidSynthPlayer(sound_font, driver='coreaudio', gain=1.0)
 
 # Some whole notes
 a_bar = Bar()
@@ -40,4 +41,19 @@ t2.add_bar(c_bar)  # with track 1
 t2.add_bar(rest_bar)
 t2.add_bar(f_bar)  # by itself
 
-fluidsynth.play_Tracks([t1, t2], [1, 2])
+t3 = Track(MidiPercussion())
+drum_bar = Bar()
+note = PercussionNote('High Tom', velocity=127)
+note2 = PercussionNote('High Tom', velocity=62)
+drum_bar.place_notes([note], 4)
+drum_bar.place_notes([note2], 4)
+drum_bar.place_notes([note2], 4)
+drum_bar.place_notes([note2], 4)
+
+t3.add_bar(drum_bar)
+t3.add_bar(drum_bar)
+t3.add_bar(drum_bar)
+t3.add_bar(drum_bar)
+t3.add_bar(drum_bar)
+
+fluidsynth.play_tracks([t1, t2, t3], [1, 2, 3])
