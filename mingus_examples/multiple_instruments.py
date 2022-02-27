@@ -1,23 +1,23 @@
 """
 This module demonstrates two tracks, each playing a different instrument along with a percussion track.
 """
-
-import os
-
-from mingus.containers import Bar, Track, Note, PercussionNote
+from mingus.containers import Bar, Track, PercussionNote
 from mingus.containers import MidiInstrument
 from mingus.midi.fluid_synth2 import FluidSynthPlayer
 from mingus.containers.midi_percussion import MidiPercussion
+from mingus.midi.get_soundfont_path import get_soundfont_path
 
-sound_font = os.getenv('MINGUS_SOUNDFONT')
-assert sound_font, 'Please put the path to a soundfont file in the environment variable: MINGUS_SOUNDFONT'
 
-fluidsynth = FluidSynthPlayer(sound_font, driver='coreaudio', gain=1.0)
+soundfont_path = get_soundfont_path()
+
+fluidsynth = FluidSynthPlayer(soundfont_path, gain=1.0)
+
+# Some half notes
+a_bar = Bar()
+a_bar.place_notes('A-4', 2)  # play two successive notes and an instrument without decay to see if we hear 2 notes
+a_bar + 'A-4'
 
 # Some whole notes
-a_bar = Bar()
-a_bar.place_notes('A-4', 1)
-
 c_bar = Bar()
 c_bar.place_notes('C-5', 1)
 
@@ -27,7 +27,7 @@ f_bar.place_notes('G-5', 1)
 rest_bar = Bar()
 rest_bar.place_rest(1)
 
-t1 = Track(MidiInstrument("Rock Organ"))
+t1 = Track(MidiInstrument("Rock Organ"))  # an instrument without decay
 t1.add_bar(a_bar)   # by itself
 t1.add_bar(rest_bar)
 t1.add_bar(a_bar)    # with track 2
@@ -57,3 +57,4 @@ t3.add_bar(drum_bar)
 t3.add_bar(drum_bar)
 
 fluidsynth.play_tracks([t1, t2, t3], [1, 2, 3])
+# fluidsynth.play_tracks([t1], [1])

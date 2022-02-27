@@ -19,7 +19,7 @@ from __future__ import absolute_import
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from mingus.core import notes, intervals
-from mingus.containers.midi_percussion import midi_percussion as mp
+import mingus.containers.midi_percussion as mp
 from mingus.containers.mt_exceptions import NoteFormatError
 from math import log
 import six
@@ -358,7 +358,7 @@ class PercussionNote(Note):
         For example, a player might manual stop a triangle after 1 second.
         """
         self.name = name
-        self.key_number = mp[name]
+        self.key_number = mp.percussion_instruments[name]
         assert 0 <= velocity < 128, 'Velocity must be between 0 and 127'
         self.velocity = velocity
         self.channel = channel

@@ -16,6 +16,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# noinspection HttpUrlsUsage
 """FluidSynth support for mingus.
 
 FluidSynth is a software MIDI synthesizer which allows you to play the

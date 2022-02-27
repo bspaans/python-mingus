@@ -17,6 +17,7 @@ from __future__ import absolute_import
 #
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+import copy
 
 from mingus.containers.mt_exceptions import InstrumentRangeError, UnexpectedObjectError
 from mingus.containers.note_container import NoteContainer
@@ -42,10 +43,16 @@ class Track(object):
         self.bpm = bpm
         self.instrument = instrument
 
-    def add_bar(self, bar):
+    def add_bar(self, bar, n_times=1):
         """Add a Bar to the current track."""
-        self.bars.append(bar)
+        for _ in range(n_times):
+            self.bars.append(bar)
         return self
+
+    def repeat(self, n_repetitions):
+        """The terminology here might be confusing. If a section is played one 1, it has 0 repetitions."""
+        if n_repetitions > 0:
+            self.bars = self.bars * (n_repetitions + 1)
 
     def add_notes(self, note, duration=None):
         """Add a Note, note as string or NoteContainer to the last Bar.

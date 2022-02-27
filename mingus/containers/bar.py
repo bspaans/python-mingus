@@ -20,7 +20,7 @@ from __future__ import absolute_import
 
 import six
 
-from mingus.containers import PercussionNote, Note
+from mingus.containers import PercussionNote
 from mingus.containers.mt_exceptions import MeterFormatError
 from mingus.containers.note_container import NoteContainer
 from mingus.core import meter as _meter
@@ -85,8 +85,7 @@ class Bar(object):
 
         Raise a MeterFormatError if the duration is not valid.
 
-        Return True if succesful, False otherwise (ie. the Bar hasn't got
-        enough room for a note of that duration).
+        Return True if successful, False otherwise if the note does not start in the bar.
         """
         # note should be able to be one of strings, lists, Notes or
         # NoteContainers
@@ -99,12 +98,12 @@ class Bar(object):
         elif isinstance(notes, list):
             notes = NoteContainer(notes)
 
-        if self.current_beat + 1.0 / duration <= self.length or self.length == 0.0:
+        if self.is_full():
+            return False
+        else:
             self.bar.append([self.current_beat, duration, notes])
             self.current_beat += 1.0 / duration
             return True
-        else:
-            return False
 
     def place_rest(self, duration):
         """Place a rest of given duration on the current_beat.
@@ -113,7 +112,8 @@ class Bar(object):
         """
         return self.place_notes(None, duration)
 
-    def _is_note(self, note: Optional[NoteContainer]) -> bool:
+    @staticmethod
+    def _is_note(note: Optional[NoteContainer]) -> bool:
         """
         Return whether the 'note' contained in a bar position is an actual NoteContainer.
         If False, it is a rest (currently represented by None).
@@ -152,14 +152,14 @@ class Bar(object):
 
     def get_range(self):
         """Return the highest and the lowest note in a tuple."""
-        (min, max) = (100000, -1)
+        (min_note, max_note) = (100000, -1)
         for cont in self.bar:
             for note in cont[2]:
-                if int(note) < int(min):
-                    min = note
-                elif int(note) > int(max):
-                    max = note
-        return (min, max)
+                if int(note) < int(min_note):
+                    min_note = note
+                elif int(note) > int(max_note):
+                    max_note = note
+        return min_note, max_note
 
     def space_left(self):
         """Return the space left on the Bar."""

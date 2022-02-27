@@ -3,7 +3,7 @@ MIDI percussion is treated as one instrument, with each type of percussion instr
 (i.e. like a key on a piano.
 """
 
-midi_percussion = {
+percussion_instruments = {
     'Acoustic Bass Drum': 35,
     'Bass Drum 1': 36,
     'Side Stick': 37,
@@ -52,6 +52,13 @@ midi_percussion = {
     'Mute Triangle': 80,
     'Open Triangle': 81
 }
+
+
+def percussion_index_to_name(index):
+    for name, i in percussion_instruments.items():
+        if i == index:
+            return name
+    return 'Unknown'
 
 
 class MidiPercussion:

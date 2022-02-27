@@ -4,18 +4,16 @@ A simple demonstration of using percussion with fluidsynth.
 This code was developed using the Musescore default sound font. We are not sure how it will work for other
 sound-fonts.
 """
-
-import os
 from time import sleep
 
-from midi_percussion import midi_percussion as mp
+import midi_percussion as mp
 import pyfluidsynth
+from mingus.midi.get_soundfont_path import get_soundfont_path
 
-sound_font = os.getenv('MINGUS_SOUNDFONT')
-assert sound_font, 'Please put the path to a soundfont file in the environment variable: MINGUS_SOUNDFONT'
+soundfont_path = get_soundfont_path()
 
 synth = pyfluidsynth.Synth()
-sfid = synth.sfload(sound_font)
+sfid = synth.sfload(soundfont_path)
 synth.start()
 
 # Percussion --------------------------------------------
@@ -39,6 +37,6 @@ for _ in range(3):
     sleep(0.25)
 
 # Do a hand clap using the midi percussion dict to make it more readable.
-synth.noteon(percussion_channel, mp['Hand Clap'], velocity)
+synth.noteon(percussion_channel, mp.percussion_instruments['Hand Clap'], velocity)
 sleep(0.5)
 print('done')
