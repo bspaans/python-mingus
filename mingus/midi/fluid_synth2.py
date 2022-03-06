@@ -115,8 +115,14 @@ class FluidSynthPlayer:
     def play_note(self, note, channel, velocity):
         self.play_event(int(note) + 12, int(channel), int(velocity))
 
+    def play_percussion_note(self, note, channel, velocity):
+        self.play_event(int(note), int(channel), int(velocity))
+
     def stop_note(self, note, channel):
         self.stop_event(int(note) + 12, int(channel))
+
+    def stop_percussion_note(self, note, channel):
+        self.stop_event(int(note), int(channel))
 
     def play_tracks(self, tracks, channels, bpm=120.0):
         sequencer = Sequencer()

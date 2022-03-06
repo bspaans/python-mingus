@@ -3,6 +3,8 @@ import logging
 
 import sortedcontainers
 
+from mingus.containers import PercussionNote
+
 
 logging.basicConfig(level=logging.INFO)
 
@@ -67,10 +69,18 @@ class Sequencer:
             the_time = start_time
             for event in events:
                 if event['func'] == 'start_note':
-                    synth.play_note(event['note'], event['channel'], event['velocity'])
+                    if isinstance(event['note'], PercussionNote):
+                        synth.play_percussion_note(event['note'], event['channel'], event['velocity'])
+                    else:
+                        synth.play_note(event['note'], event['channel'], event['velocity'])
+
                     logging.info('Start: {} Note: {note}  Velocity: {velocity}  Channel: {channel}'.
                                  format(the_time, **event))
                 elif event['func'] == 'end_note':
-                    synth.stop_note(event['note'], event['channel'])
+                    if isinstance(event['note'], PercussionNote):
+                        synth.stop_percussion_note(event['note'], event['channel'])
+                    else:
+                        synth.stop_note(event['note'], event['channel'])
+
                     logging.info('Stop: {} Note: {note}  Channel: {channel}'.format(the_time, **event))
             logging.info('--------------\n')
