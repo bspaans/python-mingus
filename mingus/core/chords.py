@@ -756,7 +756,7 @@ def VII(key):
 
 
 def vii7(key):
-    return subtonic(key)
+    return subtonic7(key)
 
 
 def VII7(key):
