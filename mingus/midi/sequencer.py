@@ -344,7 +344,7 @@ class Sequencer(object):
             instr = tracks[x].instrument
             if instr is not None:
                 self.set_instrument(channels[x], instr)
-            current_bar = 0
+        current_bar = 0
         max_bar = len(tracks[0])
 
         # Play the bars
