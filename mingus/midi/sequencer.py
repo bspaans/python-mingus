@@ -151,10 +151,11 @@ class Sequencer(object):
         you can set the Note.velocity and Note.channel attributes, which
         will take presedence over the function arguments.
         """
-        if "velocity" in note.__dict__:
-            velocity = note.velocity
-        if "channel" in note.__dict__:
-            channel = note.channel
+        if hasattr(note, '__dict__'):
+            if "velocity" in note.__dict__:
+                velocity = note.velocity
+            if "channel" in note.__dict__:
+                channel = note.channel
         self.play_event(int(note) + 12, int(channel), int(velocity))
         self.notify_listeners(
             self.MSG_PLAY_INT,
@@ -176,7 +177,7 @@ class Sequencer(object):
         If Note.channel is set, it will take presedence over the channel
         argument given here.
         """
-        if hasattr(note, "channel"):
+        if hasattr(note, '__dict__') and "channel" in note.__dict__:
             channel = note.channel
         self.stop_event(int(note) + 12, int(channel))
         self.notify_listeners(self.MSG_STOP_INT, {"channel": int(channel), "note": int(note) + 12})
