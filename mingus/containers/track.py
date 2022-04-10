@@ -40,6 +40,7 @@ class Track(object):
     """
     def __init__(self, instrument, bpm=120.0):
         self.bars = []
+        self.snippets = []
         self.bpm = bpm
         self.instrument = instrument
 
@@ -49,10 +50,17 @@ class Track(object):
             self.bars.append(bar)
         return self
 
+    def add_midi_snippet(self, snippet):
+        self.snippets.append(snippet)
+
     def repeat(self, n_repetitions):
-        """The terminology here might be confusing. If a section is played one 1, it has 0 repetitions."""
+        """The terminology here might be confusing. If a section is played only once, it has 0 repetitions."""
         if n_repetitions > 0:
             self.bars = self.bars * (n_repetitions + 1)
+            for snippet in self.snippets:
+                assert snippet.length_in_beats is not None, \
+                    "To repeat a snippet, the snippet must have a length_in_beats"
+                snippet.n_repetitions = n_repetitions
 
     def add_notes(self, note, duration=None):
         """Add a Note, note as string or NoteContainer to the last Bar.

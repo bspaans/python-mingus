@@ -73,6 +73,10 @@ class FluidSynthPlayer:
     def stop_event(self, note, channel):
         self.fs.noteoff(channel, note)
 
+    def load_sound_font(self):
+        self.sfid = self.fs.sfload(self.sound_font_path)
+        assert self.sfid != -1, f'Could not load soundfont: {self.sound_font_path}'
+
     def set_instrument(self, channel, instr, bank):
         # Delay loading sound font because it is slow
         if self.sfid is None:

@@ -66,7 +66,8 @@ class Note(object):
         if isinstance(name, six.string_types):
             self.set_note(name, octave, dynamics)
         elif hasattr(name, "name"):
-            # Hardcopy Note object
+            # Hard copy Note object
+            # noinspection PyUnresolvedReferences
             self.set_note(name.name, name.octave, name.dynamics)
         elif isinstance(name, int):
             self.from_int(name)
@@ -311,7 +312,7 @@ class Note(object):
         return res
 
     def __lt__(self, other):
-        """Enable the comparing operators on Notes (>, <, \ ==, !=, >= and <=).
+        """Enable the comparing operators on Notes (>, <, ==, !=, >= and <=).
 
         So we can sort() Intervals, etc.
 
@@ -352,13 +353,18 @@ class PercussionNote(Note):
     """Percusion notes do not have a name of the staff (e.g. C or F#)"""
 
     # noinspection PyMissingConstructor
-    def __init__(self, name, velocity=64, channel=None, duration=None):
+    def __init__(self, name, number=None, velocity=64, channel=None, duration=None):
         """
         Set duration in milliseconds if you want to stop the instrument before it stops itself.
         For example, a player might manual stop a triangle after 1 second.
         """
         self.name = name
-        self.key_number = mp.percussion_instruments[name]
+        if number is None:
+            self.key_number = mp.percussion_instruments[name]
+        else:
+            self.key_number = number
+            self.name = str(number)
+
         assert 0 <= velocity < 128, 'Velocity must be between 0 and 127'
         self.velocity = velocity
         self.channel = channel

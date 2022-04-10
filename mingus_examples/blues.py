@@ -1,10 +1,14 @@
 import copy
+from pathlib import Path
 
 from mingus.containers import Bar, Track, PercussionNote, Note
 from mingus.containers import MidiInstrument
+from mingus.containers.midi_snippet import MidiPercussionSnippet
 from mingus.midi.fluid_synth2 import FluidSynthPlayer
 from mingus.containers.midi_percussion import MidiPercussion
 from mingus.midi.get_soundfont_path import get_soundfont_path
+from mingus.midi.sequencer2 import Sequencer
+
 
 soundfont_path = get_soundfont_path()
 
@@ -44,8 +48,7 @@ def bass(n_times):
     bass_track.add_bar(i_bar)
     bass_track.add_bar(turn_around)
 
-    if n_times > 1:
-        bass_track.repeat(n_times - 1)
+    bass_track.repeat(n_times - 1)
 
     return bass_track
 
@@ -53,8 +56,8 @@ def bass(n_times):
 def percussion(n_times):
     track = Track(MidiPercussion())
     drum_bar = Bar()
-    note = PercussionNote('Ride Cymbal 1', velocity=127)
-    note2 = PercussionNote('Ride Cymbal 1', velocity=62)
+    note = PercussionNote('Ride Cymbal 1', velocity=62)
+    note2 = PercussionNote('Ride Cymbal 1', velocity=32)
     drum_bar.place_notes([note2], 4)
     drum_bar.place_notes([note], 4)
     drum_bar.place_notes([note2], 4)
@@ -63,10 +66,31 @@ def percussion(n_times):
     for _ in range(12):
         track.add_bar(drum_bar)
 
-    if n_times > 1:
-        track.repeat(n_times - 1)
+    # path = Path.home() / 'drum 1.mid'
+    # snippet = MidiPercussionSnippet(path, start=0.0, length_in_seconds=4.0, n_replications=6)
+    # track.add_midi_snippet(snippet)
+
+    track.repeat(n_times - 1)
 
     return track
 
 
-fluidsynth.play_tracks([bass(1), percussion(1)], [1, 2])
+def play(voices, n_times):
+    fluidsynth.play_tracks([voice(n_times) for voice in voices], range(1, len(voices) + 1))
+
+
+def save(voices, bpm=120):
+    n_times = 1
+    channels = range(1, len(voices) + 1)
+    sequencer = Sequencer()
+    sequencer.save_tracks('my path', [voice(n_times) for voice in voices], channels, bpm=bpm)
+
+
+if __name__ == '__main__':
+    # noinspection PyListCreation
+    voices = []
+    voices.append(percussion)
+    voices.append(bass)
+    # play(voices, n_times=1)
+    save(voices)
+
