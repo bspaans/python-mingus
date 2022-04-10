@@ -30,7 +30,7 @@ from __future__ import absolute_import
 
 from mingus.containers.instrument import MidiInstrument
 from six.moves import range
-
+import six
 
 class Sequencer(object):
 
@@ -110,10 +110,22 @@ class Sequencer(object):
 
     def set_instrument(self, channel, instr, bank=0):
         """Set the channel to the instrument _instr_."""
-        self.instr_event(channel, instr, bank)
+        if isinstance(instr, MidiInstrument):
+            try:
+                instr_i = instr.names.index(instr.name)
+            except ValueError:
+                instr_i = 1
+        elif isinstance(instr, six.string_types):
+            try:
+                instr_i = MidiInstrument.names.index(instr)
+            except ValueError:
+                instr_i = 1
+        else:
+            instr_i = instr
+        self.instr_event(channel, instr_i, bank)
         self.notify_listeners(
             self.MSG_INSTR,
-            {"channel": int(channel), "instr": int(instr), "bank": int(bank)},
+            {"channel": int(channel), "instr": int(instr_i), "bank": int(bank)},
         )
 
     def control_change(self, channel, control, value):
@@ -139,10 +151,11 @@ class Sequencer(object):
         you can set the Note.velocity and Note.channel attributes, which
         will take presedence over the function arguments.
         """
-        if hasattr(note, "velocity"):
-            velocity = note.velocity
-        if hasattr(note, "channel"):
-            channel = note.channel
+        if hasattr(note, '__dict__'):
+            if "velocity" in note.__dict__:
+                velocity = note.velocity
+            if "channel" in note.__dict__:
+                channel = note.channel
         self.play_event(int(note) + 12, int(channel), int(velocity))
         self.notify_listeners(
             self.MSG_PLAY_INT,
@@ -164,7 +177,7 @@ class Sequencer(object):
         If Note.channel is set, it will take presedence over the channel
         argument given here.
         """
-        if hasattr(note, "channel"):
+        if hasattr(note, '__dict__') and "channel" in note.__dict__:
             channel = note.channel
         self.stop_event(int(note) + 12, int(channel))
         self.notify_listeners(self.MSG_STOP_INT, {"channel": int(channel), "note": int(note) + 12})
@@ -306,6 +319,9 @@ class Sequencer(object):
     def play_Track(self, track, channel=1, bpm=120):
         """Play a Track object."""
         self.notify_listeners(self.MSG_PLAY_TRACK, {"track": track, "channel": channel, "bpm": bpm})
+        instr = track.instrument
+        if instr is not None:
+            self.set_instrument(channel, instr)
         for bar in track:
             res = self.play_Bar(bar, channel, bpm)
             if res != {}:
@@ -327,14 +343,8 @@ class Sequencer(object):
         # Set the right instruments
         for x in range(len(tracks)):
             instr = tracks[x].instrument
-            if isinstance(instr, MidiInstrument):
-                try:
-                    i = instr.names.index(instr.name)
-                except:
-                    i = 1
-                self.set_instrument(channels[x], i)
-            else:
-                self.set_instrument(channels[x], 1)
+            if instr is not None:
+                self.set_instrument(channels[x], instr)
         current_bar = 0
         max_bar = len(tracks[0])
 
