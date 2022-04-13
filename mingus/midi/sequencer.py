@@ -139,9 +139,9 @@ class Sequencer(object):
         you can set the Note.velocity and Note.channel attributes, which
         will take presedence over the function arguments.
         """
-        if hasattr(note, "velocity"):
+        if hasattr(note, "velocity") and velocity == None:
             velocity = note.velocity
-        if hasattr(note, "channel"):
+        if hasattr(note, "channel") and channel == None:
             channel = note.channel
         self.play_event(int(note) + 12, int(channel), int(velocity))
         self.notify_listeners(
