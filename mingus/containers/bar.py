@@ -27,7 +27,7 @@ from mingus.core import meter as _meter
 from mingus.core import progressions, keys
 from typing import Optional
 
-from get_note_length import get_note_length, get_beat_start, get_bar_length
+from mingus.containers.get_note_length import get_note_length, get_beat_start, get_bar_length
 
 
 class Bar(object):
