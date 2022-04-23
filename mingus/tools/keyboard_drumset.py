@@ -73,6 +73,23 @@ class KeyboardDrumSet:
 
     Define Tracks
 
+    DRUM SET FORMAT
+    Dict saved to a Json file in the format:
+
+        drum_set = {
+            'instruments': {
+                'z': 'Acoustic Bass Drum',
+                'm': 'Acoustic Snare'
+            },
+            'click_track': {
+                'bpm': 120,
+                'beats_per_bar': 4,
+                'enabled': True
+            }
+        }
+
+
+
     """
     def __init__(self, setup_synth=True, drum_set=None):
         self.recording = {}
@@ -81,7 +98,7 @@ class KeyboardDrumSet:
         self.play_click_track = False
 
         if drum_set is None:
-            drum_set = {
+            self.drum_set = {
                 'instruments': {
                     'z': 'Acoustic Bass Drum',
                     'm': 'Acoustic Snare'
@@ -92,7 +109,10 @@ class KeyboardDrumSet:
                     'enabled': True
                 }
             }
-        self.instruments = drum_set['instruments']
+        else:
+            self.drum_set = drum_set
+
+        self.instruments = self.drum_set['instruments']
 
         if setup_synth:
             soundfont_path = get_soundfont_path()
@@ -124,25 +144,24 @@ class KeyboardDrumSet:
         self.bound_keys = set()
         self.render_instrument_section()
 
-
         # Click track ---------------------------------------------------------------------------------------------
         click_track_frame = ttk.LabelFrame(self.window, text='Click Track', padding=10)
         click_track_frame.pack(fill=tk.BOTH, expand=tk.YES)
         row = 0
         ttk.Label(click_track_frame, text='BPM').grid(row=row, column=0, sticky=tk.W, **self.padding)
-        self.bpm = tk.IntVar(value=drum_set['click_track']['bpm'])
+        self.bpm = tk.IntVar(value=self.drum_set['click_track']['bpm'])
         spin_box = tk.Spinbox(click_track_frame, from_=50, to=200, increment=1, textvariable=self.bpm)
         spin_box.grid(row=row, column=1, sticky=tk.W, **self.padding)
 
         row += 1
         ttk.Label(click_track_frame, text='Beats/Bar').grid(row=row, column=0, sticky=tk.W, **self.padding)
-        self.beats_per_bar = tk.IntVar(value=drum_set['click_track']['beats_per_bar'])
+        self.beats_per_bar = tk.IntVar(value=self.drum_set['click_track']['beats_per_bar'])
         spin_box = tk.Spinbox(click_track_frame, from_=2, to=16, increment=1, textvariable=self.beats_per_bar)
         spin_box.grid(row=row, column=1, sticky=tk.W, **self.padding)
 
         row += 1
         ttk.Label(click_track_frame, text='Enable Clicks').grid(row=row, column=0, sticky=tk.W, **self.padding)
-        self.play_click_track = tk.BooleanVar(value=drum_set['click_track']['enabled'])
+        self.play_click_track = tk.BooleanVar(value=self.drum_set['click_track']['enabled'])
         tk.Checkbutton(click_track_frame, variable=self.play_click_track).\
             grid(row=row, column=1, sticky=tk.W, **self.padding)
 
@@ -176,7 +195,10 @@ class KeyboardDrumSet:
         for key in self.bound_keys:
             self.window.bind(key, self.do_nothing)
 
+        self.window.update()
+
         # Draw all
+        self.instruments = self.drum_set['instruments']
         row = 0
         for row, (char, instrument) in enumerate(self.instruments.items()):
             instrument_label = ttk.Label(self.instrument_frame, text=f'{char} -> {instrument}')
@@ -203,6 +225,7 @@ class KeyboardDrumSet:
             button = tk.Button(self.instrument_frame, text=button_text, command=command)
             button.grid(row=row, column=column, sticky=tk.W, **self.padding)
             self.instrument_widgets.append(button)
+        self.window.update()
 
     def add_key_and_instrument(self, ev):
         if self.new_key.get() and self.new_instrument.get():
@@ -241,7 +264,7 @@ class KeyboardDrumSet:
     def load_drum_set(self):
         file = askopenfile()
         if file:
-            self.instruments = json.load(file)
+            self.drum_set = json.load(file)
             self.render_instrument_section()
 
     def save_drum_set(self):
@@ -249,9 +272,9 @@ class KeyboardDrumSet:
             ('All Files', '*.*'),
             ('Drum Sets', '*.json')
         ]
-        file = asksaveasfile(filetypes=files, defaultextension=files)
+        file = asksaveasfile(filetypes=files, defaultextension=".json")
         if file:
-            json.dump(self.instruments, file)
+            json.dump(self.drum_set, file)
 
     def play_note(self, event):
         instrument_name = self.instruments[event.char]

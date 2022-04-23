@@ -18,6 +18,8 @@ from __future__ import absolute_import
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import json
+
 from mingus.core import notes, intervals
 import mingus.containers.midi_percussion as mp
 from mingus.containers.mt_exceptions import NoteFormatError
@@ -54,6 +56,9 @@ class Note(object):
         :param int velocity: Integer (0-127)
         :param int channel: Integer (0-15)
         """
+        # Save params for json encode and decode
+        self.channel = channel
+
         if dynamics is None:
             dynamics = {}
 
@@ -348,6 +353,16 @@ class Note(object):
         """Return a helpful representation for printing Note classes."""
         return "'%s-%d'" % (self.name, self.octave)
 
+    def to_json(self):
+        d = {
+            'class_name': self.__class__.__name__,
+            'name': self.name,
+            'octave': self.octave,
+            'velocity': self.velocity,
+            'channel': self.channel
+        }
+        return d
+
 
 class PercussionNote(Note):
     """Percusion notes do not have a name of the staff (e.g. C or F#)"""
@@ -375,3 +390,14 @@ class PercussionNote(Note):
 
     def __repr__(self):
         return self.name
+
+    def to_json(self):
+        d = {
+            'class_name': self.__class__.__name__,
+            'name': self.name,
+            'number': self.key_number,
+            'velocity': self.velocity,
+            'channel': self.channel,
+            'duration': self.duration
+        }
+        return d

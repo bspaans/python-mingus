@@ -37,9 +37,22 @@ class Instrument:
         self.name = name
         if note_range is None:
             self.note_range = (Note("C", 0), Note("C", 8))
+        else:
+            self.note_range = note_range
         self.clef = clef
         self.tuning = tuning
         self.bank = bank
+
+    def to_json(self):
+        d = {
+            'class_name': self.__class__.__name__,
+            'name': self.name,
+            'note_range': self.note_range,
+            'clef': self.clef,
+            'tuning': self.tuning,
+            'bank': self.bank
+        }
+        return d
 
     def set_range(self, note_range):
         """Set the note_rNGE of the instrument.

@@ -8,3 +8,4 @@ dist/
 /venv
 
 /.idea
+!/mingus_examples/saved_blues.json

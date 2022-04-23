@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
+import json
 import logging
 
 import sortedcontainers
 
 from mingus.containers import PercussionNote
 from mingus.containers.midi_snippet import MidiPercussionSnippet
+import mingus.tools.mingus_json as mingus_json
 
 
 logging.basicConfig(level=logging.INFO)
@@ -94,33 +96,17 @@ class Sequencer:
         self.play_Tracks(tracks, channels, bpm=bpm)
         score = sortedcontainers.SortedDict(self.score)
 
-        print('x')
+        to_save = {
+            'instruments': self.instruments,
+            'score': dict(score)
+        }
 
-        # for channel, instrument in self.instruments:
-        #     synth.set_instrument(channel, instrument.number, instrument.bank)
-        #     logging.info(f'Instrument: {instrument.number}  Channel: {channel}')
-        # logging.info('--------------\n')
-        #
-        # the_time = 0
-        # for start_time, events in score.items():
-        #     dt = start_time - the_time
-        #     if dt > 0:
-        #         synth.sleep(dt / 1000.0)
-        #     the_time = start_time
-        #     for event in events:
-        #         if event['func'] == 'start_note':
-        #             if isinstance(event['note'], PercussionNote):
-        #                 synth.play_percussion_note(event['note'], event['channel'], event['velocity'])
-        #             else:
-        #                 synth.play_note(event['note'], event['channel'], event['velocity'])
-        #
-        #             logging.info('Start: {} Note: {note}  Velocity: {velocity}  Channel: {channel}'.
-        #                          format(the_time, **event))
-        #         elif event['func'] == 'end_note':
-        #             if isinstance(event['note'], PercussionNote):
-        #                 synth.stop_percussion_note(event['note'], event['channel'])
-        #             else:
-        #                 synth.stop_note(event['note'], event['channel'])
-        #
-        #             logging.info('Stop: {} Note: {note}  Channel: {channel}'.format(the_time, **event))
-        #     logging.info('--------------\n')
+        with open(path, 'w') as fp:
+            mingus_json.dump(to_save, fp, indent=4)
+
+    def load_tracks(self, path):
+        with open(path, 'r') as fp:
+            data = mingus_json.load(fp)
+
+        self.instruments = data['instruments']
+        self.score = {int(k): v for k, v in data['score'].items()}

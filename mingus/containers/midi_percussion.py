@@ -66,3 +66,10 @@ class MidiPercussion:
         self.bank = bank
         self.number = 1
         self.name = 'Percussion'
+
+    def to_json(self):
+        d = {
+            'class_name': self.__class__.__name__,
+            'bank': self.bank,
+        }
+        return d

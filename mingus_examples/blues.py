@@ -79,11 +79,18 @@ def play(voices, n_times):
     fluidsynth.play_tracks([voice(n_times) for voice in voices], range(1, len(voices) + 1))
 
 
-def save(voices, bpm=120):
+def save(path, voices, bpm=120):
     n_times = 1
     channels = range(1, len(voices) + 1)
     sequencer = Sequencer()
-    sequencer.save_tracks('my path', [voice(n_times) for voice in voices], channels, bpm=bpm)
+    sequencer.save_tracks('saved_blues.json', [voice(n_times) for voice in voices], channels, bpm=bpm)
+
+
+def load(path):
+    sequencer = Sequencer()
+    sequencer.load_tracks(path)
+    sequencer.play_score(fluidsynth)
+    print('x')
 
 
 if __name__ == '__main__':
@@ -92,5 +99,6 @@ if __name__ == '__main__':
     voices.append(percussion)
     voices.append(bass)
     # play(voices, n_times=1)
-    save(voices)
-
+    path = 'saved_blues.json'
+    # save(path, voices)
+    load(path)
