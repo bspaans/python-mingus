@@ -22,6 +22,12 @@ class MidiPercussionSnippet:
         assert not (n_replications > 1 and length_in_seconds is None), \
             f'If there are replications, then length_in_seconds cannot be None'
 
+    def to_json(self):
+        params = ("midi_file_path", "start", "length_in_seconds", "n_replications")
+        d = {param: getattr(self, param) for param in params}
+        d['class_name'] = self.__class__.__name__
+        return d
+
     def put_into_score(self, channel: int, score: dict, bpm: Optional[float] = None):
         """
         See: https://majicdesigns.github.io/MD_MIDIFile/page_timing.html

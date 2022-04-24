@@ -21,10 +21,11 @@ from __future__ import absolute_import
 from mingus.containers.note import Note, PercussionNote
 from mingus.core import intervals, chords, progressions
 from mingus.containers.mt_exceptions import UnexpectedObjectError
+from tools.mingus_json import JsonMixin
 import six
 
 
-class NoteContainer(object):
+class NoteContainer(JsonMixin):
 
     """A container for notes.
 
@@ -34,14 +35,16 @@ class NoteContainer(object):
     It can be used to store single and multiple notes and is required for
     working with Bars.
     """
-
-    notes = []
-
     def __init__(self, notes=None):
-        if notes is None:
-            notes = []
         self.empty()
-        self.add_notes(notes)
+
+        if notes:
+            self.add_notes(notes)
+
+    def to_json(self):
+        note_container_dict = super().to_json()
+        note_container_dict['notes'] = self.notes
+        return note_container_dict
 
     def empty(self):
         """Empty the container."""
@@ -65,11 +68,11 @@ class NoteContainer(object):
                     note = Note(note, self.notes[-1].octave + 1, dynamics)
                 else:
                     note = Note(note, self.notes[-1].octave, dynamics)
-
-        if not (hasattr(note, "name") or isinstance(note, )):
+        elif not isinstance(note, Note):
             raise UnexpectedObjectError(
                 f"Object {note} was not expected. " "Expecting a mingus.containers.Note object."
             )
+
         if note not in self.notes:
             self.notes.append(note)
             self.notes.sort()

@@ -8,11 +8,10 @@ from mingus.midi.fluid_synth2 import FluidSynthPlayer
 from mingus.containers.midi_percussion import MidiPercussion
 from mingus.midi.get_soundfont_path import get_soundfont_path
 from mingus.midi.sequencer2 import Sequencer
+import mingus.tools.mingus_json as  mingus_json
 
 
 soundfont_path = get_soundfont_path()
-
-fluidsynth = FluidSynthPlayer(soundfont_path, gain=1.0)
 
 
 def bass(n_times):
@@ -54,7 +53,7 @@ def bass(n_times):
 
 
 def percussion(n_times):
-    track = Track(MidiPercussion())
+    track = Track(MidiPercussion(), name='Percussion')
     drum_bar = Bar()
     note = PercussionNote('Ride Cymbal 1', velocity=62)
     note2 = PercussionNote('Ride Cymbal 1', velocity=32)
@@ -76,6 +75,7 @@ def percussion(n_times):
 
 
 def play(voices, n_times):
+    fluidsynth = FluidSynthPlayer(soundfont_path, gain=1.0)
     fluidsynth.play_tracks([voice(n_times) for voice in voices], range(1, len(voices) + 1))
 
 
@@ -89,16 +89,31 @@ def save(path, voices, bpm=120):
 def load(path):
     sequencer = Sequencer()
     sequencer.load_tracks(path)
+
+    fluidsynth = FluidSynthPlayer(soundfont_path, gain=1.0)
     sequencer.play_score(fluidsynth)
     print('x')
 
 
 if __name__ == '__main__':
     # noinspection PyListCreation
-    voices = []
-    voices.append(percussion)
-    voices.append(bass)
+    # voices = []
+    # voices.append(percussion)  # percusion is a track
+    # voices.append(bass)        # a track
     # play(voices, n_times=1)
-    path = 'saved_blues.json'
+    # path = 'saved_blues.json'
     # save(path, voices)
-    load(path)
+    # load(path)
+
+    # Track manipulations
+    track = percussion(1)
+    track_path = Path.home() / 'python_mingus' / 'tracks' / 'test_percussion.json'
+    with open(track_path, 'w') as fp:
+        mingus_json.dump(track, fp)
+
+    with open(track_path, 'r') as fp:
+        new_track = mingus_json.load(fp)
+
+    fluidsynth = FluidSynthPlayer(soundfont_path, gain=1.0)
+    fluidsynth.play_tracks([track], [2])
+    print('x')

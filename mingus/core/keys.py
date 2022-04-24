@@ -28,6 +28,7 @@ from six.moves import range
 
 from mingus.core import notes
 from mingus.core.mt_exceptions import NoteFormatError, RangeError
+from tools.mingus_json import JsonMixin
 
 keys = [
     ("Cb", "ab"),  #  7 b
@@ -166,7 +167,7 @@ def relative_minor(key):
     raise NoteFormatError("'%s' is not a major key" % key)
 
 
-class Key(object):
+class Key(JsonMixin):
 
     """A key object."""
 
@@ -189,6 +190,11 @@ class Key(object):
         self.name = "{0} {1}{2}".format(self.key[0].upper(), symbol, self.mode)
 
         self.signature = get_key_signature(self.key)
+
+    def to_json(self):
+        d = super().to_json()
+        d['key'] = self.key
+        return d
 
     def __eq__(self, other):
         if self.key == other.key:

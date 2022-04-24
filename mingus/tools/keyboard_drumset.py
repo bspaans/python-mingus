@@ -1,8 +1,9 @@
-from collections import defaultdict
 import json
 import time
 from threading import Thread
 from functools import partial
+from pathlib import Path
+from typing import Optional
 
 import tkinter as tk
 from tkinter import ttk
@@ -13,13 +14,43 @@ from midi.fluid_synth2 import FluidSynthPlayer
 from mingus.midi.get_soundfont_path import get_soundfont_path
 from mingus.containers import PercussionNote
 from mingus.midi.sequencer2 import Sequencer
+import mingus.tools.mingus_json as mingus_json
 
 
 # A global variable for communicating with the click track thread
 click_track_done = False
 
-
+# noinspection SpellCheckingInspection
 KEYS = ' zxcvbnm,./'
+
+
+class TrackGUI:
+    def __init__(self, widget=None, track=None, path: Optional[str] = None):
+        self.widget = widget
+        self.track = track
+        self.path = path
+
+        if path:
+            full_path = Path(path).expanduser()
+            with open(full_path, 'r') as fp:
+                self.track = mingus_json.load(fp)
+
+    def destroy_widget(self):
+        if self.widget:
+            self.destroy_widget()
+        self.widget = None
+
+    def load(self):
+        fp = askopenfile()
+        if fp:
+            try:
+                self.path = fp.name
+                self.track = mingus_json.load(fp)
+            except Exception as e:
+                print(f"An error occurred while writing to the file: {e}")
+            finally:
+                # Make sure to close the file after using it
+                fp.close()
 
 
 class ClickTrack(Thread):
@@ -87,9 +118,6 @@ class KeyboardDrumSet:
                 'enabled': True
             }
         }
-
-
-
     """
     def __init__(self, setup_synth=True, drum_set=None):
         self.recording = {}
@@ -107,7 +135,8 @@ class KeyboardDrumSet:
                     'bpm': 120,
                     'beats_per_bar': 4,
                     'enabled': True
-                }
+                },
+                'tracks': ['~/python_mingus/tracks/test_percussion.json']
             }
         else:
             self.drum_set = drum_set
@@ -164,7 +193,13 @@ class KeyboardDrumSet:
         self.play_click_track = tk.BooleanVar(value=self.drum_set['click_track']['enabled'])
         tk.Checkbutton(click_track_frame, variable=self.play_click_track).\
             grid(row=row, column=1, sticky=tk.W, **self.padding)
-
+        
+        # Background tracks --------------------------------------------------------------------------------------
+        self.tracks_frame = ttk.LabelFrame(self.window, text='Tracks', padding=5)
+        self.tracks_frame.pack(fill=tk.BOTH, expand=tk.YES)
+        self.tracks = [TrackGUI(path=path) for path in self.drum_set.get('tracks', [])]
+        self.render_tracks_section()
+        
         # Recorded Controls --------------------------------------------------------------------------------------
         recorder_frame = ttk.LabelFrame(self.window, text='Recorder', padding=5)
         recorder_frame.pack(fill=tk.BOTH, expand=tk.YES)
@@ -182,6 +217,7 @@ class KeyboardDrumSet:
 
         self.window.mainloop()
 
+    # Instruments -------------------------------------------------------------------------------------------------
     def delete_instrument(self, char):
         del self.instruments[char]
         self.render_instrument_section()
@@ -227,6 +263,7 @@ class KeyboardDrumSet:
             self.instrument_widgets.append(button)
         self.window.update()
 
+    # noinspection PyUnusedLocal
     def add_key_and_instrument(self, ev):
         if self.new_key.get() and self.new_instrument.get():
             self.save_new_instrument_button['state'] = tk.NORMAL
@@ -275,7 +312,60 @@ class KeyboardDrumSet:
         file = asksaveasfile(filetypes=files, defaultextension=".json")
         if file:
             json.dump(self.drum_set, file)
+            
+    # Tracks -------------------------------------------------------------------------------------------------------
+    def render_tracks_section(self):
+        # Delete all
+        for track in reversed(self.tracks):
+            track.destroy_widget()
+        self.window.update()
 
+        # Draw all
+        row = 0
+        for_sequencer = {'tracks': [], 'channels': [], 'bpm': self.bpm.get()}
+        for i, track in enumerate(self.tracks, start=10):
+            messages = tk.Text(self.tracks_frame, height=1)
+            messages.grid(row=row, column=0, sticky=tk.W, **self.padding)
+            messages.insert(tk.END, track.track.name)
+            for_sequencer['tracks'].append(track.track)
+            for_sequencer['channels'].append(i)
+
+        self.sequencer = Sequencer()
+        self.sequencer.play_Tracks(**for_sequencer)
+
+        row += 1
+        column = 0
+        button = tk.Button(self.tracks_frame, text='Add Track', command=self.add_track_popup)
+        button.grid(row=row, column=column, sticky=tk.W, **self.padding)
+        self.window.update()
+
+    def add_track_popup(self):
+        padding = {'padx': 2, 'pady': 2}
+        self.top = tk.Toplevel(self.window)
+
+        row = 0
+        ttk.Label(self.top, text='File:').grid(row=row, column=0, sticky=tk.W, **padding)
+        tk.Button(self.top, text="Load", command=self.load_track).\
+            grid(row=row, column=1, sticky=tk.W, **padding)
+
+        row += 1
+        self.add_track_button = tk.Button(self.top, text="Add", command=self.add_track, state=tk.DISABLED)
+        self.add_track_button.grid(row=row, column=0, sticky=tk.W, **padding)
+
+        tk.Button(self.top, text="Cancel", command=lambda: self.top.destroy()).grid(row=row, column=1,
+                                                                                    sticky=tk.W, **padding)
+
+    def load_track(self):
+        self.new_track = TrackGUI()
+        self.new_track.load()
+        self.add_track_button['state'] = tk.NORMAL
+
+    def add_track(self):
+        self.tracks.append(self.new_track)
+        self.top.destroy()
+        self.render_tracks_section()
+
+    # Play ---------------------------------------------------------------------------------------------------------
     def play_note(self, event):
         instrument_name = self.instruments[event.char]
         instrument_number = mp.percussion_instruments[instrument_name]
@@ -333,8 +423,13 @@ class KeyboardDrumSet:
             self.is_recording = True
             self.start_stop_recording_button['text'] = 'Stop'
 
-            if self.play_click_track.get():
-                self.start_click_track()
+            # if self.play_click_track.get():
+            #     self.start_click_track()
+
+            self.sequencer.play_score(self.synth)
+            player = Play(self.synth, self.sequencer.score)
+            player.start()
+
             self.start_recording_time = time.time()
 
     def rewind(self):
@@ -370,7 +465,7 @@ class KeyboardDrumSet:
                 'beats_per_bar': self.beats_per_bar.get(),
                 'events': self.recording
             }
-            json.dump(self.recording, file)
+            mingus_json.dump(output, file)
 
 
 if __name__ == '__main__':

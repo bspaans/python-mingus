@@ -40,14 +40,29 @@ class Bar(object):
 
     Bars can be stored together with Instruments in Tracks.
     """
-    def __init__(self, key="C", meter=(4, 4), bpm=120):
+    def __init__(self, key="C", meter=(4, 4), bpm=120, bars=None):
         # warning should check types
         if isinstance(key, six.string_types):
             key = keys.Key(key)
         self.key = key
         self.bpm = bpm
         self.set_meter(meter)
-        self.empty()
+
+        if bars:
+            self.bar = bars
+            self.current_beat = 0.0
+        else:
+            self.empty()
+
+    def to_json(self):
+        d = {
+            'class_name': self.__class__.__name__,
+            'key': self.key,
+            'meter': self.meter,
+            'bpm': self.bpm,
+            'bars': self.bar
+        }
+        return d
 
     def empty(self):
         """Empty the Bar, remove all the NoteContainers."""

@@ -1,0 +1,1842 @@
+{
+    "instruments": [
+        [
+            1,
+            {
+                "class_name": "MidiPercussion",
+                "bank": 128
+            }
+        ],
+        [
+            2,
+            {
+                "class_name": "MidiInstrument",
+                "name": "Acoustic Bass",
+                "note_range": [
+                    {
+                        "class_name": "Note",
+                        "name": "C",
+                        "octave": 0,
+                        "velocity": 64,
+                        "channel": null
+                    },
+                    {
+                        "class_name": "Note",
+                        "name": "C",
+                        "octave": 8,
+                        "velocity": 64,
+                        "channel": null
+                    }
+                ],
+                "clef": "bass and treble",
+                "tuning": null,
+                "bank": 0
+            }
+        ]
+    ],
+    "score": {
+        "0": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 32,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 32
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 3,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "500": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 62,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 62
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 3,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "1000": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 32,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 32
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "Eb",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "1500": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 62,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 62
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "Eb",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "E",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "2000": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 32,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 32
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "E",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 3,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "2500": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 62,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 62
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 3,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "3000": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 32,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 32
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "Eb",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "3500": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 62,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 62
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "Eb",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "E",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "4000": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 32,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 32
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "E",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 3,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "4500": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 62,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 62
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 3,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "5000": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 32,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 32
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "Eb",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "5500": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 62,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 62
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "Eb",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "E",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "6000": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 32,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 32
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "E",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 3,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "6500": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 62,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 62
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 3,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "7000": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 32,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 32
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "Eb",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "7500": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 62,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 62
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "Eb",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "E",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "8000": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 32,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 32
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "E",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "F",
+                    "octave": 3,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "8500": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 62,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 62
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "F",
+                    "octave": 3,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "F",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "9000": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 32,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 32
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "F",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "Ab",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "9500": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 62,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 62
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "Ab",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "A",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "10000": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 32,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 32
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "A",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "F",
+                    "octave": 3,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "10500": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 62,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 62
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "F",
+                    "octave": 3,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "F",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "11000": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 32,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 32
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "F",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "Ab",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "11500": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 62,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 62
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "Ab",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "A",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "12000": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 32,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 32
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "A",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 3,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "12500": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 62,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 62
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 3,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "13000": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 32,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 32
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "Eb",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "13500": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 62,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 62
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "Eb",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "E",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "14000": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 32,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 32
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "E",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 3,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "14500": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 62,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 62
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 3,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "15000": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 32,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 32
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "Eb",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "15500": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 62,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 62
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "Eb",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "E",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "16000": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 32,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 32
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "E",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "G",
+                    "octave": 3,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "16500": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 62,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 62
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "G",
+                    "octave": 3,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "G",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "17000": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 32,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 32
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "G",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "Bb",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "17500": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 62,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 62
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "Bb",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "B",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "18000": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 32,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 32
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "B",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "F",
+                    "octave": 3,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "18500": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 62,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 62
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "F",
+                    "octave": 3,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "F",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "19000": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 32,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 32
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "F",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "Ab",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "19500": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 62,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 62
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "Ab",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "A",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "20000": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 32,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 32
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "A",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 3,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "20500": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 62,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 62
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 3,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "21000": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 32,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 32
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "C",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "Eb",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "21500": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 62,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 62
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "Eb",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "E",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "22000": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 32,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 32
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "E",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "Eb",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "22500": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 62,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 62
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "Eb",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "E",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "23000": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 32,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 32
+            },
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "E",
+                    "octave": 2,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            },
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "G",
+                    "octave": 3,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2,
+                "velocity": 64
+            }
+        ],
+        "23500": [
+            {
+                "func": "start_note",
+                "note": {
+                    "class_name": "PercussionNote",
+                    "name": "Ride Cymbal 1",
+                    "number": 51,
+                    "velocity": 62,
+                    "channel": null,
+                    "duration": null
+                },
+                "channel": 1,
+                "velocity": 62
+            }
+        ],
+        "24000": [
+            {
+                "func": "end_note",
+                "note": {
+                    "class_name": "Note",
+                    "name": "G",
+                    "octave": 3,
+                    "velocity": 64,
+                    "channel": null
+                },
+                "channel": 2
+            }
+        ]
+    }
+}

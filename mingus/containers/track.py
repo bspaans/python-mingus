@@ -17,17 +17,17 @@ from __future__ import absolute_import
 #
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-import copy
-
+from typing import Optional
 from mingus.containers.mt_exceptions import InstrumentRangeError, UnexpectedObjectError
 from mingus.containers.note_container import NoteContainer
 from mingus.containers.bar import Bar
 import mingus.core.value as value
+import mingus.tools.mingus_json as mingus_json
 import six
 from six.moves import range
 
 
-class Track(object):
+class Track(mingus_json.JsonMixin):
 
     """A track object.
 
@@ -38,11 +38,12 @@ class Track(object):
 
     Tracks can be stored together in Compositions.
     """
-    def __init__(self, instrument, bpm=120.0):
-        self.bars = []
-        self.snippets = []
+    def __init__(self, instrument, bpm=120.0, name=None, bars: Optional[list] = None, snippets: Optional[list] = None):
+        self.bars = bars or []
+        self.snippets = snippets or []
         self.bpm = bpm
         self.instrument = instrument
+        self.name = name
 
     def add_bar(self, bar, n_times=1):
         """Add a Bar to the current track."""
@@ -51,6 +52,7 @@ class Track(object):
         return self
 
     def add_midi_snippet(self, snippet):
+        """Add a MidiPercussionSnippet"""
         self.snippets.append(snippet)
 
     def repeat(self, n_repetitions):
@@ -74,12 +76,12 @@ class Track(object):
         attached to the Track, but the note turns out not to be within the
         range of the Instrument.
         """
-        if self.instrument != None:
+        if self.instrument is not None:
             if not self.instrument.can_play_notes(note):
                 raise InstrumentRangeError(
                     "Note '%s' is not in range of the instrument (%s)" % (note, self.instrument)
                 )
-        if duration == None:
+        if duration is None:
             duration = 4
 
         # Check whether the last bar is full, if so create a new bar and add the
@@ -228,3 +230,12 @@ class Track(object):
     def __len__(self):
         """Enable the len() function for Tracks."""
         return len(self.bars)
+
+    def to_json(self):
+        track_dict = super().to_json()
+        track_dict['instrument'] = self.instrument
+        track_dict['bpm'] = self.bpm
+        track_dict['name'] = self.name
+        track_dict['bars'] = self.bars
+        track_dict['snippets'] = self.snippets
+        return track_dict

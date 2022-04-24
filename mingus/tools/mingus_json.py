@@ -1,14 +1,5 @@
 import json
 
-# noinspection PyUnresolvedReferences
-from mingus.containers import PercussionNote, Note
-
-# noinspection PyUnresolvedReferences
-from mingus.containers import MidiInstrument
-
-# noinspection PyUnresolvedReferences
-from mingus.containers.midi_percussion import MidiPercussion
-
 
 class MingusJSONEncoder(json.JSONEncoder):
 
@@ -37,7 +28,11 @@ class MingusJSONDecoder(json.JSONDecoder):
     def __init__(self, *args, **kwargs):
         json.JSONDecoder.__init__(self, object_hook=self.object_hook, *args, **kwargs)
 
+    # noinspection PyUnresolvedReferences
     def object_hook(self, obj):
+        from mingus.containers import PercussionNote, Note, Bar, MidiInstrument, Track, NoteContainer
+        from mingus.containers.midi_percussion import MidiPercussion
+        from mingus.core.keys import Key
 
         # handle your custom classes
         if isinstance(obj, dict):
@@ -73,3 +68,9 @@ def loads(json_str):
 def load(fp):
     json_str = fp.read()
     return loads(json_str)
+
+
+class JsonMixin:
+    def to_json(self):
+        d = {'class_name': self.__class__.__name__}
+        return d
