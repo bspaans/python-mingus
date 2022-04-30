@@ -1,24 +1,25 @@
 import json
 import time
-from threading import Thread
+import tkinter as tk
 from functools import partial
 from pathlib import Path
+from threading import Thread
+from tkinter import ttk
+from tkinter.filedialog import askopenfile, asksaveasfile
 from typing import Optional
 
-import tkinter as tk
-from tkinter import ttk
-from tkinter.filedialog import asksaveasfile, askopenfile
-
 import midi_percussion as mp
-from midi.fluid_synth2 import FluidSynthPlayer
-from mingus.midi.get_soundfont_path import get_soundfont_path
-from mingus.containers import PercussionNote
-from mingus.midi.sequencer2 import Sequencer
-import mingus.tools.mingus_json as mingus_json
 
+import mingus.tools.mingus_json as mingus_json
+from mingus.containers import PercussionNote, Track
+from mingus.containers.raw_snippet import RawSnippet
+from mingus.midi.fluid_synth2 import FluidSynthPlayer
+from mingus.midi.get_soundfont_path import get_soundfont_path
+from mingus.midi.sequencer2 import Sequencer
 
 # A global variable for communicating with the click track thread
 click_track_done = False
+player_track_done = False
 
 # noinspection SpellCheckingInspection
 KEYS = ' zxcvbnm,./'
@@ -80,14 +81,40 @@ class ClickTrack(Thread):
                 count = 0
 
 
-class Play(Thread):
+class PlayOld(Thread):
     def __init__(self, synth, score):
         super().__init__()
         self.synth = synth
         self.sequencer = Sequencer(score=score)
 
     def run(self):
+        global player_track_done
+
         self.sequencer.play_score(self.synth)
+
+        # while not player_track_done:
+        #     print('beat')
+        #     time.sleep(3)
+
+        print('player_done')
+
+
+class Play(Thread):
+    def __init__(self, synth, sequencer):
+        super().__init__()
+        self.synth = synth
+        self.sequencer = sequencer
+
+    def run(self):
+        global player_track_done
+
+        def stop_func():
+            global player_track_done
+            return player_track_done
+
+        self.sequencer.play_score(self.synth, stop_func=stop_func)
+
+        print('player_done')
 
 
 class KeyboardDrumSet:
@@ -120,7 +147,7 @@ class KeyboardDrumSet:
         }
     """
     def __init__(self, setup_synth=True, drum_set=None):
-        self.recording = {}
+        self.recording = {}  # keys are times in milliseconds, values are lists of events
         self.is_recording = False
         self.start_recording_time = None
         self.play_click_track = False
@@ -136,7 +163,10 @@ class KeyboardDrumSet:
                     'beats_per_bar': 4,
                     'enabled': True
                 },
-                'tracks': ['~/python_mingus/tracks/test_percussion.json']
+                'tracks': [
+                    '~/python_mingus/tracks/test_percussion.json',
+                    '~/python_mingus/tracks/test_bass.json'
+                ]
             }
         else:
             self.drum_set = drum_set
@@ -326,9 +356,10 @@ class KeyboardDrumSet:
         for i, track in enumerate(self.tracks, start=10):
             messages = tk.Text(self.tracks_frame, height=1)
             messages.grid(row=row, column=0, sticky=tk.W, **self.padding)
-            messages.insert(tk.END, track.track.name)
+            messages.insert(tk.END, getattr(track.track, 'name', 'Unknown'))
             for_sequencer['tracks'].append(track.track)
             for_sequencer['channels'].append(i)
+            row += 1
 
         self.sequencer = Sequencer()
         self.sequencer.play_Tracks(**for_sequencer)
@@ -375,7 +406,6 @@ class KeyboardDrumSet:
 
             if self.is_recording and self.start_recording_time is not None:
                 start_key = int((time.time() - self.start_recording_time) * 1000.0)  # in milliseconds
-                print('time ', start_key)
                 note = PercussionNote(name=None, number=instrument_number, velocity=64, channel=self.percussion_channel)
                 self.recording.setdefault(start_key, []).append(
                     {
@@ -412,6 +442,8 @@ class KeyboardDrumSet:
             pass
 
     def start_stop_recording(self):
+        global player_track_done
+
         if self.is_recording:
             self.is_recording = False
             self.start_stop_recording_button['text'] = 'Start'
@@ -419,6 +451,7 @@ class KeyboardDrumSet:
             if self.play_click_track.get():
                 self.stop_click_track()
             self.start_recording_time = None
+            player_track_done = True
         else:
             self.is_recording = True
             self.start_stop_recording_button['text'] = 'Stop'
@@ -426,28 +459,38 @@ class KeyboardDrumSet:
             # if self.play_click_track.get():
             #     self.start_click_track()
 
-            self.sequencer.play_score(self.synth)
-            player = Play(self.synth, self.sequencer.score)
+            # self.sequencer.play_score(self.synth)
+            player = Play(self.synth, self.sequencer)
+            player_track_done = False
             player.start()
 
             self.start_recording_time = time.time()
+            print('recording started')
 
     def rewind(self):
         pass
 
     def play(self):
-        player = Play(self.synth, self.recording)
+        from mingus.containers.midi_percussion import MidiPercussion
+        global player_track_done
+
+        snippet = RawSnippet(self.recording)
+        track = Track(instrument=MidiPercussion(), snippets=[snippet])
+        sequencer = Sequencer()  # TODO: prob want to add to existing sequencer
+        sequencer.play_Track(track, channel=self.percussion_channel)
+        player_track_done = False
+        player = Play(self.synth, sequencer)
         player.start()
 
     def clear(self):
-        self.recording = []
+        self.recording = {}
 
     def quit(self):
         global click_track_done
+        global player_track_done
 
         click_track_done = True
-        for r in self.recording:
-            print(r)
+        player_track_done = True
 
         self.window.withdraw()
         self.window.destroy()

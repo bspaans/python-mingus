@@ -1,11 +1,8 @@
-# -*- coding: utf-8 -*-
-import json
 import logging
 
 import sortedcontainers
 
 from mingus.containers import PercussionNote
-from mingus.containers.midi_snippet import MidiPercussionSnippet
 import mingus.tools.mingus_json as mingus_json
 
 
@@ -37,8 +34,7 @@ class Sequencer:
             start_time += bar.play(start_time, bpm, channel, self.score)
 
         for snippet in track.snippets:
-            if isinstance(snippet, MidiPercussionSnippet):
-                snippet.put_into_score(channel, self.score, bpm)
+            snippet.put_into_score(self.score, channel, bpm)
 
     # noinspection PyPep8Naming
     def play_Tracks(self, tracks, channels, bpm=None):
@@ -60,7 +56,7 @@ class Sequencer:
             channels = [x + 1 for x in range(len(composition.tracks))]
         return self.play_Tracks(composition.tracks, channels, bpm)
 
-    def play_score(self, synth):
+    def play_score(self, synth, stop_func=None):
         score = sortedcontainers.SortedDict(self.score)
 
         for channel, instrument in self.instruments:
@@ -70,6 +66,9 @@ class Sequencer:
 
         the_time = 0
         for start_time, events in score.items():
+            if stop_func and stop_func():
+                break
+
             dt = start_time - the_time
             if dt > 0:
                 synth.sleep(dt / 1000.0)

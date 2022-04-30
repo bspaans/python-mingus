@@ -17,28 +17,27 @@ from __future__ import absolute_import
 #
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-from typing import Optional
+from typing import Optional, Union, TYPE_CHECKING
 from mingus.containers.mt_exceptions import InstrumentRangeError, UnexpectedObjectError
 from mingus.containers.note_container import NoteContainer
 from mingus.containers.bar import Bar
 import mingus.core.value as value
 import mingus.tools.mingus_json as mingus_json
+from mingus.containers.midi_snippet import MidiPercussionSnippet
+from mingus.containers.raw_snippet import RawSnippet
+
 import six
 from six.moves import range
+
+if TYPE_CHECKING:
+    from mingus.containers.instrument import MidiInstrument
+    from mingus.containers.midi_percussion import MidiPercussion
 
 
 class Track(mingus_json.JsonMixin):
 
-    """A track object.
-
-    The Track class can be used to store Bars and to work on them.
-
-    The class is also designed to be used with Instruments, but this is
-    optional.
-
-    Tracks can be stored together in Compositions.
-    """
-    def __init__(self, instrument, bpm=120.0, name=None, bars: Optional[list] = None, snippets: Optional[list] = None):
+    def __init__(self, instrument: Union["MidiInstrument", "MidiPercussion"], bpm=120.0, name=None,
+                 bars: Optional[list] = None, snippets: Optional[list] = None):
         self.bars = bars or []
         self.snippets = snippets or []
         self.bpm = bpm
@@ -51,8 +50,8 @@ class Track(mingus_json.JsonMixin):
             self.bars.append(bar)
         return self
 
-    def add_midi_snippet(self, snippet):
-        """Add a MidiPercussionSnippet"""
+    def add_snippet(self, snippet):
+        assert isinstance(snippet, MidiPercussionSnippet) or isinstance(snippet, RawSnippet), "Invalid snippet"
         self.snippets.append(snippet)
 
     def repeat(self, n_repetitions):

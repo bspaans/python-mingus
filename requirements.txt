@@ -3,3 +3,4 @@ setuptools==60.7.1
 sortedcontainers~=2.4.0
 numpy~=1.22.2
 mido~=1.2.10
+isort==5.10.1

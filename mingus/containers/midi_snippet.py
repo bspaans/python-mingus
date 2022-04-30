@@ -3,9 +3,14 @@ from typing import Optional
 import mido
 
 from mingus.containers import PercussionNote
+import mingus.tools.mingus_json as mingus_json
 
 
-class MidiPercussionSnippet:
+class MidiPercussionSnippet(mingus_json.JsonMixin):
+    """
+    Sometimes you might want to create a percusion part in another program (e.g. Musescore). If you export
+    it as a MIDI file, you can import it with this class. The result can be added to a Track.
+    """
     def __init__(self, midi_file_path, start: float = 0.0, length_in_seconds: Optional[float] = None,
                  n_replications: int = 1):
         """
@@ -23,12 +28,12 @@ class MidiPercussionSnippet:
             f'If there are replications, then length_in_seconds cannot be None'
 
     def to_json(self):
-        params = ("midi_file_path", "start", "length_in_seconds", "n_replications")
-        d = {param: getattr(self, param) for param in params}
-        d['class_name'] = self.__class__.__name__
-        return d
+        snippet_dict = super().to_json()
+        for param in ("midi_file_path", "start", "length_in_seconds", "n_replications"):
+            snippet_dict[param] = getattr(self, param)
+        return snippet_dict
 
-    def put_into_score(self, channel: int, score: dict, bpm: Optional[float] = None):
+    def put_into_score(self, score: dict, channel: int,  bpm: Optional[float] = None):
         """
         See: https://majicdesigns.github.io/MD_MIDIFile/page_timing.html
         https://mido.readthedocs.io/en/latest/midi_files.html?highlight=tempo#about-the-time-attribute

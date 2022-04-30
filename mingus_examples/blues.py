@@ -34,7 +34,7 @@ def bass(n_times):
     v_bar.transpose("5")
 
     # Make the track
-    bass_track = Track(MidiInstrument("Acoustic Bass"))
+    bass_track = Track(MidiInstrument("Acoustic Bass"), name='Bass')
 
     # Make section
     bass_track.add_bar(i_bar, n_times=4)
@@ -106,14 +106,15 @@ if __name__ == '__main__':
     # load(path)
 
     # Track manipulations
-    track = percussion(1)
-    track_path = Path.home() / 'python_mingus' / 'tracks' / 'test_percussion.json'
+    # track = percussion(1)
+    track = bass(1)
+    track_path = Path.home() / 'python_mingus' / 'tracks' / 'test_bass.json'
     with open(track_path, 'w') as fp:
         mingus_json.dump(track, fp)
 
-    with open(track_path, 'r') as fp:
-        new_track = mingus_json.load(fp)
-
-    fluidsynth = FluidSynthPlayer(soundfont_path, gain=1.0)
-    fluidsynth.play_tracks([track], [2])
+    # with open(track_path, 'r') as fp:
+    #     new_track = mingus_json.load(fp)
+    #
+    # fluidsynth = FluidSynthPlayer(soundfont_path, gain=1.0)
+    # fluidsynth.play_tracks([track], [2])
     print('x')
