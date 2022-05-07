@@ -2,6 +2,7 @@ import copy
 from pathlib import Path
 
 from mingus.containers import Bar, Track, PercussionNote, Note
+from mingus.containers.track import ControlChangeEvent, MidiControl
 from mingus.containers import MidiInstrument
 from mingus.containers.midi_snippet import MidiPercussionSnippet
 from mingus.midi.fluid_synth2 import FluidSynthPlayer
@@ -13,6 +14,48 @@ import mingus.tools.mingus_json as  mingus_json
 
 soundfont_path = get_soundfont_path()
 
+
+def melody(n_times):
+    rest_bar = Bar()
+    rest_bar.place_rest(1)
+
+    i_bar = Bar()
+    i_bar.place_notes(Note('C-4'), 8)
+    i_bar.place_notes(Note('C-4'), 8)
+    i_bar.place_rest(8.0 / 5.0)
+
+    i_bar_2 = Bar()
+    i_bar_2.place_rest(8.0 / 5.0)
+    i_bar_2.place_notes(Note('C-4'), 8.0 / 3.0)
+
+    turn_around = i_bar
+
+    iv_bar = copy.deepcopy(i_bar)
+    iv_bar.transpose("4")
+
+    v_bar = copy.deepcopy(i_bar)
+    v_bar.transpose("5")
+    
+    track = Track(MidiInstrument("Trumpet"), name="Trumpet")
+    track.add_bar(i_bar, n_times=1)
+    track.add_bar(rest_bar, 2)
+    track.add_bar(i_bar_2)
+
+    track.add_bar(iv_bar, n_times=1)
+    track.add_bar(rest_bar)
+    track.add_bar(i_bar, n_times=1)
+    track.add_bar(rest_bar)
+
+    track.add_bar(v_bar)
+    track.add_bar(iv_bar)
+    track.add_bar(i_bar)
+    track.add_bar(turn_around)
+
+    event = ControlChangeEvent(beat=0, control=MidiControl.CHORUS, value=80)
+    track.add_event(event)
+
+    return track
+    
 
 def bass(n_times):
     # Make the bars
@@ -62,16 +105,35 @@ def percussion(n_times):
     drum_bar.place_notes([note2], 4)
     drum_bar.place_notes([note], 4)
 
-    for _ in range(12):
-        track.add_bar(drum_bar)
-
-    # path = Path.home() / 'drum 1.mid'
-    # snippet = MidiPercussionSnippet(path, start=0.0, length_in_seconds=4.0, n_replications=6)
-    # track.add_midi_snippet(snippet)
+    for i in range(3):
+        for j in range(4):
+            track.add_bar(drum_bar)
 
     track.repeat(n_times - 1)
-
     return track
+
+
+def snare(n_times):
+    snare_track = Track(MidiPercussion(), name='Snare')
+    snare = PercussionNote('Acoustic Snare', velocity=62)
+    snare2 = PercussionNote('Acoustic Snare', velocity=32)
+    rest_bar = Bar()
+    rest_bar.place_rest(1)
+
+    drum_turn_around_bar = Bar()
+    drum_turn_around_bar.place_rest(16.0 / 11.0)
+    drum_turn_around_bar.place_notes([snare2], 16)
+    drum_turn_around_bar.place_notes([snare], 16.0 / 3.0)
+    drum_turn_around_bar.place_notes([snare2], 16)
+
+    for i in range(3):
+        for j in range(3):
+            snare_track.add_bar(rest_bar)
+        snare_track.add_bar(drum_turn_around_bar)
+
+    snare_track.repeat(n_times - 1)
+
+    return snare_track
 
 
 def play(voices, n_times):
@@ -83,7 +145,7 @@ def save(path, voices, bpm=120):
     n_times = 1
     channels = range(1, len(voices) + 1)
     sequencer = Sequencer()
-    sequencer.save_tracks('saved_blues.json', [voice(n_times) for voice in voices], channels, bpm=bpm)
+    sequencer.save_tracks(path, [voice(n_times) for voice in voices], channels, bpm=bpm)
 
 
 def load(path):
@@ -97,24 +159,25 @@ def load(path):
 
 if __name__ == '__main__':
     # noinspection PyListCreation
-    # voices = []
-    # voices.append(percussion)  # percusion is a track
-    # voices.append(bass)        # a track
-    # play(voices, n_times=1)
-    # path = 'saved_blues.json'
-    # save(path, voices)
-    # load(path)
+    voices = []
+    voices.append(percussion)  # percusion is a track
+    # voices.append(snare)
+    voices.append(bass)        # a track
+    voices.append(melody)
+    play(voices, n_times=1)
+    # score_path = Path.home() / 'python_mingus' / 'scores' / 'blues.json'
+    # save(score_path, voices)
 
     # Track manipulations
     # track = percussion(1)
-    track = bass(1)
-    track_path = Path.home() / 'python_mingus' / 'tracks' / 'test_bass.json'
-    with open(track_path, 'w') as fp:
-        mingus_json.dump(track, fp)
+    # track = bass(1)
+    # track_path = Path.home() / 'python_mingus' / 'tracks' / 'test_bass.json'
+    # with open(track_path, 'w') as fp:
+    #     mingus_json.dump(track, fp)
 
     # with open(track_path, 'r') as fp:
     #     new_track = mingus_json.load(fp)
     #
     # fluidsynth = FluidSynthPlayer(soundfont_path, gain=1.0)
     # fluidsynth.play_tracks([track], [2])
-    print('x')
+    print('done')

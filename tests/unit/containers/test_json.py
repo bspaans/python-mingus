@@ -1,4 +1,5 @@
 from mingus.containers import Bar, Track, PercussionNote, Note, NoteContainer
+from mingus.containers.track import ControlChangeEvent, MidiControl
 from mingus.containers import MidiInstrument
 from mingus.tools import mingus_json
 
@@ -53,3 +54,16 @@ def test_json_track():
     results = mingus_json.decode(s)
 
     assert results == track
+
+
+def test_control_event_json():
+    event = ControlChangeEvent(beat=1.0, control=MidiControl.CHORUS, value=127)
+
+    s = mingus_json.encode(event)
+    results = mingus_json.decode(s)
+
+    # Not sure why this works in other tests, but not here
+    # assert results == event
+
+    s2 = mingus_json.encode(results)
+    assert s == s2

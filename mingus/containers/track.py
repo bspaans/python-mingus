@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-
-from __future__ import absolute_import
-
-#    mingus - Music theory Python package, track module.
-#    Copyright (C) 2008-2009, Bart Spaans
+#    Copyright (C) 2022, Charles Martin
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -17,6 +12,8 @@ from __future__ import absolute_import
 #
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+from enum import Enum
 from typing import Optional, Union, TYPE_CHECKING
 from mingus.containers.mt_exceptions import InstrumentRangeError, UnexpectedObjectError
 from mingus.containers.note_container import NoteContainer
@@ -26,12 +23,47 @@ import mingus.tools.mingus_json as mingus_json
 from mingus.containers.midi_snippet import MidiPercussionSnippet
 from mingus.containers.raw_snippet import RawSnippet
 
-import six
-from six.moves import range
 
 if TYPE_CHECKING:
     from mingus.containers.instrument import MidiInstrument
     from mingus.containers.midi_percussion import MidiPercussion
+
+
+class MidiControl(Enum):
+    VIBRATO = 1
+    VOLUME = 7
+    PAN = 10  # left to right
+    EXPRESSION = 11  # soft to loud
+    SUSTAIN = 64
+    REVERB = 91
+    CHORUS = 93
+
+
+class ControlChangeEvent(mingus_json.JsonMixin):
+    def __init__(self, beat: float, control: Union[MidiControl, int], value: int):
+        self.beat = beat
+        if isinstance(control, int):
+            self.control = MidiControl(control)
+        else:
+            self.control = control
+        self.value = value
+
+    def put_into_score(self, score, channel, bpm):
+        t = round((self.beat / bpm) * 60000.0)  # in milliseconds
+        score.setdefault(t, []).append(
+            {
+                'func': 'control_change',
+                'channel': channel,
+                'control': self.control,
+                'value': self.value
+            })
+    
+    def to_json(self):
+        event_dict = super().to_json()
+        event_dict["beat"] = self.beat
+        event_dict["control"] = self.control.value
+        event_dict["value"] = self.value
+        return event_dict
 
 
 class Track(mingus_json.JsonMixin):
@@ -40,6 +72,7 @@ class Track(mingus_json.JsonMixin):
                  bars: Optional[list] = None, snippets: Optional[list] = None):
         self.bars = bars or []
         self.snippets = snippets or []
+        self.events = []
         self.bpm = bpm
         self.instrument = instrument
         self.name = name
@@ -53,6 +86,10 @@ class Track(mingus_json.JsonMixin):
     def add_snippet(self, snippet):
         assert isinstance(snippet, MidiPercussionSnippet) or isinstance(snippet, RawSnippet), "Invalid snippet"
         self.snippets.append(snippet)
+    
+    def add_event(self, event):
+        """For doing stuff like turning on chorus"""
+        self.events.append(event)
 
     def repeat(self, n_repetitions):
         """The terminology here might be confusing. If a section is played only once, it has 0 repetitions."""
@@ -191,7 +228,7 @@ class Track(mingus_json.JsonMixin):
             return self.add_bar(value)
         elif hasattr(value, "notes"):
             return self.add_notes(value)
-        elif hasattr(value, "name") or isinstance(value, six.string_types):
+        elif hasattr(value, "name") or isinstance(value, str):
             return self.add_notes(value)
 
     def test_integrity(self):

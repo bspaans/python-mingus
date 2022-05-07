@@ -36,6 +36,9 @@ class Sequencer:
         for snippet in track.snippets:
             snippet.put_into_score(self.score, channel, bpm)
 
+        for event in track.events:
+            event.put_into_score(self.score, channel, bpm)
+
     # noinspection PyPep8Naming
     def play_Tracks(self, tracks, channels, bpm=None):
         """Play a list of Tracks."""
@@ -87,9 +90,15 @@ class Sequencer:
                         synth.stop_percussion_note(event['note'], event['channel'])
                     else:
                         synth.stop_note(event['note'], event['channel'])
-
                     logging.info('Stop: {} Note: {note}  Channel: {channel}'.format(the_time, **event))
+
+                elif event['func'] == 'control_change':
+                    synth.control_change(event['channel'], event['control'].value, event['value'])
+                    logging.info('Control change: Channel: {channel}  Control: {control}  Value: {value}'.
+                                 format(the_time, **event))
+
             logging.info('--------------\n')
+        synth.sleep(2)  # prevent cutoff at the end
 
     def save_tracks(self, path, tracks, channels, bpm):
         self.play_Tracks(tracks, channels, bpm=bpm)

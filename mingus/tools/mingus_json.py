@@ -31,6 +31,7 @@ class MingusJSONDecoder(json.JSONDecoder):
     # noinspection PyUnresolvedReferences
     def object_hook(self, obj):
         from mingus.containers import PercussionNote, Note, Bar, MidiInstrument, Track, NoteContainer
+        from mingus.containers.track import ControlChangeEvent
         from mingus.containers.midi_percussion import MidiPercussion
         from mingus.core.keys import Key
 
