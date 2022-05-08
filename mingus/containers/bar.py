@@ -20,39 +20,54 @@ from __future__ import absolute_import
 
 import six
 
+from mingus.containers import PercussionNote
 from mingus.containers.mt_exceptions import MeterFormatError
 from mingus.containers.note_container import NoteContainer
 from mingus.core import meter as _meter
 from mingus.core import progressions, keys
 from typing import Optional
 
+from mingus.containers.get_note_length import get_note_length, get_beat_start, get_bar_length
+
 
 class Bar(object):
     """A bar object.
 
-    A Bar is basically a container for NoteContainers.
+    A Bar is basically a container for NoteContainers. This is where NoteContainers
+    get their duration.
+
+    Each NoteContainer must start in the bar, but it can end outside the bar.
 
     Bars can be stored together with Instruments in Tracks.
     """
-
-    key = "C"
-    meter = (4, 4)
-    current_beat = 0.0
-    length = 0.0
-    bar = []
-
-    def __init__(self, key="C", meter=(4, 4)):
+    def __init__(self, key="C", meter=(4, 4), bpm=120, bars=None):
         # warning should check types
         if isinstance(key, six.string_types):
             key = keys.Key(key)
         self.key = key
+        self.bpm = bpm
         self.set_meter(meter)
-        self.empty()
+
+        if bars:
+            self.bar = bars
+            self.current_beat = 0.0
+        else:
+            self.empty()
+
+    def to_json(self):
+        d = {
+            'class_name': self.__class__.__name__,
+            'key': self.key,
+            'meter': self.meter,
+            'bpm': self.bpm,
+            'bars': self.bar
+        }
+        return d
 
     def empty(self):
         """Empty the Bar, remove all the NoteContainers."""
-        self.bar = []
-        self.current_beat = 0.0
+        self.bar = []  # list of [current_beat, note duration number, list of notes]
+        self.current_beat = 0.0  # fraction of way through bar
         return self.bar
 
     def set_meter(self, meter):
@@ -72,9 +87,9 @@ class Bar(object):
             self.length = 0.0
         else:
             raise MeterFormatError(
-                "The meter argument '%s' is not an "
+                f"The meter argument {meter} is not an "
                 "understood representation of a meter. "
-                "Expecting a tuple." % meter
+                "Expecting a tuple."
             )
 
     def place_notes(self, notes, duration):
@@ -85,8 +100,7 @@ class Bar(object):
 
         Raise a MeterFormatError if the duration is not valid.
 
-        Return True if succesful, False otherwise (ie. the Bar hasn't got
-        enough room for a note of that duration).
+        Return True if successful, False otherwise if the note does not start in the bar.
         """
         # note should be able to be one of strings, lists, Notes or
         # NoteContainers
@@ -98,18 +112,13 @@ class Bar(object):
             notes = NoteContainer(notes)
         elif isinstance(notes, list):
             notes = NoteContainer(notes)
-        if self.current_beat + 1.0 / duration <= self.length or self.length == 0.0:
+
+        if self.is_full():
+            return False
+        else:
             self.bar.append([self.current_beat, duration, notes])
             self.current_beat += 1.0 / duration
             return True
-        else:
-            return False
-
-    def place_notes_at(self, notes, at):
-        """Place notes at the given index."""
-        for x in self.bar:
-            if x[0] == at:
-                x[2] += notes
 
     def place_rest(self, duration):
         """Place a rest of given duration on the current_beat.
@@ -118,7 +127,8 @@ class Bar(object):
         """
         return self.place_notes(None, duration)
 
-    def _is_note(self, note: Optional[NoteContainer]) -> bool:
+    @staticmethod
+    def _is_note(note: Optional[NoteContainer]) -> bool:
         """
         Return whether the 'note' contained in a bar position is an actual NoteContainer.
         If False, it is a rest (currently represented by None).
@@ -157,14 +167,14 @@ class Bar(object):
 
     def get_range(self):
         """Return the highest and the lowest note in a tuple."""
-        (min, max) = (100000, -1)
+        (min_note, max_note) = (100000, -1)
         for cont in self.bar:
             for note in cont[2]:
-                if int(note) < int(min):
-                    min = note
-                elif int(note) > int(max):
-                    max = note
-        return (min, max)
+                if int(note) < int(min_note):
+                    min_note = note
+                elif int(note) > int(max_note):
+                    max_note = note
+        return min_note, max_note
 
     def space_left(self):
         """Return the space left on the Bar."""
@@ -222,6 +232,58 @@ class Bar(object):
                 if x not in res:
                     res.append(x)
         return res
+
+    def play(self, start_time: int, bpm: float, channel: int, score: dict) -> int:
+        """
+        Put bar events into score.
+
+        :param start_time: start time of bar in milliseconds
+        :param bpm: beats per minute
+        :param channel: channel number
+        :param score: dict of events
+        :return: duration of bar in milliseconds
+        """
+        assert type(start_time) == int
+
+        for bar_fraction, duration_type, notes in self.bar:
+            duration_ms = get_note_length(duration_type, self.meter[1], bpm)
+
+            current_beat = bar_fraction * self.meter[1] + 1.0
+            beat_start = get_beat_start(current_beat, bpm)
+            start_key = start_time + beat_start
+            end_key = start_key + duration_ms
+
+            if notes:
+                for note in notes:
+                    score.setdefault(start_key, []).append(
+                        {
+                            'func': 'start_note',
+                            'note': note,
+                            'channel': channel,
+                            'velocity': note.velocity
+                        }
+                    )
+
+                    note_duration = getattr(note, 'duration', None)
+                    if note_duration:
+                        score.setdefault(start_key + note_duration, []).append(
+                            {
+                                'func': 'end_note',
+                                'note': note,
+                                'channel': channel,
+                            }
+                        )
+                    elif not isinstance(note, PercussionNote):
+                        score.setdefault(end_key, []).append(
+                            {
+                                'func': 'end_note',
+                                'note': note,
+                                'channel': channel,
+                            }
+                        )
+                else:
+                    pass
+        return get_bar_length(self.meter, bpm)
 
     def __add__(self, note_container):
         """Enable the '+' operator on Bars."""

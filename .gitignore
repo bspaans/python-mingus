@@ -6,3 +6,6 @@ dist/
 *.egg-info/
 
 /venv
+
+/.idea
+!/mingus_examples/saved_blues.json

@@ -115,7 +115,7 @@ class MidiTrack(object):
         instr = track.instrument
         if hasattr(instr, "instrument_nr"):
             self.change_instrument = True
-            self.instrument = instr.instrument_nr
+            self.instrument = instr.number
         for bar in track:
             self.play_Bar(bar)
 

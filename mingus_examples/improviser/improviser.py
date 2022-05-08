@@ -10,7 +10,7 @@
 
     Based on play_progression.py
 """
-
+import os
 from mingus.core import progressions, intervals
 from mingus.core import chords as ch
 from mingus.containers import NoteContainer, Note
@@ -19,7 +19,9 @@ import time
 import sys
 from random import random, choice, randrange
 
-SF2 = "soundfont.sf2"
+SF2 = os.getenv('MINGUS_SOUNDFONT')
+assert SF2, 'Please put the path to a soundfont file in the environment variable: MINGUS_SOUNDFONT'
+
 progression = ["I", "bVdim7"]
 
 # progression = ["I", "vi", "ii", "iii7",               "I7", "viidom7", "iii7",
@@ -130,7 +132,7 @@ while loop < song_end:
 
             if play_drums and loop > 0:
                 if t % (len(beats) / 2) == 0 and t != 0:
-                    fluidsynth.play_Note(Note("E", 2), 9, randrange(50, 100))  # snare
+                    fluidsynth.play_Note(Note("E", 2), 9, randrange(50, 100))  # snare, channel 9
                 else:
                     if random() > 0.8 or t == 0:
                         fluidsynth.play_Note(Note("C", 2), 9, randrange(20, 100))  # bass

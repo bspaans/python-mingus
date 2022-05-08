@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-
-from __future__ import absolute_import
-
-#    mingus - Music theory Python package, track module.
-#    Copyright (C) 2008-2009, Bart Spaans
+#    Copyright (C) 2022, Charles Martin
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -18,39 +13,92 @@ from __future__ import absolute_import
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from enum import Enum
+from typing import Optional, Union, TYPE_CHECKING
 from mingus.containers.mt_exceptions import InstrumentRangeError, UnexpectedObjectError
 from mingus.containers.note_container import NoteContainer
 from mingus.containers.bar import Bar
 import mingus.core.value as value
-import six
-from six.moves import range
+import mingus.tools.mingus_json as mingus_json
+from mingus.containers.midi_snippet import MidiPercussionSnippet
+from mingus.containers.raw_snippet import RawSnippet
 
 
-class Track(object):
+if TYPE_CHECKING:
+    from mingus.containers.instrument import MidiInstrument
+    from mingus.containers.midi_percussion import MidiPercussion
 
-    """A track object.
 
-    The Track class can be used to store Bars and to work on them.
+class MidiControl(Enum):
+    VIBRATO = 1
+    VOLUME = 7
+    PAN = 10  # left to right
+    EXPRESSION = 11  # soft to loud
+    SUSTAIN = 64
+    REVERB = 91
+    CHORUS = 93
 
-    The class is also designed to be used with Instruments, but this is
-    optional.
 
-    Tracks can be stored together in Compositions.
-    """
+class ControlChangeEvent(mingus_json.JsonMixin):
+    def __init__(self, beat: float, control: Union[MidiControl, int], value: int):
+        self.beat = beat
+        if isinstance(control, int):
+            self.control = MidiControl(control)
+        else:
+            self.control = control
+        self.value = value
 
-    bars = []
-    instrument = None
-    name = "Untitled"  # Will be looked for when saving a MIDI file.
-    tuning = None  # Used by tablature
+    def put_into_score(self, score, channel, bpm):
+        t = round((self.beat / bpm) * 60000.0)  # in milliseconds
+        score.setdefault(t, []).append(
+            {
+                'func': 'control_change',
+                'channel': channel,
+                'control': self.control,
+                'value': self.value
+            })
+    
+    def to_json(self):
+        event_dict = super().to_json()
+        event_dict["beat"] = self.beat
+        event_dict["control"] = self.control.value
+        event_dict["value"] = self.value
+        return event_dict
 
-    def __init__(self, instrument=None):
-        self.bars = []
+
+class Track(mingus_json.JsonMixin):
+
+    def __init__(self, instrument: Union["MidiInstrument", "MidiPercussion"], bpm=120.0, name=None,
+                 bars: Optional[list] = None, snippets: Optional[list] = None):
+        self.bars = bars or []
+        self.snippets = snippets or []
+        self.events = []
+        self.bpm = bpm
         self.instrument = instrument
+        self.name = name
 
-    def add_bar(self, bar):
+    def add_bar(self, bar, n_times=1):
         """Add a Bar to the current track."""
-        self.bars.append(bar)
+        for _ in range(n_times):
+            self.bars.append(bar)
         return self
+
+    def add_snippet(self, snippet):
+        assert isinstance(snippet, MidiPercussionSnippet) or isinstance(snippet, RawSnippet), "Invalid snippet"
+        self.snippets.append(snippet)
+    
+    def add_event(self, event):
+        """For doing stuff like turning on chorus"""
+        self.events.append(event)
+
+    def repeat(self, n_repetitions):
+        """The terminology here might be confusing. If a section is played only once, it has 0 repetitions."""
+        if n_repetitions > 0:
+            self.bars = self.bars * (n_repetitions + 1)
+            for snippet in self.snippets:
+                assert snippet.length_in_beats is not None, \
+                    "To repeat a snippet, the snippet must have a length_in_beats"
+                snippet.n_repetitions = n_repetitions
 
     def add_notes(self, note, duration=None):
         """Add a Note, note as string or NoteContainer to the last Bar.
@@ -64,12 +112,12 @@ class Track(object):
         attached to the Track, but the note turns out not to be within the
         range of the Instrument.
         """
-        if self.instrument != None:
+        if self.instrument is not None:
             if not self.instrument.can_play_notes(note):
                 raise InstrumentRangeError(
                     "Note '%s' is not in range of the instrument (%s)" % (note, self.instrument)
                 )
-        if duration == None:
+        if duration is None:
             duration = 4
 
         # Check whether the last bar is full, if so create a new bar and add the
@@ -180,7 +228,7 @@ class Track(object):
             return self.add_bar(value)
         elif hasattr(value, "notes"):
             return self.add_notes(value)
-        elif hasattr(value, "name") or isinstance(value, six.string_types):
+        elif hasattr(value, "name") or isinstance(value, str):
             return self.add_notes(value)
 
     def test_integrity(self):
@@ -218,3 +266,12 @@ class Track(object):
     def __len__(self):
         """Enable the len() function for Tracks."""
         return len(self.bars)
+
+    def to_json(self):
+        track_dict = super().to_json()
+        track_dict['instrument'] = self.instrument
+        track_dict['bpm'] = self.bpm
+        track_dict['name'] = self.name
+        track_dict['bars'] = self.bars
+        track_dict['snippets'] = self.snippets
+        return track_dict

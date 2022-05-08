@@ -17,7 +17,7 @@ from __future__ import absolute_import
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from mingus.containers.note import Note
+from mingus.containers.note import Note, PercussionNote
 from mingus.containers.note_container import NoteContainer
 from mingus.containers.bar import Bar
 from mingus.containers.track import Track

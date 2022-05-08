@@ -123,7 +123,7 @@ class MidiFile(object):
                 elif event["event"] == 12:
                     # program change
                     i = MidiInstrument()
-                    i.instrument_nr = event["param1"]
+                    i.number = event["param1"]
                     t.instrument = i
                 elif event["event"] == 0x0F:
                     # meta event Text

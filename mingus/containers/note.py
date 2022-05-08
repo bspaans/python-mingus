@@ -18,7 +18,10 @@ from __future__ import absolute_import
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import json
+
 from mingus.core import notes, intervals
+import mingus.containers.midi_percussion as mp
 from mingus.containers.mt_exceptions import NoteFormatError
 from math import log
 import six
@@ -45,13 +48,7 @@ class Note(object):
     You can use the class NoteContainer to group Notes together in intervals
     and chords.
     """
-
-    name = _DEFAULT_NAME
-    octave = _DEFAULT_OCTAVE
-    channel = _DEFAULT_CHANNEL
-    velocity = _DEFAULT_VELOCITY
-
-    def __init__(self, name="C", octave=4, dynamics=None, velocity=None, channel=None):
+    def __init__(self, name="C", octave=4, dynamics=None, velocity=64, channel=None):
         """
         :param name:
         :param octave:
@@ -59,18 +56,23 @@ class Note(object):
         :param int velocity: Integer (0-127)
         :param int channel: Integer (0-15)
         """
+        # Save params for json encode and decode
+        self.channel = channel
+
         if dynamics is None:
             dynamics = {}
 
-        if velocity is not None:
-            dynamics["velocity"] = velocity
+        dynamics["velocity"] = velocity
+        self.velocity = velocity
+
         if channel is not None:
             dynamics["channel"] = channel
 
         if isinstance(name, six.string_types):
             self.set_note(name, octave, dynamics)
         elif hasattr(name, "name"):
-            # Hardcopy Note object
+            # Hard copy Note object
+            # noinspection PyUnresolvedReferences
             self.set_note(name.name, name.octave, name.dynamics)
         elif isinstance(name, int):
             self.from_int(name)
@@ -315,7 +317,7 @@ class Note(object):
         return res
 
     def __lt__(self, other):
-        """Enable the comparing operators on Notes (>, <, \ ==, !=, >= and <=).
+        """Enable the comparing operators on Notes (>, <, ==, !=, >= and <=).
 
         So we can sort() Intervals, etc.
 
@@ -350,3 +352,52 @@ class Note(object):
     def __repr__(self):
         """Return a helpful representation for printing Note classes."""
         return "'%s-%d'" % (self.name, self.octave)
+
+    def to_json(self):
+        d = {
+            'class_name': self.__class__.__name__,
+            'name': self.name,
+            'octave': self.octave,
+            'velocity': self.velocity,
+            'channel': self.channel
+        }
+        return d
+
+
+class PercussionNote(Note):
+    """Percusion notes do not have a name of the staff (e.g. C or F#)"""
+
+    # noinspection PyMissingConstructor
+    def __init__(self, name, number=None, velocity=64, channel=None, duration=None):
+        """
+        Set duration in milliseconds if you want to stop the instrument before it stops itself.
+        For example, a player might manual stop a triangle after 1 second.
+        """
+        self.name = name
+        if number is None:
+            self.key_number = mp.percussion_instruments[name]
+        else:
+            self.key_number = number
+            self.name = str(number)
+
+        assert 0 <= velocity < 128, 'Velocity must be between 0 and 127'
+        self.velocity = velocity
+        self.channel = channel
+        self.duration = duration
+
+    def __int__(self):
+        return self.key_number
+
+    def __repr__(self):
+        return self.name
+
+    def to_json(self):
+        d = {
+            'class_name': self.__class__.__name__,
+            'name': self.name,
+            'number': self.key_number,
+            'velocity': self.velocity,
+            'channel': self.channel,
+            'duration': self.duration
+        }
+        return d

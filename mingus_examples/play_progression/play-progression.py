@@ -7,7 +7,7 @@
 
     You should specify the SF2 soundfont file.
 """
-
+import os
 from mingus.core import progressions, intervals
 from mingus.core import chords as ch
 from mingus.containers import NoteContainer, Note
@@ -16,7 +16,9 @@ import time
 import sys
 from random import random
 
-SF2 = "soundfont_example.sf2"
+SF2 = os.getenv('MINGUS_SOUNDFONT')
+assert SF2, 'Please put the path to a soundfont file in the environment variable: MINGUS_SOUNDFONT'
+
 progression = [
     "I",
     "vi",

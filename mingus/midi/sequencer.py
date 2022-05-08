@@ -132,7 +132,7 @@ class Sequencer(object):
         )
         return True
 
-    def play_Note(self, note, channel=1, velocity=100):
+    def play_Note(self, note, channel=None, velocity=100):
         """Play a Note object on a channel with a velocity[0-127].
 
         You can either specify the velocity and channel here as arguments or
@@ -141,8 +141,8 @@ class Sequencer(object):
         """
         if hasattr(note, "velocity"):
             velocity = note.velocity
-        if hasattr(note, "channel"):
-            channel = note.channel
+        if channel is None:
+            channel = getattr(note, 'channel', 1)
         self.play_event(int(note) + 12, int(channel), int(velocity))
         self.notify_listeners(
             self.MSG_PLAY_INT,
@@ -158,14 +158,10 @@ class Sequencer(object):
         )
         return True
 
-    def stop_Note(self, note, channel=1):
-        """Stop a note on a channel.
-
-        If Note.channel is set, it will take presedence over the channel
-        argument given here.
-        """
-        if hasattr(note, "channel"):
-            channel = note.channel
+    def stop_Note(self, note, channel=None):
+        """Stop a note on a channel."""
+        if channel is None:
+            channel = getattr(note, 'channel', 1)
         self.stop_event(int(note) + 12, int(channel))
         self.notify_listeners(self.MSG_STOP_INT, {"channel": int(channel), "note": int(note) + 12})
         self.notify_listeners(self.MSG_STOP_NOTE, {"channel": int(channel), "note": note})
@@ -234,7 +230,7 @@ class Sequencer(object):
         by providing one or more of the NoteContainers with a bpm argument.
         """
         self.notify_listeners(self.MSG_PLAY_BARS, {"bars": bars, "channels": channels, "bpm": bpm})
-        qn_length = 60.0 / bpm  # length of a quarter note
+        qn_length = 60.0 / bpm  # length of a quarter note in seconds
         tick = 0.0  # place in beat from 0.0 to bar.length
         cur = [0] * len(bars)  # keeps the index of the NoteContainer under
         # investigation in each of the bars

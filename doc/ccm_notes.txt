@@ -1,0 +1,38 @@
+Note Class:
+
+requires some indication of the sound to play
+    pitch and instrument
+    percussion instrument (e.g. no pitch)
+
+should be playable by itself (e.g. not as part of a bar)
+
+optional params:
+    duration
+    velocity
+    channel
+    bank?
+    other params like pitch bend?
+
+
+Bar Class:
+Notes should be able to start in a bar and end in a different bar
+
+a bar can have a meter, or inherit it from a track
+
+
+Inheritence Precident:
+
+    Some params should be inherited from outer containers, unless they are specified.
+
+    For example, a track, contains a bar contains, a notecontainer contains, a note. If the track has
+    a channel, it should pass it to each bar. If a bar has a channel it should use it. But if the bar's
+    channel is None, it should inherit it from the track, etc...
+
+
+******************************************************************
+Listing all the instruments in a sound font file: https://github.com/FluidSynth/fluidsynth/wiki/UserManual#soundfonts
+
+1. Open terminal
+2. type: fluidsynth
+3. type: load "path to sound font"
+4. type: inst 1
