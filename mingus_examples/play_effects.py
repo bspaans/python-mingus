@@ -1,10 +1,10 @@
 from time import sleep
 
+from mingus.containers import Bar, MidiInstrument, Track
+from mingus.containers.instrument import get_instrument_number
+from mingus.containers.track import ControlChangeEvent, MidiControl
 from mingus.midi.fluid_synth2 import FluidSynthPlayer
 from mingus.midi.get_soundfont_path import get_soundfont_path
-from mingus.containers.instrument import get_instrument_number
-from mingus.containers import Bar, Track
-from mingus.containers import MidiInstrument
 
 
 def play_w_chorus():
@@ -24,7 +24,7 @@ def play_w_chorus():
 
     def play_note(chorus_level):
         if chorus_level:
-            chorus = 93
+            chorus = MidiControl.CHORUS
             synth.control_change(channel=channel, control=chorus, value=chorus_level)
 
         synth.play_note(note=60, channel=channel, velocity=velocity)
@@ -38,18 +38,27 @@ def play_w_chorus():
 
 
 def play_with_chorus_2():
+    """Get chorus working with tracks."""
     soundfont_path = get_soundfont_path()
 
     fluidsynth = FluidSynthPlayer(soundfont_path, gain=1.0)
 
     # Some whole notes
     c_bar = Bar()
-    c_bar.place_notes('C-4', 1)
+    c_bar.place_notes('C-4', 2)
 
-    t1 = Track(MidiInstrument("Acoustic Grand Piano", ))
-    t1.add_bar(c_bar)
+    track = Track(MidiInstrument("Trumpet", ))
+    track.add_bar(c_bar)
+    track.add_bar(c_bar)
+    track.add_bar(c_bar)
 
-    fluidsynth.play_tracks([t1], [1])
+    event = ControlChangeEvent(beat=4, control=MidiControl.CHORUS, value=63)
+    track.add_event(event)
+
+    event = ControlChangeEvent(beat=8, control=MidiControl.CHORUS, value=127)
+    track.add_event(event)
+
+    fluidsynth.play_tracks([track], [1])
 
 
 play_with_chorus_2()

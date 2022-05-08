@@ -128,10 +128,10 @@ class FluidSynthPlayer:
     def stop_percussion_note(self, note, channel):
         self.stop_event(int(note), int(channel))
 
-    def play_tracks(self, tracks, channels, bpm=120.0):
+    def play_tracks(self, tracks, channels, bpm=120.0, start_time=1, end_time=50_000_000, stop_func=None):
         sequencer = Sequencer()
         sequencer.play_Tracks(tracks, channels, bpm=bpm)
-        sequencer.play_score(self)
+        sequencer.play_score(self, stop_func=stop_func, start_time=start_time, end_time=end_time)
 
     def stop_everything(self):
         """Stop all the notes on all channels."""

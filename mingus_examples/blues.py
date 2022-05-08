@@ -8,7 +8,7 @@ from mingus.containers.midi_snippet import MidiPercussionSnippet
 from mingus.midi.fluid_synth2 import FluidSynthPlayer
 from mingus.containers.midi_percussion import MidiPercussion
 from mingus.midi.get_soundfont_path import get_soundfont_path
-from mingus.midi.sequencer2 import Sequencer
+from mingus.midi.sequencer2 import Sequencer, calculate_bar_start_time, calculate_bar_end_time
 import mingus.tools.mingus_json as  mingus_json
 
 
@@ -20,15 +20,18 @@ def melody(n_times):
     rest_bar.place_rest(1)
 
     i_bar = Bar()
-    i_bar.place_notes(Note('C-4'), 8)
-    i_bar.place_notes(Note('C-4'), 8)
+    i_bar.place_notes(Note('C-5', velocity=60), 16.0 / 2.5)
+    i_bar.place_notes(Note('C-5', velocity=50), 16.0 / 1.5)
     i_bar.place_rest(8.0 / 5.0)
 
     i_bar_2 = Bar()
     i_bar_2.place_rest(8.0 / 5.0)
-    i_bar_2.place_notes(Note('C-4'), 8.0 / 3.0)
+    i_bar_2.place_notes(Note('C-5'), 8.0 / 3.0)
 
-    turn_around = i_bar
+    turn_around = Bar()
+    turn_around.place_notes(Note('C-5', velocity=60), 4)
+    turn_around.place_notes(Note('C-5', velocity=80), 4)
+    turn_around.place_rest(4.0 / 2.0)
 
     iv_bar = copy.deepcopy(i_bar)
     iv_bar.transpose("4")
@@ -48,7 +51,7 @@ def melody(n_times):
 
     track.add_bar(v_bar)
     track.add_bar(iv_bar)
-    track.add_bar(i_bar)
+    track.add_bar(rest_bar)
     track.add_bar(turn_around)
 
     event = ControlChangeEvent(beat=0, control=MidiControl.CHORUS, value=80)
@@ -136,9 +139,9 @@ def snare(n_times):
     return snare_track
 
 
-def play(voices, n_times):
+def play(voices, n_times, **kwargs):
     fluidsynth = FluidSynthPlayer(soundfont_path, gain=1.0)
-    fluidsynth.play_tracks([voice(n_times) for voice in voices], range(1, len(voices) + 1))
+    fluidsynth.play_tracks([voice(n_times) for voice in voices], range(1, len(voices) + 1), **kwargs)
 
 
 def save(path, voices, bpm=120):
@@ -157,6 +160,18 @@ def load(path):
     print('x')
 
 
+def play_in_player(n_times):
+    # noinspection PyListCreation
+    voices = []
+    voices.append(percussion)  # percusion is a track
+    # voices.append(snare)
+    voices.append(bass)  # a track
+    voices.append(melody)
+    tracks = [voice(n_times) for voice in voices]
+    channels = list(range(1, len(voices) + 1))
+    return tracks, channels
+
+
 if __name__ == '__main__':
     # noinspection PyListCreation
     voices = []
@@ -164,7 +179,10 @@ if __name__ == '__main__':
     # voices.append(snare)
     voices.append(bass)        # a track
     voices.append(melody)
-    play(voices, n_times=1)
+    start_time = calculate_bar_start_time(120.0, 4, 9)
+    end_time = calculate_bar_start_time(120.0, 4, 13)
+
+    play(voices, n_times=1, start_time=start_time, end_time=end_time)
     # score_path = Path.home() / 'python_mingus' / 'scores' / 'blues.json'
     # save(score_path, voices)
 

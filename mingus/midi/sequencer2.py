@@ -9,6 +9,32 @@ import mingus.tools.mingus_json as mingus_json
 logging.basicConfig(level=logging.INFO)
 
 
+def calculate_bar_start_time(bpm: float, beats_per_bar: int, bar_number: int) -> int:
+    """
+    Since tracks can have different bpm and beats_per_bar, it's easiest t
+
+    :param bpm:
+    :param beats_per_bar:
+    :param bar_number: the first bar is bar_number 1
+    :return: time in milliseconds
+    """
+    beat = (bar_number - 1) * beats_per_bar
+    minutes = beat / bpm
+    t = round(minutes * 60_000)
+    return t
+
+
+def calculate_bar_end_time(bpm: float, beats_per_bar: int, bar_number: int) -> int:
+    """
+    :param bpm:
+    :param beats_per_bar:
+    :param bar_number: the first bar is bar_number 1
+    :return: time in milliseconds
+    """
+    t = calculate_bar_start_time(bpm, beats_per_bar, bar_number + 1)
+    return t
+
+
 class Sequencer:
     """
     This sequencer creates a "score" that is a dict with time in milliseconds as keys and list of
@@ -59,7 +85,19 @@ class Sequencer:
             channels = [x + 1 for x in range(len(composition.tracks))]
         return self.play_Tracks(composition.tracks, channels, bpm)
 
-    def play_score(self, synth, stop_func=None):
+    def play_score(self, synth, stop_func=None, start_time=0, end_time=50_000_000):
+        """
+
+        :param synth:
+        :param stop_func: a function that returns True if the score should stop playing. We tried
+            using a global variable for this, that ended up passing around the variable value, not the
+            reference.
+        :param start_time: in milliseconds. It might seem easier to pass in the start beat, but tracks can have
+            different bpm or meter, etc... So time in milliseconds is more universal. There are helper functions
+            at the top of this module to calculate time from bpm, ...
+        :param end_time: in milliseconds
+        :return: None
+        """
         score = sortedcontainers.SortedDict(self.score)
 
         for channel, instrument in self.instruments:
@@ -68,16 +106,21 @@ class Sequencer:
         logging.info('--------------\n')
 
         the_time = 0
-        for start_time, events in score.items():
+        for event_start_time, events in score.items():
             if stop_func and stop_func():
                 break
 
-            dt = start_time - the_time
-            if dt > 0:
+            if event_start_time > end_time:
+                break
+
+            # Sleep until the next event
+            dt = event_start_time - the_time
+            if dt > 0 and event_start_time >= start_time:
                 synth.sleep(dt / 1000.0)
-            the_time = start_time
+            the_time = event_start_time
+
             for event in events:
-                if event['func'] == 'start_note':
+                if event['func'] == 'start_note' and event_start_time >= start_time:
                     if isinstance(event['note'], PercussionNote):
                         synth.play_percussion_note(event['note'], event['channel'], event['velocity'])
                     else:
@@ -85,6 +128,7 @@ class Sequencer:
 
                     logging.info('Start: {} Note: {note}  Velocity: {velocity}  Channel: {channel}'.
                                  format(the_time, **event))
+
                 elif event['func'] == 'end_note':
                     if isinstance(event['note'], PercussionNote):
                         synth.stop_percussion_note(event['note'], event['channel'])
