@@ -156,35 +156,6 @@ Diminishing a note:
 
 
 
-Minor and Major conversions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Minor:
-
-
->>> notes.to_minor("C")
-"A"
->>> notes.to_minor("F")
-"D"
->>> notes.to_minor("D")
-"B"
->>> notes.to_minor("B")
-"G#"
-
-
-Major:
-
-
->>> notes.to_major("A")
-"C"
->>> notes.to_major("D")
-"F"
->>> notes.to_major("B")
-"D"
->>> notes.to_major("G#")
-"B"
-
-
 ----
 
 
