@@ -14,7 +14,7 @@ Example Application: Drum Machine
 
 *Platform* All
 
-*Download* This program is included in mingus' `examples <https://github.com/bspaans/python-mingus/mingus_examples/>`_ directory.
+*Download* This program is included in mingus' `examples <https://github.com/bspaans/python-mingus/blob/HEAD/mingus_examples>`_ directory.
 
 
 .. image:: drum_machine.jpg
@@ -35,7 +35,7 @@ Example Application: Keyboard
 
 *Platform* All
 
-*Download* This program is included in mingus' `examples <https://github.com/bspaans/python-mingus/mingus_examples/>`_ directory.
+*Download* This program is included in mingus' `examples <https://github.com/bspaans/python-mingus/blob/HEAD/mingus_examples>`_ directory.
 
 
 .. image:: keyboard.jpg
