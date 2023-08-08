@@ -51,6 +51,8 @@ Generate Absolute Chords
    * minor_ninth
    * major_ninth
    * dominant_ninth
+   * minor_add_ninth
+   * major_add_ninth
  * Elevenths
    * minor_eleventh
    * eleventh
@@ -117,6 +119,7 @@ chord_shorthand_meaning = {  # Triads Augmented chords Suspended chords Sevenths
     "dim": " diminished triad",
     "aug": " augmented triad",
     "+": " augmented triad",
+    "M-5": " major diminished triad",
     "7#5": " augmented minor seventh",
     "M7+5": " augmented minor seventh",
     "M7+": " augmented major seventh",
@@ -217,6 +220,15 @@ def diminished_triad(note):
     ['C', 'Eb', 'Gb']
     """
     return [note, intervals.minor_third(note), intervals.minor_fifth(note)]
+
+def major_diminished_triad(note):
+    """Build a major diminished triad on note.
+
+    Example:
+    >>> major_diminished_triad('C')
+    ['C', 'E', 'Gb']
+    """
+    return [note, intervals.major_third(note), intervals.minor_fifth(note)]
 
 
 def augmented_triad(note):
@@ -380,6 +392,25 @@ def major_ninth(note):
     ['C', 'E', 'G', 'B', 'D']
     """
     return major_seventh(note) + [intervals.major_second(note)]
+
+def minor_add_ninth(note):
+    """Build a minor ninth chord on note.
+
+    Example:
+    >>> minor_add_ninth('C')
+    ['C', 'Eb', 'G', 'D']
+    """
+    return minor_triad(note) + [intervals.major_second(note)]
+
+
+def major_add_ninth(note):
+    """Build a major ninth chord on note.
+
+    Example:
+    >>> major_add_ninth('C')
+    ['C', 'E', 'G', 'D']
+    """
+    return major_triad(note) + [intervals.major_second(note)]
 
 
 def dominant_ninth(note):
@@ -1338,6 +1369,7 @@ chord_shorthand = {  # Triads Augmented chords Suspended chords Sevenths Sixths
     "dim": diminished_triad,
     "aug": augmented_triad,
     "+": augmented_triad,
+    "M-5": major_diminished_triad,
     "7#5": augmented_minor_seventh,
     "M7+5": augmented_minor_seventh,
     "M7+": augmented_major_seventh,
@@ -1370,6 +1402,8 @@ chord_shorthand = {  # Triads Augmented chords Suspended chords Sevenths Sixths
     "7#9": dominant_sharp_ninth,
     "M9": major_ninth,
     "m9": minor_ninth,
+    "add9": major_add_ninth,
+    "madd9": minor_add_ninth,
     "7#11": lydian_dominant_seventh,
     "m11": minor_eleventh,
     "M13": major_thirteenth,
