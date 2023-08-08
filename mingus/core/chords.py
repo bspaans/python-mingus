@@ -119,6 +119,7 @@ chord_shorthand_meaning = {  # Triads Augmented chords Suspended chords Sevenths
     "dim": " diminished triad",
     "aug": " augmented triad",
     "+": " augmented triad",
+    "M-5": " major diminished triad",
     "7#5": " augmented minor seventh",
     "M7+5": " augmented minor seventh",
     "M7+": " augmented major seventh",
@@ -219,6 +220,15 @@ def diminished_triad(note):
     ['C', 'Eb', 'Gb']
     """
     return [note, intervals.minor_third(note), intervals.minor_fifth(note)]
+
+def major_diminished_triad(note):
+    """Build a major diminished triad on note.
+
+    Example:
+    >>> major_diminished_triad('C')
+    ['C', 'E', 'Gb']
+    """
+    return [note, intervals.major_third(note), intervals.minor_fifth(note)]
 
 
 def augmented_triad(note):
@@ -1359,6 +1369,7 @@ chord_shorthand = {  # Triads Augmented chords Suspended chords Sevenths Sixths
     "dim": diminished_triad,
     "aug": augmented_triad,
     "+": augmented_triad,
+    "M-5": major_diminished_triad,
     "7#5": augmented_minor_seventh,
     "M7+5": augmented_minor_seventh,
     "M7+": augmented_major_seventh,
